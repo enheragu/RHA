@@ -37,13 +37,13 @@ void G15ShieldInit(long baud, char G15_CTRL, char AX12_CTRL){
 // }
 
 
-G15::G15(byte ID)	//, char ctrl)
+G15::G15(uint8_t ID)	//, char ctrl)
 {
   ServoID=ID;
   init();
 }
 
-AX12::AX12(byte ID):G15(ID) //,ctrl)			//inherit G15 constructor
+AX12::AX12(uint8_t ID):G15(ID) //,ctrl)			//inherit G15 constructor
 {
 	// Add more initializations here if exist
 
@@ -72,16 +72,16 @@ void G15::setRX(void){ // set the dynamixel bus buffer direction to in
 
 
 //*=================send packet==========================================================
-// caution: at least 2 bytes of data array need to be passed into the function
+// caution: at least 2 uint8_ts of data array need to be passed into the function
 
-word G15::send_packet(byte ID, byte inst, byte* data, byte param_len)
+uint16_t G15::send_packet(uint8_t ID, uint8_t inst, uint8_t* data, uint8_t param_len)
 {
 	int i;
-	byte packet_len = 0;
-    byte TxBuff[16];
+	uint8_t packet_len = 0;
+    uint8_t TxBuff[16];
     char Status[16];
 	char checksum=0; 		//Check Sum = ~ (ID + Length + Instruction + Parameter1 + ... Parameter N)
-	word error=0;
+	uint16_t error=0;
 
 	setTX(); 					//set for transmit mode
 
@@ -99,7 +99,7 @@ word G15::send_packet(byte ID, byte inst, byte* data, byte param_len)
     }
     TxBuff[i+5] = ~checksum; 				//Checksum with Bit Inversion
 
-    packet_len = TxBuff[3] + 4;			//# of bytes for the whole packet
+    packet_len = TxBuff[3] + 4;			//# of uint8_ts for the whole packet
 
 	for(i=0; i<packet_len;i++){
 		Serial.write(TxBuff[i]);
@@ -107,7 +107,7 @@ word G15::send_packet(byte ID, byte inst, byte* data, byte param_len)
 	Serial.flush();
 	//waitTXC();		//arduino version 1.01 only
 
-    //Status[4]=0x00;		//clear status byte
+    //Status[4]=0x00;		//clear status uint8_t
 
     // we'll only get a reply if it was not broadcast
     if((ID != 0xFE) || (inst == iPING))
@@ -124,7 +124,7 @@ word G15::send_packet(byte ID, byte inst, byte* data, byte param_len)
 
 
 		setRX(); 						//set to receive mode and start receiving from G15
-		byte readcount= Serial.readBytes(Status, packet_len);
+		uint8_t readcount= Serial.readuint8_ts(Status, packet_len);
 
 		setTX();  						//set back to tx mode to prevent noise into buffer
 
@@ -132,7 +132,7 @@ word G15::send_packet(byte ID, byte inst, byte* data, byte param_len)
 		// for(i=0; i<packet_len; i++)
 			// Serial.write(Status[i]);
 
-		//Checking received bytes
+		//Checking received uint8_ts
 		error=0; 		//clear error
 		if(readcount!=packet_len){
 
@@ -151,7 +151,7 @@ word G15::send_packet(byte ID, byte inst, byte* data, byte param_len)
 		}
 		if(Status[4] != char(0))
 		{
-			error|=word(Status[4]);
+			error|=uint16_t(Status[4]);
 			//return(error);
 		}
 		// calculate checksum
@@ -175,7 +175,7 @@ word G15::send_packet(byte ID, byte inst, byte* data, byte param_len)
 			else if(inst == iREAD_DATA)
 			{
 				for(i = 0; i < param_len; i++)  //Requested Parameters
-					data[i] = byte (Status[i+5]);
+					data[i] = uint8_t (Status[i+5]);
 			}
 		}
 
@@ -185,9 +185,9 @@ word G15::send_packet(byte ID, byte inst, byte* data, byte param_len)
 
 }
 
-word G15::SetWheelMode(void)	//10 bits speed (0-1024)
+uint16_t G15::SetWheelMode(void)	//10 bits speed (0-1024)
 {
-	word Error=0;
+	uint16_t Error=0;
 	Error=SetAngleLimit(0,0);	//enable wheel mode
 	if(Error!=0) return (Error);
 
@@ -196,12 +196,12 @@ word G15::SetWheelMode(void)	//10 bits speed (0-1024)
 	return(Error);
 }
 
-word G15::ExitWheelMode(void)
+uint16_t G15::ExitWheelMode(void)
 {
 	return(SetAngleLimit(0,1087));  //reset to default angle limit
 }
 
-word G15::SetWheelSpeed(word Speed, byte CW_CCW)
+uint16_t G15::SetWheelSpeed(uint16_t Speed, uint8_t CW_CCW)
 {
 	Speed=Speed&0x03FF; 	//0000 0011 1111 1111 eliminate bits which are non speed
 	if(CW_CCW){		//if CW
@@ -212,37 +212,37 @@ word G15::SetWheelSpeed(word Speed, byte CW_CCW)
 
 //******************************************************************
 //*	SET GOAL POSITION
-//* 	eg:	dat[0] = 0xC8;				// Position lower byte
-//*			dat[1] = 0x00;				// Position upper byte
+//* 	eg:	dat[0] = 0xC8;				// Position lower uint8_t
+//*			dat[1] = 0x00;				// Position upper uint8_t
 //*			SetPos(dat,iWRITE_DATA);	// Send to servo 2 & action!
 //******************************************************************
-word G15::SetPos(word Position, byte Write_Reg)
+uint16_t G15::SetPos(uint16_t Position, uint8_t Write_Reg)
 {
-	byte TxBuff[3];
+	uint8_t TxBuff[3];
 
     TxBuff[0] = GOAL_POSITION_L;	//Control Starting Address
-	  TxBuff[1] = byte (Position&0x00FF);  			//goal pos bottom 8 bits
-    TxBuff[2] = byte (Position>>8); 			//goal pos top 8 bits
+	  TxBuff[1] = uint8_t (Position&0x00FF);  			//goal pos bottom 8 bits
+    TxBuff[2] = uint8_t (Position>>8); 			//goal pos top 8 bits
 
 	// write the packet, return the error code
 	return(send_packet(ServoID, Write_Reg, TxBuff, 3));
 }
 
-/* byte G15::SetPosAngle(word Angle, byte Write_Reg){
+/* uint8_t G15::SetPosAngle(uint16_t Angle, uint8_t Write_Reg){
 
 	return(SetPos(ConvertAngle(Angle),Write_Reg));
-	//return(SetPos(word(float(Angle)*1088.0/360.0),Write_Reg));
+	//return(SetPos(uint16_t(float(Angle)*1088.0/360.0),Write_Reg));
 
 } */
 
-word G15::RotateCW (word Position, byte Write_Reg){
+uint16_t G15::RotateCW (uint16_t Position, uint8_t Write_Reg){
 
 	Position = Position|0xC000;  //directional positioning mode CW
 
 	return(SetPos(Position, Write_Reg));
 
 }
-word G15::RotateCCW (word Position, byte Write_Reg){
+uint16_t G15::RotateCCW (uint16_t Position, uint8_t Write_Reg){
 
 	Position = Position|0x8000;  //directional positioning mode
 	Position = Position&0xBFFF;  //CCW	1011 1111 1111 1111
@@ -254,9 +254,9 @@ word G15::RotateCCW (word Position, byte Write_Reg){
 //*	SET TORQUE ON OFF
 //* 	eg:	SetTorqueOnOff(1,iREG_WRITE);	// Turn on torque of servo 2
 //******************************************************************
-word G15::SetTorqueOnOff(byte on_off, byte Write_Reg)
+uint16_t G15::SetTorqueOnOff(uint8_t on_off, uint8_t Write_Reg)
 {
-	byte TxBuff[2];
+	uint8_t TxBuff[2];
 
     TxBuff[0] = TORQUE_ENABLE;		//Control Starting Address
 	TxBuff[1] = on_off; 			//ON = 1, OFF = 0
@@ -266,18 +266,18 @@ word G15::SetTorqueOnOff(byte on_off, byte Write_Reg)
 }
 //******************************************************************
 //*	SET SPEED
-//* 	eg:	dat[0] = 0x0A;				// Speed lower byte
-//*			dat[1] = 0x02;				// Speed upper byte
+//* 	eg:	dat[0] = 0x0A;				// Speed lower uint8_t
+//*			dat[1] = 0x02;				// Speed upper uint8_t
 //*			SetSpeed(dat,iREG_WRITE);	// Save data in servo 2 register &
 //*										// wait for action command
 //******************************************************************
-word G15::SetSpeed(word Speed, byte Write_Reg)
+uint16_t G15::SetSpeed(uint16_t Speed, uint8_t Write_Reg)
 {
-	byte TxBuff[3];
+	uint8_t TxBuff[3];
 
     TxBuff[0] = MOVING_SPEED_L;		//Control Starting Address
-	TxBuff[1] = byte(Speed&0x00FF);			//speed bottom 8 bits
-    TxBuff[2] = byte(Speed>>8); 			//speed top 8 bits
+	TxBuff[1] = uint8_t(Speed&0x00FF);			//speed bottom 8 bits
+    TxBuff[2] = uint8_t(Speed>>8); 			//speed top 8 bits
 
     // write the packet, return the error code
     return(send_packet(ServoID, Write_Reg, TxBuff, 3));
@@ -285,7 +285,7 @@ word G15::SetSpeed(word Speed, byte Write_Reg)
 //********************************************************************
 //*
 //*
-word G15::SetTimetoGoal(word Time,byte Write_Reg)
+uint16_t G15::SetTimetoGoal(uint16_t Time,uint8_t Write_Reg)
 {
 	Time = Time&0x0FFF; 	//			0000 1111 1111 1111
 	Time = Time|0x8000; 	//bit 15 represents the time to goal pos mode
@@ -296,22 +296,22 @@ word G15::SetTimetoGoal(word Time,byte Write_Reg)
 
 //******************************************************************
 //*	SET ANGLE LIMIT
-//* byte SetAngleLimit(word CW_angle, word CCW_angle)
+//* uint8_t SetAngleLimit(uint16_t CW_angle, uint16_t CCW_angle)
 //*	CW_angle & CCW_angle are not in degree value
 //*	Use ConverAngle to convert angle values if needed
 //*
 //*
 //******************************************************************
-word G15::SetAngleLimit(word CW_angle, word CCW_angle)
+uint16_t G15::SetAngleLimit(uint16_t CW_angle, uint16_t CCW_angle)
 {
-	byte TxBuff[5];
-	word error;
+	uint8_t TxBuff[5];
+	uint16_t error;
 
     TxBuff[0] = CW_ANGLE_LIMIT_L;			//Starting Address
-	TxBuff[1] = byte(CW_angle&0x00FF);  	//CW limit bottom 8 bits
-    TxBuff[2] = byte(CW_angle>>8); 			//CW limit top 8 bits
-	TxBuff[3] = byte(CCW_angle&0x00FF); 	//CCW limit bottom 8 bits
-	TxBuff[4] = byte(CCW_angle>>8); 		//CCW limit top 8 bits
+	TxBuff[1] = uint8_t(CW_angle&0x00FF);  	//CW limit bottom 8 bits
+    TxBuff[2] = uint8_t(CW_angle>>8); 			//CW limit top 8 bits
+	TxBuff[3] = uint8_t(CCW_angle&0x00FF); 	//CCW limit bottom 8 bits
+	TxBuff[4] = uint8_t(CCW_angle>>8); 		//CCW limit top 8 bits
 
 
 	error = send_packet(ServoID, iWRITE_DATA, TxBuff, 5);
@@ -320,23 +320,23 @@ word G15::SetAngleLimit(word CW_angle, word CCW_angle)
     return(error);
 }
 
-word G15::SetTorqueLimit(word TorqueLimit)
+uint16_t G15::SetTorqueLimit(uint16_t TorqueLimit)
 {
-	byte TxBuff[3];
+	uint8_t TxBuff[3];
 
     TxBuff[0] = TORQUE_LIMIT_L;				//Starting Address
-	TxBuff[1] = byte(TorqueLimit&0x00FF);  	//Torque limit bottom 8 bits
-    TxBuff[2] = byte(TorqueLimit>>8); 		//Torque limit top 8 bits
+	TxBuff[1] = uint8_t(TorqueLimit&0x00FF);  	//Torque limit bottom 8 bits
+    TxBuff[2] = uint8_t(TorqueLimit>>8); 		//Torque limit top 8 bits
 
     // write the packet, return the error code
     return(send_packet(ServoID, iWRITE_DATA, TxBuff, 3));
 
 }
 
-word G15::SetTemperatureLimit(byte Temperature)
+uint16_t G15::SetTemperatureLimit(uint8_t Temperature)
 {
-	byte TxBuff[2];
-	word error;
+	uint8_t TxBuff[2];
+	uint16_t error;
 
     TxBuff[0] = LIMIT_TEMPERATURE;			//Starting Address
 	TxBuff[1] = Temperature;  				//temperature
@@ -347,10 +347,10 @@ word G15::SetTemperatureLimit(byte Temperature)
     return(error);
 }
 
-word G15::SetVoltageLimit(byte VoltageLow, byte VoltageHigh)
+uint16_t G15::SetVoltageLimit(uint8_t VoltageLow, uint8_t VoltageHigh)
 {
-	byte TxBuff[3];
-	word error;
+	uint8_t TxBuff[3];
+	uint16_t error;
 
     TxBuff[0] = DOWN_LIMIT_VOLTAGE;				//Starting Address
 	TxBuff[1] = VoltageLow;  	//lower voltage limit
@@ -366,10 +366,10 @@ word G15::SetVoltageLimit(byte VoltageLow, byte VoltageHigh)
 //*	SET ID
 //* 	eg:	SetID(MAIN,0xFE,3);	// Change the ID of any number to 3
 //******************************************************************
-word G15::SetID(byte NewID)
+uint16_t G15::SetID(uint8_t NewID)
 {
-    byte TxBuff[2];
-	word error;
+    uint8_t TxBuff[2];
+	uint16_t error;
 
     TxBuff[0] = ID;			//Control Starting Address
 	TxBuff[1] = NewID;
@@ -385,9 +385,9 @@ word G15::SetID(byte NewID)
 //*	SET LED
 //* 	eg:	SetLED(1,iWRITE_DATA);	// Turn on LED of servo 2
 //******************************************************************
-word G15::SetLED(byte on_off, byte Write_Reg)
+uint16_t G15::SetLED(uint8_t on_off, uint8_t Write_Reg)
 {
-	byte TxBuff[2];
+	uint8_t TxBuff[2];
 
     TxBuff[0] = LED;				//Control Starting Address
 	TxBuff[1] = on_off; 			//ON = 1, OFF = 0
@@ -397,11 +397,11 @@ word G15::SetLED(byte on_off, byte Write_Reg)
 
 }
 
-word G15::SetAlarmLED(byte AlarmLED){
+uint16_t G15::SetAlarmLED(uint8_t AlarmLED){
 
-	byte alarmval=0x00;
-	byte TxBuff[2];
-	word error;
+	uint8_t alarmval=0x00;
+	uint8_t TxBuff[2];
+	uint16_t error;
 
 	alarmval=alarmval|AlarmLED;
 
@@ -416,11 +416,11 @@ word G15::SetAlarmLED(byte AlarmLED){
 
 }
 
-word G15::SetAlarmShutDown(byte Alarm){
+uint16_t G15::SetAlarmShutDown(uint8_t Alarm){
 
-	byte alarmval=0x00;
-	byte TxBuff[2];
-	word error;
+	uint8_t alarmval=0x00;
+	uint8_t TxBuff[2];
+	uint16_t error;
 
 	alarmval=alarmval|Alarm;
 
@@ -435,10 +435,10 @@ word G15::SetAlarmShutDown(byte Alarm){
 
 }
 
-word G15::SetMarginSlopePunch(byte CWMargin, byte CCWMargin, byte CWSlope, byte CCWSlope, word Punch)
+uint16_t G15::SetMarginSlopePunch(uint8_t CWMargin, uint8_t CCWMargin, uint8_t CWSlope, uint8_t CCWSlope, uint16_t Punch)
 {
-	byte TxBuff[5];
-	word error=0;
+	uint8_t TxBuff[5];
+	uint16_t error=0;
 
     TxBuff[0] = CW_COMPLIANCE_MARGIN;		//Control Starting Address
 	TxBuff[1] = CWMargin;
@@ -453,8 +453,8 @@ word G15::SetMarginSlopePunch(byte CWMargin, byte CCWMargin, byte CWSlope, byte 
 		return (error);
 
 	TxBuff[0] = PUNCH_L;				//Control Starting Address
-	TxBuff[1] = byte(Punch&0x00FF);		//punch Lower 8 bits
-	TxBuff[2] = byte(Punch>>8); 		//punch Higher 8 bits
+	TxBuff[1] = uint8_t(Punch&0x00FF);		//punch Lower 8 bits
+	TxBuff[2] = uint8_t(Punch>>8); 		//punch Higher 8 bits
 
 	// write the packet, return the error code
     error=send_packet(ServoID, iWRITE_DATA, TxBuff, 3);
@@ -466,10 +466,10 @@ word G15::SetMarginSlopePunch(byte CWMargin, byte CCWMargin, byte CWSlope, byte 
 //*	SET BAUDRATE
 //* 	eg:	SetBaud(1,2,1);	// Turn on torque of servo 2
 //******************************************************************
-word G15::SetBaudRate(long bps)
+uint16_t G15::SetBaudRate(long bps)
 {
-	byte TxBuff[2];
-	word error;
+	uint8_t TxBuff[2];
+	uint16_t error;
 
 
     TxBuff[0] = BAUD_RATE;			//Control Starting Address
@@ -482,10 +482,10 @@ word G15::SetBaudRate(long bps)
     // write the packet, return the error code
     return(error);
 }
-word AX12::SetBaudRate(long bps)
+uint16_t AX12::SetBaudRate(long bps)
 {
-	byte TxBuff[2];
-	word error;
+	uint8_t TxBuff[2];
+	uint16_t error;
 
     TxBuff[0] = BAUD_RATE;			//Control Starting Address
 	TxBuff[1] = (2000000/bps)-1;	//Calculate baudrate
@@ -499,10 +499,10 @@ word AX12::SetBaudRate(long bps)
 //*	RESET TO FACTORY SETTINGS
 //* 	eg:	FactoryReset(1,1);// Reset servo 1
 //******************************************************************
-word G15::FactoryReset(void)
+uint16_t G15::FactoryReset(void)
 {
-	byte TxBuff[1];	//dummy byte
-	word error;
+	uint8_t TxBuff[1];	//dummy uint8_t
+	uint16_t error;
 
 	error=send_packet(ServoID, iRESET, TxBuff, 0);
 	delay(100); 		//delay for eeprom write
@@ -514,7 +514,7 @@ word G15::FactoryReset(void)
 //*	PING
 //* 	eg:	Ping(MAIN,1,dat);	// Ping servo 1, dat is array's pointer
 //******************************************************************
-word G15::Ping(byte* data)
+uint16_t G15::Ping(uint8_t* data)
 {
 	// write the packet, return the error code
     return(send_packet(ServoID, iPING, data, 0));
@@ -523,43 +523,43 @@ word G15::Ping(byte* data)
 //******************************************************************
 //*	GET CURRENT POSITION
 //******************************************************************
-word G15::GetPos(byte* data)
+uint16_t G15::GetPos(uint8_t* data)
 {
     data[0] = PRESENT_POSITION_L;	// Starting Addr where data to be read
-    data[1] = 0x02;			// # of bytes to be read
+    data[1] = 0x02;			// # of uint8_ts to be read
 
     return (send_packet(ServoID, iREAD_DATA, data, 2));
 }
 
-word G15::GetSpeed(byte* data)
+uint16_t G15::GetSpeed(uint8_t* data)
 {
     data[0] = PRESENT_SPEED_L;	// Starting Addr where data to be read
-    data[1] = 0x02;			// # of bytes to be read
+    data[1] = 0x02;			// # of uint8_ts to be read
 
     return (send_packet(ServoID, iREAD_DATA, data, 2));
 }
 
-word G15::GetLoad(byte* data)
+uint16_t G15::GetLoad(uint8_t* data)
 {
 
     data[0] = PRESENT_LOAD_L;	// Starting Addr where data to be read
-    data[1] = 0x02;			// # of bytes to be read
+    data[1] = 0x02;			// # of uint8_ts to be read
 
     return (send_packet(ServoID, iREAD_DATA, data, 2));
 }
 
-word G15::GetVoltage(byte* data)
+uint16_t G15::GetVoltage(uint8_t* data)
 {
 	data[0] = PRESENT_VOLTAGE;	// Starting Addr where data to be read
-    data[1] = 0x01;			// # of bytes to be read
+    data[1] = 0x01;			// # of uint8_ts to be read
 
     return (send_packet(ServoID, iREAD_DATA, data, 2));
 }
 
-word G15::GetTemperature(byte* data)
+uint16_t G15::GetTemperature(uint8_t* data)
 {
 	data[0] = PRESENT_TEMPERATURE;	// Starting Addr where data to be read
-    data[1] = 0x01;			// # of bytes to be read
+    data[1] = 0x01;			// # of uint8_ts to be read
 
     return (send_packet(ServoID, iREAD_DATA, data, 2));
 }
@@ -567,10 +567,10 @@ word G15::GetTemperature(byte* data)
 //******************************************************************
 //*	GET TORQUE (ON/OFF?)
 //******************************************************************
-word G15::GetTorqueOnOff(byte* data)
+uint16_t G15::GetTorqueOnOff(uint8_t* data)
 {
     data[0] = TORQUE_ENABLE;		// Starting Addr where data to be read
-    data[1] = 0x01;					// # of bytes to be read
+    data[1] = 0x01;					// # of uint8_ts to be read
 
     return (send_packet(ServoID, iREAD_DATA, data, 2));
 }
@@ -578,10 +578,10 @@ word G15::GetTorqueOnOff(byte* data)
 //******************************************************************
 //*	IS MOTOR MOVING?
 //******************************************************************
-word G15::IsMoving(byte* data)
+uint16_t G15::IsMoving(uint8_t* data)
 {
     data[0] = MOVING;				// Starting Addr where data to be read
-    data[1] = 0x01;					// # of bytes to be read
+    data[1] = 0x01;					// # of uint8_ts to be read
 
 	return (send_packet(ServoID, iREAD_DATA, data, 2));
 }
@@ -592,7 +592,7 @@ word G15::IsMoving(byte* data)
 //******************************************************************
 void G15::SetAction(void)
 {
-	 // byte TxBuff[1];	//dummy byte
+	 // uint8_t TxBuff[1];	//dummy uint8_t
 	 // send_packet(0xFE, iACTION, TxBuff, 0);
 	set_act(G15CTRL);
 
@@ -600,7 +600,7 @@ void G15::SetAction(void)
 
 void AX12::SetAction(void){
 
-	// byte TxBuff[1];	//dummy byte
+	// uint8_t TxBuff[1];	//dummy uint8_t
 	// send_packet(0xFE, iACTION, TxBuff, 0);
 	set_act(AX12CTRL);
 }
@@ -608,9 +608,9 @@ void AX12::SetAction(void){
 void set_act(char ctrl){
 
 	int i;
-	byte packet_len = 0;
-    byte TxBuff[16];
-    byte chksum = 0;	//Check Sum = ~ (ID + Length + Instruction + Parameter1 + ... Parameter N)
+	uint8_t packet_len = 0;
+    uint8_t TxBuff[16];
+    uint8_t chksum = 0;	//Check Sum = ~ (ID + Length + Instruction + Parameter1 + ... Parameter N)
 
 	digitalWrite(ctrl,TxMode);
 
@@ -623,7 +623,7 @@ void set_act(char ctrl){
 
     TxBuff[5] = ~chksum; 				//Checksum with Bit Inversion
 
-    packet_len = TxBuff[3] + 4;			//# of bytes for the whole packet
+    packet_len = TxBuff[3] + 4;			//# of uint8_ts for the whole packet
 
 	for(i=0; i<packet_len;i++){
 		Serial.write(TxBuff[i]);

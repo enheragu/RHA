@@ -19,9 +19,9 @@
 #define SerialTimeOut 100L
 #define TxMode LOW
 #define RxMode HIGH
-#define ConvertAngle2Pos(Angle) word(word(Angle)*1088UL/360UL)
-#define ConvertPos2Angle(Pos) float(Pos)*360.0/1088.0)
-#define ConvertTime(Time) word(Time*10UL)
+#define ConvertAngle2Pos(Angle) uint16_t(uint16_t(Angle)*1088UL/360UL)
+#define ConvertPos2Angle(Pos) float((Pos)*360.0/1088.0)
+#define ConvertTime(Time) uint16_t(Time*10UL)
 #define CW 1
 #define CCW 0
 #define ON 1
@@ -98,64 +98,64 @@ void set_act(char ctrl);
 class G15
 {
 	public:
-		byte ServoID;
+		uint8_t ServoID;
 
-		G15(byte ID) ; //, char ctrl);
+		G15(uint8_t ID) ; //, char ctrl);
 		void init(void);
 
 		//*=========Wheel Mode=====================================================================================
 		//360 degree continous rotation. change CW and CCW Angle Limits to same value
-		word SetWheelMode(void);
-		word ExitWheelMode(void);
-		virtual word SetWheelSpeed(word Speed, byte CW_CCW);
+		uint16_t SetWheelMode(void);
+		uint16_t ExitWheelMode(void);
+		virtual uint16_t SetWheelSpeed(uint16_t Speed, uint8_t CW_CCW);
 
 
 		//*=========Normal Positioning Mode========================================================================
 		//(Rotation limited by Angle Limit and Direction of Rotation determined by operation section of Angle Limit)
-		word SetPos(word Position, byte Write_Reg);
-		//byte SetPosAngle(word Angle, byte Write_Reg); 	//replaced with ConvertAngle()
+		uint16_t SetPos(uint16_t Position, uint8_t Write_Reg);
+		//uint8_t SetPosAngle(uint16_t Angle, uint8_t Write_Reg); 	//replaced with ConvertAngle()
 
 		//*========Direction Positioning Mode======================================================================
 		//(Rotation direction and angle is NOT limited by Angle Limit Control Register value)
-		word RotateCW (word Position, byte Write_Reg);
-		word RotateCCW (word Position, byte Write_Reg);
+		uint16_t RotateCW (uint16_t Position, uint8_t Write_Reg);
+		uint16_t RotateCCW (uint16_t Position, uint8_t Write_Reg);
 
 		//*=======Torque Enable and Speed Control==================================================================
-		word SetTorqueOnOff(byte on_off, byte Write_Reg);
-		word SetSpeed(word Speed, byte Write_Reg);
-		word SetTimetoGoal(word Time,byte Write_Reg);
+		uint16_t SetTorqueOnOff(uint8_t on_off, uint8_t Write_Reg);
+		uint16_t SetSpeed(uint16_t Speed, uint8_t Write_Reg);
+		uint16_t SetTimetoGoal(uint16_t Time,uint8_t Write_Reg);
 
 		//*=======Set Maximum Limits===============================================================================
-		word SetAngleLimit(word CW_angle, word CCW_angle);
-		word SetTorqueLimit(word TorqueLimit); //in RAM area
-		word SetTemperatureLimit(byte Temperature);
-		word SetVoltageLimit(byte VoltageLow, byte VoltageHigh);
+		uint16_t SetAngleLimit(uint16_t CW_angle, uint16_t CCW_angle);
+		uint16_t SetTorqueLimit(uint16_t TorqueLimit); //in RAM area
+		uint16_t SetTemperatureLimit(uint8_t Temperature);
+		uint16_t SetVoltageLimit(uint8_t VoltageLow, uint8_t VoltageHigh);
 
-		word SetID(byte NewID);
+		uint16_t SetID(uint8_t NewID);
 
-		word SetLED(byte on_off, byte Write_Reg);
-		word SetAlarmLED(byte AlarmLED);
-		word SetAlarmShutDown(byte Alarm);
+		uint16_t SetLED(uint8_t on_off, uint8_t Write_Reg);
+		uint16_t SetAlarmLED(uint8_t AlarmLED);
+		uint16_t SetAlarmShutDown(uint8_t Alarm);
 
 
 		//*========Servo Positioning Control Parameters============================================================
-		word SetMarginSlopePunch(byte CWMargin, byte CCWMargin, byte CWSlope, byte CCWSlope, word Punch);
+		uint16_t SetMarginSlopePunch(uint8_t CWMargin, uint8_t CCWMargin, uint8_t CWSlope, uint8_t CCWSlope, uint16_t Punch);
 
 
 
-		word SetBaudRate(long bps);
+		uint16_t SetBaudRate(long bps);
 
-		word FactoryReset(void);
+		uint16_t FactoryReset(void);
 
-		word Ping(byte* data);
+		uint16_t Ping(uint8_t* data);
 
-		word GetPos(byte* data);
-		word GetSpeed(byte* data);
-		word GetLoad(byte* data);
-		word GetVoltage(byte* data);
-		word GetTemperature(byte* data);
-		word GetTorqueOnOff(byte* data);
-		word IsMoving(byte* data);
+		uint16_t GetPos(uint8_t* data);
+		uint16_t GetSpeed(uint8_t* data);
+		uint16_t GetLoad(uint8_t* data);
+		uint16_t GetVoltage(uint8_t* data);
+		uint16_t GetTemperature(uint8_t* data);
+		uint16_t GetTorqueOnOff(uint8_t* data);
+		uint16_t IsMoving(uint8_t* data);
 
 		static void SetAction(void);
 
@@ -168,8 +168,8 @@ class G15
 
 		void setRX(void);
 		void setTX(void);
-		word send_packet(byte ID, byte inst, byte* data, byte param_len);
-		byte read_data(byte id, byte* data);
+		uint16_t send_packet(uint8_t ID, uint8_t inst, uint8_t* data, uint8_t param_len);
+		uint8_t read_data(uint8_t id, uint8_t* data);
 
 
 
@@ -178,8 +178,8 @@ class G15
 class AX12:public G15{
 
 public:
-	  AX12(byte ID) ;//, char ctrl);
-	  word SetBaudRate(long bps);
+	  AX12(uint8_t ID) ;//, char ctrl);
+	  uint16_t SetBaudRate(long bps);
 	  void init(void);
 	  static void SetAction(void);
 

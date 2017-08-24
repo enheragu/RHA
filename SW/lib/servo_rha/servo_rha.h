@@ -48,6 +48,7 @@ enum { LESS_THAN, //enumeration for angle comparison
 #endif
 
 uint8_t compareAngles(uint16_t angle1, uint16_t angle2, uint8_t angle_margin=0);
+uint8_t compareSpeed(uint16_t speed1, uint16_t speed2, uint8_t speed_margin=0);
 
 class ServoRHA : public Cytron_G15Shield {
 protected:
@@ -60,7 +61,10 @@ public:
   ServoRHA(){} // It'll be only used for testing purposes
   ServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
   void initServo();
+
   uint16_t angleRead();
+  uint16_t speedRead();
+
   virtual uint16_t returnPacketSet(uint8_t option);
   void addToPacket(uint8_t *buffer, uint8_t &position, uint8_t *goal, uint8_t goal_len, uint8_t &num_servo);
   uint8_t wrapPacket(uint8_t *buffer, uint8_t *data, uint8_t data_len, uint8_t instruction, uint8_t num_servo);
@@ -69,6 +73,10 @@ public:
   void setGoalEncoder(float goal_rotation, uint8_t cw_ccw);
   void doNext();
   void encoderModeRotation();
+  void accelerate(uint8_t &speed);
+  void decelerate(uint8_t &speed, unit8_t angle_left);
+
+  bool isMoving();
 private:
   virtual void calibrateTorque();
   void calibrateTorqueDir(uint16_t &min_torque, uint16_t direction);

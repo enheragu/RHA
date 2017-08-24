@@ -5,10 +5,14 @@
 
 #define SERVO_ID 1
 #define DELAY_MOVE 5000
+#define DELAY_MOVE_SHORT 500
 #define POSITION 5.30
+#define ANGLE_POSITION 180
 #define SPEED 300
 #define BAUDRATE 19200.
 #define MARGIN 5
+#define MAX_SPEED_ALLOWED 1023
+#define MARGIN_SPEED_COMPARISON 5
 
 class TestServoRHA : public ServoRHA {
 public:
@@ -36,14 +40,100 @@ public:
   uint16_t getInitPose(){return init_pose_;}
   uint16_t getEncoderCurrent(){return encoder_current_;}
   uint16_t getEncoderFlag(){return encoder_flag_;}
+
+  void setInitPose(uint16_t pose) {init_pose_ = pose;}
+  void setCurrentPose(uint16_t pose) {current_pose_ = pose;}
 };
 
 void test_function_setGoalEncoder(void) {
   TestServoRHA servo_test1(1, 2, 3, 8);
+  //init servo not needeed in this case
   servo_test1.setGoalEncoder(8.56, CCW);
-
   TEST_ASSERT_EQUAL_FLOAT(8.56,servo_test1.getGoalPoseEncoder());
   TEST_ASSERT_EQUAL_UINT8(CCW,servo_test1.getGoalDirection());
+}
+
+void test_function_isMoving(void){
+  TestServoRHA servo_test1(1, 2, 3, 8);
+  servo_test1.initServo();
+  TEST_ASSERT_EQUAL(false, isMoving());
+  servo_test1.setWheelMode();
+  servo_test1.setWheelSpeed(MAX_SPEED_ALLOWED,CW);
+  TEST_ASSERT_EQUAL(true, isMoving());
+  servo_test1.exitWheelMode();
+}
+
+void test_function_readAngle(void){
+  TestServoRHA servo_test1(1, 2, 3, 8);
+  servo_test1.initServo();
+  servo_test1.exitWheelMode();
+  servo_test1.setSpeed(SPEED,iWRITE_DATA);
+  servo_test1.setPosAngle(ANGLE_POSITION,iWRITE_DATA);
+  while (isMoving()) delay(DELAY_MOVE_SHORT);
+  TEST_ASSERT_EQUAL_UINT16(ANGLE_POSITION, servo_test1.angleRead());
+}
+
+void test_function_accelerateCW(void){
+  TestServoRHA servo_test1(1, 2, 3, 8);
+  servo_test1.initServo();
+  servo_test1.setWheelMode();
+  TEST_ASSERT_EQUAL(0, servo_test1.speedRead());
+
+  word real_speed_low, real_speed_high, speed=1;
+  uint8_t data[10];
+  servo_test1.setWheelSpeed(servo_test1.getMinTorqueCw(),CW,iWRITE_DATA);
+  delay(DELAY_MOVE);
+  real_speed_low = servo_test1.speedRead();
+  servo_test1.setWheelSpeed(gservo_test1.etMaxTorqueCw(),CW,iWRITE_DATA);
+  delay(DELAY_MOVE);
+  real_speed_high = servo_test1.speedRead();
+
+
+  servo_test1.setWheelSpeed(speed,CW,iWRITE_DATA);
+  servo_test1.setGoalEncoder(0, CW); //want to set goal direction
+  servo_test1.setInitPose(servo_test1.angleRead());
+  servo_test1.setCurrentPose(servo_test1.angleRead());
+
+  while(1){
+    servo_test1.accelerate(speed);
+    delay(DELAY_MOVE);
+    servo_test1.setCurrentPose(servo_test1.angleRead());
+    if (compareSpeed(servo_test1.speedRead(), real_speed_high, MARGIN_SPEED_COMPARISON)==EQUAL) break;
+  }
+  TEST_ASSERT_EQUAL(EQUAL, compareSpeed(servo_test1.speedRead(), real_speed_high, MARGIN_SPEED_COMPARISON));
+  servo_test1.exitWheelMode();
+}
+
+void test_function_decelerateCW(void){
+  TestServoRHA servo_test1(1, 2, 3, 8);
+  servo_test1.initServo();
+  servo_test1.setWheelMode();
+  TEST_ASSERT_EQUAL(0, servo_test1.speedRead());
+
+  word real_speed_low, real_speed_high, speed=1;
+  uint8_t data[10];
+  servo_test1.setWheelSpeed(servo_test1.getMinTorqueCw(),CW,iWRITE_DATA);
+  delay(DELAY_MOVE);
+  real_speed_low = servo_test1.speedRead();
+  servo_test1.setWheelSpeed(servo_test1.getMaxTorqueCw(),CW,iWRITE_DATA);
+  delay(DELAY_MOVE);
+  real_speed_high = servo_test1.speedRead();
+
+  servo_test1.setWheelSpeed(gservo_test1.getMaxTorqueCw(),CW,iWRITE_DATA);
+  servo_test1.setGoalEncoder(0, CW); //want to set goal direction
+  servo_test1.setInitPose(servo_test1.angleRead());
+  servo_test1.setCurrentPose(servo_test1.angleRead());
+
+  while(1){
+    uint8_t angle_left = servo_test1.getAccelerationAngle() - (servo_test1.getCurrentPose() - servo_test1.getInitPose());
+    servo_test1.decelerate(speed, );
+    delay(DELAY_MOVE);
+    servo_test1.setCurrentPose(servo_test1.angleRead());
+    if (compareSpeed(servo_test1.speedRead(), 0, MARGIN_SPEED_COMPARISON)==EQUAL) break;
+  }
+  TEST_ASSERT_EQUAL(EQUAL, compareSpeed(servo_test1.speedRead(), 0, MARGIN_SPEED_COMPARISON));
+  servo_test1.exitWheelMode();
+
 }
 
 void test_function_encoderModeRotation(void){
@@ -55,6 +145,11 @@ void process() {
   UNITY_BEGIN();
 
   RUN_TEST(test_function_encoderModeRotation);
+  RUN_TEST(test_function_isMoving);
+  RUN_TEST(test_function_readAngle);
+  RUN_TEST(test_function_accelerateCW);
+  RUN_TEST(test_function_decelerateCW);
+  //RUN_TEST();
   //RUN_TEST();
   //RUN_TEST();
   //RUN_TEST();

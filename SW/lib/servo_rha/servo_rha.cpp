@@ -47,6 +47,19 @@ uint16_t ServoRHA::angleRead(){
   return ConvertPosToAngle(pos);
 }
 
+/** @brief speedRead function is used to read current speed of the servo
+  * @return Returns speed
+  */
+uint16_t ServoRHA::speedRead(){
+  DebugSerialSRHALn("ServoRHA::speedRead: begin of function.");
+  uint8_t data[10];
+  getSpeed(data); //get the current position from servo1
+  uint16_t speed=data[0];
+  speed |= word(data[1]) << 8;
+  DebugSerialSRHALn("ServoRHA::speedRead: end of function.");
+  return ConvertPosToAngle(speed);
+}
+
 /** @brief returnPacketSet function sets the package return level of servo (error information for each command sent)
   * @param option: RETURN_PACKET_ALL -> servo returns packet for all commands sent; RETURN_PACKET_NONE -> servo never retunrs state packet; RETURN_PACKET_READ_INSTRUCTIONS -> servo answer packet state when a READ command is sent (to read position, temperature, etc)
   * @retunr Returns error code for this action
@@ -146,8 +159,7 @@ void ServoRHA::calibrateTorqueDir(uint16_t &min_torque, uint16_t direction){
       DebugSerialSRHALn2("ServoRHA::calibrateTorqueDir: try with torque: ", min_torque);
       Cytron_G15Shield::setWheelSpeed(min_torque, direction,iWRITE_DATA);
       delay(DELAY1);
-      if (compareAngles( angleRead(), initial_angle, ANGLE_MARGIN) != EQUAL)
-        break;
+      if (isMoving())break;
   }
 
   exitWheelMode();
@@ -198,6 +210,7 @@ void ServoRHA::doNext(){
   DebugSerialSRHALn("ServoRHA::doNext: end of function");
 } //End of doNext function
 
+
 /** @brief encoderModeRotation handles encoder rotation
   */
 void ServoRHA::encoderModeRotation(){
@@ -222,8 +235,7 @@ void ServoRHA::encoderModeRotation(){
   // Acceleration if its in acceleration interval
   if (angle_travelled < acceleration_angle_){
     DebugSerialSRHALn("ServoRHA::encoderModeRotation: servo accelerating");
-    speed = (current_pose_ - init_pose_)*acceleration_slope_;
-    setWheelSpeed(speed, goal_direction_);
+    accelerate(speed);
   } //End of acceleration
 
   // Once acceleration interval is over and it still has to move more than 360 degrees it goes counting as an enconder
@@ -240,17 +252,45 @@ void ServoRHA::encoderModeRotation(){
   //Deceleration once it reach deceleration interval
   else if (angle_left < acceleration_angle_){
     DebugSerialSRHALn("ServoRHA::encoderModeRotation: servo decelerating");
-    speed = angle_left*(-acceleration_slope_);//(current_pose_ - init_pose_)*(-acceleration_slope_);
-    setWheelSpeed(speed, goal_direction_);
-
-    if(angle_left <= COMPLIANCE_MARGIN){
-      flag_moving_ = false;
-      goal_pose_encoder_ = 0;
-      init_pose_ = 0;
-      encoder_current_ = 0;
-    }//End of goal reached
+    decelerate(speed);
   } //End of deceleration
   DebugSerialSRHALn("ServoRHA::encoderModeRotation: end of function");
+}
+
+/** @brief accelerate handles the acceleration process. Its separated from encoderModeRotation for testing purposes. (See encoderModeRotation() function)
+  */
+void ServoRHA::accelerate(uint8_t &speed){
+  DebugSerialSRHALn("ServoRHA::accelerate: begin of function");
+  speed = (current_pose_ - init_pose_)*acceleration_slope_;
+  setWheelSpeed(speed, goal_direction_);
+  DebugSerialSRHALn("ServoRHA::accelerate: end of function");
+}
+
+/** @brief decelerate handles the deceleration process. Its separated from encoderModeRotation for testing purposes. (See encoderModeRotation() function)
+  */
+void ServoRHA::decelerate(uint8_t &speed, unit8_t angle_left){
+  DebugSerialSRHALn("ServoRHA::decelerate: begin of function");
+  speed = angle_left*(-acceleration_slope_);//(current_pose_ - init_pose_)*(-acceleration_slope_);
+  setWheelSpeed(speed, goal_direction_);
+
+  if(angle_left <= COMPLIANCE_MARGIN){
+    flag_moving_ = false;
+    goal_pose_encoder_ = 0;
+    init_pose_ = 0;
+    encoder_current_ = 0;
+  }//End of goal reached
+  DebugSerialSRHALn("ServoRHA::decelerate: end of function");
+}
+
+/** @brief isMoving to know whether the servo is moving or not based on servo real speed
+  * @retunr Returns bool (true if its moving, or false if not)
+  */
+bool ServoRHA::isMoving(){
+  DebugSerialSRHALn("ServoRHA::isMoving: begin of function");
+  uint16_t speed = speedRead();
+  DebugSerialSRHALn("ServoRHA::isMoving: end of function");
+  if (speed == 0) return false;
+  else return true;
 }
 
 /***************************************
@@ -267,5 +307,12 @@ uint8_t compareAngles(uint16_t angle1, uint16_t angle2, uint8_t angle_margin){
   DebugSerialSRHALn4("ServoRHA.cpp::compareAngles: begin of function. Angle 1: ", angle1, ". Angle 2: ", angle2);
   if(angle1 < angle2-angle_margin) return LESS_THAN;
   else if (angle1 > angle2+angle_margin) return GREATER_THAN;
+  else return EQUAL;
+}
+
+uint8_t compareSpeed(uint16_t speed1, uint16_t speed2, uint8_t speed_margin){
+  DebugSerialSRHALn4("ServoRHA.cpp::compareSpeed: begin of function. Speed 1: ", speed1, ". Speed 2: ", speed2);
+  if(angle1 < speed2-speed_margin) return LESS_THAN;
+  else if (speed1 > speed2+speed_margin) return GREATER_THAN;
   else return EQUAL;
 }

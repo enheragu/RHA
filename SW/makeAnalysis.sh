@@ -10,25 +10,26 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # cd $CURRENT_DIR
 
 # needs https://github.com/AlDanial/cloc
+# sudo apt-get install cloc
 
 
 ###################################################################
 echo "Generating complexity of code:"
 echo -n "Working."
-#Generate complexity of code in txt 
+#Generate complexity of code in txt
 lizard --languages cpp --exclude "$CURRENT_DIR/test/*"  /home/gmv/RHA/SW  > $CURRENT_DIR/code_analysis/txt/ca_$1.txt
 echo -n "."
-#Generate complexity of code in xml 
+#Generate complexity of code in xml
 lizard --languages cpp --exclude "$CURRENT_DIR/test/*"  /home/gmv/RHA/SW --xml > $CURRENT_DIR/code_analysis/xml/ca_$1.xml
 echo "."
-#Generate complexity of code in csv 
+#Generate complexity of code in csv
 lizard --languages cpp --exclude "$CURRENT_DIR/test/*"  /home/gmv/RHA/SW --csv > $CURRENT_DIR/code_analysis/csv/ca_$1.csv
 echo "Done."
 
 ###################################################################
 echo "Generating complexity of test code:"
 echo -n "Working."
-#Generate complexity of test in txt 
+#Generate complexity of test in txt
 lizard --languages cpp --exclude "$CURRENT_DIR/lib/*" --exclude "$CURRENT_DIR/src/*"  $CURRENT_DIR > $CURRENT_DIR/code_analysis/txt/ca_test_$1.txt
 echo -n "."
 #Generate complexity of test in xml
@@ -67,5 +68,3 @@ cloc --by-file --skip-archive='(txt|csv|xml|py|zip|tar(.(gz|Z|bz2|xz|7z))?)' --c
 echo -n "Code analysis generated succesfully for "
 echo -n $1
 echo " date."
-
-

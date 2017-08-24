@@ -81,6 +81,15 @@ void test_function_compareAngles(void) {
     TEST_ASSERT_EQUAL(EQUAL, compareAngles(5, 6, 2));
 }
 
+void test_function_compareSpeed(void){
+    TEST_ASSERT_EQUAL(GREATER_THAN, compareAngles(180, 10));
+    TEST_ASSERT_EQUAL(EQUAL, compareAngles(180, 185, 10));
+    TEST_ASSERT_EQUAL(LESS_THAN, compareAngles(40, 300));
+    TEST_ASSERT_EQUAL(GREATER_THAN, compareAngles(180, 10, 10));
+    TEST_ASSERT_EQUAL(LESS_THAN, compareAngles(40, 300, 10));
+    TEST_ASSERT_EQUAL(EQUAL, compareAngles(200, 185, 50));
+}
+
 //These goals are used in test_function_addToPacket and test_function_warpPacket
 uint8_t goal_0[4] = {0x10, 0x00, 0x50, 0x01};
 uint8_t goal_1[4] = {0x20, 0x02, 0x60, 0x03};
@@ -166,6 +175,7 @@ void test_function_SetWheelSpeed(void){
 void process() {
   UNITY_BEGIN();
 
+  RUN_TEST(test_function_compareSpeed);
   RUN_TEST(test_function_compareAngles);
   RUN_TEST(test_function_addToPacket);
   RUN_TEST(test_function_warpPacket);

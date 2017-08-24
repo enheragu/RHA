@@ -54,10 +54,12 @@ protected:
   uint16_t min_torque_cw_, min_torque_ccw_, max_torque_cw_, max_torque_ccw_; //minimum torque needed to move the servo
   float acceleration_slope_, acceleration_angle_;
   uint8_t flag_moving_;
-  uint16_t current_pose_, goal_pose_encoder_, goal_direction_, init_pose_, encoder_current_, encoder_flag_;
+  uint16_t current_pose_, goal_direction_, init_pose_, encoder_current_, encoder_flag_;
+  float goal_pose_encoder_;
 public:
   ServoRHA(){} // It'll be only used for testing purposes
   ServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
+  void initServo();
   uint16_t angleRead();
   virtual uint16_t returnPacketSet(uint8_t option);
   void addToPacket(uint8_t *buffer, uint8_t &position, uint8_t *goal, uint8_t goal_len, uint8_t &num_servo);

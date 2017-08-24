@@ -31,15 +31,23 @@ public:
   float getAccelerationAngle(){return acceleration_angle_;}
   uint8_t getFlagMoving(){return flag_moving_;}
   uint16_t geturrentPose(){return current_pose_;}
-  uint16_t getGoalPoseEncoder(){return goal_pose_encoder_;}
+  float getGoalPoseEncoder(){return goal_pose_encoder_;}
   uint16_t getGoalDirection(){return goal_direction_;}
   uint16_t getInitPose(){return init_pose_;}
   uint16_t getEncoderCurrent(){return encoder_current_;}
   uint16_t getEncoderFlag(){return encoder_flag_;}
 };
 
-void test_function_encoderModeRotation(void) {
+void test_function_setGoalEncoder(void) {
   TestServoRHA servo_test1(1, 2, 3, 8);
+  servo_test1.setGoalEncoder(8.56, CCW);
+
+  TEST_ASSERT_EQUAL_FLOAT(8.56,servo_test1.getGoalPoseEncoder());
+  TEST_ASSERT_EQUAL_UINT8(CCW,servo_test1.getGoalDirection());
+}
+
+void test_function_encoderModeRotation(void){
+
 }
 
 

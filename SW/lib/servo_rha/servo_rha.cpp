@@ -8,23 +8,26 @@
   */
 ServoRHA::ServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin):
   Cytron_G15Shield(servo_id, rxpin, txpin, ctrlpin){
-    DebugSerialSRHALn("ServoRHA::ServoRHA: begin of constructor");
-
-    begin(19200);
-    delay(DELAY1);
-    calibrateTorque();
-
-    max_torque_ccw_ = MAX_TORQUE_CCW;
-    max_torque_cw_ = MAX_TORQUE_CW;
-    acceleration_angle_ = ACCELERATION_ANGLE;
-    flag_moving_ = false;
-    current_pose_ = 0; goal_pose_encoder_ = 0; init_pose_ = 0; encoder_current_ = 0;
-    acceleration_slope_ = ((float)100 - (float)0) / (float)acceleration_angle_;
-
-    returnPacketSet(RETURN_PACKET_READ_INSTRUCTIONS); //Servo only respond to read data instructions
-
-    DebugSerialSRHALn("ServoRHA::ServoRHA: end of constructor");
   }
+
+void ServoRHA::initServo(){
+  DebugSerialSRHALn("ServoRHA::initServo: begin of inicialitationfunction");
+
+  Cytron_G15Shield::begin(19200);
+  delay(DELAY1);
+  calibrateTorque();
+
+  max_torque_ccw_ = MAX_TORQUE_CCW;
+  max_torque_cw_ = MAX_TORQUE_CW;
+  acceleration_angle_ = ACCELERATION_ANGLE;
+  flag_moving_ = false;
+  current_pose_ = 0; goal_pose_encoder_ = 0; init_pose_ = 0; encoder_current_ = 0;
+  acceleration_slope_ = ((float)100 - (float)0) / (float)acceleration_angle_;
+
+  returnPacketSet(RETURN_PACKET_READ_INSTRUCTIONS); //Servo only respond to read data instructions
+
+  DebugSerialSRHALn("ServoRHA::initServo: end of inicialitation function");
+}
 
 
 /************************************************************************
@@ -73,6 +76,7 @@ uint16_t ServoRHA::returnPacketSet(uint8_t option){
   * @param num_servo: how many servos had been added to this packet
   */
 void ServoRHA::addToPacket(uint8_t *buffer, uint8_t &position, uint8_t *goal, uint8_t goal_len, uint8_t &num_servo){
+  DebugSerialSRHALn("ServoRHA::addToPacket: begin of function");
   buffer[position] = _servo_id;
   position++;
   num_servo++;
@@ -80,6 +84,7 @@ void ServoRHA::addToPacket(uint8_t *buffer, uint8_t &position, uint8_t *goal, ui
     buffer[position] = goal[i];
     position++;
   }
+  DebugSerialSRHALn("ServoRHA::addToPacket: end of function");
 }
 
 /** @brief wrapPacket adds information needed once all servos had been aded (header, ID, instruction...). This function is used to send just one packet for all servos instead of each sending their respective information
@@ -91,6 +96,7 @@ void ServoRHA::addToPacket(uint8_t *buffer, uint8_t &position, uint8_t *goal, ui
   * @return Returns number of uint8_ts that contain usefull info (how many have been written)
   */
 uint8_t ServoRHA::wrapPacket(uint8_t *buffer, uint8_t *data, uint8_t data_len, uint8_t instruction, uint8_t num_servo){
+  DebugSerialSRHALn("ServoRHA::wrapPacket: begin of function");
   int i = 0;
 	char checksum=0; 		//Check Sum = ~ (ID + Length + Instruction + Parameter1 + ... Parameter N)
 
@@ -106,6 +112,7 @@ uint8_t ServoRHA::wrapPacket(uint8_t *buffer, uint8_t *data, uint8_t data_len, u
 		checksum += buffer[i+7];
   }
   buffer[i+7] = ~checksum; 				//Checksum with Bit Inversion
+  DebugSerialSRHALn("ServoRHA::wrapPacket: end of function");
   return buffer[3] + 4;
 }
 
@@ -174,27 +181,33 @@ uint16_t ServoRHA::setWheelSpeed(uint16_t speed, uint8_t cw_ccw){
   * @param cw_ccw: direction in which the servo will move
   */
 void ServoRHA::setGoalEncoder(float goal_rotation, uint8_t cw_ccw){
+  DebugSerialSRHALn("ServoRHA::setGoalEncoder: begin of function");
   goal_pose_encoder_ = goal_rotation;
   goal_direction_ = cw_ccw;
+  DebugSerialSRHALn("ServoRHA::setGoalEncoder: end of function");
 }
 
 /** @brief doNext function checks and does pengin actions.
   */
 void ServoRHA::doNext(){
+  DebugSerialSRHALn("ServoRHA::doNext: begin of function");
   //if theres goal or servo is moving:
   if (goal_pose_encoder_ != 0 || flag_moving_ == true){
     encoderModeRotation();
   } //End of if(goal_pose_encoder_ != 0)
+  DebugSerialSRHALn("ServoRHA::doNext: end of function");
 } //End of doNext function
 
 /** @brief encoderModeRotation handles encoder rotation
   */
 void ServoRHA::encoderModeRotation(){
+  DebugSerialSRHALn("ServoRHA::encoderModeRotation: begin of function");
   current_pose_ = angleRead();
   uint8_t speed = 1;
 
   //To start moving, changes flag to moving now and sets minimum speed
   if (flag_moving_ == false){
+    DebugSerialSRHALn("ServoRHA::encoderModeRotation: init of movement");
     init_pose_ = angleRead();
     setWheelSpeed(speed, goal_direction_);
     flag_moving_ = true;
@@ -208,6 +221,7 @@ void ServoRHA::encoderModeRotation(){
 
   // Acceleration if its in acceleration interval
   if (angle_travelled < acceleration_angle_){
+    DebugSerialSRHALn("ServoRHA::encoderModeRotation: servo accelerating");
     speed = (current_pose_ - init_pose_)*acceleration_slope_;
     setWheelSpeed(speed, goal_direction_);
   } //End of acceleration
@@ -215,6 +229,7 @@ void ServoRHA::encoderModeRotation(){
   // Once acceleration interval is over and it still has to move more than 360 degrees it goes counting as an enconder
   else if (angle_travelled > acceleration_angle_ && angle_left > 360)
   {
+    DebugSerialSRHALn("ServoRHA::encoderModeRotation: servo at full speed");
     if(current_pose_ < (init_pose_ + ENCODER_MARGIN)  && current_pose_ > (init_pose_ - ENCODER_MARGIN) && encoder_flag_ == 0){
         encoder_current_++;
         encoder_flag_ = 1;
@@ -224,7 +239,8 @@ void ServoRHA::encoderModeRotation(){
 
   //Deceleration once it reach deceleration interval
   else if (angle_left < acceleration_angle_){
-    speed = (current_pose_ - init_pose_)*(-acceleration_slope_);
+    DebugSerialSRHALn("ServoRHA::encoderModeRotation: servo decelerating");
+    speed = angle_left*(-acceleration_slope_);//(current_pose_ - init_pose_)*(-acceleration_slope_);
     setWheelSpeed(speed, goal_direction_);
 
     if(angle_left <= COMPLIANCE_MARGIN){
@@ -234,7 +250,7 @@ void ServoRHA::encoderModeRotation(){
       encoder_current_ = 0;
     }//End of goal reached
   } //End of deceleration
-
+  DebugSerialSRHALn("ServoRHA::encoderModeRotation: end of function");
 }
 
 /***************************************

@@ -33,21 +33,24 @@ public:
       _rxpin = rxpin;
       _txpin = txpin;
       _ctrlpin = ctrlpin;
+  }
 
-      //This constructor is copied from servo_rha so it uses the overwritten funcions from TestServoRHA
-      TestServoRHA::begin(19200);
-      delay(DELAY1);
-      TestServoRHA::calibrateTorque();
+  virtual void initServo(){
+    //This constructor is copied from servo_rha so it uses the overwritten funcions from TestServoRHA
+    TestServoRHA::begin(19200);
+    delay(DELAY1);
+    TestServoRHA::calibrateTorque();
 
-      max_torque_ccw_ = MAX_TORQUE_CCW;
-      max_torque_cw_ = MAX_TORQUE_CW;
-      acceleration_angle_ = ACCELERATION_ANGLE;
-      flag_moving_ = false;
-      current_pose_ = 0; goal_pose_encoder_ = 0; init_pose_ = 0; encoder_current_ = 0;
-      acceleration_slope_ = ((float)100 - (float)0) / (float)acceleration_angle_;
+    max_torque_ccw_ = MAX_TORQUE_CCW;
+    max_torque_cw_ = MAX_TORQUE_CW;
+    acceleration_angle_ = ACCELERATION_ANGLE;
+    flag_moving_ = false;
+    current_pose_ = 0; goal_pose_encoder_ = 0; init_pose_ = 0; encoder_current_ = 0;
+    acceleration_slope_ = ((float)100 - (float)0) / (float)acceleration_angle_;
 
-      TestServoRHA::returnPacketSet(RETURN_PACKET_READ_INSTRUCTIONS); //Servo only respond to read data instructions
-    }
+    TestServoRHA::returnPacketSet(RETURN_PACKET_READ_INSTRUCTIONS); //Servo only respond to read data instructions
+
+  }
   virtual void calibrateTorque(){
     min_torque_cw_ = MIN_TORQUE_CW;
     min_torque_ccw_ = MIN_TORQUE_CCW;
@@ -88,6 +91,7 @@ void test_function_addToPacket(void) {
 
     //G15ShieldInit(19200,3,8);
     TestServoRHA servo_test1(1, 2, 3, 8);
+    servo_test1.initServo();
 
     uint8_t buffer[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     uint8_t position = 0;
@@ -109,9 +113,13 @@ void test_function_addToPacket(void) {
 
 void test_function_warpPacket(void){
     TestServoRHA servo_test0(0, 2, 3, 8);
+    servo_test0.initServo();
     TestServoRHA servo_test1(1, 2, 3, 8);
+    servo_test1.initServo();
     TestServoRHA servo_test2(2, 2, 3, 8);
+    servo_test2.initServo();
     TestServoRHA servo_test3(3, 2, 3, 8);
+    servo_test3.initServo();
 
     uint8_t data[30];
     uint8_t buffer[30];
@@ -145,6 +153,7 @@ void test_function_warpPacket(void){
 
 void test_function_SetWheelSpeed(void){
     TestServoRHA servo_test1(1, 2, 3, 8);
+    servo_test1.initServo();
     servo_test1.SetWheelSpeed(60, CW); //speed 60% in CW direction
     TEST_ASSERT_EQUAL_INT(613, servo_test1.g15_speed); //613.8 is the exact number
     TEST_ASSERT_EQUAL_INT(CW, servo_test1.direction);

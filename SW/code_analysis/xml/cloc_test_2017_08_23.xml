@@ -1,0 +1,21 @@
+       3 text files.
+classified 3 files       3 unique files.                              
+       0 files ignored.
+
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.0121550559997559</elapsed_seconds>
+  <n_files>3</n_files>
+  <n_lines>465</n_lines>
+  <files_per_second>246.810874426268</files_per_second>
+  <lines_per_second>38255.6855360716</lines_per_second>
+</header>
+<files>
+  <file name="/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp" blank="18" comment="30" code="149"  language="C++" />
+  <file name="/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp" blank="35" comment="9" code="146"  language="C++" />
+  <file name="/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp" blank="16" comment="4" code="58"  language="C++" />
+  <total blank="69" comment="43" code="353" />
+</files>
+</results>

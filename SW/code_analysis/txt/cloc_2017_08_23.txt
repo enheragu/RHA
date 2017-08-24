@@ -1,0 +1,18 @@
+       7 text files.
+classified 7 files       7 unique files.                              
+       0 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.02 s (372.1 files/s, 67624.3 lines/s)
+-------------------------------------------------------------------------------------------------------------
+File                                                                      blank        comment           code
+-------------------------------------------------------------------------------------------------------------
+/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp                  112             79            434
+/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp                                 41             72            158
+/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.h                     31             38            155
+/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h                                   14              8             55
+/home/gmv/RHA/SW/src/main.cpp                                                 6              9             25
+/home/gmv/RHA/SW/lib/joint_rha/joint_rha.h                                    3             13              3
+/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp                                  2             13              1
+-------------------------------------------------------------------------------------------------------------
+SUM:                                                                        209            232            831
+-------------------------------------------------------------------------------------------------------------

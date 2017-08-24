@@ -1,9 +1,9 @@
-//#ifndef UNIT_TEST // disable program main loop while unit testing in progress
+#ifndef UNIT_TEST // disable program main loop while unit testing in progress
 #include "servo_rha.h"
 #include <Arduino.h>
 #include "joint_rha.h"
 
-#define DEBUG_SERVO_RHA
+//#define DEBUG_SERVO_RHA
 //#define DEBUG_TEST_SERVO_RHA
 //#define DEBUG_CYTRON_G15SHIELD
 //#define DEBUG_TEST_CYTRON_G15SHIELD
@@ -37,4 +37,4 @@ void loop() {
   delay(20);
 }
 
-//#endif
+#endif

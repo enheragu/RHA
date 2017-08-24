@@ -9,9 +9,9 @@
 
 #define MIN_TORQUE_CW 0
 #define MIN_TORQUE_CCW 180
-#define MAX_TORQUE_CW 1023
-#define MAX_TORQUE_CCW 1023
-#define ACCELERATION_ANGLE 180
+#define MAX_TORQUE_CW 400
+#define MAX_TORQUE_CCW 400
+#define ACCELERATION_ANGLE 300
 
 #define RETURN_PACKET_ALL 0x02
 #define RETURN_PACKET_NONE 0x00
@@ -73,11 +73,11 @@ public:
   void setGoalEncoder(float goal_rotation, uint8_t cw_ccw);
   void doNext();
   void encoderModeRotation();
-  void accelerate(uint8_t &speed);
-  void decelerate(uint8_t &speed, unit8_t angle_left);
+  void accelerate(uint16_t &speed);
+  void decelerate(uint16_t &speed, uint16_t angle_left);
 
   bool isMoving();
-private:
+protected:
   virtual void calibrateTorque();
   void calibrateTorqueDir(uint16_t &min_torque, uint16_t direction);
 };

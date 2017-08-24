@@ -9,12 +9,12 @@
   * use Cytron functions.
   */
 
-#ifdef DEBUG_TEST_SERVO_RHA
-  #define DebugSerialTSRHALn(a) {Serial.println(a);}
-  #define DebugSerialTSRHA(a) {Serial.print(a);}
+#ifdef DEBUG_TEST_SERVO_RHA_MOCK
+  #define DebugSerialTSRHAMockLn(a) {Serial.println(a);}
+  #define DebugSerialTSRHAMock(a) {Serial.print(a);}
 #else
-  #define DebugSerialTSRHALn(a)
-  #define DebugSerialTSRHA(a)
+  #define DebugSerialTSRHAMockLn(a)
+  #define DebugSerialTSRHAMockz(a)
 #endif
 
 #define MIN_TORQUE_CW 0

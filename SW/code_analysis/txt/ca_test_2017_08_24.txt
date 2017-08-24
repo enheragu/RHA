@@ -1,0 +1,75 @@
+================================================
+  NLOC    CCN   token  PARAM  length  location  
+------------------------------------------------
+       6      1     32      4       6 TestServoRHA::TestServoRHA@31-36@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+      12      1     81      0      16 TestServoRHA::initServo@38-53@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       4      1     13      0       4 TestServoRHA::calibrateTorque@54-57@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       3      1     10      1       3 TestServoRHA::returnPacketSet@59-61@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       8      3     95      2       8 TestServoRHA::SetWheelSpeed@63-70@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       3      1      9      1       3 TestServoRHA::begin@72-74@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       6      1     58      1       6 test_function_compareAngles@77-82@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       8      1     86      1       8 test_function_compareSpeed@84-91@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+      17      1    190      1      23 test_function_addToPacket@99-121@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+      33      2    331      1      39 test_function_warpPacket@123-161@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+      10      1     78      1      11 test_function_SetWheelSpeed@163-173@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       9      1     38      0      10 process@175-184@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       4      1     14      0       4 setup@187-190@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       6      1     29      0       7 loop@192-198@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       2      1     27      4       2 TestServoRHA::TestServoRHA@30-31@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getServoID@33-33@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getTxPin@34-34@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getRxPin@35-35@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getCtrlPin@36-36@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getMinTorqueCw@38-38@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getMinTorqueCCw@39-39@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getMaxTorqueCw@40-40@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getMaxTorqueCCw@41-41@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getAccelerationSlope@42-42@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getAccelerationAngle@43-43@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getFlagMoving@44-44@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getCurrentPose@45-45@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getGoalPoseEncoder@46-46@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getGoalDirection@47-47@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getInitPose@48-48@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getEncoderCurrent@49-49@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getEncoderFlag@50-50@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1     11      1       1 TestServoRHA::setInitPose@52-52@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1     11      1       1 TestServoRHA::setCurrentPose@53-53@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       6      1     49      1       7 test_function_setGoalEncoder@56-62@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+      11      1     77      1      11 test_function_isMoving@64-74@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       9      2     72      1       9 test_function_readAngle@76-84@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+      16      1    110      0      17 configureServoForAccelDecelTest@91-107@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+      17      3    133      1      18 test_function_accelerateCW@109-126@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+      18      3    162      1      20 test_function_decelerateCW@128-147@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       2      1      6      1       3 test_function_encoderModeRotation@149-151@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+      10      1     42      0      16 process@154-169@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       4      1     14      0       4 setup@172-175@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       6      1     29      0       7 loop@177-183@/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1     27      4       1 TestCytron::TestCytron@23-23@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       1      1      8      0       1 TestCytron::getServoID@24-24@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       1      1      8      0       1 TestCytron::getTxPin@25-25@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       1      1      8      0       1 TestCytron::getRxPin@26-26@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       1      1      8      0       1 TestCytron::getCtrlPin@27-27@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+      18     13    192      1      18 checkStatus@31-48@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       7      1     62      1       7 test_constructor_Cytron_G15Shield@50-56@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+      10      1     64      1      10 test_comunication_Cytron_G15Shield@58-67@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+      22      2    197      1      22 test_positioningMode_functioning@69-90@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+      21      2    175      1      32 test_setWheelMode_functioning@92-123@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+      26      3    204      1      27 test_function_isMovingPositioningMode@125-151@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       9      1     38      0       9 process@172-180@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       5      1     21      0       5 setup@183-187@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       6      1     29      0       7 loop@189-195@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+3 file analyzed.
+==============================================================
+NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
+--------------------------------------------------------------
+    141       9.2     1.2       76.0        14     /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+    131       4.0     1.2       29.3        30     /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
+    134       9.2     2.1       74.4        14     /home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+
+=============================================================================================
+No thresholds exceeded (cyclomatic_complexity > 15 or length > 1000 or parameter_count > 100)
+==========================================================================================
+Total nloc   Avg.NLOC  AvgCCN  Avg.token   Fun Cnt  Warning cnt   Fun Rt   nloc Rt
+------------------------------------------------------------------------------------------
+       406       6.5     1.4       51.4       58            0      0.00    0.00

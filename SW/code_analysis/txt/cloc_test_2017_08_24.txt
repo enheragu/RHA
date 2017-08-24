@@ -1,0 +1,14 @@
+       3 text files.
+classified 3 files       3 unique files.                              
+       0 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.01 s (205.4 files/s, 39855.1 lines/s)
+---------------------------------------------------------------------------------------------------------------------------------------
+File                                                                                                blank        comment           code
+---------------------------------------------------------------------------------------------------------------------------------------
+/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp                                36              9            155
+/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp                                29              6            150
+/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp                   18             30            149
+---------------------------------------------------------------------------------------------------------------------------------------
+SUM:                                                                                                   83             45            454
+---------------------------------------------------------------------------------------------------------------------------------------

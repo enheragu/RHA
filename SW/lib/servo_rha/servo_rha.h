@@ -1,6 +1,7 @@
 #ifndef SERVO_RHA_H
 #define SERVO_RHA_H
 
+#include "debug.h"
 #include "Cytron_G15Shield.h"
 
 #define DELAY1 500 //delay for configuration purposes
@@ -32,20 +33,6 @@ enum { LESS_THAN, //enumeration for angle comparison
       EQUAL,
       GREATER_THAN
     };
-
-/******************************************
- *       Debugging macro definition       *
- ******************************************/
-
-#ifdef DEBUG_SERVO_RHA
-  #define DebugSerialSRHALn(a) {Serial.print("[-]  "); Serial.println(a);}
-  #define DebugSerialSRHALn2(a,b) {Serial.print("[-]  ");Serial.print(a); Serial.println(b);}
-  #define DebugSerialSRHALn4(a,b,c,d) {Serial.print("[-]  ");Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d);}
-#else
-  #define DebugSerialSRHALn(a)
-  #define DebugSerialSRHALn2(a,b)
-  #define DebugSerialSRHALn4(a,b,c,d)
-#endif
 
 uint8_t compareAngles(uint16_t angle1, uint16_t angle2, uint8_t angle_margin=0);
 uint8_t compareSpeed(uint16_t speed1, uint16_t speed2, uint8_t speed_margin=0);

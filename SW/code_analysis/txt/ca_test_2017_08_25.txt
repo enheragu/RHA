@@ -1,0 +1,75 @@
+================================================
+  NLOC    CCN   token  PARAM  length  location  
+------------------------------------------------
+       2      1     27      4       2 TestServoRHA::TestServoRHA@23-24@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getServoID@26-26@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getTxPin@27-27@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getRxPin@28-28@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getCtrlPin@29-29@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getMinTorqueCw@31-31@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getMinTorqueCCw@32-32@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getMaxTorqueCw@33-33@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getMaxTorqueCCw@34-34@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getAccelerationSlope@35-35@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getAccelerationAngle@36-36@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getFlagMoving@37-37@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getCurrentPose@38-38@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getGoalPoseEncoder@39-39@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getGoalDirection@40-40@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getInitPose@41-41@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getEncoderCurrent@42-42@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1      8      0       1 TestServoRHA::getEncoderFlag@43-43@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1     11      1       1 TestServoRHA::setInitPose@45-45@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1     11      1       1 TestServoRHA::setCurrentPose@46-46@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       6      1     49      1       7 test_function_setGoalEncoder@49-55@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+      11      1     77      1      11 test_function_isMoving@57-67@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       9      2     72      1       9 test_function_readAngle@69-77@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+      16      1    110      0      17 configureServoForAccelDecelTest@84-100@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+      17      3    133      1      18 test_function_accelerateCW@102-119@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+      18      3    162      1      20 test_function_decelerateCW@121-140@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       2      1      6      1       3 test_function_encoderModeRotation@142-144@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+      10      1     42      0      16 process@147-162@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       4      1     14      0       4 setup@165-168@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       6      1     29      0       7 loop@170-176@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+       1      1     27      4       1 TestCytron::TestCytron@16-16@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       1      1      8      0       1 TestCytron::getServoID@17-17@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       1      1      8      0       1 TestCytron::getTxPin@18-18@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       1      1      8      0       1 TestCytron::getRxPin@19-19@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       1      1      8      0       1 TestCytron::getCtrlPin@20-20@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+      18     13    192      1      18 checkStatus@24-41@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       7      1     62      1       7 test_constructor_Cytron_G15Shield@43-49@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+      10      1     64      1      10 test_comunication_Cytron_G15Shield@51-60@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+      22      2    197      1      22 test_positioningMode_functioning@62-83@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+      21      2    175      1      32 test_setWheelMode_functioning@85-116@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+      26      3    204      1      27 test_function_isMovingPositioningMode@118-144@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       9      1     38      0       9 process@165-173@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       5      1     21      0       5 setup@176-180@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       6      1     29      0       7 loop@182-188@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       6      1     32      4       6 TestServoRHA::TestServoRHA@25-30@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+      12      1     81      0      16 TestServoRHA::initServo@32-47@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       4      1     13      0       4 TestServoRHA::calibrateTorque@48-51@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       3      1     10      1       3 TestServoRHA::returnPacketSet@53-55@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       8      3     95      2       8 TestServoRHA::SetWheelSpeed@57-64@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       3      1      9      1       3 TestServoRHA::begin@66-68@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       6      1     58      1       6 test_function_compareAngles@71-76@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       8      1     86      1       8 test_function_compareSpeed@78-85@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+      17      1    190      1      23 test_function_addToPacket@93-115@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+      33      2    331      1      39 test_function_warpPacket@117-155@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+      10      1     78      1      11 test_function_SetWheelSpeed@157-167@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       9      1     38      0      10 process@169-178@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       4      1     14      0       4 setup@181-184@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+       6      1     29      0       7 loop@186-192@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+3 file analyzed.
+==============================================================
+NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
+--------------------------------------------------------------
+    132       4.0     1.2       29.3        30     /home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
+    135       9.2     2.1       74.4        14     /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+    142       9.2     1.2       76.0        14     /home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
+
+=============================================================================================
+No thresholds exceeded (cyclomatic_complexity > 15 or length > 1000 or parameter_count > 100)
+==========================================================================================
+Total nloc   Avg.NLOC  AvgCCN  Avg.token   Fun Cnt  Warning cnt   Fun Rt   nloc Rt
+------------------------------------------------------------------------------------------
+       409       6.5     1.4       51.4       58            0      0.00    0.00

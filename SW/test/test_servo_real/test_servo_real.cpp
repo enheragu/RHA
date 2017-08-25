@@ -1,3 +1,4 @@
+#include "debug.h"
 #include "servo_rha.h"
 #include "unity.h"
 
@@ -13,14 +14,6 @@
 #define MARGIN 5
 #define MAX_SPEED_ALLOWED 600
 #define MARGIN_SPEED_COMPARISON 5
-
-#ifdef DEBUG_TEST_SERVO_RHA
-  #define DebugSerialTSRHALn(a) {Serial.println(a);}
-  #define DebugSerialTSRHA(a) {Serial.print(a);}
-#else
-  #define DebugSerialTSRHALn(a)
-  #define DebugSerialTSRHA(a)
-#endif
 
 class TestServoRHA : public ServoRHA {
 public:
@@ -89,7 +82,7 @@ uint16_t real_speed_low, real_speed_high, speed=1;
 uint8_t data[10];
 
 void configureServoForAccelDecelTest(){
-  DebugSerialTSRHA("Begin of configuration of servo for acceleration and deceleration test.");
+  DebugSerialTSRHAReal("Begin of configuration of servo for acceleration and deceleration test.");
   servo_test1.initServo();
   servo_test1.setWheelMode();
   delay(DELAY_MOVE);
@@ -103,18 +96,18 @@ void configureServoForAccelDecelTest(){
   servo_test1.setWheelSpeed(servo_test1.getMaxTorqueCw(),CW);
   delay(DELAY_MOVE);
   real_speed_high = servo_test1.speedRead();
-  DebugSerialTSRHA("End of configuration of servo for acceleration and deceleration test.");
+  DebugSerialTSRHAReal("End of configuration of servo for acceleration and deceleration test.");
 }
 
 void test_function_accelerateCW(void){
-  DebugSerialTSRHA("Begin of acceleration test");
+  DebugSerialTSRHAReal("Begin of acceleration test");
   servo_test1.setWheelSpeed(speed,CW);
   servo_test1.setGoalEncoder(0, CW); //want to set goal direction
   servo_test1.setInitPose(servo_test1.angleRead());
   servo_test1.setCurrentPose(servo_test1.angleRead());
 
   while(1){
-    DebugSerialTSRHA("Loop on acceleration test. Accelerating.");
+    DebugSerialTSRHAReal("Loop on acceleration test. Accelerating.");
     servo_test1.accelerate(speed);
     delay(DELAY_MOVE);
     servo_test1.setCurrentPose(servo_test1.angleRead());
@@ -122,18 +115,18 @@ void test_function_accelerateCW(void){
   }
   TEST_ASSERT_EQUAL(EQUAL, compareSpeed(servo_test1.speedRead(), real_speed_high, MARGIN_SPEED_COMPARISON));
   servo_test1.exitWheelMode();
-  DebugSerialTSRHA("End of acceleration test");
+  DebugSerialTSRHAReal("End of acceleration test");
 }
 
 void test_function_decelerateCW(void){
-  DebugSerialTSRHA("Begin of deceleration test");
+  DebugSerialTSRHAReal("Begin of deceleration test");
   servo_test1.setWheelSpeed(servo_test1.getMaxTorqueCw(),CW);
   servo_test1.setGoalEncoder(0, CW); //want to set goal direction
   servo_test1.setInitPose(servo_test1.angleRead());
   servo_test1.setCurrentPose(servo_test1.angleRead());
 
   while(1){
-    DebugSerialTSRHA("Loop on deceleration test. Decelerating.");
+    DebugSerialTSRHAReal("Loop on deceleration test. Decelerating.");
     uint16_t angle_left = servo_test1.getAccelerationAngle() - (servo_test1.getCurrentPose() - servo_test1.getInitPose());
     servo_test1.decelerate(speed, angle_left);
     delay(DELAY_MOVE);
@@ -142,7 +135,7 @@ void test_function_decelerateCW(void){
   }
   TEST_ASSERT_EQUAL(EQUAL, compareSpeed(servo_test1.speedRead(), 0, MARGIN_SPEED_COMPARISON));
   servo_test1.exitWheelMode();
-  DebugSerialTSRHA("End of deceleration test");
+  DebugSerialTSRHAReal("End of deceleration test");
 
 }
 

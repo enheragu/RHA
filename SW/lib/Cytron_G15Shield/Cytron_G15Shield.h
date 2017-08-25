@@ -14,6 +14,7 @@ Modified:
 #ifndef Cytron_G15Shield_h
 #define Cytron_G15Shield_h
 
+#include "debug.h"
 #include "Arduino.h"
 #include <SoftwareSerial.h>
 
@@ -131,21 +132,6 @@ enum {
 //#define SERROR_ 0X2000
 //#define SERROR_ 0X4000
 //#define SERROR_ 0X8000
-
-
-/******************************************
- *       Debugging macro definition       *
- ******************************************/
-
-#ifdef DEBUG_CYTRON_G15SHIELD
-  #define DebugSerialG15Ln(a) {Serial.print("[-]  "); Serial.println(a);}
-  #define DebugSerialG15Ln2(a,b) {Serial.print("[-]  ");Serial.print(a); Serial.println(b);}
-  #define DebugSerialG15Ln4(a,b,c,d) {Serial.print("[-]  ");Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d);}
-#else
-  #define DebugSerialG15Ln(a)
-  #define DebugSerialG15Ln2(a,b)
-  #define DebugSerialG15Ln4(a,b,c,d)
-#endif
 
 void set_act(char ctrl);
 

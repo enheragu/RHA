@@ -1,0 +1,460 @@
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,
+            initial-scale=1.0,maximum-scale=1.0" />
+        <style type="text/css">
+            canvas {
+                border: 1px solid black;
+                width: 700px;
+                height: 700px;
+            }
+        </style>
+        <script type="text/javascript">
+        
+
+function TagCloud(w, h, context) {
+    "use strict";
+    this.ctx = context;
+    this.canvasWidth = w;
+    this.canvasHeight = h;
+    this.fontSize = this.canvasHeight / 3;
+    this.shape = "rectangle";
+}
+
+TagCloud.prototype.setShape = function () {
+    this.shape = "circle";
+};
+
+TagCloud.prototype.render = function (tags) {
+    this.ctx.textBaseline = "top";
+    tags.forEach(function (tag) {
+        this.placeTag(tag[0]);
+    }, this);
+};
+
+TagCloud.prototype.placeTag = function (tag) {
+    var placement;
+    while (!(placement = this._getNonOverlappingPlaceWithBestSize(
+            this.fontSize, tag)))
+        this.fontSize *= 0.9;
+
+    this.ctx.fillStyle = this._getRandomColor();
+    this.ctx.fillText(tag, placement.x, placement.y);
+};
+
+TagCloud.prototype._getNonOverlappingPlaceWithBestSize =
+    function (fontSize, tag) {
+    this.ctx.font = "" + fontSize + "pt " + "Arial";
+    var lineHeight=this.getLineHeight(fontSize);
+    var tagWidth = this.ctx.measureText(tag).width;
+
+    var base = new BasePlacement(
+        (this.canvasWidth - tagWidth) * Math.random(),
+        (this.canvasHeight - lineHeight) * Math.random(),
+        lineHeight
+        );
+
+    var placement;
+    /* jshint ignore:start */
+    while (placement = base.nextPlaceToTry()) {
+        if (this._isPlaceEmpty(placement, tagWidth, lineHeight))
+            break;
+    }
+    /* jshint ignore:end */
+    return placement;
+};
+
+TagCloud.prototype.getLineHeight = function (fontSize) {
+    return this.ctx.measureText('M').width * 1.2;
+}
+
+TagCloud.prototype._getRandomColor = function (){
+    var colors = ["aqua", "black", "blue", "fuchsia", "gray", "green",
+                  "lime", "maroon", "navy", "olive", "orange", "purple",
+                  "red", "silver", "teal"];
+    return colors[Math.floor(colors.length * Math.random())];
+};
+
+TagCloud.prototype._isPlaceEmpty = function (placement, width, height) {
+    if (placement.x < 0 || placement.y < 0 || placement.x + width >
+         this.canvasWidth || placement.y + height > this.canvasHeight)
+        return false;
+
+    var pix = this.ctx.getImageData(
+                placement.x, placement.y, width, height).data;
+
+    for (var i = 0, n = pix.length; i < n; i += 4)
+        if (pix[i+3])
+                return false;
+
+    return [[placement.x, placement.y],
+            [placement.x + width, placement.y],
+            [placement.x, placement.y + height],
+            [placement.x + width, placement.y + height]].every(
+                function(pos) {
+                    var a = this.canvasWidth / 2;
+                    var b = this.canvasHeight / 2;
+                    var X = pos[0] - a;
+                    var Y = pos[1] - b;
+                    return (X * X / a / a + Y * Y / b / b < 1);
+                }, this);
+};
+
+TagCloud.prototype.getCoverage = function () {
+    var pix = this.ctx.getImageData(
+                0, 0, this.canvasWidth, this.canvasHeight).data;
+    var pixCount = 0;
+    for (var i = 0, n = pix.length; i < n; i += 4) {
+        if (pix[i+3])
+            pixCount++;
+    }
+    return pixCount * 100 / this.canvasWidth / this.canvasHeight;
+};
+
+function BasePlacement(x, y, h) {
+    var baseX = x,
+        baseY = y,
+        scale = h,
+        tryNumber = 0;
+
+    this.nextPlaceToTry = function() {
+        if (tryNumber < this._spiralOffsets.length)
+            return {
+                x : baseX + this._spiralOffsets[tryNumber][0] * scale,
+                y : baseY + this._spiralOffsets[tryNumber++][1] * scale
+            };
+    };
+}
+
+function generateSpiralOffsets() {
+    var spiralOffsets = [];
+    var radius = 0;
+    var dr = 0.2;
+    for (var i = 0; radius < 40; i+=0.4, radius += dr) {
+        spiralOffsets.push([
+                   radius * Math.sin(i),
+                   radius * Math.cos(i)
+                ]);
+    }
+    return spiralOffsets;
+}
+
+BasePlacement.prototype._spiralOffsets = generateSpiralOffsets();
+
+    
+        </script>
+        <script type="application/javascript">
+            function draw() {
+                var canvas = document.getElementById("canvas");
+                    if (canvas.getContext) {
+                        var ctx = canvas.getContext("2d");
+                        // scale 2x
+                        if(window.devicePixelRatio == 2) {
+                            canvas.setAttribute('width', canvas.width * 2);
+                            canvas.setAttribute('height', canvas.height * 2);
+                        }
+                        var tagCloud = new TagCloud(canvas.width,
+                            canvas.height, ctx);
+                        tagCloud.render([                                        ["uint8_t", 163],
+                                        ["uint16_t", 137],
+                                        ["txBuffer", 95],
+                                        ["0", 82],
+                                        ["data", 56],
+                                        ["Cytron_G15Shield", 52],
+                                        ["i", 46],
+                                        ["error", 45],
+                                        ["2", 44],
+                                        ["1", 42],
+                                        ["speed", 38],
+                                        ["DebugSerialSRHALn", 30],
+                                        ["Write_Reg", 30],
+                                        ["_servo_id", 29],
+                                        ["position", 29],
+                                        ["sendPacket", 28],
+                                        ["3", 24],
+                                        ["buffer", 22],
+                                        ["ServoRHA", 21],
+                                        ["TxBuff", 17],
+                                        ["4", 16],
+                                        ["checksum", 15],
+                                        ["Serial", 15],
+                                        ["8", 13],
+                                        ["5", 13],
+                                        ["iWRITE_DATA", 13],
+                                        ["delay", 13],
+                                        ["ctrlpin", 12],
+                                        ["status", 12],
+                                        ["G15Serial", 11],
+                                        ["current_pose_", 10],
+                                        ["packetLength", 10],
+                                        ["instruction", 10],
+                                        ["init_pose_", 10],
+                                        ["cw_ccw", 10],
+                                        ["setWheelSpeed", 9],
+                                        ["0x00FF", 9],
+                                        ["_rxpin", 9],
+                                        ["_txpin", 9],
+                                        ["0xFF", 9],
+                                        ["10", 9],
+                                        ["iREAD_DATA", 9],
+                                        ["txpin", 9],
+                                        ["rxpin", 9],
+                                        ["_ctrlpin", 9],
+                                        ["angle_left", 8],
+                                        ["alarmValue", 8],
+                                        ["direction", 8],
+                                        ["encoder_current_", 7],
+                                        ["goal_pose_encoder_", 7],
+                                        ["min_torque", 7],
+                                        ["baudrate", 7],
+                                        ["float", 7],
+                                        ["true", 7],
+                                        ["int", 7],
+                                        ["time", 7],
+                                        ["acceleration_angle_", 6],
+                                        ["num_servo", 6],
+                                        ["servo_id", 6],
+                                        ["100", 6],
+                                        ["onOff", 6],
+                                        ["parameterLength", 6],
+                                        ["pinMode", 6],
+                                        ["flag_moving_", 6],
+                                        ["hardwareSerial", 6],
+                                        ["begin", 6],
+                                        ["setTxMode", 5],
+                                        ["goal_direction_", 5],
+                                        ["println", 5],
+                                        ["speed1", 5],
+                                        ["360", 5],
+                                        ["speed2", 5],
+                                        ["g15_speed", 5],
+                                        ["angle1", 5],
+                                        ["angle2", 5],
+                                        ["false", 5],
+                                        ["servo_test1", 5],
+                                        ["isMoving", 5],
+                                        ["0x01", 4],
+                                        ["chksum", 4],
+                                        ["GOAL_POSITION_L", 4],
+                                        ["encoder_flag_", 4],
+                                        ["0x00", 4],
+                                        ["flush", 4],
+                                        ["angleRead", 4],
+                                        ["calibrateTorqueDir", 4],
+                                        ["punch", 4],
+                                        ["setAngleLimit", 4],
+                                        ["INPUT", 4],
+                                        ["setWheelMode", 4],
+                                        ["angle_margin", 4],
+                                        ["pos", 4],
+                                        ["speed_margin", 4],
+                                        ["6", 4],
+                                        ["DebugSerialSRHALn2", 4],
+                                        ["setPos", 4],
+                                        ["acceleration_slope_", 4],
+                                        ["ENCODER_MARGIN", 4],
+                                        ["data_len", 4],
+                                        ["packet_len", 4],
+                                        ["id", 4],
+                                        ["DebugSerialSRHALn4", 4],
+                                        ["readCount", 4],
+                                        ["write", 4],
+                                        ["setSpeed", 4],
+                                        ["uint32_t", 4],
+                                        ["decelerate", 3],
+                                        ["digitalWrite", 3],
+                                        ["CCW", 3],
+                                        ["CW", 3],
+                                        ["set_act", 3],
+                                        ["doNext", 3],
+                                        ["iPING", 3],
+                                        ["max_torque_ccw_", 3],
+                                        ["encoderModeRotation", 3],
+                                        ["GREATER_THAN", 3],
+                                        ["getSpeed", 3],
+                                        ["setRxMode", 3],
+                                        ["accelerate", 3],
+                                        ["setTorqueOnOff", 3],
+                                        ["LESS_THAN", 3],
+                                        ["alarmLED", 3],
+                                        ["goal_len", 3],
+                                        ["7", 3],
+                                        ["goal_whole_number", 3],
+                                        ["exitWheelMode", 3],
+                                        ["max_torque_cw_", 3],
+                                        ["CWSlope", 3],
+                                        ["speedRead", 3],
+                                        ["returnPacketSet", 3],
+                                        ["TorqueLimit", 3],
+                                        ["min_torque_ccw_", 3],
+                                        ["byte", 3],
+                                        ["temperature", 3],
+                                        ["calibrateTorque", 3],
+                                        ["initServo", 3],
+                                        ["voltageHigh", 3],
+                                        ["CW_angle", 3],
+                                        ["voltageLow", 3],
+                                        ["CCW_angle", 3],
+                                        ["option", 3],
+                                        ["DELAY1", 3],
+                                        ["flag", 3],
+                                        ["min_torque_cw_", 3],
+                                        ["16", 3],
+                                        ["protected", 3],
+                                        ["goal_rotation", 3],
+                                        ["getPos", 3],
+                                        ["ctrl", 3],
+                                        ["EQUAL", 3],
+                                        ["angle", 3],
+                                        ["goal", 3],
+                                        ["0x02", 3],
+                                        ["CWMargin", 3],
+                                        ["CCWMargin", 3],
+                                        ["newID", 3],
+                                        ["angle_travelled", 3],
+                                        ["CCWSlope", 3],
+                                        ["TORQUE_ENABLE", 3],
+                                        ["ID", 3],
+                                        ["alarm", 3],
+                                        ["setGoalEncoder", 3],
+                                        ["DOWN_LIMIT_VOLTAGE", 2],
+                                        ["setVoltageLimit", 2],
+                                        ["readBytes", 2],
+                                        ["goal_decimal_part", 2],
+                                        ["0xFE", 2],
+                                        ["PRESENT_TEMPERATURE", 2],
+                                        ["addToPacket", 2],
+                                        ["setPosSpeed", 2],
+                                        ["getVoltage", 2],
+                                        ["0x0100", 2],
+                                        ["STATUS_RETURN_LEVEL", 2],
+                                        ["ALARM_LED", 2],
+                                        ["PRESENT_POSITION_L", 2],
+                                        ["OUTPUT", 2],
+                                        ["MOVING", 2],
+                                        ["PUNCH_L", 2],
+                                        ["compareAngles", 2],
+                                        ["CW_ANGLE_LIMIT_L", 2],
+                                        ["PRESENT_LOAD_L", 2],
+                                        ["setTemperatureLimit", 2],
+                                        ["abs", 2],
+                                        ["SerialTimeOut", 2],
+                                        ["enum", 2],
+                                        ["setTimeout", 2],
+                                        ["setLED", 2],
+                                        ["~checksum", 2],
+                                        ["ConvertPosToAngle", 2],
+                                        ["PRESENT_VOLTAGE", 2],
+                                        ["setAlarmShutDown", 2],
+                                        ["getTemperature", 2],
+                                        ["wrapPacket", 2],
+                                        ["BAUD_RATE", 2],
+                                        ["setTorqueLimit", 2],
+                                        ["SoftwareSerial", 2],
+                                        ["setBaudRate", 2],
+                                        ["rotateCCW", 2],
+                                        ["getTorqueOnOff", 2],
+                                        ["0x8000", 2],
+                                        ["setAction", 2],
+                                        ["setMarginSlopePunch", 2],
+                                        ["MOVING_SPEED_L", 2],
+                                        ["char", 2],
+                                        ["TORQUE_LIMIT_L", 2],
+                                        ["0x0400", 2],
+                                        ["ping", 2],
+                                        ["bool", 2],
+                                        ["setPosAngle", 2],
+                                        ["PRESENT_SPEED_L", 2],
+                                        ["setAlarmLED", 2],
+                                        ["map", 2],
+                                        ["factoryReset", 2],
+                                        ["compareSpeed", 2],
+                                        ["setID", 2],
+                                        ["rotateCW", 2],
+                                        ["setTimeToGoal", 2],
+                                        ["ALARM_SHUTDOWN", 2],
+                                        ["CW_COMPLIANCE_MARGIN", 2],
+                                        ["getLoad", 2],
+                                        ["TxMode", 2],
+                                        ["LED", 2],
+                                        ["LIMIT_TEMPERATURE", 2],
+                                        ["PRESENT_LOAD_H", 1],
+                                        ["0x0FFF", 1],
+                                        ["iSYNC_WRITE", 1],
+                                        ["GOAL_POSITION_H", 1],
+                                        ["RxMode", 1],
+                                        ["56", 1],
+                                        ["CCW_ANGLE_LIMIT_H", 1],
+                                        ["UP_CALIBRATION_L", 1],
+                                        ["0x0800", 1],
+                                        ["RETURN_DELAY_TIME", 1],
+                                        ["VERSION", 1],
+                                        ["DOWN_CALIBRATION_L", 1],
+                                        ["RESERVED1", 1],
+                                        ["DOWN_CALIBRATION_H", 1],
+                                        ["2000000", 1],
+                                        ["ON", 1],
+                                        ["RETURN_PACKET_READ_INSTRUCTIONS", 1],
+                                        ["PRESENT_POSITION_H", 1],
+                                        ["<Arduino.h>", 1],
+                                        ["PUNCH_H", 1],
+                                        ["0x03FF", 1],
+                                        ["1087", 1],
+                                        ["MAX_TORQUE_CW", 1],
+                                        ["19200", 1],
+                                        ["COMPLIANCE_MARGIN", 1],
+                                        ["ACCELERATION_ANGLE", 1],
+                                        ["iREG_WRITE", 1],
+                                        ["CCW_ANGLE_LIMIT_L", 1],
+                                        ["cwAngle", 1],
+                                        ["CCW_COMPLIANCE_MARGIN", 1],
+                                        ["20", 1],
+                                        ["ccwAngle", 1],
+                                        ["0x0200", 1],
+                                        ["ALL_SERVO", 1],
+                                        ["MOVING_SPEED_H", 1],
+                                        ["1000", 1],
+                                        ["9600", 1],
+                                        ["UP_LIMIT_VOLTAGE", 1],
+                                        ["CW_COMPLIANCE_SLOPE", 1],
+                                        ["MODEL_NUMBER_H", 1],
+                                        ["boolean", 1],
+                                        ["MODEL_NUMBER_L", 1],
+                                        ["<SoftwareSerial.h>", 1],
+                                        ["ConvertAngleToPos", 1],
+                                        ["REGISTERED_INSTRUCTION", 1],
+                                        ["listen", 1],
+                                        ["LOCK", 1],
+                                        ["~chksum", 1],
+                                        ["MAX_TORQUE_H", 1],
+                                        ["word", 1],
+                                        ["1023", 1],
+                                        ["setup", 1],
+                                        ["while", 1],
+                                        ["0xBFFF", 1],
+                                        ["loop", 1],
+                                        ["RESERVED2", 1],
+                                        ["MAX_TORQUE_CCW", 1],
+                                        ["torqueLimit", 1],
+                                        ["iRESET", 1],
+                                        ["UP_CALIBRATION_H", 1],
+                                        ["0xC000", 1],
+                                        ["RESERVE3", 1],
+                                        ["CCW_COMPLIANCE_SLOPE", 1],
+                                        ["PRESENT_SPEED_H", 1],
+                                        ["CW_ANGLE_LIMIT_H", 1],
+                                        ["iACTION", 1],
+                                        ["TORQUE_LIMIT_H", 1],
+                                        ["TORQUE_CALIBRATION_INTERVAL", 1],
+                                        ["MAX_TORQUE_L", 1],
+
+                                    ]);
+                                }
+                        }
+                    </script>
+                </head>
+                <body onload="draw();">
+                    <canvas id="canvas" width="700" height="700"></canvas>
+                </body>
+            </html>

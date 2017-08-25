@@ -1,3 +1,4 @@
+#include "debug.h"
 #include "servo_rha.h"
 #include "unity.h"
 
@@ -9,13 +10,6 @@
   * use Cytron functions.
   */
 
-#ifdef DEBUG_TEST_SERVO_RHA_MOCK
-  #define DebugSerialTSRHAMockLn(a) {Serial.println(a);}
-  #define DebugSerialTSRHAMock(a) {Serial.print(a);}
-#else
-  #define DebugSerialTSRHAMockLn(a)
-  #define DebugSerialTSRHAMockz(a)
-#endif
 
 #define MIN_TORQUE_CW 0
 #define MIN_TORQUE_CCW 180

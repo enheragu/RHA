@@ -40,6 +40,20 @@ lizard --languages cpp --exclude "$CURRENT_DIR/lib/*" --exclude "$CURRENT_DIR/sr
 echo "Done."
 
 ###################################################################
+
+#echo "Generating Tag Cloud for test code in html"
+#lizard --languages cpp -EWordCount --exclude "$CURRENT_DIR/test/*" $CURRENT_DIR > $CURRENT_DIR/delete.txt
+#sleep 3
+#mv $CURRENT_DIR/codecloud.html $CURRENT_DIR/code_analysis/code_cloud/code_codecloud_$1.html 
+#echo "Done."
+#echo "Generating Tag Cloud for test code in html"
+#lizard --languages cpp -EWordCount --exclude "$CURRENT_DIR/lib/*" --exclude "$CURRENT_DIR/src/*" $CURRENT_DIR > $CURRENT_DIR/delete.txt
+#sleep 3
+#mv $CURRENT_DIR/codecloud.html $CURRENT_DIR/code_analysis/code_cloud/test_codecloud_$1.html
+#echo "Done."
+#rm $CURRENT_DIR/delete.txt
+
+###################################################################
 echo "Generating cloc of code:"
 echo -n "Working."
 #generate Cloc in txt
@@ -52,6 +66,10 @@ echo "."
 cloc --by-file --skip-archive='(txt|csv|xml|py|zip|tar(.(gz|Z|bz2|xz|7z))?)' --csv   $CURRENT_DIR/lib/*  $CURRENT_DIR/src/*  > code_analysis/csv/cloc_$1.csv
 echo "Done."
 
+echo "Counting Debug calls in code:"
+grep -c -r "Debug*" lib/* src/* > code_analysis/debug_count/code_$1.txt
+echo "Done."
+
 ###################################################################
 echo "Generating cloc of test code:"
 echo -n "Working."
@@ -62,9 +80,18 @@ echo -n "."
 cloc --by-file --skip-archive='(txt|csv|xml|py|zip|tar(.(gz|Z|bz2|xz|7z))?)' --xml $CURRENT_DIR/test/* > code_analysis/xml/cloc_test_$1.xml
 echo "."
 #generate Cloc of test  in csv
-cloc --by-file --skip-archive='(txt|csv|xml|py|zip|tar(.(gz|Z|bz2|xz|7z))?)' --csv $CURRENT_DIR/test/* > code_analysis/csv/cloc_test_$1.csvecho "Done."
+cloc --by-file --skip-archive='(txt|csv|xml|py|zip|tar(.(gz|Z|bz2|xz|7z))?)' --csv $CURRENT_DIR/test/* > code_analysis/csv/cloc_test_$1.csv
+echo "Done."
+
+echo "Counting Debug calls in test code:"
+grep -c -r "Debug*" test/* > code_analysis/debug_count/test_$1.txt
+echo "Done."
 
 ###################################################################
 echo -n "Code analysis generated succesfully for "
 echo -n $1
 echo " date."
+
+
+rm *.py~
+rm *.sh~

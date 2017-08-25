@@ -1,0 +1,88 @@
+================================================
+  NLOC    CCN   token  PARAM  length  location  
+------------------------------------------------
+       3      1     29      4       3 ServoRHA::ServoRHA@9-11@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      14      1     89      0      18 ServoRHA::initServo@13-30@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       9      1     58      0       9 ServoRHA::angleRead@40-48@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       9      1     55      0       9 ServoRHA::speedRead@53-61@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       8      1     53      1      11 ServoRHA::returnPacketSet@67-77@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      11      2     77      5      11 ServoRHA::addToPacket@91-101@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      19      2    182      5      20 ServoRHA::wrapPacket@111-130@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       6      1     31      0       6 ServoRHA::calibrateTorque@139-144@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      13      3     87      2      17 ServoRHA::calibrateTorqueDir@150-166@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       9      3    111      2      10 ServoRHA::setWheelSpeed@179-188@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       6      1     30      2       6 ServoRHA::setGoalEncoder@194-199@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       7      3     33      0       8 ServoRHA::doNext@203-210@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      34     11    228      0      43 ServoRHA::encoderModeRotation@215-257@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       6      1     38      1       6 ServoRHA::accelerate@261-266@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      12      2     63      2      13 ServoRHA::decelerate@270-282@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       7      2     37      0       7 ServoRHA::isMoving@287-293@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       6      3     51      3       6 compareAngles@305-310@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       6      3     51      3       6 compareSpeed@312-317@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       1      1      5      0       1 ServoRHA::ServoRHA@48-48@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       7      1     34      4       7 Cytron_G15Shield::Cytron_G15Shield@23-29@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       6      1     27      3       6 Cytron_G15Shield::Cytron_G15Shield@31-36@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       6      1     21      1       6 Cytron_G15Shield::Cytron_G15Shield@38-43@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+      21      4    101      1      21 Cytron_G15Shield::begin@45-65@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+      14      3     56      1      14 Cytron_G15Shield::end@67-80@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       4      1     15      1       4 Cytron_G15Shield::setTxMode@82-85@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       4      1     15      1       4 Cytron_G15Shield::setRxMode@87-90@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+      90     21    528      4     103 Cytron_G15Shield::sendPacket@94-196@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+      10      2     48      0      12 Cytron_G15Shield::setWheelMode@198-209@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       4      1     17      0       4 Cytron_G15Shield::exitWheelMode@211-214@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       8      2     45      3       8 Cytron_G15Shield::setWheelSpeed@216-223@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       8      1     58      2      10 Cytron_G15Shield::setPos@231-240@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       9      1     66      2      11 Cytron_G15Shield::setPosAngle@242-252@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+      10      1     80      3      12 Cytron_G15Shield::setPosSpeed@254-265@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       5      1     28      2       6 Cytron_G15Shield::rotateCW@267-272@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       6      1     34      2       7 Cytron_G15Shield::rotateCCW@274-280@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       7      1     46      2       9 Cytron_G15Shield::setTorqueOnOff@286-294@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       8      1     58      2      10 Cytron_G15Shield::setSpeed@302-311@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       6      1     34      2       7 Cytron_G15Shield::setTimeToGoal@314-320@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+      13      1     89      2      15 Cytron_G15Shield::setAngleLimit@331-345@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       8      1     55      1      10 Cytron_G15Shield::setTorqueLimit@347-356@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+      10      1     55      1      12 Cytron_G15Shield::setTemperatureLimit@358-369@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+      11      1     65      2      13 Cytron_G15Shield::setVoltageLimit@371-383@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+      10      1     55      1      12 Cytron_G15Shield::setID@389-400@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       7      1     46      2       9 Cytron_G15Shield::setLED@406-414@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+      12      1     66      1      15 Cytron_G15Shield::setAlarmLED@416-430@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+      12      1     66      1      15 Cytron_G15Shield::setAlarmShutDown@432-446@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+      19      2    137      5      25 Cytron_G15Shield::setMarginSlopePunch@448-472@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+      10      1     61      1      12 Cytron_G15Shield::setBaudRate@478-489@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       8      1     39      0       9 Cytron_G15Shield::factoryReset@495-503@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       4      1     24      1       4 Cytron_G15Shield::ping@508-511@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       6      1     38      1       7 Cytron_G15Shield::getPos@516-522@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       6      1     38      1       7 Cytron_G15Shield::getSpeed@524-530@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       6      1     38      1       7 Cytron_G15Shield::getLoad@532-538@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       6      1     38      1       7 Cytron_G15Shield::getVoltage@540-546@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       6      1     38      1       7 Cytron_G15Shield::getTemperature@548-554@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       6      1     38      1       7 Cytron_G15Shield::getTorqueOnOff@559-565@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       6      1     38      1       7 Cytron_G15Shield::isMoving@570-576@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       4      1     13      1       6 Cytron_G15Shield::setAction@584-589@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+      28      4    178      1      35 set_act@591-625@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+       1      1      5      0       1 Cytron_G15Shield::Cytron_G15Shield@144-144@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.h
+       5      1     25      0       6 setup@16-21@/home/gmv/RHA/SW/src/main.cpp
+      14      2     78      0      16 loop@23-38@/home/gmv/RHA/SW/src/main.cpp
+8 file analyzed.
+==============================================================
+NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
+--------------------------------------------------------------
+    188      10.3     2.3       72.4        18     /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+     35       1.0     1.0        5.0         1     /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+      0       0.0     0.0        0.0         0     /home/gmv/RHA/SW/lib/joint_rha/joint_rha.h
+      1       0.0     0.0        0.0         0     /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+    434      10.8     1.8       63.1        40     /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+    103       1.0     1.0        5.0         1     /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.h
+      0       0.0     0.0        0.0         0     /home/gmv/RHA/SW/lib/debug/debug.h
+     24       9.5     1.5       51.5         2     /home/gmv/RHA/SW/src/main.cpp
+
+=========================================================================================
+!!!! Warnings (cyclomatic_complexity > 15 or length > 1000 or parameter_count > 100) !!!!
+================================================
+  NLOC    CCN   token  PARAM  length  location  
+------------------------------------------------
+      90     21    528      4     103 Cytron_G15Shield::sendPacket@94-196@/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp
+==========================================================================================
+Total nloc   Avg.NLOC  AvgCCN  Avg.token   Fun Cnt  Warning cnt   Fun Rt   nloc Rt
+------------------------------------------------------------------------------------------
+       785      10.3     1.9       63.6       62            1      0.02    0.14

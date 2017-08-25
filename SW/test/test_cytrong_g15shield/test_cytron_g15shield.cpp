@@ -1,15 +1,8 @@
+#include "debug.h"
 #include "Cytron_G15Shield.h"
 #include "unity.h"
 
 #ifdef UNIT_TEST
-
-#ifdef DEBUG_TEST_CYTRON_G15SHIELD
-  #define DebugSerialTG15Ln(a) {Serial.println(a);}
-  #define DebugSerialTG15(a) {Serial.print(a);}
-#else
-  #define DebugSerialTG15Ln(a)
-  #define DebugSerialTG15(a)
-#endif
 
 #define SERVO_ID 1
 #define DELAY_MOVE 5000

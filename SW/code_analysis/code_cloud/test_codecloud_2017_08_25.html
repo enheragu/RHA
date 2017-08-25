@@ -1,0 +1,407 @@
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,
+            initial-scale=1.0,maximum-scale=1.0" />
+        <style type="text/css">
+            canvas {
+                border: 1px solid black;
+                width: 700px;
+                height: 700px;
+            }
+        </style>
+        <script type="text/javascript">
+        
+
+function TagCloud(w, h, context) {
+    "use strict";
+    this.ctx = context;
+    this.canvasWidth = w;
+    this.canvasHeight = h;
+    this.fontSize = this.canvasHeight / 3;
+    this.shape = "rectangle";
+}
+
+TagCloud.prototype.setShape = function () {
+    this.shape = "circle";
+};
+
+TagCloud.prototype.render = function (tags) {
+    this.ctx.textBaseline = "top";
+    tags.forEach(function (tag) {
+        this.placeTag(tag[0]);
+    }, this);
+};
+
+TagCloud.prototype.placeTag = function (tag) {
+    var placement;
+    while (!(placement = this._getNonOverlappingPlaceWithBestSize(
+            this.fontSize, tag)))
+        this.fontSize *= 0.9;
+
+    this.ctx.fillStyle = this._getRandomColor();
+    this.ctx.fillText(tag, placement.x, placement.y);
+};
+
+TagCloud.prototype._getNonOverlappingPlaceWithBestSize =
+    function (fontSize, tag) {
+    this.ctx.font = "" + fontSize + "pt " + "Arial";
+    var lineHeight=this.getLineHeight(fontSize);
+    var tagWidth = this.ctx.measureText(tag).width;
+
+    var base = new BasePlacement(
+        (this.canvasWidth - tagWidth) * Math.random(),
+        (this.canvasHeight - lineHeight) * Math.random(),
+        lineHeight
+        );
+
+    var placement;
+    /* jshint ignore:start */
+    while (placement = base.nextPlaceToTry()) {
+        if (this._isPlaceEmpty(placement, tagWidth, lineHeight))
+            break;
+    }
+    /* jshint ignore:end */
+    return placement;
+};
+
+TagCloud.prototype.getLineHeight = function (fontSize) {
+    return this.ctx.measureText('M').width * 1.2;
+}
+
+TagCloud.prototype._getRandomColor = function (){
+    var colors = ["aqua", "black", "blue", "fuchsia", "gray", "green",
+                  "lime", "maroon", "navy", "olive", "orange", "purple",
+                  "red", "silver", "teal"];
+    return colors[Math.floor(colors.length * Math.random())];
+};
+
+TagCloud.prototype._isPlaceEmpty = function (placement, width, height) {
+    if (placement.x < 0 || placement.y < 0 || placement.x + width >
+         this.canvasWidth || placement.y + height > this.canvasHeight)
+        return false;
+
+    var pix = this.ctx.getImageData(
+                placement.x, placement.y, width, height).data;
+
+    for (var i = 0, n = pix.length; i < n; i += 4)
+        if (pix[i+3])
+                return false;
+
+    return [[placement.x, placement.y],
+            [placement.x + width, placement.y],
+            [placement.x, placement.y + height],
+            [placement.x + width, placement.y + height]].every(
+                function(pos) {
+                    var a = this.canvasWidth / 2;
+                    var b = this.canvasHeight / 2;
+                    var X = pos[0] - a;
+                    var Y = pos[1] - b;
+                    return (X * X / a / a + Y * Y / b / b < 1);
+                }, this);
+};
+
+TagCloud.prototype.getCoverage = function () {
+    var pix = this.ctx.getImageData(
+                0, 0, this.canvasWidth, this.canvasHeight).data;
+    var pixCount = 0;
+    for (var i = 0, n = pix.length; i < n; i += 4) {
+        if (pix[i+3])
+            pixCount++;
+    }
+    return pixCount * 100 / this.canvasWidth / this.canvasHeight;
+};
+
+function BasePlacement(x, y, h) {
+    var baseX = x,
+        baseY = y,
+        scale = h,
+        tryNumber = 0;
+
+    this.nextPlaceToTry = function() {
+        if (tryNumber < this._spiralOffsets.length)
+            return {
+                x : baseX + this._spiralOffsets[tryNumber][0] * scale,
+                y : baseY + this._spiralOffsets[tryNumber++][1] * scale
+            };
+    };
+}
+
+function generateSpiralOffsets() {
+    var spiralOffsets = [];
+    var radius = 0;
+    var dr = 0.2;
+    for (var i = 0; radius < 40; i+=0.4, radius += dr) {
+        spiralOffsets.push([
+                   radius * Math.sin(i),
+                   radius * Math.cos(i)
+                ]);
+    }
+    return spiralOffsets;
+}
+
+BasePlacement.prototype._spiralOffsets = generateSpiralOffsets();
+
+    
+        </script>
+        <script type="application/javascript">
+            function draw() {
+                var canvas = document.getElementById("canvas");
+                    if (canvas.getContext) {
+                        var ctx = canvas.getContext("2d");
+                        // scale 2x
+                        if(window.devicePixelRatio == 2) {
+                            canvas.setAttribute('width', canvas.width * 2);
+                            canvas.setAttribute('height', canvas.height * 2);
+                        }
+                        var tagCloud = new TagCloud(canvas.width,
+                            canvas.height, ctx);
+                        tagCloud.render([                                        ["servo_test1", 72],
+                                        ["0", 52],
+                                        ["status", 49],
+                                        ["uint8_t", 46],
+                                        ["data", 33],
+                                        ["g15", 29],
+                                        ["TEST_ASSERT_EQUAL", 22],
+                                        ["uint16_t", 21],
+                                        ["2", 20],
+                                        ["delay", 20],
+                                        ["8", 19],
+                                        ["pos", 18],
+                                        ["TestServoRHA", 17],
+                                        ["3", 17],
+                                        ["checkStatus", 16],
+                                        ["speed", 15],
+                                        ["RUN_TEST", 15],
+                                        ["10", 14],
+                                        ["DebugSerialTG15", 14],
+                                        ["1", 14],
+                                        ["position", 14],
+                                        ["TEST_ASSERT_EQUAL_MESSAGE", 13],
+                                        ["num_servo", 12],
+                                        ["CW", 11],
+                                        ["SERVO_ID", 11],
+                                        ["compareAngles", 10],
+                                        ["initServo", 10],
+                                        ["DELAY_MOVE", 9],
+                                        ["buffer", 9],
+                                        ["DebugSerialTSRHAReal", 8],
+                                        ["TEST_ASSERT_EQUAL_UINT8", 8],
+                                        ["POSITION", 8],
+                                        ["g15_speed", 8],
+                                        ["EQUAL", 8],
+                                        ["0x01", 8],
+                                        ["0x02", 8],
+                                        ["0x03", 8],
+                                        ["TestCytron", 7],
+                                        ["0x20", 7],
+                                        ["angleRead", 7],
+                                        ["exitWheelMode", 7],
+                                        ["speedRead", 7],
+                                        ["iWRITE_DATA", 7],
+                                        ["begin", 7],
+                                        ["digitalWrite", 6],
+                                        ["addToPacket", 6],
+                                        ["word", 6],
+                                        ["servo_id", 6],
+                                        ["MARGIN", 6],
+                                        ["DebugSerialTSRHA", 6],
+                                        ["5", 6],
+                                        ["setWheelSpeed", 6],
+                                        ["sizeof", 6],
+                                        ["100", 6],
+                                        ["float", 6],
+                                        ["isMoving", 6],
+                                        ["13", 6],
+                                        ["ctrlpin", 6],
+                                        ["SPEED", 6],
+                                        ["process", 6],
+                                        ["txpin", 6],
+                                        ["rxpin", 6],
+                                        ["CCW", 5],
+                                        ["0x00", 5],
+                                        ["4", 5],
+                                        ["real_speed_high", 5],
+                                        ["direction", 5],
+                                        ["goal_1", 5],
+                                        ["goal_3", 5],
+                                        ["setCurrentPose", 5],
+                                        ["buffer_len", 5],
+                                        ["BAUDRATE", 4],
+                                        ["MARGIN_SPEED_COMPARISON", 4],
+                                        ["pose", 4],
+                                        ["6", 4],
+                                        ["i", 4],
+                                        ["while", 4],
+                                        ["cw_ccw", 4],
+                                        ["0x80", 4],
+                                        ["TEST_ASSERT_EQUAL_INT", 4],
+                                        ["compareSpeed", 4],
+                                        ["acceleration_angle_", 3],
+                                        ["getTxPin", 3],
+                                        ["setInitPose", 3],
+                                        ["getRxPin", 3],
+                                        ["max_torque_ccw_", 3],
+                                        ["HIGH", 3],
+                                        ["getCtrlPin", 3],
+                                        ["GREATER_THAN", 3],
+                                        ["getServoID", 3],
+                                        ["goal_0", 3],
+                                        ["current_pose_", 3],
+                                        ["UNITY_END", 3],
+                                        ["_rxpin", 3],
+                                        ["SetWheelSpeed", 3],
+                                        ["LESS_THAN", 3],
+                                        ["_txpin", 3],
+                                        ["max_torque_cw_", 3],
+                                        ["ServoRHA", 3],
+                                        ["30", 3],
+                                        ["setSpeed", 3],
+                                        ["setWheelMode", 3],
+                                        ["min_torque_ccw_", 3],
+                                        ["3000", 3],
+                                        ["0x60", 3],
+                                        ["getMaxTorqueCw", 3],
+                                        ["servo_test0", 3],
+                                        ["servo_test3", 3],
+                                        ["servo_test2", 3],
+                                        ["180", 3],
+                                        ["500", 3],
+                                        ["goal_2", 3],
+                                        ["_servo_id", 3],
+                                        ["min_torque_cw_", 3],
+                                        ["setup", 3],
+                                        ["loop", 3],
+                                        ["init_pose_", 3],
+                                        ["_ctrlpin", 3],
+                                        ["LOW", 3],
+                                        ["id", 3],
+                                        ["TEST_ASSERT_EQUAL_UINT8_ARRAY", 3],
+                                        ["setPosAngle", 3],
+                                        ["ConvertPosToAngle", 3],
+                                        ["real_speed_low", 3],
+                                        ["UNITY_BEGIN", 3],
+                                        ["setGoalEncoder", 3],
+                                        ["TEST_ASSERT_TRUE", 2],
+                                        ["encoder_current_", 2],
+                                        ["ON", 2],
+                                        ["buffer_test1", 2],
+                                        ["goal_pose_encoder_", 2],
+                                        ["ANGLE_POSITION", 2],
+                                        ["0xFF", 2],
+                                        ["test_function_warpPacket", 2],
+                                        ["test_function_isMoving", 2],
+                                        ["buffer_test2", 2],
+                                        ["buffer_test", 2],
+                                        ["0x30", 2],
+                                        ["angle_left", 2],
+                                        ["test_function_addToPacket", 2],
+                                        ["test_function_accelerateCW", 2],
+                                        ["test_function_compareAngles", 2],
+                                        ["test_function_compareSpeed", 2],
+                                        ["test_function_SetWheelSpeed", 2],
+                                        ["getInitPose", 2],
+                                        ["test_function_isMovingPositioningMode", 2],
+                                        ["Cytron_G15Shield", 2],
+                                        ["300", 2],
+                                        ["0x50", 2],
+                                        ["test_function_decelerateCW", 2],
+                                        ["map", 2],
+                                        ["getMinTorqueCw", 2],
+                                        ["getCurrentPose", 2],
+                                        ["test_function_setGoalEncoder", 2],
+                                        ["60", 2],
+                                        ["185", 2],
+                                        ["getPos", 2],
+                                        ["configureServoForAccelDecelTest", 2],
+                                        ["calibrateTorque", 2],
+                                        ["DebugSerialTG15Ln", 2],
+                                        ["option", 2],
+                                        ["test_function_readAngle", 2],
+                                        ["0x70", 2],
+                                        ["flag_moving_", 2],
+                                        ["40", 2],
+                                        ["getGoalPoseEncoder", 2],
+                                        ["false", 2],
+                                        ["returnPacketSet", 2],
+                                        ["test_positioningMode_functioning", 2],
+                                        ["test_constructor_Cytron_G15Shield", 2],
+                                        ["test_setWheelMode_functioning", 2],
+                                        ["getGoalDirection", 2],
+                                        ["test_comunication_Cytron_G15Shield", 2],
+                                        ["DebugSerialTSRHALn", 2],
+                                        ["getAccelerationAngle", 2],
+                                        ["acceleration_slope_", 2],
+                                        ["0x10", 2],
+                                        ["decelerate", 1],
+                                        ["9200", 1],
+                                        ["20", 1],
+                                        ["goal_direction_", 1],
+                                        ["MAX_TORQUE_CW", 1],
+                                        ["28", 1],
+                                        ["0xFE", 1],
+                                        ["OFF", 1],
+                                        ["GOAL_POSITION_L", 1],
+                                        ["getSpeed", 1],
+                                        ["RETURN_PACKET_READ_INSTRUCTIONS", 1],
+                                        ["encoder_flag_", 1],
+                                        ["19200", 1],
+                                        ["50", 1],
+                                        ["accelerate", 1],
+                                        ["ACCELERATION_ANGLE", 1],
+                                        ["getMinTorqueCCw", 1],
+                                        ["613", 1],
+                                        ["getFlagMoving", 1],
+                                        ["Serial", 1],
+                                        ["SERROR_CHECKSUMERROR", 1],
+                                        ["SERROR_OVERLOAD", 1],
+                                        ["test_function_encoderModeRotation", 1],
+                                        ["getAccelerationSlope", 1],
+                                        ["200", 1],
+                                        ["SERROR_PING", 1],
+                                        ["getEncoderCurrent", 1],
+                                        ["SERROR_IDMISMATCH", 1],
+                                        ["getEncoderFlag", 1],
+                                        ["SERROR_CHECKSUM", 1],
+                                        ["wrapPacket", 1],
+                                        ["baudrate", 1],
+                                        ["int", 1],
+                                        ["SERROR_PACKETLOST", 1],
+                                        ["MIN_TORQUE_CCW", 1],
+                                        ["DELAY1", 1],
+                                        ["SERROR_INPUTVOLTAGE", 1],
+                                        ["SERROR_WRONGHEADER", 1],
+                                        ["true", 1],
+                                        ["MAX_TORQUE_CCW", 1],
+                                        ["default", 1],
+                                        ["DELAY_MOVE_SHORT", 1],
+                                        ["MAX_SPEED_ALLOWED", 1],
+                                        ["TEST_ASSERT_FALSE", 1],
+                                        ["SERROR_ANGLELIMIT", 1],
+                                        ["SERROR_OVERHEATING", 1],
+                                        ["0x1E", 1],
+                                        ["SERROR_RANGE", 1],
+                                        ["0x04", 1],
+                                        ["ping", 1],
+                                        ["getMaxTorqueCCw", 1],
+                                        ["0x83", 1],
+                                        ["MIN_TORQUE_CW", 1],
+                                        ["TEST_ASSERT_EQUAL_FLOAT", 1],
+                                        ["HEX", 1],
+                                        ["SERROR_INSTRUCTION", 1],
+                                        ["TEST_ASSERT_EQUAL_UINT16", 1],
+                                        ["0x18", 1],
+                                        ["0x12", 1],
+                                        ["switch", 1],
+                                        ["uint32_t", 1],
+                                        ["685", 1],
+
+                                    ]);
+                                }
+                        }
+                    </script>
+                </head>
+                <body onload="draw();">
+                    <canvas id="canvas" width="700" height="700"></canvas>
+                </body>
+            </html>

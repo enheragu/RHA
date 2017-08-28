@@ -1,5 +1,5 @@
 #include "debug.h"
-#include "Cytron_G15Shield.h"
+#include "cytron_g15_servo.h"
 #include "unity.h"
 
 #ifdef UNIT_TEST
@@ -11,13 +11,13 @@
 #define BAUDRATE 19200.
 #define MARGIN 5
 
-class TestCytron : public Cytron_G15Shield {
+class TestCytron : public Cytron_G15_Servo {
  public:
-  TestCytron(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin):Cytron_G15Shield(servo_id, rxpin, txpin, ctrlpin) {  }
-  uint8_t getServoID() {  return _servo_id; }
-  uint8_t getTxPin() {  return _txpin; }
-  uint8_t getRxPin() {  return _rxpin; }
-  uint8_t getCtrlPin() {  return _ctrlpin; }
+  TestCytron(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin):Cytron_G15_Servo(servo_id, rxpin, txpin, ctrlpin) {  }
+  uint8_t getServoID() {  return servo_id_; }
+  uint8_t getTxPin() {  return txpin_; }
+  uint8_t getRxPin() {  return rxpin_; }
+  uint8_t getCtrlPin() {  return ctrlpin_; }
 };
 
 void checkStatus(word status) {
@@ -38,7 +38,7 @@ void checkStatus(word status) {
   }
 }  // End of checkStatus function
 
-void test_constructor_Cytron_G15Shield(void) {
+void test_constructor_Cytron_G15_Servo(void) {
     TestCytron g15(SERVO_ID, 2, 3, 8);
     TEST_ASSERT_EQUAL(SERVO_ID, g15.getServoID());
     TEST_ASSERT_EQUAL(2, g15.getRxPin());
@@ -46,7 +46,7 @@ void test_constructor_Cytron_G15Shield(void) {
     TEST_ASSERT_EQUAL(8, g15.getCtrlPin());
 }
 
-void test_comunication_Cytron_G15Shield(void) {
+void test_comunication_Cytron_G15_Servo(void) {
     TestCytron g15(SERVO_ID, 2, 3, 8);
     g15.begin(BAUDRATE);
     word status, id;
@@ -94,7 +94,7 @@ void test_setWheelMode_functioning(void) {
   checkStatus(status);
   speed = data[0];
   speed |=  word(data[1]) << 8;
-  // if (speed > 1000) speed = speed - 1000;
+  // if (speed > 1000) speed = speed - 1000; ¿? saw in cytron example
   // with no load:
   /* setSpeed -> 90;      getSpeed -> 1059
    * setSpeed -> 10;      getSpeed -> 1067
@@ -162,8 +162,8 @@ void test_function_isMovingWheelMode(void) {
 
 void process() {
   UNITY_BEGIN();
-  RUN_TEST(test_constructor_Cytron_G15Shield);
-  RUN_TEST(test_comunication_Cytron_G15Shield);
+  RUN_TEST(test_constructor_Cytron_G15_Servo);
+  RUN_TEST(test_comunication_Cytron_G15_Servo);
   RUN_TEST(test_positioningMode_functioning);
   RUN_TEST(test_setWheelMode_functioning);
   RUN_TEST(test_function_isMovingPositioningMode);
@@ -172,7 +172,7 @@ void process() {
 
 
 void setup() {
-  Serial.begin(9200);
+  Serial.begin(9600);
   delay(3000);
   process();
 }

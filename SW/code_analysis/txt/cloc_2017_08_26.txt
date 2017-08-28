@@ -6,9 +6,9 @@ http://cloc.sourceforge.net v 1.60  T=0.02 s (328.8 files/s, 56272.6 lines/s)
 ---------------------------------------------------------------------------------------------------------------------------
 File                                                                                    blank        comment           code
 ---------------------------------------------------------------------------------------------------------------------------
-/home/quique/Documentos/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp                  110             79            375
+/home/quique/Documentos/RHA/SW/lib/CYTRON_G15_SERVO/CYTRON_G15_SERVO.cpp                  110             79            375
 /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp                                 49             97            205
-/home/quique/Documentos/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.h                     28             35            146
+/home/quique/Documentos/RHA/SW/lib/CYTRON_G15_SERVO/cytron_g15_servo.h                     28             35            146
 /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h                                   19              5             55
 /home/quique/Documentos/RHA/SW/lib/debug/debug.h                                           14             17             47
 /home/quique/Documentos/RHA/SW/src/main.cpp                                                 6              8             26

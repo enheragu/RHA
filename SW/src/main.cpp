@@ -5,10 +5,10 @@
 
 // #define DEBUG_SERVO_RHA
 // #define DEBUG_TEST_SERVO_RHA
-// #define DEBUG_CYTRON_G15SHIELD
-// #define DEBUG_TEST_CYTRON_G15SHIELD
+// #define DEBUG_CYTRON_G15_SERVO
+// #define DEBUG_TEST_CYTRON_G15_SERVO
 
-// Cytron_G15Shield g15(1, 2, 3, 8); 
+// CYTRON_G15_SERVO g15(1, 2, 3, 8); 
 
 int flag = 0; 
 ServoRHA servo_test1(1, 2, 3, 8); 

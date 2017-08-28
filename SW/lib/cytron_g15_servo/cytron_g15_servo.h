@@ -11,10 +11,10 @@ Modified:
             enheragu - Merge with G15.h version
 */
 
-#ifndef Cytron_G15Shield_h
-#define Cytron_G15Shield_h
+#ifndef CYTRON_G15_SERVO_h
+#define CYTRON_G15_SERVO_h
 
-#include "deubg/debug.h"
+#include "debug.h"
 #include "Arduino.h"
 #include <SoftwareSerial.h>
 
@@ -135,41 +135,41 @@ enum {
 
 void set_act(char ctrl);
 
-class Cytron_G15Shield {
+class Cytron_G15_Servo {
  public:
-    uint8_t _servo_id;
-    uint8_t _txpin, _rxpin, _ctrlpin;
+    uint8_t servo_id_;
+    uint8_t txpin_, rxpin_, ctrlpin_;
 
-    Cytron_G15Shield() {}   // It'll be only used for testing purposes
-    Cytron_G15Shield(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
-    Cytron_G15Shield(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);  // SoftwareSerial
-    explicit Cytron_G15Shield(uint8_t ctrlpin);  // HardwareSerial
+    Cytron_G15_Servo() {}   // It'll be only used for testing purposes
+    Cytron_G15_Servo(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
+    Cytron_G15_Servo(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);  // SoftwareSerial
+    explicit Cytron_G15_Servo(uint8_t ctrlpin);  // HardwareSerial
     virtual void begin(uint32_t baudrate);
     void end(void);
 
-    // * == == == == = Wheel Mode == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == =
+    // *========= Wheel Mode =====================================================================================
     // 360 degree continous rotation. change CW and CCW Angle Limits to same value
     uint16_t setWheelMode(void);
     uint16_t exitWheelMode(void);
     uint16_t setWheelSpeed(uint16_t speed, uint8_t direction, uint8_t Write_Reg);
 
-    // * == == == == = Normal Positioning Mode == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == =  =
+    // *========= Normal Positioning Mode ========================================================================
     // (Rotation limited by Angle Limit and Direction of Rotation determined by operation section of Angle Limit)
     uint16_t setPos(uint16_t position, uint8_t Write_Reg);
     uint16_t setPosAngle(uint16_t angle, uint8_t Write_Reg);
     uint16_t setPosSpeed(uint16_t position, uint16_t speed, uint8_t Write_Reg);
 
-    // * == == == =  = Direction Positioning Mode == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == =  =
+    // *======== Direction Positioning Mode ======================================================================
     // (Rotation direction and angle is NOT limited by Angle Limit Control Register value)
     uint16_t rotateCW(uint16_t position, uint8_t Write_Reg);
     uint16_t rotateCCW(uint16_t position, uint8_t Write_Reg);
 
-    // * == == == = Torque Enable and Speed Control == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == =  =
+    // *======= Torque Enable and Speed Control ==================================================================
     uint16_t setTorqueOnOff(uint8_t onOff, uint8_t Write_Reg);
     uint16_t setSpeed(uint16_t speed, uint8_t Write_Reg);
     uint16_t setTimeToGoal(uint16_t time, uint8_t Write_Reg);
 
-    // * == == == = Set Maximum Limits == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == =
+    // *======= Set Maximum Limits ===============================================================================
     uint16_t setAngleLimit(uint16_t cwAngle, uint16_t ccwAngle);
     uint16_t setTorqueLimit(uint16_t torqueLimit);  // in RAM area
     uint16_t setTemperatureLimit(uint8_t temperature);
@@ -181,7 +181,7 @@ class Cytron_G15Shield {
     uint16_t setAlarmLED(uint8_t alarmLED);
     uint16_t setAlarmShutDown(uint8_t alarm);
 
-    // * == == == =  = Servo Positioning Control Parameters == == == == == == == == == == == == == == == == == == == == == == == == == == == == == =  =
+    // *======== Servo Positioning Control Parameters ============================================================
     uint16_t setMarginSlopePunch(uint8_t CWMargin, uint8_t CCWMargin, uint8_t CWSlope, uint8_t CCWSlope, uint16_t punch);
 
     uint16_t setBaudRate(uint32_t baudrate);

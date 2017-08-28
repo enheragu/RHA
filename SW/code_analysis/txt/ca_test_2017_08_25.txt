@@ -31,20 +31,20 @@
       10      1     42      0      16 process@147-162@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
        4      1     14      0       4 setup@165-168@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
        6      1     29      0       7 loop@170-176@/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
-       1      1     27      4       1 TestCytron::TestCytron@16-16@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
-       1      1      8      0       1 TestCytron::getServoID@17-17@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
-       1      1      8      0       1 TestCytron::getTxPin@18-18@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
-       1      1      8      0       1 TestCytron::getRxPin@19-19@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
-       1      1      8      0       1 TestCytron::getCtrlPin@20-20@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
-      18     13    192      1      18 checkStatus@24-41@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
-       7      1     62      1       7 test_constructor_Cytron_G15Shield@43-49@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
-      10      1     64      1      10 test_comunication_Cytron_G15Shield@51-60@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
-      22      2    197      1      22 test_positioningMode_functioning@62-83@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
-      21      2    175      1      32 test_setWheelMode_functioning@85-116@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
-      26      3    204      1      27 test_function_isMovingPositioningMode@118-144@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
-       9      1     38      0       9 process@165-173@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
-       5      1     21      0       5 setup@176-180@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
-       6      1     29      0       7 loop@182-188@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+       1      1     27      4       1 TestCytron::TestCytron@16-16@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
+       1      1      8      0       1 TestCytron::getServoID@17-17@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
+       1      1      8      0       1 TestCytron::getTxPin@18-18@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
+       1      1      8      0       1 TestCytron::getRxPin@19-19@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
+       1      1      8      0       1 TestCytron::getCtrlPin@20-20@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
+      18     13    192      1      18 checkStatus@24-41@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
+       7      1     62      1       7 test_constructor_CYTRON_G15_SERVO@43-49@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
+      10      1     64      1      10 test_comunication_CYTRON_G15_SERVO@51-60@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
+      22      2    197      1      22 test_positioningMode_functioning@62-83@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
+      21      2    175      1      32 test_setWheelMode_functioning@85-116@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
+      26      3    204      1      27 test_function_isMovingPositioningMode@118-144@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
+       9      1     38      0       9 process@165-173@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
+       5      1     21      0       5 setup@176-180@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
+       6      1     29      0       7 loop@182-188@/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
        6      1     32      4       6 TestServoRHA::TestServoRHA@25-30@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
       12      1     81      0      16 TestServoRHA::initServo@32-47@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
        4      1     13      0       4 TestServoRHA::calibrateTorque@48-51@/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
@@ -64,7 +64,7 @@
 NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
 --------------------------------------------------------------
     132       4.0     1.2       29.3        30     /home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp
-    135       9.2     2.1       74.4        14     /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp
+    135       9.2     2.1       74.4        14     /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
     142       9.2     1.2       76.0        14     /home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
 
 =============================================================================================

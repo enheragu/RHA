@@ -13,9 +13,6 @@
 
 #define MIN_TORQUE_CW 0
 #define MIN_TORQUE_CCW 180
-#define MAX_TORQUE_CW 1023
-#define MAX_TORQUE_CCW 1023
-#define ACCELERATION_ANGLE 180
 
 class TestServoRHA : public ServoRHA {
  public:
@@ -23,10 +20,10 @@ class TestServoRHA : public ServoRHA {
   uint8_t direction;
 
   TestServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin) {
-      _servo_id = servo_id;
-      _rxpin = rxpin;
-      _txpin = txpin;
-      _ctrlpin = ctrlpin;
+      servo_id_ = servo_id;
+      rxpin_ = rxpin;
+      txpin_ = txpin;
+      ctrlpin_ = ctrlpin;
   }
 
   virtual void initServo() {
@@ -40,7 +37,7 @@ class TestServoRHA : public ServoRHA {
       acceleration_angle_ = ACCELERATION_ANGLE;
       flag_moving_ = false;
       current_pose_ = 0; goal_pose_encoder_ = 0; init_pose_ = 0; encoder_current_ = 0;
-      acceleration_slope_ = (static_cast<float>100 - static_cast<float>0) / static_cast<float>acceleration_angle_;
+      acceleration_slope_ = (static_cast<float>(100) - static_cast<float>(0)) / static_cast<float>(acceleration_angle_);
 
       TestServoRHA::returnPacketSet(RETURN_PACKET_READ_INSTRUCTIONS);  // Servo only respond to read data instructions
   }
@@ -58,7 +55,7 @@ class TestServoRHA : public ServoRHA {
       direction = cw_ccw;
       if (cw_ccw == CW) g15_speed = (uint16_t)(map(speed, 0, 100, min_torque_cw_, max_torque_cw_));
       else if (cw_ccw == CCW) g15_speed = (uint16_t)(map (speed, 0, 100, min_torque_ccw_, max_torque_ccw_));
-      DebugSerialTSRHA("Speed passed was: "); DebugSerialTSRHA(speed); DebugSerialTSRHA(". Speed for servo is: "); DebugSerialTSRHALn(g15_speed);
+      DebugSerialTSRHAMock("Speed passed was: "); DebugSerialTSRHAMock(speed); DebugSerialTSRHAMock(". Speed for servo is: "); DebugSerialTSRHAMockLn(g15_speed);
       return 0;
   }
 
@@ -145,8 +142,8 @@ void test_function_warpPacket(void) {
     buffer_len = servo_test1.wrapPacket(buffer, data, position, GOAL_POSITION_L, num_servo);
 
     for (int i = 0; i < buffer_len; i++) {
-      DebugSerialTSRHA("0x"); DebugSerialTSRHA((buffer[i], HEX)); DebugSerialTSRHA(", ");
-    } DebugSerialTSRHALn(" ");
+      DebugSerialTSRHAMock("0x"); DebugSerialTSRHAMock((buffer[i], HEX)); DebugSerialTSRHAMock(", ");
+    } DebugSerialTSRHAMockLn(" ");
 
     TEST_ASSERT_EQUAL_UINT8(28, buffer_len);
     TEST_ASSERT_EQUAL_UINT8_ARRAY(buffer_test, buffer, buffer_len);
@@ -156,11 +153,14 @@ void test_function_SetWheelSpeed(void) {
     TestServoRHA servo_test1(1, 2, 3, 8);
     servo_test1.initServo();
     servo_test1.SetWheelSpeed(60, CW);  // speed 60% in CW direction
-    TEST_ASSERT_EQUAL_INT(613, servo_test1.g15_speed);  // 613.8 is the exact number
+
+    //uint8_t speed_now = (MAX_TORQUE_CW - MIN_TORQUE_CW)*0.6;
+    TEST_ASSERT_EQUAL_INT(312, servo_test1.g15_speed);
     TEST_ASSERT_EQUAL_INT(CW, servo_test1.direction);
 
+    speed_now = (MAX_TORQUE_CCW - MIN_TORQUE_CCW)*0.6;
     servo_test1.SetWheelSpeed(60, CCW);  // speed 60% in CCW direction
-    TEST_ASSERT_EQUAL_INT(685, servo_test1.g15_speed);  // 685.8 is the exact number
+    TEST_ASSERT_EQUAL_INT(speed_now, servo_test1.g15_speed);
     TEST_ASSERT_EQUAL_INT(CCW, servo_test1.direction);
 }
 
@@ -177,16 +177,17 @@ void process() {
 
 
 void setup() {
-  delay(3000);
-  process();
+    Serial.begin(9600);
+    delay(3000);
+    process();
 }
 
 void loop() {
-  // some code...
-  digitalWrite(13, HIGH);
-  delay(100);
-  digitalWrite(13, LOW);
-  delay(500);
+    // some code...
+    digitalWrite(13, HIGH);
+    delay(100);
+    digitalWrite(13, LOW);
+    delay(500);
 }
 
 #endif

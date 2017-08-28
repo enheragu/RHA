@@ -1,13 +1,14 @@
 #include "servo_rha.h"
-#include "Cytron_G15Shield.h"
+#include "cytron_g15_servo.h"
 #include "Arduino.h"
 
 
-/** @brief ServoRHA cunstructor of ServoRHA class. Gets servo ID and calibrates the minimum torque. (See calibrateToruqe function)
+/** @brief ServoRHA cunstructor of ServoRHA class. Gets servo ID and calibrates the minimum torque.
   * @param servo_id: servo id controlled by this object
+  * @see calibrateToruqe()
   */
 ServoRHA::ServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin):
-    Cytron_G15Shield(servo_id, rxpin, txpin, ctrlpin) {
+    Cytron_G15_Servo(servo_id, rxpin, txpin, ctrlpin) {
 }
 
 /** @brief initServo handles the inicialization of all ServoRHA internal parameters
@@ -15,7 +16,7 @@ ServoRHA::ServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlp
 void ServoRHA::initServo() {
     DebugSerialSRHALn("initServo: begin of inicialitationfunction");
 
-    Cytron_G15Shield::begin(19200);
+    Cytron_G15_Servo::begin(19200);
     delay(DELAY1);
     calibrateTorque();
 
@@ -24,7 +25,7 @@ void ServoRHA::initServo() {
     acceleration_angle_ = ACCELERATION_ANGLE;
     flag_moving_ = false;
     current_pose_ = 0; goal_pose_encoder_ = 0; init_pose_ = 0; encoder_current_ = 0;
-    acceleration_slope_ = (static_cast<float>100 - static_cast<float>0) / static_cast<float>acceleration_angle_;
+    acceleration_slope_ = (static_cast<float>(100) - static_cast<float>(0)) / static_cast<float>(acceleration_angle_);
     flag_accelerating_ = false;
     flag_decelerating_ = false;
     flag_first_time_accel_decel_ = true;
@@ -78,7 +79,7 @@ uint16_t ServoRHA::returnPacketSet(uint8_t option) {
 
      // write the packet, return the error code
     DebugSerialSRHALn("returnPacketSet: end of function.");
-    return(sendPacket(_servo_id, iREG_WRITE, TxBuff, 2));
+    return(sendPacket(servo_id_, iREG_WRITE, TxBuff, 2));
 }
 
 /*****************************************
@@ -95,7 +96,7 @@ uint16_t ServoRHA::returnPacketSet(uint8_t option) {
   */
 void ServoRHA::addToPacket(uint8_t *buffer, uint8_t &position, uint8_t *goal, uint8_t goal_len, uint8_t &num_servo) {
     DebugSerialSRHALn("addToPacket: begin of function");
-    buffer[position] = _servo_id;
+    buffer[position] = servo_id_;
     position++;
     num_servo++;
     for (int i = 0; i < goal_len; i++) {
@@ -114,7 +115,7 @@ void ServoRHA::addToPacket(uint8_t *buffer, uint8_t &position, uint8_t *goal, ui
   * @return Returns number of uint8_ts that contain usefull info (how many have been written)
   */
 uint8_t ServoRHA::wrapPacket(uint8_t *buffer, uint8_t *data, uint8_t data_len, uint8_t instruction, uint8_t num_servo) {
-    ebugSerialSRHALn("wrapPacket: begin of function");
+    DebugSerialSRHALn("wrapPacket: begin of function");
     int i = 0;
     char checksum = 0;    // Check Sum = ~ (ID + Length + Instruction + Parameter1 + ... Parameter N)
 
@@ -139,7 +140,8 @@ uint8_t ServoRHA::wrapPacket(uint8_t *buffer, uint8_t *data, uint8_t data_len, u
  *       Calibratation functions       *
  ***************************************/
 
-/** @brief calibrateTorque function gets the minimum torque in which the servo starts moving for CW and CCW direcion. (See calibrateTorqueDir function)
+/** @brief calibrateTorque function gets the minimum torque in which the servo starts moving for CW and CCW direcion.
+  * @see calibrateToruqe()
   */
 void ServoRHA::calibrateTorque() {
     DebugSerialSRHALn("calibrateTorque: begin of function");
@@ -162,7 +164,7 @@ void ServoRHA::calibrateTorqueDir(uint16_t &min_torque, uint16_t direction) {
 
     for (min_torque = 0; min_torque < 1023; min_torque+= TORQUE_CALIBRATION_INTERVAL) {
         DebugSerialSRHALn2("calibrateTorqueDir: try with torque: ", min_torque);
-        Cytron_G15Shield::setWheelSpeed(min_torque, direction, iWRITE_DATA);
+        Cytron_G15_Servo::setWheelSpeed(min_torque, direction, iWRITE_DATA);
         delay(DELAY1);
         if (isMoving()) break;
     }
@@ -180,7 +182,8 @@ void ServoRHA::calibrateTorqueDir(uint16_t &min_torque, uint16_t direction) {
 /** @brief SetWheelSpeed sets wheel speed according to margins saved in calibration.
   * @param speed: speed value (in %, 0 to 100) -> 0 means stop and from 1 to 100 means moving
   * @param cw_ccw: direction in which the servo will move
-  * @return Error status in uint16_t. If return is non-zero, error occurred. (See returnPacketOnOFF function)
+  * @return Error status in uint16_t. If return is non-zero, error occurred.
+  * @see returnPacketOnOFF()
   */
 uint16_t ServoRHA::setWheelSpeed(uint16_t speed, uint8_t cw_ccw) {
     DebugSerialSRHALn4("setWheelSpeed: begin of function. Speed set to ", speed, ". Direction: CW = 1; CCW = 0n", cw_ccw);
@@ -191,7 +194,7 @@ uint16_t ServoRHA::setWheelSpeed(uint16_t speed, uint8_t cw_ccw) {
 
     DebugSerialSRHALn2("setWheelSpeed: speed calculated to send to servo is: ", g15_speed)
     DebugSerialSRHALn4("setWheelSpeed: end of function. Speed set to ", speed, ". Direction: CW = 1; CCW = 0n", cw_ccw);
-    return Cytron_G15Shield::setWheelSpeed(g15_speed, cw_ccw, iWRITE_DATA);
+    return Cytron_G15_Servo::setWheelSpeed(g15_speed, cw_ccw, iWRITE_DATA);
 }
 
 
@@ -223,7 +226,9 @@ void ServoRHA::doNext() {
 }  // End of doNext function
 
 
-/** @brief encoderModeRotation handles encoder rotation
+/** @brief encoderModeRotation handles encoder mode rotation
+  *
+  * Once a goal is set to this servo calling encoderModeRotation() function in loop will handle the reaching of the goal. First accelerates tu full speed. And as it gets to it's final position it decelerate again. The goal is set in number of rounds (with decimal par). For example: 3.2 would mean go to 3 ronds and 72 degrees (1152 degrees)
   */
 void ServoRHA::encoderModeRotation() {
     DebugSerialSRHALn("encoderModeRotation: begin of function");
@@ -241,7 +246,7 @@ void ServoRHA::encoderModeRotation() {
         flag_first_time_accel_decel_ = true;  // first time that accel is entered
     }
 
-    int goal_whole_number = 360*static_cast<int>goal_pose_encoder_;  // degrees of full rounds
+    int goal_whole_number = 360*static_cast<int>(goal_pose_encoder_);  // degrees of full rounds
     int goal_decimal_part = ((goal_pose_encoder_ - goal_whole_number)*100)*100/360;  // degrees of decimal part of rounds
     uint8_t angle_travelled = current_pose_ - init_pose_ + 360*encoder_current_;
     uint8_t angle_left = abs(goal_whole_number + goal_decimal_part - (current_pose_ + encoder_current_*360));
@@ -272,7 +277,8 @@ void ServoRHA::encoderModeRotation() {
     DebugSerialSRHALn("encoderModeRotation: end of function");
 }
 
-/** @brief accelerate handles the acceleration process. Its separated from encoderModeRotation for testing purposes. (See encoderModeRotation() function)
+/** @brief accelerate handles the acceleration process. Its separated from encoderModeRotation for testing purposes.
+  * @see encoderModeRotation()
   */
 void ServoRHA::accelerate(uint16_t &speed) {
     // In case its not the first time whe enter deccelerate() and current angle = init angleangle (360º) acceleration is shut down for nex iterations
@@ -287,7 +293,8 @@ void ServoRHA::accelerate(uint16_t &speed) {
     }
 }
 
-/** @brief decelerate handles the deceleration process. Its separated from encoderModeRotation for testing purposes. (See encoderModeRotation() function)
+/** @brief decelerate handles the deceleration process. Its separated from encoderModeRotation for testing purposes.
+  * @see encoderModeRotation()
   */
 void ServoRHA::decelerate(uint16_t &speed, uint16_t angle_left) {
     // In case its not the first time whe enter deccelerate() and angle_left is cero deceleration is shut down for nex iterations

@@ -6,7 +6,7 @@ http://cloc.sourceforge.net v 1.60  T=0.01 s (241.2 files/s, 37391.0 lines/s)
 -------------------------------------------------------------------------------------------------------------------------
 File                                                                                  blank        comment           code
 -------------------------------------------------------------------------------------------------------------------------
-/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp                   18             30            149
+/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp                   18             30            149
 /home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp                                35              9            146
 /home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp                                16              4             58
 -------------------------------------------------------------------------------------------------------------------------

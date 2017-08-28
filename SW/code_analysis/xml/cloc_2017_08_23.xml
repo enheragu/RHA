@@ -13,9 +13,9 @@ classified 7 files       7 unique files.
   <lines_per_second>63793.9841446354</lines_per_second>
 </header>
 <files>
-  <file name="/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp" blank="112" comment="79" code="434"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/CYTRON_G15_SERVO/CYTRON_G15_SERVO.cpp" blank="112" comment="79" code="434"  language="C++" />
   <file name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp" blank="41" comment="72" code="158"  language="C++" />
-  <file name="/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.h" blank="31" comment="38" code="155"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/CYTRON_G15_SERVO/cytron_g15_servo.h" blank="31" comment="38" code="155"  language="C/C++ Header" />
   <file name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h" blank="14" comment="8" code="55"  language="C/C++ Header" />
   <file name="/home/gmv/RHA/SW/src/main.cpp" blank="6" comment="9" code="25"  language="C++" />
   <file name="/home/gmv/RHA/SW/lib/joint_rha/joint_rha.h" blank="3" comment="13" code="3"  language="C/C++ Header" />

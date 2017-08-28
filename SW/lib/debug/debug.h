@@ -14,18 +14,18 @@
 // #define DEBUG_SERVO_RHA
 // #define DEBUG_TEST_SERVO_RHA_MOCK
 #define DEBUG_TEST_SERVO_RHA_REAL
-// #define DEBUG_CYTRON_G15SHIELD
-// #define DEBUG_TEST_CYTRON_G15SHIELD
+// #define DEBUG_CYTRON_G15_SERVO
+// #define DEBUG_TEST_CYTRON_G15_SERVO
 
 
 /******************************************
  *       Debugging macro definition       *
  ******************************************/
 
-#ifdef DEBUG_CYTRON_G15SHIELD
-    #define DebugSerialG15Ln(a) {  Serial.print("[DC]  Cytron_G15Shield::"); Serial.println(a); }
-    #define DebugSerialG15Ln2(a, b) {  Serial.print("[DC]  Cytron_G15Shield::"); Serial.print(a); Serial.println(b); }
-    #define DebugSerialG15Ln4(a, b, c, d) {  Serial.print("[DC]  Cytron_G15Shield::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+#ifdef DEBUG_CYTRON_G15_SERVO
+    #define DebugSerialG15Ln(a) {  Serial.print("[DC]  CYTRON_G15_SERVO::"); Serial.println(a); }
+    #define DebugSerialG15Ln2(a, b) {  Serial.print("[DC]  CYTRON_G15_SERVO::"); Serial.print(a); Serial.println(b); }
+    #define DebugSerialG15Ln4(a, b, c, d) {  Serial.print("[DC]  CYTRON_G15_SERVO::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
 #else
     #define DebugSerialG15Ln(a)
     #define DebugSerialG15Ln2(a, b)
@@ -46,8 +46,8 @@
  *       Debugging macro definition for test files      *
  ********************************************************/
 
-#ifdef DEBUG_TEST_CYTRON_G15SHIELD
-    #define DebugSerialTG15Ln(a) {  Serial.print("[DT]  Cytron_G15Shield::"); Serial.println(a); }
+#ifdef DEBUG_TEST_CYTRON_G15_SERVO
+    #define DebugSerialTG15Ln(a) {  Serial.print("[DT]  CYTRON_G15_SERVO::"); Serial.println(a); }
     #define DebugSerialTG15(a) {  Serial.print("[DT]  "); Serial.print(a); }
 #else
     #define DebugSerialTG15Ln(a)
@@ -59,7 +59,7 @@
     #define DebugSerialTSRHAMock(a) {  Serial.print("[DT]  (mock)ServoRHA::"); Serial.print(a); }
 #else
     #define DebugSerialTSRHAMockLn(a)
-    #define DebugSerialTSRHAMockz(a)
+    #define DebugSerialTSRHAMock(a)
 #endif
 
 #ifdef DEBUG_TEST_SERVO_RHA_REAL

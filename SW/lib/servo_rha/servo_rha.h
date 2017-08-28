@@ -2,7 +2,7 @@
 #define SERVO_RHA_H
 
 #include "debug.h"
-#include "Cytron_G15Shield.h"
+#include "cytron_g15_servo.h"
 
 #define DELAY1 500  // delay for configuration purposes
 #define TORQUE_CALIBRATION_INTERVAL 5  // In calibrations try every X torque (0, 5, 10, etc in case TORQUE_CALIBRATION_INTERVAL is 5)
@@ -33,7 +33,7 @@
 
 #define ALL_SERVO 0xFE
 
-enum {   LESS_THAN,  // enumeration for angle comparison
+enum {   LESS_THAN,  // enumeration for angle and speed comparison
       EQUAL,
       GREATER_THAN
     };
@@ -41,9 +41,9 @@ enum {   LESS_THAN,  // enumeration for angle comparison
 uint8_t compareAngles(uint16_t angle1, uint16_t angle2, uint8_t angle_margin = 0);
 uint8_t compareSpeed(uint16_t speed1, uint16_t speed2, uint8_t speed_margin = 0);
 
-class ServoRHA : public Cytron_G15Shield {
+class ServoRHA : public Cytron_G15_Servo {
  protected:
-  uint16_t min_torque_cw_, min_torque_ccw_, max_torque_cw_, max_torque_ccw_;  // minimum torque needed to move the servo
+  uint16_t min_torque_cw_, min_torque_ccw_, max_torque_cw_, max_torque_ccw_;  // minimum torque needed to move the servo and max torque allowed
   float acceleration_slope_, acceleration_angle_;
   uint8_t flag_moving_, flag_accelerating_, flag_decelerating_, flag_first_time_accel_decel_;
   uint16_t current_pose_, goal_direction_, init_pose_, encoder_current_, encoder_flag_;

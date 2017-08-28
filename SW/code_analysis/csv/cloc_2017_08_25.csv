@@ -3,9 +3,9 @@ classified 8 files       8 unique files.
        0 files ignored.
 
 language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.60  T=0.02 s (357.9 files/s, 61421.1 lines/s)"
-C++,/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp,112,79,434
+C++,/home/gmv/RHA/SW/lib/CYTRON_G15_SERVO/CYTRON_G15_SERVO.cpp,112,79,434
 C++,/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp,47,82,188
-C/C++ Header,/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.h,28,35,147
+C/C++ Header,/home/gmv/RHA/SW/lib/CYTRON_G15_SERVO/cytron_g15_servo.h,28,35,147
 C/C++ Header,/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h,15,5,52
 C/C++ Header,/home/gmv/RHA/SW/lib/debug/debug.h,14,18,42
 C++,/home/gmv/RHA/SW/src/main.cpp,6,8,26

@@ -1,5 +1,5 @@
-lib/Cytron_G15Shield/Cytron_G15Shield.h:0
-lib/Cytron_G15Shield/Cytron_G15Shield.cpp:0
+lib/CYTRON_G15_SERVO/cytron_g15_servo.h:0
+lib/CYTRON_G15_SERVO/CYTRON_G15_SERVO.cpp:0
 lib/debug/debug.h.gch:26
 lib/debug/debug.h:31
 lib/joint_rha/joint_rha.h:0

@@ -73,15 +73,6 @@ class TestServoRHA : public ServoRHA {
     void setFlagDecelerating(uint8_t option) {  flag_decelerating_ = option; }
 };
 
-void test_function_setGoalEncoder(void) {
-    DebugSerialTSRHARealLn("Begin of setGoalEncoder test for servo real.");
-    TestServoRHA servo_test1(SERVO_ID, 2, 3, 8);
-    // init servo not needeed in this case
-    servo_test1.setGoalEncoder(POSITION, CCW);
-    TEST_ASSERT_EQUAL_FLOAT(POSITION, servo_test1.getGoalPoseEncoder());
-    TEST_ASSERT_EQUAL_UINT8(CCW, servo_test1.getGoalDirection());
-    DebugSerialTSRHARealLn("End of setGoalEncoder test for servo real.");
-}
 
 void test_function_setInitServo(void) {
     DebugSerialTSRHARealLn("Begin of init test for servo real.");
@@ -155,105 +146,15 @@ void test_function_calibrateTorque(void) {
     servo_test1.exitWheelMode();
 }
 
-
-TestServoRHA servo_test1(SERVO_ID, 2, 3, 8);
-uint16_t real_speed_low_cw, real_speed_high_cw, speed = 1;
-uint8_t data[10];
-
-void configureServoForAccelDecelTestCw() {
-    DebugSerialTSRHARealLn("Begin of configuration of servo for acceleration and deceleration test.");
-    servo_test1.initServo();
-    servo_test1.calibrateTorque();  // in original this function would go inside initServo()
-    servo_test1.setWheelMode();
-    delay(DELAY_MOVE);
-    TEST_ASSERT_EQUAL(0, servo_test1.speedRead());
-
-    servo_test1.setWheelSpeed(1, CW);  // set speed to minimum
-    delay(DELAY_MOVE);
-    real_speed_low_cw = servo_test1.speedRead();
-    servo_test1.setWheelSpeed(100, CW);  // set speed to 100%
-    delay(DELAY_MOVE);
-    real_speed_high_cw = servo_test1.speedRead();
-    DebugSerialTSRHARealLn("End of configuration of servo for acceleration and deceleration test.");
-}
-
-void test_function_accelerateCW(void) {
-    DebugSerialTSRHARealLn("test_accelerateCW: Begin of test");
-    servo_test1.setWheelSpeed(1, CW);
-    servo_test1.setGoalEncoder(0, CW);  // want to set goal direction
-    servo_test1.setInitPose(servo_test1.angleRead());
-    servo_test1.setCurrentPose(servo_test1.angleRead());
-    servo_test1.setFlagFirstTimeAccDecel(true);
-    servo_test1.setFlagAccelerating(true);
-    uint16_t counter = 0;
-
-    while (servo_test1.getFlagAccelerating() == true && TEST_PROTECT()) {
-        DebugSerialTSRHARealLn("test_accelerateCW: Loop on acceleration test. Accelerating.");
-        servo_test1.accelerate(speed);
-        servo_test1.setCurrentPose(servo_test1.angleRead());
-        DebugSerialTSRHARealLn2("test_accelerateCW: init_pose_ is: ", servo_test1.getInitPose());
-        DebugSerialTSRHARealLn2("test_accelerateCW: current_pose_ is: ", servo_test1.getCurrentPose());
-        uint8_t speed_test = abs(servo_test1.getCurrentPose() - servo_test1.getInitPose())*servo_test1.getAccelerationSlope();
-        DebugSerialTSRHARealLn2("test_accelerateCW: speed is: ", speed_test);
-
-        counter++;
-        if (counter > 500) TEST_ABORT();
-    }
-    TEST_ASSERT_EQUAL(EQUAL, compareSpeed(servo_test1.speedRead(), real_speed_high_cw, MARGIN_SPEED_COMPARISON));
-    TEST_ASSERT_EQUAL(false, servo_test1.getFlagAccelerating());
-    servo_test1.exitWheelMode();
-    DebugSerialTSRHARealLn("test_accelerateCW: End of test");
-}
-
-void test_function_decelerateCW(void) {
-    DebugSerialTSRHARealLn("test_decelerateCW: Begin of test");
-    servo_test1.setWheelSpeed(100, CW);
-    servo_test1.setGoalEncoder(0, CW);  // want to set goal direction
-    servo_test1.setInitPose(servo_test1.angleRead());
-    servo_test1.setCurrentPose(servo_test1.angleRead());
-    servo_test1.setFlagFirstTimeAccDecel(true);
-    servo_test1.setFlagDecelerating(true);
-    uint16_t counter = 0;
-
-    while (servo_test1.getFlagDecelerating() == true && TEST_PROTECT()) {
-        DebugSerialTSRHARealLn("test_decelerateCW: Loop on deceleration test. Decelerating.");
-        uint16_t angle_left = servo_test1.getAccelerationAngle() - abs((servo_test1.getCurrentPose() - servo_test1.getInitPose()));
-        servo_test1.decelerate(speed, angle_left);
-        DebugSerialTSRHARealLn2("test_decelerateCW: Angle left is now: ", angle_left);
-        DebugSerialTSRHARealLn4("test_decelerateCW: Speed set to: ", speed, "% of max speed", ".");
-        DebugSerialTSRHARealLn2("test_decelerateCW: Real speed is now: ", servo_test1.speedRead());
-        delay(DELAY_MOVE);
-        servo_test1.setCurrentPose(servo_test1.angleRead());
-
-        counter++;
-        if (counter > 500) TEST_ABORT();
-    }
-
-    DebugSerialTSRHARealLn("test_decelerateCW: Deceleration ended");
-    DebugSerialTSRHARealLn2("test_decelerateCW: Real speed is now: ", servo_test1.speedRead());
-    TEST_ASSERT_EQUAL(EQUAL, compareSpeed(servo_test1.speedRead(), 0, MARGIN_SPEED_COMPARISON));
-    TEST_ASSERT_EQUAL(false, servo_test1.getFlagDecelerating());
-    servo_test1.exitWheelMode();
-    DebugSerialTSRHARealLn("test_decelerateCW: End of test");
-}
-
-void test_function_encoderModeRotation(void) {
-}
-
-
 void process() {
     UNITY_BEGIN();
 
-    // RUN_TEST(test_function_setGoalEncoder);
-    // RUN_TEST(test_function_setInitServo);
-    // RUN_TEST(test_function_isMoving);
-    // RUN_TEST(test_function_readAngle);
-    // RUN_TEST(test_function_calibrateTorque);
+    RUN_TEST(test_function_setGoalEncoder);
+    RUN_TEST(test_function_setInitServo);
+    RUN_TEST(test_function_isMoving);
+    RUN_TEST(test_function_readAngle);
+    RUN_TEST(test_function_calibrateTorque);
 
-    configureServoForAccelDecelTestCw();
-    RUN_TEST(test_function_accelerateCW);
-    RUN_TEST(test_function_decelerateCW);
-    // RUN_TEST(test_function_encoderModeRotation);
     // RUN_TEST();
     // RUN_TEST();
     // RUN_TEST();

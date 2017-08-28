@@ -44,10 +44,6 @@ uint8_t compareSpeed(uint16_t speed1, uint16_t speed2, uint8_t speed_margin = 0)
 class ServoRHA : public Cytron_G15_Servo {
  protected:
   uint16_t min_torque_cw_, min_torque_ccw_, max_torque_cw_, max_torque_ccw_;  // minimum torque needed to move the servo and max torque allowed
-  float acceleration_slope_, acceleration_angle_;
-  uint8_t flag_moving_, flag_accelerating_, flag_decelerating_, flag_first_time_accel_decel_;
-  uint16_t current_pose_, goal_direction_, init_pose_, encoder_current_, encoder_flag_;
-  float goal_pose_encoder_;
 
  public:
   ServoRHA() {  }  // It'll be only used for testing purposes
@@ -61,12 +57,6 @@ class ServoRHA : public Cytron_G15_Servo {
   void addToPacket(uint8_t *buffer, uint8_t &position, uint8_t *goal, uint8_t goal_len, uint8_t &num_servo);
   uint8_t wrapPacket(uint8_t *buffer, uint8_t *data, uint8_t data_len, uint8_t instruction, uint8_t num_servo);
   virtual uint16_t setWheelSpeed(uint16_t speed, uint8_t cw_ccw);
-
-  void setGoalEncoder(float goal_rotation, uint8_t cw_ccw);
-  void doNext();
-  void encoderModeRotation();
-  void accelerate(uint16_t &speed);
-  void decelerate(uint16_t &speed, uint16_t angle_left);
 
   bool isMoving();
 

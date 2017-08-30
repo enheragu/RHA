@@ -15,9 +15,9 @@ class TestCytron : public Cytron_G15_Servo {
  public:
   TestCytron(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin):Cytron_G15_Servo(servo_id, rxpin, txpin, ctrlpin) {  }
   uint8_t getServoID() {  return servo_id_; }
-  uint8_t getTxPin() {  return txpin_; }
-  uint8_t getRxPin() {  return rxpin_; }
-  uint8_t getCtrlPin() {  return ctrlpin_; }
+  uint8_t getTxPin() {  return txpin_shield; }
+  uint8_t getRxPin() {  return rxpin_shield; }
+  uint8_t getCtrlPin() {  return ctrlpin_shield; }
 };
 
 void checkStatus(word status) {
@@ -38,13 +38,6 @@ void checkStatus(word status) {
   }
 }  // End of checkStatus function
 
-void test_constructor_Cytron_G15_Servo(void) {
-    TestCytron g15(SERVO_ID, 2, 3, 8);
-    TEST_ASSERT_EQUAL(SERVO_ID, g15.getServoID());
-    TEST_ASSERT_EQUAL(2, g15.getRxPin());
-    TEST_ASSERT_EQUAL(3, g15.getTxPin());
-    TEST_ASSERT_EQUAL(8, g15.getCtrlPin());
-}
 
 void test_comunication_Cytron_G15_Servo(void) {
     TestCytron g15(SERVO_ID, 2, 3, 8);
@@ -162,7 +155,6 @@ void test_function_isMovingWheelMode(void) {
 
 void process() {
   UNITY_BEGIN();
-  RUN_TEST(test_constructor_Cytron_G15_Servo);
   RUN_TEST(test_comunication_Cytron_G15_Servo);
   RUN_TEST(test_positioningMode_functioning);
   RUN_TEST(test_setWheelMode_functioning);

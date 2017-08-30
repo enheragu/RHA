@@ -134,16 +134,17 @@ enum {
 // #define SERROR_ 0X8000
 
 void set_act(char ctrl);
+void initCytronG15Shield(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
 
 class Cytron_G15_Servo {
  public:
     uint8_t servo_id_;
-    uint8_t txpin_, rxpin_, ctrlpin_;
 
-    Cytron_G15_Servo() {}   // It'll be only used for testing purposes
+    Cytron_G15_Servo(){}   // It'll be only used for testing purposes
     Cytron_G15_Servo(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
     Cytron_G15_Servo(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);  // SoftwareSerial
     explicit Cytron_G15_Servo(uint8_t ctrlpin);  // HardwareSerial
+    virtual void init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate);  // In case default constructor is used
     virtual void begin(uint32_t baudrate);
     void end(void);
 

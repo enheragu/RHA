@@ -17,63 +17,72 @@ Modified:
 boolean hardwareSerial;
 SoftwareSerial* G15Serial;
 
+
+uint8_t txpin_shield = '\0', rxpin_shield = '\0', ctrlpin_shield = '\0';
+
 // This Code is using Serial library
 // baudrate 300, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, or 115200
 
+void initCytronG15Shield(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin){
+    rxpin_shield = rxpin;
+    txpin_shield = txpin;
+    ctrlpin_shield = ctrlpin;
+}
+
 Cytron_G15_Servo::Cytron_G15_Servo(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin) {
     servo_id_ = servo_id;
-    rxpin_ = rxpin;
-    txpin_ = txpin;
-    ctrlpin_ = ctrlpin;
+    initCytronG15Shield(rxpin, txpin, ctrlpin);
 }
 
 Cytron_G15_Servo::Cytron_G15_Servo(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin) {
-    rxpin_ = rxpin;
-    txpin_ = txpin;
-    ctrlpin_ = ctrlpin;
+    initCytronG15Shield(rxpin, txpin, ctrlpin);
 }
 
 Cytron_G15_Servo::Cytron_G15_Servo(uint8_t ctrlpin) {
-    rxpin_ = 0;
-    txpin_ = 1;
-    ctrlpin_ = ctrlpin;
+    initCytronG15Shield(0, 1, ctrlpin);
+}
+
+void Cytron_G15_Servo::init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate){
+    servo_id_ = servo_id;
+    initCytronG15Shield(rxpin, txpin, ctrlpin);
+    begin(baudrate);
 }
 
 void Cytron_G15_Servo::begin(uint32_t baudrate) {
-  if (rxpin_ == 0 &&txpin_ == 1) {
+  if (rxpin_shield == 0 &&txpin_shield == 1) {
         hardwareSerial = true;
         Serial.begin(baudrate);
         while (!Serial) {}
         Serial.setTimeout(SerialTimeOut);
     } else {
         hardwareSerial = false;
-        pinMode(rxpin_, INPUT);
-        pinMode(txpin_, OUTPUT);
-        G15Serial = new SoftwareSerial(rxpin_, txpin_);
+        pinMode(rxpin_shield, INPUT);
+        pinMode(txpin_shield, OUTPUT);
+        G15Serial = new SoftwareSerial(rxpin_shield, txpin_shield);
         G15Serial->begin(baudrate);
         G15Serial->setTimeout(SerialTimeOut);
     }
-    pinMode(ctrlpin_, OUTPUT);
+    pinMode(ctrlpin_shield, OUTPUT);
     setTxMode();
 }
 
 void Cytron_G15_Servo::end(void) {
-    if (rxpin_ == 0 &&txpin_ == 1) {
+    if (rxpin_shield == 0 &&txpin_shield == 1) {
         Serial.end();
     } else {
-        pinMode(rxpin_, INPUT);
-        pinMode(txpin_, INPUT);
+        pinMode(rxpin_shield, INPUT);
+        pinMode(txpin_shield, INPUT);
         G15Serial->end();
     }
-    pinMode(ctrlpin_, INPUT);
+    pinMode(ctrlpin_shield, INPUT);
 }
 
 void Cytron_G15_Servo::setTxMode(void) {
-    digitalWrite(ctrlpin_, TxMode);
+    digitalWrite(ctrlpin_shield, TxMode);
 }
 
 void Cytron_G15_Servo::setRxMode(void) {
-    digitalWrite(ctrlpin_, RxMode);
+    digitalWrite(ctrlpin_shield, RxMode);
 }
 
 // Send packet
@@ -528,7 +537,7 @@ uint16_t Cytron_G15_Servo::isMoving(uint8_t *data) {
 void Cytron_G15_Servo::setAction(void) {
     // byte TxBuff[1];    // dummy byte
     // sendPacket(0xFE, iACTION, TxBuff, 0);
-    set_act(ctrlpin_);
+    set_act(ctrlpin_shield);
 }
 
 void set_act(uint8_t ctrl) {

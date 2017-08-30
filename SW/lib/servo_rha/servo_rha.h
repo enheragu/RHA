@@ -22,20 +22,14 @@
 #define RETURN_PACKET_NONE 0x00
 #define RETURN_PACKET_READ_INSTRUCTIONS 0x01
 
-// Acting as an encoder it needs an interval to check if it made or not a round.
-// This has to be defined having into account time spent in the rest of the program.
-// It has to go through doNext function before the servo leaves this interval [-ENCODER_MARGIN, +ENCODER_MARGIN]
-// If it does not, a encoder round will be lost
-#define ENCODER_MARGIN 10
-
-// Compliance margin is the allowable goal position error margin
-#define COMPLIANCE_MARGIN 5
+#define KP 100/60 // means toruqe/speed
 
 #define ALL_SERVO 0xFE
 
-enum {   LESS_THAN,  // enumeration for angle and speed comparison
-      EQUAL,
-      GREATER_THAN
+enum {  // enumeration for angle and speed compariso
+    LESS_THAN,
+    EQUAL,
+    GREATER_THAN
     };
 
 uint8_t compareAngles(uint16_t angle1, uint16_t angle2, uint8_t angle_margin = 0);
@@ -43,27 +37,30 @@ uint8_t compareSpeed(uint16_t speed1, uint16_t speed2, uint8_t speed_margin = 0)
 
 class ServoRHA : public Cytron_G15_Servo {
  protected:
-  uint16_t min_torque_cw_, min_torque_ccw_, max_torque_cw_, max_torque_ccw_;  // minimum torque needed to move the servo and max torque allowed
-
+    uint16_t min_torque_cw_, min_torque_ccw_, max_torque_cw_, max_torque_ccw_;  // minimum torque needed to move the servo and max torque allowed
+    uint16_t speed_, position_;
  public:
-  ServoRHA() {  }  // It'll be only used for testing purposes
-  ServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
-  virtual void initServo();
+    ServoRHA(){}  // It'll be only used for testing purposes
+    ServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
+    virtual void init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate);
+    virtual void init();
 
-  uint16_t angleRead();
-  uint16_t speedRead();
+    uint16_t angleRead();
+    uint16_t speedRead();
+    bool isMoving();
+    void updateInfo();
 
-  virtual uint16_t returnPacketSet(uint8_t option);
-  void addToPacket(uint8_t *buffer, uint8_t &position, uint8_t *goal, uint8_t goal_len, uint8_t &num_servo);
-  uint8_t wrapPacket(uint8_t *buffer, uint8_t *data, uint8_t data_len, uint8_t instruction, uint8_t num_servo);
-  virtual uint16_t setWheelSpeed(uint16_t speed, uint8_t cw_ccw);
+    virtual uint16_t returnPacketSet(uint8_t option);
+    void addToPacket(uint8_t *buffer, uint8_t &position, uint8_t *goal, uint8_t goal_len, uint8_t &num_servo);
+    uint8_t wrapPacket(uint8_t *buffer, uint8_t *data, uint8_t data_len, uint8_t instruction, uint8_t num_servo);
+    virtual uint16_t setWheelSpeed(uint16_t speed, uint8_t cw_ccw);
 
-  bool isMoving();
+    uint16_t regulator(uint16_t error);
 
-  virtual void calibrateTorque();
+    virtual void calibrateTorque();
 
  protected:
-  void calibrateTorqueDir(uint16_t &min_torque, uint16_t direction);
+     void calibrateTorqueDir(uint16_t &min_torque, uint16_t direction);
 };
 
 #endif

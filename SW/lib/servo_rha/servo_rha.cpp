@@ -5,14 +5,22 @@
 
 /** @brief ServoRHA cunstructor of ServoRHA class. Gets servo ID and calibrates the minimum torque.
   * @param servo_id: servo id controlled by this object
-  * @see calibrateToruqe()
+  * @param rxpin rxpin set in shield
+  * @param txpin txpin set in shield
+  * @param ctrlpin ctrlpin set in shield
+  * @see Cytron_G15_Servo(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin) constructor.
+  * @see init() function
   */
 ServoRHA::ServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin):
     Cytron_G15_Servo(servo_id, rxpin, txpin, ctrlpin) {
 }
 
 
-/** @brief initServo handles the inicialization of all ServoRHA internal parameters
+/** @brief init handles the inicialization of all ServoRHA internal parameters when default constructor is used
+  * @param servo_id: servo id controlled by this object
+  * @param rxpin rxpin set in shield
+  * @param txpin txpin set in shield
+  * @param ctrlpin ctrlpin set in shield
   */
 void ServoRHA::init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate) {
     DebugSerialSRHALn("initServo: begin of inicialitationfunction");
@@ -28,6 +36,10 @@ void ServoRHA::init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrl
     DebugSerialSRHALn("initServo: end of inicialitation function");
 }
 
+/** @brief init handles the inicialization of all ServoRHA internal parameters when ServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
+  * constructor is used.
+  * @see ServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
+  */
 void ServoRHA::init() {
     DebugSerialSRHALn("initServo: begin of inicialitationfunction");
 
@@ -86,31 +98,75 @@ bool ServoRHA::isMoving() {
     else return true;
 }
 
-
-void ServoRHA::updateInfo(){
-    speed_ = speedRead();
-    position_ = angleRead();
-}
-
-/** @brief returnPacketSet function sets the package return level of servo (error information for each command sent)
-  * @param option: RETURN_PACKET_ALL -> servo returns packet for all commands sent; RETURN_PACKET_NONE -> servo never retunrs state packet; RETURN_PACKET_READ_INSTRUCTIONS -> servo answer packet state when a READ command is sent (to read position, temperature, etc)
-  * @retunr Returns error code for this action
+/** @brief updateInfo asks the servo for all the information to be updated by class servo.
+  *
+  * Reads from register PRESENT_POSITION_L (0x24) to MOVING (0x2E).
+  * Position are bits 10 to 0 from register 0x24 and 0x25
+  * Speed are bits 9 to 0 from register 0x26 and 0x27, 10th bit is direction
+  * Load are bits 9 to 0 from register 0x28 and 0x29, 10th bit is direction
+  * Voltage is in register 0x2a
+  * Temperature is in register 0x2B
+  * Action registered (pending from activation) flag is in register 0x2C
+  * Moving flag is in register 0x2E
   */
-uint16_t ServoRHA::returnPacketSet(uint8_t option) {
-    DebugSerialSRHALn("returnPacketSet: begin of function.");
-    uint8_t TxBuff[2];
+void ServoRHA::updateInfo(){
+    uint8_t data[11];
+    data[0] = PRESENT_POSITION_L;
+    data[1] = 0x0B; // Wants to read 11 bytes from PRESENT_POSITION_L
+    error_ = sendPacket (servo_id_, iREAD_DATA, data, 2);
 
-    TxBuff[0] = STATUS_RETURN_LEVEL;         // Control Starting Address
-    TxBuff[1] = option;             // ON = 1, OFF = 0
+    position_ = data[0];
+    position |= (data[1] << 8);
 
-     // write the packet, return the error code
-    DebugSerialSRHALn("returnPacketSet: end of function.");
-    return(sendPacket(servo_id_, iREG_WRITE, TxBuff, 2));
+    speed_ = data[2];
+    speed_ |= (data[3] << 8);
+    speed_dir_  = ((speed_ >> 9) & 0x10); // 10th byte is direction
+    //bytes from 9 to 0 are speed value:
+    speed_ = speed_ & 0000001111111111
+
+    load_ = data[4];
+    load_ |= (data[5] << 8);
+    load_dir_  = ((load_ >> 9) & 0x10); // 10th byte is direction
+    //bytes from 9 to 0 are load value:
+    load_ = load_ & 0000001111111111
+
+    voltage_ = data[6]; // NOTE: ¿should be divided by 10?
+
+    temperature_ = data[7];
+
+    registered_ = data[8];
+
+    is_moving_ = data[10];
 }
+
+/**********************************************************
+ *       Action functions from G15 original library       *
+ **********************************************************/
+
+uint16_t regulatorServo(uint16_t error) {
+    return KP*error;
+}
+
 
 /*****************************************
  *       Packet handling functions       *
  *****************************************/
+
+ /** @brief returnPacketSet function sets the package return level of servo (error information for each command sent)
+   * @param option: RETURN_PACKET_ALL -> servo returns packet for all commands sent; RETURN_PACKET_NONE -> servo never retunrs state packet; RETURN_PACKET_READ_INSTRUCTIONS -> servo answer packet state when a READ command is sent (to read position, temperature, etc)
+   * @retunr Returns error code for this action
+   */
+ uint16_t ServoRHA::returnPacketSet(uint8_t option) {
+     DebugSerialSRHALn("returnPacketSet: begin of function.");
+     uint8_t TxBuff[2];
+
+     TxBuff[0] = STATUS_RETURN_LEVEL;         // Control Starting Address
+     TxBuff[1] = option;             // ON = 1, OFF = 0
+
+      // write the packet, return the error code
+     DebugSerialSRHALn("returnPacketSet: end of function.");
+     return(sendPacket(servo_id_, iREG_WRITE, TxBuff, 2));
+ }
 
 /** @brief addToPacket adds this servo to a buffer with his own information (id, goal, etc). This function is used to send just one packet for all servos instead of each sending their respective information
   * @param buffer: is the buffer in which the information will be added (by reference)
@@ -167,7 +223,7 @@ uint8_t ServoRHA::wrapPacket(uint8_t *buffer, uint8_t *data, uint8_t data_len, u
  ***************************************/
 
 /** @brief calibrateTorque function gets the minimum torque in which the servo starts moving for CW and CCW direcion.
-  * @see calibrateToruqe()
+  * @see calibrateTorqueDir(param1, param2)
   */
 void ServoRHA::calibrateTorque() {
     DebugSerialSRHALn("calibrateTorque: begin of function");
@@ -208,7 +264,7 @@ void ServoRHA::calibrateTorqueDir(uint16_t &min_torque, uint16_t direction) {
 /** @brief SetWheelSpeed sets wheel speed according to margins saved in calibration.
   * @param speed: speed value (in %, 0 to 100) -> 0 means stop and from 1 to 100 means moving
   * @param cw_ccw: direction in which the servo will move
-  * @return Error status in uint16_t. If return is non-zero, error occurred.
+  * @return Error status in uint16_t. If return is non-zero, error occurred. (depends on retunrPacket option)
   * @see returnPacketOnOFF()
   */
 uint16_t ServoRHA::setWheelSpeed(uint16_t speed, uint8_t cw_ccw) {
@@ -221,15 +277,6 @@ uint16_t ServoRHA::setWheelSpeed(uint16_t speed, uint8_t cw_ccw) {
     DebugSerialSRHALn2("setWheelSpeed: speed calculated to send to servo is: ", g15_speed)
     DebugSerialSRHALn4("setWheelSpeed: end of function. Speed set to ", speed, ". Direction: CW = 1; CCW = 0n", cw_ccw);
     return Cytron_G15_Servo::setWheelSpeed(g15_speed, cw_ccw, iWRITE_DATA);
-}
-
-
-/**********************************************************
- *       Action functions from G15 original library       *
- **********************************************************/
-
-uint16_t regulator(uint16_t error) {
-    return KP*error;
 }
 
 

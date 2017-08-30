@@ -21,6 +21,7 @@ class TestServoRHA : public ServoRHA {
  public:
     TestServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin):
     ServoRHA(servo_id, rxpin, txpin, ctrlpin) {  }
+    TestServoRHA(){}
 
     // Init servo is overwritten to be able to test calibrateTorque() function apart
     virtual void initServo() {
@@ -30,47 +31,17 @@ class TestServoRHA : public ServoRHA {
         delay(DELAY1);
         // calibrateTorque();
 
-        max_torque_ccw_ = MAX_TORQUE_CCW;
-        max_torque_cw_ = MAX_TORQUE_CW;
-        acceleration_angle_ = ACCELERATION_ANGLE;
-        flag_moving_ = false;
-        current_pose_ = 0; goal_pose_encoder_ = 0; init_pose_ = 0; encoder_current_ = 0;
-        acceleration_slope_ = (static_cast<float>(100) - static_cast<float>(0)) / static_cast<float>(acceleration_angle_);
-        flag_accelerating_ = false;
-        flag_decelerating_ = false;
-        flag_first_time_accel_decel_ = true;
-
         returnPacketSet(RETURN_PACKET_READ_INSTRUCTIONS);  // Servo only respond to read data instructions
 
         DebugSerialSRHALn("ServoRHA::initServo: end of inicialitation function");
     }
 
     uint8_t getServoID() {  return servo_id_; }
-    uint8_t getTxPin() {  return txpin_; }
-    uint8_t getRxPin() {  return rxpin_; }
-    uint8_t getCtrlPin() {  return ctrlpin_; }
 
     uint16_t getMinTorqueCw() {  return min_torque_cw_; }
     uint16_t getMinTorqueCcw() {  return min_torque_ccw_; }
     uint16_t getMaxTorqueCw() {  return max_torque_cw_; }
     uint16_t getMaxTorqueCcw() {  return max_torque_ccw_; }
-    float getAccelerationSlope() {  return acceleration_slope_; }
-    float getAccelerationAngle() {  return acceleration_angle_; }
-    uint8_t getFlagMoving() {  return flag_moving_; }
-    uint16_t getCurrentPose() {  return current_pose_; }
-    float getGoalPoseEncoder() {  return goal_pose_encoder_; }
-    uint16_t getGoalDirection() {  return goal_direction_; }
-    uint16_t getInitPose() {  return init_pose_; }
-    uint16_t getEncoderCurrent() {  return encoder_current_; }
-    uint16_t getEncoderFlag() {  return encoder_flag_; }
-    uint8_t getFlagAccelerating() {  return flag_accelerating_; }
-    uint8_t getFlagDecelerating() {  return flag_decelerating_; }
-
-    void setInitPose(uint16_t pose) {  init_pose_ = pose; }
-    void setCurrentPose(uint16_t pose) {  current_pose_ = pose; }
-    void setFlagFirstTimeAccDecel(uint8_t option) {  flag_first_time_accel_decel_ =  option; }
-    void setFlagAccelerating(uint8_t option) {  flag_accelerating_ = option; }
-    void setFlagDecelerating(uint8_t option) {  flag_decelerating_ = option; }
 };
 
 

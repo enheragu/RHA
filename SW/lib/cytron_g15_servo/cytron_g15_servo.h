@@ -203,6 +203,8 @@ class Cytron_G15_Servo {
  protected:
     void setRxMode(void);
     void setTxMode(void);
+
+ public:
     uint16_t sendPacket(uint8_t id, uint8_t instruction, uint8_t* data, uint8_t parameterLength);
     // byte read_data(byte id, byte* data);
 };

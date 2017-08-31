@@ -372,6 +372,7 @@
 		</item>
 		<average label="NCSS" value="8"/>
 		<average label="CCN" value="1"/>
+
 	</measure>
 	<measure type="File">
 		<labels>
@@ -380,6 +381,7 @@
 			<label>CCN</label>
 			<label>Functions</label>
 		</labels>
+
 		<item name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp">
 			<value>1</value>
 			<value>138</value>

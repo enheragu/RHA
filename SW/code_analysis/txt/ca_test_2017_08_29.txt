@@ -61,10 +61,12 @@
        8      1     33      0       8 process@156-163@/home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp
        5      1     21      0       5 setup@166-170@/home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp
        6      1     29      0       7 loop@172-178@/home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp
+
 3 file analyzed.
 ==============================================================
 NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
 --------------------------------------------------------------
+
     143       9.4     1.2       78.0        14     /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
     133       3.8     1.0       28.3        33     /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
     126       9.2     2.2       74.9        13     /home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp

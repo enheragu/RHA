@@ -1,5 +1,6 @@
       10 text files.
-classified 10 files      10 unique files.                              
+classified 10 files
+      10 unique files.                              
        0 files ignored.
 
 language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.60  T=0.02 s (453.1 files/s, 60348.4 lines/s)"
@@ -13,3 +14,4 @@ C/C++ Header,/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h,7,1,17
 C++,/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp,7,10,15
 C++,/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp,8,4,13
 C/C++ Header,/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h,4,0,10
+

@@ -2,7 +2,7 @@
 classified 3 files       3 unique files.                              
        0 files ignored.
 
-language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.60  T=0.01 s (207.3 files/s, 40207.0 lines/s)"
-C++,/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp,36,9,155
-C++,/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp,29,6,150
-C++,/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp,18,30,149
+language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.60  T=0.01 s (216.4 files/s, 41976.2 lines/s)"
+C++,/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp,36,9,155
+C++,/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp,29,6,150
+C++,/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp,18,30,149

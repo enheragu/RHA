@@ -6,20 +6,20 @@ classified 7 files       7 unique files.
 <header>
   <cloc_url>http://cloc.sourceforge.net</cloc_url>
   <cloc_version>1.60</cloc_version>
-  <elapsed_seconds>0.0234239101409912</elapsed_seconds>
+  <elapsed_seconds>0.028656005859375</elapsed_seconds>
   <n_files>7</n_files>
   <n_lines>1326</n_lines>
-  <files_per_second>298.839944222215</files_per_second>
-  <lines_per_second>56608.8237198082</lines_per_second>
+  <files_per_second>244.276890308839</files_per_second>
+  <lines_per_second>46273.0223642172</lines_per_second>
 </header>
 <files>
-  <file name="/home/quique/Documentos/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp" blank="112" comment="79" code="434"  language="C++" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp" blank="47" comment="82" code="188"  language="C++" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.h" blank="31" comment="38" code="155"  language="C/C++ Header" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h" blank="17" comment="8" code="60"  language="C/C++ Header" />
-  <file name="/home/quique/Documentos/RHA/SW/src/main.cpp" blank="6" comment="8" code="26"  language="C++" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h" blank="3" comment="13" code="3"  language="C/C++ Header" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp" blank="2" comment="13" code="1"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp" blank="112" comment="79" code="434"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp" blank="47" comment="82" code="188"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.h" blank="31" comment="38" code="155"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h" blank="17" comment="8" code="60"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/src/main.cpp" blank="6" comment="8" code="26"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/joint_rha/joint_rha.h" blank="3" comment="13" code="3"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp" blank="2" comment="13" code="1"  language="C++" />
   <total blank="218" comment="241" code="867" />
 </files>
 </results>

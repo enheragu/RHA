@@ -1,0 +1,421 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/terryyin/lizard/master/lizard.xsl"?>
+<cppncss>
+	<measure type="Function">
+		<labels>
+			<label>Nr.</label>
+			<label>NCSS</label>
+			<label>CCN</label>
+		</labels>
+		<item name="ServoRHA::ServoRHA(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:9">
+			<value>1</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::initServo(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:15">
+			<value>2</value>
+			<value>17</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::angleRead(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:45">
+			<value>3</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::speedRead(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:58">
+			<value>4</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::returnPacketSet(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:72">
+			<value>5</value>
+			<value>8</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::addToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:96">
+			<value>6</value>
+			<value>11</value>
+			<value>2</value>
+		</item>
+		<item name="ServoRHA::wrapPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:116">
+			<value>7</value>
+			<value>19</value>
+			<value>2</value>
+		</item>
+		<item name="ServoRHA::calibrateTorque(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:144">
+			<value>8</value>
+			<value>8</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::calibrateTorqueDir(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:157">
+			<value>9</value>
+			<value>13</value>
+			<value>3</value>
+		</item>
+		<item name="ServoRHA::setWheelSpeed(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:185">
+			<value>10</value>
+			<value>10</value>
+			<value>6</value>
+		</item>
+		<item name="ServoRHA::setGoalEncoder(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:207">
+			<value>11</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::doNext(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:216">
+			<value>12</value>
+			<value>7</value>
+			<value>3</value>
+		</item>
+		<item name="ServoRHA::encoderModeRotation(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:228">
+			<value>13</value>
+			<value>37</value>
+			<value>13</value>
+		</item>
+		<item name="ServoRHA::accelerate(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:277">
+			<value>14</value>
+			<value>10</value>
+			<value>6</value>
+		</item>
+		<item name="ServoRHA::decelerate(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:292">
+			<value>15</value>
+			<value>16</value>
+			<value>6</value>
+		</item>
+		<item name="ServoRHA::isMoving(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:315">
+			<value>16</value>
+			<value>7</value>
+			<value>2</value>
+		</item>
+		<item name="compareAngles(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:333">
+			<value>17</value>
+			<value>6</value>
+			<value>3</value>
+		</item>
+		<item name="compareSpeed(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:346">
+			<value>18</value>
+			<value>6</value>
+			<value>3</value>
+		</item>
+		<average label="NCSS" value="11"/>
+		<average label="CCN" value="3"/>
+		<item name="ServoRHA::ServoRHA(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:53">
+			<value>19</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="10"/>
+		<average label="CCN" value="3"/>
+		<average label="NCSS" value="10"/>
+		<average label="CCN" value="3"/>
+		<item name="JointRHA::JointRHA(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp:7">
+			<value>20</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="JointRHA::~JointRHA(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp:15">
+			<value>21</value>
+			<value>2</value>
+			<value>1</value>
+		</item>
+		<item name="JointRHA::initJoint(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp:19">
+			<value>22</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="JointRHA::readFeedbackPosition(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp:23">
+			<value>23</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="9"/>
+		<average label="CCN" value="2"/>
+		<item name="Cytron_G15Shield::Cytron_G15Shield(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:23">
+			<value>24</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::Cytron_G15Shield(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:30">
+			<value>25</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::Cytron_G15Shield(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:36">
+			<value>26</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::begin(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:42">
+			<value>27</value>
+			<value>17</value>
+			<value>4</value>
+		</item>
+		<item name="Cytron_G15Shield::end(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:60">
+			<value>28</value>
+			<value>10</value>
+			<value>3</value>
+		</item>
+		<item name="Cytron_G15Shield::setTxMode(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:71">
+			<value>29</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setRxMode(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:75">
+			<value>30</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::sendPacket(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:81">
+			<value>31</value>
+			<value>78</value>
+			<value>21</value>
+		</item>
+		<item name="Cytron_G15Shield::setWheelMode(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:173">
+			<value>32</value>
+			<value>9</value>
+			<value>2</value>
+		</item>
+		<item name="Cytron_G15Shield::exitWheelMode(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:184">
+			<value>33</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setWheelSpeed(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:188">
+			<value>34</value>
+			<value>7</value>
+			<value>2</value>
+		</item>
+		<item name="Cytron_G15Shield::setPos(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:202">
+			<value>35</value>
+			<value>7</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setPosAngle(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:212">
+			<value>36</value>
+			<value>8</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setPosSpeed(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:223">
+			<value>37</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::rotateCW(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:235">
+			<value>38</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::rotateCCW(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:241">
+			<value>39</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setTorqueOnOff(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:252">
+			<value>40</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setSpeed(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:267">
+			<value>41</value>
+			<value>7</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setTimeToGoal(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:278">
+			<value>42</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setAngleLimit(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:294">
+			<value>43</value>
+			<value>12</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setTorqueLimit(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:309">
+			<value>44</value>
+			<value>7</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setTemperatureLimit(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:319">
+			<value>45</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setVoltageLimit(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:331">
+			<value>46</value>
+			<value>10</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setID(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:348">
+			<value>47</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setLED(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:364">
+			<value>48</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setAlarmLED(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:373">
+			<value>49</value>
+			<value>11</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setAlarmShutDown(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:388">
+			<value>50</value>
+			<value>11</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setMarginSlopePunch(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:403">
+			<value>51</value>
+			<value>18</value>
+			<value>2</value>
+		</item>
+		<item name="Cytron_G15Shield::setBaudRate(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:432">
+			<value>52</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::factoryReset(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:448">
+			<value>53</value>
+			<value>7</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::ping(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:460">
+			<value>54</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::getPos(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:467">
+			<value>55</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::getSpeed(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:474">
+			<value>56</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::getLoad(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:481">
+			<value>57</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::getVoltage(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:488">
+			<value>58</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::getTemperature(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:495">
+			<value>59</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::getTorqueOnOff(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:505">
+			<value>60</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::isMoving(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:515">
+			<value>61</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="Cytron_G15Shield::setAction(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:528">
+			<value>62</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="set_act(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp:534">
+			<value>63</value>
+			<value>25</value>
+			<value>4</value>
+		</item>
+		<average label="NCSS" value="9"/>
+		<average label="CCN" value="2"/>
+		<item name="Cytron_G15Shield::Cytron_G15Shield(...) at /home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.h:143">
+			<value>64</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="9"/>
+		<average label="CCN" value="2"/>
+		<average label="NCSS" value="9"/>
+		<average label="CCN" value="2"/>
+		<item name="setup(...) at /home/gmv/RHA/SW/src/main.cpp:16">
+			<value>65</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="loop(...) at /home/gmv/RHA/SW/src/main.cpp:23">
+			<value>66</value>
+			<value>14</value>
+			<value>2</value>
+		</item>
+		<average label="NCSS" value="9"/>
+		<average label="CCN" value="2"/>
+	</measure>
+	<measure type="File">
+		<labels>
+			<label>Nr.</label>
+			<label>NCSS</label>
+			<label>CCN</label>
+			<label>Functions</label>
+		</labels>
+		<item name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp">
+			<value>1</value>
+			<value>205</value>
+			<value>56</value>
+			<value>18</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h">
+			<value>2</value>
+			<value>35</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/joint_rha/joint_rha.h">
+			<value>3</value>
+			<value>12</value>
+			<value>0</value>
+			<value>0</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp">
+			<value>4</value>
+			<value>13</value>
+			<value>4</value>
+			<value>4</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.cpp">
+			<value>5</value>
+			<value>375</value>
+			<value>71</value>
+			<value>40</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/Cytron_G15Shield/Cytron_G15Shield.h">
+			<value>6</value>
+			<value>102</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/debug/debug.h">
+			<value>7</value>
+			<value>0</value>
+			<value>0</value>
+			<value>0</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/src/main.cpp">
+			<value>8</value>
+			<value>24</value>
+			<value>3</value>
+			<value>2</value>
+		</item>
+		<average label="NCSS" value="95"/>
+		<average label="CCN" value="17"/>
+		<average label="Functions" value="8"/>
+		<sum label="NCSS" value="766"/>
+		<sum label="CCN" value="136"/>
+		<sum label="Functions" value="66"/>
+		<average label="NCSS" value="11"/>
+		<average label="CCN" value="2"/>
+	</measure>
+</cppncss>

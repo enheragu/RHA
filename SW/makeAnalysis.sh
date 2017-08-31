@@ -17,13 +17,13 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 echo "Generating complexity of code:"
 echo -n "Working."
 #Generate complexity of code in txt
-lizard --languages cpp --exclude "$CURRENT_DIR/test/*"  /home/gmv/RHA/SW  > $CURRENT_DIR/code_analysis/txt/ca_$1.txt
+lizard --languages cpp --exclude "$CURRENT_DIR/test/*"  $CURRENT_DIR  > $CURRENT_DIR/code_analysis/txt/ca_$1.txt
 echo -n "."
 #Generate complexity of code in xml
-lizard --languages cpp --exclude "$CURRENT_DIR/test/*"  /home/gmv/RHA/SW --xml > $CURRENT_DIR/code_analysis/xml/ca_$1.xml
+lizard --languages cpp --exclude "$CURRENT_DIR/test/*"  $CURRENT_DIR --xml > $CURRENT_DIR/code_analysis/xml/ca_$1.xml
 echo "."
 #Generate complexity of code in csv
-lizard --languages cpp --exclude "$CURRENT_DIR/test/*"  /home/gmv/RHA/SW --csv > $CURRENT_DIR/code_analysis/csv/ca_$1.csv
+lizard --languages cpp --exclude "$CURRENT_DIR/test/*"  $CURRENT_DIR --csv > $CURRENT_DIR/code_analysis/csv/ca_$1.csv
 echo "Done."
 
 ###################################################################
@@ -44,7 +44,7 @@ echo "Done."
 #echo "Generating Tag Cloud for test code in html"
 #lizard --languages cpp -EWordCount --exclude "$CURRENT_DIR/test/*" $CURRENT_DIR > $CURRENT_DIR/delete.txt
 #sleep 3
-#mv $CURRENT_DIR/codecloud.html $CURRENT_DIR/code_analysis/code_cloud/code_codecloud_$1.html 
+#mv $CURRENT_DIR/codecloud.html $CURRENT_DIR/code_analysis/code_cloud/code_codecloud_$1.html
 #echo "Done."
 #echo "Generating Tag Cloud for test code in html"
 #lizard --languages cpp -EWordCount --exclude "$CURRENT_DIR/lib/*" --exclude "$CURRENT_DIR/src/*" $CURRENT_DIR > $CURRENT_DIR/delete.txt

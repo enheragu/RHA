@@ -36,6 +36,8 @@ class ClocHandler( xml.sax.ContentHandler ):
         if tag == "file":
             #print "*****File*****"
             filename = attributes["name"]
+            #if filename == "output_export.cpp":
+            #    return;
             self.name = str(attributes["name"])
             self.name = os.path.basename(self.name)
             #print "Name:", filename
@@ -52,7 +54,7 @@ class ClocHandler( xml.sax.ContentHandler ):
             self.percentage_lcomment = (float(comment) * 100 / float(code+comment))
             #print "Percentage of comment:", self.percentage_lcomment
 
-            if self.percentage_lcomment < 200:
+            if self.percentage_lcomment < 100:
                 #print "Makeing average, previous value: ", self.average_whole_percentage_lcomment
                 self.average_whole_percentage_lcomment =\
                 (self.average_whole_percentage_lcomment*self.n_evaluated + \
@@ -60,15 +62,15 @@ class ClocHandler( xml.sax.ContentHandler ):
                 #print "Makeing average, actual value: ", self.average_whole_percentage_lcomment
                 #print "numer", self.n_evaluated
 
-            if self.percentage_lcomment < 200:
+            if self.percentage_lcomment < 100:
                 self.whole_num_lcode = self.whole_num_lcode - self.num_lcode
                 self.whole_num_lcomment = self.whole_num_lcomment - self.num_lcomment
 
-            if self.percentage_lcomment < 200 and  self.percentage_lcomment > self.max_whole_percentage_lcomment:
+            if self.percentage_lcomment < 100 and  self.percentage_lcomment > self.max_whole_percentage_lcomment:
                 self.max_whole_percentage_lcomment = self.percentage_lcomment
                 self.max_comment_name = self.name
 
-            elif self.percentage_lcomment < 200 and  self.percentage_lcomment < self.min_whole_percentage_lcomment:
+            elif self.percentage_lcomment < 100 and  self.percentage_lcomment < self.min_whole_percentage_lcomment:
                 self.min_whole_percentage_lcomment = self.percentage_lcomment
                 self.min_comment_name = self.name
             #language = attributes["language"]

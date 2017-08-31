@@ -41,12 +41,12 @@ sed -i '1i# file[numer] = [  0 ,         1        ,        2        ,          3
 sed -i '1i# file[numer] = [date, whole_blank_lines, whole_code_lines, whole_comment_lines, whole_comment_percentage, max_comment_percentage, max_comment_name, min_comment_percentage, min_comment_name]' $CURRENT_DIR/cloc_list.py
 sed -i '1i#List for Cloc data'  $CURRENT_DIR/cloc_list.py
 
-echo -e "${GREEN}Search all $CURRENT_DIR/code_analysis/xml/cloc_* files${NC}"
+echo -e "${GREEN}Search all $CURRENT_DIR/../xml/cloc_* files${NC}"
 #invoque parseFIles function
-parseClocFiles $CURRENT_DIR/code_analysis/xml/cloc_[0-9] cloc
-echo -e "${GREEN}Search all $CURRENT_DIR/code_analysis/xml/cloc_test_* files${NC}"
+parseClocFiles $CURRENT_DIR/../xml/cloc_[0-9] cloc
+echo -e "${GREEN}Search all $CURRENT_DIR/../xml/cloc_test_* files${NC}"
 #invoque parseFIles function
-parseClocFiles $CURRENT_DIR/code_analysis/xml/cloc_test_ cloc_test
+parseClocFiles $CURRENT_DIR/../xml/cloc_test_ cloc_test
 
 sed -i '1i#!/usr/bin/python' $CURRENT_DIR/cloc_list.py
 
@@ -57,3 +57,6 @@ rm $CURRENT_DIR/temp_*.xml
 
 echo -e "${GREEN}New list created for cloc information:${NC}"
 more cloc_list.py
+
+echo -e "${GREEN}Creating plot:${NC}"
+python3 drawPlot.py

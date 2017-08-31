@@ -34,11 +34,6 @@ class TestServoRHA : public ServoRHA {
 
       max_torque_ccw_ = MAX_TORQUE_CCW;
       max_torque_cw_ = MAX_TORQUE_CW;
-      acceleration_angle_ = ACCELERATION_ANGLE;
-      flag_moving_ = false;
-      current_pose_ = 0; goal_pose_encoder_ = 0; init_pose_ = 0; encoder_current_ = 0;
-      acceleration_slope_ = (static_cast<float>(100) - static_cast<float>(0)) / static_cast<float>(acceleration_angle_);
-
       TestServoRHA::returnPacketSet(RETURN_PACKET_READ_INSTRUCTIONS);  // Servo only respond to read data instructions
   }
   virtual void calibrateTorque() {

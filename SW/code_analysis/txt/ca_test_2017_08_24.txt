@@ -59,6 +59,7 @@
        9      1     38      0       9 process@172-180@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
        5      1     21      0       5 setup@183-187@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
        6      1     29      0       7 loop@189-195@/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
+
 3 file analyzed.
 ==============================================================
 NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
@@ -66,6 +67,7 @@ NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
     141       9.2     1.2       76.0        14     /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp
     131       4.0     1.2       29.3        30     /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
     134       9.2     2.1       74.4        14     /home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
+
 
 =============================================================================================
 No thresholds exceeded (cyclomatic_complexity > 15 or length > 1000 or parameter_count > 100)

@@ -1,16 +1,17 @@
        7 text files.
-classified 7 files       7 unique files.                              
+classified 7 files
+       7 unique files.                              
        0 files ignored.
 
 <?xml version="1.0"?><results>
 <header>
   <cloc_url>http://cloc.sourceforge.net</cloc_url>
   <cloc_version>1.60</cloc_version>
-  <elapsed_seconds>0.0234239101409912</elapsed_seconds>
+  <elapsed_seconds>0.028656005859375</elapsed_seconds>
   <n_files>7</n_files>
   <n_lines>1326</n_lines>
-  <files_per_second>298.839944222215</files_per_second>
-  <lines_per_second>56608.8237198082</lines_per_second>
+  <files_per_second>244.276890308839</files_per_second>
+  <lines_per_second>46273.0223642172</lines_per_second>
 </header>
 <files>
   <file name="/home/quique/Documentos/RHA/SW/lib/CYTRON_G15_SERVO/CYTRON_G15_SERVO.cpp" blank="112" comment="79" code="434"  language="C++" />

@@ -18,7 +18,7 @@ boolean hardwareSerial;
 SoftwareSerial* G15Serial;
 
 
-uint8_t txpin_shield = '\0', rxpin_shield = '\0', ctrlpin_shield = '\0';
+uint8_t txpin_shield = 0, rxpin_shield = 0, ctrlpin_shield = 0;
 
 // This Code is using Serial library
 // baudrate 300, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, or 115200

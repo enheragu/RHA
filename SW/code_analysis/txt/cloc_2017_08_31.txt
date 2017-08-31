@@ -1,0 +1,21 @@
+      10 text files.
+classified 10 files      10 unique files.                              
+       0 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.06 s (170.2 files/s, 26760.2 lines/s)
+-------------------------------------------------------------------------------------------------------------
+File                                                                      blank        comment           code
+-------------------------------------------------------------------------------------------------------------
+/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp                  114             79            380
+/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp                                 51            107            159
+/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h                     29             35            148
+/home/gmv/RHA/SW/src/main.cpp                                                26             13             98
+/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h                                   18              0             62
+/home/gmv/RHA/SW/lib/debug/debug.h                                           14             17             47
+/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp                                 15             24             42
+/home/gmv/RHA/SW/lib/joint_rha/joint_rha.h                                    9              0             26
+/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp                          8             13             24
+/home/gmv/RHA/SW/lib/joint_handler/joint_handler.h                            4              0             10
+-------------------------------------------------------------------------------------------------------------
+SUM:                                                                        288            288            996
+-------------------------------------------------------------------------------------------------------------

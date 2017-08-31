@@ -1,3 +1,4 @@
+
 6,1,32,4,5,"TestServoRHA::TestServoRHA@25-30@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp","/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp","TestServoRHA::TestServoRHA",25,30
 12,1,84,0,14,"TestServoRHA::initServo@32-46@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp","/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp","TestServoRHA::initServo",32,46
 4,1,13,0,3,"TestServoRHA::calibrateTorque@47-50@/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp","/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp","TestServoRHA::calibrateTorque",47,50
@@ -68,3 +69,4 @@
 4,1,14,1,3,"output_char@12-15@/home/quique/Documentos/RHA/SW/test/output_export.cpp","/home/quique/Documentos/RHA/SW/test/output_export.cpp","output_char",12,15
 4,1,12,1,3,"output_flush@17-20@/home/quique/Documentos/RHA/SW/test/output_export.cpp","/home/quique/Documentos/RHA/SW/test/output_export.cpp","output_flush",17,20
 4,1,12,1,3,"output_complete@22-25@/home/quique/Documentos/RHA/SW/test/output_export.cpp","/home/quique/Documentos/RHA/SW/test/output_export.cpp","output_complete",22,25
+

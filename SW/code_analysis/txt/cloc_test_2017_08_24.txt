@@ -1,6 +1,8 @@
        3 text files.
-classified 3 files       3 unique files.                              
+classified 3 files
+       3 unique files.                              
        0 files ignored.
+
 
 http://cloc.sourceforge.net v 1.60  T=0.01 s (205.4 files/s, 39855.1 lines/s)
 ---------------------------------------------------------------------------------------------------------------------------------------

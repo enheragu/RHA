@@ -1,6 +1,8 @@
        8 text files.
-classified 8 files       8 unique files.                              
+classified 8 files
+       8 unique files.                              
        0 files ignored.
+
 
 language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.60  T=0.02 s (405.7 files/s, 69425.0 lines/s)"
 C++,/home/quique/Documentos/RHA/SW/lib/CYTRON_G15_SERVO/CYTRON_G15_SERVO.cpp,110,79,375
@@ -11,3 +13,4 @@ C/C++ Header,/home/quique/Documentos/RHA/SW/lib/debug/debug.h,14,17,47
 C++,/home/quique/Documentos/RHA/SW/src/main.cpp,6,8,26
 C/C++ Header,/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h,7,1,15
 C++,/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp,4,8,13
+

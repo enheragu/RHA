@@ -71,6 +71,7 @@
        4      1     14      1       4 output_char@12-15@/home/quique/Documentos/RHA/SW/test/output_export.cpp
        4      1     12      1       4 output_flush@17-20@/home/quique/Documentos/RHA/SW/test/output_export.cpp
        4      1     12      1       4 output_complete@22-25@/home/quique/Documentos/RHA/SW/test/output_export.cpp
+
 4 file analyzed.
 ==============================================================
 NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
@@ -79,6 +80,7 @@ NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
     207       5.1     1.2       39.4        38     /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp
     134       9.1     2.1       74.4        14     /home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp
      18       4.0     1.0       13.2         4     /home/quique/Documentos/RHA/SW/test/output_export.cpp
+
 
 =============================================================================================
 No thresholds exceeded (cyclomatic_complexity > 15 or length > 1000 or parameter_count > 100)

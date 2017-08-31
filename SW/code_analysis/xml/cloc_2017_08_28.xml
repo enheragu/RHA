@@ -6,23 +6,23 @@ classified 10 files      10 unique files.
 <header>
   <cloc_url>http://cloc.sourceforge.net</cloc_url>
   <cloc_version>1.60</cloc_version>
-  <elapsed_seconds>0.0277819633483887</elapsed_seconds>
+  <elapsed_seconds>0.0284149646759033</elapsed_seconds>
   <n_files>10</n_files>
-  <n_lines>1309</n_lines>
-  <files_per_second>359.945763177317</files_per_second>
-  <lines_per_second>47116.9003999108</lines_per_second>
+  <n_lines>1332</n_lines>
+  <files_per_second>351.927236723974</files_per_second>
+  <lines_per_second>46876.7079316334</lines_per_second>
 </header>
 <files>
-  <file name="/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp" blank="114" comment="79" code="380"  language="C++" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h" blank="28" comment="35" code="147"  language="C/C++ Header" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp" blank="39" comment="79" code="129"  language="C++" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h" blank="16" comment="0" code="49"  language="C/C++ Header" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/debug/debug.h" blank="14" comment="17" code="47"  language="C/C++ Header" />
-  <file name="/home/quique/Documentos/RHA/SW/src/main.cpp" blank="6" comment="8" code="26"  language="C++" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h" blank="7" comment="0" code="18"  language="C/C++ Header" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp" blank="7" comment="8" code="17"  language="C++" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp" blank="8" comment="4" code="13"  language="C++" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h" blank="4" comment="0" code="10"  language="C/C++ Header" />
-  <total blank="243" comment="230" code="836" />
+  <file name="/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp" blank="114" comment="79" code="380"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h" blank="28" comment="35" code="147"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp" blank="44" comment="82" code="138"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h" blank="16" comment="0" code="50"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/debug/debug.h" blank="14" comment="17" code="47"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/src/main.cpp" blank="11" comment="11" code="23"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/joint_rha/joint_rha.h" blank="7" comment="1" code="17"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp" blank="7" comment="10" code="15"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp" blank="8" comment="4" code="13"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/joint_handler/joint_handler.h" blank="4" comment="0" code="10"  language="C/C++ Header" />
+  <total blank="253" comment="239" code="840" />
 </files>
 </results>

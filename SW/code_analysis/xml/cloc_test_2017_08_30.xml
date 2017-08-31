@@ -6,16 +6,16 @@ classified 3 files       3 unique files.
 <header>
   <cloc_url>http://cloc.sourceforge.net</cloc_url>
   <cloc_version>1.60</cloc_version>
-  <elapsed_seconds>0.0121281147003174</elapsed_seconds>
+  <elapsed_seconds>0.0107181072235107</elapsed_seconds>
   <n_files>3</n_files>
   <n_lines>520</n_lines>
-  <files_per_second>247.359138178458</files_per_second>
-  <lines_per_second>42875.5839509328</lines_per_second>
+  <files_per_second>279.9001668335</files_per_second>
+  <lines_per_second>48516.0289178067</lines_per_second>
 </header>
 <files>
-  <file name="/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp" blank="35" comment="10" code="143"  language="C++" />
-  <file name="/home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp" blank="16" comment="30" code="134"  language="C++" />
-  <file name="/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp" blank="28" comment="8" code="116"  language="C++" />
+  <file name="/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp" blank="35" comment="10" code="143"  language="C++" />
+  <file name="/home/gmv/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp" blank="16" comment="30" code="134"  language="C++" />
+  <file name="/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp" blank="28" comment="8" code="116"  language="C++" />
   <total blank="79" comment="48" code="393" />
 </files>
 </results>

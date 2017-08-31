@@ -2,14 +2,14 @@
 classified 10 files      10 unique files.                              
        0 files ignored.
 
-language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.60  T=0.02 s (453.1 files/s, 60348.4 lines/s)"
-C++,/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp,114,79,380
-C/C++ Header,/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h,28,35,147
-C++,/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp,44,82,138
-C/C++ Header,/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h,16,0,50
-C/C++ Header,/home/quique/Documentos/RHA/SW/lib/debug/debug.h,14,17,47
-C++,/home/quique/Documentos/RHA/SW/src/main.cpp,11,11,23
-C/C++ Header,/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h,7,1,17
-C++,/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp,7,10,15
-C++,/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp,8,4,13
-C/C++ Header,/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h,4,0,10
+language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.60  T=0.03 s (389.1 files/s, 61169.9 lines/s)"
+C++,/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp,114,79,380
+C++,/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp,51,107,159
+C/C++ Header,/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h,29,35,148
+C++,/home/gmv/RHA/SW/src/main.cpp,26,13,98
+C/C++ Header,/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h,18,0,62
+C/C++ Header,/home/gmv/RHA/SW/lib/debug/debug.h,14,17,47
+C++,/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp,15,24,42
+C/C++ Header,/home/gmv/RHA/SW/lib/joint_rha/joint_rha.h,9,0,26
+C++,/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp,8,13,24
+C/C++ Header,/home/gmv/RHA/SW/lib/joint_handler/joint_handler.h,4,0,10

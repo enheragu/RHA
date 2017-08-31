@@ -38,7 +38,7 @@ uint8_t compareSpeed(uint16_t speed1, uint16_t speed2, uint8_t speed_margin = 0)
 class ServoRHA : public Cytron_G15_Servo {
  protected:
     uint16_t min_torque_cw_, min_torque_ccw_, max_torque_cw_, max_torque_ccw_;  // minimum torque needed to move the servo and max torque allowed
-    uint16_t speed_, speed_dir_, position_, torque_, torque_dir_ , error_;
+    uint16_t speed_, speed_dir_, position_, load_, load_dir_ , error_;
     uint8_t voltage_, temperature_, registered_, is_moving_;
 
  public:
@@ -61,17 +61,17 @@ class ServoRHA : public Cytron_G15_Servo {
 
     virtual void calibrateTorque();
 
-    uint8_t getID() { return servo_id_; }
-    uint16_t getSpeed() { return speed_; }
-    uint16_t getSpeedDir() { return speed_dir_; }
-    uint16_t getPosition() { return position_; }
-    uint16_t getTorque() { return torque_; }
-    uint16_t getTorqueDir() { return torque_dir_; }
-    uint16_t getError() { return error_; }
-    uint8_t getVoltage() { return voltage_; }
-    uint8_t getTemperature() { return temperature_; }
-    uint8_t getRegistered() { return registered_; }
-    uint8_t getIsMoving() { return is_moving_; }
+    virtual uint8_t getID() { return servo_id_; }
+    virtual uint16_t getSpeed() { return speed_; }
+    virtual uint16_t getSpeedDir() { return speed_dir_; }
+    virtual uint16_t getPosition() { return position_; }
+    virtual uint16_t getLoad() { return load_; }
+    virtual uint16_t getLoadDir() { return load_dir_; }
+    virtual uint16_t getError() { return error_; }
+    virtual uint8_t getVoltage() { return voltage_; }
+    virtual uint8_t getTemperature() { return temperature_; }
+    virtual uint8_t getRegistered() { return registered_; }
+    virtual uint8_t getIsMoving() { return is_moving_; }
 
  protected:
      void calibrateTorqueDir(uint16_t &min_torque, uint16_t direction);

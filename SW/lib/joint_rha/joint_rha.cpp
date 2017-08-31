@@ -33,7 +33,7 @@ void JointRHA::setGoal (uint16_t speed_target, uint16_t speed_slope, uint8_t dir
 }
 
 uint8_t JointRHA::speedError(){
-    uint16_t speed = servo_.getSpeed() + (millis() - time_last_) * speed_slope;
+    uint16_t speed = servo_.getSpeed() + (millis() - time_last_) * speed_slope_;
     if (speed > speed_target_) speed = speed_target_;
     time_last_ = millis();
     return (speed - servo_.getSpeed());
@@ -72,10 +72,10 @@ uint8_t JointRHA::wrapPacket(uint8_t *buffer, uint8_t *data, uint8_t data_len, u
 }
 
 uint16_t sendPacket(uint8_t instruction, uint8_t* data, uint8_t parameterLength){
-  return servo_.sendPacket(servo_.getID(), instruction, data, parameterLength)
+  return servo_.sendPacket(servo_.getID(), instruction, data, parameterLength);
 }
 
 void JointRHA::updateInfo() {
-    position_ = digitalRead(potentiometer_pin_);
+    position_pot_ = digitalRead(potentiometer_pin_);
     servo_->updateInfo();
 }

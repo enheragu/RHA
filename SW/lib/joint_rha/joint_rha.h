@@ -8,7 +8,7 @@ class ServoRHA;
 
 class JointRHA {
   ServoRHA servo_;
-  uint8_t up_direction_, potentiometer_pin_;
+  uint8_t up_direction_, potentiometer_pin_, position_pot_;
   uint8_t direction_target_;
   uint16_t speed_slope_, speed_target_;
   uint64_t time_last_;

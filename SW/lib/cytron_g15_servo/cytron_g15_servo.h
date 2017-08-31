@@ -189,13 +189,13 @@ class Cytron_G15_Servo {
     uint16_t factoryReset();
     uint16_t ping(uint8_t *data);
 
-    uint16_t getPos(uint8_t *data);
-    uint16_t getSpeed(uint8_t *data);
-    uint16_t getLoad(uint8_t *data);
-    uint16_t getVoltage(uint8_t *data);
-    uint16_t getTemperature(uint8_t *data);
-    uint16_t getTorqueOnOff(uint8_t *data);
-    uint16_t isMoving(uint8_t *data);
+    virtual uint16_t getPos(uint8_t *data);
+    virtual uint16_t getSpeed(uint8_t *data);
+    virtual uint16_t getLoad(uint8_t *data);
+    virtual uint16_t getVoltage(uint8_t *data);
+    virtual uint16_t getTemperature(uint8_t *data);
+    virtual uint16_t getTorqueOnOff(uint8_t *data);
+    virtual uint16_t isMoving(uint8_t *data);
 
     // static void setAction(void);
     void setAction(void);

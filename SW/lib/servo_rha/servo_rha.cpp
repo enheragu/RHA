@@ -13,6 +13,11 @@
   */
 ServoRHA::ServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin):
     Cytron_G15_Servo(servo_id, rxpin, txpin, ctrlpin) {
+
+        max_torque_ccw_ = MAX_TORQUE_CCW;
+        max_torque_cw_ = MAX_TORQUE_CW;
+        min_torque_cw_ = MIN_TORQUE_CW;
+        min_torque_ccw_ = MIN_TORQUE_CCW;
 }
 
 
@@ -79,11 +84,11 @@ uint16_t ServoRHA::angleRead() {
 uint16_t ServoRHA::speedRead() {
     DebugSerialSRHALn("speedRead: begin of function.");
     uint8_t data[10];
-    getSpeed(data);  // get the current position from servo1
+    Cytron_G15_Servo::getSpeed(data);  // get the current position from servo1
     uint16_t speed = data[0];
     speed |=  word(data[1]) << 8;
     DebugSerialSRHALn("speedRead: end of function.");
-    //speed = speed & 0000000111111111; // only the last 9 bits contain speed info
+    speed = speed & 0000000111111111; // only the last 9 bits contain speed info
     return speed;
 }
 
@@ -116,19 +121,19 @@ void ServoRHA::updateInfo(){
     error_ = sendPacket (servo_id_, iREAD_DATA, data, 2);
 
     position_ = data[0];
-    position |= (data[1] << 8);
+    position_ |= (data[1] << 8);
 
     speed_ = data[2];
     speed_ |= (data[3] << 8);
     speed_dir_  = ((speed_ >> 9) & 0x10); // 10th byte is direction
     //bytes from 9 to 0 are speed value:
-    speed_ = speed_ & 0000001111111111
+    speed_ = speed_ & 0000001111111111;
 
     load_ = data[4];
     load_ |= (data[5] << 8);
     load_dir_  = ((load_ >> 9) & 0x10); // 10th byte is direction
     //bytes from 9 to 0 are load value:
-    load_ = load_ & 0000001111111111
+    load_ = load_ & 0000001111111111;
 
     voltage_ = data[6]; // NOTE: ¿should be divided by 10?
 
@@ -276,7 +281,8 @@ uint16_t ServoRHA::setWheelSpeed(uint16_t speed, uint8_t cw_ccw) {
 
     DebugSerialSRHALn2("setWheelSpeed: speed calculated to send to servo is: ", g15_speed)
     DebugSerialSRHALn4("setWheelSpeed: end of function. Speed set to ", speed, ". Direction: CW = 1; CCW = 0n", cw_ccw);
-    return Cytron_G15_Servo::setWheelSpeed(g15_speed, cw_ccw, iWRITE_DATA);
+    //return Cytron_G15_Servo::setWheelSpeed(g15_speed, cw_ccw, iWRITE_DATA);
+    return Cytron_G15_Servo::setWheelSpeed(speed, cw_ccw, iWRITE_DATA);
 }
 
 

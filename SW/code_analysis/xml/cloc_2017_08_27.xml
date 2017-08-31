@@ -6,21 +6,21 @@ classified 8 files       8 unique files.
 <header>
   <cloc_url>http://cloc.sourceforge.net</cloc_url>
   <cloc_version>1.60</cloc_version>
-  <elapsed_seconds>0.0208790302276611</elapsed_seconds>
+  <elapsed_seconds>0.0193629264831543</elapsed_seconds>
   <n_files>8</n_files>
   <n_lines>1376</n_lines>
-  <files_per_second>383.159558311352</files_per_second>
-  <lines_per_second>65903.4440295525</lines_per_second>
+  <files_per_second>413.160686581131</files_per_second>
+  <lines_per_second>71063.6380919546</lines_per_second>
 </header>
 <files>
-  <file name="/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp" blank="110" comment="79" code="375"  language="C++" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp" blank="49" comment="104" code="205"  language="C++" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h" blank="28" comment="35" code="146"  language="C/C++ Header" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h" blank="19" comment="5" code="55"  language="C/C++ Header" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/debug/debug.h" blank="14" comment="17" code="47"  language="C/C++ Header" />
-  <file name="/home/quique/Documentos/RHA/SW/src/main.cpp" blank="6" comment="8" code="26"  language="C++" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h" blank="7" comment="1" code="15"  language="C/C++ Header" />
-  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp" blank="4" comment="8" code="13"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp" blank="110" comment="79" code="375"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp" blank="49" comment="104" code="205"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h" blank="28" comment="35" code="146"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h" blank="19" comment="5" code="55"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/debug/debug.h" blank="14" comment="17" code="47"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/src/main.cpp" blank="6" comment="8" code="26"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/joint_rha/joint_rha.h" blank="7" comment="1" code="15"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp" blank="4" comment="8" code="13"  language="C++" />
   <total blank="237" comment="257" code="882" />
 </files>
 </results>

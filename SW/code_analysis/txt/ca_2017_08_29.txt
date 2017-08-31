@@ -1,7 +1,6 @@
 ================================================
-  NLOC    CCN   token  PARAM  length  location  
+  NLOC    CCN   token  PARAM  length  location
 ------------------------------------------------
-
        3      1     29      4       3 ServoRHA::ServoRHA@10-12@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
        9      1     64      5      13 ServoRHA::init@17-29@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
        9      1     42      0      14 ServoRHA::init@31-44@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
@@ -89,7 +88,7 @@ NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
 =========================================================================================
 !!!! Warnings (cyclomatic_complexity > 15 or length > 1000 or parameter_count > 100) !!!!
 ================================================
-  NLOC    CCN   token  PARAM  length  location  
+  NLOC    CCN   token  PARAM  length  location
 ------------------------------------------------
       78     21    528      4      91 Cytron_G15_Servo::sendPacket@90-180@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
 ==========================================================================================

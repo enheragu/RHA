@@ -1,14 +1,115 @@
 ================================================
   NLOC    CCN   token  PARAM  length  location  
 ------------------------------------------------
-0 file analyzed.
+       7      1     45      4       8 ServoRHA::ServoRHA@14-21@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       9      1     64      5      13 ServoRHA::init@30-42@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       9      1     42      0      14 ServoRHA::init@48-61@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      10      1     64      0      10 ServoRHA::angleRead@70-79@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      10      1     60      0      10 ServoRHA::speedRead@84-93@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       7      2     37      0       7 ServoRHA::isMoving@98-104@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      20      1    163      0      29 ServoRHA::updateInfo@117-145@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       3      1     12      1       3 regulatorServo@151-153@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       8      1     53      1      11 ServoRHA::returnPacketSet@164-174@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      11      2     77      5      11 ServoRHA::addToPacket@184-194@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      19      2    182      5      20 ServoRHA::wrapPacket@204-223@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       8      1     45      0       8 ServoRHA::calibrateTorque@233-240@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      13      3     87      2      16 ServoRHA::calibrateTorqueDir@246-261@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      10      6    134      2      12 ServoRHA::setWheelSpeed@275-286@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       6      3     51      3       6 compareAngles@299-304@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       6      3     51      3       6 compareSpeed@312-317@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       1      1      5      0       1 ServoRHA::ServoRHA@45-45@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getID@64-64@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getSpeed@65-65@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getSpeedDir@66-66@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getPosition@67-67@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getLoad@68-68@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getLoadDir@69-69@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getError@70-70@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getVoltage@71-71@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getTemperature@72-72@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getRegistered@73-73@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getIsMoving@74-74@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       5      1     31      3       5 JointRHA::JointRHA@7-11@/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+       2      1      7      0       2 JointRHA::~JointRHA@15-16@/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+       6      1     45      3       8 JointRHA::init@18-25@/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+       6      1     33      3       6 JointRHA::setGoal@28-33@/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+       6      2     53      0       6 JointRHA::speedError@35-40@/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+       3      1     17      1       3 JointRHA::regulatorJoint@43-45@/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+       3      1     40      5       3 ServoRHA::addToPacket@57-59@/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+       3      1     39      5       3 JointRHA::wrapPacket@70-72@/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+       3      1     32      3       3 sendPacket@74-76@/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+       4      1     20      0       4 JointRHA::updateInfo@78-81@/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+       5      1     25      3       5 initCytronG15Shield@26-30@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       4      1     31      4       4 Cytron_G15_Servo::Cytron_G15_Servo@32-35@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       3      1     24      3       3 Cytron_G15_Servo::Cytron_G15_Servo@37-39@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       3      1     18      1       3 Cytron_G15_Servo::Cytron_G15_Servo@41-43@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       5      1     39      5       5 Cytron_G15_Servo::init@45-49@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+      17      4    102      1      17 Cytron_G15_Servo::begin@51-67@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+      10      3     56      1      10 Cytron_G15_Servo::end@69-78@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       3      1     15      1       3 Cytron_G15_Servo::setTxMode@80-82@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       3      1     15      1       3 Cytron_G15_Servo::setRxMode@84-86@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+      78     21    528      4      91 Cytron_G15_Servo::sendPacket@90-180@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       9      2     48      0      10 Cytron_G15_Servo::setWheelMode@182-191@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       3      1     17      0       3 Cytron_G15_Servo::exitWheelMode@193-195@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       7      2     45      3       7 Cytron_G15_Servo::setWheelSpeed@197-203@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       7      1     58      2       9 Cytron_G15_Servo::setPos@211-219@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       8      1     66      2      10 Cytron_G15_Servo::setPosAngle@221-230@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       9      1     80      3      11 Cytron_G15_Servo::setPosSpeed@232-242@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       4      1     28      2       5 Cytron_G15_Servo::rotateCW@244-248@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       5      1     34      2       6 Cytron_G15_Servo::rotateCCW@250-255@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       6      1     46      2       8 Cytron_G15_Servo::setTorqueOnOff@261-268@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       7      1     58      2       9 Cytron_G15_Servo::setSpeed@276-284@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       5      1     34      2       6 Cytron_G15_Servo::setTimeToGoal@287-292@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+      12      1     89      2      14 Cytron_G15_Servo::setAngleLimit@303-316@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       7      1     55      1       9 Cytron_G15_Servo::setTorqueLimit@318-326@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       9      1     55      1      11 Cytron_G15_Servo::setTemperatureLimit@328-338@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+      10      1     65      2      12 Cytron_G15_Servo::setVoltageLimit@340-351@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       9      1     55      1      11 Cytron_G15_Servo::setID@357-367@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       6      1     46      2       8 Cytron_G15_Servo::setLED@373-380@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+      11      1     66      1      14 Cytron_G15_Servo::setAlarmLED@382-395@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+      11      1     66      1      14 Cytron_G15_Servo::setAlarmShutDown@397-410@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+      18      2    137      5      24 Cytron_G15_Servo::setMarginSlopePunch@412-435@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       9      1     61      1      11 Cytron_G15_Servo::setBaudRate@441-451@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       7      1     39      0       8 Cytron_G15_Servo::factoryReset@457-464@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       3      1     24      1       3 Cytron_G15_Servo::ping@469-471@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       5      1     38      1       6 Cytron_G15_Servo::getPos@476-481@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       5      1     38      1       6 Cytron_G15_Servo::getSpeed@483-488@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       5      1     38      1       6 Cytron_G15_Servo::getLoad@490-495@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       5      1     38      1       6 Cytron_G15_Servo::getVoltage@497-502@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       5      1     38      1       6 Cytron_G15_Servo::getTemperature@504-509@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       5      1     38      1       6 Cytron_G15_Servo::getTorqueOnOff@514-519@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       5      1     38      1       6 Cytron_G15_Servo::isMoving@524-529@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       3      1     13      1       5 Cytron_G15_Servo::setAction@537-541@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+      25      4    178      1      31 set_act@543-573@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+       1      1      5      0       1 Cytron_G15_Servo::Cytron_G15_Servo@143-143@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h
+       3      1     13      1       3 JointHandler::JointHandler@6-8@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+       4      1     24      1       4 JointHandler::init@13-16@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      16      2    137      0      25 JointHandler::controlLoop@21-45@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      19     13    154      1      19 printServoStatusError@43-61@/home/gmv/RHA/SW/src/main.cpp
+       6      1     31      0       8 setup@63-70@/home/gmv/RHA/SW/src/main.cpp
+      50      8    357      0      63 loop@73-135@/home/gmv/RHA/SW/src/main.cpp
+10 file analyzed.
 ==============================================================
 NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
 --------------------------------------------------------------
+    159       9.8     1.9       72.9        16     /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+     43       1.0     1.0        7.8        12     /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+     23       0.0     0.0        0.0         0     /home/gmv/RHA/SW/lib/joint_rha/joint_rha.h
+     42       4.1     1.1       31.7        10     /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+    380       9.0     1.7       61.5        42     /home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
+    104       1.0     1.0        5.0         1     /home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h
+     10       0.0     0.0        0.0         0     /home/gmv/RHA/SW/lib/joint_handler/joint_handler.h
+     24       7.7     1.3       58.0         3     /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      0       0.0     0.0        0.0         0     /home/gmv/RHA/SW/lib/debug/debug.h
+     98      25.0     7.3      180.7         3     /home/gmv/RHA/SW/src/main.cpp
 
-=============================================================================================
-No thresholds exceeded (cyclomatic_complexity > 15 or length > 1000 or parameter_count > 100)
+=========================================================================================
+!!!! Warnings (cyclomatic_complexity > 15 or length > 1000 or parameter_count > 100) !!!!
+================================================
+  NLOC    CCN   token  PARAM  length  location  
+------------------------------------------------
+      78     21    528      4      91 Cytron_G15_Servo::sendPacket@90-180@/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp
 ==========================================================================================
 Total nloc   Avg.NLOC  AvgCCN  Avg.token   Fun Cnt  Warning cnt   Fun Rt   nloc Rt
 ------------------------------------------------------------------------------------------
-         0       0.0     0.0        0.0        1            0      0.00    0.00
+       883       7.9     1.8       56.1       87            1      0.01    0.11

@@ -3,11 +3,11 @@
 %parametros de tipo libro
 \documentclass[10pt,a4paper]{book}
 
-%idioma español y acentos
+%idioma espaï¿½ol y acentos
 \usepackage[spanish, es-tabla]{babel}
 \usepackage[latin1]{inputenc}
 
-%algunos símbolos matemáticos y paquete para usar subimágenes
+%algunos sï¿½mbolos matemï¿½ticos y paquete para usar subimï¿½genes
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -15,19 +15,19 @@
 \usepackage{subfigure}
 \usepackage{listings}
 \usepackage{appendix}
-%Márgenes
+%Mï¿½rgenes
 \usepackage[left=3cm,top=3cm,right=3cm,bottom=3cm]{geometry}
 
 %
 \usepackage{multicol}
 
-%para generar índice con hipervínculos
+%para generar ï¿½ndice con hipervï¿½nculos
 \usepackage{hyperref}
 
 %parametros del documento (sus propiedades)
 \hypersetup{
-    pdftitle={Nombre del alumno - TFG - año},
-    pdfsubject={TFG - año},
+    pdftitle={Nombre del alumno - TFG - aï¿½o},
+    pdfsubject={TFG - aï¿½o},
     pdfauthor={Nombre del alumno},
     pdfkeywords={palabraclave1} {palabraclave2} {palabraclave3},
     colorlinks,
@@ -38,9 +38,9 @@
 }
 
 %empieza el documento
-\begin{document}  
+\begin{document}
 
-%elementos antes del trabajo en sí se meten dentro de frontmatter
+%elementos antes del trabajo en sï¿½ se meten dentro de frontmatter
 \frontmatter
 
 %cada incluye referencia a un archivo de tipo .tex
@@ -57,23 +57,29 @@
 
 \include{capitulos/resumen}
 
-%genera índice
+%genera ï¿½ndice
 \tableofcontents
 
-%índice de figuras.
+%ï¿½ndice de figuras.
 \listoffigures
 
-%índice de tablas.
+%ï¿½ndice de tablas.
 \listoftables
 
 %empieza la parte descriptiva del trabajo
 \mainmatter
 
 \include{capitulos/introduccion}
-  
+
   %partes finales del trabajo: conclusiones, bibliografia y anexos
-  
+
 \include{capitulos/estadoarte}
+
+\include{capitulos/mecanica}
+
+\include{capitulos/electronica}
+
+\include{capitulos/software}
 
 \include{capitulos/ejemplos}
 
@@ -85,16 +91,16 @@
 
 \include{capitulos/conclusion}
 
-%estilo de bibliografía: plana, alfa...
+%estilo de bibliografï¿½a: plana, alfa...
 \bibliographystyle{plain}
 
 %genera doble hoja en blanco
 \cleardoublepage
 
-%apartado de bibliografía
-\addcontentsline{toc}{chapter}{Bibliografía}
+%apartado de bibliografï¿½a
+\addcontentsline{toc}{chapter}{Bibliografï¿½a}
 
-%se incluye la bibliografía. Archivo de tipo .bib (bibtex)
+%se incluye la bibliografï¿½a. Archivo de tipo .bib (bibtex)
 \bibliography{bibliografia/bibliografia}
 
 \include{apendices/apendices}

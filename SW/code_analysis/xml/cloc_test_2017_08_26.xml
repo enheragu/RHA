@@ -1,5 +1,6 @@
        4 text files.
-classified 4 files       4 unique files.                              
+classified 4 files
+       4 unique files.                              
        0 files ignored.
 
 <?xml version="1.0"?><results>
@@ -13,10 +14,10 @@ classified 4 files       4 unique files.
   <lines_per_second>35974.2694996159</lines_per_second>
 </header>
 <files>
-  <file name="/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp" blank="43" comment="15" code="217"  language="C++" />
-  <file name="/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp" blank="35" comment="9" code="148"  language="C++" />
-  <file name="/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp" blank="16" comment="30" code="142"  language="C++" />
-  <file name="/home/gmv/RHA/SW/test/output_export.cpp" blank="8" comment="0" code="18"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp" blank="43" comment="15" code="217"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp" blank="35" comment="9" code="148"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp" blank="16" comment="30" code="142"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/output_export.cpp" blank="8" comment="0" code="18"  language="C++" />
   <total blank="102" comment="54" code="525" />
 </files>
 </results>

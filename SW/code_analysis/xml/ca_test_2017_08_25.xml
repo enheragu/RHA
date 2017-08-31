@@ -159,72 +159,72 @@
 		</item>
 		<average label="NCSS" value="4"/>
 		<average label="CCN" value="1"/>
-		<item name="TestCytron::TestCytron(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp:16">
+		<item name="TestCytron::TestCytron(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp:16">
 			<value>31</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
-		<item name="TestCytron::getServoID(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp:17">
+		<item name="TestCytron::getServoID(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp:17">
 			<value>32</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
-		<item name="TestCytron::getTxPin(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp:18">
+		<item name="TestCytron::getTxPin(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp:18">
 			<value>33</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
-		<item name="TestCytron::getRxPin(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp:19">
+		<item name="TestCytron::getRxPin(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp:19">
 			<value>34</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
-		<item name="TestCytron::getCtrlPin(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp:20">
+		<item name="TestCytron::getCtrlPin(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp:20">
 			<value>35</value>
 			<value>1</value>
 			<value>1</value>
 		</item>
-		<item name="checkStatus(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp:24">
+		<item name="checkStatus(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp:24">
 			<value>36</value>
 			<value>18</value>
 			<value>13</value>
 		</item>
-		<item name="test_constructor_Cytron_G15Shield(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp:43">
+		<item name="test_constructor_CYTRON_G15_SERVO(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp:43">
 			<value>37</value>
 			<value>7</value>
 			<value>1</value>
 		</item>
-		<item name="test_comunication_Cytron_G15Shield(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp:51">
+		<item name="test_comunication_CYTRON_G15_SERVO(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp:51">
 			<value>38</value>
 			<value>10</value>
 			<value>1</value>
 		</item>
-		<item name="test_positioningMode_functioning(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp:62">
+		<item name="test_positioningMode_functioning(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp:62">
 			<value>39</value>
 			<value>22</value>
 			<value>2</value>
 		</item>
-		<item name="test_setWheelMode_functioning(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp:85">
+		<item name="test_setWheelMode_functioning(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp:85">
 			<value>40</value>
 			<value>21</value>
 			<value>2</value>
 		</item>
-		<item name="test_function_isMovingPositioningMode(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp:118">
+		<item name="test_function_isMovingPositioningMode(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp:118">
 			<value>41</value>
 			<value>26</value>
 			<value>3</value>
 		</item>
-		<item name="process(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp:165">
+		<item name="process(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp:165">
 			<value>42</value>
 			<value>9</value>
 			<value>1</value>
 		</item>
-		<item name="setup(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp:176">
+		<item name="setup(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp:176">
 			<value>43</value>
 			<value>5</value>
 			<value>1</value>
 		</item>
-		<item name="loop(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp:182">
+		<item name="loop(...) at /home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp:182">
 			<value>44</value>
 			<value>6</value>
 			<value>1</value>
@@ -317,7 +317,7 @@
 			<value>35</value>
 			<value>30</value>
 		</item>
-		<item name="/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp">
+		<item name="/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp">
 			<value>2</value>
 			<value>135</value>
 			<value>30</value>

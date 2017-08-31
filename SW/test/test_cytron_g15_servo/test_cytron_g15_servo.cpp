@@ -1,5 +1,5 @@
 #include "debug.h"
-#include "Cytron_G15Shield.h"
+#include "cytron_g15_servo.h"
 #include "unity.h"
 
 #ifdef UNIT_TEST
@@ -11,16 +11,16 @@
 #define BAUDRATE 19200.
 #define MARGIN 5
 
-class TestCytron : public Cytron_G15Shield {
+class TestCytron : public Cytron_G15_Servo {
  public:
-  TestCytron(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin):Cytron_G15Shield(servo_id, rxpin, txpin, ctrlpin) {  }
-  uint8_t getServoID() {  return _servo_id; }
-  uint8_t getTxPin() {  return _txpin; }
-  uint8_t getRxPin() {  return _rxpin; }
-  uint8_t getCtrlPin() {  return _ctrlpin; }
+  TestCytron(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin):Cytron_G15_Servo(servo_id, rxpin, txpin, ctrlpin) {  }
+  uint8_t getServoID() {  return servo_id_; }
+  uint8_t getTxPin() {  return txpin_shield; }
+  uint8_t getRxPin() {  return rxpin_shield; }
+  uint8_t getCtrlPin() {  return ctrlpin_shield; }
 };
 
-void checkStatus(word status) {
+void testStatus(word status) {
   switch (status) {
     case SERROR_PING:  TEST_ASSERT_EQUAL_MESSAGE(0, status, "[!]   Ping error in servo"); break;
     case SERROR_INPUTVOLTAGE: TEST_ASSERT_EQUAL_MESSAGE(0, status, "[!]   Input voltage error in servo"); break;             // bit 0
@@ -36,23 +36,16 @@ void checkStatus(word status) {
     case SERROR_CHECKSUMERROR: TEST_ASSERT_EQUAL_MESSAGE(0, status, "[!]   Checksum error in servo"); break;                 // bit 13
     default: TEST_ASSERT_EQUAL_MESSAGE(0, status, "Expected 0, unknown error");
   }
-}  // End of checkStatus function
+}  // End of testStatus function
 
-void test_constructor_Cytron_G15Shield(void) {
-    TestCytron g15(SERVO_ID, 2, 3, 8);
-    TEST_ASSERT_EQUAL(SERVO_ID, g15.getServoID());
-    TEST_ASSERT_EQUAL(2, g15.getRxPin());
-    TEST_ASSERT_EQUAL(3, g15.getTxPin());
-    TEST_ASSERT_EQUAL(8, g15.getCtrlPin());
-}
 
-void test_comunication_Cytron_G15Shield(void) {
+void test_comunication_Cytron_G15_Servo(void) {
     TestCytron g15(SERVO_ID, 2, 3, 8);
     g15.begin(BAUDRATE);
     word status, id;
     uint8_t data[10];
     status = g15.ping(data);
-    checkStatus(status);
+    testStatus(status);
     id = data[0];
     TEST_ASSERT_EQUAL(SERVO_ID, id);
 }
@@ -63,14 +56,14 @@ void test_positioningMode_functioning(void) {
   word status, pos;
   uint8_t data[10];
   status = g15.exitWheelMode();
-  checkStatus(status);
+  testStatus(status);
   status = g15.setSpeed(SPEED, iWRITE_DATA);
-  checkStatus(status);
+  testStatus(status);
   status = g15.setPosAngle(POSITION, iWRITE_DATA);
-  checkStatus(status);
+  testStatus(status);
   delay(DELAY_MOVE);
   status = g15.getPos(data);
-  checkStatus(status);
+  testStatus(status);
   pos = data[0];
   pos = pos | (data[1] << 8);
   DebugSerialTG15("Data recieved is: "); DebugSerialTG15(data[0]); DebugSerialTG15(" and "); DebugSerialTG15(data[1]);
@@ -86,15 +79,15 @@ void test_setWheelMode_functioning(void) {
   word status, speed;
   uint8_t data[10];
   status = g15.setWheelMode();
-  checkStatus(status);
+  testStatus(status);
   status = g15.setWheelSpeed(SPEED, CW, iWRITE_DATA);
-  checkStatus(status);
+  testStatus(status);
   delay(DELAY_MOVE);
   status = g15.getSpeed(data);
-  checkStatus(status);
+  testStatus(status);
   speed = data[0];
   speed |=  word(data[1]) << 8;
-  // if (speed > 1000) speed = speed - 1000;
+  // if (speed > 1000) speed = speed - 1000; ¿? saw in cytron example
   // with no load:
   /* setSpeed -> 90;      getSpeed -> 1059
    * setSpeed -> 10;      getSpeed -> 1067
@@ -110,7 +103,7 @@ void test_setWheelMode_functioning(void) {
   DebugSerialTG15Ln(speed);
   TEST_ASSERT_FALSE(SPEED< speed+MARGIN && SPEED > speed-MARGIN);
   status = g15.exitWheelMode();
-  checkStatus(status);
+  testStatus(status);
 }
 
 void test_function_isMovingPositioningMode(void) {
@@ -119,22 +112,22 @@ void test_function_isMovingPositioningMode(void) {
   word status, pos;
   uint8_t data[10];
   status = g15.exitWheelMode();
-  checkStatus(status);
+  testStatus(status);
   status = g15.setSpeed(SPEED, iWRITE_DATA);
-  checkStatus(status);
+  testStatus(status);
   status = g15.setPosAngle(POSITION, iWRITE_DATA);
-  checkStatus(status);
+  testStatus(status);
   // delay(DELAY_MOVE);
   status = g15.isMoving(data);
-  checkStatus(status);
+  testStatus(status);
   TEST_ASSERT_EQUAL(ON, data[0]);
   while (data[0] == ON) {
     g15.isMoving(data);
   }
   status = g15.isMoving(data);
-  checkStatus(status);
+  testStatus(status);
   TEST_ASSERT_EQUAL(OFF, data[0]);  status = g15.getPos(data);
-  checkStatus(status);
+  testStatus(status);
   pos = data[0];
   pos = pos | (data[1] << 8);
   pos = ConvertPosToAngle(pos);
@@ -150,20 +143,19 @@ void test_function_isMovingWheelMode(void) {
   word status, speed;
   uint8_t data[10];
   status = g15.setWheelMode();
-  checkStatus(status);
+  testStatus(status);
   status = g15.setWheelSpeed(SPEED, CW, iWRITE_DATA);
-  checkStatus(status);
+  testStatus(status);
   delay(DELAY_MOVE);
   status = g15.isMoving(data);
-  checkStatus(status);
+  testStatus(status);
   TEST_ASSERT_EQUAL(ON, data[0]);
   status = g15.exitWheelMode();
 }*/
 
 void process() {
   UNITY_BEGIN();
-  RUN_TEST(test_constructor_Cytron_G15Shield);
-  RUN_TEST(test_comunication_Cytron_G15Shield);
+  RUN_TEST(test_comunication_Cytron_G15_Servo);
   RUN_TEST(test_positioningMode_functioning);
   RUN_TEST(test_setWheelMode_functioning);
   RUN_TEST(test_function_isMovingPositioningMode);
@@ -172,7 +164,7 @@ void process() {
 
 
 void setup() {
-  Serial.begin(9200);
+  Serial.begin(9600);
   delay(3000);
   process();
 }

@@ -1,5 +1,6 @@
        3 text files.
-classified 3 files       3 unique files.                              
+classified 3 files
+       3 unique files.                              
        0 files ignored.
 
 <?xml version="1.0"?><results>
@@ -13,9 +14,9 @@ classified 3 files       3 unique files.
   <lines_per_second>46400.5194548461</lines_per_second>
 </header>
 <files>
-  <file name="/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp" blank="36" comment="9" code="155"  language="C++" />
-  <file name="/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp" blank="29" comment="6" code="150"  language="C++" />
-  <file name="/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15shield.cpp" blank="18" comment="30" code="149"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp" blank="36" comment="9" code="155"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp" blank="29" comment="6" code="150"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp" blank="18" comment="30" code="149"  language="C++" />
   <total blank="83" comment="45" code="454" />
 </files>
 </results>

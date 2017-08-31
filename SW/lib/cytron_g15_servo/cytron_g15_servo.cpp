@@ -12,73 +12,82 @@ Modified:
 */
 
 // #include "HardwareSerial.h"
-#include "Cytron_G15Shield.h"
+#include "cytron_g15_servo.h"
 
 boolean hardwareSerial;
 SoftwareSerial* G15Serial;
 
+
+uint8_t txpin_shield = 0, rxpin_shield = 0, ctrlpin_shield = 0;
+
 // This Code is using Serial library
 // baudrate 300, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, or 115200
 
-Cytron_G15Shield::Cytron_G15Shield(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin) {
-    _servo_id = servo_id;
-    _rxpin = rxpin;
-    _txpin = txpin;
-    _ctrlpin = ctrlpin;
+void initCytronG15Shield(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin){
+    rxpin_shield = rxpin;
+    txpin_shield = txpin;
+    ctrlpin_shield = ctrlpin;
 }
 
-Cytron_G15Shield::Cytron_G15Shield(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin) {
-    _rxpin = rxpin;
-    _txpin = txpin;
-    _ctrlpin = ctrlpin;
+Cytron_G15_Servo::Cytron_G15_Servo(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin) {
+    servo_id_ = servo_id;
+    initCytronG15Shield(rxpin, txpin, ctrlpin);
 }
 
-Cytron_G15Shield::Cytron_G15Shield(uint8_t ctrlpin) {
-    _rxpin = 0;
-    _txpin = 1;
-    _ctrlpin = ctrlpin;
+Cytron_G15_Servo::Cytron_G15_Servo(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin) {
+    initCytronG15Shield(rxpin, txpin, ctrlpin);
 }
 
-void Cytron_G15Shield::begin(uint32_t baudrate) {
-  if (_rxpin == 0 &&_txpin == 1) {
+Cytron_G15_Servo::Cytron_G15_Servo(uint8_t ctrlpin) {
+    initCytronG15Shield(0, 1, ctrlpin);
+}
+
+void Cytron_G15_Servo::init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate){
+    servo_id_ = servo_id;
+    initCytronG15Shield(rxpin, txpin, ctrlpin);
+    begin(baudrate);
+}
+
+void Cytron_G15_Servo::begin(uint32_t baudrate) {
+  if (rxpin_shield == 0 &&txpin_shield == 1) {
         hardwareSerial = true;
         Serial.begin(baudrate);
         while (!Serial) {}
         Serial.setTimeout(SerialTimeOut);
     } else {
         hardwareSerial = false;
-        pinMode(_rxpin, INPUT);
-        pinMode(_txpin, OUTPUT);
-        G15Serial = new SoftwareSerial(_rxpin, _txpin);
+        pinMode(rxpin_shield, INPUT);
+        pinMode(txpin_shield, OUTPUT);
+        G15Serial = new SoftwareSerial(rxpin_shield, txpin_shield);
         G15Serial->begin(baudrate);
         G15Serial->setTimeout(SerialTimeOut);
     }
-    pinMode(_ctrlpin, OUTPUT);
+    pinMode(ctrlpin_shield, OUTPUT);
     setTxMode();
 }
 
-void Cytron_G15Shield::end(void) {
-    if (_rxpin == 0 &&_txpin == 1) {
+void Cytron_G15_Servo::end(void) {
+    if (rxpin_shield == 0 &&txpin_shield == 1) {
         Serial.end();
     } else {
-        pinMode(_rxpin, INPUT);
-        pinMode(_txpin, INPUT);
+        pinMode(rxpin_shield, INPUT);
+        pinMode(txpin_shield, INPUT);
         G15Serial->end();
     }
-    pinMode(_ctrlpin, INPUT);
+    pinMode(ctrlpin_shield, INPUT);
 }
 
-void Cytron_G15Shield::setTxMode(void) {
-    digitalWrite(_ctrlpin, TxMode);
+void Cytron_G15_Servo::setTxMode(void) {
+    digitalWrite(ctrlpin_shield, TxMode);
 }
 
-void Cytron_G15Shield::setRxMode(void) {
-    digitalWrite(_ctrlpin, RxMode);
+void Cytron_G15_Servo::setRxMode(void) {
+    digitalWrite(ctrlpin_shield, RxMode);
 }
 
 // Send packet
 // Caution: At least 2 bytes of data array need to be passed into the function
-uint16_t Cytron_G15Shield::sendPacket(uint8_t id, uint8_t instruction, uint8_t* data, uint8_t parameterLength) {
+uint16_t Cytron_G15_Servo::sendPacket(uint8_t id, uint8_t instruction, uint8_t* data, uint8_t parameterLength) {
     uint8_t readCount = 0;
     uint8_t i;
     uint8_t packetLength = 0;
@@ -170,7 +179,7 @@ uint16_t Cytron_G15Shield::sendPacket(uint8_t id, uint8_t instruction, uint8_t* 
   return(error);
 }
 
-uint16_t Cytron_G15Shield::setWheelMode() {
+uint16_t Cytron_G15_Servo::setWheelMode() {
     uint16_t error = 0;
     error = setAngleLimit(0, 0);  // Enable wheel mode
     if (error != 0) {
@@ -181,11 +190,11 @@ uint16_t Cytron_G15Shield::setWheelMode() {
     return(error);
 }
 
-uint16_t Cytron_G15Shield::exitWheelMode() {
+uint16_t Cytron_G15_Servo::exitWheelMode() {
     return(setAngleLimit( 0, 1087));  // Reset to default angle limit
 }
 
-uint16_t Cytron_G15Shield::setWheelSpeed(uint16_t speed, uint8_t direction, uint8_t Write_Reg) {
+uint16_t Cytron_G15_Servo::setWheelSpeed(uint16_t speed, uint8_t direction, uint8_t Write_Reg) {
     speed = speed & 0x03FF;  // Eliminate bits which are non speed
     if (direction == CW) {
         speed = speed | 0x0400;
@@ -199,17 +208,17 @@ uint16_t Cytron_G15Shield::setWheelSpeed(uint16_t speed, uint8_t direction, uint
 // *            dat[1] = 0x00;                // Position upper byte
 // *            SetPos(dat, iWRITE_DATA);     // Send to servo 2 & action!
 // ******************************************************************
-uint16_t Cytron_G15Shield::setPos(uint16_t position, uint8_t Write_Reg) {
+uint16_t Cytron_G15_Servo::setPos(uint16_t position, uint8_t Write_Reg) {
     uint8_t txBuffer[3];
 
     txBuffer[0] = GOAL_POSITION_L;  // Control Starting Address
     txBuffer[1] = position & 0x00FF;  // Goal pos bottom 8 bits
     txBuffer[2] = position >> 8;  // Goal pos top 8 bits
 
-    return(sendPacket(_servo_id, Write_Reg, txBuffer, 3));
+    return(sendPacket(servo_id_, Write_Reg, txBuffer, 3));
 }
 
-uint16_t Cytron_G15Shield::setPosAngle(uint16_t angle, uint8_t Write_Reg) {
+uint16_t Cytron_G15_Servo::setPosAngle(uint16_t angle, uint8_t Write_Reg) {
     uint8_t txBuffer[3];
     uint16_t position = ConvertAngleToPos(angle);
 
@@ -217,10 +226,10 @@ uint16_t Cytron_G15Shield::setPosAngle(uint16_t angle, uint8_t Write_Reg) {
     txBuffer[1] = position & 0x00FF;  // Goal pos bottom 8 bits
     txBuffer[2] = position >> 8;  // Goal pos top 8 bits
 
-    return(sendPacket(_servo_id, Write_Reg, txBuffer, 3));
+    return(sendPacket(servo_id_, Write_Reg, txBuffer, 3));
 }
 
-uint16_t Cytron_G15Shield::setPosSpeed(uint16_t position, uint16_t speed, uint8_t Write_Reg) {
+uint16_t Cytron_G15_Servo::setPosSpeed(uint16_t position, uint16_t speed, uint8_t Write_Reg) {
     uint8_t txBuffer[5];
 
     txBuffer[0] = GOAL_POSITION_L;  // Control Starting Address
@@ -229,16 +238,16 @@ uint16_t Cytron_G15Shield::setPosSpeed(uint16_t position, uint16_t speed, uint8_
     txBuffer[3] = speed & 0x00FF;  // Speed bottom 8 bits
     txBuffer[4] = speed >> 8;  // Speed top 8 bits
 
-    return(sendPacket(_servo_id, Write_Reg, txBuffer, 5));
+    return(sendPacket(servo_id_, Write_Reg, txBuffer, 5));
 }
 
-uint16_t Cytron_G15Shield::rotateCW(uint16_t position, uint8_t Write_Reg) {
+uint16_t Cytron_G15_Servo::rotateCW(uint16_t position, uint8_t Write_Reg) {
     position = position | 0xC000;
 
     return(setPos(position, Write_Reg));
 }
 
-uint16_t Cytron_G15Shield::rotateCCW(uint16_t position, uint8_t Write_Reg) {
+uint16_t Cytron_G15_Servo::rotateCCW(uint16_t position, uint8_t Write_Reg) {
     position = position | 0x8000;
     position = position & 0xBFFF;
 
@@ -249,13 +258,13 @@ uint16_t Cytron_G15Shield::rotateCCW(uint16_t position, uint8_t Write_Reg) {
 // *    SET TORQUE ON OFF
 // *     eg:    SetTorqueOnOff(1, iREG_WRITE);    // Turn on torque of servo 2
 // ******************************************************************
-uint16_t Cytron_G15Shield::setTorqueOnOff(uint8_t onOff, uint8_t Write_Reg) {
+uint16_t Cytron_G15_Servo::setTorqueOnOff(uint8_t onOff, uint8_t Write_Reg) {
     uint8_t txBuffer[2];
 
     txBuffer[0] = TORQUE_ENABLE;
     txBuffer[1] = onOff;  // ON = 1, OFF = 0
 
-    return(sendPacket(_servo_id, Write_Reg, txBuffer, 2));
+    return(sendPacket(servo_id_, Write_Reg, txBuffer, 2));
 }
 // ******************************************************************
 // *    SET SPEED
@@ -264,18 +273,18 @@ uint16_t Cytron_G15Shield::setTorqueOnOff(uint8_t onOff, uint8_t Write_Reg) {
 // *            SetSpeed(dat, iREG_WRITE);    // Save data in servo 2 register &
 // *                                        // wait for action command
 // ******************************************************************
-uint16_t Cytron_G15Shield::setSpeed(uint16_t speed, uint8_t Write_Reg) {
+uint16_t Cytron_G15_Servo::setSpeed(uint16_t speed, uint8_t Write_Reg) {
     uint8_t txBuffer[3];
 
     txBuffer[0] = MOVING_SPEED_L;
     txBuffer[1] = speed & 0x00FF;  // Speed bottom 8 bits
     txBuffer[2] = speed >> 8;  // Speed top 8 bits
 
-    return(sendPacket(_servo_id, Write_Reg, txBuffer, 3));
+    return(sendPacket(servo_id_, Write_Reg, txBuffer, 3));
 }
 
 // ********************************************************************
-uint16_t Cytron_G15Shield::setTimeToGoal(uint16_t time, uint8_t Write_Reg) {
+uint16_t Cytron_G15_Servo::setTimeToGoal(uint16_t time, uint8_t Write_Reg) {
     time = time & 0x0FFF;
     time = time | 0x8000;  // Bit 15 represents the time to goal pos mode
 
@@ -291,7 +300,7 @@ uint16_t Cytron_G15Shield::setTimeToGoal(uint16_t time, uint8_t Write_Reg) {
 // *
 // *
 // ******************************************************************
-uint16_t Cytron_G15Shield::setAngleLimit(uint16_t CW_angle, uint16_t CCW_angle) {
+uint16_t Cytron_G15_Servo::setAngleLimit(uint16_t CW_angle, uint16_t CCW_angle) {
     uint8_t txBuffer[5];
     uint16_t error;
 
@@ -301,34 +310,34 @@ uint16_t Cytron_G15Shield::setAngleLimit(uint16_t CW_angle, uint16_t CCW_angle) 
     txBuffer[3] = CCW_angle & 0x00FF;  // CCW limit bottom 8 bits
     txBuffer[4] = CCW_angle >> 8;      // CCW limit top 8 bits
 
-    error = sendPacket(_servo_id, iWRITE_DATA, txBuffer, 5);
+    error = sendPacket(servo_id_, iWRITE_DATA, txBuffer, 5);
     delay(10);  // Delay for eeprom write
     return(error);
 }
 
-uint16_t Cytron_G15Shield::setTorqueLimit(uint16_t TorqueLimit) {
+uint16_t Cytron_G15_Servo::setTorqueLimit(uint16_t TorqueLimit) {
     uint8_t txBuffer[3];
 
     txBuffer[0] = TORQUE_LIMIT_L;
     txBuffer[1] = TorqueLimit & 0x00FF;  // Torque limit bottom 8 bits
     txBuffer[2] = TorqueLimit >> 8;  // Torque limit top 8 bits
 
-    return(sendPacket(_servo_id, iWRITE_DATA, txBuffer, 3));
+    return(sendPacket(servo_id_, iWRITE_DATA, txBuffer, 3));
 }
 
-uint16_t Cytron_G15Shield::setTemperatureLimit(uint8_t temperature) {
+uint16_t Cytron_G15_Servo::setTemperatureLimit(uint8_t temperature) {
     uint8_t txBuffer[2];
     uint16_t error;
 
     txBuffer[0] = LIMIT_TEMPERATURE;            // Starting Address
     txBuffer[1] = temperature;                  // temperature
 
-    error = sendPacket(_servo_id, iWRITE_DATA, txBuffer, 2);
+    error = sendPacket(servo_id_, iWRITE_DATA, txBuffer, 2);
     delay(10);  // Delay for eeprom write
     return(error);
 }
 
-uint16_t Cytron_G15Shield::setVoltageLimit(uint8_t voltageLow, uint8_t voltageHigh) {
+uint16_t Cytron_G15_Servo::setVoltageLimit(uint8_t voltageLow, uint8_t voltageHigh) {
     uint8_t txBuffer[3];
     uint16_t error;
 
@@ -336,7 +345,7 @@ uint16_t Cytron_G15Shield::setVoltageLimit(uint8_t voltageLow, uint8_t voltageHi
     txBuffer[1] = voltageLow;   // Lower voltage limit
     txBuffer[2] = voltageHigh;  // Higher voltage limit
 
-    error = sendPacket(_servo_id, iWRITE_DATA, txBuffer, 3);
+    error = sendPacket(servo_id_, iWRITE_DATA, txBuffer, 3);
     delay(10);  // Delay for eeprom write
     return(error);
 }
@@ -345,14 +354,14 @@ uint16_t Cytron_G15Shield::setVoltageLimit(uint8_t voltageLow, uint8_t voltageHi
 // *    SET ID
 // *     eg:    SetID(MAIN, 0xFE, 3);    // Change the ID of any number to 3
 // ******************************************************************
-uint16_t Cytron_G15Shield::setID(uint8_t newID) {
+uint16_t Cytron_G15_Servo::setID(uint8_t newID) {
     uint8_t txBuffer[2];
     uint16_t error;
 
     txBuffer[0] = ID;
     txBuffer[1] = newID;
 
-    error = sendPacket(_servo_id, iWRITE_DATA, txBuffer, 2);
+    error = sendPacket(servo_id_, iWRITE_DATA, txBuffer, 2);
     delay(10);  // Delay for eeprom write
     return(error);
 }
@@ -361,16 +370,16 @@ uint16_t Cytron_G15Shield::setID(uint8_t newID) {
 // *    SET LED
 // *     eg:    SetLED(1, iWRITE_DATA);    // Turn on LED of servo 2
 // ******************************************************************
-uint16_t Cytron_G15Shield::setLED(uint8_t onOff, uint8_t Write_Reg) {
+uint16_t Cytron_G15_Servo::setLED(uint8_t onOff, uint8_t Write_Reg) {
     uint8_t txBuffer[2];
 
     txBuffer[0] = LED;  // Control Starting Address
     txBuffer[1] = onOff;  // ON = 1, OFF = 0
 
-    return(sendPacket(_servo_id, Write_Reg, txBuffer, 2));
+    return(sendPacket(servo_id_, Write_Reg, txBuffer, 2));
 }
 
-uint16_t Cytron_G15Shield::setAlarmLED(uint8_t alarmLED) {
+uint16_t Cytron_G15_Servo::setAlarmLED(uint8_t alarmLED) {
     uint8_t alarmValue = 0x00;
     uint8_t txBuffer[2];
     uint16_t error;
@@ -380,12 +389,12 @@ uint16_t Cytron_G15Shield::setAlarmLED(uint8_t alarmLED) {
     txBuffer[0] = ALARM_LED;
     txBuffer[1] = alarmValue;  // Alarm value
 
-    error = sendPacket(_servo_id, iWRITE_DATA, txBuffer, 2);
+    error = sendPacket(servo_id_, iWRITE_DATA, txBuffer, 2);
     delay(10);
     return(error);
 }
 
-uint16_t Cytron_G15Shield::setAlarmShutDown(uint8_t alarm) {
+uint16_t Cytron_G15_Servo::setAlarmShutDown(uint8_t alarm) {
     uint8_t alarmValue = 0x00;
     uint8_t txBuffer[2];
     uint16_t error;
@@ -395,12 +404,12 @@ uint16_t Cytron_G15Shield::setAlarmShutDown(uint8_t alarm) {
     txBuffer[0] = ALARM_SHUTDOWN;  // Control Starting Address
     txBuffer[1] = alarmValue;  // Alarm
 
-    error = sendPacket(_servo_id, iWRITE_DATA, txBuffer, 2);
+    error = sendPacket(servo_id_, iWRITE_DATA, txBuffer, 2);
     delay(10);  // Delay for eeprom write
     return(error);
 }
 
-uint16_t Cytron_G15Shield::setMarginSlopePunch(uint8_t CWMargin, uint8_t CCWMargin, uint8_t CWSlope, uint8_t CCWSlope, uint16_t punch) {
+uint16_t Cytron_G15_Servo::setMarginSlopePunch(uint8_t CWMargin, uint8_t CCWMargin, uint8_t CWSlope, uint8_t CCWSlope, uint16_t punch) {
     uint8_t txBuffer[5];
     uint16_t error = 0;
 
@@ -410,7 +419,7 @@ uint16_t Cytron_G15Shield::setMarginSlopePunch(uint8_t CWMargin, uint8_t CCWMarg
     txBuffer[3] = CWSlope;
     txBuffer[4] = CCWSlope;
 
-  error = sendPacket(_servo_id, iWRITE_DATA, txBuffer, 5);
+  error = sendPacket(servo_id_, iWRITE_DATA, txBuffer, 5);
 
     if (error != 0) {
         return(error);
@@ -420,7 +429,7 @@ uint16_t Cytron_G15Shield::setMarginSlopePunch(uint8_t CWMargin, uint8_t CCWMarg
     txBuffer[1] = punch & 0x00FF;         // punch Lower 8 bits
     txBuffer[2] = punch >> 8;             // punch Higher 8 bits
 
-  error = sendPacket(_servo_id, iWRITE_DATA, txBuffer, 3);
+  error = sendPacket(servo_id_, iWRITE_DATA, txBuffer, 3);
 
     return(error);
 }
@@ -429,14 +438,14 @@ uint16_t Cytron_G15Shield::setMarginSlopePunch(uint8_t CWMargin, uint8_t CCWMarg
 // *    SET BAUDRATE
 // *     eg:    SetBaud(1, 2, 1);    // Turn on torque of servo 2
 // ******************************************************************
-uint16_t Cytron_G15Shield::setBaudRate(uint32_t baudrate) {
+uint16_t Cytron_G15_Servo::setBaudRate(uint32_t baudrate) {
     uint8_t txBuffer[2];
     uint16_t error;
 
   txBuffer[0] = BAUD_RATE;
     txBuffer[1] = (2000000 / baudrate) - 1;    // Baudrate = 32M / (16*(n + 1)) = 2000000 / (n+1)
 
-    error = sendPacket(_servo_id, iWRITE_DATA, txBuffer, 2);
+    error = sendPacket(servo_id_, iWRITE_DATA, txBuffer, 2);
     delay(10);  // Delay for eeprom write
   return(error);
 }
@@ -445,11 +454,11 @@ uint16_t Cytron_G15Shield::setBaudRate(uint32_t baudrate) {
 // *    RESET TO FACTORY SETTINGS
 // *     eg:    FactoryReset(1, 1);  // Reset servo 1
 // ******************************************************************
-uint16_t Cytron_G15Shield::factoryReset() {
+uint16_t Cytron_G15_Servo::factoryReset() {
     uint8_t txBuffer[1];  // Dummy byte
     uint16_t error;
 
-    error = sendPacket(_servo_id, iRESET, txBuffer, 0);
+    error = sendPacket(servo_id_, iRESET, txBuffer, 0);
     delay(100);  // Delay for eeprom write
   return(error);
 }
@@ -457,66 +466,66 @@ uint16_t Cytron_G15Shield::factoryReset() {
 // *    PING
 // *     eg:    Ping(MAIN, 1, dat);    // Ping servo 1, dat is array's pointer
 // ******************************************************************
-uint16_t Cytron_G15Shield::ping(uint8_t *data) {
-  return(sendPacket(_servo_id, iPING, data, 0));
+uint16_t Cytron_G15_Servo::ping(uint8_t *data) {
+  return(sendPacket(servo_id_, iPING, data, 0));
 }
 
 // ******************************************************************
 // *    GET CURRENT POSITION
 // ******************************************************************
-uint16_t Cytron_G15Shield::getPos(uint8_t *data) {
+uint16_t Cytron_G15_Servo::getPos(uint8_t *data) {
   data[0] = PRESENT_POSITION_L;    // Starting address where data to be read
   data[1] = 0x02;  // No of bytes to be read
 
-  return(sendPacket(_servo_id, iREAD_DATA, data, 2));
+  return(sendPacket(servo_id_, iREAD_DATA, data, 2));
 }
 
-uint16_t Cytron_G15Shield::getSpeed(uint8_t *data) {
+uint16_t Cytron_G15_Servo::getSpeed(uint8_t *data) {
   data[0] = PRESENT_SPEED_L;  // Starting address where data to be read
   data[1] = 0x02;  // No of bytes to be read
 
-  return(sendPacket(_servo_id, iREAD_DATA, data, 2));
+  return(sendPacket(servo_id_, iREAD_DATA, data, 2));
 }
 
-uint16_t Cytron_G15Shield::getLoad(uint8_t *data) {
+uint16_t Cytron_G15_Servo::getLoad(uint8_t *data) {
   data[0] = PRESENT_LOAD_L;  // Starting address where data to be read
   data[1] = 0x02;  // No of bytes to be read
 
-  return(sendPacket(_servo_id, iREAD_DATA, data, 2));
+  return(sendPacket(servo_id_, iREAD_DATA, data, 2));
 }
 
-uint16_t Cytron_G15Shield::getVoltage(uint8_t *data) {
+uint16_t Cytron_G15_Servo::getVoltage(uint8_t *data) {
     data[0] = PRESENT_VOLTAGE;  // Starting address where data to be read
   data[1] = 0x01;  // No of bytes to be read
 
-  return(sendPacket(_servo_id, iREAD_DATA, data, 2));
+  return(sendPacket(servo_id_, iREAD_DATA, data, 2));
 }
 
-uint16_t Cytron_G15Shield::getTemperature(uint8_t *data) {
+uint16_t Cytron_G15_Servo::getTemperature(uint8_t *data) {
     data[0] = PRESENT_TEMPERATURE;  // Starting address where data to be read
   data[1] = 0x01;  // No of bytes to be read
 
-  return(sendPacket(_servo_id, iREAD_DATA, data, 2));
+  return(sendPacket(servo_id_, iREAD_DATA, data, 2));
 }
 
 // ******************************************************************
 // *    GET TORQUE (ON/OFF?)
 // ******************************************************************
-uint16_t Cytron_G15Shield::getTorqueOnOff(uint8_t *data) {
+uint16_t Cytron_G15_Servo::getTorqueOnOff(uint8_t *data) {
   data[0] = TORQUE_ENABLE;  // Starting address where data to be read
   data[1] = 0x01;  // No of bytes to be read
 
-  return(sendPacket(_servo_id, iREAD_DATA, data, 2));
+  return(sendPacket(servo_id_, iREAD_DATA, data, 2));
 }
 
 // ******************************************************************
 // *    IS MOTOR MOVING?
 // ******************************************************************
-uint16_t Cytron_G15Shield::isMoving(uint8_t *data) {
+uint16_t Cytron_G15_Servo::isMoving(uint8_t *data) {
     data[0] = MOVING;  // Starting address where data to be read
     data[1] = 0x01;  // No of bytes to be read
 
-    return(sendPacket(_servo_id, iREAD_DATA, data, 2));
+    return(sendPacket(servo_id_, iREAD_DATA, data, 2));
 }
 
 
@@ -525,10 +534,10 @@ uint16_t Cytron_G15Shield::isMoving(uint8_t *data) {
 // *    SET ACTION
 // *     eg:    SetAction(1);    // All servo action!
 // ******************************************************************
-void Cytron_G15Shield::setAction(void) {
+void Cytron_G15_Servo::setAction(void) {
     // byte TxBuff[1];    // dummy byte
     // sendPacket(0xFE, iACTION, TxBuff, 0);
-    set_act(_ctrlpin);
+    set_act(ctrlpin_shield);
 }
 
 void set_act(uint8_t ctrl) {

@@ -1,0 +1,28 @@
+      10 text files.
+classified 10 files      10 unique files.                              
+       0 files ignored.
+
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.0299141407012939</elapsed_seconds>
+  <n_files>10</n_files>
+  <n_lines>1474</n_lines>
+  <files_per_second>334.290063681069</files_per_second>
+  <lines_per_second>49274.3553865895</lines_per_second>
+</header>
+<files>
+  <file name="/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp" blank="114" comment="79" code="380"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp" blank="50" comment="107" code="154"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h" blank="29" comment="35" code="148"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h" blank="18" comment="0" code="62"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/debug/debug.h" blank="14" comment="17" code="47"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp" blank="15" comment="24" code="42"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h" blank="9" comment="0" code="26"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp" blank="8" comment="13" code="24"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/src/main.cpp" blank="11" comment="11" code="23"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h" blank="4" comment="0" code="10"  language="C/C++ Header" />
+  <total blank="272" comment="286" code="916" />
+</files>
+</results>

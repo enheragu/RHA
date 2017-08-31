@@ -1,0 +1,382 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/terryyin/lizard/master/lizard.xsl"?>
+<cppncss>
+	<measure type="Function">
+		<labels>
+			<label>Nr.</label>
+			<label>NCSS</label>
+			<label>CCN</label>
+		</labels>
+		<item name="TestServoRHA::TestServoRHA(...) at /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp:22">
+			<value>1</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::initServo(...) at /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp:29">
+			<value>2</value>
+			<value>12</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::calibrateTorque(...) at /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp:44">
+			<value>3</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::returnPacketSet(...) at /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp:49">
+			<value>4</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::SetWheelSpeed(...) at /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp:53">
+			<value>5</value>
+			<value>8</value>
+			<value>3</value>
+		</item>
+		<item name="TestServoRHA::begin(...) at /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp:62">
+			<value>6</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="test_function_compareAngles(...) at /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp:67">
+			<value>7</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="test_function_compareSpeed(...) at /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp:74">
+			<value>8</value>
+			<value>8</value>
+			<value>1</value>
+		</item>
+		<item name="test_function_addToPacket(...) at /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp:89">
+			<value>9</value>
+			<value>17</value>
+			<value>1</value>
+		</item>
+		<item name="test_function_warpPacket(...) at /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp:112">
+			<value>10</value>
+			<value>33</value>
+			<value>2</value>
+		</item>
+		<item name="test_function_SetWheelSpeed(...) at /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp:152">
+			<value>11</value>
+			<value>11</value>
+			<value>1</value>
+		</item>
+		<item name="process(...) at /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp:167">
+			<value>12</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="setup(...) at /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp:179">
+			<value>13</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="loop(...) at /home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp:185">
+			<value>14</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="9"/>
+		<average label="CCN" value="1"/>
+		<item name="TestServoRHA::TestServoRHA(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:22">
+			<value>15</value>
+			<value>2</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::initServo(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:26">
+			<value>16</value>
+			<value>16</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getServoID(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:48">
+			<value>17</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getTxPin(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:49">
+			<value>18</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getRxPin(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:50">
+			<value>19</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getCtrlPin(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:51">
+			<value>20</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getMinTorqueCw(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:53">
+			<value>21</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getMinTorqueCcw(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:54">
+			<value>22</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getMaxTorqueCw(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:55">
+			<value>23</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getMaxTorqueCcw(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:56">
+			<value>24</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getAccelerationSlope(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:57">
+			<value>25</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getAccelerationAngle(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:58">
+			<value>26</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getFlagMoving(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:59">
+			<value>27</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getCurrentPose(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:60">
+			<value>28</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getGoalPoseEncoder(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:61">
+			<value>29</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getGoalDirection(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:62">
+			<value>30</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getInitPose(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:63">
+			<value>31</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getEncoderCurrent(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:64">
+			<value>32</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getEncoderFlag(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:65">
+			<value>33</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getFlagAccelerating(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:66">
+			<value>34</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::getFlagDecelerating(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:67">
+			<value>35</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::setInitPose(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:69">
+			<value>36</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::setCurrentPose(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:70">
+			<value>37</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::setFlagFirstTimeAccDecel(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:71">
+			<value>38</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::setFlagAccelerating(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:72">
+			<value>39</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestServoRHA::setFlagDecelerating(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:73">
+			<value>40</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="test_function_setGoalEncoder(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:76">
+			<value>41</value>
+			<value>8</value>
+			<value>1</value>
+		</item>
+		<item name="test_function_setInitServo(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:86">
+			<value>42</value>
+			<value>11</value>
+			<value>1</value>
+		</item>
+		<item name="test_function_isMoving(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:99">
+			<value>43</value>
+			<value>13</value>
+			<value>1</value>
+		</item>
+		<item name="test_function_readAngle(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:113">
+			<value>44</value>
+			<value>9</value>
+			<value>2</value>
+		</item>
+		<item name="test_function_calibrateTorque(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:123">
+			<value>45</value>
+			<value>29</value>
+			<value>1</value>
+		</item>
+		<item name="configureServoForAccelDecelTestCw(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:163">
+			<value>46</value>
+			<value>15</value>
+			<value>1</value>
+		</item>
+		<item name="test_function_accelerateCW(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:180">
+			<value>47</value>
+			<value>25</value>
+			<value>4</value>
+		</item>
+		<item name="test_function_decelerateCW(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:208">
+			<value>48</value>
+			<value>28</value>
+			<value>4</value>
+		</item>
+		<item name="test_function_encoderModeRotation(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:240">
+			<value>49</value>
+			<value>2</value>
+			<value>1</value>
+		</item>
+		<item name="process(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:244">
+			<value>50</value>
+			<value>7</value>
+			<value>1</value>
+		</item>
+		<item name="setup(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:266">
+			<value>51</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="loop(...) at /home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp:272">
+			<value>52</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="6"/>
+		<average label="CCN" value="1"/>
+		<item name="TestCytron::TestCytron(...) at /home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp:16">
+			<value>53</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestCytron::getServoID(...) at /home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp:17">
+			<value>54</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestCytron::getTxPin(...) at /home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp:18">
+			<value>55</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestCytron::getRxPin(...) at /home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp:19">
+			<value>56</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="TestCytron::getCtrlPin(...) at /home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp:20">
+			<value>57</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="checkStatus(...) at /home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp:23">
+			<value>58</value>
+			<value>17</value>
+			<value>13</value>
+		</item>
+		<item name="test_constructor_Cytron_G15_Servo(...) at /home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp:41">
+			<value>59</value>
+			<value>7</value>
+			<value>1</value>
+		</item>
+		<item name="test_comunication_Cytron_G15_Servo(...) at /home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp:49">
+			<value>60</value>
+			<value>10</value>
+			<value>1</value>
+		</item>
+		<item name="test_positioningMode_functioning(...) at /home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp:60">
+			<value>61</value>
+			<value>22</value>
+			<value>2</value>
+		</item>
+		<item name="test_setWheelMode_functioning(...) at /home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp:83">
+			<value>62</value>
+			<value>21</value>
+			<value>2</value>
+		</item>
+		<item name="test_function_isMovingPositioningMode(...) at /home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp:116">
+			<value>63</value>
+			<value>26</value>
+			<value>3</value>
+		</item>
+		<item name="process(...) at /home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp:163">
+			<value>64</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="setup(...) at /home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp:174">
+			<value>65</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="loop(...) at /home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp:180">
+			<value>66</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="6"/>
+		<average label="CCN" value="1"/>
+	</measure>
+	<measure type="File">
+		<labels>
+			<label>Nr.</label>
+			<label>NCSS</label>
+			<label>CCN</label>
+			<label>Functions</label>
+		</labels>
+		<item name="/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp">
+			<value>1</value>
+			<value>143</value>
+			<value>17</value>
+			<value>14</value>
+		</item>
+		<item name="/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp">
+			<value>2</value>
+			<value>212</value>
+			<value>45</value>
+			<value>38</value>
+		</item>
+		<item name="/home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp">
+			<value>3</value>
+			<value>134</value>
+			<value>30</value>
+			<value>14</value>
+		</item>
+		<average label="NCSS" value="163"/>
+		<average label="CCN" value="30"/>
+		<average label="Functions" value="22"/>
+		<sum label="NCSS" value="489"/>
+		<sum label="CCN" value="92"/>
+		<sum label="Functions" value="66"/>
+		<average label="NCSS" value="7"/>
+		<average label="CCN" value="1"/>
+	</measure>
+</cppncss>
+

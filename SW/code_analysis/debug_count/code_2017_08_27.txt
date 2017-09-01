@@ -1,6 +1,5 @@
 lib/cytron_g15_servo/cytron_g15_servo.cpp:0
 lib/cytron_g15_servo/cytron_g15_servo.h:0
-lib/debug/debug.h.gch:5
 lib/debug/debug.h:31
 lib/joint_rha/joint_rha.h:0
 lib/joint_rha/joint_rha.cpp:0

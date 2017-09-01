@@ -1,9 +1,11 @@
 #!/usr/bin/python
+n_debug_test = 9
+n_debug_code = 9
 n_cloc_test = 9
 n_cloc = 9
 #List for Cloc data
-# file[numer] = [date, whole_blank_lines, whole_code_lines, whole_comment_lines, whole_comment_percentage, max_comment_percentage, max_comment_name, min_comment_percentage, min_comment_name]
-# file[numer] = [  0 ,         1        ,        2        ,          3         ,            4            ,           5           ,        6        ,           7           ,        8        ]
+# file = [date, whole_blank_lines, whole_code_lines, whole_comment_lines, whole_comment_percentage, max_comment_percentage, max_comment_name, min_comment_percentage, min_comment_name]
+# file = [  0 ,         1        ,        2        ,          3         ,            4            ,           5           ,        6        ,           7           ,        8        ]
 
 cloc = [['2017_08_23','209','831','232','27.9181708785','92.8571428571','joint_rha.cpp','12.6984126984','servo_rha.h'],\
 ['2017_08_24','218','867','241','27.7970011534','92.8571428571','joint_rha.cpp','11.7647058824','servo_rha.h'],\
@@ -24,4 +26,28 @@ cloc_test = [['2017_08_23','69','353','43','12.1813031161','16.7597765363','test
 ['2017_08_29','79','393','48','12.213740458','18.2926829268','test_cytron_g15_servo.cpp','6.45161290323','test_servo_real.cpp'],\
 ['2017_08_30','79','393','48','12.213740458','18.2926829268','test_cytron_g15_servo.cpp','6.45161290323','test_servo_real.cpp'],\
 ['2017_08_31','79','393','48','12.213740458','18.2926829268','test_cytron_g15_servo.cpp','6.45161290323','test_servo_real.cpp'],\
+[0]]
+ 
+#List for Debug data
+# file = [date, debug_total, debug_max, debug_max_name, debug_min, debug_min_name]
+# file = [  0 ,      1     ,     2    ,       3       ,    4     ,       5       ]
+debug_code = [['2017_08_23', '38', '38', 'servo_rha.cpp', '0', 'main.cpp'] ,\
+['2017_08_24', '38', '38', 'servo_rha.cpp', '0', 'main.cpp'] ,\
+['2017_08_25', '38', '38', 'servo_rha.cpp', '0', 'main.cpp'] ,\
+['2017_08_26', '39', '39', 'servo_rha.cpp', '0', 'main.cpp'] ,\
+['2017_08_27', '40', '40', 'servo_rha.cpp', '0', 'main.cpp'] ,\
+['2017_08_28', '28', '28', 'servo_rha.cpp', '0', 'main.cpp'] ,\
+['2017_08_29', '28', '28', 'servo_rha.cpp', '0', 'main.cpp'] ,\
+['2017_08_30', '28', '28', 'servo_rha.cpp', '0', 'main.cpp'] ,\
+['2017_08_31', '28', '28', 'servo_rha.cpp', '0', 'main.cpp'] ,\
+[0]]
+debug_test = [['2017_08_23', '17', '6', 'test_CYTRON_G15_SERVO.cpp', '8', 'test_servo_real.cpp'] ,\
+['2017_08_24', '17', '6', 'test_CYTRON_G15_SERVO.cpp', '8', 'test_servo_real.cpp'] ,\
+['2017_08_25', '17', '6', 'test_CYTRON_G15_SERVO.cpp', '8', 'test_servo_real.cpp'] ,\
+['2017_08_26', '38', '6', 'test_cytron_g15_servo.cpp', '29', 'test_servo_real.cpp'] ,\
+['2017_08_27', '38', '6', 'test_cytron_g15_servo.cpp', '29', 'test_servo_real.cpp'] ,\
+['2017_08_28', '20', '6', 'test_cytron_g15_servo.cpp', '11', 'test_servo_real.cpp'] ,\
+['2017_08_29', '20', '6', 'test_cytron_g15_servo.cpp', '11', 'test_servo_real.cpp'] ,\
+['2017_08_30', '20', '6', 'test_cytron_g15_servo.cpp', '11', 'test_servo_real.cpp'] ,\
+['2017_08_31', '20', '6', 'test_cytron_g15_servo.cpp', '11', 'test_servo_real.cpp'] ,\
 [0]]

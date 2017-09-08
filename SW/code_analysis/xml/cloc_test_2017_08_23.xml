@@ -13,7 +13,7 @@ classified 3 files       3 unique files.
   <lines_per_second>38255.6855360716</lines_per_second>
 </header>
 <files>
-  <file name="/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp" blank="18" comment="30" code="149"  language="C++" />
+  <file name="/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15_servo.cpp" blank="18" comment="30" code="149"  language="C++" />
   <file name="/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp" blank="35" comment="9" code="146"  language="C++" />
   <file name="/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp" blank="16" comment="4" code="58"  language="C++" />
   <total blank="69" comment="43" code="353" />

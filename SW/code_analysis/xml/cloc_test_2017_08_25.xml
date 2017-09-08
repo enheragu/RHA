@@ -15,7 +15,7 @@ classified 3 files       3 unique files.
 <files>
   <file name="/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp" blank="36" comment="9" code="149"  language="C++" />
   <file name="/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp" blank="28" comment="6" code="144"  language="C++" />
-  <file name="/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp" blank="17" comment="30" code="143"  language="C++" />
+  <file name="/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15_servo.cpp" blank="17" comment="30" code="143"  language="C++" />
   <total blank="81" comment="45" code="436" />
 </files>
 </results>

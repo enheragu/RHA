@@ -8,7 +8,7 @@ File                                                                            
 -------------------------------------------------------------------------------------------------------------------------
 /home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp                                36              9            149
 /home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp                                28              6            144
-/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp                   17             30            143
+/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15_servo.cpp                   17             30            143
 -------------------------------------------------------------------------------------------------------------------------
 SUM:                                                                                     81             45            436
 -------------------------------------------------------------------------------------------------------------------------

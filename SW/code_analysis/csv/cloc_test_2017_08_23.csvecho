@@ -3,6 +3,6 @@ classified 3 files       3 unique files.
        0 files ignored.
 
 language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.60  T=0.02 s (169.9 files/s, 26333.7 lines/s)"
-C++,/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp,18,30,149
+C++,/home/gmv/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15_servo.cpp,18,30,149
 C++,/home/gmv/RHA/SW/test/test_servo_mock/test_servo_mock.cpp,35,9,146
 C++,/home/gmv/RHA/SW/test/test_servo_real/test_servo_real.cpp,16,4,58

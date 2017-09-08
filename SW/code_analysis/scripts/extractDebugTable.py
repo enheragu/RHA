@@ -40,6 +40,9 @@ def main(argv):
     result_list = [element for element in debug_in_files if ".gch" not in element[0]]
     result_list = [element for element in debug_in_files if "debug.h" not in element[0]]
 
+    results = results + result_list;
+
+    """
     debug_total = 0
     debug_max = 0
     debug_max_name = ''
@@ -61,7 +64,7 @@ def main(argv):
     results.append(debug_max_name)
     results.append(debug_min)
     results.append(debug_min_name)
-
+    """
 
     #print ("Results:")
     #print (results)

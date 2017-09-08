@@ -42,22 +42,23 @@ long encoderTemp = 0,
  //returns string message of servo errors
  int printServoStatusError (uint16_t error)
  {
-   switch (error)
-   {
-     case SERROR_PING: return  Serial.print("[!]   Ping error in servo: ");
-     case SERROR_INPUTVOLTAGE: return  Serial.print("[!]   Input voltage error in servo: ")    ;          // bit 0
-     case SERROR_ANGLELIMIT: return  Serial.print("[!]   Angle limit error in servo: ")      ;           // bit 1
-     case SERROR_OVERHEATING: return  Serial.print("[!]   Overheating error in servo: ")     ;          // bit 2
-     case SERROR_RANGE: return  Serial.print("[!]   Range error in servo: ")               ;             // bit 3
-     case SERROR_CHECKSUM: return  Serial.print("[!]   Checksum error in servo: ")          ;             // bit 4
-     case SERROR_OVERLOAD: return  Serial.print("[!]   Overload error in servo: ")          ;             // bit 5
-     case SERROR_INSTRUCTION: return  Serial.print("[!]   Instruction error in servo: ");            // bit 7
-     case SERROR_PACKETLOST: return  Serial.print("[!]   Packet lost or receive time out in servo: ");    // bit 8
-     case SERROR_WRONGHEADER: return  Serial.print("[!]   Wrong header in servo: ")      ;              // bit 9
-     case SERROR_IDMISMATCH: return  Serial.print("[!]   ID mismatch in servo: ")       ;                  // bit 10
-     case SERROR_CHECKSUMERROR: return  Serial.print("[!]   Checksum error in servo: ")    ;               // bit 13
-     default: Serial.println("default case");
-   }
+
+     if (error & SERROR_PING)  Serial.println("[!]   Ping error in servo: ");
+     if (error & SERROR_INPUTVOLTAGE)  Serial.println("[!]   Input voltage error in servo: ")    ;          // bit 0
+     if (error & SERROR_ANGLELIMIT)  Serial.println("[!]   Angle limit error in servo: ")      ;           // bit 1
+     if (error & SERROR_OVERHEATING)  Serial.println("[!]   Overheating error in servo: ")     ;          // bit 2
+     if (error & SERROR_RANGE)  Serial.println("[!]   Range error in servo: ")               ;             // bit 3
+     if (error & SERROR_CHECKSUM)  Serial.println("[!]   Checksum error in servo: ")          ;             // bit 4
+     if (error & SERROR_OVERLOAD)  Serial.println("[!]   Overload error in servo: ")          ;             // bit 5
+     if (error & SERROR_INSTRUCTION)  Serial.println("[!]   Instruction error in servo: ");            // bit 7
+     if (error & SERROR_PACKETLOST)  Serial.println("[!]   Packet lost or receive time out in servo: ");    // bit 8
+     if (error & SERROR_WRONGHEADER)  Serial.println("[!]   Wrong header in servo: ")      ;              // bit 9
+     if (error & SERROR_IDMISMATCH)  Serial.println("[!]   ID mismatch in servo: ")       ;                  // bit 10
+     if (error & SERROR_CHECKSUMERROR)  Serial.println("[!]   Checksum error in servo: ")    ;               // bit 13
+     else {
+         Serial.print("Default case. Error: ");
+         Serial.println(error);
+     }
  }
 
 void setup() {
@@ -65,15 +66,39 @@ void setup() {
   Serial.println("estoy en el setup");
   // g15.begin(19200);
   //servo_test1.init(1, 2, 3, 8, 9200);
-  servo_test1.init();
-  servo_test1.exitWheelMode();
+  ServoRHA servo_broadcast;
+  servo_broadcast.init(0xFE,2,3,8,19200);         //Broadcast initialize
+  servo_broadcast.ping(data);
+  IDcurrent = data[0];
+  Serial.print("ID now is: "); Serial.println(IDcurrent);
+  ServoRHA servo1;
+  servo1.init(1,2,3,8,19200);
+
+  delay(25);
+  servo1.setAlarmLED(0x7F);
+  delay(25);
+  Serial.println("Exiting wheel mode");
+  word error = servo1.exitWheelMode();
+  printServoStatusError(error);
+  delay(25);
+  Serial.println("Set wheel mode");
+  error = servo1.setWheelMode();
+  printServoStatusError(error);
+  delay(25);
+  Serial.println("Set speed");
+  error = servo1.setWheelSpeed(1000, CW);
+  printServoStatusError(error);
 }
 
+void loop(){
 
+}
+
+/*
 void loop() {
   Serial.println("estoy en el loop");
 
-  speedSet = 500;
+  speedSet = 700;
   torqueSet = 1023;
   encoderSmallRotation = 0;
   encoderFullRotation = 1;
@@ -108,6 +133,7 @@ void loop() {
     pos = data[0];
     pos = pos | ((data[1]) << 8);
     encoderCurrent = pos;
+    Serial.print("Current pose: ");   Serial.println(encoderCurrent);
 
     if (encoderCurrent < (encoderTemp + 5)  && encoderCurrent > (encoderTemp - 5) && encoderFlag == 0) {
       encoderTotal++;
@@ -132,6 +158,6 @@ void loop() {
 
 
 
-}
+}*/
 
 //#endif

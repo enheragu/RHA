@@ -5,9 +5,9 @@ classified 8 files
 
 
 language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.60  T=0.02 s (405.7 files/s, 69425.0 lines/s)"
-C++,/home/quique/Documentos/RHA/SW/lib/CYTRON_G15_SERVO/CYTRON_G15_SERVO.cpp,110,79,375
+C++,/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp,110,79,375
 C++,/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp,49,97,205
-C/C++ Header,/home/quique/Documentos/RHA/SW/lib/CYTRON_G15_SERVO/cytron_g15_servo.h,28,35,146
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h,28,35,146
 C/C++ Header,/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h,19,5,55
 C/C++ Header,/home/quique/Documentos/RHA/SW/lib/debug/debug.h,14,17,47
 C++,/home/quique/Documentos/RHA/SW/src/main.cpp,6,8,26

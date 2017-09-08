@@ -1,0 +1,21 @@
+      10 text files.
+classified 10 files      10 unique files.                              
+       0 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.10 s (100.1 files/s, 15995.2 lines/s)
+---------------------------------------------------------------------------------------------------------------------------
+File                                                                                    blank        comment           code
+---------------------------------------------------------------------------------------------------------------------------
+/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp                  114             79            380
+/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp                                 51            107            159
+/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h                     29             35            148
+/home/quique/Documentos/RHA/SW/src/main.cpp                                                29             65             69
+/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h                                   18              0             62
+/home/quique/Documentos/RHA/SW/lib/debug/debug.h                                           14             17             47
+/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp                                 15             24             42
+/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h                                    9              0             26
+/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp                          8             13             24
+/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h                            4              0             10
+---------------------------------------------------------------------------------------------------------------------------
+SUM:                                                                                      291            340            967
+---------------------------------------------------------------------------------------------------------------------------

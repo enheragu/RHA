@@ -15,7 +15,7 @@ classified 4 files
 <files>
   <file name="/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp" blank="43" comment="15" code="217"  language="C++" />
   <file name="/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp" blank="35" comment="9" code="148"  language="C++" />
-  <file name="/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_CYTRON_G15_SERVO.cpp" blank="16" comment="30" code="142"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/test_cytrong_g15shield/test_cytron_g15_servo.cpp" blank="16" comment="30" code="142"  language="C++" />
   <total blank="102" comment="54" code="525" />
 </files>
 </results>

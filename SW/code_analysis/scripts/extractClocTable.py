@@ -4,25 +4,39 @@ import xml.sax
 import sys, getopt
 import os
 
+from debug_list import debug_code
+from debug_list import debug_test
+
 class ClocHandler( xml.sax.ContentHandler ):
-    def __init__(self, inputfile):
+    def __init__(self, inputfile, debug_list):
         self.min_comment_name = str(0)
         self.max_comment_name = str(0)
+        self.min_debug_name = str(0)
+        self.max_debug_name = str(0)
         self.name = str(0)
         self.date = str(0)
         self.returnDateInput(inputfile)
         self.num_lcomment = int(0)
         self.num_lcode = int(0)
         self.num_lblank = int(0)
+        self.num_ldebug = int(0)
         self.percentage_lcomment = float(0.0)
+        self.percentage_ldebug = float(0.0)
         self.whole_percentage_lcomment = float(0.0)
+        self.whole_percentage_ldebug = float(0.0)
         self.average_whole_percentage_lcomment = float(0.0)
+        self.average_whole_percentage_ldebug = float(0.0)
         self.max_whole_percentage_lcomment = float(0.0)
         self.min_whole_percentage_lcomment = float(100.0)
+        self.max_whole_percentage_ldebug = float(0.0)
+        self.min_whole_percentage_ldebug = float(100.0)
         self.whole_num_lcode = float(0.0)
         self.whole_num_lcomment = float(0.0)
         self.whole_num_lblank = float(0.0)
+        self.whole_num_ldebug = float(0.0)
         self.n_evaluated = int(0)
+        self.final_list = []
+        self.debuglist = debug_list
 
     # Call when an element starts
     def startElement(self, tag, attributes):
@@ -40,20 +54,29 @@ class ClocHandler( xml.sax.ContentHandler ):
             #    return;
             self.name = str(attributes["name"])
             self.name = os.path.basename(self.name)
-            #print "Name:", filename
+
+            for element in self.debuglist:
+                if (self.name in element[0]):
+                    self.num_ldebug = float(element[1])
+                    #print ("Element name is: ") + element[0]
+                    #print ("Element debug code lines is: ") + str(self.num_ldebug)
+
+            self.whole_num_ldebug += int(self.num_ldebug)
+
             blank = int(attributes["blank"])
-            #print "blank:", blank
             self.num_lblank = blank
             comment = int(attributes["comment"])
-            #print "comment:", comment
             self.num_lcomment = comment
             code = int(attributes["code"])
-            #print "code:", code
             self.num_lcode = code
 
             self.percentage_lcomment = (float(comment) * 100 / float(code+comment))
+            self.percentage_ldebug = (float(self.num_ldebug) * 100 / float(code+comment))
             #print "Percentage of comment:", self.percentage_lcomment
 
+            #################
+            # comment_lines #
+            #################
             if self.percentage_lcomment < 100:
                 #print "Makeing average, previous value: ", self.average_whole_percentage_lcomment
                 self.average_whole_percentage_lcomment =\
@@ -62,7 +85,7 @@ class ClocHandler( xml.sax.ContentHandler ):
                 #print "Makeing average, actual value: ", self.average_whole_percentage_lcomment
                 #print "numer", self.n_evaluated
 
-            if self.percentage_lcomment < 100:
+            if self.percentage_lcomment > 100:
                 self.whole_num_lcode = self.whole_num_lcode - self.num_lcode
                 self.whole_num_lcomment = self.whole_num_lcomment - self.num_lcomment
 
@@ -70,9 +93,33 @@ class ClocHandler( xml.sax.ContentHandler ):
                 self.max_whole_percentage_lcomment = self.percentage_lcomment
                 self.max_comment_name = self.name
 
-            elif self.percentage_lcomment < 100 and  self.percentage_lcomment < self.min_whole_percentage_lcomment:
+            if self.percentage_lcomment < self.min_whole_percentage_lcomment:
                 self.min_whole_percentage_lcomment = self.percentage_lcomment
                 self.min_comment_name = self.name
+
+            ###############
+            # debug_lines #
+            ###############
+
+            if self.percentage_ldebug < 100:
+                #print "Makeing average, previous value: ", self.average_whole_percentage_ldebug
+                self.average_whole_percentage_ldebug =\
+                (self.average_whole_percentage_ldebug*self.n_evaluated + \
+                self.percentage_ldebug) / (self.n_evaluated+1)
+                #print "Makeing average, actual value: ", self.average_whole_percentage_ldebug
+                #print "numer", self.n_evaluated
+
+            if self.percentage_ldebug > 100:
+                self.whole_num_lcode = self.whole_num_lcode - self.num_lcode
+                self.whole_num_ldebug = self.whole_num_ldebug - self.num_ldebug
+
+            if self.percentage_ldebug < 100 and  self.percentage_ldebug > self.max_whole_percentage_ldebug:
+                self.max_whole_percentage_ldebug = self.percentage_ldebug
+                self.max_debug_name = self.name
+
+            if self.percentage_ldebug < self.min_whole_percentage_ldebug:
+                self.min_whole_percentage_ldebug = self.percentage_ldebug
+                self.min_debug_name = self.name
             #language = attributes["language"]
             #print "language:", language
             self.n_evaluated += 1
@@ -102,6 +149,28 @@ class ClocHandler( xml.sax.ContentHandler ):
                 "\'"+str(self.min_whole_percentage_lcomment)+"\'"+","+\
                 "\'"+str(self.min_comment_name)+"\'"+"],"+str('\\')
                 #self.average_whole_percentage_lcomment+"]"
+
+    def setlist(self):
+        self.final_list.append(str(self.date))
+        self.final_list.append(str(self.whole_num_lblank))
+        self.final_list.append(str(self.whole_num_lcode))
+        self.final_list.append(str(self.whole_num_lcomment))
+        self.final_list.append(str(int(self.whole_num_ldebug)))
+        #comment
+        self.final_list.append(str(self.whole_percentage_lcomment))
+        self.final_list.append(str(self.max_whole_percentage_lcomment))
+        self.final_list.append(str(self.max_comment_name))
+        self.final_list.append(str(self.min_whole_percentage_lcomment))
+        self.final_list.append(str(self.min_comment_name))
+        #debug
+        self.final_list.append(str(self.average_whole_percentage_ldebug))
+        self.final_list.append(str(self.max_whole_percentage_ldebug))
+        self.final_list.append(str(self.max_debug_name))
+        self.final_list.append(str(self.min_whole_percentage_ldebug))
+        self.final_list.append(str(self.min_debug_name))
+
+        print (self.final_list),
+        print str(',\\')
 
 
     def returnWholeRestult(self):
@@ -150,14 +219,35 @@ def main(argv):
    parser.setFeature(xml.sax.handler.feature_namespaces, 0)
 
    # override the default ContextHandler
-   Handler = ClocHandler(inputfile)
-   parser.setContentHandler( Handler )
+   index_init = inputfile.find("_201")
+   index_end = inputfile.find(".xml")
+   date = inputfile[index_init+1 : index_end]
+   if (file_name_arg == "cloc"):
+       list_to_parse = debug_code
+   elif (file_name_arg == "cloc_test"):
+       list_to_parse = debug_test
 
-   #parser.parse("/home/gmv/test_parsing/code_analysis/xml/cloc_2017_08_23.xml")
-   parser.parse(inputfile)
+   debug_list = []
+   for element in list_to_parse:
+       if date in element:
+           debug_list = element
+           #print (debug_list)
+           #print ("element 0 is:")
+           #print (debug_list[0])
+   #debug_list = [element for element in debug_code if date in element[0]]
+
+   Handler = ClocHandler(inputfile, debug_list)
+   parser.setContentHandler( Handler )
+   try:
+       #parser.parse("/home/gmv/test_parsing/code_analysis/xml/cloc_2017_08_23.xml")
+       parser.parse(inputfile)
+   except getopt.GetoptError:
+       print 'Error parsing'
+       sys.exit(2)
 
    #Handler.printWholeResult()
-   Handler.printListComponent(n_files_processed,file_name_arg)
+   #Handler.printListComponent(n_files_processed,file_name_arg)
+   Handler.setlist()
 
 if __name__ == "__main__":
    main(sys.argv[1:])

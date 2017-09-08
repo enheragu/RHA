@@ -1,8 +1,20 @@
+/**
+ * @file
+ * @brief Implements JointRHA functions defined in joint_rha.h
+ * @Author: Enrique Heredia Aguado <enheragu>
+ * @Date:   2017_Sep_08
+ * @Project: RHA
+ * @Filename: joint_rha.cpp
+ * @Last modified by:   enheragu
+ * @Last modified time: 08_Sep_2017
+ */
+
 #include "joint_rha.h"
 
 /** @brief JointRHA cunstructor of JointRHA class.
-  * @param servo_id: servo id controlled by this joint
-  * @param up_direction: direction in which the servo has to move (CW or CCW) so the joint moves up.
+  * @param {uint8_t} servo_id: servo id controlled by this joint
+  * @param {uint8_t} up_direction: direction in which the servo has to move (CW or CCW) so the joint moves up.
+  * @param {uint8_t} potentiometer: pin in which the potentiometer for this joint is connected
   */
 JointRHA::JointRHA(uint8_t servo_id, uint8_t up_direction, uint8_t potentiometer) {
     servo_ = new ServoRHA (servo_id);
@@ -15,6 +27,11 @@ JointRHA::JointRHA(uint8_t servo_id, uint8_t up_direction, uint8_t potentiometer
 JointRHA::~JointRHA() {
 }
 
+/** @brief init for JointRHA default constructor.
+  * @param {uint8_t} servo_id: servo id controlled by this joint
+  * @param {uint8_t} up_direction: direction in which the servo has to move (CW or CCW) so the joint moves up.
+  * @param {uint8_t} potentiometer: pin in which the potentiometer for this joint is connected
+  */
 void JointRHA::init(uint8_t servo_id, uint8_t up_direction, uint8_t potentiometer){
     up_direction_ = up_direction;
     potentiometer_pin_ = potentiometer;
@@ -24,7 +41,12 @@ void JointRHA::init(uint8_t servo_id, uint8_t up_direction, uint8_t potentiomete
     pinMode(potentiometer_pin_, INPUT);
 }
 
-
+/**
+ * @brief setGoal function sets speed goal to achieve with speed slope
+ * @param {uint16_t} speed_target: speed to achieve
+ * @param {uint16_t} speed_slope: slope from actual speed to speed_target (acceleration)
+ * @param {uint16_t} direction_target: move CW or CCW
+ */
 void JointRHA::setGoal (uint16_t speed_target, uint16_t speed_slope, uint8_t direction_target){
     speed_target_ = speed_target;
     speed_slope_ = speed_slope;
@@ -32,6 +54,10 @@ void JointRHA::setGoal (uint16_t speed_target, uint16_t speed_slope, uint8_t dir
     time_last_ = millis();
 }
 
+/**
+ * @brief speedError calculates error to send to servo regulator
+ * @return {uint8_t} returns error between actual position and target position
+ */
 uint8_t JointRHA::speedError(){
     uint16_t speed = servo_.getSpeed() + (millis() - time_last_) * speed_slope_;
     if (speed > speed_target_) speed = speed_target_;
@@ -39,13 +65,17 @@ uint8_t JointRHA::speedError(){
     return (speed - servo_.getSpeed());
 }
 
-
+/**
+ * @brief regulatorJoint calls regulatorServo. Serves as interface with servo methods
+ * @param  {uint16_t} error error input to the regulator
+ * @return {uint16_t} regulator output (torque to send to servo)
+ */
 uint16_t JointRHA::regulatorJoint(uint16_t error){
     return servo_.regulatorServo(error);
 }
 
 
-/** @brief addToPacket add goal servos from this joint to packet
+/** @brief addToPacket add goal servos from this joint to packet. Implements interface to servo.addToPacket()
   * @param buffer: is the buffer in which the information will be added (by reference)
   * @param position: is the position from which it writes the new info (by reference)
   * @param instruction: is the instruction that is being sended in this packet
@@ -58,7 +88,7 @@ void ServoRHA::addToPacket(uint8_t *buffer, uint8_t &position, uint8_t *goal, ui
     servo_.addToPacket(buffer, position, goal, goal_len, num_servo);
 }
 
-/** @brief wrapPacket calls servo_ wrapPacket
+/** @brief wrapPacket implements an interface to call servo_ wrapPacket
   * @param buffer: is the buffer in which the information will be added (by reference)
   * @param data: is the data that have been completed by each servo (by reference)
   * @param data_len: is the length of data
@@ -75,6 +105,9 @@ uint16_t sendPacket(uint8_t instruction, uint8_t* data, uint8_t parameterLength)
   return servo_.sendPacket(servo_.getID(), instruction, data, parameterLength);
 }
 
+/**
+ * @brief updateInfo updates all the information of servo object and feedback information to use it in next control iteration (in control loop)
+ */
 void JointRHA::updateInfo() {
     position_pot_ = digitalRead(potentiometer_pin_);
     servo_->updateInfo();

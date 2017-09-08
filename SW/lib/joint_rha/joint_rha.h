@@ -1,3 +1,15 @@
+/**
+ * @file
+ * @brief Implements JointRHA class. This object combines potentiometer with ServoRHA object readings to enhance it's functionality
+ *
+ * @Author: Enrique Heredia Aguado <enheragu>
+ * @Date:   2017_Sep_08
+ * @Project: RHA
+ * @Filename: joint_rha.h
+ * @Last modified by:   enheragu
+ * @Last modified time: 08_Sep_2017
+ */
+
 #ifndef SERVO_RHA_H
 #define SERVO_RHA_H
 

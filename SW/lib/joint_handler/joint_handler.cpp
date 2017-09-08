@@ -1,3 +1,16 @@
+/**
+ * @file
+ * @brief Implements JointHandler functions defined in joint_handler.h
+ *
+ * @Author: Enrique Heredia Aguado <enheragu>
+ * @Date:   2017_Sep_08
+ * @Project: RHA
+ * @Filename: joint_handler.cpp
+ * @Last modified by:   enheragu
+ * @Last modified time: 08_Sep_2017
+ */
+
+
 #include "joint_handler.h"
 
 /**

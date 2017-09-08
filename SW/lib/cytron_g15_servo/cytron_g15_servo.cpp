@@ -1,15 +1,20 @@
-/*
-Original written by:
-            Ing Hui, Cytron Technologies
-
-Modified:
-            Zamzuri, Cytron Technologies    - Fix SoftwareSerial bugs
-  29/06/15  Idris, Cytron Technologies    - Point to IDE SoftwareSerial
-                                          - Restructure the code style to follow standard Arduino library
-
-Modified:
-            enheragu - Merge with G15.h version
-*/
+/**
+  * Original written by:
+  *             Ing Hui, Cytron Technologies
+  *
+  * Modified:
+  *             Zamzuri, Cytron Technologies    - Fix SoftwareSerial bugs
+  *   29/06/15  Idris, Cytron Technologies    - Point to IDE SoftwareSerial
+  *                                           - Restructure the code style to follow standard Arduino library
+  *
+  * Modified:
+  *             enheragu - Merge with G15.h version
+  */
+/**
+ * @Filename: cytron_g15_servo.cpp
+ * @Last modified by:   enheragu
+ * @Last modified time: 08_Sep_2017
+ */
 
 // #include "HardwareSerial.h"
 #include "cytron_g15_servo.h"

@@ -1,3 +1,14 @@
+/**
+ * @Author: Enrique Heredia Aguado <enheragu>
+ * @Date:   2017_Sep_08
+ * @Project: RHA
+ * @Filename: main.cpp
+ * @Last modified by:   enheragu
+ * @Last modified time: 08_Sep_2017
+ */
+
+
+
 //#ifndef UNIT_TEST  // disable program main loop while unit testing in progress
 #include "servo_rha.h"
 #include <Arduino.h>
@@ -10,56 +21,6 @@
 
 // CYTRON_G15_SERVO g15(1, 2, 3, 8);
 
-ServoRHA servo_test1(1, 2, 3, 8);
-
-long encoderTemp = 0,
-     encoderSmallRotation = 0,
-     encoderFullRotation = 0,
-     encoderCurrent = 0,
-     encoderTotal = 0;
-
- int delay1 = 1000,
-     selection = 0,
-     key,
-     speedSet = 0,
-     speedRead,
-     torqueSet = 0,
-     i = 0;
-
- char flag = 1,
-      encoderFlag = 0;
-
- word stat, pos = 0, load = 0,
-            angleRead,
-            CWSet = 0,
-            CCWSet = 359,
-            angleSet;
-
- byte data[10], IDcurrent = 254, IDset = 0, IDBroadcast = 0xFE;
-
-
-
- //returns string message of servo errors
- int printServoStatusError (uint16_t error)
- {
-
-     if (error & SERROR_PING)  Serial.println("[!]   Ping error in servo: ");
-     if (error & SERROR_INPUTVOLTAGE)  Serial.println("[!]   Input voltage error in servo: ")    ;          // bit 0
-     if (error & SERROR_ANGLELIMIT)  Serial.println("[!]   Angle limit error in servo: ")      ;           // bit 1
-     if (error & SERROR_OVERHEATING)  Serial.println("[!]   Overheating error in servo: ")     ;          // bit 2
-     if (error & SERROR_RANGE)  Serial.println("[!]   Range error in servo: ")               ;             // bit 3
-     if (error & SERROR_CHECKSUM)  Serial.println("[!]   Checksum error in servo: ")          ;             // bit 4
-     if (error & SERROR_OVERLOAD)  Serial.println("[!]   Overload error in servo: ")          ;             // bit 5
-     if (error & SERROR_INSTRUCTION)  Serial.println("[!]   Instruction error in servo: ");            // bit 7
-     if (error & SERROR_PACKETLOST)  Serial.println("[!]   Packet lost or receive time out in servo: ");    // bit 8
-     if (error & SERROR_WRONGHEADER)  Serial.println("[!]   Wrong header in servo: ")      ;              // bit 9
-     if (error & SERROR_IDMISMATCH)  Serial.println("[!]   ID mismatch in servo: ")       ;                  // bit 10
-     if (error & SERROR_CHECKSUMERROR)  Serial.println("[!]   Checksum error in servo: ")    ;               // bit 13
-     else {
-         Serial.print("Default case. Error: ");
-         Serial.println(error);
-     }
- }
 
 void setup() {
   Serial.begin(9600);
@@ -97,64 +58,6 @@ void loop(){
 /*
 void loop() {
   Serial.println("estoy en el loop");
-
-  speedSet = 700;
-  torqueSet = 1023;
-  encoderSmallRotation = 0;
-  encoderFullRotation = 1;
-  encoderTotal = 0;
-  encoderCurrent = 0;
-
-  long initTime = 0;
-  long currentTime = 0;
-
-  servo_test1.setTorqueLimit( torqueSet);
-  servo_test1.setWheelMode();
-  servo_test1.setWheelSpeed( 0, CCW);
-
-  servo_test1.getPos(data);             //get the current position from servo
-  pos = data[0];
-  pos = pos | ((data[1]) << 8);
-  encoderTemp = pos;
-  Serial.println("Configuration done.");
-  delay(2000);
-  Serial.println("Start moving");
-
-  uint16_t error;
-  servo_test1.setTorqueOnOff(ON, iREG_WRITE);
-  error = servo_test1.setWheelSpeed(speedSet, CCW);
-  printServoStatusError(error);
-
-  encoderFlag = 1;
-  initTime = millis();
-  while (1) {
-    Serial.println("Init while loop");
-    servo_test1.getPos(data); //get the current position from servo
-    pos = data[0];
-    pos = pos | ((data[1]) << 8);
-    encoderCurrent = pos;
-    Serial.print("Current pose: ");   Serial.println(encoderCurrent);
-
-    if (encoderCurrent < (encoderTemp + 5)  && encoderCurrent > (encoderTemp - 5) && encoderFlag == 0) {
-      encoderTotal++;
-      currentTime = millis();
-      long speedNow = encoderTotal*1000/(initTime - currentTime);
-      Serial.print("Torque set es: "); Serial.println(torqueSet);
-      Serial.print("  -  Velocidad calculada es: "); Serial.println(speedNow);
-      long speedGet = servo_test1.speedRead();
-      Serial.print("  -  Velocidad obtenida es: "); Serial.println(speedGet);
-      encoderFlag = 1;
-      if (encoderTotal == encoderFullRotation ) {
-        servo_test1.setTorqueOnOff(ON, iREG_WRITE);
-        servo_test1.setWheelSpeed( 0, CCW);
-        break;
-      }
-    }
-    if (encoderCurrent > (encoderTemp + 5) || encoderCurrent < (encoderTemp - 5)) encoderFlag = 0;
-  }
-
-  // g15.setWheelMode();
-  // g15.setWheelSpeed(500, CW, iWRITE_DATA);
 
 
 

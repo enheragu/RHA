@@ -1,3 +1,16 @@
+/**
+ * @file
+ * @brief Implements ServoRHA class. This object inherits from CytronG15Servo object to enhance its capabilities
+ *
+ * @Author: Enrique Heredia Aguado <enheragu>
+ * @Date:   2017_Sep_08
+ * @Project: RHA
+ * @Filename: servo_rha.h
+ * @Last modified by:   enheragu
+ * @Last modified time: 08_Sep_2017
+ */
+
+
 #ifndef SERVO_RHA_H
 #define SERVO_RHA_H
 
@@ -9,8 +22,10 @@
 #define MIN_TORQUE_CALIBRATION 0
 #define MAX_TORQUE_CALIBRATION 800
 
+/** MARGIN_ANGLE_COMPARISON defines an interval in which two speed values will be considered as the same value when compared*/
 #define MARGIN_SPEED_COMPARISON 5
-#define MARGIN_ANGLE_COMPARISON 5  // configure an interval in which angles will be considered as the same value when compared
+/** MARGIN_ANGLE_COMPARISON defines an interval in which two angle values will be considered as the same value when compared*/
+#define MARGIN_ANGLE_COMPARISON 5
 
 #define MIN_TORQUE_CW 0
 #define MIN_TORQUE_CCW 180
@@ -22,8 +37,10 @@
 #define RETURN_PACKET_NONE 0x00
 #define RETURN_PACKET_READ_INSTRUCTIONS 0x01
 
+/** KP K constant of speed control loop for servos. */
 #define KP 100/60 // means toruqe/speed
 
+/** ALL_SERVO is ID to broadcast to all servo in bus. */
 #define ALL_SERVO 0xFE
 
 enum {  // enumeration for angle and speed compariso

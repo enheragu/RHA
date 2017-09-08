@@ -1,3 +1,13 @@
+/**
+ * @Author: Enrique Heredia Aguado <enheragu>
+ * @Date:   2017_Aug_31
+ * @Project: RHA
+ * @Filename: test_servo_real.cpp
+ * @Last modified by:   enheragu
+ * @Last modified time: 08_Sep_2017
+ */
+
+
 #include "debug.h"
 #include "servo_rha.h"
 #include "unity.h"

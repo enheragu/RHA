@@ -1,15 +1,21 @@
-/*
-Original written by:
-            Ing Hui, Cytron Technologies
+/**
+  * Original written by:
+  *             Ing Hui, Cytron Technologies
+  *
+  * Modified:
+  *             Zamzuri, Cytron Technologies    - Fix SoftwareSerial bugs
+  *   29/06/15  Idris, Cytron Technologies    - Point to IDE SoftwareSerial
+  *                                           - Restructure the code style to follow standard Arduino library
+  *
+  * Modified:
+  *             enheragu - Merge with G15.h version
+  */
 
-Modified:
-            Zamzuri, Cytron Technologies    - Fix SoftwareSerial bugs
-  29/06/15  Idris, Cytron Technologies    - Point to IDE SoftwareSerial
-                                          - Restructure the code style to follow standard Arduino library
-
-Modified:
-            enheragu - Merge with G15.h version
-*/
+/**
+ * @Filename: cytron_g15_servo.h
+ * @Last modified by:   enheragu
+ * @Last modified time: 08_Sep_2017
+ */
 
 #ifndef CYTRON_G15_SERVO_h
 #define CYTRON_G15_SERVO_h
@@ -56,6 +62,11 @@ Modified:
 #define ALARM_ANGLELIMIT 0x02
 #define ALARM_VOLTAGE  0x01
 
+/**
+  * @defgroup SREGISTER_GROUP Register Group
+  * Register directions in servo memory for each parameter listed
+  * @{
+  */
 enum {
     MODEL_NUMBER_L,   // 0x00
     MODEL_NUMBER_H,   // 0x01
@@ -108,12 +119,19 @@ enum {
     PUNCH_L,   // 0x30
     PUNCH_H   // 0x31
 };
-
+/**
+  * @}
+  */
 
 /*****************************
  * ERROR COD. G15 CUBE SERVO *
  *****************************/
 
+/**
+  * @defgroup SERROR_GROUP Error Group
+  * Defines to check error returned by servo (check as bit mask)
+  * @{
+  */
 #define SERROR_PING 0X0000
 // Return status:
 #define SERROR_INPUTVOLTAGE 0X0001
@@ -132,6 +150,9 @@ enum {
 // #define SERROR_ 0X2000
 // #define SERROR_ 0X4000
 // #define SERROR_ 0X8000
+/**
+  * @}
+  */
 
 void set_act(char ctrl);
 void initCytronG15Shield(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);

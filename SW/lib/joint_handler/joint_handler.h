@@ -1,3 +1,15 @@
+/**
+ * @file
+ * @brief Implements JointHandler class. This object is in charge to sync all joints.
+ *
+ * @Author: Enrique Heredia Aguado <enheragu>
+ * @Date:   2017_Sep_08
+ * @Project: RHA
+ * @Filename: joint_handler.h
+ * @Last modified by:   enheragu
+ * @Last modified time: 08_Sep_2017
+ */
+
 #include "joint_rha.h"
 
 class JointHandler {

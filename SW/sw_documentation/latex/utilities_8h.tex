@@ -1,0 +1,135 @@
+\hypertarget{utilities_8h}{}\section{src/utilities.h File Reference}
+\label{utilities_8h}\index{src/utilities.\+h@{src/utilities.\+h}}
+
+
+Implements a set of utilities to measure, experimentally, some interesting parameters.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}debug.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}servo\+\_\+rha.\+h\char`\"{}}\\*
+Include dependency graph for utilities.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{utilities_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries S\+P\+E\+ED}~500\hypertarget{utilities_8h_aac3553b3932cbfeeac4526ce7ca0336b}{}\label{utilities_8h_aac3553b3932cbfeeac4526ce7ca0336b}
+
+\item 
+\#define {\bfseries S\+P\+E\+E\+D\+\_\+\+T\+A\+R\+G\+ET}~10\hypertarget{utilities_8h_a772b3d895da5507d235cd48bffb88106}{}\label{utilities_8h_a772b3d895da5507d235cd48bffb88106}
+
+\item 
+\#define {\bfseries K\+P\+\_\+\+R\+E\+G\+U\+L\+A\+T\+OR}~100/60\hypertarget{utilities_8h_a3fa8bd79d9cd111a09a01653e557a30a}{}\label{utilities_8h_a3fa8bd79d9cd111a09a01653e557a30a}
+
+\item 
+\#define {\bfseries L\+O\+O\+P\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY}~100\hypertarget{utilities_8h_aa77ad76fb0e0966b273db92f13af4429}{}\label{utilities_8h_aa77ad76fb0e0966b273db92f13af4429}
+
+\item 
+\#define {\bfseries S\+A\+M\+P\+L\+E\+\_\+\+R\+E\+G\+U\+L\+A\+T\+OR}~50\hypertarget{utilities_8h_a23d0dd726b0c42cfeb03845129b9e7a9}{}\label{utilities_8h_a23d0dd726b0c42cfeb03845129b9e7a9}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{utilities_8h_ab31516a908116c2aa4180b0bc2c6ca58}{print\+Servo\+Status\+Error} (uint16\+\_\+t error)\hypertarget{utilities_8h_ab31516a908116c2aa4180b0bc2c6ca58}{}\label{utilities_8h_ab31516a908116c2aa4180b0bc2c6ca58}
+
+\begin{DoxyCompactList}\small\item\em Analyses error and prints error msgs. \end{DoxyCompactList}\item 
+void \hyperlink{utilities_8h_ae72b9214473e4a5ed0412610022f66c7}{Measure\+Utilities\+::check\+Speed} (uint8\+\_\+t servo\+\_\+id)
+\begin{DoxyCompactList}\small\item\em check\+Speed implements an encoder mode to measure real speed in R\+PM and check agains the measure returned by servo \end{DoxyCompactList}\item 
+void \hyperlink{utilities_8h_adc30c6f58357daa7118ee380139c1f3a}{Measure\+Utilities\+::check\+Time\+Get\+Info} (uint8\+\_\+t servo\+\_\+id, int repetitions)
+\begin{DoxyCompactList}\small\item\em check\+Time\+Info checks time spent sending and recieving packet with \hyperlink{classServoRHA_abe4b7078a33b1f46d1f09a7b7edc6a45}{Servo\+R\+H\+A\+::update\+Info()} \end{DoxyCompactList}\item 
+void \hyperlink{utilities_8h_abd65879a27a358d108d3d2bf61dbbc85}{Measure\+Utilities\+::check\+Time\+Speed\+Read} (uint8\+\_\+t servo\+\_\+id, uint8\+\_\+t repetitions)
+\begin{DoxyCompactList}\small\item\em check\+Time\+Info checks time spent sending and recieving packet with Servo\+R\+H\+A\+::\+Speed\+Read() \end{DoxyCompactList}\item 
+void \hyperlink{utilities_8h_a8976d1591900f6205f8d6c6b7bec1ed1}{Measure\+Utilities\+::extract\+Regulator\+Data} (uint8\+\_\+t servo\+\_\+id)
+\begin{DoxyCompactList}\small\item\em extract\+Regulator\+Data tests \hyperlink{classServoRHA}{Servo\+R\+HA} regulator and prints through serial monitor all info (python list style) to make a graphic  extract\+Regulator\+Data \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements a set of utilities to measure, experimentally, some interesting parameters. 
+
+Measures real speed of servo, time spent with packet handling, etc
+
+\+: Enrique Heredia Aguado $<$enheragu$>$ \+: 2017\+\_\+\+Sep\+\_\+08 \+: R\+HA \+: \hyperlink{utilities_8h}{utilities.\+h}  modified by\+: enheragu  modified time\+: 09-\/\+Sep-\/2017 
+
+\subsection{Function Documentation}
+\index{utilities.\+h@{utilities.\+h}!check\+Speed@{check\+Speed}}
+\index{check\+Speed@{check\+Speed}!utilities.\+h@{utilities.\+h}}
+\subsubsection[{\texorpdfstring{check\+Speed(uint8\+\_\+t servo\+\_\+id)}{checkSpeed(uint8_t servo_id)}}]{\setlength{\rightskip}{0pt plus 5cm}void Measure\+Utilities\+::check\+Speed (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{servo\+\_\+id}
+\end{DoxyParamCaption}
+)}\hypertarget{utilities_8h_file_ae72b9214473e4a5ed0412610022f66c7}{}\label{utilities_8h_file_ae72b9214473e4a5ed0412610022f66c7}
+
+
+check\+Speed implements an encoder mode to measure real speed in R\+PM and check agains the measure returned by servo 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t\}} & servo\+\_\+id\+: id of servo to test \\
+\hline
+\end{DoxyParams}
+\index{utilities.\+h@{utilities.\+h}!check\+Time\+Get\+Info@{check\+Time\+Get\+Info}}
+\index{check\+Time\+Get\+Info@{check\+Time\+Get\+Info}!utilities.\+h@{utilities.\+h}}
+\subsubsection[{\texorpdfstring{check\+Time\+Get\+Info(uint8\+\_\+t servo\+\_\+id, int repetitions)}{checkTimeGetInfo(uint8_t servo_id, int repetitions)}}]{\setlength{\rightskip}{0pt plus 5cm}void Measure\+Utilities\+::check\+Time\+Get\+Info (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{servo\+\_\+id, }
+\item[{int}]{repetitions}
+\end{DoxyParamCaption}
+)}\hypertarget{utilities_8h_file_adc30c6f58357daa7118ee380139c1f3a}{}\label{utilities_8h_file_adc30c6f58357daa7118ee380139c1f3a}
+
+
+check\+Time\+Info checks time spent sending and recieving packet with \hyperlink{classServoRHA_abe4b7078a33b1f46d1f09a7b7edc6a45}{Servo\+R\+H\+A\+::update\+Info()} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t\}} & servo\+\_\+id\+: id of servo to test \\
+\hline
+{\em repetitions} & num of repetitions the test is made (time is the average of this repetitions) \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{utilities_8h_abd65879a27a358d108d3d2bf61dbbc85}{check\+Time\+Speed\+Read()}. Both are used together to compare speed rate in comunication. 
+\end{DoxySeeAlso}
+\index{utilities.\+h@{utilities.\+h}!check\+Time\+Speed\+Read@{check\+Time\+Speed\+Read}}
+\index{check\+Time\+Speed\+Read@{check\+Time\+Speed\+Read}!utilities.\+h@{utilities.\+h}}
+\subsubsection[{\texorpdfstring{check\+Time\+Speed\+Read(uint8\+\_\+t servo\+\_\+id, uint8\+\_\+t repetitions)}{checkTimeSpeedRead(uint8_t servo_id, uint8_t repetitions)}}]{\setlength{\rightskip}{0pt plus 5cm}void Measure\+Utilities\+::check\+Time\+Speed\+Read (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{servo\+\_\+id, }
+\item[{uint8\+\_\+t}]{repetitions}
+\end{DoxyParamCaption}
+)}\hypertarget{utilities_8h_file_abd65879a27a358d108d3d2bf61dbbc85}{}\label{utilities_8h_file_abd65879a27a358d108d3d2bf61dbbc85}
+
+
+check\+Time\+Info checks time spent sending and recieving packet with Servo\+R\+H\+A\+::\+Speed\+Read() 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t\}} & servo\+\_\+id\+: id of servo to test \\
+\hline
+{\em \{uint8\+\_\+t\}} & repetitions\+: num of repetitions the test is made (time is the average of this repetitions) \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{utilities_8h_adc30c6f58357daa7118ee380139c1f3a}{check\+Time\+Get\+Info()}. Both are used together to compare speed rate in comunication. 
+\end{DoxySeeAlso}
+\index{utilities.\+h@{utilities.\+h}!extract\+Regulator\+Data@{extract\+Regulator\+Data}}
+\index{extract\+Regulator\+Data@{extract\+Regulator\+Data}!utilities.\+h@{utilities.\+h}}
+\subsubsection[{\texorpdfstring{extract\+Regulator\+Data(uint8\+\_\+t servo\+\_\+id)}{extractRegulatorData(uint8_t servo_id)}}]{\setlength{\rightskip}{0pt plus 5cm}void Measure\+Utilities\+::extract\+Regulator\+Data (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{servo\+\_\+id}
+\end{DoxyParamCaption}
+)}\hypertarget{utilities_8h_file_a8976d1591900f6205f8d6c6b7bec1ed1}{}\label{utilities_8h_file_a8976d1591900f6205f8d6c6b7bec1ed1}
+
+
+extract\+Regulator\+Data tests \hyperlink{classServoRHA}{Servo\+R\+HA} regulator and prints through serial monitor all info (python list style) to make a graphic  extract\+Regulator\+Data 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t\}} & servo\+\_\+id id of the servo to test \\
+\hline
+\end{DoxyParams}

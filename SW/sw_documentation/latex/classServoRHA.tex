@@ -1,0 +1,429 @@
+\hypertarget{classServoRHA}{}\section{Servo\+R\+HA Class Reference}
+\label{classServoRHA}\index{Servo\+R\+HA@{Servo\+R\+HA}}
+
+
+Inheritance diagram for Servo\+R\+HA\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classServoRHA__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Servo\+R\+HA\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classServoRHA__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classServoRHA_a7fb72168b35039c5b1eb1597312e8303}{Servo\+R\+HA} (uint8\+\_\+t servo\+\_\+id, uint8\+\_\+t rxpin, uint8\+\_\+t txpin, uint8\+\_\+t ctrlpin)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classServoRHA}{Servo\+R\+HA} cunstructor of \hyperlink{classServoRHA}{Servo\+R\+HA} class. Gets servo ID and calibrates the minimum torque. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classServoRHA_a3cc8f36d2756e5a196ec13e12f1a2286}{init} (uint8\+\_\+t servo\+\_\+id, uint8\+\_\+t rxpin, uint8\+\_\+t txpin, uint8\+\_\+t ctrlpin, uint32\+\_\+t baudrate)
+\begin{DoxyCompactList}\small\item\em init handles the inicialization of all \hyperlink{classServoRHA}{Servo\+R\+HA} internal parameters when default constructor is used \end{DoxyCompactList}\item 
+virtual void \hyperlink{classServoRHA_abd64398a4d18799952561bd7a5ded082}{init} ()
+\begin{DoxyCompactList}\small\item\em init handles the inicialization of all \hyperlink{classServoRHA}{Servo\+R\+HA} internal parameters when \hyperlink{classServoRHA_a7fb72168b35039c5b1eb1597312e8303}{Servo\+R\+H\+A(uint8\+\_\+t servo\+\_\+id, uint8\+\_\+t rxpin, uint8\+\_\+t txpin, uint8\+\_\+t ctrlpin)}; constructor is used. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{classServoRHA_a6e21d764f228195d3be465495fe78390}{angle\+Read} ()
+\begin{DoxyCompactList}\small\item\em angle\+Read function is used to read current position of the servo \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{classServoRHA_ac0d004c22090d5a75facc319f8773fc0}{speed\+Read} ()
+\begin{DoxyCompactList}\small\item\em speed\+Read function is used to read current speed of the servo \end{DoxyCompactList}\item 
+bool \hyperlink{classServoRHA_a6935a684c935c92c255a96f51eb3c39d}{is\+Moving} ()
+\begin{DoxyCompactList}\small\item\em is\+Moving to know whether the servo is moving or not based on servo real speed \end{DoxyCompactList}\item 
+void \hyperlink{classServoRHA_abe4b7078a33b1f46d1f09a7b7edc6a45}{update\+Info} ()
+\begin{DoxyCompactList}\small\item\em update\+Info asks the servo for all the information to be updated by class servo. \end{DoxyCompactList}\item 
+virtual uint16\+\_\+t \hyperlink{classServoRHA_a63c7bd194a1bf8ff0196c8ea3f3a7c00}{return\+Packet\+Set} (uint8\+\_\+t option)
+\begin{DoxyCompactList}\small\item\em return\+Packet\+Set function sets the package return level of servo (error information for each command sent) \end{DoxyCompactList}\item 
+void \hyperlink{classServoRHA_a53068a57169a9c4dcb4fda8d426dd493}{add\+To\+Packet} (uint8\+\_\+t $\ast$buffer, uint8\+\_\+t \&position, uint8\+\_\+t $\ast$goal, uint8\+\_\+t goal\+\_\+len, uint8\+\_\+t \&num\+\_\+servo)
+\begin{DoxyCompactList}\small\item\em add\+To\+Packet add goal servos from this joint to packet. Implements interface to servo.\+add\+To\+Packet() \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{classServoRHA_aafd8db25639b5351831e779064314507}{wrap\+Packet} (uint8\+\_\+t $\ast$buffer, uint8\+\_\+t $\ast$data, uint8\+\_\+t data\+\_\+len, uint8\+\_\+t instruction, uint8\+\_\+t num\+\_\+servo)
+\begin{DoxyCompactList}\small\item\em wrap\+Packet adds information needed once all servos had been aded (header, ID, instruction...). This function is used to send just one packet for all servos instead of each sending their respective information \end{DoxyCompactList}\item 
+virtual uint16\+\_\+t \hyperlink{classServoRHA_a750f89c94342e55b69bf746b7edc0abc}{set\+Wheel\+Speed} (uint16\+\_\+t speed, uint8\+\_\+t cw\+\_\+ccw)
+\begin{DoxyCompactList}\small\item\em Set\+Wheel\+Speed sets wheel speed according to margins saved in calibration. \end{DoxyCompactList}\item 
+uint16\+\_\+t {\bfseries regulator\+Servo} (uint16\+\_\+t error, uint8\+\_\+t kp=\hyperlink{servo__rha_8h_aa4729260b732666338dee7d841aa12f3}{KP})\hypertarget{classServoRHA_a3d9fd3b5d29fd4955f707cac77d43e91}{}\label{classServoRHA_a3d9fd3b5d29fd4955f707cac77d43e91}
+
+\item 
+virtual void \hyperlink{classServoRHA_a2b85e528b987d734d4b99613b49c594c}{calibrate\+Torque} ()
+\begin{DoxyCompactList}\small\item\em calibrate\+Torque function gets the minimum torque in which the servo starts moving for CW and C\+CW direcion. \end{DoxyCompactList}\item 
+virtual uint8\+\_\+t {\bfseries get\+ID} ()\hypertarget{classServoRHA_a5454c2a13b6656a590b7802e88cd1fbb}{}\label{classServoRHA_a5454c2a13b6656a590b7802e88cd1fbb}
+
+\item 
+virtual uint16\+\_\+t {\bfseries get\+Speed} ()\hypertarget{classServoRHA_a01e8bbdc94e8cc0310a86b7e7defaff7}{}\label{classServoRHA_a01e8bbdc94e8cc0310a86b7e7defaff7}
+
+\item 
+virtual uint16\+\_\+t {\bfseries get\+Speed\+Dir} ()\hypertarget{classServoRHA_aebcd18b6b147109d53362d2f61f1687b}{}\label{classServoRHA_aebcd18b6b147109d53362d2f61f1687b}
+
+\item 
+virtual uint16\+\_\+t {\bfseries get\+Position} ()\hypertarget{classServoRHA_aae38bc6f06e2b535d1aa97d430f7a754}{}\label{classServoRHA_aae38bc6f06e2b535d1aa97d430f7a754}
+
+\item 
+virtual uint16\+\_\+t {\bfseries get\+Load} ()\hypertarget{classServoRHA_add58df5938ca16e07ec9828964221f1b}{}\label{classServoRHA_add58df5938ca16e07ec9828964221f1b}
+
+\item 
+virtual uint16\+\_\+t {\bfseries get\+Load\+Dir} ()\hypertarget{classServoRHA_ad130103b70d1cbf88ac1d5875d5d4fa6}{}\label{classServoRHA_ad130103b70d1cbf88ac1d5875d5d4fa6}
+
+\item 
+virtual uint16\+\_\+t {\bfseries get\+Error} ()\hypertarget{classServoRHA_ad7bed5549d8ca28b38d931039501b6f1}{}\label{classServoRHA_ad7bed5549d8ca28b38d931039501b6f1}
+
+\item 
+virtual uint8\+\_\+t {\bfseries get\+Voltage} ()\hypertarget{classServoRHA_abeb8c284656cba00cc610c70c29a4f4f}{}\label{classServoRHA_abeb8c284656cba00cc610c70c29a4f4f}
+
+\item 
+virtual uint8\+\_\+t {\bfseries get\+Temperature} ()\hypertarget{classServoRHA_a736bfa0ce2d4351684224e80b832fd22}{}\label{classServoRHA_a736bfa0ce2d4351684224e80b832fd22}
+
+\item 
+virtual uint8\+\_\+t {\bfseries get\+Registered} ()\hypertarget{classServoRHA_a8ad6d15010e128afd0ab23b0d60d8c8c}{}\label{classServoRHA_a8ad6d15010e128afd0ab23b0d60d8c8c}
+
+\item 
+virtual uint8\+\_\+t {\bfseries get\+Is\+Moving} ()\hypertarget{classServoRHA_a9df86bb40710d2fef9a91d5098fd3900}{}\label{classServoRHA_a9df86bb40710d2fef9a91d5098fd3900}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classServoRHA_a2faeef2bb525c57171905d7390cfa1c9}{calibrate\+Torque\+Dir} (uint16\+\_\+t \&min\+\_\+torque, uint16\+\_\+t direction)
+\begin{DoxyCompactList}\small\item\em calibrate\+Torque function gets the minimum torque in which the servo starts moving in a set direction \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t {\bfseries min\+\_\+torque\+\_\+cw\+\_\+}\hypertarget{classServoRHA_a9a58cc43ce3970111ce459a243325d62}{}\label{classServoRHA_a9a58cc43ce3970111ce459a243325d62}
+
+\item 
+uint16\+\_\+t {\bfseries min\+\_\+torque\+\_\+ccw\+\_\+}\hypertarget{classServoRHA_a226feb9a68e475974e72b42faf11d480}{}\label{classServoRHA_a226feb9a68e475974e72b42faf11d480}
+
+\item 
+uint16\+\_\+t {\bfseries max\+\_\+torque\+\_\+cw\+\_\+}\hypertarget{classServoRHA_afeefe3989504a976e488cad34ef18290}{}\label{classServoRHA_afeefe3989504a976e488cad34ef18290}
+
+\item 
+uint16\+\_\+t {\bfseries max\+\_\+torque\+\_\+ccw\+\_\+}\hypertarget{classServoRHA_ab5126ae4ab7c2a9beebfcb2ae18995ed}{}\label{classServoRHA_ab5126ae4ab7c2a9beebfcb2ae18995ed}
+
+\item 
+uint16\+\_\+t {\bfseries speed\+\_\+}\hypertarget{classServoRHA_abc85e4391dbb9bfa09d9c452b3791d97}{}\label{classServoRHA_abc85e4391dbb9bfa09d9c452b3791d97}
+
+\item 
+uint16\+\_\+t {\bfseries speed\+\_\+dir\+\_\+}\hypertarget{classServoRHA_af7c1f52f2b9e8967b9c0b9b65096df48}{}\label{classServoRHA_af7c1f52f2b9e8967b9c0b9b65096df48}
+
+\item 
+uint16\+\_\+t {\bfseries position\+\_\+}\hypertarget{classServoRHA_a805b5065a85efc7d94934c0153558c53}{}\label{classServoRHA_a805b5065a85efc7d94934c0153558c53}
+
+\item 
+uint16\+\_\+t {\bfseries load\+\_\+}\hypertarget{classServoRHA_ab90b1db8354453f69f9d3c8ba5fb9c8e}{}\label{classServoRHA_ab90b1db8354453f69f9d3c8ba5fb9c8e}
+
+\item 
+uint16\+\_\+t {\bfseries load\+\_\+dir\+\_\+}\hypertarget{classServoRHA_a3ffd7c50b36f3dd678541b8750fd6034}{}\label{classServoRHA_a3ffd7c50b36f3dd678541b8750fd6034}
+
+\item 
+uint16\+\_\+t {\bfseries error\+\_\+}\hypertarget{classServoRHA_ae41b1e76871e813b897b78929ceb4544}{}\label{classServoRHA_ae41b1e76871e813b897b78929ceb4544}
+
+\item 
+uint8\+\_\+t {\bfseries voltage\+\_\+}\hypertarget{classServoRHA_a28bec333c78db9957b8d931dd5935151}{}\label{classServoRHA_a28bec333c78db9957b8d931dd5935151}
+
+\item 
+uint8\+\_\+t {\bfseries temperature\+\_\+}\hypertarget{classServoRHA_a6812c9bfe5b91fdf96ac035c03ae4ab5}{}\label{classServoRHA_a6812c9bfe5b91fdf96ac035c03ae4ab5}
+
+\item 
+uint8\+\_\+t {\bfseries registered\+\_\+}\hypertarget{classServoRHA_adac98a5db519422cd6e726a4cb9de395}{}\label{classServoRHA_adac98a5db519422cd6e726a4cb9de395}
+
+\item 
+uint8\+\_\+t {\bfseries is\+\_\+moving\+\_\+}\hypertarget{classServoRHA_a800860458c33f06a73514d3ac91e2ce7}{}\label{classServoRHA_a800860458c33f06a73514d3ac91e2ce7}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Servo\+R\+HA@{Servo\+R\+HA}!Servo\+R\+HA@{Servo\+R\+HA}}
+\index{Servo\+R\+HA@{Servo\+R\+HA}!Servo\+R\+HA@{Servo\+R\+HA}}
+\subsubsection[{\texorpdfstring{Servo\+R\+H\+A(uint8\+\_\+t servo\+\_\+id, uint8\+\_\+t rxpin, uint8\+\_\+t txpin, uint8\+\_\+t ctrlpin)}{ServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin)}}]{\setlength{\rightskip}{0pt plus 5cm}Servo\+R\+H\+A\+::\+Servo\+R\+HA (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{servo\+\_\+id, }
+\item[{uint8\+\_\+t}]{rxpin, }
+\item[{uint8\+\_\+t}]{txpin, }
+\item[{uint8\+\_\+t}]{ctrlpin}
+\end{DoxyParamCaption}
+)}\hypertarget{classServoRHA_a7fb72168b35039c5b1eb1597312e8303}{}\label{classServoRHA_a7fb72168b35039c5b1eb1597312e8303}
+
+
+\hyperlink{classServoRHA}{Servo\+R\+HA} cunstructor of \hyperlink{classServoRHA}{Servo\+R\+HA} class. Gets servo ID and calibrates the minimum torque. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t\}} & servo\+\_\+id\+: servo id controlled by this object \\
+\hline
+{\em \{uint8\+\_\+t\}} & rxpin rxpin set in shield \\
+\hline
+{\em \{uint8\+\_\+t\}} & txpin txpin set in shield \\
+\hline
+{\em \{uint8\+\_\+t\}} & ctrlpin ctrlpin set in shield \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classCytron__G15__Servo}{Cytron\+\_\+\+G15\+\_\+\+Servo(uint8\+\_\+t servo\+\_\+id, uint8\+\_\+t rxpin, uint8\+\_\+t txpin, uint8\+\_\+t ctrlpin)} constructor. 
+
+\hyperlink{classServoRHA_abd64398a4d18799952561bd7a5ded082}{init()} function 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\index{Servo\+R\+HA@{Servo\+R\+HA}!add\+To\+Packet@{add\+To\+Packet}}
+\index{add\+To\+Packet@{add\+To\+Packet}!Servo\+R\+HA@{Servo\+R\+HA}}
+\subsubsection[{\texorpdfstring{add\+To\+Packet(uint8\+\_\+t $\ast$buffer, uint8\+\_\+t \&position, uint8\+\_\+t $\ast$goal, uint8\+\_\+t goal\+\_\+len, uint8\+\_\+t \&num\+\_\+servo)}{addToPacket(uint8_t *buffer, uint8_t &position, uint8_t *goal, uint8_t goal_len, uint8_t &num_servo)}}]{\setlength{\rightskip}{0pt plus 5cm}void Servo\+R\+H\+A\+::add\+To\+Packet (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{buffer, }
+\item[{uint8\+\_\+t \&}]{position, }
+\item[{uint8\+\_\+t $\ast$}]{goal, }
+\item[{uint8\+\_\+t}]{goal\+\_\+len, }
+\item[{uint8\+\_\+t \&}]{num\+\_\+servo}
+\end{DoxyParamCaption}
+)}\hypertarget{classServoRHA_a53068a57169a9c4dcb4fda8d426dd493}{}\label{classServoRHA_a53068a57169a9c4dcb4fda8d426dd493}
+
+
+add\+To\+Packet add goal servos from this joint to packet. Implements interface to servo.\+add\+To\+Packet() 
+
+add\+To\+Packet adds this servo to a buffer with his own information (id, goal, etc). This function is used to send just one packet for all servos instead of each sending their respective information
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & is the buffer in which the information will be added (by reference) \\
+\hline
+{\em position} & is the position from which it writes the new info (by reference) \\
+\hline
+{\em instruction} & is the instruction that is being sended in this packet \\
+\hline
+{\em goal} & the goal to send. Note that it can be speed, torque, position... It can be a combination (go to an X position with an Y speed) (by reference) \\
+\hline
+{\em goal\+\_\+len} & length of the goal (uint8\+\_\+ts) \\
+\hline
+{\em num\+\_\+servo} & how many servos had been added to this packet \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classServoRHA_a53068a57169a9c4dcb4fda8d426dd493}{Servo\+R\+H\+A\+::add\+To\+Packet(uint8\+\_\+t $\ast$buffer, uint8\+\_\+t \&position, uint8\+\_\+t $\ast$goal, uint8\+\_\+t goal\+\_\+len, uint8\+\_\+t \&num\+\_\+servo)};
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t} & $\ast$\} buffer\+: is the buffer in which the information will be added (by reference) \\
+\hline
+{\em \{uint8\+\_\+t} & \&\} position\+: is the position from which it writes the new info (by reference) \\
+\hline
+{\em \{uint8\+\_\+t} & $\ast$\} goal\+: the goal to send. Note that it can be speed, torque, position... It can be a combination (go to an X position with an Y speed) (by reference) \\
+\hline
+{\em \{uint8\+\_\+t\}} & goal\+\_\+len\+: length of the goal (uint8\+\_\+ts) \\
+\hline
+{\em \{uint8\+\_\+t} & \&\} num\+\_\+servo\+: how many servos had been added to this packet \\
+\hline
+\end{DoxyParams}
+\index{Servo\+R\+HA@{Servo\+R\+HA}!angle\+Read@{angle\+Read}}
+\index{angle\+Read@{angle\+Read}!Servo\+R\+HA@{Servo\+R\+HA}}
+\subsubsection[{\texorpdfstring{angle\+Read()}{angleRead()}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Servo\+R\+H\+A\+::angle\+Read (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classServoRHA_a6e21d764f228195d3be465495fe78390}{}\label{classServoRHA_a6e21d764f228195d3be465495fe78390}
+
+
+angle\+Read function is used to read current position of the servo 
+
+\begin{DoxyReturn}{Returns}
+\{uint16\+\_\+t\} Returns position in degrees (0 to 360) 
+\end{DoxyReturn}
+\index{Servo\+R\+HA@{Servo\+R\+HA}!calibrate\+Torque@{calibrate\+Torque}}
+\index{calibrate\+Torque@{calibrate\+Torque}!Servo\+R\+HA@{Servo\+R\+HA}}
+\subsubsection[{\texorpdfstring{calibrate\+Torque()}{calibrateTorque()}}]{\setlength{\rightskip}{0pt plus 5cm}void Servo\+R\+H\+A\+::calibrate\+Torque (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classServoRHA_a2b85e528b987d734d4b99613b49c594c}{}\label{classServoRHA_a2b85e528b987d734d4b99613b49c594c}
+
+
+calibrate\+Torque function gets the minimum torque in which the servo starts moving for CW and C\+CW direcion. 
+
+\begin{DoxySeeAlso}{See also}
+calibrate\+Torque\+Dir(param1, param2) 
+\end{DoxySeeAlso}
+\index{Servo\+R\+HA@{Servo\+R\+HA}!calibrate\+Torque\+Dir@{calibrate\+Torque\+Dir}}
+\index{calibrate\+Torque\+Dir@{calibrate\+Torque\+Dir}!Servo\+R\+HA@{Servo\+R\+HA}}
+\subsubsection[{\texorpdfstring{calibrate\+Torque\+Dir(uint16\+\_\+t \&min\+\_\+torque, uint16\+\_\+t direction)}{calibrateTorqueDir(uint16_t &min_torque, uint16_t direction)}}]{\setlength{\rightskip}{0pt plus 5cm}void Servo\+R\+H\+A\+::calibrate\+Torque\+Dir (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t \&}]{min\+\_\+torque, }
+\item[{uint16\+\_\+t}]{direction}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classServoRHA_a2faeef2bb525c57171905d7390cfa1c9}{}\label{classServoRHA_a2faeef2bb525c57171905d7390cfa1c9}
+
+
+calibrate\+Torque function gets the minimum torque in which the servo starts moving in a set direction 
+
+
+\begin{DoxyParams}{Parameters}
+{\em min\+\_\+torque} & reference to the min torque value to change (it can be cor CW or C\+CW direction) \\
+\hline
+{\em direction} & CW or C\+CW, note that is has to be consistent with the min\+\_\+torque variable \\
+\hline
+\end{DoxyParams}
+\index{Servo\+R\+HA@{Servo\+R\+HA}!init@{init}}
+\index{init@{init}!Servo\+R\+HA@{Servo\+R\+HA}}
+\subsubsection[{\texorpdfstring{init(uint8\+\_\+t servo\+\_\+id, uint8\+\_\+t rxpin, uint8\+\_\+t txpin, uint8\+\_\+t ctrlpin, uint32\+\_\+t baudrate)}{init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate)}}]{\setlength{\rightskip}{0pt plus 5cm}void Servo\+R\+H\+A\+::init (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{servo\+\_\+id, }
+\item[{uint8\+\_\+t}]{rxpin, }
+\item[{uint8\+\_\+t}]{txpin, }
+\item[{uint8\+\_\+t}]{ctrlpin, }
+\item[{uint32\+\_\+t}]{baudrate}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classServoRHA_a3cc8f36d2756e5a196ec13e12f1a2286}{}\label{classServoRHA_a3cc8f36d2756e5a196ec13e12f1a2286}
+
+
+init handles the inicialization of all \hyperlink{classServoRHA}{Servo\+R\+HA} internal parameters when default constructor is used 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t\}} & servo\+\_\+id\+: servo id controlled by this object \\
+\hline
+{\em \{uint8\+\_\+t\}} & rxpin rxpin set in shield \\
+\hline
+{\em \{uint8\+\_\+t\}} & txpin txpin set in shield \\
+\hline
+{\em \{uint8\+\_\+t\}} & ctrlpin ctrlpin set in shield \\
+\hline
+{\em \{uint32\+\_\+t\}} & baudrate baudrate comunication with servos \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classCytron__G15__Servo}{Cytron\+\_\+\+G15\+\_\+\+Servo}.
+
+\index{Servo\+R\+HA@{Servo\+R\+HA}!init@{init}}
+\index{init@{init}!Servo\+R\+HA@{Servo\+R\+HA}}
+\subsubsection[{\texorpdfstring{init()}{init()}}]{\setlength{\rightskip}{0pt plus 5cm}void Servo\+R\+H\+A\+::init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classServoRHA_abd64398a4d18799952561bd7a5ded082}{}\label{classServoRHA_abd64398a4d18799952561bd7a5ded082}
+
+
+init handles the inicialization of all \hyperlink{classServoRHA}{Servo\+R\+HA} internal parameters when \hyperlink{classServoRHA_a7fb72168b35039c5b1eb1597312e8303}{Servo\+R\+H\+A(uint8\+\_\+t servo\+\_\+id, uint8\+\_\+t rxpin, uint8\+\_\+t txpin, uint8\+\_\+t ctrlpin)}; constructor is used. 
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classServoRHA_a7fb72168b35039c5b1eb1597312e8303}{Servo\+R\+H\+A(uint8\+\_\+t servo\+\_\+id, uint8\+\_\+t rxpin, uint8\+\_\+t txpin, uint8\+\_\+t ctrlpin)}; 
+\end{DoxySeeAlso}
+\index{Servo\+R\+HA@{Servo\+R\+HA}!is\+Moving@{is\+Moving}}
+\index{is\+Moving@{is\+Moving}!Servo\+R\+HA@{Servo\+R\+HA}}
+\subsubsection[{\texorpdfstring{is\+Moving()}{isMoving()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Servo\+R\+H\+A\+::is\+Moving (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classServoRHA_a6935a684c935c92c255a96f51eb3c39d}{}\label{classServoRHA_a6935a684c935c92c255a96f51eb3c39d}
+
+
+is\+Moving to know whether the servo is moving or not based on servo real speed 
+
+\begin{DoxyReturn}{Returns}
+\{bool\} Returns bool (true if its moving, or false if not) 
+\end{DoxyReturn}
+\index{Servo\+R\+HA@{Servo\+R\+HA}!return\+Packet\+Set@{return\+Packet\+Set}}
+\index{return\+Packet\+Set@{return\+Packet\+Set}!Servo\+R\+HA@{Servo\+R\+HA}}
+\subsubsection[{\texorpdfstring{return\+Packet\+Set(uint8\+\_\+t option)}{returnPacketSet(uint8_t option)}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Servo\+R\+H\+A\+::return\+Packet\+Set (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{option}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classServoRHA_a63c7bd194a1bf8ff0196c8ea3f3a7c00}{}\label{classServoRHA_a63c7bd194a1bf8ff0196c8ea3f3a7c00}
+
+
+return\+Packet\+Set function sets the package return level of servo (error information for each command sent) 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t\}} & option\+: R\+E\+T\+U\+R\+N\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+A\+LL -\/$>$ servo returns packet for all commands sent; R\+E\+T\+U\+R\+N\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+N\+O\+NE -\/$>$ servo never retunrs state packet; R\+E\+T\+U\+R\+N\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+D\+\_\+\+I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+NS -\/$>$ servo answer packet state when a R\+E\+AD command is sent (to read position, temperature, etc)  \{uint16\+\_\+t\} Returns error code for this action \\
+\hline
+\end{DoxyParams}
+\index{Servo\+R\+HA@{Servo\+R\+HA}!set\+Wheel\+Speed@{set\+Wheel\+Speed}}
+\index{set\+Wheel\+Speed@{set\+Wheel\+Speed}!Servo\+R\+HA@{Servo\+R\+HA}}
+\subsubsection[{\texorpdfstring{set\+Wheel\+Speed(uint16\+\_\+t speed, uint8\+\_\+t cw\+\_\+ccw)}{setWheelSpeed(uint16_t speed, uint8_t cw_ccw)}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Servo\+R\+H\+A\+::set\+Wheel\+Speed (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t}]{speed, }
+\item[{uint8\+\_\+t}]{cw\+\_\+ccw}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\hypertarget{classServoRHA_a750f89c94342e55b69bf746b7edc0abc}{}\label{classServoRHA_a750f89c94342e55b69bf746b7edc0abc}
+
+
+Set\+Wheel\+Speed sets wheel speed according to margins saved in calibration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint16\+\_\+t\}} & speed\+: speed value (in \%, 0 to 100) -\/$>$ 0 means stop and from 1 to 100 means moving \\
+\hline
+{\em \{uint8\+\_\+t\}} & cw\+\_\+ccw\+: direction in which the servo will move \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\{uint16\+\_\+t\} Error status in uint16\+\_\+t. If return is non-\/zero, error occurred. (depends on retunr\+Packet option) 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+return\+Packet\+On\+O\+F\+F() 
+\end{DoxySeeAlso}
+\index{Servo\+R\+HA@{Servo\+R\+HA}!speed\+Read@{speed\+Read}}
+\index{speed\+Read@{speed\+Read}!Servo\+R\+HA@{Servo\+R\+HA}}
+\subsubsection[{\texorpdfstring{speed\+Read()}{speedRead()}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Servo\+R\+H\+A\+::speed\+Read (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classServoRHA_ac0d004c22090d5a75facc319f8773fc0}{}\label{classServoRHA_ac0d004c22090d5a75facc319f8773fc0}
+
+
+speed\+Read function is used to read current speed of the servo 
+
+\begin{DoxyReturn}{Returns}
+\{uint16\+\_\+t\} Returns speed 
+\end{DoxyReturn}
+\index{Servo\+R\+HA@{Servo\+R\+HA}!update\+Info@{update\+Info}}
+\index{update\+Info@{update\+Info}!Servo\+R\+HA@{Servo\+R\+HA}}
+\subsubsection[{\texorpdfstring{update\+Info()}{updateInfo()}}]{\setlength{\rightskip}{0pt plus 5cm}void Servo\+R\+H\+A\+::update\+Info (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classServoRHA_abe4b7078a33b1f46d1f09a7b7edc6a45}{}\label{classServoRHA_abe4b7078a33b1f46d1f09a7b7edc6a45}
+
+
+update\+Info asks the servo for all the information to be updated by class servo. 
+
+Reads from register P\+R\+E\+S\+E\+N\+T\+\_\+\+P\+O\+S\+I\+T\+I\+O\+N\+\_\+L (0x24) to M\+O\+V\+I\+NG (0x2E). Position are bits 10 to 0 from register 0x24 and 0x25 Speed are bits 9 to 0 from register 0x26 and 0x27, 10th bit is direction Load are bits 9 to 0 from register 0x28 and 0x29, 10th bit is direction Voltage is in register 0x2a Temperature is in register 0x2B Action registered (pending from activation) flag is in register 0x2C Moving flag is in register 0x2E \index{Servo\+R\+HA@{Servo\+R\+HA}!wrap\+Packet@{wrap\+Packet}}
+\index{wrap\+Packet@{wrap\+Packet}!Servo\+R\+HA@{Servo\+R\+HA}}
+\subsubsection[{\texorpdfstring{wrap\+Packet(uint8\+\_\+t $\ast$buffer, uint8\+\_\+t $\ast$data, uint8\+\_\+t data\+\_\+len, uint8\+\_\+t instruction, uint8\+\_\+t num\+\_\+servo)}{wrapPacket(uint8_t *buffer, uint8_t *data, uint8_t data_len, uint8_t instruction, uint8_t num_servo)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t Servo\+R\+H\+A\+::wrap\+Packet (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{buffer, }
+\item[{uint8\+\_\+t $\ast$}]{data, }
+\item[{uint8\+\_\+t}]{data\+\_\+len, }
+\item[{uint8\+\_\+t}]{instruction, }
+\item[{uint8\+\_\+t}]{num\+\_\+servo}
+\end{DoxyParamCaption}
+)}\hypertarget{classServoRHA_aafd8db25639b5351831e779064314507}{}\label{classServoRHA_aafd8db25639b5351831e779064314507}
+
+
+wrap\+Packet adds information needed once all servos had been aded (header, ID, instruction...). This function is used to send just one packet for all servos instead of each sending their respective information 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t} & $\ast$\} buffer\+: is the buffer in which the information will be added (by reference) \\
+\hline
+{\em \{uint8\+\_\+t} & $\ast$\} data\+: is the data that have been completed by each servo (by reference) \\
+\hline
+{\em \{uint8\+\_\+t\}} & data\+\_\+len\+: is the length of data \\
+\hline
+{\em \{uint8\+\_\+t\}} & instruction\+: is the instruction to send \\
+\hline
+{\em \{uint8\+\_\+t\}} & num\+\_\+servo\+: how many servos had been added to this packet \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\{uint8\+\_\+t\} Returns number of uint8\+\_\+ts that contain usefull info (how many have been written) 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/servo\+\_\+rha/\hyperlink{servo__rha_8h}{servo\+\_\+rha.\+h}\item 
+lib/joint\+\_\+rha/\hyperlink{joint__rha_8cpp}{joint\+\_\+rha.\+cpp}\item 
+lib/servo\+\_\+rha/\hyperlink{servo__rha_8cpp}{servo\+\_\+rha.\+cpp}\end{DoxyCompactItemize}

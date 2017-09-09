@@ -1,0 +1,22 @@
+      11 text files.
+classified 11 files      11 unique files.                              
+       0 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.04 s (277.5 files/s, 46210.2 lines/s)
+---------------------------------------------------------------------------------------------------------------------------
+File                                                                                    blank        comment           code
+---------------------------------------------------------------------------------------------------------------------------
+/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp                  112             86            380
+/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp                                 52            118            159
+/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h                     27             58            148
+/home/quique/Documentos/RHA/SW/src/utilities.h                                             24             29            118
+/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h                                   20             15             62
+/home/quique/Documentos/RHA/SW/lib/debug/debug.h                                           16             38             59
+/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp                                 14             58             42
+/home/quique/Documentos/RHA/SW/src/main.cpp                                                15             22             29
+/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h                                   10             11             26
+/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp                         10             24             24
+/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h                            5             11             10
+---------------------------------------------------------------------------------------------------------------------------
+SUM:                                                                                      305            470           1057
+---------------------------------------------------------------------------------------------------------------------------

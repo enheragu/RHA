@@ -4,7 +4,7 @@
  * @Project: RHA
  * @Filename: test_cytron_g15_servo.cpp
  * @Last modified by:   enheragu
- * @Last modified time: 08_Sep_2017
+ * @Last modified time: 09-Sep-2017
  */
 
 
@@ -15,7 +15,7 @@
 
 #ifdef UNIT_TEST
 
-#define SERVO_ID 1
+#define SERVO_ID 4
 #define DELAY_MOVE 5000
 #define POSITION 180
 #define SPEED 300
@@ -26,9 +26,6 @@ class TestCytron : public Cytron_G15_Servo {
  public:
   TestCytron(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin):Cytron_G15_Servo(servo_id, rxpin, txpin, ctrlpin) {  }
   uint8_t getServoID() {  return servo_id_; }
-  uint8_t getTxPin() {  return txpin_shield; }
-  uint8_t getRxPin() {  return rxpin_shield; }
-  uint8_t getCtrlPin() {  return ctrlpin_shield; }
 };
 
 void testStatus(word status) {

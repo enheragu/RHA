@@ -1,0 +1,16 @@
+      11 text files.
+classified 11 files      11 unique files.                              
+       0 files ignored.
+
+language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.60  T=0.03 s (355.5 files/s, 65468.8 lines/s)"
+C++,/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp,112,86,380
+C/C++ Header,/home/quique/Documentos/RHA/SW/src/utilities.h,41,52,281
+C++,/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp,52,126,159
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h,27,58,148
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h,20,15,62
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/debug/debug.h,16,38,59
+C++,/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp,14,59,42
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h,10,11,26
+C++,/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp,10,24,24
+C++,/home/quique/Documentos/RHA/SW/src/main.cpp,9,27,12
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h,5,11,10

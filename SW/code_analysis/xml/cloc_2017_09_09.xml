@@ -1,0 +1,29 @@
+      11 text files.
+classified 11 files      11 unique files.                              
+       0 files ignored.
+
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.0313210487365723</elapsed_seconds>
+  <n_files>11</n_files>
+  <n_lines>2026</n_lines>
+  <files_per_second>351.201522417599</files_per_second>
+  <lines_per_second>64684.934947096</lines_per_second>
+</header>
+<files>
+  <file name="/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp" blank="112" comment="86" code="380"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/src/utilities.h" blank="41" comment="52" code="281"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp" blank="52" comment="126" code="159"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h" blank="27" comment="58" code="148"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h" blank="20" comment="15" code="62"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/debug/debug.h" blank="16" comment="38" code="59"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp" blank="14" comment="59" code="42"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h" blank="10" comment="11" code="26"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp" blank="10" comment="24" code="24"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/src/main.cpp" blank="9" comment="27" code="12"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h" blank="5" comment="11" code="10"  language="C/C++ Header" />
+  <total blank="316" comment="507" code="1203" />
+</files>
+</results>

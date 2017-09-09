@@ -10,7 +10,7 @@
  * @Project: RHA
  * @Filename: debug.h
  * @Last modified by:   enheragu
- * @Last modified time: 08_Sep_2017
+ * @Last modified time: 09-Sep-2017
  */
 
 #ifndef DEBUG_H
@@ -26,10 +26,10 @@
 
 // #define DEBUG_SERVO_RHA
 // #define DEBUG_TEST_SERVO_RHA_MOCK
-#define DEBUG_TEST_SERVO_RHA_REAL
+// #define DEBUG_TEST_SERVO_RHA_REAL
 // #define DEBUG_CYTRON_G15_SERVO
 // #define DEBUG_TEST_CYTRON_G15_SERVO
-// #define DEBUG_UTILITIES
+ #define DEBUG_UTILITIES
 
 
 /******************************************

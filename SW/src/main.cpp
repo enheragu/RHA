@@ -4,14 +4,15 @@
  * @Project: RHA
  * @Filename: main.cpp
  * @Last modified by:   enheragu
- * @Last modified time: 08_Sep_2017
+ * @Last modified time: 09-Sep-2017
  */
 
 
 
-//#ifndef UNIT_TEST  // disable program main loop while unit testing in progress
+// #ifndef UNIT_TEST  // disable program main loop while unit testing in progress
 #include "servo_rha.h"
 #include <Arduino.h>
+#include "utilities.h"
 //#include "joint_rha.h"
 
 // #define DEBUG_SERVO_RHA
@@ -24,43 +25,24 @@
 
 void setup() {
   Serial.begin(9600);
-  Serial.println("estoy en el setup");
-  // g15.begin(19200);
-  //servo_test1.init(1, 2, 3, 8, 9200);
-  ServoRHA servo_broadcast;
-  servo_broadcast.init(0xFE,2,3,8,19200);         //Broadcast initialize
-  servo_broadcast.ping(data);
-  IDcurrent = data[0];
-  Serial.print("ID now is: "); Serial.println(IDcurrent);
-  ServoRHA servo1;
-  servo1.init(1,2,3,8,19200);
-
-  delay(25);
-  servo1.setAlarmLED(0x7F);
-  delay(25);
-  Serial.println("Exiting wheel mode");
-  word error = servo1.exitWheelMode();
-  printServoStatusError(error);
-  delay(25);
-  Serial.println("Set wheel mode");
-  error = servo1.setWheelMode();
-  printServoStatusError(error);
-  delay(25);
-  Serial.println("Set speed");
-  error = servo1.setWheelSpeed(1000, CW);
-  printServoStatusError(error);
+  Serial.println("Setup done");
 }
 
 void loop(){
-
+    Serial.println("Begin of loop");
+    //MeasureUtilities::checkSpeed();
+    MeasureUtilities::checkTimeGetInfo(100);
+    MeasureUtilities::checkTimeSpeedRead(100);
+    /*while(true){
+        DebugSerialSeparation(1);
+        delay(1000);
+        ServoRHA servo_broadcast(ALL_SERVO,2,3,8);
+        servo_broadcast.begin(19200);         //Broadcast initialize
+        uint8_t data[10];
+        uint16_t error = servo_broadcast.ping(data);
+        printServoStatusError(error & ~SERROR_IDMISMATCH);  // ID mismatch is deleted
+        DebugSerialSeparation(1);
+    }*/
 }
 
-/*
-void loop() {
-  Serial.println("estoy en el loop");
-
-
-
-}*/
-
-//#endif
+// #endif

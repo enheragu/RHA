@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: servo_rha.h
  * @Last modified by:   enheragu
- * @Last modified time: 08_Sep_2017
+ * @Last modified time: 09-Sep-2017
  */
 
 
@@ -72,9 +72,9 @@ class ServoRHA : public Cytron_G15_Servo {
     virtual uint16_t returnPacketSet(uint8_t option);
     void addToPacket(uint8_t *buffer, uint8_t &position, uint8_t *goal, uint8_t goal_len, uint8_t &num_servo);
     uint8_t wrapPacket(uint8_t *buffer, uint8_t *data, uint8_t data_len, uint8_t instruction, uint8_t num_servo);
-    virtual uint16_t setWheelSpeed(uint16_t speed, uint8_t cw_ccw);
+    virtual uint16_t setWheelSpeedPercent(uint16_t speed, uint8_t cw_ccw);
 
-    uint16_t regulatorServo(uint16_t error);
+    uint16_t regulatorServo(uint16_t error, uint8_t kp = KP);
 
     virtual void calibrateTorque();
 

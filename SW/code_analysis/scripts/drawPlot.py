@@ -123,7 +123,7 @@ def makeClocPlot ( info_list , name):
     #plt.show()
     img_name = name
     img_name.replace(" ","")
-    img_name += ".pdf"
+    img_name += ".png"
     fig.savefig(img_name, bbox_inches='tight')
 
 
@@ -150,7 +150,7 @@ def makePercentageClocPlot(info_list , name):
 
     img_name = name
     img_name.replace(" ","")
-    img_name += ".pdf"
+    img_name += ".png"
     fig.savefig(img_name, bbox_inches='tight')
 
 

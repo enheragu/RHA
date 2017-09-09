@@ -1,0 +1,174 @@
+\hypertarget{classJointRHA}{}\section{Joint\+R\+HA Class Reference}
+\label{classJointRHA}\index{Joint\+R\+HA@{Joint\+R\+HA}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classJointRHA_a2f15a460350b23ccbd5599e9f0adc855}{Joint\+R\+HA} (uint8\+\_\+t servo\+\_\+id, uint8\+\_\+t up\+\_\+direction, uint8\+\_\+t potentiometer)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classJointRHA}{Joint\+R\+HA} cunstructor of \hyperlink{classJointRHA}{Joint\+R\+HA} class. \end{DoxyCompactList}\item 
+\hyperlink{classJointRHA_a9e54cc4dde103847c9d17f329302a981}{$\sim$\+Joint\+R\+HA} ()\hypertarget{classJointRHA_a9e54cc4dde103847c9d17f329302a981}{}\label{classJointRHA_a9e54cc4dde103847c9d17f329302a981}
+
+\begin{DoxyCompactList}\small\item\em $\sim$\+Joint\+R\+HA destructor of \hyperlink{classJointRHA}{Joint\+R\+HA} class. \end{DoxyCompactList}\item 
+void \hyperlink{classJointRHA_acf5dd56eb854250047a9ee2d0a402e4f}{init} (uint8\+\_\+t servo\+\_\+id, uint8\+\_\+t up\+\_\+direction, uint8\+\_\+t potentiometer)
+\begin{DoxyCompactList}\small\item\em init for \hyperlink{classJointRHA}{Joint\+R\+HA} default constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classJointRHA_a54a96a85108db8b497aff9dd09f9d671}{set\+Goal} (uint16\+\_\+t speed\+\_\+target, uint16\+\_\+t speed\+\_\+slope, uint8\+\_\+t direction\+\_\+target)
+\begin{DoxyCompactList}\small\item\em set\+Goal function sets speed goal to achieve with speed slope \end{DoxyCompactList}\item 
+void {\bfseries add\+To\+Packet} (uint8\+\_\+t $\ast$buffer, uint8\+\_\+t \&position, uint8\+\_\+t $\ast$goal, uint8\+\_\+t goal\+\_\+len, uint8\+\_\+t \&num\+\_\+servo)\hypertarget{classJointRHA_a01bdf1839655467b1d8b4dc179595953}{}\label{classJointRHA_a01bdf1839655467b1d8b4dc179595953}
+
+\item 
+uint8\+\_\+t \hyperlink{classJointRHA_a2699a5c23fc45d929af0be9d9b985828}{wrap\+Packet} (uint8\+\_\+t $\ast$buffer, uint8\+\_\+t $\ast$data, uint8\+\_\+t data\+\_\+len, uint8\+\_\+t instruction, uint8\+\_\+t num\+\_\+servo)
+\begin{DoxyCompactList}\small\item\em wrap\+Packet implements an interface to call servo\+\_\+ wrap\+Packet \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{classJointRHA_a9dc4da0e2989efde76f0a13b24d67dee}{speed\+Error} ()
+\begin{DoxyCompactList}\small\item\em speed\+Error calculates error to send to servo regulator \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{classJointRHA_ac12ae19170553a71dc1ac2328ecdefe1}{regulator\+Joint} (uint16\+\_\+t error)
+\begin{DoxyCompactList}\small\item\em regulator\+Joint calls regulator\+Servo. Serves as interface with servo methods \end{DoxyCompactList}\item 
+void \hyperlink{classJointRHA_ab3e0a845b387b5ef171a56c1e4d05e92}{update\+Info} ()\hypertarget{classJointRHA_ab3e0a845b387b5ef171a56c1e4d05e92}{}\label{classJointRHA_ab3e0a845b387b5ef171a56c1e4d05e92}
+
+\begin{DoxyCompactList}\small\item\em update\+Info updates all the information of servo object and feedback information to use it in next control iteration (in control loop) \end{DoxyCompactList}\item 
+uint16\+\_\+t {\bfseries send\+Packet} (uint8\+\_\+t id, uint8\+\_\+t instruction, uint8\+\_\+t $\ast$data, uint8\+\_\+t parameter\+Length)\hypertarget{classJointRHA_adb3b8514cc4a3311b06188b2ff3a6378}{}\label{classJointRHA_adb3b8514cc4a3311b06188b2ff3a6378}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!Joint\+R\+HA@{Joint\+R\+HA}}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!Joint\+R\+HA@{Joint\+R\+HA}}
+\subsubsection[{\texorpdfstring{Joint\+R\+H\+A(uint8\+\_\+t servo\+\_\+id, uint8\+\_\+t up\+\_\+direction, uint8\+\_\+t potentiometer)}{JointRHA(uint8_t servo_id, uint8_t up_direction, uint8_t potentiometer)}}]{\setlength{\rightskip}{0pt plus 5cm}Joint\+R\+H\+A\+::\+Joint\+R\+HA (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{servo\+\_\+id, }
+\item[{uint8\+\_\+t}]{up\+\_\+direction, }
+\item[{uint8\+\_\+t}]{potentiometer}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointRHA_a2f15a460350b23ccbd5599e9f0adc855}{}\label{classJointRHA_a2f15a460350b23ccbd5599e9f0adc855}
+
+
+\hyperlink{classJointRHA}{Joint\+R\+HA} cunstructor of \hyperlink{classJointRHA}{Joint\+R\+HA} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t\}} & servo\+\_\+id\+: servo id controlled by this joint \\
+\hline
+{\em \{uint8\+\_\+t\}} & up\+\_\+direction\+: direction in which the servo has to move (CW or C\+CW) so the joint moves up. \\
+\hline
+{\em \{uint8\+\_\+t\}} & potentiometer\+: pin in which the potentiometer for this joint is connected \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!init@{init}}
+\index{init@{init}!Joint\+R\+HA@{Joint\+R\+HA}}
+\subsubsection[{\texorpdfstring{init(uint8\+\_\+t servo\+\_\+id, uint8\+\_\+t up\+\_\+direction, uint8\+\_\+t potentiometer)}{init(uint8_t servo_id, uint8_t up_direction, uint8_t potentiometer)}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+R\+H\+A\+::init (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{servo\+\_\+id, }
+\item[{uint8\+\_\+t}]{up\+\_\+direction, }
+\item[{uint8\+\_\+t}]{potentiometer}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointRHA_acf5dd56eb854250047a9ee2d0a402e4f}{}\label{classJointRHA_acf5dd56eb854250047a9ee2d0a402e4f}
+
+
+init for \hyperlink{classJointRHA}{Joint\+R\+HA} default constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t\}} & servo\+\_\+id\+: servo id controlled by this joint \\
+\hline
+{\em \{uint8\+\_\+t\}} & up\+\_\+direction\+: direction in which the servo has to move (CW or C\+CW) so the joint moves up. \\
+\hline
+{\em \{uint8\+\_\+t\}} & potentiometer\+: pin in which the potentiometer for this joint is connected \\
+\hline
+\end{DoxyParams}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!regulator\+Joint@{regulator\+Joint}}
+\index{regulator\+Joint@{regulator\+Joint}!Joint\+R\+HA@{Joint\+R\+HA}}
+\subsubsection[{\texorpdfstring{regulator\+Joint(uint16\+\_\+t error)}{regulatorJoint(uint16_t error)}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Joint\+R\+H\+A\+::regulator\+Joint (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t}]{error}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointRHA_ac12ae19170553a71dc1ac2328ecdefe1}{}\label{classJointRHA_ac12ae19170553a71dc1ac2328ecdefe1}
+
+
+regulator\+Joint calls regulator\+Servo. Serves as interface with servo methods 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint16\+\_\+t\}} & error error input to the regulator \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\{uint16\+\_\+t\} regulator output (torque to send to servo) 
+\end{DoxyReturn}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!set\+Goal@{set\+Goal}}
+\index{set\+Goal@{set\+Goal}!Joint\+R\+HA@{Joint\+R\+HA}}
+\subsubsection[{\texorpdfstring{set\+Goal(uint16\+\_\+t speed\+\_\+target, uint16\+\_\+t speed\+\_\+slope, uint8\+\_\+t direction\+\_\+target)}{setGoal(uint16_t speed_target, uint16_t speed_slope, uint8_t direction_target)}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+R\+H\+A\+::set\+Goal (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t}]{speed\+\_\+target, }
+\item[{uint16\+\_\+t}]{speed\+\_\+slope, }
+\item[{uint8\+\_\+t}]{direction\+\_\+target}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointRHA_a54a96a85108db8b497aff9dd09f9d671}{}\label{classJointRHA_a54a96a85108db8b497aff9dd09f9d671}
+
+
+set\+Goal function sets speed goal to achieve with speed slope 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint16\+\_\+t\}} & speed\+\_\+target\+: speed to achieve \\
+\hline
+{\em \{uint16\+\_\+t\}} & speed\+\_\+slope\+: slope from actual speed to speed\+\_\+target (acceleration) \\
+\hline
+{\em \{uint16\+\_\+t\}} & direction\+\_\+target\+: move CW or C\+CW \\
+\hline
+\end{DoxyParams}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!speed\+Error@{speed\+Error}}
+\index{speed\+Error@{speed\+Error}!Joint\+R\+HA@{Joint\+R\+HA}}
+\subsubsection[{\texorpdfstring{speed\+Error()}{speedError()}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t Joint\+R\+H\+A\+::speed\+Error (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointRHA_a9dc4da0e2989efde76f0a13b24d67dee}{}\label{classJointRHA_a9dc4da0e2989efde76f0a13b24d67dee}
+
+
+speed\+Error calculates error to send to servo regulator 
+
+\begin{DoxyReturn}{Returns}
+\{uint8\+\_\+t\} returns error between actual position and target position 
+\end{DoxyReturn}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!wrap\+Packet@{wrap\+Packet}}
+\index{wrap\+Packet@{wrap\+Packet}!Joint\+R\+HA@{Joint\+R\+HA}}
+\subsubsection[{\texorpdfstring{wrap\+Packet(uint8\+\_\+t $\ast$buffer, uint8\+\_\+t $\ast$data, uint8\+\_\+t data\+\_\+len, uint8\+\_\+t instruction, uint8\+\_\+t num\+\_\+servo)}{wrapPacket(uint8_t *buffer, uint8_t *data, uint8_t data_len, uint8_t instruction, uint8_t num_servo)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t Joint\+R\+H\+A\+::wrap\+Packet (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{buffer, }
+\item[{uint8\+\_\+t $\ast$}]{data, }
+\item[{uint8\+\_\+t}]{data\+\_\+len, }
+\item[{uint8\+\_\+t}]{instruction, }
+\item[{uint8\+\_\+t}]{num\+\_\+servo}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointRHA_a2699a5c23fc45d929af0be9d9b985828}{}\label{classJointRHA_a2699a5c23fc45d929af0be9d9b985828}
+
+
+wrap\+Packet implements an interface to call servo\+\_\+ wrap\+Packet 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer} & is the buffer in which the information will be added (by reference) \\
+\hline
+{\em data} & is the data that have been completed by each servo (by reference) \\
+\hline
+{\em data\+\_\+len} & is the length of data \\
+\hline
+{\em instruction} & is the instruction to send \\
+\hline
+{\em num\+\_\+servo} & how many servos had been added to this packet \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns number of uint8\+\_\+ts that contain usefull info (how many have been written) 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classServoRHA_aafd8db25639b5351831e779064314507}{Servo\+R\+H\+A\+::wrap\+Packet(uint8\+\_\+t $\ast$buffer, uint8\+\_\+t $\ast$data, uint8\+\_\+t data\+\_\+len, uint8\+\_\+t instruction, uint8\+\_\+t num\+\_\+servo)}; 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/joint\+\_\+rha/\hyperlink{joint__rha_8h}{joint\+\_\+rha.\+h}\item 
+lib/joint\+\_\+rha/\hyperlink{joint__rha_8cpp}{joint\+\_\+rha.\+cpp}\end{DoxyCompactItemize}

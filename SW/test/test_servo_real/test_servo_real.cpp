@@ -4,7 +4,7 @@
  * @Project: RHA
  * @Filename: test_servo_real.cpp
  * @Last modified by:   enheragu
- * @Last modified time: 08_Sep_2017
+ * @Last modified time: 09-Sep-2017
  */
 
 
@@ -14,7 +14,7 @@
 
 #ifdef UNIT_TEST
 
-#define SERVO_ID 1
+#define SERVO_ID 4
 #define DELAY_MOVE 5000
 #define DELAY_MOVE_SHORT 500
 #define POSITION 8.56
@@ -62,9 +62,6 @@ void test_function_setInitServo(void) {
 
     TEST_ASSERT_EQUAL_UINT16(MAX_TORQUE_CCW, servo_test1.getMaxTorqueCcw());
     TEST_ASSERT_EQUAL_UINT16(MAX_TORQUE_CW, servo_test1.getMaxTorqueCw());
-    TEST_ASSERT_EQUAL_UINT16(ACCELERATION_ANGLE, servo_test1.getAccelerationAngle());
-    uint16_t acceleration_slope = (static_cast<float>(100) - static_cast<float>(0)) / static_cast<float>(servo_test1.getAccelerationAngle());
-    TEST_ASSERT_EQUAL_UINT16(acceleration_slope, servo_test1.getAccelerationSlope());
     DebugSerialTSRHARealLn("End of init test for servo real.");
 }
 
@@ -75,7 +72,7 @@ void test_function_isMoving(void) {
     delay(DELAY_MOVE);
     TEST_ASSERT_EQUAL(false, servo_test1.isMoving());
     servo_test1.setWheelMode();
-    servo_test1.setWheelSpeed(100, CW);
+    servo_test1.setWheelSpeed(100, CW, iWRITE_DATA);
     delay(DELAY_MOVE);
     TEST_ASSERT_EQUAL(true, servo_test1.isMoving());
     servo_test1.exitWheelMode();
@@ -103,23 +100,23 @@ void test_function_calibrateTorque(void) {
     delay(DELAY_MOVE);
     TEST_ASSERT_EQUAL(false, servo_test1.isMoving());
     servo_test1.setWheelMode();
-    servo_test1.setWheelSpeed(100, CW);
+    servo_test1.setWheelSpeedPercentage(100, CW);
     delay(DELAY_MOVE);
     TEST_ASSERT_EQUAL_MESSAGE(true, servo_test1.isMoving(), "Servo should be moving, speed was set to MAX_SPEED_ALLOWED");
 
-    servo_test1.setWheelSpeed(0, CW);  // servo stoped
+    servo_test1.setWheelSpeedPercentage(0, CW);  // servo stoped
     delay(DELAY_MOVE);
     TEST_ASSERT_EQUAL_MESSAGE(false, servo_test1.isMoving(), "Servo should not be moving, speed was set under min_torque (CW dir)");
 
-    servo_test1.setWheelSpeed(1, CW);  // servo min speed
+    servo_test1.setWheelSpeedPercentage(1, CW);  // servo min speed
     delay(DELAY_MOVE);
     TEST_ASSERT_EQUAL_MESSAGE(true, servo_test1.isMoving(), "Servo should be moving, speed was set over min_torque (CW dir)");
 
-    servo_test1.setWheelSpeed(0, CCW);  // servo stoped
+    servo_test1.setWheelSpeedPercentage(0, CCW);  // servo stoped
     delay(DELAY_MOVE);
     TEST_ASSERT_EQUAL_MESSAGE(false, servo_test1.isMoving(), "Servo should not be moving, speed was set under min_torque (CCW dir)");
 
-    servo_test1.setWheelSpeed(1, CCW);  // servo min speed
+    servo_test1.setWheelSpeedPercentage(1, CCW);  // servo min speed
     delay(DELAY_MOVE);
     TEST_ASSERT_EQUAL_MESSAGE(true, servo_test1.isMoving(), "Servo should be moving, speed was set over min_torque (CCW dir)");
     DebugSerialTSRHARealLn("test_calibrateTorque: End of test.");
@@ -130,7 +127,6 @@ void test_function_calibrateTorque(void) {
 void process() {
     UNITY_BEGIN();
 
-    RUN_TEST(test_function_setGoalEncoder);
     RUN_TEST(test_function_setInitServo);
     RUN_TEST(test_function_isMoving);
     RUN_TEST(test_function_readAngle);

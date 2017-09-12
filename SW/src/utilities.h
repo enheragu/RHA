@@ -9,7 +9,7 @@
  * @Project: RHA
  * @Filename: utilities.h
  * @Last modified by:   enheragu
- * @Last modified time: 10-Sep-2017
+ * @Last modified time: 12_Sep_2017
  */
 
 #include <Arduino.h>
@@ -63,20 +63,20 @@ namespace MeasureUtilities{
         ServoRHA servo_test1(IDcurrent,2,3,8);
         servo_test1.init();
 
-        long encoderTemp = 0,
+        uint32_t encoderTemp = 0,
              encoderCurrent = 0,
              encoderFullRotation = 100,
              encoderTotal = 0;
 
-        int speed_set = SPEED,
+        uint16_t speed_set = SPEED,
             torque_set = 1023;
 
-        char encoderFlag = 0;
+        uint8_t encoderFlag = 0;
 
-        word pos = 0;
+        uint16_t pos = 0;
 
-        long initTime = 0;
-        long currentTime = 0;
+        uint32_t initTime = 0;
+        uint32_t currentTime = 0;
 
         error = servo_test1.setTorqueLimit( torque_set);
         delay(25);
@@ -115,9 +115,9 @@ namespace MeasureUtilities{
             if (encoderCurrent < (encoderTemp + 5)  && encoderCurrent > (encoderTemp - 5) && encoderFlag == 0) {
                 encoderTotal++;
                 currentTime = millis();
-                double time_whole = ((currentTime - initTime) / 1000);
-                double speed_now = ((double)encoderTotal / (double)time_whole)*60;
-                double speed_read = servo_test1.speedRead();
+                float time_whole = ((float)(currentTime - initTime) / 1000);
+                float speed_now = ((float)encoderTotal / (float)time_whole)*60;
+                float speed_read = servo_test1.speedRead();
                 DebugSerialSeparation(1);
                 DebugSerialUtilitiesLn2("  -  Torque set is: ", speed_set);
                 DebugSerialUtilitiesLn2("  -  Speed calculated is (in rpm): ", speed_now);
@@ -145,23 +145,23 @@ namespace MeasureUtilities{
      * @brief Calculates the average applying chauvenets criterion
      * @method averageChauvenet
      * @param  data data to calculate the average
-     * @param  n amount of data
+     * @param  n amount of data (max of 255)
      * @return  Returns the average
      */
-    double averageChauvenet(long *data, long n){
+    float averageChauvenet(uint32_t *data, uint8_t n){
         DebugSerialUtilitiesLn("averageChauvenet: begin of function");
-        double arithmetic_average = 0, standard_deviation = 0;
-        double values_kept [n];
-        long n_values = 0;
-        for (int i = 0; i < n; i++) arithmetic_average += data[i];
-        arithmetic_average /= (double)n;
+        float arithmetic_average = 0, standard_deviation = 0;
+        float values_kept [n];
+        uint8_t n_values = 0;
+        for (uint8_t i = 0; i < n; i++) arithmetic_average += data[i];
+        arithmetic_average /= (float)n;
         DebugSerialUtilitiesLn2("averageChauvenet: arithmetic average calculated: ", arithmetic_average);
-        for (int i = 0; i < n; i++) standard_deviation += pow((data[i]-arithmetic_average), 2);
+        for (uint8_t i = 0; i < n; i++) standard_deviation += pow((data[i]-arithmetic_average), 2);
         DebugSerialUtilitiesLn2("averageChauvenet: standard_deviation²: ", standard_deviation);
         standard_deviation = sqrt(standard_deviation / (n-1)); // n-1 is used due to Bessel correction
         DebugSerialUtilitiesLn2("averageChauvenet: standard deviation calculated: ", standard_deviation);
         // Data with more than 2 times standar deviation from average are discarded
-        for (int i = 0; i < n; i++){
+        for (uint8_t i = 0; i < n; i++){
             if(abs(data[i]-arithmetic_average) > KN*standard_deviation){
                 DebugSerialUtilitiesLn4("Value discarded:", data[i], ", in position: ", n);
             }
@@ -170,7 +170,7 @@ namespace MeasureUtilities{
                 n_values++;
             }
         }
-        for (int i = 0; i < n_values; i++) arithmetic_average += values_kept[i]; // Once all the values have been discarded the average is made again
+        for (uint8_t i = 0; i < n_values; i++) arithmetic_average += values_kept[i]; // Once all the values have been discarded the average is made again
         arithmetic_average /= n_values;
         DebugSerialUtilitiesLn2("averageChauvenet: arithmetic average calculated after discard values: ", arithmetic_average);
         return arithmetic_average;
@@ -178,11 +178,11 @@ namespace MeasureUtilities{
 
     /**
      * @brief checkTimeInfo checks time spent sending and recieving packet with ServoRHA::updateInfo() . It can test one servo. Autodetects ID of the one connected
-     * @param {long} repetitions: num of repetitions the test is made (time is the average of this repetitions)
+     * @param {long} repetitions: num of repetitions the test is made (time is the average of this repetitions). Max of 255 (danger of memory overload)
      * @see checkTimeSpeedRead(). Both are used together to compare speed rate in comunication.
      * @see averageChauvenet()
      */
-    void checkTimeGetInfo(long repetitions){
+    void checkTimeGetInfo(uint8_t repetitions){
         DebugSerialSeparation(1);
         ServoRHA servo_broadcast(ALL_SERVO,2,3,8);
         servo_broadcast.init();         //Broadcast initialize
@@ -198,11 +198,11 @@ namespace MeasureUtilities{
         ServoRHA servo_test1(IDcurrent,2,3,8);
         servo_test1.init();
 
-        long initTime = 0;
-        long timeSpent [repetitions];
+        uint32_t initTime = 0;
+        uint32_t timeSpent [repetitions];
 
         DebugSerialUtilitiesLn("Begin of loop to take data");
-        for (int i = 0; i < repetitions; i++){
+        for (uint8_t i = 0; i < repetitions; i++){
             initTime = millis();
             servo_test1.updateInfo();
             timeSpent[i] = millis()-initTime;
@@ -212,7 +212,7 @@ namespace MeasureUtilities{
             }
         }
         DebugSerialUtilitiesLn("Data taken, calling averageChauvenet()");
-        double average_time = averageChauvenet(timeSpent,repetitions);
+        float average_time = averageChauvenet(timeSpent,repetitions);
         DebugSerialUtilitiesLn2("checkTimeGetInfo: Time spent with ServoRHA::updateInfo: ", average_time);
         DebugSerialUtilitiesLn2("checkTimeGetInfo: number of repetitions: ", repetitions);
         DebugSerialUtilitiesLn("checkTimeSpeedRead: 11 bytes read");
@@ -221,11 +221,11 @@ namespace MeasureUtilities{
 
     /**
       * @brief checkTimeInfo checks time spent sending and recieving packet with ServoRHA::SpeedRead(). It can test one servo. Autodetects ID of the one connected.
-      * @param {long} repetitions: num of repetitions the test is made (time is the average of this repetitions)
+      * @param {long} repetitions: num of repetitions the test is made (time is the average of this repetitions). Max 255 (danger of memory overload)
       * @see checkTimeGetInfo(). Both are used together to compare speed rate in comunication.
       * @see averageChauvenet()
       */
-    void checkTimeSpeedRead(long repetitions){
+    void checkTimeSpeedRead(uint8_t repetitions){
         DebugSerialSeparation(1);
         ServoRHA servo_broadcast(ALL_SERVO,2,3,8);
         servo_broadcast.init();         //Broadcast initialize
@@ -241,11 +241,11 @@ namespace MeasureUtilities{
         ServoRHA servo_test1(IDcurrent,2,3,8);
         servo_test1.init();
 
-        long initTime = 0;
-        long timeSpent [repetitions];
+        uint32_t initTime = 0;
+        uint32_t timeSpent [repetitions];
 
         DebugSerialUtilitiesLn("Begin of loop to take data");
-        for (int i = 0; i < repetitions; i++){
+        for (uint8_t i = 0; i < repetitions; i++){
             initTime = millis();
             servo_test1.speedRead();
             timeSpent[i] = millis()-initTime;
@@ -255,7 +255,7 @@ namespace MeasureUtilities{
                 return;
             }
         }
-        double average_time = averageChauvenet(timeSpent,repetitions);
+        float average_time = averageChauvenet(timeSpent,repetitions);
         DebugSerialUtilitiesLn2("checkTimeSpeedRead: Time spent with ServoRHA::speedRead: ", average_time);
         DebugSerialUtilitiesLn2("checkTimeSpeedRead: number of repetitions: ", repetitions);
         DebugSerialUtilitiesLn("checkTimeSpeedRead: 2 bytes read");
@@ -292,7 +292,7 @@ namespace MeasureUtilities{
                  speed_current = 0,
                  speed_target = SPEED_TARGET,
                  error_speed = 0;
-        unsigned long time_init = 0,
+        uint32_t time_init = 0,
                       timer = LOOP_FREQUENCY;
         uint8_t counter = 0;
 

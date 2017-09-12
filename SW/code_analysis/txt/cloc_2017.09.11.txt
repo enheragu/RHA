@@ -1,0 +1,22 @@
+      11 text files.
+classified 11 files      11 unique files.                              
+       0 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.56 s (19.7 files/s, 3620.7 lines/s)
+-------------------------------------------------------------------------------------------------------------
+File                                                                      blank        comment           code
+-------------------------------------------------------------------------------------------------------------
+/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp                  112             86            380
+/home/gmv/RHA/SW/src/utilities.h                                             39             52            281
+/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp                                 52            126            159
+/home/gmv/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h                     27             58            148
+/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h                                   20             15             62
+/home/gmv/RHA/SW/lib/debug/debug.h                                           16             38             59
+/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp                                 14             59             42
+/home/gmv/RHA/SW/lib/joint_rha/joint_rha.h                                   10             11             26
+/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp                         10             24             24
+/home/gmv/RHA/SW/src/main.cpp                                                 9             27             12
+/home/gmv/RHA/SW/lib/joint_handler/joint_handler.h                            5             11             10
+-------------------------------------------------------------------------------------------------------------
+SUM:                                                                        314            507           1203
+-------------------------------------------------------------------------------------------------------------

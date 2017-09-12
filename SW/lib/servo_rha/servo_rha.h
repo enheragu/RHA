@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: servo_rha.h
  * @Last modified by:   enheragu
- * @Last modified time: 09-Sep-2017
+ * @Last modified time: 12-Sep-2017
  */
 
 
@@ -37,8 +37,11 @@
 #define RETURN_PACKET_NONE 0x00
 #define RETURN_PACKET_READ_INSTRUCTIONS 0x01
 
+#define G15_BAUDRATE 57600
+
 /** KP K constant of speed control loop for servos. */
 #define KP 100/60 // means toruqe/speed
+#define TORQUE_OFFSET 150  // under this torque servo does not move
 
 /** ALL_SERVO is ID to broadcast to all servo in bus. */
 #define ALL_SERVO 0xFE
@@ -59,7 +62,7 @@ class ServoRHA : public Cytron_G15_Servo {
     uint8_t voltage_, temperature_, registered_, is_moving_;
 
  public:
-    ServoRHA(){}  // It'll be only used for testing purposes
+    ServoRHA(){}
     ServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
     virtual void init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate);
     virtual void init();

@@ -6,7 +6,7 @@
  * @Project: RHA
  * @Filename: joint_rha.cpp
  * @Last modified by:   enheragu
- * @Last modified time: 09-Sep-2017
+ * @Last modified time: 12-Sep-2017
  */
 
 #include "joint_rha.h"
@@ -17,7 +17,7 @@
   * @param {uint8_t} potentiometer pin in which the potentiometer for this joint is connected
   */
 JointRHA::JointRHA(uint8_t servo_id, uint8_t up_direction, uint8_t potentiometer) {
-    servo_ = new ServoRHA (servo_id);
+    //servo_ = new ServoRHA (servo_id);
     up_direction_ = up_direction;
     potentiometer_pin_ = potentiometer;
 }
@@ -36,7 +36,7 @@ void JointRHA::init(uint8_t servo_id, uint8_t up_direction, uint8_t potentiomete
     up_direction_ = up_direction;
     potentiometer_pin_ = potentiometer;
 
-    servo_.init(servo_id, 2, 3, 8, 19200);
+    servo_.init(servo_id, 2, 3, 8, G15_BAUDRATE);
 
     pinMode(potentiometer_pin_, INPUT);
 }
@@ -63,47 +63,6 @@ uint8_t JointRHA::speedError(){
     if (speed > speed_target_) speed = speed_target_;
     time_last_ = millis();
     return (speed - servo_.getSpeed());
-}
-
-/**
- * @brief Calls regulatorServo. Serves as interface with servo methods
- * @param  {uint16_t} error error input to the regulator
- * @return {uint16_t} regulator output (torque to send to servo)
- * @see ServoRHA::regulatorServo()
- */
-uint16_t JointRHA::regulatorJoint(uint16_t error){
-    return servo_.regulatorServo(error);
-}
-
-
-/** @brief Add goals from servos of this joint to packet. Implements interface to servo.addToPacket()
-  * @param buffer is the buffer in which the information will be added (by reference)
-  * @param position is the position from which it writes the new info (by reference)
-  * @param instruction is the instruction that is being sended in this packet
-  * @param goal the goal to send. Note that it can be speed, torque, position... It can be a combination (go to an X position with an Y speed) (by reference)
-  * @param goal_len length of the goal (uint8_ts)
-  * @param num_servo how many servos had been added to this packet
-  * @see ServoRHA::addToPacket();
-  */
-void ServoRHA::addToPacket(uint8_t *buffer, uint8_t &position, uint8_t *goal, uint8_t goal_len, uint8_t &num_servo) {
-    servo_.addToPacket(buffer, position, goal, goal_len, num_servo);
-}
-
-/** @brief Implements an interface to call servo_ wrapPacket
-  * @param buffer is the buffer in which the information will be added (by reference)
-  * @param data is the data that have been completed by each servo (by reference)
-  * @param data_len is the length of data
-  * @param instruction is the instruction to send
-  * @param num_servo how many servos had been added to this packet
-  * @return Returns number of uint8_ts that contain usefull info (how many have been written)
-  * @see ServoRHA::wrapPacket();
-  */
-uint8_t JointRHA::wrapPacket(uint8_t *buffer, uint8_t *data, uint8_t data_len, uint8_t instruction, uint8_t num_servo) {
-    return servo_.wrapPacket(buffer, data, data_len, instruction, num_servo);
-}
-
-uint16_t sendPacket(uint8_t instruction, uint8_t* data, uint8_t parameterLength){
-  return servo_.sendPacket(servo_.getID(), instruction, data, parameterLength);
 }
 
 /**

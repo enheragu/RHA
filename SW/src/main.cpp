@@ -4,7 +4,7 @@
  * @Project: RHA
  * @Filename: main.cpp
  * @Last modified by:   enheragu
- * @Last modified time: 09-Sep-2017
+ * @Last modified time: 12-Sep-2017
  */
 
 
@@ -31,8 +31,12 @@ void setup() {
 void loop(){
     Serial.println("Begin of loop");
     //MeasureUtilities::checkSpeed();
-    MeasureUtilities::checkTimeGetInfo(100);
-    MeasureUtilities::checkTimeSpeedRead(100);
+    //ServoUtilities::fullFactoryResetBR();
+    while(true){
+        MeasureUtilities::checkTimeGetInfo(CHAUVENET_REPETITIONS);
+        MeasureUtilities::checkTimeSpeedRead(CHAUVENET_REPETITIONS);
+    }
+    //MeasureUtilities::extractRegulatorData();
     /*while(true){
         DebugSerialSeparation(1);
         delay(1000);

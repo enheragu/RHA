@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: servo_rha.cpp
  * @Last modified by:   enheragu
- * @Last modified time: 09-Sep-2017
+ * @Last modified time: 12-Sep-2017
  */
 
 #include "servo_rha.h"
@@ -61,7 +61,7 @@ void ServoRHA::init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrl
 void ServoRHA::init() {
     DebugSerialSRHALn("initServo: begin of inicialitationfunction");
 
-    Cytron_G15_Servo::begin(19200);
+    Cytron_G15_Servo::begin(G15_BAUDRATE);
     delay(DELAY1);
     //calibrateTorque();
 
@@ -131,8 +131,8 @@ bool ServoRHA::isMoving() {
 void ServoRHA::updateInfo(){
     uint8_t data[11];
     data[0] = PRESENT_POSITION_L;
-    data[1] = 0x0B; // Wants to read 11 bytes from PRESENT_POSITION_L
-    error_ = sendPacket (servo_id_, iREAD_DATA, data, 2);
+    data[1] = 0x08; // Wants to read 11 bytes from PRESENT_POSITION_L
+    error_ = Cytron_G15_Servo::sendPacket(servo_id_, iREAD_DATA, data, 2);
 
     position_ = data[0];
     position_ |= (data[1] << 8);
@@ -153,9 +153,9 @@ void ServoRHA::updateInfo(){
 
     temperature_ = data[7];
 
-    registered_ = data[8];
+    //registered_ = data[8];
 
-    is_moving_ = data[10];
+    //is_moving_ = data[10];
 }
 
 /**********************************************************
@@ -169,7 +169,9 @@ void ServoRHA::updateInfo(){
  * @param  {uint8_t} kp constant of regulator
  * @return  {uint16_t} Returns torque value to send to the servo
  */
-uint16_t regulatorServo(uint16_t error, uint8_t kp) {
+uint16_t ServoRHA::regulatorServo(uint16_t error, uint8_t kp) {
+    if (error > 0) return KP*error + TORQUE_OFFSET;
+    //else if (error < 0) return abs(KP*error);
     return KP*error;
 }
 

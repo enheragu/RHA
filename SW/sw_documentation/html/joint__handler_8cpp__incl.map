@@ -1,7 +1,0 @@
-<map id="lib/joint_handler/joint_handler.cpp" name="lib/joint_handler/joint_handler.cpp">
-<area shape="rect" id="node2" href="$joint__handler_8h.html" title="Implements JointHandler class. This object is in charge to sync all joints. " alt="" coords="155,95,262,121"/>
-<area shape="rect" id="node3" href="$joint__rha_8h.html" title="Implements JointRHA class. This object combines potentiometer with ServoRHA object readings to enhanc..." alt="" coords="167,169,250,196"/>
-<area shape="rect" id="node4" href="$servo__rha_8h.html" title="Implements ServoRHA class. This object inherits from CytronG15Servo object to enhance its capabilitie..." alt="" coords="111,244,202,271"/>
-<area shape="rect" id="node5" href="$debug_8h.html" title="Implements debugging macros with Serial printig that can be activated or not for each different libra..." alt="" coords="5,393,73,420"/>
-<area shape="rect" id="node6" href="$cytron__g15__servo_8h_source.html" title="cytron_g15_servo.h" alt="" coords="89,319,225,345"/>
-</map>

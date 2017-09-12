@@ -9,7 +9,7 @@
  * @Project: RHA
  * @Filename: utilities.h
  * @Last modified by:   enheragu
- * @Last modified time: 12-Sep-2017
+ * @Last modified time: 13-Sep-2017
  */
 
 #include <Arduino.h>
@@ -332,6 +332,45 @@ namespace MeasureUtilities{
         Serial.print("]");
     }
 
+    /**
+     * @brief This function is intended to test new baudrates and it's success comunication ratio
+     * @method checkPingSucces
+     * @param  repetitions   number of repetitions to perform
+     */
+    void checkComSucces(uint16_t repetitions){
+        DebugSerialUtilitiesLn("checkComSucces: begin of function");
+        DebugSerialSeparation(1);
+
+        ServoRHA servo_broadcast(ALL_SERVO,2,3,8);
+        servo_broadcast.init();         //Broadcast initialize
+        uint8_t data[10];
+        uint16_t error = servo_broadcast.ping(data);
+        uint8_t IDcurrent = data[0];
+        DebugSerialUtilitiesLn2("ID from servo is: ", IDcurrent);
+        if (error != 0 && error != SERROR_IDMISMATCH){  // Ignore ID mismatch as we broadcast to all servo
+            printServoStatusError(error);
+            DebugSerialUtilitiesLn("Error in servo comunication, end of checkComSucces");
+            printServoStatusError(error);
+            return;
+        }
+        ServoRHA servo_test1(IDcurrent,2,3,8);
+        servo_test1.init();
+
+        uint16_t succes_ping = 0, succes_updateInfo = 0;
+        for (uint16_t i = 0; i < repetitions; i++)
+        {
+            error = servo_test1.ping(data);
+            if (error == 0) succes_ping++;
+            delay(5);
+            servo_test1.updateInfo();
+            if (servo_test1.getError() == 0) succes_updateInfo++;
+            delay(5);
+        }
+        DebugSerialUtilitiesLn2("checkComSucces: Success total (ping): ", succes_ping);
+        DebugSerialUtilitiesLn2("checkComSucces: Success total (updateInfo): ", succes_updateInfo);
+        DebugSerialUtilitiesLn2("checkComSucces: number of repetitions: ", repetitions);
+        DebugSerialSeparation(1);
+    }
 } //end of MeasureUtilities namespace
 
 /***************************************************************

@@ -4,7 +4,7 @@
  * @Project: RHA
  * @Filename: main.cpp
  * @Last modified by:   enheragu
- * @Last modified time: 12-Sep-2017
+ * @Last modified time: 13-Sep-2017
  */
 
 
@@ -33,8 +33,9 @@ void loop(){
     //MeasureUtilities::checkSpeed();
     //ServoUtilities::fullFactoryResetBR();
     while(true){
-        MeasureUtilities::checkTimeGetInfo(CHAUVENET_REPETITIONS);
-        MeasureUtilities::checkTimeSpeedRead(CHAUVENET_REPETITIONS);
+        //MeasureUtilities::checkTimeGetInfo(CHAUVENET_REPETITIONS);
+        //MeasureUtilities::checkTimeSpeedRead(CHAUVENET_REPETITIONS);
+        MeasureUtilities::checkComSucces(1500);
     }
     //MeasureUtilities::extractRegulatorData();
     /*while(true){

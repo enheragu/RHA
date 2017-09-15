@@ -10,7 +10,7 @@
  * @Project: RHA
  * @Filename: debug.h
  * @Last modified by:   enheragu
- * @Last modified time: 09-Sep-2017
+ * @Last modified time: 14-Sep-2017
  */
 
 #ifndef DEBUG_H
@@ -61,9 +61,9 @@
 /** DEBUG_UTILITIES implements debug macros for utilities.h file */
 #ifdef DEBUG_UTILITIES
     #define DebugSerialUtilitiesLn(a) {  Serial.print("[DC]  Utilities::"); Serial.println(a); }
-    #define DebugSerialUtilitiesLn2(a, b) {  Serial.print("[DT]  Utilities::"); Serial.print(a); Serial.println(b); }
-    #define DebugSerialUtilities(a) {  Serial.print("[DT]  Utilities::"); Serial.print(a); }
-    #define DebugSerialUtilitiesLn4(a, b, c, d) {  Serial.print("[DT]  Utilities::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+    #define DebugSerialUtilitiesLn2(a, b) {  Serial.print("[DC]  Utilities::"); Serial.print(a); Serial.println(b); }
+    #define DebugSerialUtilities(a) {  Serial.print("[DC]  Utilities::"); Serial.print(a); }
+    #define DebugSerialUtilitiesLn4(a, b, c, d) {  Serial.print("[DC]  Utilities::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
 #else
     #define DebugSerialUtilitiesLn(a)
     #define DebugSerialUtilitiesLn2(a, b)

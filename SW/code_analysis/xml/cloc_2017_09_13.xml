@@ -1,0 +1,30 @@
+      12 text files.
+classified 12 files      12 unique files.                              
+       1 file ignored.
+
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.0271198749542236</elapsed_seconds>
+  <n_files>12</n_files>
+  <n_lines>2316</n_lines>
+  <files_per_second>442.479916306957</files_per_second>
+  <lines_per_second>85398.6238472426</lines_per_second>
+</header>
+<files>
+  <file name="/home/quique/Documentos/RHA/SW/src/utilities.cpp" blank="55" comment="74" code="409"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp" blank="114" comment="86" code="385"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp" blank="57" comment="136" code="170"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h" blank="28" comment="58" code="151"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/src/utilities.h" blank="31" comment="20" code="72"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h" blank="21" comment="15" code="68"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/debug/debug.h" blank="16" comment="38" code="59"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp" blank="9" comment="36" code="29"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp" blank="10" comment="24" code="24"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h" blank="9" comment="12" code="21"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/src/main.cpp" blank="9" comment="31" code="13"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h" blank="5" comment="11" code="10"  language="C/C++ Header" />
+  <total blank="364" comment="541" code="1411" />
+</files>
+</results>

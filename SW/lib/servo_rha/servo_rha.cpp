@@ -7,13 +7,14 @@
  * @Project: RHA
  * @Filename: servo_rha.cpp
  * @Last modified by:   enheragu
- * @Last modified time: 12-Sep-2017
+ * @Last modified time: 13-Sep-2017
  */
 
 #include "servo_rha.h"
 #include "cytron_g15_servo.h"
 #include "Arduino.h"
 
+using namespace ServoRHAConstants;
 
 /** @brief Constructor of ServoRHA class.
   * @param {uint8_t} servo_id servo id controlled by this object
@@ -43,6 +44,29 @@ ServoRHA::ServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlp
 void ServoRHA::init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate) {
     DebugSerialSRHALn("initServo: begin of inicialitationfunction");
     Cytron_G15_Servo::init(servo_id, rxpin, txpin, ctrlpin, baudrate);
+    delay(DELAY1);
+    //calibrateTorque();
+
+    max_torque_ccw_ = MAX_TORQUE_CCW;
+    max_torque_cw_ = MAX_TORQUE_CW;
+
+    returnPacketSet(RETURN_PACKET_READ_INSTRUCTIONS);  // Servo only respond to read data instructions
+
+    DebugSerialSRHALn("initServo: end of inicialitation function");
+}
+
+
+/** @brief Handles the inicialization of all ServoRHA internal parameters when default constructor is used
+  * @param {uint8_t} servo_id servo id controlled by this object
+  * @param {uint8_t} rxpin rxpin set in shield
+  * @param {uint8_t} txpin txpin set in shield
+  * @param {uint8_t} ctrlpin ctrlpin set in shield
+  */
+void ServoRHA::init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin) {
+    DebugSerialSRHALn("initServo: begin of inicialitationfunction");
+    Cytron_G15_Servo::init(servo_id, rxpin, txpin, ctrlpin);
+    Cytron_G15_Servo::begin(G15_BAUDRATE);
+    delay(DELAY1);
     delay(DELAY1);
     //calibrateTorque();
 
@@ -130,7 +154,7 @@ bool ServoRHA::isMoving() {
   */
 void ServoRHA::updateInfo(){
     uint8_t data[11];
-    data[0] = PRESENT_POSITION_L;
+    data[0] = Cytron_G15_ServoConstants::PRESENT_POSITION_L;
     data[1] = 0x08; // Wants to read 11 bytes from PRESENT_POSITION_L
     error_ = Cytron_G15_Servo::sendPacket(servo_id_, iREAD_DATA, data, 2);
 
@@ -188,7 +212,7 @@ uint16_t ServoRHA::regulatorServo(uint16_t error, uint8_t kp) {
      DebugSerialSRHALn("returnPacketSet: begin of function.");
      uint8_t TxBuff[2];
 
-     TxBuff[0] = STATUS_RETURN_LEVEL;         // Control Starting Address
+     TxBuff[0] = Cytron_G15_ServoConstants::STATUS_RETURN_LEVEL;         // Control Starting Address
      TxBuff[1] = option;             // ON = 1, OFF = 0
 
       // write the packet, return the error code

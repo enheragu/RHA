@@ -13,11 +13,13 @@
 /**
  * @Filename: cytron_g15_servo.cpp
  * @Last modified by:   enheragu
- * @Last modified time: 08_Sep_2017
+ * @Last modified time: 13-Sep-2017
  */
 
 // #include "HardwareSerial.h"
 #include "cytron_g15_servo.h"
+
+using namespace Cytron_G15_ServoConstants;
 
 boolean hardwareSerial;
 SoftwareSerial* G15Serial;
@@ -51,6 +53,11 @@ void Cytron_G15_Servo::init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint
     servo_id_ = servo_id;
     initCytronG15Shield(rxpin, txpin, ctrlpin);
     begin(baudrate);
+}
+
+void Cytron_G15_Servo::init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin){
+    servo_id_ = servo_id;
+    initCytronG15Shield(rxpin, txpin, ctrlpin);
 }
 
 void Cytron_G15_Servo::begin(uint32_t baudrate) {

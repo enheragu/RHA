@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: joint_rha.h
  * @Last modified by:   enheragu
- * @Last modified time: 12-Sep-2017
+ * @Last modified time: 14-Sep-2017
  */
 
 #ifndef SERVO_RHA_H
@@ -15,6 +15,7 @@
 
 #include "servo_rha.h"
 #include "Arduino.h"
+#include <SoftwareSerial.h>
 
 //class ServoRHA;
 

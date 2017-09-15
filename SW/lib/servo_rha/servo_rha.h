@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: servo_rha.h
  * @Last modified by:   enheragu
- * @Last modified time: 12-Sep-2017
+ * @Last modified time: 14-Sep-2017
  */
 
 
@@ -17,40 +17,42 @@
 #include "debug.h"
 #include "cytron_g15_servo.h"
 
-#define DELAY1 500  // delay for configuration purposes
-#define TORQUE_CALIBRATION_INTERVAL 5  // In calibrations try every X torque (0, 5, 10, etc in case TORQUE_CALIBRATION_INTERVAL is 5)
-#define MIN_TORQUE_CALIBRATION 0
-#define MAX_TORQUE_CALIBRATION 800
+namespace ServoRHAConstants {
+    #define DELAY1 500  // delay for configuration purposes
+    #define TORQUE_CALIBRATION_INTERVAL 5  // In calibrations try every X torque (0, 5, 10, etc in case TORQUE_CALIBRATION_INTERVAL is 5)
+    #define MIN_TORQUE_CALIBRATION 0
+    #define MAX_TORQUE_CALIBRATION 800
 
-/** MARGIN_ANGLE_COMPARISON defines an interval in which two speed values will be considered as the same value when compared*/
-#define MARGIN_SPEED_COMPARISON 5
-/** MARGIN_ANGLE_COMPARISON defines an interval in which two angle values will be considered as the same value when compared*/
-#define MARGIN_ANGLE_COMPARISON 5
+    /** MARGIN_ANGLE_COMPARISON defines an interval in which two speed values will be considered as the same value when compared*/
+    #define MARGIN_SPEED_COMPARISON 5
+    /** MARGIN_ANGLE_COMPARISON defines an interval in which two angle values will be considered as the same value when compared*/
+    #define MARGIN_ANGLE_COMPARISON 5
 
-#define MIN_TORQUE_CW 0
-#define MIN_TORQUE_CCW 180
-#define MAX_TORQUE_CW 400
-#define MAX_TORQUE_CCW 400
-#define ACCELERATION_ANGLE 360
+    #define MIN_TORQUE_CW 0
+    #define MIN_TORQUE_CCW 180
+    #define MAX_TORQUE_CW 400
+    #define MAX_TORQUE_CCW 400
+    #define ACCELERATION_ANGLE 360
 
-#define RETURN_PACKET_ALL 0x02
-#define RETURN_PACKET_NONE 0x00
-#define RETURN_PACKET_READ_INSTRUCTIONS 0x01
+    #define RETURN_PACKET_ALL 0x02
+    #define RETURN_PACKET_NONE 0x00
+    #define RETURN_PACKET_READ_INSTRUCTIONS 0x01
 
-#define G15_BAUDRATE 57600
 
-/** KP K constant of speed control loop for servos. */
-#define KP 100/60 // means toruqe/speed
-#define TORQUE_OFFSET 150  // under this torque servo does not move
+    /** KP K constant of speed control loop for servos. */
+    #define KP 100/60 // means toruqe/speed
+    #define TORQUE_OFFSET 150  // under this torque servo does not move
 
-/** ALL_SERVO is ID to broadcast to all servo in bus. */
-#define ALL_SERVO 0xFE
+    /** ALL_SERVO is ID to broadcast to all servo in bus. */
+    #define ALL_SERVO 0xFE
+    #define DEFAULT_ID  0x01
 
-enum {  // enumeration for angle and speed compariso
-    LESS_THAN,
-    EQUAL,
-    GREATER_THAN
-    };
+    enum {  // enumeration for angle and speed compariso
+        LESS_THAN,
+        EQUAL,
+        GREATER_THAN
+        };
+}
 
 uint8_t compareAngles(uint16_t angle1, uint16_t angle2, uint8_t angle_margin = 0);
 uint8_t compareSpeed(uint16_t speed1, uint16_t speed2, uint8_t speed_margin = 0);
@@ -65,6 +67,7 @@ class ServoRHA : public Cytron_G15_Servo {
     ServoRHA(){}
     ServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
     virtual void init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate);
+    void init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
     virtual void init();
 
     uint16_t angleRead();

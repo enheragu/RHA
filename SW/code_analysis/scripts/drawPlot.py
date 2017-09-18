@@ -1,3 +1,11 @@
+# @Author: Enrique Heredia Aguado <quique>
+# @Date:   09-Sep-2017
+# @Project: RHA
+# @Last modified by:   quique
+# @Last modified time: 16-Sep-2017
+
+
+
 #!/usr/bin/python
 
 # needs matplotlib:
@@ -120,7 +128,7 @@ def makeClocPlot ( info_list , name):
     fig.autofmt_xdate()
     fig.subplots_adjust(left=0.13, bottom=0.11, right=0.93, top=0.92, wspace=0.15, hspace=0.25)
 
-    #plt.show()
+    plt.show()
     img_name = name
     img_name.replace(" ","")
     img_name += ".png"

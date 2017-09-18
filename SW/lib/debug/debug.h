@@ -9,8 +9,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: debug.h
- * @Last modified by:   enheragu
- * @Last modified time: 14-Sep-2017
+ * @Last modified by:   quique
+ * @Last modified time: 16-Sep-2017
  */
 
 #ifndef DEBUG_H
@@ -27,9 +27,10 @@
 // #define DEBUG_SERVO_RHA
 // #define DEBUG_TEST_SERVO_RHA_MOCK
 // #define DEBUG_TEST_SERVO_RHA_REAL
+// #define DEBUG_JOINT_HANDLER
 // #define DEBUG_CYTRON_G15_SERVO
 // #define DEBUG_TEST_CYTRON_G15_SERVO
- #define DEBUG_UTILITIES
+#define DEBUG_UTILITIES
 
 
 /******************************************
@@ -56,6 +57,17 @@
     #define DebugSerialSRHALn(a)
     #define DebugSerialSRHALn2(a, b)
     #define DebugSerialSRHALn4(a, b, c, d)
+#endif
+
+/** DEBUG_JOINT_HANDLER implements debug macros for servo_rha.h and .cpp files */
+#ifdef DEBUG_JOINT_HANDLER
+    #define DebugSerialJHLn(a) {  Serial.print("[DC]  ServoRHA::"); Serial.println(a); }
+    #define DebugSerialJHLn2(a, b) {  Serial.print("[DC]  ServoRHA::"); Serial.print(a); Serial.println(b); }
+    #define DebugSerialJHLn4(a, b, c, d) {  Serial.print("[DC]  ServoRHA::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+#else
+    #define DebugSerialJHLn(a)
+    #define DebugSerialJHLn2(a, b)
+    #define DebugSerialJHLn4(a, b, c, d)
 #endif
 
 /** DEBUG_UTILITIES implements debug macros for utilities.h file */

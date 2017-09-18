@@ -8,15 +8,16 @@
  * @Date:   2017_Sep_13
  * @Project: RHA
  * @Filename: utilities.h
- * @Last modified by:   enheragu
- * @Last modified time: 13-Sep-2017
+ * @Last modified by:   quique
+ * @Last modified time: 17-Sep-2017
  */
 
 #include <Arduino.h>
 #include "debug.h"
 #include "servo_rha.h"
-#include "cytron_g15_servo.h"
+// #include "cytron_g15_servo.h"
 #include "utilities.h"
+#include "joint_handler.h"
 
 /**
   * @brief Analyses error and prints error msgs

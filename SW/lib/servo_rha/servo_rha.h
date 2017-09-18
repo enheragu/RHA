@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: servo_rha.h
- * @Last modified by:   enheragu
- * @Last modified time: 14-Sep-2017
+ * @Last modified by:   quique
+ * @Last modified time: 17-Sep-2017
  */
 
 
@@ -15,7 +15,11 @@
 #define SERVO_RHA_H
 
 #include "debug.h"
-#include "cytron_g15_servo.h"
+#include "Arduino.h"
+#include <stdint.h>
+#include "joint_handler.h"
+#include "rha_types.h"
+// #include "cytron_g15_servo.h"
 
 namespace ServoRHAConstants {
     #define DELAY1 500  // delay for configuration purposes
@@ -40,47 +44,47 @@ namespace ServoRHAConstants {
 
 
     /** KP K constant of speed control loop for servos. */
-    #define KP 100/60 // means toruqe/speed
+    #define KP 100/60  // means toruqe/speed
     #define TORQUE_OFFSET 150  // under this torque servo does not move
-
-    /** ALL_SERVO is ID to broadcast to all servo in bus. */
-    #define ALL_SERVO 0xFE
-    #define DEFAULT_ID  0x01
 
     enum {  // enumeration for angle and speed compariso
         LESS_THAN,
         EQUAL,
         GREATER_THAN
         };
-}
+}  // namespace ServoRHAConstants
 
 uint8_t compareAngles(uint16_t angle1, uint16_t angle2, uint8_t angle_margin = 0);
 uint8_t compareSpeed(uint16_t speed1, uint16_t speed2, uint8_t speed_margin = 0);
 
-class ServoRHA : public Cytron_G15_Servo {
+class ServoRHA {
  protected:
+    uint8_t servo_id_;
     uint16_t min_torque_cw_, min_torque_ccw_, max_torque_cw_, max_torque_ccw_;  // minimum torque needed to move the servo and max torque allowed
-    uint16_t speed_, speed_dir_, position_, load_, load_dir_ , error_;
+    uint16_t speed_, speed_dir_, position_, load_, load_dir_, error_;
     uint8_t voltage_, temperature_, registered_, is_moving_;
+    uint8_t goal_torque_[2];
+    uint8_t returnPacketOption_[2];
+    uint8_t instruction_, packetLength_;
+    float kp_;
 
  public:
-    ServoRHA(){}
-    ServoRHA(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
-    virtual void init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate);
-    void init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
-    virtual void init();
+    ServoRHA() {}
+    ServoRHA(uint8_t servo_id);
+    void init(uint8_t servo_id);
+    void init();
 
-    uint16_t angleRead();
-    uint16_t speedRead();
-    bool isMoving();
-    void updateInfo();
+    void updateInfo(uint8_t *data);
+    void setSpeedGoal(SpeedGoal goal);
 
-    virtual uint16_t returnPacketSet(uint8_t option);
-    void addToPacket(uint8_t *buffer, uint8_t &position, uint8_t *goal, uint8_t goal_len, uint8_t &num_servo);
-    uint8_t wrapPacket(uint8_t *buffer, uint8_t *data, uint8_t data_len, uint8_t instruction, uint8_t num_servo);
-    virtual uint16_t setWheelSpeedPercent(uint16_t speed, uint8_t cw_ccw);
+    void addReturnOptionToPacket(uint8_t * &buffer, uint8_t option);
+    void updateInfoToPacket(uint8_t * &buffer);
+    void addTorqueToPacket(uint8_t * &buffer, uint8_t &bytes_write);
+    void addToPacket(uint8_t * &buffer, uint8_t *packet, uint8_t packet_len, uint8_t &bytes_write);
+    uint16_t setWheelSpeedPercent(uint16_t speed, uint8_t cw_ccw);
 
-    uint16_t regulatorServo(uint16_t error, uint8_t kp = KP);
+    uint16_t regulatorServo(uint16_t error);
+    void setRegulatorKp(float kp);
 
     virtual void calibrateTorque();
 

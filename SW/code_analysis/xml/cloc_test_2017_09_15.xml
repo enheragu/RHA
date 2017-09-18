@@ -1,0 +1,21 @@
+       3 text files.
+classified 3 files       3 unique files.                              
+       0 files ignored.
+
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.0131371021270752</elapsed_seconds>
+  <n_files>3</n_files>
+  <n_lines>542</n_lines>
+  <files_per_second>228.360864594109</files_per_second>
+  <lines_per_second>41257.1962033357</lines_per_second>
+</header>
+<files>
+  <file name="/home/quique/Documentos/RHA/SW/test/test_servo_mock/test_servo_mock.cpp" blank="38" comment="19" code="139"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/test_cytron_g15_servo/test_cytron_g15_servo.cpp" blank="19" comment="38" code="131"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/test_servo_real/test_servo_real.cpp" blank="30" comment="16" code="112"  language="C++" />
+  <total blank="87" comment="73" code="382" />
+</files>
+</results>

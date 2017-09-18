@@ -3,8 +3,8 @@
  * @Date:   2017_Aug_31
  * @Project: RHA
  * @Filename: test_servo_mock.cpp
- * @Last modified by:   enheragu
- * @Last modified time: 09-Sep-2017
+ * @Last modified by:   quique
+ * @Last modified time: 16-Sep-2017
  */
 
 
@@ -157,7 +157,7 @@ void test_function_SetWheelSpeed(void) {
     servo_test1.initServo();
     servo_test1.SetWheelSpeed(60, CW);  // speed 60% in CW direction
 
-    //uint8_t speed_now = (MAX_TORQUE_CW - MIN_TORQUE_CW)*0.6;
+    // uint8_t speed_now = (MAX_TORQUE_CW - MIN_TORQUE_CW)*0.6;
     TEST_ASSERT_EQUAL_INT(312, servo_test1.g15_speed);
     TEST_ASSERT_EQUAL_INT(CW, servo_test1.direction);
 
@@ -174,7 +174,7 @@ void process() {
   RUN_TEST(test_function_compareAngles);
   RUN_TEST(test_function_addToPacket);
   RUN_TEST(test_function_warpPacket);
-  //RUN_TEST(test_function_SetWheelSpeed);
+  // RUN_TEST(test_function_SetWheelSpeed);
   UNITY_END();
 }
 

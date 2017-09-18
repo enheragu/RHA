@@ -1,5 +1,5 @@
-n_debug_test = 16
-n_debug_code = 16
+n_debug_test = 19
+n_debug_code = 19
  
 #List for Debug data
 # file = [date, debug_total, debug_max, debug_max_name, debug_min, debug_min_name]
@@ -20,6 +20,9 @@ debug_code = [['2017_08_23', ['cytron_g15_servo.cpp', '0'], ['cytron_g15_servo.h
 ['2017_09_12', ['cytron_g15_servo.cpp', '0'], ['cytron_g15_servo.h', '0'], ['joint_handler.cpp', '0'], ['joint_handler.h', '0'], ['joint_rha.h', '0'], ['joint_rha.cpp', '0'], ['readme.txt', '0'], ['servo_rha.h', '0'], ['servo_rha.cpp', '28'], ['main.cpp', '2'], ['utilities.h', '63'], ['utilities.h.gch', '0']] ,\
 ['2017_09_13', ['cytron_g15_servo.cpp', '0'], ['cytron_g15_servo.h', '0'], ['joint_handler.cpp', '0'], ['joint_handler.h', '0'], ['joint_rha.h', '0'], ['joint_rha.cpp', '0'], ['readme.txt', '0'], ['servo_rha.h', '0'], ['servo_rha.cpp', '30'], ['main.cpp', '2'], ['utilities.cpp', '71'], ['utilities.h', '10'], ['utilities.h.gch', '0']] ,\
 ['2017_09_14', ['cytron_g15_servo.cpp.txt', '0'], ['cytron_g15_servo.h.txt', '0'], ['joint_handler.cpp', '0'], ['joint_handler.h', '0'], ['joint_rha.h', '0'], ['joint_rha.cpp', '0'], ['readme.txt', '0'], ['servo_rha.h', '0'], ['servo_rha.cpp', '30'], ['main.cpp', '2'], ['utilities.cpp', '71'], ['utilities.h', '10'], ['utilities.h.gch', '0']] ,\
+['2017_09_15', ['cytron_g15_servo.cpp.txt', '0'], ['cytron_g15_servo.h.txt', '0'], ['joint_handler.cpp', '4'], ['joint_handler.h', '0'], ['joint_rha.h', '0'], ['joint_rha.cpp', '0'], ['readme.txt', '0'], ['servo_rha.h', '0'], ['servo_rha.cpp', '28'], ['main.cpp', '2'], ['utilities.cpp', '71'], ['utilities.h', '10'], ['utilities.h.gch', '0']] ,\
+['2017_09_16', ['cytron_g15_servo.cpp.txt', '0'], ['cytron_g15_servo.h.txt', '0'], ['joint_handler.cpp', '7'], ['joint_handler.h', '0'], ['joint_rha.h', '0'], ['joint_rha.cpp', '0'], ['readme.txt', '0'], ['rha_types.h', '0'], ['servo_rha.h', '0'], ['servo_rha.cpp', '22'], ['main.cpp', '2'], ['utilities.cpp', '71'], ['utilities.h', '10'], ['utilities.h.gch', '0']] ,\
+['2017_09_17', ['cytron_g15_servo.cpp.txt', '0'], ['cytron_g15_servo.h.txt', '0'], ['joint_handler.cpp', '7'], ['joint_handler.h', '0'], ['joint_rha.h', '0'], ['joint_rha.cpp', '0'], ['readme.txt', '0'], ['rha_types.h', '0'], ['servo_rha.h', '0'], ['servo_rha.cpp', '22'], ['main.cpp', '2'], ['utilities.cpp', '71'], ['utilities.h', '10'], ['utilities.h.gch', '0']] ,\
 [0]]
 
 debug_test = [['2017_08_23', ['test_cytron_g15_servo.cpp', '6'], ['test_servo_mock.cpp', '3'], ['test_servo_real.cpp', '8']] ,\
@@ -38,5 +41,8 @@ debug_test = [['2017_08_23', ['test_cytron_g15_servo.cpp', '6'], ['test_servo_mo
 ['2017_09_12', ['test_cytron_g15_servo.cpp', '6'], ['test_servo_mock.cpp', '3'], ['test_servo_real.cpp', '11']] ,\
 ['2017_09_13', ['test_cytron_g15_servo.cpp', '6'], ['test_servo_mock.cpp', '3'], ['test_servo_real.cpp', '11']] ,\
 ['2017_09_14', ['test_cytron_g15_servo.cpp', '6'], ['test_servo_mock.cpp', '3'], ['test_servo_real.cpp', '11']] ,\
+['2017_09_15', ['test_cytron_g15_servo.cpp', '6'], ['test_servo_mock.cpp', '3'], ['test_servo_real.cpp', '11']] ,\
+['2017_09_16', ['test_cytron_g15_servo.cpp', '6'], ['test_servo_mock.cpp', '3'], ['test_servo_real.cpp', '11']] ,\
+['2017_09_17', ['test_cytron_g15_servo.cpp', '6'], ['test_servo_mock.cpp', '3'], ['test_servo_real.cpp', '11']] ,\
 [0]]
 

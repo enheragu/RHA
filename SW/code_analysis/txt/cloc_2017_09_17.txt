@@ -1,0 +1,22 @@
+      13 text files.
+classified 13 files      13 unique files.                              
+       3 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.04 s (310.8 files/s, 55522.4 lines/s)
+---------------------------------------------------------------------------------------------------------------------
+File                                                                              blank        comment           code
+---------------------------------------------------------------------------------------------------------------------
+/home/quique/Documentos/RHA/SW/src/utilities.cpp                                     55             75            409
+/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp                   51             64            299
+/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h                     24             40            130
+/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp                           48            105            115
+/home/quique/Documentos/RHA/SW/src/utilities.h                                       31             21             72
+/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h                             20             15             72
+/home/quique/Documentos/RHA/SW/lib/debug/debug.h                                     17             40             68
+/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp                           10             36             36
+/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h                              9             11             24
+/home/quique/Documentos/RHA/SW/src/main.cpp                                           9             31             13
+/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h                              2              7              6
+---------------------------------------------------------------------------------------------------------------------
+SUM:                                                                                276            445           1244
+---------------------------------------------------------------------------------------------------------------------

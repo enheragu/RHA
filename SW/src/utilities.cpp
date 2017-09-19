@@ -8,8 +8,8 @@
  * @Date:   2017_Sep_13
  * @Project: RHA
  * @Filename: utilities.h
- * @Last modified by:   quique
- * @Last modified time: 17-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 19_Sep_2017
  */
 
 #include <Arduino.h>
@@ -54,7 +54,7 @@ namespace MeasureUtilities{
      */
     void checkSpeed(){
         DebugSerialUtilitiesLn("checkSpeed: begin of function");
-        ServoRHA servo_broadcast(ALL_SERVO,2,3,8);
+        Cytron_G15_Servo servo_broadcast(ALL_SERVO,2,3,8);
         servo_broadcast.init();         //Broadcast initialize
         uint8_t data[10];
         uint16_t error = servo_broadcast.ping(data);
@@ -65,7 +65,7 @@ namespace MeasureUtilities{
             DebugSerialUtilitiesLn("Error in servo comunication, end of checkSpeed")
             return;
         }
-        ServoRHA servo_test1(IDcurrent,2,3,8);
+        Cytron_G15_Servo servo_test1(IDcurrent,2,3,8);
         servo_test1.init();
 
         uint32_t encoderTemp = 0,
@@ -187,7 +187,7 @@ namespace MeasureUtilities{
      */
     void checkTimeGetInfo(uint8_t repetitions){
         DebugSerialSeparation(1);
-        ServoRHA servo_broadcast(ALL_SERVO,2,3,8);
+        Cytron_G15_Servo servo_broadcast(ALL_SERVO,2,3,8);
         servo_broadcast.init();         //Broadcast initialize
         uint8_t data[10];
         uint16_t error = servo_broadcast.ping(data);
@@ -198,7 +198,7 @@ namespace MeasureUtilities{
             DebugSerialUtilitiesLn("Error in servo comunication, end of checkTimeGetInfo");
             return;
         }
-        ServoRHA servo_test1(IDcurrent,2,3,8);
+        Cytron_G15_Servo servo_test1(IDcurrent,2,3,8);
         servo_test1.init();
         //servo_test1.setBaudRate(BAUD_RATE_G15);
         //servo_test1.begin(BAUD_RATE_G15);
@@ -234,7 +234,7 @@ namespace MeasureUtilities{
       */
     void checkTimeSpeedRead(uint8_t repetitions){
         DebugSerialSeparation(1);
-        ServoRHA servo_broadcast(ALL_SERVO,2,3,8);
+        Cytron_G15_Servo servo_broadcast(ALL_SERVO,2,3,8);
         servo_broadcast.init();         //Broadcast initialize
         uint8_t data[10];
         uint16_t error = servo_broadcast.ping(data);
@@ -245,7 +245,7 @@ namespace MeasureUtilities{
             DebugSerialUtilitiesLn("Error in servo comunication, end of checkTimeSpeedRead");
             return;
         }
-        ServoRHA servo_test1(IDcurrent,2,3,8);
+        Cytron_G15_Servo servo_test1(IDcurrent,2,3,8);
         servo_test1.init();
         //servo_test1.setBaudRate(BAUD_RATE_G15);
         //servo_test1.begin(BAUD_RATE_G15);
@@ -280,7 +280,7 @@ namespace MeasureUtilities{
         DebugSerialUtilitiesLn("extractRegulatorData: begin of function");
         DebugSerialSeparation(1);
 
-        ServoRHA servo_broadcast(ALL_SERVO,2,3,8);
+        Cytron_G15_Servo servo_broadcast(ALL_SERVO,2,3,8);
         servo_broadcast.init();         //Broadcast initialize
         uint8_t data[10];
         uint16_t error = servo_broadcast.ping(data);
@@ -292,7 +292,7 @@ namespace MeasureUtilities{
             printServoStatusError(error);
             return;
         }
-        ServoRHA servo_test1(IDcurrent,2,3,8);
+        Cytron_G15_Servo servo_test1(IDcurrent,2,3,8);
         servo_test1.init();
 
         servo_test1.setWheelMode();
@@ -344,7 +344,7 @@ namespace MeasureUtilities{
         DebugSerialUtilitiesLn("checkComSucces: begin of function");
         DebugSerialSeparation(1);
 
-        ServoRHA servo_broadcast(ALL_SERVO,2,3,8);
+        Cytron_G15_Servo servo_broadcast(ALL_SERVO,2,3,8);
         servo_broadcast.init();         //Broadcast initialize
         uint8_t data[10];
         uint16_t error = servo_broadcast.ping(data);
@@ -356,7 +356,7 @@ namespace MeasureUtilities{
             printServoStatusError(error);
             return;
         }
-        ServoRHA servo_test1(IDcurrent,2,3,8);
+        Cytron_G15_Servo servo_test1(IDcurrent,2,3,8);
         servo_test1.init();
 
         uint16_t succes_ping = 0, succes_updateInfo = 0;
@@ -447,9 +447,9 @@ namespace ServoUtilities{
 
     void fullFactoryResetBR(){
 
-        ServoRHA g15(BROADCAST,2, 3, 8);
+        Cytron_G15_Servo g15(BROADCAST,2, 3, 8);
 
-        ServoRHA g15_restored(DEFAULT_ID,2, 3, 8);
+        Cytron_G15_Servo g15_restored(DEFAULT_ID,2, 3, 8);
 
         pinMode(LED, OUTPUT);
 

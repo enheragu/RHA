@@ -8,8 +8,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: utilities.h
- * @Last modified by:   quique
- * @Last modified time: 17-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 19_Sep_2017
  */
 
 #include <Arduino.h>
@@ -67,8 +67,7 @@ namespace ServoUtilities{
 } // End of ServoUtilities namespace
 
 
-class Utilities {
-    ServoRHA servo_test1_;
+class Utilities : public JointHandler {
     uint8_t data_[10];
     uint16_t error_;
     uint8_t IDcurrent_;
@@ -77,10 +76,18 @@ class Utilities {
  public:
     Utilities();
     void checkTimeGetInfo(uint8_t repetitions);
+
+    virtual void initJoints();
+    virtual void controlLoop();
+    void extractRegulatorData();
 };
 
 Utilities::Utilities(){
     baudrateMode_ = 0;
+}
+
+void Utilities::initJoints() {
+    DebugSerialUtilitiesLn("initJoints: begin of function");
     ServoRHA servo_broadcast(ALL_SERVO,2,3,8);
     servo_broadcast.init();
 
@@ -92,9 +99,57 @@ Utilities::Utilities(){
         DebugSerialUtilitiesLn("Error in servo comunication, end of checkTimeGetInfo");
         return;
     }
-    //ServoRHA servo_test1();
-    servo_test1_.init(IDcurrent_,2,3,8);
+    joint_[1].init(IDcurrent_, CW, A0);
+}
 
+void Utilities::controlLoop() {
+    DebugSerialUtilitiesLn("controlLoop: begin of function");
+    JointHandler::controlLoop();
+    joint_[0].servo_.getSpeed();
+    joint_[0].getSpeedTarget();
+}
+
+void Utilities::extractRegulatorData(){
+    DebugSerialUtilitiesLn("extractRegulatorData: begin of function");
+    DebugSerialSeparation(1);
+
+    servo_test1.setWheelSpeed( 0, CCW, iWRITE_DATA);
+
+    uint16_t torque = 0,
+             speed_current = 0,
+             speed_target = SPEED_TARGET,
+             error_speed = 0;
+    uint32_t time_init = 0;
+    uint8_t counter = 0;
+
+    time_init = millis();
+    Serial.print("n_data = "); Serial.println(SAMPLE_REGULATOR);
+    Serial.print("speed_target = "); Serial.println(speed_target);
+    Serial.print("regulatorTest = [");
+    Serial.print("['"); Serial.print((float)KP_REGULATOR); Serial.print("']");
+    while(true){
+        if (millis() - time_init > LOOP_FREQUENCY){
+            speed_current = servo_test1.speedRead();
+            error_speed = speed_target - speed_current;
+            torque = servo_test1.regulatorServo(error_speed, KP_REGULATOR);
+            servo_test1.setWheelSpeed(torque, CW, iWRITE_DATA);
+            time_init = millis();
+
+            Serial.print(",['"); Serial.print(speed_current); Serial.print("','");
+            Serial.print(torque); Serial.print("','");
+            Serial.print(time_init); Serial.println("']\\");
+            counter++;
+            if(counter > SAMPLE_REGULATOR){
+                Serial.println("]");
+                DebugSerialSeparation(1);
+                DebugSerialUtilitiesLn("extractRegulatorData: end of function");
+                break;
+            }
+        }
+        else delay(5);
+    }
+    Serial.print("]");
+    servo_test1.exitWheelMode();
 }
 
 void Utilities::checkTimeGetInfo(uint8_t repetitions){

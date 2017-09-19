@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: servo_rha.cpp
- * @Last modified by:   quique
- * @Last modified time: 17-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 19_Sep_2017
  */
 
 #include "servo_rha.h"
@@ -21,10 +21,6 @@
   */
 ServoRHA::ServoRHA(uint8_t servo_id) {
     servo_id_ = servo_id;
-    max_torque_ccw_ = MAX_TORQUE_CCW;
-    max_torque_cw_ = MAX_TORQUE_CW;
-    min_torque_cw_ = MIN_TORQUE_CW;
-    min_torque_ccw_ = MIN_TORQUE_CCW;
 }
 
 
@@ -36,11 +32,6 @@ void ServoRHA::init(uint8_t servo_id) {
     // calibrateTorque();
 
     servo_id_ = servo_id;
-
-    max_torque_ccw_ = MAX_TORQUE_CCW;
-    max_torque_cw_ = MAX_TORQUE_CW;
-
-    // returnPacketSet(ServoRHAConstants::RETURN_PACKET_READ_INSTRUCTIONS);  // Servo only respond to read data instructions
 
     DebugSerialSRHALn("initServo: end of inicialitation function");
 }
@@ -60,7 +51,7 @@ void ServoRHA::init(uint8_t servo_id) {
   * Action registered (pending from activation) flag is in register 0x2C
   * Moving flag is in register 0x2E
   */
-void ServoRHA::updateInfo(uint8_t *data) {
+void ServoRHA::updateInfo(uint8_t *data, uint16_t error) {
     position_ = *data; data++;  // acces data[0]
     position_ |= (*data << 8); data++;  // acces data[1]
 
@@ -80,15 +71,29 @@ void ServoRHA::updateInfo(uint8_t *data) {
 
     temperature_ = *data; data++;  // acces data[7]
 
-    // registered_ = data[8];
-
-    // is_moving_ = data[10];
+    error_comunication_ = error;
 }
 
 
 /**********************************************************
  *       Action functions from G15 original library       *
  **********************************************************/
+
+void ServoRHA::calculateTorque(uint16_t target_speed) {
+    float error = (float)target_speed - (float)speed_;
+    float torque = regulatorServo(error);
+    uint8_t direction = 0;
+    if (torque > 0) direction = CW;
+    else if (torque < 0) direction = CCW;
+    torque = abs(torque);
+    if (torque > 1023) torque = 1023;  // compensate saturation of servos
+
+    goal_torque_ = torque;
+
+    if (direction == CW) {
+        goal_torque_ = goal_torque_ | 0x0400;
+    }
+}
 
 /**
  * [regulatorServo description]
@@ -105,11 +110,11 @@ uint16_t ServoRHA::regulatorServo(float error) {
  *       Packet handling functions       *
  *****************************************/
 
-void addUpadteInfoToPacket(uint8_t * &buffer) {
+void addUpadteInfoToPacket(uint8_t *buffer) {
      uint8_t data[2];
      data[0] = JointHandlerConstants::PRESENT_POSITION_L;
      data[1] = 0x08;  // Wants to read 11 bytes from PRESENT_POSITION_L
-     addToSinglePacket(buffer, data, 2);
+     addToPacket(buffer, data, 2);
 }
 
  /** @brief returnPacketSet function sets the package return level of servo (error information for each command sent)
@@ -117,14 +122,14 @@ void addUpadteInfoToPacket(uint8_t * &buffer) {
    * @param {uint8_t} option RETURN_PACKET_ALL -> servo returns packet for all commands sent; RETURN_PACKET_NONE -> servo never retunrs state packet; RETURN_PACKET_READ_INSTRUCTIONS -> servo answer packet state when a READ command is sent (to read position, temperature, etc)
    * @see addToPacket()
    */
-void addReturnOptionToPacket(uint8_t * &buffer, uint8_t option) {
+void addReturnOptionToPacket(uint8_t *buffer, uint8_t option) {
      DebugSerialSRHALn("returnPacketSet: begin of function.");
 
      uint8_t option[2];
      option[0] = JointHandlerConstants::STATUS_RETURN_LEVEL;         // Control Starting Address
      option[1] = option;             // ON = 1, OFF = 0
 
-     addToSinglePacket(buffer, option, 2);
+     addToPacket(buffer, option, 2);
 
      DebugSerialSRHALn("returnPacketSet: end of function.");
      return;
@@ -134,10 +139,43 @@ void addReturnOptionToPacket(uint8_t * &buffer, uint8_t option) {
   * @param {uint8_t *} buffer is the buffer in which the information will be added (by reference)
   * @see addToPacket()
   */
-void ServoRHA::addTorqueToPacket(uint8_t * &buffer, uint8_t &bytes_write) {
+bool ServoRHA::addTorqueToPacket(uint8_t *buffer, uint16_t speed) {
     DebugSerialSRHALn("addToPacket: begin of function");
-    addToPacket(buffer, goal_torque_, 2);
+    uint8_t txBuffer[3];
+    txBuffer[0] = MOVING_SPEED_L;
+    txBuffer[1] = speed & 0x00FF;  // Speed bottom 8 bits
+    txBuffer[2] = speed >> 8;  // Speed top 8 bits
+    addToPacket(buffer, txBuffer, 3);
     DebugSerialSRHALn("addToPacket: end of function");
+    return true;
+}
+
+void setTorqueOnOfToPacket(uint8_t *buffer, uint8_t onOff) {
+    txBuffer[0] = TORQUE_ENABLE;
+    txBuffer[1] = onOff;  // ON = 1, OFF = 0
+
+    addToPacket(buffer, txBuffer, 2));
+}
+
+void setWheelModeToPacket(uint8_t *buffer) {
+    wheelModeToPacket(buffer, 0, 0);  // Enable wheel mode
+
+}
+
+void exitWheelModeToPacket(uint8_t *buffer) {
+    wheelModeToPacket(buffer, 0, 1087);  // Reset to default angle limit
+}
+
+void wheelModeToPacket(uint8_t *buffer, uint16_t CW_angle, uint16_t CCW_angle) {
+    uint8_t txBuffer[5];
+
+    txBuffer[0] = CW_ANGLE_LIMIT_L;
+    txBuffer[1] = CW_angle & 0x00FF;   // CW limit bottom 8 bits
+    txBuffer[2] = CW_angle >> 8;       // CW limit top 8 bits
+    txBuffer[3] = CCW_angle & 0x00FF;  // CCW limit bottom 8 bits
+    txBuffer[4] = CCW_angle >> 8;      // CCW limit top 8 bits
+
+    addToPacket(buffer, txBuffer, 5);
 }
 
 
@@ -146,94 +184,16 @@ void ServoRHA::addTorqueToPacket(uint8_t * &buffer, uint8_t &bytes_write) {
   * @param {uint8_t *} packet small packet to add. Note that it can be speed, torque, position... It can be a combination (go to an X position with an Y speed) (by reference)
   * @param {uint8_t} packet_len length of the small packet to add (uint8_ts)
   */
-void ServoRHA::addToSyncPacket(uint8_t * &buffer, uint8_t *packet, uint8_t packet_len, uint8_t &bytes_write) {
+void ServoRHA::addToPacket(uint8_t *buffer, uint8_t *packet, uint8_t packet_len) {
     DebugSerialSRHALn("addToPacket: begin of function");
-    *buffer = servo_id_; buffer++;
+    buffer[0] = servo_id_;
+    buffer[1] = packet_len;
+    buffer[2] = packet[0];
     for (int i = 0; i < packet_len; i++) {
-        *buffer = packet[i];  buffer++;
-    }
-    bytes_write += packet_len + 1;  // Packet len + servo ID
-    DebugSerialSRHALn("addToPacket: end of function");
-}
-
-/** @brief addToPacket adds this servo to a buffer with his own information (id, goal, etc). This function is used to send just one packet for all servos instead of each sending their respective information
-  * @param {uint8_t *} buffer is the buffer in which the information will be added (by reference)
-  * @param {uint8_t *} packet small packet to add. Note that it can be speed, torque, position... It can be a combination (go to an X position with an Y speed) (by reference)
-  * @param {uint8_t} packet_len length of the small packet to add (uint8_ts)
-  */
-void ServoRHA::addToSinglePacket(uint8_t * &buffer, uint8_t *packet, uint8_t packet_len) {
-    DebugSerialSRHALn("addToPacket: begin of function");
-    *buffer = servo_id_; buffer++;
-    *buffer = packet_len; buffer++;
-    *buffer = *packet; buffer++; packet++;  // instruction
-    for (int i = 0; i < packet_len; i++) {
-        *buffer = packet; buffer++; packet++;
+        buffer[3 + i] = packet[1 + i];
     }
 
     DebugSerialSRHALn("addToPacket: end of function");
-}
-
-
-/***************************************
- *       Calibratation functions       *
- ***************************************/
-
-/** @brief calibrateTorque function gets the minimum torque in which the servo starts moving for CW and CCW direcion.
-  * @see calibrateTorqueDir(param1, param2)
-  */
-void ServoRHA::calibrateTorque() {
-    DebugSerialSRHALn("calibrateTorque: begin of function");
-    calibrateTorqueDir(min_torque_cw_, CW);
-    calibrateTorqueDir(min_torque_ccw_, CCW);
-    DebugSerialSRHALn2("calibrateTorque: min_torque_cw_ is now: ", min_torque_cw_);
-    DebugSerialSRHALn2("calibrateTorque: min_torque_ccw_ is now: ", min_torque_ccw_);
-    DebugSerialSRHALn("calibrateTorque: enf of function");
-}
-
-/** @brief calibrateTorque function gets the minimum torque in which the servo starts moving in a set direction
-  * @param min_torque reference to the min torque value to change (it can be cor CW or CCW direction)
-  * @param direction CW or CCW, note that is has to be consistent with the min_torque variable
-  */
-void ServoRHA::calibrateTorqueDir(uint16_t &min_torque, uint16_t direction) {
-    DebugSerialSRHALn2("calibrateTorqueDir: begin of function. Direction: CW = 1; CCW = 0", direction);
-
-    setWheelMode();
-    delay(DELAY1);
-
-    for (min_torque = 0; min_torque < 1023; min_torque+= TORQUE_CALIBRATION_INTERVAL) {
-        DebugSerialSRHALn2("calibrateTorqueDir: try with torque: ", min_torque);
-        Cytron_G15_Servo::setWheelSpeed(min_torque, direction, iWRITE_DATA);
-        delay(DELAY1);
-        if (isMoving()) break;
-    }
-
-    exitWheelMode();
-    DebugSerialSRHALn2("calibrateTorqueDir: end of function. Direction: CW = 1; CCW = 0", direction);
-}
-
-
-
-/***************************************************************
- *       Overwritten functions from G15 original library       *
- ***************************************************************/
-
-/** @brief SetWheelSpeed sets wheel speed according to margins saved in calibration.
-  * @param {uint16_t} speed speed value (in %, 0 to 100) -> 0 means stop and from 1 to 100 means moving
-  * @param {uint8_t} cw_ccw direction in which the servo will move
-  * @return {uint16_t} Error status. If return is non-zero, error occurred. (depends on retunrPacket option)
-  * @see returnPacketOnOFF()
-  */
-uint16_t ServoRHA::setWheelSpeedPercent(uint16_t speed, uint8_t cw_ccw) {
-    DebugSerialSRHALn4("setWheelSpeed: begin of function. Speed set to ", speed, ". Direction: CW = 1; CCW = 0n", cw_ccw);
-    uint16_t g15_speed = -1;
-    if (speed == 0) g15_speed = 1;
-    else if (speed > 0 && cw_ccw == CW) g15_speed = (uint16_t)(map(speed, 1, 100, min_torque_cw_+TORQUE_CALIBRATION_INTERVAL, max_torque_cw_));
-    else if (speed > 0 && cw_ccw == CCW) g15_speed = (uint16_t)(map (speed, 1, 100, min_torque_ccw_+TORQUE_CALIBRATION_INTERVAL, max_torque_ccw_));
-
-    DebugSerialSRHALn2("setWheelSpeed: speed calculated to send to servo is: ", g15_speed)
-    DebugSerialSRHALn4("setWheelSpeed: end of function. Speed set to ", speed, ". Direction: CW = 1; CCW = 0n", cw_ccw);
-    return Cytron_G15_Servo::setWheelSpeed(g15_speed, cw_ccw, iWRITE_DATA);
-    // return Cytron_G15_Servo::setWheelSpeed(speed, cw_ccw, iWRITE_DATA);
 }
 
 

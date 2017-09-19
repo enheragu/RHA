@@ -12,8 +12,8 @@
   */
 /**
  * @Filename: cytron_g15_servo.cpp
- * @Last modified by:   enheragu
- * @Last modified time: 13-Sep-2017
+@Last modified by:   enheragu
+@Last modified time: 19_Sep_2017
  */
 
 // #include "HardwareSerial.h"

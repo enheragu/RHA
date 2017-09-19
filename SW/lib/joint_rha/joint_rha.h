@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: joint_rha.h
- * @Last modified by:   quique
- * @Last modified time: 17-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 19_Sep_2017
  */
 
 #ifndef JOINT_RHA_H
@@ -37,6 +37,8 @@ class JointRHA {
 
   uint8_t speedError();
   void updateInfo();
+
+  uint16_t getSpeedTarget() { return speed_target_; }
 
  private:
 };

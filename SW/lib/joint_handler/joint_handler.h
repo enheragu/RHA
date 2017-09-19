@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: joint_handler.h
- * @Last modified by:   quique
- * @Last modified time: 17-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 19_Sep_2017
  */
 
  #ifndef JOINT_HANDLER_H
@@ -152,43 +152,38 @@ class JointHandler {
     SoftwareSerial* G15Serial_;
     uint8_t txpin_shield_, rxpin_shield_, ctrlpin_shield_;
     uint16_t comunicatoin_error_;
-    uint8_t buffer_[JointHandlerConstants::BUFFER_LEN];
-    uint8_t buffer_send_[JointHandlerConstants::BUFFER_LEN];
-    uint8_t servos_packet_;
-    uint8_t bytes_write_;
  public:
     JointHandler();
     JointHandler(uint64_t timer);
-    void initJoints();
+    virtual void initJoints();
     void setSpeedGoal(SpeedGoal goal);
     void setTimer(uint64_t timer);
+
+    virtual void controlLoop();
 
     void updateJointInfo();
     void updateJointErrorTorque();
 
-    uint8_t wrapSyncPacket();
-    uint8_t wrapSinglePacket();
+    void addToSyncPacket(uint8_t * &buffer);
 
-    void sendSyncPacket();
+    uint8_t sendSyncPacket();
+    uint8_t sendSinglePacket(uint8_t instruction, uint8_t *buffer);
+
 
     /**************************************
      *        Serial Port Handling        *
      **************************************/
     JointHandler(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
     JointHandler(uint8_t ctrlpin);
-    void init(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
-    void init(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate);
+    void initSerial(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
+    void initSerial(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate);
 
     void begin(uint32_t baudrate);
     void end(void);
 
     void setTxMode(void);
     void setRxMode(void);
-    uint16_t sendPacket(uint8_t id, uint8_t instruction, uint8_t* data, uint8_t parameterLength);
 
-    void init(uint64_t timer);
-
-    void controlLoop();
 };
 
 #endif

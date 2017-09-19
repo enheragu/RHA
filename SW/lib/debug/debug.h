@@ -10,7 +10,7 @@
  * @Project: RHA
  * @Filename: debug.h
  * @Last modified by:   quique
- * @Last modified time: 16-Sep-2017
+ * @Last modified time: 20-Sep-2017
  */
 
 #ifndef DEBUG_H
@@ -24,13 +24,14 @@
  * To activate debugging in any file uncomment next defines (one for each file)
  */
 
-// #define DEBUG_SERVO_RHA
+ #define DEBUG_SERVO_RHA
 // #define DEBUG_TEST_SERVO_RHA_MOCK
 // #define DEBUG_TEST_SERVO_RHA_REAL
 // #define DEBUG_JOINT_HANDLER
 // #define DEBUG_CYTRON_G15_SERVO
 // #define DEBUG_TEST_CYTRON_G15_SERVO
-#define DEBUG_UTILITIES
+// #define DEBUG_UTILITIES
+#define DEBUG_JOINT_RHA
 
 
 /******************************************
@@ -59,11 +60,21 @@
     #define DebugSerialSRHALn4(a, b, c, d)
 #endif
 
+#ifdef DEBUG_JOINT_RHA
+    #define DebugSerialJRHALn(a) {  Serial.print("[DC]  JointRHA::"); Serial.println(a); }
+    #define DebugSerialJRHALn2(a, b) {  Serial.print("[DC]  JointRHA::"); Serial.print(a); Serial.println(b); }
+    #define DebugSerialJRHALn4(a, b, c, d) {  Serial.print("[DC]  JointRHA::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+#else
+    #define DebugSerialJRHALn(a)
+    #define DebugSerialJRHALn2(a, b)
+    #define DebugSerialJRHALn4(a, b, c, d)
+#endif
+
 /** DEBUG_JOINT_HANDLER implements debug macros for servo_rha.h and .cpp files */
 #ifdef DEBUG_JOINT_HANDLER
-    #define DebugSerialJHLn(a) {  Serial.print("[DC]  ServoRHA::"); Serial.println(a); }
-    #define DebugSerialJHLn2(a, b) {  Serial.print("[DC]  ServoRHA::"); Serial.print(a); Serial.println(b); }
-    #define DebugSerialJHLn4(a, b, c, d) {  Serial.print("[DC]  ServoRHA::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+    #define DebugSerialJHLn(a) {  Serial.print("[DC]  JointHandler::"); Serial.println(a); }
+    #define DebugSerialJHLn2(a, b) {  Serial.print("[DC]  JointHandler::"); Serial.print(a); Serial.println(b); }
+    #define DebugSerialJHLn4(a, b, c, d) {  Serial.print("[DC]  JointHandler::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
 #else
     #define DebugSerialJHLn(a)
     #define DebugSerialJHLn2(a, b)
@@ -84,7 +95,7 @@
 #endif
 
 /** DebugSerialSeparation prints a horizontal line to separate different set of debug information */
-#define DebugSerialSeparation(a) {Serial.println("=========================================================");}
+#define DebugSerialSeparation(a) {Serial.println("#=========================================================#");}
 
 
 /********************************************************

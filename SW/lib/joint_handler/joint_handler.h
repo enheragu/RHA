@@ -6,12 +6,12 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: joint_handler.h
- * @Last modified by:   enheragu
- * @Last modified time: 19_Sep_2017
+ * @Last modified by:   quique
+ * @Last modified time: 19-Sep-2017
  */
 
- #ifndef JOINT_HANDLER_H
- #define JOINT_HANDLER_H
+#ifndef JOINT_HANDLER_H
+#define JOINT_HANDLER_H
 
 #include "joint_rha.h"
 #include <SoftwareSerial.h>
@@ -36,8 +36,6 @@ namespace JointHandlerConstants {
     #define ConvertAngleToPos(angle) (uint16_t)((uint16_t)(angle) * 1088UL  / 360UL)
     #define ConvertPosToAngle(position) static_cast<float>((position) * 360.0  / 1088.0)
     #define ConvertTime(time) (uint16_t)(time * 10UL)
-    #define CW 1
-    #define CCW 0
     #define ON 1
     #define OFF 0
 
@@ -47,66 +45,6 @@ namespace JointHandlerConstants {
 
     #define G15_BAUDRATE 57600
 
-    /**
-      * @defgroup SREGISTER_GROUP Register Group
-      * Register directions in servo memory for each parameter listed
-      * @{
-      */
-    enum {
-        MODEL_NUMBER_L,   // 0x00
-        MODEL_NUMBER_H,   // 0x01
-        VERSION,   // 0x02
-        ID,   // 0x03
-        BAUD_RATE,   // 0x04
-        RETURN_DELAY_TIME,   // 0x05
-        CW_ANGLE_LIMIT_L,   // 0x06
-        CW_ANGLE_LIMIT_H,   // 0x07
-        CCW_ANGLE_LIMIT_L,   // 0x08
-        CCW_ANGLE_LIMIT_H,   // 0x09
-        RESERVED1,   // 0x0A
-        LIMIT_TEMPERATURE,   // 0x0B
-        DOWN_LIMIT_VOLTAGE,   // 0x0C
-        UP_LIMIT_VOLTAGE,   // 0x0D
-        MAX_TORQUE_L,   // 0x0E
-        MAX_TORQUE_H,   // 0x0F
-        STATUS_RETURN_LEVEL,   // 0x10
-        ALARM_LED,   // 0x11
-        ALARM_SHUTDOWN,   // 0x12
-        RESERVED2,   // 0x13
-        DOWN_CALIBRATION_L,   // 0x14
-        DOWN_CALIBRATION_H,   // 0x15
-        UP_CALIBRATION_L,   // 0x16
-        UP_CALIBRATION_H,   // 0x17
-        TORQUE_ENABLE,   // 0x18
-        LED,   // 0x19
-        CW_COMPLIANCE_MARGIN,   // 0x1A
-        CCW_COMPLIANCE_MARGIN,   // 0x1B
-        CW_COMPLIANCE_SLOPE,   // 0x1C
-        CCW_COMPLIANCE_SLOPE,   // 0x1D
-        GOAL_POSITION_L,   // 0x1E
-        GOAL_POSITION_H,   // 0x1F
-        MOVING_SPEED_L,   // 0x20
-        MOVING_SPEED_H,   // 0x21
-        TORQUE_LIMIT_L,   // 0x22
-        TORQUE_LIMIT_H,   // 0x23
-        PRESENT_POSITION_L,   // 0x24
-        PRESENT_POSITION_H,   // 0x25
-        PRESENT_SPEED_L,   // 0x26
-        PRESENT_SPEED_H,   // 0x27
-        PRESENT_LOAD_L,   // 0x28
-        PRESENT_LOAD_H,   // 0x29
-        PRESENT_VOLTAGE,   // 0x2A
-        PRESENT_TEMPERATURE,   // 0x2B
-        REGISTERED_INSTRUCTION,  // 0x2C
-        RESERVE3,  // 0x2D
-        MOVING,  // 0x2E
-        LOCK,  // 0x2F
-        PUNCH_L,   // 0x30
-        PUNCH_H   // 0x31
-    };
-    /**
-      * @}
-      */
 
     /*****************************
      * ERROR COD. G15 CUBE SERVO *
@@ -141,19 +79,20 @@ namespace JointHandlerConstants {
 
     #define NUM_JOINT 1
     #define BUFFER_LEN 30
+
 }  // namespace JointHandlerConstants
 
 class JointHandler {
     uint64_t time_last_, timer_;
-
-    JointRHA joint_[JointHandlerConstants::NUM_JOINT];
 
     boolean hardwareSerial_;
     SoftwareSerial* G15Serial_;
     uint8_t txpin_shield_, rxpin_shield_, ctrlpin_shield_;
     uint16_t comunicatoin_error_;
  public:
-    JointHandler();
+    JointRHA joint_[NUM_JOINT];
+
+    JointHandler() {}
     JointHandler(uint64_t timer);
     virtual void initJoints();
     void setSpeedGoal(SpeedGoal goal);
@@ -163,11 +102,12 @@ class JointHandler {
 
     void updateJointInfo();
     void updateJointErrorTorque();
+    void sendJointTorques();
 
-    void addToSyncPacket(uint8_t * &buffer);
+    uint8_t addToSyncPacket(uint8_t *buffer, uint8_t *data);
 
-    uint8_t sendSyncPacket();
-    uint8_t sendSinglePacket(uint8_t instruction, uint8_t *buffer);
+    void sendSyncPacket(uint8_t instruction, uint8_t *buffer, uint8_t num_bytes, uint8_t num_servo);
+    uint16_t sendSinglePacket(uint8_t instruction, uint8_t *buffer);
 
 
     /**************************************
@@ -175,8 +115,7 @@ class JointHandler {
      **************************************/
     JointHandler(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
     JointHandler(uint8_t ctrlpin);
-    void initSerial(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
-    void initSerial(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate);
+    void initSerial(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate = G15_BAUDRATE);
 
     void begin(uint32_t baudrate);
     void end(void);

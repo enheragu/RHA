@@ -1,6 +1,6 @@
 #!/usr/bin/python
-n_cloc_test = 19
-n_cloc = 19
+n_cloc_test = 20
+n_cloc = 20
 
 #List for Cloc data
 # file = [date (index 0), whole_blank_lines (index 1), whole_code_lines (index 2), whole_comment_lines (index 3), whole_debug_lines (index 4), whole_comment_percentage (index 5), max_comment_percentage (index 6), max_comment_name (index 7), min_comment_percentage (index 8), min_comment_name (index 9), whole_debug_percentage (index 10), max_debug_percentage (index 11), max_debug_name (index 12), min_debug_percentage (index 13), min_debug_name (index 14)]
@@ -23,6 +23,7 @@ cloc = [['2017_08_23', '209', '831', '232', '38', '27.9181708785', '92.857142857
 ['2017_09_15', '258', '1132', '427', '105', '37.7208480565', '70.4545454545', 'main.cpp', '15.3209109731', 'utilities.cpp', '3.18563876735', '14.6997929607', 'utilities.cpp', '0.0', 'joint_handler.h'] ,\
 ['2017_09_16', '267', '1153', '426', '102', '36.947094536', '70.4545454545', 'main.cpp', '15.4958677686', 'utilities.cpp', '2.90386640643', '14.6694214876', 'utilities.cpp', '0.0', 'joint_handler.h'] ,\
 ['2017_09_17', '276', '1244', '445', '102', '35.7717041801', '70.4545454545', 'main.cpp', '15.4958677686', 'utilities.cpp', '2.83120460806', '14.6694214876', 'utilities.cpp', '0.0', 'joint_handler.h'] ,\
+['2017_09_19', '289', '1241', '388', '115', '31.2651087832', '54.5454545455', 'joint_rha.cpp', '14.1843971631', 'utilities.h', '3.41242072855', '14.6694214876', 'utilities.cpp', '0.0', 'servo_rha.h'] ,\
 [0]]
 
 cloc_test = [['2017_08_23', '69', '353', '43', '17', '12.1813031161', '16.7597765363', 'test_cytron_g15_servo.cpp', '5.8064516129', 'test_servo_mock.cpp', '6.06355499489', '12.9032258065', 'test_servo_real.cpp', '1.93548387097', 'test_servo_mock.cpp'] ,\
@@ -44,5 +45,6 @@ cloc_test = [['2017_08_23', '69', '353', '43', '17', '12.1813031161', '16.759776
 ['2017_09_15', '87', '382', '73', '20', '19.109947644', '22.4852071006', 'test_cytron_g15_servo.cpp', '12.0253164557', 'test_servo_mock.cpp', '4.6809266784', '8.59375', 'test_servo_real.cpp', '1.89873417722', 'test_servo_mock.cpp'] ,\
 ['2017_09_16', '87', '382', '73', '20', '19.109947644', '22.4852071006', 'test_cytron_g15_servo.cpp', '12.0253164557', 'test_servo_mock.cpp', '4.6809266784', '8.59375', 'test_servo_real.cpp', '1.89873417722', 'test_servo_mock.cpp'] ,\
 ['2017_09_17', '87', '382', '73', '20', '19.109947644', '22.4852071006', 'test_cytron_g15_servo.cpp', '12.0253164557', 'test_servo_mock.cpp', '4.6809266784', '8.59375', 'test_servo_real.cpp', '1.89873417722', 'test_servo_mock.cpp'] ,\
+['2017_09_19', '87', '382', '73', '20', '19.109947644', '22.4852071006', 'test_cytron_g15_servo.cpp', '12.0253164557', 'test_servo_mock.cpp', '4.6809266784', '8.59375', 'test_servo_real.cpp', '1.89873417722', 'test_servo_mock.cpp'] ,\
 [0]]
 

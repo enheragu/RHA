@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: joint_rha.h
- * @Last modified by:   enheragu
- * @Last modified time: 19_Sep_2017
+ * @Last modified by:   quique
+ * @Last modified time: 19-Sep-2017
  */
 
 #ifndef JOINT_RHA_H
@@ -35,7 +35,7 @@ class JointRHA {
   void setGoal(uint16_t speed_target, uint16_t speed_slope, uint8_t direction_target);
   uint8_t setSpeedGoal(SpeedGoal goal);
 
-  uint8_t speedError();
+  float speedError();
   void updateInfo();
 
   uint16_t getSpeedTarget() { return speed_target_; }

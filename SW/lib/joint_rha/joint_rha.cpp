@@ -6,7 +6,7 @@
  * @Project: RHA
  * @Filename: joint_rha.cpp
  * @Last modified by:   quique
- * @Last modified time: 17-Sep-2017
+ * @Last modified time: 20-Sep-2017
  */
 
 #include "joint_rha.h"
@@ -33,6 +33,8 @@ JointRHA::~JointRHA() {
   * @param {uint8_t} potentiometer pin in which the potentiometer for this joint is connected
   */
 void JointRHA::init(uint8_t servo_id, uint8_t up_direction, uint8_t potentiometer) {
+    DebugSerialJRHALn("init: begin of function");
+    DebugSerialJRHALn2("init: initialazing with id: ", servo_id);
     up_direction_ = up_direction;
     potentiometer_pin_ = potentiometer;
 
@@ -47,17 +49,17 @@ void JointRHA::init(uint8_t servo_id, uint8_t up_direction, uint8_t potentiomete
  * @param {uint16_t} speed_slope slope from actual speed to speed_target (acceleration)
  * @param {uint16_t} direction_target move CW or CCW
  */
-void JointRHA::setGoal(uint16_t speed_target, uint16_t speed_slope, uint8_t direction_target) {
-    speed_target_ = speed_target;
-    speed_slope_ = speed_slope;
-    direction_target_ = direction_target;
-    time_last_ = millis();
-}
 
-uint8_t setSpeedGoal(SpeedGoal goal) {
-    if (goal.servo_id == servo_.servo_id_) {
+uint8_t JointRHA::setSpeedGoal(SpeedGoal goal) {
+    DebugSerialJRHALn("setSpeedGoal: seting speed goal");
+    DebugSerialJRHALn2("setSpeedGoal: servo id now is: ", servo_.getID());
+    DebugSerialJRHALn2("setSpeedGoal: goal intended for id: ", goal.servo_id);
+    if (servo_.getID() == goal.servo_id) {
         speed_slope_ = goal.speed_slope;
         speed_target_ = goal.speed;
+        time_last_ = millis();
+        DebugSerialJRHALn2("setSpeedGoal: Speed set to: ", speed_target_);
+        DebugSerialJRHALn2("setSpeedGoal: Speed slope set to: ", speed_slope_);
         return true;
     } else return false;
 }
@@ -66,11 +68,11 @@ uint8_t setSpeedGoal(SpeedGoal goal) {
  * @brief Calculates error to send to servo regulator
  * @return {uint8_t} returns error between actual position and target position
  */
-uint8_t JointRHA::speedError() {
-    uint16_t speed = servo_.getSpeed() + (millis() - time_last_) * speed_slope_;
-    if (speed > speed_target_) speed = speed_target_;
+float JointRHA::speedError() {
+    uint16_t speed = (float)servo_.getSpeed() + (float)(millis() - time_last_) * speed_slope_;
+    if (speed > speed_target_) speed = (float)speed_target_;
     time_last_ = millis();
-    return (speed - servo_.getSpeed());
+    return ((float)speed - (float)servo_.getSpeed());
 }
 
 /**
@@ -78,5 +80,4 @@ uint8_t JointRHA::speedError() {
  */
 void JointRHA::updateInfo() {
     position_pot_ = digitalRead(potentiometer_pin_);
-    servo_->updateInfo();
 }

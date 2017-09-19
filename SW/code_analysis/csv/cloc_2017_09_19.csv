@@ -1,0 +1,16 @@
+      13 text files.
+classified 13 files      13 unique files.                              
+       2 files ignored.
+
+language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.60  T=0.05 s (230.5 files/s, 40197.8 lines/s)"
+C++,/home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp,55,75,409
+C++,/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp,46,50,243
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/utilities/utilities.h,38,20,121
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h,22,22,116
+C++,/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp,43,78,108
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h,26,32,70
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/debug/debug.h,17,40,68
+C++,/home/quique/Documentos/RHA/SW/src/main.cpp,18,17,40
+C++,/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp,10,36,30
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h,10,11,25
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h,4,7,11

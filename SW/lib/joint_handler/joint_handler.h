@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: joint_handler.h
- * @Last modified by:   quique
- * @Last modified time: 19-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 20_Sep_2017
  */
 
 #ifndef JOINT_HANDLER_H
@@ -81,6 +81,7 @@ namespace JointHandlerConstants {
     #define BUFFER_LEN 30
 
 }  // namespace JointHandlerConstants
+
 
 class JointHandler {
     uint64_t time_last_, timer_;

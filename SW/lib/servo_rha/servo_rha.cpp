@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: servo_rha.cpp
- * @Last modified by:   quique
- * @Last modified time: 20-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 20_Sep_2017
  */
 
 #include "servo_rha.h"
@@ -53,18 +53,19 @@ void ServoRHA::init(uint8_t servo_id) {
   * Moving flag is in register 0x2E
   */
 void ServoRHA::updateInfo(uint8_t *data, uint16_t error) {
+    DebugSerialSRHALn("updateInfo: begin of function");
     position_ = *data; data++;  // acces data[0]
     position_ |= (*data << 8); data++;  // acces data[1]
 
     speed_ = *data; data++;   // acces data[2]
     speed_ |= (*data << 8); data++;  // acces data[3]
-    speed_dir_  = ((speed_ >> 9) & 0x10);  // 10th byte is direction
+    speed_dir_  = ((speed_ & 0x0400) >> 9);  // 10th byte is direction -> 0000010000000000 binary is 400 in hex
     // bytes from 9 to 0 are speed value:
     speed_ = speed_ & ~0x0400;
 
     load_ = *data; data++;  // acces data[4]
     load_ |= (*data << 8); data++;  // acces data[5]
-    load_dir_  = ((load_ >> 9) & 0x10);  // 10th byte is direction
+    load_dir_  = ((load_ & 0x0400) >> 9);  // 10th byte is direction
     // bytes from 9 to 0 are load value:
     load_ = load_ & ~0x0400;
 
@@ -73,6 +74,9 @@ void ServoRHA::updateInfo(uint8_t *data, uint16_t error) {
     temperature_ = *data; data++;  // acces data[7]
 
     error_comunication_ = error;
+
+    DebugSerialSRHALn("updateInfo: Information updated");
+    DebuSerialRHALnPrintServoStatus(position_, speed_, speed_dir_, load_, load_dir_, voltage_, temperature_, error_comunication_);
 }
 
 
@@ -111,6 +115,10 @@ uint16_t ServoRHA::regulatorServo(float error) {
  *       Packet handling functions       *
  *****************************************/
 
+/**
+ * @brief adds to buffer packet with the uptade info command
+ * @param {uint8_t*} buffer array in which add the information
+ */
 void ServoRHA::addUpadteInfoToPacket(uint8_t *buffer) {
      uint8_t data[2];
      data[0] = ServoRHAConstants::PRESENT_POSITION_L;
@@ -118,8 +126,8 @@ void ServoRHA::addUpadteInfoToPacket(uint8_t *buffer) {
      addToPacket(buffer, data, 2);
 }
 
- /** @brief returnPacketSet function sets the package return level of servo (error information for each command sent)
-   * @param {uint8_t buffer*}
+ /** @brief Saves in buffer the package return level of servo (error information for each command sent)
+   * @param {uint8_t*} buffer array in which add the information
    * @param {uint8_t} option RETURN_PACKET_ALL -> servo returns packet for all commands sent; RETURN_PACKET_NONE -> servo never retunrs state packet; RETURN_PACKET_READ_INSTRUCTIONS -> servo answer packet state when a READ command is sent (to read position, temperature, etc)
    * @see addToPacket()
    */
@@ -151,6 +159,11 @@ bool ServoRHA::addTorqueToPacket(uint8_t *buffer) {
     return true;
 }
 
+/**
+ * @brief Adds to buffer information about the torque option (on or off)
+ * @param buffer array in which add the information
+ * @param onOff  ON = 1; OFF = 0;
+ */
 void ServoRHA::setTorqueOnOfToPacket(uint8_t *buffer, uint8_t onOff) {
     uint8_t txBuffer[2];
     txBuffer[0] = ServoRHAConstants::TORQUE_ENABLE;
@@ -159,15 +172,35 @@ void ServoRHA::setTorqueOnOfToPacket(uint8_t *buffer, uint8_t onOff) {
     addToPacket(buffer, txBuffer, 2);
 }
 
+/**
+ * @brief Adds to buffer information to set wheel mode for servo
+ * @param buffer array in which add the information
+ * @see exitWheelModeToPacket()
+ * @see wheelModeToPacket()
+ */
 void ServoRHA::setWheelModeToPacket(uint8_t *buffer) {
     wheelModeToPacket(buffer, 0, 0);  // Enable wheel mode
 
 }
 
+/**
+ * @brief Adds to buffer information to exit wheel mode for servo
+ * @param buffer array in which add the information
+ * @see setWheelModeToPacket()
+ * @see wheelModeToPacket()
+ */
 void ServoRHA::exitWheelModeToPacket(uint8_t *buffer) {
     wheelModeToPacket(buffer, 0, 1087);  // Reset to default angle limit
 }
 
+/**
+ * @brief Adds to buffer information to set/exit wheel mode for servo. Common function for exit and set functions.
+ * @param buffer array in which add the information
+ * @param CW_angle cw angle limit
+ * @param CCW_angle ccw angle limit
+ * @see setWheelModeToPacket()
+ * @see exitWheelModeToPacket()
+ */
 void ServoRHA::wheelModeToPacket(uint8_t *buffer, uint16_t CW_angle, uint16_t CCW_angle) {
     uint8_t txBuffer[5];
 

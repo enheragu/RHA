@@ -9,13 +9,14 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: debug.h
- * @Last modified by:   quique
- * @Last modified time: 20-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 20_Sep_2017
  */
 
 #ifndef DEBUG_H
 #define DEBUG_H
 
+#include "joint_handler.h"  // Needs error definition
 /*********************************
  *       Debugging options       *
  *********************************/
@@ -33,6 +34,7 @@
 // #define DEBUG_UTILITIES
 #define DEBUG_JOINT_RHA
 
+void printServoStatusError (uint16_t error, uint8_t ID);
 
 /******************************************
  *       Debugging macro definition       *
@@ -54,10 +56,24 @@
     #define DebugSerialSRHALn(a) {  Serial.print("[DC]  ServoRHA::"); Serial.println(a); }
     #define DebugSerialSRHALn2(a, b) {  Serial.print("[DC]  ServoRHA::"); Serial.print(a); Serial.println(b); }
     #define DebugSerialSRHALn4(a, b, c, d) {  Serial.print("[DC]  ServoRHA::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+    #define DebuSerialRHALnPrintServoStatus(pos, speed, speed_dir, load, load_dir, voltage, temperature, error) {
+      Serial.println(" ");
+      Serial.print("[DC]  ServoRHA::Printing servo stats: ");
+      Serial.print("              - Position: "); Serial.println(pos);
+      Serial.print("              - Speed: "); Serial.println(speed);
+      Serial.print("              - Speed dir (CW = 1; CCW = 0): "); Serial.println(speed_dir);
+      Serial.print("              - Load: "); Serial.println(load);
+      Serial.print("              - Load dir (CW = 1; CCW = 0): "); Serial.println(load_dir);
+      Serial.print("              - Voltage: "); Serial.println(voltage);
+      Serial.print("              - Temperature: "); Serial.println(temperature);
+      Serial.print("              - Error in comunication: "); Serial.println(error);
+      Serial.println(" ");
+    }
 #else
     #define DebugSerialSRHALn(a)
     #define DebugSerialSRHALn2(a, b)
     #define DebugSerialSRHALn4(a, b, c, d)
+    #define DebuSerialRHALnPrintServoStatus(pos, speed, speed_dir, load, load_dir, voltage, temperature, error)
 #endif
 
 #ifdef DEBUG_JOINT_RHA
@@ -75,10 +91,12 @@
     #define DebugSerialJHLn(a) {  Serial.print("[DC]  JointHandler::"); Serial.println(a); }
     #define DebugSerialJHLn2(a, b) {  Serial.print("[DC]  JointHandler::"); Serial.print(a); Serial.println(b); }
     #define DebugSerialJHLn4(a, b, c, d) {  Serial.print("[DC]  JointHandler::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+    #define DebugSerialJHLn4Error(a, b) { printServoStatusError(a, b); }
 #else
     #define DebugSerialJHLn(a)
     #define DebugSerialJHLn2(a, b)
     #define DebugSerialJHLn4(a, b, c, d)
+    #define DebugSerialJHLn4Error(a, b)
 #endif
 
 /** DEBUG_UTILITIES implements debug macros for utilities.h file */
@@ -132,5 +150,31 @@
     #define DebugSerialTSRHARealLn4(a, b, c, d)
     #define DebugSerialTSRHAReal(a)
 #endif
+
+
+/**
+  * @brief Analyses error and prints error msgs
+  */
+void printServoStatusError (uint16_t error, uint8_t ID) {
+    // NOTE: MACROS NEED {} AS THEY AR SUBSTITUTED BY SOME CODE LINES, NOT JUST ONE!!
+    if (error != 0){
+        Serial.print("Error in comunication detected in servo: "); Serial.println(ID);
+    } else return;
+    if (error & SERROR_PING)  {Serial.println("Ping error in servo");}
+    if (error & SERROR_INPUTVOLTAGE)  {Serial.println("Input voltage error in servo");}          // bit 0
+    if (error & SERROR_ANGLELIMIT)  {Serial.println("Angle limit error in servo");}           // bit 1
+    if (error & SERROR_OVERHEATING)  {Serial.println("Overheating error in servo");}          // bit 2
+    if (error & SERROR_RANGE)  {Serial.println("Range error in servo");}             // bit 3
+    if (error & SERROR_CHECKSUM)  {Serial.println("Checksum error in servo");}             // bit 4
+    if (error & SERROR_OVERLOAD)  {Serial.println("Overload error in servo");}             // bit 5
+    if (error & SERROR_INSTRUCTION)  {Serial.println("Instruction error in servo");}            // bit 7
+    if (error & SERROR_PACKETLOST)  {Serial.println("Packet lost or receive time out in servo");}    // bit 8
+    if (error & SERROR_WRONGHEADER)  {Serial.println("Wrong header in servo");}              // bit 9
+    if (error & SERROR_IDMISMATCH)  {Serial.println("ID mismatch in servo");}                  // bit 10
+    if (error & SERROR_CHECKSUMERROR)  {Serial.println("Checksum error in servo");}               // bit 13
+}
+
+
+}
 
 #endif  // DEBUG_H

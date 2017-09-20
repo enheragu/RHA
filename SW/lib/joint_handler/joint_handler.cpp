@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: joint_handler.cpp
- * @Last modified by:   quique
- * @Last modified time: 20-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 20_Sep_2017
  */
 
 
@@ -41,11 +41,13 @@ void JointHandler::initJoints() {
 
     for (uint8_t i = 0; i < NUM_JOINT; i++) {
           joint_[i].servo_.setTorqueOnOfToPacket(buffer, ON);
-          sendSinglePacket(iWRITE_DATA, buffer);
+          uint16_t error = sendSinglePacket(iWRITE_DATA, buffer);
+          DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
     }
     for (uint8_t i = 0; i < NUM_JOINT; i++) {
           joint_[i].servo_.setWheelModeToPacket(buffer);
-          sendSinglePacket(iWRITE_DATA, buffer);
+          uint16_t error = sendSinglePacket(iWRITE_DATA, buffer);
+          DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
     }
 }
 
@@ -82,11 +84,16 @@ void JointHandler::updateJointInfo() {
     for(uint8_t i = 0; i < NUM_JOINT; i++){
         joint_[i].servo_.addUpadteInfoToPacket(buffer);
         uint16_t error = sendSinglePacket(iREAD_DATA, buffer);
-        joint_[i].servo_.updateInfo(buffer, error);
+        DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
+        joint_[i].servo_.updateInfo(&buffer[0], error);
     }
 
 }
 
+/**
+ * @brief Updates all joints error to update torque goal
+ * @method JointHandler::updateJointErrorTorque
+ */
 void JointHandler::updateJointErrorTorque() {
     DebugSerialJHLn("updateJointErrorTorque: begin of function");
     for(uint8_t i = 0; i < NUM_JOINT; i++){
@@ -94,6 +101,10 @@ void JointHandler::updateJointErrorTorque() {
     }
 }
 
+/**
+ * @brief handles the packet construction and sent for all joint torques
+ * @method JointHandler::sendJointTorques
+ */
 void JointHandler::sendJointTorques() {
     DebugSerialJHLn("sendJointTorques: begin of function");
     uint8_t buffer[BUFFER_LEN];
@@ -121,6 +132,13 @@ void JointHandler::setSpeedGoal(SpeedGoal goal) {
 
 }
 
+/**
+ * @brief Adds data to common buffer. Intended to put commands from all servo into one packet
+ * @method JointHandler::addToSyncPacket
+ * @param  buffer array to write all the info
+ * @param  data   contains data to copy
+ * @return        returns length copied in bytes
+ */
 uint8_t JointHandler::addToSyncPacket(uint8_t *buffer, uint8_t *data) {
     DebugSerialJHLn("addToSyncPacket: begin of function");
     *buffer = data[0]; buffer++;
@@ -130,11 +148,11 @@ uint8_t JointHandler::addToSyncPacket(uint8_t *buffer, uint8_t *data) {
     return (uint8_t)(data[2] + 1);  // Packet len + servo ID
 }
 /** @brief wrapPacket adds information needed once all servos had been aded (header, ID, instruction...). This function is used to send just one packet for all servos instead of each sending their respective information
-  * @param {uint8_t *} data is the data that have been completed by each servo (by reference)
-  * @param {uint8_t} data_len is the length of data
+  * @method JointHandler::sendSyncPacket
   * @param {uint8_t} instruction is the instruction to send
+  * @param {uint8_t *} buffer is the data that have been completed by each servo (by reference)
+  * @param {uint8_t} num_bytes is the length of data
   * @param {uint8_t} num_servo how many servos had been added to this packet
-  * @return {uint8_t} Returns number of uint8_ts that contain usefull info (how many have been written)
   */
 void JointHandler::sendSyncPacket(uint8_t instruction, uint8_t *buffer, uint8_t num_bytes, uint8_t num_servo) {
     DebugSerialJHLn("sendSyncPacket: begin of function");
@@ -177,7 +195,13 @@ void JointHandler::sendSyncPacket(uint8_t instruction, uint8_t *buffer, uint8_t 
     }
 }
 
-
+/**
+ * @brief Function to send to bus information contained in buffer param (just for one servo). Contains logic to read data in case it is needed
+ * @method JointHandler::sendSinglePacket 
+ * @param  instruction instruction for servo register (iREAD_DATA, iREG_WRITE, iWRITE_DATA...)
+ * @param  buffer      array with all the information to send, if info is read it will be copied here
+ * @return             error in comunication
+ */
 uint16_t JointHandler::sendSinglePacket(uint8_t instruction, uint8_t *buffer) {
     DebugSerialJHLn("sendSyncPacket: begin of function");
     uint8_t readCount = 0;
@@ -193,10 +217,10 @@ uint16_t JointHandler::sendSinglePacket(uint8_t instruction, uint8_t *buffer) {
 
     txBuffer[0] = 0xFF;               // 0xFF not included in checksum
     txBuffer[1] = 0xFF;
-    txBuffer[2] = buffer[0];      checksum +=  txBuffer[2];
-    txBuffer[3] = buffer[1]+2;     checksum +=  txBuffer[3];
+    txBuffer[2] = buffer[0];      checksum +=  txBuffer[2];  // buffer[0] is ID from servo
+    txBuffer[3] = buffer[1]+2;     checksum +=  txBuffer[3];  // buffer[1] is data length
     txBuffer[4] = instruction;    checksum +=  txBuffer[4];
-    txBuffer[5] = buffer[2];    checksum +=  txBuffer[5];
+    txBuffer[5] = buffer[2];    checksum +=  txBuffer[5];  // buffer[2] is register pos in which to write/read data
     for (i = 0; i < buffer[1]; i++) {
         txBuffer[i+6] = buffer[i];
         checksum +=  txBuffer[i+6];
@@ -298,7 +322,7 @@ void JointHandler::initSerial(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uin
 }
 
 void JointHandler::begin(uint32_t baudrate) {
-     DebugSerialJHLn("begin: begin of function");
+     DebugSerialJHLn2("begin: begin at baudrate: ", baudrate);
    if (rxpin_shield_ == 0 &&txpin_shield_ == 1) {
          hardwareSerial_ = true;
          Serial.begin(baudrate);
@@ -317,7 +341,6 @@ void JointHandler::begin(uint32_t baudrate) {
 }
 
 void JointHandler::end(void) {
-     DebugSerialJHLn("end: begin of function");
      if (rxpin_shield_ == 0 &&txpin_shield_ == 1) {
          Serial.end();
      } else {
@@ -329,11 +352,9 @@ void JointHandler::end(void) {
 }
 
 void JointHandler::setTxMode(void) {
-     DebugSerialJHLn("setTxMode: begin of function");
      digitalWrite(ctrlpin_shield_, TxMode);
 }
 
 void JointHandler::setRxMode(void) {
-     DebugSerialJHLn("setRxMode: begin of function");
      digitalWrite(ctrlpin_shield_, RxMode);
 }

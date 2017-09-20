@@ -132,6 +132,61 @@ void JointHandler::setSpeedGoal(SpeedGoal goal) {
 
 }
 
+void JointHandler::sendSetWheelMode() {
+    DebugSerialJHLn("sendSetWheelMode: begin of function");
+    uint8_t buffer[BUFFER_LEN];
+    for(uint8_t i = 0; i < NUM_JOINT; i++){
+        joint_[i].servo_.setWheelModeToPacket(buffer);
+        uint16_t error = sendSinglePacket(iWRITE_DATA, buffer);
+        DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
+    }
+}
+
+void JointHandler::sendExitWheelMode() {
+    DebugSerialJHLn("sendExitWheelMode: begin of function");
+    uint8_t buffer[BUFFER_LEN];
+    for(uint8_t i = 0; i < NUM_JOINT; i++){
+        joint_[i].servo_.exitWheelModeToPacket(buffer);
+        uint16_t error = sendSinglePacket(iWRITE_DATA, buffer);
+        DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
+    }
+}
+
+// NOTE: testing purposes
+void sendSetTorqueLimit(uint16_t torque_limit) {
+    DebugSerialJHLn("sendSetTorqueLimit: begin of function");
+    uint8_t buffer[BUFFER_LEN];
+    for(uint8_t i = 0; i < NUM_JOINT; i++){
+        joint_[i].servo_.setTorqueLimitToPacket(buffer, torque_limit);
+        uint16_t error = sendSinglePacket(iWRITE_DATA, buffer);
+        DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
+    }
+}
+
+// NOTE: testing purposes
+void sendSetWheelSpeed(uint16_t speed, uint8_t direction) {
+    DebugSerialJHLn("sendSetWheelSpeed: begin of function");
+    uint8_t buffer[BUFFER_LEN];
+    for(uint8_t i = 0; i < NUM_JOINT; i++){
+        joint_[i].servo_.exitWheelModeToPacket(buffer, speed, direction);
+        uint16_t error = sendSinglePacket(iWRITE_DATA, buffer);
+        DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
+    }
+}
+
+// NOTE: testing purposes
+bool JointHandler::checkConection() {
+    DebugSerialJHLn("checkConection: begin of function");
+    uint8_t buffer[BUFFER_LEN];
+    for(uint8_t i = 0; i < NUM_JOINT; i++){
+        joint_[i].servo_.pingToPacket(buffer);
+        uint16_t error = sendSinglePacket(iPING, buffer);
+        DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
+        if (error != 0) return false;
+    }
+    return true;
+}
+
 /**
  * @brief Adds data to common buffer. Intended to put commands from all servo into one packet
  * @method JointHandler::addToSyncPacket
@@ -147,6 +202,9 @@ uint8_t JointHandler::addToSyncPacket(uint8_t *buffer, uint8_t *data) {
     }
     return (uint8_t)(data[2] + 1);  // Packet len + servo ID
 }
+
+
+
 /** @brief wrapPacket adds information needed once all servos had been aded (header, ID, instruction...). This function is used to send just one packet for all servos instead of each sending their respective information
   * @method JointHandler::sendSyncPacket
   * @param {uint8_t} instruction is the instruction to send
@@ -197,7 +255,7 @@ void JointHandler::sendSyncPacket(uint8_t instruction, uint8_t *buffer, uint8_t 
 
 /**
  * @brief Function to send to bus information contained in buffer param (just for one servo). Contains logic to read data in case it is needed
- * @method JointHandler::sendSinglePacket 
+ * @method JointHandler::sendSinglePacket
  * @param  instruction instruction for servo register (iREAD_DATA, iREG_WRITE, iWRITE_DATA...)
  * @param  buffer      array with all the information to send, if info is read it will be copied here
  * @return             error in comunication
@@ -220,10 +278,10 @@ uint16_t JointHandler::sendSinglePacket(uint8_t instruction, uint8_t *buffer) {
     txBuffer[2] = buffer[0];      checksum +=  txBuffer[2];  // buffer[0] is ID from servo
     txBuffer[3] = buffer[1]+2;     checksum +=  txBuffer[3];  // buffer[1] is data length
     txBuffer[4] = instruction;    checksum +=  txBuffer[4];
-    txBuffer[5] = buffer[2];    checksum +=  txBuffer[5];  // buffer[2] is register pos in which to write/read data
+    // txBuffer[5] = buffer[2];    checksum +=  txBuffer[5];  // buffer[2] is register pos in which to write/read data
     for (i = 0; i < buffer[1]; i++) {
-        txBuffer[i+6] = buffer[i];
-        checksum +=  txBuffer[i+6];
+        txBuffer[i+5] = buffer[i+2];
+        checksum +=  txBuffer[i+5];
     }
     txBuffer[i+7] = ~checksum;                 // Checksum with Bit Inversion
 

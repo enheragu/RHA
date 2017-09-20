@@ -105,6 +105,14 @@ class JointHandler {
     void updateJointErrorTorque();
     void sendJointTorques();
 
+    void sendSetWheelMode();
+    void sendExitWheelMode();
+
+    void sendSetTorqueLimit(uint16_t torque_limit);
+    void sendSetWheelSpeed(uint16_t speed, uint8_t direction);
+
+    bool checkConection();
+
     uint8_t addToSyncPacket(uint8_t *buffer, uint8_t *data);
 
     void sendSyncPacket(uint8_t instruction, uint8_t *buffer, uint8_t num_bytes, uint8_t num_servo);

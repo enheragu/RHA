@@ -80,9 +80,6 @@ void ServoRHA::updateInfo(uint8_t *data, uint16_t error) {
 }
 
 
-/**********************************************************
- *       Action functions from G15 original library       *
- **********************************************************/
 
 void ServoRHA::calculateTorque(float error) {
     // float error = (float)target_speed - (float)speed_;
@@ -213,6 +210,35 @@ void ServoRHA::wheelModeToPacket(uint8_t *buffer, uint16_t CW_angle, uint16_t CC
     addToPacket(buffer, txBuffer, 5);
 }
 
+void pingToPacket(uint8_t *buffer) {
+    uint8_t txBuffer[1] = {0};
+    addToPacket(buffer, txBuffer, 0);
+}
+
+void setTorqueLimitToPacket(uint8_t *buffer, uint16_t torque_limit) {
+    uint8_t txBuffer[3];
+
+    txBuffer[0] = TORQUE_LIMIT_L;
+    txBuffer[1] = torque_limit & 0x00FF;  // Torque limit bottom 8 bits
+    txBuffer[2] = torque_limit >> 8;  // Torque limit top 8 bits
+    addToPacket(buffer, txBuffer, 3);
+
+}
+
+void setWheelSpeedToPacket(uint8_t *buffer, uint16_t speed, uint8_t direction) {
+    uint8_t txBuffer[3];
+
+    speed = speed & 0x03FF;  // Eliminate bits which are non speed
+    if (direction == CW) {
+        speed = speed | 0x0400;
+    }
+
+    txBuffer[0] = TORQUE_LIMIT_L;
+    txBuffer[1] = speed & 0x00FF;  // Torque limit bottom 8 bits
+    txBuffer[2] = speed >> 8;  // Torque limit top 8 bits
+    addToPacket(buffer, txBuffer, 3);
+}
+
 
 /** @brief addToPacket adds this servo to a buffer with his own information (id, goal, etc). This function is used to send just one packet for all servos instead of each sending their respective information
   * @param {uint8_t *} buffer is the buffer in which the information will be added (by reference)
@@ -223,9 +249,14 @@ void ServoRHA::addToPacket(uint8_t *buffer, uint8_t *packet, uint8_t packet_len)
     DebugSerialSRHALn("addToPacket: begin of function");
     buffer[0] = servo_id_;
     buffer[1] = packet_len;
-    buffer[2] = packet[0];
-    for (int i = 0; i < packet_len; i++) {
-        buffer[3 + i] = packet[1 + i];
+    try {
+      buffer[2] = packet[0];
+      for (int i = 0; i < packet_len; i++) {
+          buffer[3 + i] = packet[1 + i];
+      }
+    }
+    catch (Exception e) {
+        DebugSerialSRHALn("addToPacket: exception catched");
     }
 
     DebugSerialSRHALn("addToPacket: end of function");

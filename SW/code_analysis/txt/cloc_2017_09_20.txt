@@ -1,0 +1,22 @@
+      13 text files.
+classified 13 files      13 unique files.                              
+       2 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.15 s (71.9 files/s, 13299.4 lines/s)
+-------------------------------------------------------------------------------------------------------
+File                                                                blank        comment           code
+-------------------------------------------------------------------------------------------------------
+/home/gmv/RHA/SW/lib/utilities/utilities.cpp                           55             75            409
+/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp                   45             72            243
+/home/gmv/RHA/SW/lib/utilities/utilities.h                             38             20            121
+/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h                             22             22            116
+/home/gmv/RHA/SW/lib/debug/debug.h                                     22             44            114
+/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp                           44            107            112
+/home/gmv/RHA/SW/lib/joint_handler/joint_handler.h                     27             32             70
+/home/gmv/RHA/SW/src/main.cpp                                          18             17             40
+/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp                           10             36             37
+/home/gmv/RHA/SW/lib/joint_rha/joint_rha.h                             10             11             25
+/home/gmv/RHA/SW/lib/rha_types/rha_types.h                              4              7             11
+-------------------------------------------------------------------------------------------------------
+SUM:                                                                  295            443           1298
+-------------------------------------------------------------------------------------------------------

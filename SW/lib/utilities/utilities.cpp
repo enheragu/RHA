@@ -9,7 +9,7 @@
  * @Project: RHA
  * @Filename: utilities.h
  * @Last modified by:   enheragu
- * @Last modified time: 19_Sep_2017
+ * @Last modified time: 20_Sep_2017
  */
 
 #include <Arduino.h>
@@ -38,7 +38,7 @@ void printServoStatusError (uint16_t error){
     if (error & SERROR_CHECKSUMERROR)  {DebugSerialUtilitiesLn("Checksum error in servo");}               // bit 13
 }
 
-namespace MeasureUtilities{
+
 
     #define SPEED 800  // torque send to check speed
     #define SPEED_TARGET 80  // speed target in rpm
@@ -48,103 +48,9 @@ namespace MeasureUtilities{
     #define BAUD_RATE_G15 57600
 
     #define CHAUVENET_REPETITIONS 50  // too many repetitions cause memory overfload
-
-    /**
-     * @brief checkSpeed implements an encoder mode to measure real speed in RPM and check agains the measure returned by servo and torque value sent. It can test one servo. Autodetects ID of the one connected
-     */
-    void checkSpeed(){
-        DebugSerialUtilitiesLn("checkSpeed: begin of function");
-        Cytron_G15_Servo servo_broadcast(ALL_SERVO,2,3,8);
-        servo_broadcast.init();         //Broadcast initialize
-        uint8_t data[10];
-        uint16_t error = servo_broadcast.ping(data);
-        printServoStatusError(error);
-        uint8_t IDcurrent = data[0];
-        DebugSerialUtilitiesLn2("ID from servo is: ", IDcurrent);
-        if (error != 0 && error != SERROR_IDMISMATCH){  // Ignore ID mismatch as we broadcast to all servo
-            DebugSerialUtilitiesLn("Error in servo comunication, end of checkSpeed")
-            return;
-        }
-        Cytron_G15_Servo servo_test1(IDcurrent,2,3,8);
-        servo_test1.init();
-
-        uint32_t encoderTemp = 0,
-             encoderCurrent = 0,
-             encoderFullRotation = 100,
-             encoderTotal = 0;
-
-        uint16_t speed_set = SPEED,
-            torque_set = 1023;
-
-        uint8_t encoderFlag = 0;
-
-        uint16_t pos = 0;
-
-        uint32_t initTime = 0;
-        uint32_t currentTime = 0;
-
-        error = servo_test1.setTorqueLimit( torque_set);
-        delay(25);
-        printServoStatusError(error);
-        servo_test1.setWheelMode();
-        delay(25);
-        servo_test1.setWheelSpeed( 0, CCW, iWRITE_DATA);
-        delay(25);
-
-        servo_test1.getPos(data);             //get the current position from servo
-        pos = data[0];
-        pos = pos | ((data[1]) << 8);
-        encoderTemp = pos;
-        encoderFlag = 1;
-        initTime = millis();
-
-        DebugSerialUtilitiesLn("Configuration done.");
-        delay(2000);
-        DebugSerialUtilitiesLn("Start moving");
-
-        error = servo_test1.setTorqueOnOff(ON, iREG_WRITE);
-        delay(25);
-        printServoStatusError(error);
-        error = servo_test1.setWheelSpeed(speed_set, CW, iWRITE_DATA);
-        delay(25);
-        printServoStatusError(error);
-
-        while (1) {
-            //DebugSerialUtilitiesLn("Init while loop");
-            servo_test1.getPos(data); //get the current position from servo
-            pos = data[0];
-            pos = pos | ((data[1]) << 8);
-            encoderCurrent = pos;
-            //DebugSerialUtilitiesLn2("Current pose: ", encoderCurrent);
-
-            if (encoderCurrent < (encoderTemp + 5)  && encoderCurrent > (encoderTemp - 5) && encoderFlag == 0) {
-                encoderTotal++;
-                currentTime = millis();
-                float time_whole = ((float)(currentTime - initTime) / 1000);
-                float speed_now = ((float)encoderTotal / (float)time_whole)*60;
-                float speed_read = servo_test1.speedRead();
-                DebugSerialSeparation(1);
-                DebugSerialUtilitiesLn2("  -  Torque set is: ", speed_set);
-                DebugSerialUtilitiesLn2("  -  Speed calculated is (in rpm): ", speed_now);
-                DebugSerialUtilitiesLn2("  -  Speed calculated is (in rad/s): ", speed_now/(2*PI/60));
-                DebugSerialUtilitiesLn2("  -  Speed read is (in rpm): ", speed_read*(2*PI/60));
-                DebugSerialUtilitiesLn2("  -  Speed read is (in rad/s): ", speed_read);
-                DebugSerialUtilitiesLn2("  -  Encoder whole is: ", encoderTotal);
-                DebugSerialUtilitiesLn2("  -  Time spent is (in s): ", time_whole);
-                DebugSerialSeparation(1);
-                encoderFlag = 1;
-                if (encoderTotal == encoderFullRotation ) {
-                    servo_test1.setTorqueOnOff(ON, iREG_WRITE);
-                    servo_test1.setWheelSpeed( 0, CCW, iWRITE_DATA);
-                    break;
-                }
-            }
-            if (encoderCurrent > (encoderTemp + 5) || encoderCurrent < (encoderTemp - 5)) encoderFlag = 0;
-        }
-    }
-
-
     #define KN 1.54 // Chauvenet coeficient for n = 4
+
+namespace MeasureUtilities {
 
     /**
      * @brief Calculates the average applying chauvenets criterion
@@ -153,7 +59,7 @@ namespace MeasureUtilities{
      * @param  n amount of data (max of 255)
      * @return  Returns the average
      */
-    void averageChauvenet(uint32_t *data, uint8_t n, float &arithmetic_average, float &standard_deviation){
+    void averageChauvenet(uint32_t *data, uint8_t n, float &arithmetic_average, float &standard_deviation) {
         DebugSerialUtilitiesLn("averageChauvenet: begin of function");
         float values_kept [n];
         uint8_t n_values = 0;
@@ -179,202 +85,12 @@ namespace MeasureUtilities{
         //DebugSerialUtilitiesLn2("averageChauvenet: arithmetic average calculated after discard values: ", arithmetic_average);
     }
 
-    /**
-     * @brief checkTimeInfo checks time spent sending and recieving packet with ServoRHA::updateInfo() . It can test one servo. Autodetects ID of the one connected
-     * @param {long} repetitions: num of repetitions the test is made (time is the average of this repetitions). Max of 255 (danger of memory overload)
-     * @see checkTimeSpeedRead(). Both are used together to compare speed rate in comunication.
-     * @see averageChauvenet()
-     */
-    void checkTimeGetInfo(uint8_t repetitions){
-        DebugSerialSeparation(1);
-        Cytron_G15_Servo servo_broadcast(ALL_SERVO,2,3,8);
-        servo_broadcast.init();         //Broadcast initialize
-        uint8_t data[10];
-        uint16_t error = servo_broadcast.ping(data);
-        uint8_t IDcurrent = data[0];
-        DebugSerialUtilitiesLn2("ID from servo is: ", IDcurrent);
-        if (error != 0 && error != SERROR_IDMISMATCH){  // Ignore ID mismatch as we broadcast to all servo
-            printServoStatusError(error);
-            DebugSerialUtilitiesLn("Error in servo comunication, end of checkTimeGetInfo");
-            return;
-        }
-        Cytron_G15_Servo servo_test1(IDcurrent,2,3,8);
-        servo_test1.init();
-        //servo_test1.setBaudRate(BAUD_RATE_G15);
-        //servo_test1.begin(BAUD_RATE_G15);
 
-        uint32_t initTime = 0;
-        uint32_t timeSpent [repetitions];
-
-        DebugSerialUtilitiesLn("Begin of loop to take data");
-        for (uint8_t i = 0; i < repetitions; i++){
-            initTime = millis();
-            servo_test1.updateInfo();
-            timeSpent[i] = millis()-initTime;
-            if (servo_test1.getError() != 0){
-                DebugSerialUtilitiesLn("Error in servo comunication, end of loop to take data");
-                printServoStatusError(servo_test1.getError());
-                return;
-            }
-        }
-        DebugSerialUtilitiesLn("Data taken, calling averageChauvenet()");
-        float average_time = 0, standard_deviation = 0;
-        averageChauvenet(timeSpent,repetitions,average_time, standard_deviation);
-        DebugSerialUtilitiesLn2("checkTimeGetInfo: Time spent with ServoRHA::updateInfo: ", average_time);
-        DebugSerialUtilitiesLn2("checkTimeGetInfo: number of repetitions: ", repetitions);
-        DebugSerialUtilitiesLn("checkTimeSpeedRead: 9 bytes read");
-        DebugSerialSeparation(1);
-    }
-
-    /**
-      * @brief checkTimeInfo checks time spent sending and recieving packet with ServoRHA::SpeedRead(). It can test one servo. Autodetects ID of the one connected.
-      * @param {long} repetitions: num of repetitions the test is made (time is the average of this repetitions). Max 255 (danger of memory overload)
-      * @see checkTimeGetInfo(). Both are used together to compare speed rate in comunication.
-      * @see averageChauvenet()
-      */
-    void checkTimeSpeedRead(uint8_t repetitions){
-        DebugSerialSeparation(1);
-        Cytron_G15_Servo servo_broadcast(ALL_SERVO,2,3,8);
-        servo_broadcast.init();         //Broadcast initialize
-        uint8_t data[10];
-        uint16_t error = servo_broadcast.ping(data);
-        uint8_t IDcurrent = data[0];
-        DebugSerialUtilitiesLn2("ID from servo is: ", IDcurrent);
-        if (error != 0 && error != SERROR_IDMISMATCH){  // Ignore ID mismatch as we broadcast to all servo
-            printServoStatusError(error);
-            DebugSerialUtilitiesLn("Error in servo comunication, end of checkTimeSpeedRead");
-            return;
-        }
-        Cytron_G15_Servo servo_test1(IDcurrent,2,3,8);
-        servo_test1.init();
-        //servo_test1.setBaudRate(BAUD_RATE_G15);
-        //servo_test1.begin(BAUD_RATE_G15);
-
-        uint32_t initTime = 0;
-        uint32_t timeSpent [repetitions];
-
-        DebugSerialUtilitiesLn("Begin of loop to take data");
-        for (uint8_t i = 0; i < repetitions; i++){
-            initTime = millis();
-            servo_test1.speedRead();
-            timeSpent[i] = millis()-initTime;
-            if (servo_test1.getError() != 0){
-                DebugSerialUtilitiesLn("Error in servo comunication, end of loop to take data");
-                printServoStatusError(error);
-                return;
-            }
-        }
-        float average_time = 0, standard_deviation = 0;
-        averageChauvenet(timeSpent,repetitions,average_time, standard_deviation);
-        DebugSerialUtilitiesLn2("checkTimeSpeedRead: Time spent with ServoRHA::speedRead: ", average_time);
-        DebugSerialUtilitiesLn2("checkTimeSpeedRead: number of repetitions: ", repetitions);
-        DebugSerialUtilitiesLn("checkTimeSpeedRead: 2 bytes read");
-        DebugSerialSeparation(1);
-    }
-
-    /**
-     * @brief extractRegulatorData tests ServoRHA regulator and prints through serial monitor all info (python list style) to make a graphic. It can test one servo. Autodetects ID of the one connected
-     * @method extractRegulatorData
-     */
-    void extractRegulatorData(){
-        DebugSerialUtilitiesLn("extractRegulatorData: begin of function");
-        DebugSerialSeparation(1);
-
-        Cytron_G15_Servo servo_broadcast(ALL_SERVO,2,3,8);
-        servo_broadcast.init();         //Broadcast initialize
-        uint8_t data[10];
-        uint16_t error = servo_broadcast.ping(data);
-        uint8_t IDcurrent = data[0];
-        DebugSerialUtilitiesLn2("ID from servo is: ", IDcurrent);
-        if (error != 0 && error != SERROR_IDMISMATCH){  // Ignore ID mismatch as we broadcast to all servo
-            printServoStatusError(error);
-            DebugSerialUtilitiesLn("Error in servo comunication, end of extractRegulatorData");
-            printServoStatusError(error);
-            return;
-        }
-        Cytron_G15_Servo servo_test1(IDcurrent,2,3,8);
-        servo_test1.init();
-
-        servo_test1.setWheelMode();
-        servo_test1.setWheelSpeed( 0, CCW, iWRITE_DATA);
-
-        uint16_t torque = 0,
-                 speed_current = 0,
-                 speed_target = SPEED_TARGET,
-                 error_speed = 0;
-        uint32_t time_init = 0;
-        uint8_t counter = 0;
-
-        time_init = millis();
-        Serial.print("n_data = "); Serial.println(SAMPLE_REGULATOR);
-        Serial.print("speed_target = "); Serial.println(speed_target);
-        Serial.print("regulatorTest = [");
-        Serial.print("['"); Serial.print((float)KP_REGULATOR); Serial.print("']");
-        while(true){
-            if (millis() - time_init > LOOP_FREQUENCY){
-                speed_current = servo_test1.speedRead();
-                error_speed = speed_target - speed_current;
-                torque = servo_test1.regulatorServo(error_speed, KP_REGULATOR);
-                servo_test1.setWheelSpeed(torque, CW, iWRITE_DATA);
-                time_init = millis();
-
-                Serial.print(",['"); Serial.print(speed_current); Serial.print("','");
-                Serial.print(torque); Serial.print("','");
-                Serial.print(time_init); Serial.println("']\\");
-                counter++;
-                if(counter > SAMPLE_REGULATOR){
-                    Serial.println("]");
-                    DebugSerialSeparation(1);
-                    DebugSerialUtilitiesLn("extractRegulatorData: end of function");
-                    break;
-                }
-            }
-            else delay(5);
-        }
-        Serial.print("]");
-        servo_test1.exitWheelMode();
-    }
-
-    /**
-     * @brief This function is intended to test new baudrates and it's success comunication ratio
-     * @method checkPingSucces
-     * @param  repetitions   number of repetitions to perform
-     */
-    void checkComSucces(uint16_t repetitions){
-        DebugSerialUtilitiesLn("checkComSucces: begin of function");
-        DebugSerialSeparation(1);
-
-        Cytron_G15_Servo servo_broadcast(ALL_SERVO,2,3,8);
-        servo_broadcast.init();         //Broadcast initialize
-        uint8_t data[10];
-        uint16_t error = servo_broadcast.ping(data);
-        uint8_t IDcurrent = data[0];
-        DebugSerialUtilitiesLn2("ID from servo is: ", IDcurrent);
-        if (error != 0 && error != SERROR_IDMISMATCH){  // Ignore ID mismatch as we broadcast to all servo
-            printServoStatusError(error);
-            DebugSerialUtilitiesLn("Error in servo comunication, end of checkComSucces");
-            printServoStatusError(error);
-            return;
-        }
-        Cytron_G15_Servo servo_test1(IDcurrent,2,3,8);
-        servo_test1.init();
-
-        uint16_t succes_ping = 0, succes_updateInfo = 0;
-        for (uint16_t i = 0; i < repetitions; i++)
-        {
-            error = servo_test1.ping(data);
-            if (error == 0) succes_ping++;
-            delay(5);
-            servo_test1.updateInfo();
-            if (servo_test1.getError() == 0) succes_updateInfo++;
-            delay(5);
-        }
-        DebugSerialUtilitiesLn2("checkComSucces: Success total (ping): ", succes_ping);
-        DebugSerialUtilitiesLn2("checkComSucces: Success total (updateInfo): ", succes_updateInfo);
-        DebugSerialUtilitiesLn2("checkComSucces: number of repetitions: ", repetitions);
-        DebugSerialSeparation(1);
-    }
 } //end of MeasureUtilities namespace
+
+
+
+
 
 /***************************************************************
  *        This code is derived from Cytron G15 examples        *

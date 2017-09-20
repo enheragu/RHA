@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: servo_rha.h
- * @Last modified by:   quique
- * @Last modified time: 19-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 20_Sep_2017
  */
 
 
@@ -138,12 +138,22 @@ class ServoRHA {
     void exitWheelModeToPacket(uint8_t *buffer);
     void wheelModeToPacket(uint8_t *buffer, uint16_t CW_angle, uint16_t CCW_angle);
     void addToPacket(uint8_t *buffer, uint8_t *packet, uint8_t packet_len);
-
+    void pingToPacket(uint8_t *buffer);
 
     void calculateTorque(float error);
     uint16_t regulatorServo(float error);
-    void setRegulatorKp(float kp) {kp_ = kp;}
+    void setRegulatorKp(float kp) { kp_ = kp; }
 
+
+    /**********************************************************************
+     *        Set of functions which imitates original G15 library        *
+     **********************************************************************/
+    void setTorqueLimitToPacket(uint8_t *buffer, uint16_t torque_limit);
+    void setWheelSpeedToPacket(uint8_t *buffer, uint16_t torque_limit, uint8_t direction);
+
+    /*************************************
+     *        Interface functions        *
+     *************************************/
     virtual uint8_t getID() { return servo_id_; }
     virtual uint16_t getSpeed() { return speed_; }
     virtual uint16_t getSpeedDir() { return speed_dir_; }

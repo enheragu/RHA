@@ -9,7 +9,7 @@
  * @Project: RHA
  * @Filename: utilities.h
  * @Last modified by:   enheragu
- * @Last modified time: 19_Sep_2017
+ * @Last modified time: 20_Sep_2017
  */
 
 #include <Arduino.h>
@@ -18,53 +18,27 @@
 #include "joint_handler.h"
 // #include "cytron_g15_servo.h"
 
-/**
-  * @brief Analyses error and prints error msgs
-  */
-void printServoStatusError (uint16_t error);
 
+void averageChauvenet(uint32_t *data, uint8_t n, float &arithmetic_average, float &standard_deviation);
 
-
-namespace MeasureUtilities{
-
-    #define SPEED 800  // torque send to check speed
-    #define SPEED_TARGET 80  // speed target in rpm
-    #define KP_REGULATOR 150  // kp for extractRegulatorData function
-    #define LOOP_FREQUENCY 100  // in ms
-    #define SAMPLE_REGULATOR 150 // samples taken every LOOP_FREQUENCY
-
-    #define CHAUVENET_REPETITIONS 50  // too many repetitions cause memory overfload
-
-    void checkSpeed();
-
-
-    #define KN 1.54 // Chauvenet coeficient for n = 4
-
-    void averageChauvenet(uint32_t *data, uint8_t n, float &arithmetic_average, float &standard_deviation);
-
-    void checkTimeGetInfo(uint8_t repetitions);
-
-    void checkTimeSpeedRead(uint8_t repetitions);
-
-    void extractRegulatorData();
-
-    void checkComSucces(uint16_t repetitions);
-} //end of MeasureUtilities namespace
-
-/***************************************************************
- *        This code is derived from Cytron G15 examples        *
- ***************************************************************/
-namespace ServoUtilities{
-
-
+namespace ServoUtilities {
     void setServoId(uint8_t new_id);
-
-
     #define LED 13
 
-
     void fullFactoryResetBR();
+    void setServoId(uint8_t new_id);
 } // End of ServoUtilities namespace
+
+namespace RegulatorTestData {
+    #define SAMPLE_REGULATOR 150
+    #define SAMPLE_KP 6
+    #define KP_SAMPLES { float kp_samples[SAMPLE_KP] = {1.66, 5, 10, 20, 50, 100}; }
+    #define KP_SAMPLES(a) { kp_samples[a] }
+}  // End of RegulatorTestData namespace
+
+namespace CheckSpeedTestData {
+    #define SPEED 800  // torque send to check speed
+}  // End of CheckSpeedTestData namespace
 
 
 class Utilities : public JointHandler {
@@ -80,6 +54,7 @@ class Utilities : public JointHandler {
     virtual void initJoints();
     virtual void controlLoop();
     void extractRegulatorData();
+    void checkComSucces(uint16_t repetitions);
 };
 
 Utilities::Utilities(){
@@ -102,66 +77,52 @@ void Utilities::initJoints() {
     joint_[1].init(IDcurrent_, CW, A0);
 }
 
-void Utilities::controlLoop() {
-    DebugSerialUtilitiesLn("controlLoop: begin of function");
-    JointHandler::controlLoop();
-    joint_[0].servo_.getSpeed();
-    joint_[0].getSpeedTarget();
-}
 
-void Utilities::extractRegulatorData(){
-    DebugSerialUtilitiesLn("extractRegulatorData: begin of function");
-    DebugSerialSeparation(1);
+/**
+ * @brief extractRegulatorData tests ServoRHA regulator and prints through serial monitor all info (python list style) to make a graphic. It can test one servo. Autodetects ID of the one connected
+ * @method extractRegulatorData
+ */
+void Utilities::extractRegulatorData() {
+    int sample = 0;
+    KP_SAMPLES;  // macro defined in the top of utilities.h
 
-    servo_test1.setWheelSpeed( 0, CCW, iWRITE_DATA);
+    SpeedGoal speed_goal(1,50,0);  // Id, speed, speed_slope
+    setSpeedGoal(speed_goal);
+    for (int samples = 0; samples < SAMPLE_KP; samples++) {
+        joint_[0].servo_.setRegulatorKp(KP_SAMPLES(sample));  // KP_SAMPLES(a) defined in the top of utilities.h
+        Serial.print("n_data"); Serial.print(sample); Serial.print(" = "); Serial.println(SAMPLE_REGULATOR);
+        Serial.print("speed_target"); Serial.print(sample); Serial.print("  = "); Serial.println(joint_handler.joint_[0].getSpeedTarget());
+        Serial.print("regulatorTest"); Serial.print(sample); Serial.print("  = [");
+        Serial.print("['"); Serial.print(joint_[0].servo_.getKp()); Serial.print("']");
 
-    uint16_t torque = 0,
-             speed_current = 0,
-             speed_target = SPEED_TARGET,
-             error_speed = 0;
-    uint32_t time_init = 0;
-    uint8_t counter = 0;
-
-    time_init = millis();
-    Serial.print("n_data = "); Serial.println(SAMPLE_REGULATOR);
-    Serial.print("speed_target = "); Serial.println(speed_target);
-    Serial.print("regulatorTest = [");
-    Serial.print("['"); Serial.print((float)KP_REGULATOR); Serial.print("']");
-    while(true){
-        if (millis() - time_init > LOOP_FREQUENCY){
-            speed_current = servo_test1.speedRead();
-            error_speed = speed_target - speed_current;
-            torque = servo_test1.regulatorServo(error_speed, KP_REGULATOR);
-            servo_test1.setWheelSpeed(torque, CW, iWRITE_DATA);
-            time_init = millis();
-
-            Serial.print(",['"); Serial.print(speed_current); Serial.print("','");
-            Serial.print(torque); Serial.print("','");
+        for (int counter = 0, counter < SAMPLE_REGULATOR; counter++) {
+            unsigned long time_init = millis();
+            controlLoop();
+            Serial.print(",['"); Serial.print(joint_[0].servo_.getSpeed()); Serial.print("','");
             Serial.print(time_init); Serial.println("']\\");
-            counter++;
-            if(counter > SAMPLE_REGULATOR){
-                Serial.println("]");
-                DebugSerialSeparation(1);
-                DebugSerialUtilitiesLn("extractRegulatorData: end of function");
-                break;
-            }
         }
-        else delay(5);
+
+        Serial.println("]");
     }
-    Serial.print("]");
-    servo_test1.exitWheelMode();
+    return;
 }
 
-void Utilities::checkTimeGetInfo(uint8_t repetitions){
+/**
+ * @brief checkTimeInfo checks time spent sending and recieving packet with ServoRHA::updateInfo() . It can test one servo. Autodetects ID of the one connected
+ * @param {long} repetitions: num of repetitions the test is made (time is the average of this repetitions). Max of 255 (danger of memory overload)
+ * @see checkTimeSpeedRead(). Both are used together to compare speed rate in comunication.
+ * @see averageChauvenet()
+ */
+void Utilities::checkTimeGetInfo(uint8_t repetitions) {
     DebugSerialSeparation(1);
 
-    uint32_t initTime = 0;
+    uint64_t initTime = 0;
     uint32_t timeSpent [repetitions];
 
     DebugSerialUtilitiesLn("Begin of loop to take data");
     for (uint8_t i = 0; i < repetitions; i++){
         initTime = millis();
-        servo_test1_.updateInfo();
+        updateJointInfo();
         timeSpent[i] = millis()-initTime;
         if (servo_test1_.getError() != 0){
             DebugSerialUtilitiesLn("Error in servo comunication, end of loop to take data");
@@ -174,6 +135,101 @@ void Utilities::checkTimeGetInfo(uint8_t repetitions){
     MeasureUtilities::averageChauvenet(timeSpent,repetitions,average_time, standard_deviation);
     DebugSerialUtilitiesLn2("checkTimeGetInfo: Time spent with ServoRHA::updateInfo: ", average_time);
     DebugSerialUtilitiesLn2("checkTimeGetInfo: number of repetitions: ", repetitions);
-    DebugSerialUtilitiesLn("checkTimeSpeedRead: 9 bytes read");
+    DebugSerialUtilitiesLn("checkTimeSpeedRead: 8 bytes read");
     DebugSerialSeparation(1);
+}
+
+/**
+ * @brief This function is intended to test new baudrates and it's success comunication ratio
+ * @method checkPingSucces
+ * @param  repetitions   number of repetitions to perform
+ */
+void Utilities::checkComSucces(uint16_t repetitions) {
+    DebugSerialUtilitiesLn("checkComSucces: begin of function");
+    DebugSerialSeparation(1);
+
+    uint16_t succes_ping = 0;
+    for (uint16_t i = 0; i < repetitions; i++)
+    {
+
+        if (checkConection()) succes_ping++;
+        delay(5);
+    }
+    DebugSerialUtilitiesLn2("checkComSucces: Success total (ping): ", succes_ping);
+    DebugSerialUtilitiesLn2("checkComSucces: number of repetitions: ", repetitions);
+    DebugSerialSeparation(1);
+}
+
+
+/**
+ * @brief checkSpeed implements an encoder mode to measure real speed in RPM and check agains the measure returned by servo and torque value sent. It can test one servo. Autodetects ID of the one connected
+ */
+void Utilities::checkSpeed(uint8_t joint_to_test){
+    DebugSerialUtilitiesLn("checkSpeed: begin of function");
+
+    uint32_t encoderTemp = 0,
+         encoderCurrent = 0,
+         encoderFullRotation = 100,
+         encoderTotal = 0;
+
+    uint16_t speed_set = SPEED,
+        torque_set = 1023;
+
+    uint8_t encoderFlag = 0;
+
+    uint16_t pos = 0;
+
+    uint32_t initTime = 0;
+    uint32_t currentTime = 0;
+
+    sendSetTorqueLimit(torque_set);
+    delay(25);
+    sendSetWheelMode();
+    delay(25);
+    delay(25);
+
+    updateJointInfo();            //get the current position from servo
+    pos = joint_[joint_to_test].servo_getPos();
+    encoderTemp = pos;
+    encoderFlag = 1;
+    initTime = millis();
+
+    DebugSerialUtilitiesLn("Configuration done.");
+    delay(2000);
+    DebugSerialUtilitiesLn("Start moving");
+
+    sendSetWheelSpeed(speed_set, CW);
+    delay(25);
+
+    while (1) {
+        //DebugSerialUtilitiesLn("Init while loop");
+        updateJointInfo();            //get the current position from servo
+        pos = joint_[joint_to_test].servo_getPos();
+        encoderCurrent = pos;
+        //DebugSerialUtilitiesLn2("Current pose: ", encoderCurrent);
+
+        if (encoderCurrent < (encoderTemp + 5)  && encoderCurrent > (encoderTemp - 5) && encoderFlag == 0) {
+            encoderTotal++;
+            currentTime = millis();
+            float time_whole = ((float)(currentTime - initTime) / 1000);
+            float speed_now = ((float)encoderTotal / (float)time_whole)*60;
+            updateJointInfo();            //get the current position from servo
+            float speed_read = joint_[joint_to_test].servo_getSpeed();
+            DebugSerialSeparation(1);
+            DebugSerialUtilitiesLn2("  -  Torque set is: ", speed_set);
+            DebugSerialUtilitiesLn2("  -  Speed calculated is (in rpm): ", speed_now);
+            DebugSerialUtilitiesLn2("  -  Speed calculated is (in rad/s): ", speed_now/(2*PI/60));
+            DebugSerialUtilitiesLn2("  -  Speed read is (in rpm): ", speed_read*(2*PI/60));
+            DebugSerialUtilitiesLn2("  -  Speed read is (in rad/s): ", speed_read);
+            DebugSerialUtilitiesLn2("  -  Encoder whole is: ", encoderTotal);
+            DebugSerialUtilitiesLn2("  -  Time spent is (in s): ", time_whole);
+            DebugSerialSeparation(1);
+            encoderFlag = 1;
+            if (encoderTotal == encoderFullRotation ) {
+                sendSetWheelSpeed(0, CW);
+                break;
+            }
+        }
+        if (encoderCurrent > (encoderTemp + 5) || encoderCurrent < (encoderTemp - 5)) encoderFlag = 0;
+    }
 }

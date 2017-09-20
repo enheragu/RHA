@@ -1,0 +1,476 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/terryyin/lizard/master/lizard.xsl"?>
+<cppncss>
+	<measure type="Function">
+		<labels>
+			<label>Nr.</label>
+			<label>NCSS</label>
+			<label>CCN</label>
+		</labels>
+		<item name="ServoRHA::ServoRHA(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:22">
+			<value>1</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::init(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:30">
+			<value>2</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::updateInfo(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:55">
+			<value>3</value>
+			<value>18</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::calculateTorque(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:87">
+			<value>4</value>
+			<value>12</value>
+			<value>5</value>
+		</item>
+		<item name="ServoRHA::regulatorServo(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:109">
+			<value>5</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::addUpadteInfoToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:122">
+			<value>6</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::addReturnOptionToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:134">
+			<value>7</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::addTorqueToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:151">
+			<value>8</value>
+			<value>10</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::setTorqueOnOfToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:167">
+			<value>9</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::setWheelModeToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:181">
+			<value>10</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::exitWheelModeToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:192">
+			<value>11</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::wheelModeToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:204">
+			<value>12</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::addToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:222">
+			<value>13</value>
+			<value>10</value>
+			<value>2</value>
+		</item>
+		<item name="compareAngles(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:245">
+			<value>14</value>
+			<value>6</value>
+			<value>3</value>
+		</item>
+		<item name="compareSpeed(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:258">
+			<value>15</value>
+			<value>6</value>
+			<value>3</value>
+		</item>
+		<average label="NCSS" value="7"/>
+		<average label="CCN" value="1"/>
+		<item name="ServoRHA::ServoRHA(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:125">
+			<value>16</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::setRegulatorKp(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:145">
+			<value>17</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getID(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:147">
+			<value>18</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getSpeed(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:148">
+			<value>19</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getSpeedDir(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:149">
+			<value>20</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getPosition(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:150">
+			<value>21</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getLoad(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:151">
+			<value>22</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getLoadDir(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:152">
+			<value>23</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getError(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:153">
+			<value>24</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getVoltage(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:154">
+			<value>25</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getTemperature(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:155">
+			<value>26</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getKp(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:156">
+			<value>27</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="4"/>
+		<average label="CCN" value="1"/>
+		<item name="JointRHA::JointRHA(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.h:31">
+			<value>28</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="JointRHA::getSpeedTarget(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.h:41">
+			<value>29</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="4"/>
+		<average label="CCN" value="1"/>
+		<item name="JointRHA::JointRHA(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp:19">
+			<value>30</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="JointRHA::~JointRHA(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp:27">
+			<value>31</value>
+			<value>2</value>
+			<value>1</value>
+		</item>
+		<item name="JointRHA::init(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp:35">
+			<value>32</value>
+			<value>8</value>
+			<value>1</value>
+		</item>
+		<item name="JointRHA::setSpeedGoal(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp:53">
+			<value>33</value>
+			<value>13</value>
+			<value>2</value>
+		</item>
+		<item name="JointRHA::speedError(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp:71">
+			<value>34</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="JointRHA::updateInfo(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp:81">
+			<value>35</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="4"/>
+		<average label="CCN" value="1"/>
+		<item name="Utilities::Utilities(...) at /home/gmv/RHA/SW/lib/utilities/utilities.h:85">
+			<value>36</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="Utilities::initJoints(...) at /home/gmv/RHA/SW/lib/utilities/utilities.h:89">
+			<value>37</value>
+			<value>14</value>
+			<value>3</value>
+		</item>
+		<item name="Utilities::controlLoop(...) at /home/gmv/RHA/SW/lib/utilities/utilities.h:105">
+			<value>38</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="Utilities::extractRegulatorData(...) at /home/gmv/RHA/SW/lib/utilities/utilities.h:112">
+			<value>39</value>
+			<value>38</value>
+			<value>4</value>
+		</item>
+		<item name="Utilities::checkTimeGetInfo(...) at /home/gmv/RHA/SW/lib/utilities/utilities.h:155">
+			<value>40</value>
+			<value>23</value>
+			<value>3</value>
+		</item>
+		<average label="NCSS" value="6"/>
+		<average label="CCN" value="1"/>
+		<item name="printServoStatusError(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:25">
+			<value>41</value>
+			<value>14</value>
+			<value>13</value>
+		</item>
+		<item name="MeasureUtilities::checkSpeed(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:55">
+			<value>42</value>
+			<value>77</value>
+			<value>10</value>
+		</item>
+		<item name="MeasureUtilities::averageChauvenet(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:156">
+			<value>43</value>
+			<value>19</value>
+			<value>6</value>
+		</item>
+		<item name="MeasureUtilities::checkTimeGetInfo(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:188">
+			<value>44</value>
+			<value>36</value>
+			<value>5</value>
+		</item>
+		<item name="MeasureUtilities::checkTimeSpeedRead(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:235">
+			<value>45</value>
+			<value>35</value>
+			<value>5</value>
+		</item>
+		<item name="MeasureUtilities::extractRegulatorData(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:279">
+			<value>46</value>
+			<value>53</value>
+			<value>6</value>
+		</item>
+		<item name="MeasureUtilities::checkComSucces(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:343">
+			<value>47</value>
+			<value>32</value>
+			<value>6</value>
+		</item>
+		<item name="ServoUtilities::setServoId(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:390">
+			<value>48</value>
+			<value>35</value>
+			<value>7</value>
+		</item>
+		<item name="ServoUtilities::fullFactoryResetBR(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:448">
+			<value>49</value>
+			<value>84</value>
+			<value>17</value>
+		</item>
+		<average label="NCSS" value="12"/>
+		<average label="CCN" value="2"/>
+		<item name="SpeedGoal::SpeedGoal(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:19">
+			<value>50</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="12"/>
+		<average label="CCN" value="2"/>
+		<item name="JointHandler::JointHandler(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.h:96">
+			<value>51</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="12"/>
+		<average label="CCN" value="2"/>
+		<item name="JointHandler::JointHandler(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:19">
+			<value>52</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::setTimer(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:28">
+			<value>53</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::initJoints(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:37">
+			<value>54</value>
+			<value>15</value>
+			<value>3</value>
+		</item>
+		<item name="JointHandler::controlLoop(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:57">
+			<value>55</value>
+			<value>12</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::updateJointInfo(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:81">
+			<value>56</value>
+			<value>10</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::updateJointErrorTorque(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:97">
+			<value>57</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::sendJointTorques(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:108">
+			<value>58</value>
+			<value>13</value>
+			<value>3</value>
+		</item>
+		<item name="JointHandler::setSpeedGoal(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:127">
+			<value>59</value>
+			<value>6</value>
+			<value>3</value>
+		</item>
+		<item name="JointHandler::addToSyncPacket(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:142">
+			<value>60</value>
+			<value>8</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::sendSyncPacket(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:157">
+			<value>61</value>
+			<value>33</value>
+			<value>5</value>
+		</item>
+		<item name="JointHandler::sendSinglePacket(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:205">
+			<value>62</value>
+			<value>81</value>
+			<value>21</value>
+		</item>
+		<item name="JointHandler::JointHandler(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:304">
+			<value>63</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::JointHandler(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:310">
+			<value>64</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::initSerial(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:316">
+			<value>65</value>
+			<value>7</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::begin(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:324">
+			<value>66</value>
+			<value>18</value>
+			<value>4</value>
+		</item>
+		<item name="JointHandler::end(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:343">
+			<value>67</value>
+			<value>10</value>
+			<value>3</value>
+		</item>
+		<item name="JointHandler::setTxMode(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:354">
+			<value>68</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::setRxMode(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:358">
+			<value>69</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="12"/>
+		<average label="CCN" value="2"/>
+		<item name="printServoStatusError(...) at /home/gmv/RHA/SW/lib/debug/debug.h:158">
+			<value>70</value>
+			<value>17</value>
+			<value>14</value>
+		</item>
+		<average label="NCSS" value="12"/>
+		<average label="CCN" value="2"/>
+		<item name="setup(...) at /home/gmv/RHA/SW/src/main.cpp:28">
+			<value>71</value>
+			<value>10</value>
+			<value>1</value>
+		</item>
+		<item name="loop(...) at /home/gmv/RHA/SW/src/main.cpp:48">
+			<value>72</value>
+			<value>22</value>
+			<value>5</value>
+		</item>
+		<average label="NCSS" value="12"/>
+		<average label="CCN" value="2"/>
+	</measure>
+	<measure type="File">
+		<labels>
+			<label>Nr.</label>
+			<label>NCSS</label>
+			<label>CCN</label>
+			<label>Functions</label>
+		</labels>
+		<item name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp">
+			<value>1</value>
+			<value>112</value>
+			<value>24</value>
+			<value>15</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h">
+			<value>2</value>
+			<value>101</value>
+			<value>12</value>
+			<value>12</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/joint_rha/joint_rha.h">
+			<value>3</value>
+			<value>22</value>
+			<value>2</value>
+			<value>2</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp">
+			<value>4</value>
+			<value>37</value>
+			<value>8</value>
+			<value>6</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/utilities/utilities.h">
+			<value>5</value>
+			<value>113</value>
+			<value>12</value>
+			<value>5</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/utilities/utilities.cpp">
+			<value>6</value>
+			<value>397</value>
+			<value>75</value>
+			<value>9</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/rha_types/rha_types.h">
+			<value>7</value>
+			<value>8</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/joint_handler/joint_handler.h">
+			<value>8</value>
+			<value>35</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp">
+			<value>9</value>
+			<value>243</value>
+			<value>57</value>
+			<value>18</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/debug/debug.h">
+			<value>10</value>
+			<value>32</value>
+			<value>14</value>
+			<value>1</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/src/main.cpp">
+			<value>11</value>
+			<value>38</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<average label="NCSS" value="103"/>
+		<average label="CCN" value="19"/>
+		<average label="Functions" value="6"/>
+		<sum label="NCSS" value="1138"/>
+		<sum label="CCN" value="212"/>
+		<sum label="Functions" value="72"/>
+		<average label="NCSS" value="15"/>
+		<average label="CCN" value="2"/>
+	</measure>
+</cppncss>
+

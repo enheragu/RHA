@@ -45,7 +45,7 @@ namespace RHATypes {
             kp_ = kp; ki_ = ki; kd_ = kd;
         }
 
-        float regulator(float error, float derror, float ierror) {
+        float regulator(float error, float derror = 0, float ierror = 0) {
             ierror_[index_] = ierror;
             index_ ++;
             if (index_ > INTEGER_INTERVAL) index_ = 0;
@@ -65,17 +65,20 @@ namespace RHATypes {
         }
 
         virtual void activateTimer() {
-            init_time_ = millis();
+          DebugSerialRHATypesLn("Timer::activateTimer:");
+          init_time_ = millis();
         }
 
         virtual void checkWait() {
             while (millis() - init_time_ < time_) {
-              delay(1);
+                DebugSerialRHATypesLn2("Timer::checkWait: time left: ", time_ - (micros() - init_time_));
+                delay(1);
             }
         }
 
         virtual bool checkContinue() {
-            if (millis() - init_time_ > time_) return true;
+            DebugSerialRHATypesLn2("Timer::checkContinue: time left: ", time_ - (micros() - init_time_));
+            if (millis() - init_time_ >= time_) return true;
             else return false;
         }
     };  // end class Timer
@@ -83,17 +86,20 @@ namespace RHATypes {
     class TimerMicroseconds : public Timer {
      public:
         virtual void activateTimer() {
+            DebugSerialRHATypesLn("TimerMicroseconds::activateTimer:");
             init_time_ = micros();
         }
 
         virtual void checkWait() {
             while (micros() - init_time_ < time_) {
+                DebugSerialRHATypesLn2("TimerMicroseconds::checkWait: time left: ", time_ - (micros() - init_time_));
                 delayMicroseconds(1);
             }
         }
 
         virtual bool checkContinue() {
-            if (micros() - init_time_ > time_) return true;
+            DebugSerialRHATypesLn2("TimerMicroseconds::checkContinue: time left: ", time_ - (micros() - init_time_));
+            if (micros() - init_time_ >= time_) return true;
             else return false;
         }
     };  // end class TimerMicroseconds

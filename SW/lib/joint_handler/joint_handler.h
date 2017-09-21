@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: joint_handler.h
  * @Last modified by:   enheragu
- * @Last modified time: 20_Sep_2017
+ * @Last modified time: 21_Sep_2017
  */
 
 #ifndef JOINT_HANDLER_H
@@ -80,15 +80,19 @@ namespace JointHandlerConstants {
     #define NUM_JOINT 1
     #define BUFFER_LEN 30
 
+    #define EEMPROM_DELAY 25
+
 }  // namespace JointHandlerConstants
 
 
 class JointHandler {
-    uint64_t time_last_, timer_;
+    Timer control_loop_timer_;
 
     boolean hardwareSerial_;
     SoftwareSerial* G15Serial_;
+
     uint8_t txpin_shield_, rxpin_shield_, ctrlpin_shield_;
+    
     uint16_t comunicatoin_error_;
  public:
     JointRHA joint_[NUM_JOINT];
@@ -105,13 +109,13 @@ class JointHandler {
     void updateJointErrorTorque();
     void sendJointTorques();
 
-    void sendSetWheelMode();
-    void sendExitWheelMode();
+    void sendSetWheelModeAll();
+    void sendExitWheelModeAll();
 
-    void sendSetTorqueLimit(uint16_t torque_limit);
-    void sendSetWheelSpeed(uint16_t speed, uint8_t direction);
+    void sendSetTorqueLimitAll(uint16_t torque_limit);
+    void sendSetWheelSpeedAll(uint16_t speed, uint8_t direction);
 
-    bool checkConection();
+    bool checkConectionAll();
 
     uint8_t addToSyncPacket(uint8_t *buffer, uint8_t *data);
 

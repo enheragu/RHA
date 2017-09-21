@@ -9,7 +9,7 @@
  * @Project: RHA
  * @Filename: utilities.h
  * @Last modified by:   enheragu
- * @Last modified time: 20_Sep_2017
+ * @Last modified time: 21_Sep_2017
  */
 
 #include <Arduino.h>
@@ -89,7 +89,7 @@ void Utilities::extractRegulatorData() {
     SpeedGoal speed_goal(1,50,0);  // Id, speed, speed_slope
     setSpeedGoal(speed_goal);
     for (int samples = 0; samples < SAMPLE_KP; samples++) {
-        joint_[0].servo_.setRegulatorKp(KP_SAMPLES(sample));  // KP_SAMPLES(a) defined in the top of utilities.h
+        joint_[0].servo_.speed_regulator_.setKRegulator(KP_SAMPLES(sample),0,0);  // KP_SAMPLES(a) defined in the top of utilities.h
         Serial.print("n_data"); Serial.print(sample); Serial.print(" = "); Serial.println(SAMPLE_REGULATOR);
         Serial.print("speed_target"); Serial.print(sample); Serial.print("  = "); Serial.println(joint_handler.joint_[0].getSpeedTarget());
         Serial.print("regulatorTest"); Serial.print(sample); Serial.print("  = [");

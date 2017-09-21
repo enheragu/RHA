@@ -10,7 +10,7 @@
  * @Project: RHA
  * @Filename: debug.h
  * @Last modified by:   enheragu
- * @Last modified time: 20_Sep_2017
+ * @Last modified time: 21_Sep_2017
  */
 
 #ifndef DEBUG_H
@@ -32,6 +32,7 @@
 // #define DEBUG_CYTRON_G15_SERVO
 // #define DEBUG_TEST_CYTRON_G15_SERVO
 // #define DEBUG_UTILITIES
+// #define DEBUG_RHA_TYPES
 #define DEBUG_JOINT_RHA
 
 void printServoStatusError (uint16_t error, uint8_t ID);
@@ -76,6 +77,7 @@ void printServoStatusError (uint16_t error, uint8_t ID);
     #define DebuSerialRHALnPrintServoStatus(pos, speed, speed_dir, load, load_dir, voltage, temperature, error)
 #endif
 
+/** DEBUG_JOINT_RHA implements debug macros for joint_rha.h and .cpp files */
 #ifdef DEBUG_JOINT_RHA
     #define DebugSerialJRHALn(a) {  Serial.print("[DC]  JointRHA::"); Serial.println(a); }
     #define DebugSerialJRHALn2(a, b) {  Serial.print("[DC]  JointRHA::"); Serial.print(a); Serial.println(b); }
@@ -110,6 +112,19 @@ void printServoStatusError (uint16_t error, uint8_t ID);
     #define DebugSerialUtilitiesLn2(a, b)
     #define DebugSerialUtilities(a)
     #define DebugSerialUtilitiesLn4(a, b, c, d)
+#endif
+
+/** DEBUG_RHA_TYPES implements debug macros for rha_types.h file */
+#ifdef DEBUG_RHA_TYPES
+    #define DebugSerialRHATypesLn(a) {  Serial.print("[DC]  RHATypes::"); Serial.println(a); }
+    #define DebugSerialRHATypesLn2(a, b) {  Serial.print("[DC]  RHATypes::"); Serial.print(a); Serial.println(b); }
+    #define DebugSerialRHATypes(a) {  Serial.print("[DC]  RHATypes::"); Serial.print(a); }
+    #define DebugSerialRHATypesLn4(a, b, c, d) {  Serial.print("[DC]  RHATypes::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+#else
+    #define DebugSerialRHATypesLn(a)
+    #define DebugSerialRHATypesLn2(a, b)
+    #define DebugSerialRHATypes(a)
+    #define DebugSerialRHATypesLn4(a, b, c, d)
 #endif
 
 /** DebugSerialSeparation prints a horizontal line to separate different set of debug information */

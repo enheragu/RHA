@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: servo_rha.cpp
  * @Last modified by:   enheragu
- * @Last modified time: 20_Sep_2017
+ * @Last modified time: 21_Sep_2017
  */
 
 #include "servo_rha.h"
@@ -33,6 +33,8 @@ void ServoRHA::init(uint8_t servo_id) {
 
     servo_id_ = servo_id;
     DebugSerialSRHALn2("initServo: id is now: ", servo_id_);
+
+    speed_regulator_.setKRegulator(KP,KI,KD);
 
     DebugSerialSRHALn("initServo: end of inicialitation function");
 }
@@ -83,7 +85,7 @@ void ServoRHA::updateInfo(uint8_t *data, uint16_t error) {
 
 void ServoRHA::calculateTorque(float error) {
     // float error = (float)target_speed - (float)speed_;
-    float torque = regulatorServo(error);
+    float torque = speed_regulator_.regulator(error, 0, 0);
     uint8_t direction = 0;
     if (torque > 0) direction = CW;
     else if (torque < 0) direction = CCW;

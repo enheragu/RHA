@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: joint_handler.cpp
  * @Last modified by:   enheragu
- * @Last modified time: 20_Sep_2017
+ * @Last modified time: 21_Sep_2017
  */
 
 
@@ -27,7 +27,8 @@ JointHandler::JointHandler(uint64_t timer) {
  */
 void JointHandler::setTimer(uint64_t timer) {
     DebugSerialJHLn("setTimer: begin of function");
-    timer_ = timer;
+    control_loop_timer_.setTimer(timer);
+    control_loop_timer_.activateTimer();
 }
 
 /**
@@ -39,16 +40,23 @@ void JointHandler::initJoints() {
     uint8_t buffer[BUFFER_LEN];
     joint_[0].init(1, CW, A0);
 
+    Timer eeprom_timer;
+    eeprom_timer.setTimer(EEMPROM_DELAY);
+    eeprom_timer.activateTimer();
+
     for (uint8_t i = 0; i < NUM_JOINT; i++) {
           joint_[i].servo_.setTorqueOnOfToPacket(buffer, ON);
           uint16_t error = sendSinglePacket(iWRITE_DATA, buffer);
           DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
     }
+
+    eeprom_timer.checkWait();
+    eeprom_timer.activateTimer();
+
     for (uint8_t i = 0; i < NUM_JOINT; i++) {
-          joint_[i].servo_.setWheelModeToPacket(buffer);
-          uint16_t error = sendSinglePacket(iWRITE_DATA, buffer);
-          DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
+          sendSetWheelModeAll();
     }
+    eeprom_timer.checkWait();
 }
 
 /**
@@ -56,7 +64,7 @@ void JointHandler::initJoints() {
   */
 void JointHandler::controlLoop() {
     DebugSerialJHLn("controlLoop: begin of function");
-    if(millis() - time_last_ >= timer_) {
+    if(control_loop_timer_.checkContinue()) {
         // Firt all info have to be updated
         DebugSerialJHLn("controlLoop: Updating joint info");
         updateJointInfo();
@@ -69,7 +77,7 @@ void JointHandler::controlLoop() {
         sendJointTorques();
         //Send buffer
 
-        time_last_ = millis();
+        control_loop_timer_.activateTimer();
 
     }
 }
@@ -132,8 +140,8 @@ void JointHandler::setSpeedGoal(SpeedGoal goal) {
 
 }
 
-void JointHandler::sendSetWheelMode() {
-    DebugSerialJHLn("sendSetWheelMode: begin of function");
+void JointHandler::sendSetWheelModeAll() {
+    DebugSerialJHLn("sendSetWheelModeAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
     for(uint8_t i = 0; i < NUM_JOINT; i++){
         joint_[i].servo_.setWheelModeToPacket(buffer);
@@ -142,8 +150,8 @@ void JointHandler::sendSetWheelMode() {
     }
 }
 
-void JointHandler::sendExitWheelMode() {
-    DebugSerialJHLn("sendExitWheelMode: begin of function");
+void JointHandler::sendExitWheelModeAll() {
+    DebugSerialJHLn("sendExitWheelModeAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
     for(uint8_t i = 0; i < NUM_JOINT; i++){
         joint_[i].servo_.exitWheelModeToPacket(buffer);
@@ -153,8 +161,8 @@ void JointHandler::sendExitWheelMode() {
 }
 
 // NOTE: testing purposes
-void sendSetTorqueLimit(uint16_t torque_limit) {
-    DebugSerialJHLn("sendSetTorqueLimit: begin of function");
+void sendSetTorqueLimitAll(uint16_t torque_limit) {
+    DebugSerialJHLn("sendSetTorqueLimitAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
     for(uint8_t i = 0; i < NUM_JOINT; i++){
         joint_[i].servo_.setTorqueLimitToPacket(buffer, torque_limit);
@@ -164,8 +172,8 @@ void sendSetTorqueLimit(uint16_t torque_limit) {
 }
 
 // NOTE: testing purposes
-void sendSetWheelSpeed(uint16_t speed, uint8_t direction) {
-    DebugSerialJHLn("sendSetWheelSpeed: begin of function");
+void sendSetWheelSpeedAll(uint16_t speed, uint8_t direction) {
+    DebugSerialJHLn("sendSetWheelSpeedAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
     for(uint8_t i = 0; i < NUM_JOINT; i++){
         joint_[i].servo_.exitWheelModeToPacket(buffer, speed, direction);
@@ -175,8 +183,8 @@ void sendSetWheelSpeed(uint16_t speed, uint8_t direction) {
 }
 
 // NOTE: testing purposes
-bool JointHandler::checkConection() {
-    DebugSerialJHLn("checkConection: begin of function");
+bool JointHandler::checkConectionAll() {
+    DebugSerialJHLn("checkConectionAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
     for(uint8_t i = 0; i < NUM_JOINT; i++){
         joint_[i].servo_.pingToPacket(buffer);

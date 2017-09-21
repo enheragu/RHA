@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: servo_rha.h
  * @Last modified by:   enheragu
- * @Last modified time: 20_Sep_2017
+ * @Last modified time: 21_Sep_2017
  */
 
 
@@ -47,66 +47,72 @@ namespace ServoRHAConstants {
         };
 
 
-        /**
-          * @defgroup SREGISTER_GROUP Register Group
-          * Register directions in servo memory for each parameter listed
-          * @{
-          */
-        enum {
-            MODEL_NUMBER_L,   // 0x00
-            MODEL_NUMBER_H,   // 0x01
-            VERSION,   // 0x02
-            ID,   // 0x03
-            BAUD_RATE,   // 0x04
-            RETURN_DELAY_TIME,   // 0x05
-            CW_ANGLE_LIMIT_L,   // 0x06
-            CW_ANGLE_LIMIT_H,   // 0x07
-            CCW_ANGLE_LIMIT_L,   // 0x08
-            CCW_ANGLE_LIMIT_H,   // 0x09
-            RESERVED1,   // 0x0A
-            LIMIT_TEMPERATURE,   // 0x0B
-            DOWN_LIMIT_VOLTAGE,   // 0x0C
-            UP_LIMIT_VOLTAGE,   // 0x0D
-            MAX_TORQUE_L,   // 0x0E
-            MAX_TORQUE_H,   // 0x0F
-            STATUS_RETURN_LEVEL,   // 0x10
-            ALARM_LED,   // 0x11
-            ALARM_SHUTDOWN,   // 0x12
-            RESERVED2,   // 0x13
-            DOWN_CALIBRATION_L,   // 0x14
-            DOWN_CALIBRATION_H,   // 0x15
-            UP_CALIBRATION_L,   // 0x16
-            UP_CALIBRATION_H,   // 0x17
-            TORQUE_ENABLE,   // 0x18
-            LED,   // 0x19
-            CW_COMPLIANCE_MARGIN,   // 0x1A
-            CCW_COMPLIANCE_MARGIN,   // 0x1B
-            CW_COMPLIANCE_SLOPE,   // 0x1C
-            CCW_COMPLIANCE_SLOPE,   // 0x1D
-            GOAL_POSITION_L,   // 0x1E
-            GOAL_POSITION_H,   // 0x1F
-            MOVING_SPEED_L,   // 0x20
-            MOVING_SPEED_H,   // 0x21
-            TORQUE_LIMIT_L,   // 0x22
-            TORQUE_LIMIT_H,   // 0x23
-            PRESENT_POSITION_L,   // 0x24
-            PRESENT_POSITION_H,   // 0x25
-            PRESENT_SPEED_L,   // 0x26
-            PRESENT_SPEED_H,   // 0x27
-            PRESENT_LOAD_L,   // 0x28
-            PRESENT_LOAD_H,   // 0x29
-            PRESENT_VOLTAGE,   // 0x2A
-            PRESENT_TEMPERATURE,   // 0x2B
-            REGISTERED_INSTRUCTION,  // 0x2C
-            RESERVE3,  // 0x2D
-            MOVING,  // 0x2E
-            LOCK,  // 0x2F
-            PUNCH_L,   // 0x30
-            PUNCH_H   // 0x31
-        };
-        /**
-          * @}
-          */
+    /**
+      * @defgroup SREGISTER_GROUP Register Group
+      * Register directions in servo memory for each parameter listed
+      * @{
+      */
+    enum {
+        MODEL_NUMBER_L,   // 0x00
+        MODEL_NUMBER_H,   // 0x01
+        VERSION,   // 0x02
+        ID,   // 0x03
+        BAUD_RATE,   // 0x04
+        RETURN_DELAY_TIME,   // 0x05
+        CW_ANGLE_LIMIT_L,   // 0x06
+        CW_ANGLE_LIMIT_H,   // 0x07
+        CCW_ANGLE_LIMIT_L,   // 0x08
+        CCW_ANGLE_LIMIT_H,   // 0x09
+        RESERVED1,   // 0x0A
+        LIMIT_TEMPERATURE,   // 0x0B
+        DOWN_LIMIT_VOLTAGE,   // 0x0C
+        UP_LIMIT_VOLTAGE,   // 0x0D
+        MAX_TORQUE_L,   // 0x0E
+        MAX_TORQUE_H,   // 0x0F
+        STATUS_RETURN_LEVEL,   // 0x10
+        ALARM_LED,   // 0x11
+        ALARM_SHUTDOWN,   // 0x12
+        RESERVED2,   // 0x13
+        DOWN_CALIBRATION_L,   // 0x14
+        DOWN_CALIBRATION_H,   // 0x15
+        UP_CALIBRATION_L,   // 0x16
+        UP_CALIBRATION_H,   // 0x17
+        TORQUE_ENABLE,   // 0x18
+        LED,   // 0x19
+        CW_COMPLIANCE_MARGIN,   // 0x1A
+        CCW_COMPLIANCE_MARGIN,   // 0x1B
+        CW_COMPLIANCE_SLOPE,   // 0x1C
+        CCW_COMPLIANCE_SLOPE,   // 0x1D
+        GOAL_POSITION_L,   // 0x1E
+        GOAL_POSITION_H,   // 0x1F
+        MOVING_SPEED_L,   // 0x20
+        MOVING_SPEED_H,   // 0x21
+        TORQUE_LIMIT_L,   // 0x22
+        TORQUE_LIMIT_H,   // 0x23
+        PRESENT_POSITION_L,   // 0x24
+        PRESENT_POSITION_H,   // 0x25
+        PRESENT_SPEED_L,   // 0x26
+        PRESENT_SPEED_H,   // 0x27
+        PRESENT_LOAD_L,   // 0x28
+        PRESENT_LOAD_H,   // 0x29
+        PRESENT_VOLTAGE,   // 0x2A
+        PRESENT_TEMPERATURE,   // 0x2B
+        REGISTERED_INSTRUCTION,  // 0x2C
+        RESERVE3,  // 0x2D
+        MOVING,  // 0x2E
+        LOCK,  // 0x2F
+        PUNCH_L,   // 0x30
+        PUNCH_H   // 0x31
+    };
+    /**
+      * @}
+      */
+
+    namespace SpeedRegulatorK {
+        #define KP 1.66
+        #define KD 0
+        #define KI 0
+    }
 }  // namespace ServoRHAConstants
 
 uint8_t compareAngles(uint16_t angle1, uint16_t angle2, uint8_t angle_margin = 0);
@@ -119,7 +125,8 @@ class ServoRHA {
     uint8_t voltage_, temperature_;
     uint16_t goal_torque_;
 
-    float kp_;
+ public:
+    Regulator speed_regulator_;
 
  public:
     ServoRHA() {}
@@ -141,8 +148,6 @@ class ServoRHA {
     void pingToPacket(uint8_t *buffer);
 
     void calculateTorque(float error);
-    uint16_t regulatorServo(float error);
-    void setRegulatorKp(float kp) { kp_ = kp; }
 
 
     /**********************************************************************

@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: servo_rha.h
- * @Last modified by:   quique
- * @Last modified time: 21-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 22_Sep_2017
  */
 
 
@@ -40,6 +40,9 @@ namespace ServoRHAConstants {
 
     #define CW 1
     #define CCW 0
+
+    #define ON 1
+    #define OFF 0
 
     enum {  // enumeration for angle and speed compariso
         LESS_THAN,
@@ -148,7 +151,7 @@ class ServoRHA {
     void addToPacket(uint8_t *buffer, uint8_t *packet, uint8_t packet_len);
     void pingToPacket(uint8_t *buffer);
 
-    void calculateTorque(float error);
+    void calculateTorque(float error, float derror = 0, float ierror = 0);
 
 
     /**********************************************************************
@@ -169,6 +172,7 @@ class ServoRHA {
     virtual uint16_t getError() { return error_comunication_; }
     virtual uint8_t getVoltage() { return voltage_; }
     virtual uint8_t getTemperature() { return temperature_; }
+    virtual uint16_t getGoalTorque() { return goal_torque_; }
 
 };
 

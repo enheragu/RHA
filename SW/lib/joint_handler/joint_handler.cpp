@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: joint_handler.cpp
- * @Last modified by:   quique
- * @Last modified time: 21-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 22_Sep_2017
  */
 
 
@@ -46,7 +46,10 @@ void JointHandler::initJoints() {
 
     for (uint8_t i = 0; i < NUM_JOINT; i++) {
           joint_[i].servo_.setTorqueOnOfToPacket(buffer, ON);
-          uint16_t error = sendSinglePacket(iWRITE_DATA, buffer);
+
+          uint8_t txBuffer[BUFFER_LEN];
+          warpSinglePacket(iWRITE_DATA, buffer_to_send, txBuffer);
+          uint16_t error = sendPacket(txBuffer)
           DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
     }
 
@@ -89,11 +92,13 @@ void JointHandler::controlLoop() {
 void JointHandler::updateJointInfo() {
     DebugSerialJHLn("updateJointInfo: begin of function");
     uint8_t buffer[BUFFER_LEN];
-    for(uint8_t i = 0; i < NUM_JOINT; i++){
+    for(uint8_t i = 0; i < NUM_JOINT; i++) {
         joint_[i].servo_.addUpadteInfoToPacket(buffer);
-        uint16_t error = sendSinglePacket(iREAD_DATA, buffer);
+        uint8_t txBuffer[BUFFER_LEN];
+        warpSinglePacket(iWRITE_DATA, buffer_to_send, txBuffer);
+        uint16_t error = sendPacket(txBuffer)
         DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
-        joint_[i].servo_.updateInfo(buffer, error);
+        joint_[i].servo_.updateInfo(txBuffer, error);
     }
 
 }
@@ -104,7 +109,7 @@ void JointHandler::updateJointInfo() {
  */
 void JointHandler::updateJointErrorTorque() {
     DebugSerialJHLn("updateJointErrorTorque: begin of function");
-    for(uint8_t i = 0; i < NUM_JOINT; i++){
+    for(uint8_t i = 0; i < NUM_JOINT; i++) {
         joint_[i].servo_.calculateTorque(joint_[i].speedError());
     }
 }
@@ -118,13 +123,15 @@ void JointHandler::sendJointTorques() {
     uint8_t buffer[BUFFER_LEN];
     uint8_t buffer_to_send[BUFFER_LEN];
     uint8_t num_bytes = 0, num_servo = 0;
-    for(uint8_t i = 0; i < NUM_JOINT; i++){
+    for(uint8_t i = 0; i < NUM_JOINT; i++) {
         if (joint_[i].servo_.addTorqueToPacket(buffer)) {
             num_servo++;
             num_bytes = addToSyncPacket(buffer_to_send, buffer, num_bytes);
         }
     }
-    sendSyncPacket(iWRITE_DATA, buffer_to_send, num_bytes, num_servo);
+    uint8_t txBuffer[BUFFER_LEN];
+    warpSyncPacket(iWRITE_DATA, buffer_to_send, txBuffer, num_bytes, num_servo);
+    sendPacket(txBuffer)
 }
 
 /**
@@ -134,7 +141,7 @@ void JointHandler::sendJointTorques() {
  */
 void JointHandler::setSpeedGoal(RHATypes::SpeedGoal goal) {
     DebugSerialJHLn("setSpeedGoal: begin of function");
-    for (uint8_t i = 0; i < NUM_JOINT; i++){
+    for (uint8_t i = 0; i < NUM_JOINT; i++) {
         if (joint_[i].setSpeedGoal(goal)) return;
     }
 
@@ -143,9 +150,11 @@ void JointHandler::setSpeedGoal(RHATypes::SpeedGoal goal) {
 void JointHandler::sendSetWheelModeAll() {
     DebugSerialJHLn("sendSetWheelModeAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
-    for(uint8_t i = 0; i < NUM_JOINT; i++){
+    uint8_t txBuffer[BUFFER_LEN];
+    for(uint8_t i = 0; i < NUM_JOINT; i++) {
         joint_[i].servo_.setWheelModeToPacket(buffer);
-        uint16_t error = sendSinglePacket(iWRITE_DATA, buffer);
+        warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
+        uint16_t error = sendPacket(txBuffer)
         DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
     }
 }
@@ -153,9 +162,11 @@ void JointHandler::sendSetWheelModeAll() {
 void JointHandler::sendExitWheelModeAll() {
     DebugSerialJHLn("sendExitWheelModeAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
-    for(uint8_t i = 0; i < NUM_JOINT; i++){
+    uint8_t txBuffer[BUFFER_LEN];
+    for(uint8_t i = 0; i < NUM_JOINT; i++) {
         joint_[i].servo_.exitWheelModeToPacket(buffer);
-        uint16_t error = sendSinglePacket(iWRITE_DATA, buffer);
+        warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
+        uint16_t error = sendPacket(txBuffer)
         DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
     }
 }
@@ -164,9 +175,11 @@ void JointHandler::sendExitWheelModeAll() {
 void JointHandler::sendSetTorqueLimitAll(uint16_t torque_limit) {
     DebugSerialJHLn("sendSetTorqueLimitAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
-    for(uint8_t i = 0; i < NUM_JOINT; i++){
+    uint8_t txBuffer[BUFFER_LEN];
+    for(uint8_t i = 0; i < NUM_JOINT; i++) {
         joint_[i].servo_.setTorqueLimitToPacket(buffer, torque_limit);
-        uint16_t error = sendSinglePacket(iWRITE_DATA, buffer);
+        warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
+        uint16_t error = sendPacket(txBuffer)
         DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
     }
 }
@@ -175,9 +188,11 @@ void JointHandler::sendSetTorqueLimitAll(uint16_t torque_limit) {
 void JointHandler::sendSetWheelSpeedAll(uint16_t speed, uint8_t direction) {
     DebugSerialJHLn("sendSetWheelSpeedAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
-    for(uint8_t i = 0; i < NUM_JOINT; i++){
+    uint8_t txBuffer[BUFFER_LEN];
+    for(uint8_t i = 0; i < NUM_JOINT; i++) {
         joint_[i].servo_.setWheelModeToPacket(buffer);
-        uint16_t error = sendSinglePacket(iWRITE_DATA, buffer);
+        warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
+        uint16_t error = sendPacket(txBuffer)
         DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
     }
 }
@@ -186,9 +201,11 @@ void JointHandler::sendSetWheelSpeedAll(uint16_t speed, uint8_t direction) {
 bool JointHandler::checkConectionAll() {
     DebugSerialJHLn("checkConectionAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
-    for(uint8_t i = 0; i < NUM_JOINT; i++){
+    uint8_t txBuffer[BUFFER_LEN];
+    for(uint8_t i = 0; i < NUM_JOINT; i++) {
         joint_[i].servo_.pingToPacket(buffer);
-        uint16_t error = sendSinglePacket(iPING, buffer);
+        warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
+        uint16_t error = sendPacket(txBuffer)
         DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
         if (error != 0) return false;
     }
@@ -214,72 +231,36 @@ uint8_t JointHandler::addToSyncPacket(uint8_t *buffer, uint8_t *data, uint8_t nu
 
 
 /** @brief wrapPacket adds information needed once all servos had been aded (header, ID, instruction...). This function is used to send just one packet for all servos instead of each sending their respective information
-  * @method JointHandler::sendSyncPacket
+  * @method JointHandler::warpSyncPacket
   * @param {uint8_t} instruction is the instruction to send
   * @param {uint8_t *} buffer is the data that have been completed by each servo (by reference)
   * @param {uint8_t} num_bytes is the length of data
   * @param {uint8_t} num_servo how many servos had been added to this packet
   */
-void JointHandler::sendSyncPacket(uint8_t instruction, uint8_t *buffer, uint8_t num_bytes, uint8_t num_servo) {
-    DebugSerialJHLn("sendSyncPacket: begin of function");
+void JointHandler::warpSyncPacket(uint8_t *buffer, uint8_t *txBuffer, uint8_t num_bytes, uint8_t num_servo) {
+    DebugSerialJHLn("warpSyncPacket: begin of function");
 
     uint8_t i;
-    uint8_t packetLength = 0;
-    uint8_t txBuffer[BUFFER_LEN];
     uint8_t checksum = 0;  // Checksum = ~(ID + Length + Instruction + Parameter1 + ... + Parameter n)
-
-    setTxMode();
-
 
     txBuffer[0] = 0xFF;               // 0xFF not included in checksum
     txBuffer[1] = 0xFF;
     txBuffer[2] = ALL_SERVO;      checksum +=  txBuffer[2];
     txBuffer[3] = num_bytes+4;     checksum +=  txBuffer[3];
     txBuffer[4] = iSYNC_WRITE;    checksum +=  txBuffer[4];
-    txBuffer[5] = instruction;    checksum +=  txBuffer[5];
-    txBuffer[6] = num_servo;     checksum +=  txBuffer[6];
+    txBuffer[5] = num_servo;     checksum +=  txBuffer[6];
     for (i = 0; i < num_bytes; i++) {
-        txBuffer[i + 7] = buffer[i];
-        checksum +=  txBuffer[i + 7];
+        txBuffer[i + 6] = buffer[i];
+        checksum +=  txBuffer[i + 6];
     }
-    txBuffer[i + 7] = ~checksum;                 // Checksum with Bit Inversion
-
-
-    packetLength = txBuffer[3] + 4;  // Number of bytes for the whole packet
-
-    if (hardwareSerial_ == true) {
-        for (i = 0; i < packetLength; i++) {
-            Serial.write(txBuffer[i]);
-        }
-        Serial.flush();
-    } else {
-        G15Serial_->listen();
-        for (i = 0; i < packetLength; i++) {
-            G15Serial_->write(txBuffer[i]);
-        }
-        G15Serial_->flush();
-    }
+    txBuffer[i + 6] = ~checksum;                 // Checksum with Bit Inversion
 }
 
-/**
- * @brief Function to send to bus information contained in buffer param (just for one servo). Contains logic to read data in case it is needed
- * @method JointHandler::sendSinglePacket
- * @param  instruction instruction for servo register (iREAD_DATA, iREG_WRITE, iWRITE_DATA...)
- * @param  buffer      array with all the information to send, if info is read it will be copied here
- * @return             error in comunication
- */
-uint16_t JointHandler::sendSinglePacket(uint8_t instruction, uint8_t *buffer) {
-    DebugSerialJHLn("sendSinglePacket: begin of function");
-    uint8_t readCount = 0;
+void JointHandler::warpSinglePacket(uint8_t instruction, uint8_t *buffer, uint8_t *txBuffer) {
+    DebugSerialJHLn("warpSinglePacket: begin of function");
     uint8_t i;
-    uint8_t packetLength = 0;
-    uint8_t parameterLength = 0;
-    uint8_t txBuffer[BUFFER_LEN];
-    uint8_t status[16];
     uint8_t checksum = 0;  // Checksum = ~(ID + Length + Instruction + Parameter1 + ... + Parameter n)
-    uint16_t error = 0;
 
-    setTxMode();
 
     txBuffer[0] = 0xFF;               // 0xFF not included in checksum
     txBuffer[1] = 0xFF;
@@ -292,19 +273,28 @@ uint16_t JointHandler::sendSinglePacket(uint8_t instruction, uint8_t *buffer) {
         checksum +=  txBuffer[i + 5];
     }
     txBuffer[i + 5] = ~checksum;                 // Checksum with Bit Inversion
+}
 
-    Serial.println("");
-    Serial.println("");
-    Serial.print("Packet length send: ");
-    Serial.println(buffer[1]+6);
-    Serial.print("Packet to send: [");
-    Serial.print(txBuffer[0], HEX);
-    for(int j = 0; j < (buffer[1] + 6-1); i++) {
-        Serial.print(", "); Serial.print(txBuffer[i+1], HEX);
-    }
-    Serial.println("]");
-    Serial.println("");
-    Serial.println("");
+/**
+ * @brief Function to send to bus information contained in buffer param (just for one servo). Contains logic to read data in case it is needed
+ * @method JointHandler::sendPacket
+ * @param  instruction instruction for servo register (iREAD_DATA, iREG_WRITE, iWRITE_DATA...)
+ * @param  buffer      array with all the information to send, if info is read it will be copied here
+ * @return             error in comunication
+ */
+uint16_t JointHandler::sendPacket(uint8_t *txBuffer) {
+    DebugSerialJHLn("sendPacket: begin of function");
+    uint8_t readCount = 0;
+    uint8_t i;
+    uint8_t packetLength = 0;
+    uint8_t parameterLength = 0;
+    uint8_t txBuffer[BUFFER_LEN];
+    uint8_t status[16];
+    uint8_t checksum = 0;  // Checksum = ~(ID + Length + Instruction + Parameter1 + ... + Parameter n)
+    uint16_t error = 0;
+
+    setTxMode();
+
     packetLength = txBuffer[3] + 4;  // Number of bytes for the whole packet
 
     if (hardwareSerial_ == true) {
@@ -321,7 +311,7 @@ uint16_t JointHandler::sendSinglePacket(uint8_t instruction, uint8_t *buffer) {
     }
 
     // G15 only response if it was not broadcast command
-    if ((txBuffer[2] != 0xFE) || (instruction == iPING)) {
+    if ((txBuffer[2] != 0xFE) || (txBuffer[4] == iPING)) {
         if (instruction == iREAD_DATA) {
             parameterLength = buffer[1];
             packetLength = buffer[1] + 6;

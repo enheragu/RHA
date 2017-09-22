@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: servo_rha.cpp
- * @Last modified by:   quique
- * @Last modified time: 21-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 22_Sep_2017
  */
 
 #include "servo_rha.h"
@@ -84,12 +84,15 @@ void ServoRHA::updateInfo(uint8_t *data, uint16_t error) {
 
 
 
-void ServoRHA::calculateTorque(float error) {
+void ServoRHA::calculateTorque(float error, float derror, float ierror) {
     // float error = (float)target_speed - (float)speed_;
-    float torque = speed_regulator_.regulator(error, 0, 0);
+    float torque = speed_regulator_.regulator(error, derror, ierror);
     uint8_t direction = 0;
-    if (torque > 0) direction = CW;
-    else if (torque < 0) direction = CCW;
+    // error < 0 causes torque < 0 which causes change in direction of movement
+    if (torque < 0 ) {
+        if (speed_dir_ == CCW) direction = CW;
+        else if (speed_dir_ == CW) direction = CCW
+    }
     torque = abs(torque);
     if (torque > 1023) torque = 1023;  // compensate saturation of servos
 

@@ -5,8 +5,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: joint_rha.cpp
- * @Last modified by:   quique
- * @Last modified time: 21-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 22_Sep_2017
  */
 
 #include "joint_rha.h"
@@ -57,6 +57,7 @@ uint8_t JointRHA::setSpeedGoal(RHATypes::SpeedGoal goal) {
     if (servo_.getID() == goal.servo_id) {
         speed_slope_ = goal.speed_slope;
         speed_target_ = goal.speed;
+        direction_target_ = goal.direction;
         time_last_ = millis();
         DebugSerialJRHALn2("setSpeedGoal: Speed set to: ", speed_target_);
         DebugSerialJRHALn2("setSpeedGoal: Speed slope set to: ", speed_slope_);
@@ -69,10 +70,15 @@ uint8_t JointRHA::setSpeedGoal(RHATypes::SpeedGoal goal) {
  * @return {uint8_t} returns error between actual position and target position
  */
 float JointRHA::speedError() {
-    uint16_t speed = (float)servo_.getSpeed() + (float)(millis() - time_last_) * speed_slope_;
-    if (speed > speed_target_) speed = (float)speed_target_;
-    time_last_ = millis();
-    return ((float)speed - (float)servo_.getSpeed());
+    uint16_t speed = 0;
+    if (speed_slope_ != 0) {
+        speed = (float)servo_.getSpeed() + (float)(millis() - time_last_) * speed_slope_;
+        if (speed > speed_target_) speed = (float)speed_target_;
+        time_last_ = millis();
+    } else speed = speed_target_;
+    uint8_t sign = 1;
+    if (direction_target_ != servo_.getSpeedDir()) sign = -1;
+    return (sign*(float)speed - (float)servo_.getSpeed());
 }
 
 /**

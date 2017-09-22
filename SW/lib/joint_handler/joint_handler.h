@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: joint_handler.h
- * @Last modified by:   quique
- * @Last modified time: 21-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 22_Sep_2017
  */
 
 #ifndef JOINT_HANDLER_H
@@ -38,8 +38,6 @@ namespace JointHandlerConstants {
     #define ConvertAngleToPos(angle) (uint16_t)((uint16_t)(angle) * 1088UL  / 360UL)
     #define ConvertPosToAngle(position) static_cast<float>((position) * 360.0  / 1088.0)
     #define ConvertTime(time) (uint16_t)(time * 10UL)
-    #define ON 1
-    #define OFF 0
 
     /** ALL_SERVO is ID to broadcast to all servo in bus. */
     #define ALL_SERVO 0xFE
@@ -87,10 +85,9 @@ class JointHandler {
 
     bool checkConectionAll();
 
-    uint8_t addToSyncPacket(uint8_t *buffer, uint8_t *data, uint8_t num_bytes);
-
-    void sendSyncPacket(uint8_t instruction, uint8_t *buffer, uint8_t num_bytes, uint8_t num_servo);
-    uint16_t sendSinglePacket(uint8_t instruction, uint8_t *buffer);
+    void warpSyncPacket(uint8_t *buffer, uint8_t *txBuffer, uint8_t num_bytes, uint8_t num_servo);
+    void warpSinglePacket(uint8_t instruction, uint8_t *buffer, uint8_t *txBuffer);
+    uint16_t sendPacket( uint8_t *buffer);
 
 
     /**************************************

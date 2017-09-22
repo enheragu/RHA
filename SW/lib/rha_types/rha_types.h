@@ -2,8 +2,8 @@
  * @Author: Enrique Heredia Aguado <quique>
  * @Date:   17-Sep-2017
  * @Project: RHA
- * @Last modified by:   quique
- * @Last modified time: 21-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 22_Sep_2017
  */
 
 #ifndef RHA_TYPES_H
@@ -20,8 +20,9 @@ namespace RHATypes {
         uint8_t servo_id;
         int16_t speed;
         int16_t speed_slope;
+        uint8_t direction;
         SpeedGoal();
-        SpeedGoal(uint8_t id, int16_t speed, int16_t speed_slope): servo_id(id), speed(speed), speed_slope(speed_slope) {}
+        SpeedGoal(uint8_t id, int16_t speed, int16_t speed_slope, uint8_t direction): servo_id(id), speed(speed), speed_slope(speed_slope), direction(direction) {}
      } ;
 
 

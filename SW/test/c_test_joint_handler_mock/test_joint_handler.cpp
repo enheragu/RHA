@@ -4,7 +4,7 @@
  * @Project: RHA
  * @Filename: test_cytron_g15_servo.cpp
  * @Last modified by:   enheragu
- * @Last modified time: 09-Sep-2017
+ * @Last modified time: 22_Sep_2017
  */
 
 
@@ -46,6 +46,52 @@ void testStatus(word status) {
   }
 }  // End of testStatus function
 
+
+// These goals are used in test_function_addToPacket and test_function_warpPacket
+uint8_t goal_0[4] = {  0x10, 0x00, 0x50, 0x01};
+uint8_t goal_1[4] = {  0x20, 0x02, 0x60, 0x03};
+uint8_t goal_2[4] = {  0x30, 0x00, 0x70, 0x01};
+uint8_t goal_3[4] = {  0x20, 0x02, 0x80, 0x03};
+
+void test_function_warpPacket(void) {
+    TestServoRHA servo_test0(0, 2, 3, 8);
+    servo_test0.initServo();
+    TestServoRHA servo_test1(1, 2, 3, 8);
+    servo_test1.initServo();
+    TestServoRHA servo_test2(2, 2, 3, 8);
+    servo_test2.initServo();
+    TestServoRHA servo_test3(3, 2, 3, 8);
+    servo_test3.initServo();
+
+    uint8_t data[30];
+    uint8_t buffer[30];
+    uint8_t buffer_test[30] = {   0xFF, 0xFF, 0xFE, 0x18, 0x83, 0x1E, 0x04,  // header, ID, length, instruction, adress, data length
+                            0x00, 0x10, 0x00, 0x50, 0x01,  // servo ID 0 to position 0x010 with speed of 0x150
+                            0x01, 0x20, 0x02, 0x60, 0x03,  // servo ID 1 to position 0x220 with speed of 0x360.
+                            0x02, 0x30, 0x00, 0x70, 0x01,  // servo ID 2 to position 0x030 with speed of 0x170
+                            0x03, 0x20, 0x02, 0x80, 0x03,  // servo ID 3 to position 0x220 with speed of 0x380
+                            0x12 };  // checksum
+
+    uint8_t position = 0;
+    uint8_t num_servo = 0;
+
+    servo_test0.addToPacket(data, position, goal_0, sizeof(goal_0), num_servo);
+    servo_test1.addToPacket(data, position, goal_1, sizeof(goal_1), num_servo);
+    servo_test2.addToPacket(data, position, goal_2, sizeof(goal_2), num_servo);
+    servo_test3.addToPacket(data, position, goal_3, sizeof(goal_3), num_servo);
+    TEST_ASSERT_EQUAL_UINT8(4, num_servo);
+    TEST_ASSERT_EQUAL_UINT8(20, position);
+    uint8_t buffer_len = 0;
+
+    buffer_len = servo_test1.wrapPacket(buffer, data, position, GOAL_POSITION_L, num_servo);
+
+    for (int i = 0; i < buffer_len; i++) {
+      DebugSerialTSRHAMock("0x"); DebugSerialTSRHAMock((buffer[i], HEX)); DebugSerialTSRHAMock(", ");
+    } DebugSerialTSRHAMockLn(" ");
+
+    TEST_ASSERT_EQUAL_UINT8(28, buffer_len);
+    TEST_ASSERT_EQUAL_UINT8_ARRAY(buffer_test, buffer, buffer_len);
+}
 
 void test_comunication_Cytron_G15_Servo(void) {
     TestCytron g15(SERVO_ID, 2, 3, 8);

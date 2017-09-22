@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: joint_rha.h
- * @Last modified by:   quique
- * @Last modified time: 21-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 22_Sep_2017
  */
 
 #ifndef JOINT_RHA_H
@@ -37,13 +37,14 @@ class JointRHA {
   ~JointRHA();
 
   void init(uint8_t servo_id, uint8_t up_direction, uint8_t potentiometer);
-  void setGoal(uint16_t speed_target, uint16_t speed_slope, uint8_t direction_target);
   uint8_t setSpeedGoal(RHATypes::SpeedGoal goal);
 
   float speedError();
   void updateInfo();
 
   uint16_t getSpeedTarget() { return speed_target_; }
+  uint16_t getSpeedSlope() { return speed_slope_; }
+  uint8_t getDirectionTarget() { return direction_target_; }
 
  private:
 };

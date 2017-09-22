@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: servo_rha.h
- * @Last modified by:   enheragu
- * @Last modified time: 21_Sep_2017
+ * @Last modified by:   quique
+ * @Last modified time: 21-Sep-2017
  */
 
 
@@ -15,9 +15,10 @@
 #define SERVO_RHA_H
 
 #include "debug.h"
+#include "rha_types.h"
+
 #include "Arduino.h"
 #include <stdint.h>
-#include "rha_types.h"
 // #include "cytron_g15_servo.h"
 
 namespace ServoRHAConstants {
@@ -126,7 +127,7 @@ class ServoRHA {
     uint16_t goal_torque_;
 
  public:
-    Regulator speed_regulator_;
+    RHATypes::Regulator speed_regulator_;
 
  public:
     ServoRHA() {}
@@ -135,7 +136,7 @@ class ServoRHA {
     void init();
 
     void updateInfo(uint8_t *data, uint16_t error);
-    void setSpeedGoal(SpeedGoal goal);
+    void setSpeedGoal(RHATypes::SpeedGoal goal);
 
     void addReturnOptionToPacket(uint8_t *buffer, uint8_t option);
     void addUpadteInfoToPacket(uint8_t *buffer);
@@ -168,7 +169,6 @@ class ServoRHA {
     virtual uint16_t getError() { return error_comunication_; }
     virtual uint8_t getVoltage() { return voltage_; }
     virtual uint8_t getTemperature() { return temperature_; }
-    virtual float getKp() { return kp_; }
 
 };
 

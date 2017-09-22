@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: servo_rha.cpp
- * @Last modified by:   enheragu
- * @Last modified time: 21_Sep_2017
+ * @Last modified by:   quique
+ * @Last modified time: 21-Sep-2017
  */
 
 #include "servo_rha.h"
@@ -56,24 +56,25 @@ void ServoRHA::init(uint8_t servo_id) {
   */
 void ServoRHA::updateInfo(uint8_t *data, uint16_t error) {
     DebugSerialSRHALn("updateInfo: begin of function");
-    position_ = *data; data++;  // acces data[0]
-    position_ |= (*data << 8); data++;  // acces data[1]
 
-    speed_ = *data; data++;   // acces data[2]
-    speed_ |= (*data << 8); data++;  // acces data[3]
+    position_ = data[0];  // acces data[0]
+    position_ |= (data[1] << 8);  // acces data[1]
+
+    speed_ = data[2];    // acces data[2]
+    speed_ |= (data[3] << 8);   // acces data[3]
     speed_dir_  = ((speed_ & 0x0400) >> 9);  // 10th byte is direction -> 0000010000000000 binary is 400 in hex
     // bytes from 9 to 0 are speed value:
     speed_ = speed_ & ~0x0400;
 
-    load_ = *data; data++;  // acces data[4]
-    load_ |= (*data << 8); data++;  // acces data[5]
+    load_ = data[4]; data++;  // acces data[4]
+    load_ |= (data[5] << 8);   // acces data[5]
     load_dir_  = ((load_ & 0x0400) >> 9);  // 10th byte is direction
     // bytes from 9 to 0 are load value:
     load_ = load_ & ~0x0400;
 
-    voltage_ = *data; data++;  // acces data[6]  // NOTE: ¿should be divided by 10?
+    voltage_ = data[6];   // acces data[6]  // NOTE: ¿should be divided by 10?
 
-    temperature_ = *data; data++;  // acces data[7]
+    temperature_ = data[7] ; // acces data[7]
 
     error_comunication_ = error;
 
@@ -99,16 +100,6 @@ void ServoRHA::calculateTorque(float error) {
     }
 }
 
-/**
- * [regulatorServo description]
- * @method regulatorServo
- * @param  {float} error target speed - actual speed
- * @return  {uint16_t} Returns torque value to send to the servo
- */
-uint16_t ServoRHA::regulatorServo(float error) {
-    return kp_*error;
-}
-
 
 /*****************************************
  *       Packet handling functions       *
@@ -121,7 +112,7 @@ uint16_t ServoRHA::regulatorServo(float error) {
 void ServoRHA::addUpadteInfoToPacket(uint8_t *buffer) {
      uint8_t data[2];
      data[0] = ServoRHAConstants::PRESENT_POSITION_L;
-     data[1] = 0x08;  // Wants to read 11 bytes from PRESENT_POSITION_L
+     data[1] = 0x08;  // Wants to read 8 bytes from PRESENT_POSITION_L
      addToPacket(buffer, data, 2);
 }
 
@@ -212,22 +203,22 @@ void ServoRHA::wheelModeToPacket(uint8_t *buffer, uint16_t CW_angle, uint16_t CC
     addToPacket(buffer, txBuffer, 5);
 }
 
-void pingToPacket(uint8_t *buffer) {
+void ServoRHA::pingToPacket(uint8_t *buffer) {
     uint8_t txBuffer[1] = {0};
     addToPacket(buffer, txBuffer, 0);
 }
 
-void setTorqueLimitToPacket(uint8_t *buffer, uint16_t torque_limit) {
+void ServoRHA::setTorqueLimitToPacket(uint8_t *buffer, uint16_t torque_limit) {
     uint8_t txBuffer[3];
 
-    txBuffer[0] = TORQUE_LIMIT_L;
+    txBuffer[0] = ServoRHAConstants::TORQUE_LIMIT_L;
     txBuffer[1] = torque_limit & 0x00FF;  // Torque limit bottom 8 bits
     txBuffer[2] = torque_limit >> 8;  // Torque limit top 8 bits
     addToPacket(buffer, txBuffer, 3);
 
 }
 
-void setWheelSpeedToPacket(uint8_t *buffer, uint16_t speed, uint8_t direction) {
+void ServoRHA::setWheelSpeedToPacket(uint8_t *buffer, uint16_t speed, uint8_t direction) {
     uint8_t txBuffer[3];
 
     speed = speed & 0x03FF;  // Eliminate bits which are non speed
@@ -235,7 +226,7 @@ void setWheelSpeedToPacket(uint8_t *buffer, uint16_t speed, uint8_t direction) {
         speed = speed | 0x0400;
     }
 
-    txBuffer[0] = TORQUE_LIMIT_L;
+    txBuffer[0] = ServoRHAConstants::TORQUE_LIMIT_L;
     txBuffer[1] = speed & 0x00FF;  // Torque limit bottom 8 bits
     txBuffer[2] = speed >> 8;  // Torque limit top 8 bits
     addToPacket(buffer, txBuffer, 3);
@@ -251,17 +242,12 @@ void ServoRHA::addToPacket(uint8_t *buffer, uint8_t *packet, uint8_t packet_len)
     DebugSerialSRHALn("addToPacket: begin of function");
     buffer[0] = servo_id_;
     buffer[1] = packet_len;
-    try {
-      buffer[2] = packet[0];
-      for (int i = 0; i < packet_len; i++) {
-          buffer[3 + i] = packet[1 + i];
-      }
-    }
-    catch (Exception e) {
-        DebugSerialSRHALn("addToPacket: exception catched");
-    }
+    for (int i = 0; i < packet_len; i++) {
+      buffer[2 + i] = packet[i];
+
 
     DebugSerialSRHALn("addToPacket: end of function");
+    }
 }
 
 

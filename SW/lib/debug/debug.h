@@ -9,14 +9,47 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: debug.h
- * @Last modified by:   enheragu
- * @Last modified time: 21_Sep_2017
+ * @Last modified by:   quique
+ * @Last modified time: 21-Sep-2017
  */
 
 #ifndef DEBUG_H
 #define DEBUG_H
 
-#include "joint_handler.h"  // Needs error definition
+//#include "joint_handler.h"  // Needs error definitions
+#include <Arduino.h>
+
+/*****************************
+ * ERROR COD. G15 CUBE SERVO *
+ *****************************/
+
+/**
+  * @defgroup SERROR_GROUP Error Group
+  * Defined to check error returned by servo (check as bit mask)
+  * @{
+  */
+#define SERROR_PING 0X0000
+// Return status:
+#define SERROR_INPUTVOLTAGE 0X0001
+#define SERROR_ANGLELIMIT 0X0002
+#define SERROR_OVERHEATING 0X0004
+#define SERROR_RANGE 0X0008
+#define SERROR_CHECKSUM 0X0010
+#define SERROR_OVERLOAD 0X0020
+#define SERROR_INSTRUCTION 0X0040
+// #define SERROR_ 0X0080
+#define SERROR_PACKETLOST 0X0100
+#define SERROR_WRONGHEADER 0X0200
+#define SERROR_IDMISMATCH 0X0400
+#define SERROR_CHECKSUMERROR 0X0800
+// #define SERROR_ 0X1000
+// #define SERROR_ 0X2000
+// #define SERROR_ 0X4000
+// #define SERROR_ 0X8000
+/**
+  * @}
+  */
+
 /*********************************
  *       Debugging options       *
  *********************************/
@@ -25,17 +58,19 @@
  * To activate debugging in any file uncomment next defines (one for each file)
  */
 
- #define DEBUG_SERVO_RHA
+// #define DEBUG_SERVO_RHA
 // #define DEBUG_TEST_SERVO_RHA_MOCK
 // #define DEBUG_TEST_SERVO_RHA_REAL
-// #define DEBUG_JOINT_HANDLER
+ #define DEBUG_JOINT_HANDLER
 // #define DEBUG_CYTRON_G15_SERVO
 // #define DEBUG_TEST_CYTRON_G15_SERVO
 // #define DEBUG_UTILITIES
 // #define DEBUG_RHA_TYPES
-#define DEBUG_JOINT_RHA
+// #define DEBUG_JOINT_RHA
 
 void printServoStatusError (uint16_t error, uint8_t ID);
+void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t load, uint8_t load_dir, uint8_t voltage, uint8_t temperature, uint16_t error);
+
 
 /******************************************
  *       Debugging macro definition       *
@@ -57,19 +92,7 @@ void printServoStatusError (uint16_t error, uint8_t ID);
     #define DebugSerialSRHALn(a) {  Serial.print("[DC]  ServoRHA::"); Serial.println(a); }
     #define DebugSerialSRHALn2(a, b) {  Serial.print("[DC]  ServoRHA::"); Serial.print(a); Serial.println(b); }
     #define DebugSerialSRHALn4(a, b, c, d) {  Serial.print("[DC]  ServoRHA::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
-    #define DebuSerialRHALnPrintServoStatus(pos, speed, speed_dir, load, load_dir, voltage, temperature, error) {
-      Serial.println(" ");
-      Serial.print("[DC]  ServoRHA::Printing servo stats: ");
-      Serial.print("              - Position: "); Serial.println(pos);
-      Serial.print("              - Speed: "); Serial.println(speed);
-      Serial.print("              - Speed dir (CW = 1; CCW = 0): "); Serial.println(speed_dir);
-      Serial.print("              - Load: "); Serial.println(load);
-      Serial.print("              - Load dir (CW = 1; CCW = 0): "); Serial.println(load_dir);
-      Serial.print("              - Voltage: "); Serial.println(voltage);
-      Serial.print("              - Temperature: "); Serial.println(temperature);
-      Serial.print("              - Error in comunication: "); Serial.println(error);
-      Serial.println(" ");
-    }
+    #define DebuSerialRHALnPrintServoStatus(pos, speed, speed_dir, load, load_dir, voltage, temperature, error) { printServoStatus(pos, speed, speed_dir, load, load_dir, voltage, temperature, error); }
 #else
     #define DebugSerialSRHALn(a)
     #define DebugSerialSRHALn2(a, b)
@@ -167,29 +190,6 @@ void printServoStatusError (uint16_t error, uint8_t ID);
 #endif
 
 
-/**
-  * @brief Analyses error and prints error msgs
-  */
-void printServoStatusError (uint16_t error, uint8_t ID) {
-    // NOTE: MACROS NEED {} AS THEY AR SUBSTITUTED BY SOME CODE LINES, NOT JUST ONE!!
-    if (error != 0){
-        Serial.print("Error in comunication detected in servo: "); Serial.println(ID);
-    } else return;
-    if (error & SERROR_PING)  {Serial.println("Ping error in servo");}
-    if (error & SERROR_INPUTVOLTAGE)  {Serial.println("Input voltage error in servo");}          // bit 0
-    if (error & SERROR_ANGLELIMIT)  {Serial.println("Angle limit error in servo");}           // bit 1
-    if (error & SERROR_OVERHEATING)  {Serial.println("Overheating error in servo");}          // bit 2
-    if (error & SERROR_RANGE)  {Serial.println("Range error in servo");}             // bit 3
-    if (error & SERROR_CHECKSUM)  {Serial.println("Checksum error in servo");}             // bit 4
-    if (error & SERROR_OVERLOAD)  {Serial.println("Overload error in servo");}             // bit 5
-    if (error & SERROR_INSTRUCTION)  {Serial.println("Instruction error in servo");}            // bit 7
-    if (error & SERROR_PACKETLOST)  {Serial.println("Packet lost or receive time out in servo");}    // bit 8
-    if (error & SERROR_WRONGHEADER)  {Serial.println("Wrong header in servo");}              // bit 9
-    if (error & SERROR_IDMISMATCH)  {Serial.println("ID mismatch in servo");}                  // bit 10
-    if (error & SERROR_CHECKSUMERROR)  {Serial.println("Checksum error in servo");}               // bit 13
-}
 
-
-}
 
 #endif  // DEBUG_H

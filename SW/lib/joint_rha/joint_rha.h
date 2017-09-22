@@ -7,15 +7,20 @@
  * @Project: RHA
  * @Filename: joint_rha.h
  * @Last modified by:   quique
- * @Last modified time: 19-Sep-2017
+ * @Last modified time: 21-Sep-2017
  */
 
 #ifndef JOINT_RHA_H
 #define JOINT_RHA_H
 
+
 #include "servo_rha.h"
+#include "rha_types.h"
+#include "debug.h"
+
 #include "Arduino.h"
 #include <SoftwareSerial.h>
+
 
 class ServoRHA;
 
@@ -33,7 +38,7 @@ class JointRHA {
 
   void init(uint8_t servo_id, uint8_t up_direction, uint8_t potentiometer);
   void setGoal(uint16_t speed_target, uint16_t speed_slope, uint8_t direction_target);
-  uint8_t setSpeedGoal(SpeedGoal goal);
+  uint8_t setSpeedGoal(RHATypes::SpeedGoal goal);
 
   float speedError();
   void updateInfo();

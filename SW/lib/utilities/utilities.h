@@ -8,8 +8,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: utilities.h
- * @Last modified by:   enheragu
- * @Last modified time: 21_Sep_2017
+ * @Last modified by:   quique
+ * @Last modified time: 21-Sep-2017
  */
 
 #include <Arduino.h>

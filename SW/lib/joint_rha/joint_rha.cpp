@@ -6,7 +6,7 @@
  * @Project: RHA
  * @Filename: joint_rha.cpp
  * @Last modified by:   quique
- * @Last modified time: 20-Sep-2017
+ * @Last modified time: 21-Sep-2017
  */
 
 #include "joint_rha.h"
@@ -50,7 +50,7 @@ void JointRHA::init(uint8_t servo_id, uint8_t up_direction, uint8_t potentiomete
  * @param {uint16_t} direction_target move CW or CCW
  */
 
-uint8_t JointRHA::setSpeedGoal(SpeedGoal goal) {
+uint8_t JointRHA::setSpeedGoal(RHATypes::SpeedGoal goal) {
     DebugSerialJRHALn("setSpeedGoal: seting speed goal");
     DebugSerialJRHALn2("setSpeedGoal: servo id now is: ", servo_.getID());
     DebugSerialJRHALn2("setSpeedGoal: goal intended for id: ", goal.servo_id);

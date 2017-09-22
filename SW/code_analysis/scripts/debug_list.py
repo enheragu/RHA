@@ -1,5 +1,5 @@
-n_debug_test = 21
-n_debug_code = 21
+n_debug_test = 22
+n_debug_code = 22
  
 #List for Debug data
 # file = [date, debug_total, debug_max, debug_max_name, debug_min, debug_min_name]
@@ -25,6 +25,7 @@ debug_code = [['2017_08_23', ['cytron_g15_servo.cpp', '0'], ['cytron_g15_servo.h
 ['2017_09_17', ['cytron_g15_servo.cpp.txt', '0'], ['cytron_g15_servo.h.txt', '0'], ['joint_handler.cpp', '7'], ['joint_handler.h', '0'], ['joint_rha.h', '0'], ['joint_rha.cpp', '0'], ['readme.txt', '0'], ['rha_types.h', '0'], ['servo_rha.h', '0'], ['servo_rha.cpp', '22'], ['main.cpp', '2'], ['utilities.cpp', '71'], ['utilities.h', '10'], ['utilities.h.gch', '0']] ,\
 ['2017_09_19', ['cytron_g15_servo.cpp.txt', '0'], ['cytron_g15_servo.h.txt', '0'], ['joint_handler.cpp', '18'], ['joint_handler.h', '0'], ['joint_handler.h.gch', '0'], ['joint_rha.h.gch', '0'], ['joint_rha.h', '0'], ['joint_rha.cpp', '0'], ['readme.txt', '0'], ['rha_types.h', '0'], ['servo_rha.h.gch', '0'], ['servo_rha.h', '0'], ['servo_rha.cpp', '10'], ['utilities.cpp', '71'], ['utilities.h', '16'], ['main.cpp', '0']] ,\
 ['2017_09_20', ['cytron_g15_servo.h.txt', '0'], ['cytron_g15_servo.cpp.txt', '0'], ['joint_handler.h.gch', '0'], ['joint_handler.h', '0'], ['joint_handler.cpp', '18'], ['joint_rha.h.gch', '0'], ['joint_rha.h', '0'], ['joint_rha.cpp', '7'], ['readme.txt', '0'], ['rha_types.h', '0'], ['servo_rha.cpp', '14'], ['servo_rha.h.gch', '0'], ['servo_rha.h', '0'], ['utilities.h', '16'], ['utilities.cpp', '71'], ['main.cpp', '0']] ,\
+['2017_09_21', ['cytron_g15_servo.cpp.txt', '0'], ['cytron_g15_servo.h.txt', '0'], ['debug.cpp', '0'], ['joint_handler.cpp', '27'], ['joint_handler.h', '0'], ['joint_rha.h', '0'], ['joint_rha.cpp', '7'], ['readme.txt', '0'], ['rha_types.h', '6'], ['servo_rha.h', '0'], ['servo_rha.cpp', '14'], ['utilities.cpp', '10'], ['utilities.h', '30'], ['main.cpp', '0']] ,\
 [0]]
 
 debug_test = [['2017_08_23', ['test_cytron_g15_servo.cpp', '6'], ['test_servo_mock.cpp', '3'], ['test_servo_real.cpp', '8']] ,\
@@ -48,5 +49,6 @@ debug_test = [['2017_08_23', ['test_cytron_g15_servo.cpp', '6'], ['test_servo_mo
 ['2017_09_17', ['test_cytron_g15_servo.cpp', '6'], ['test_servo_mock.cpp', '3'], ['test_servo_real.cpp', '11']] ,\
 ['2017_09_19', ['test_cytron_g15_servo.cpp', '6'], ['test_servo_mock.cpp', '3'], ['test_servo_real.cpp', '11']] ,\
 ['2017_09_20', ['test_cytron_g15_servo.cpp', '6'], ['test_servo_mock.cpp', '3'], ['test_servo_real.cpp', '11']] ,\
+['2017_09_21', ['test_cytron_g15_servo.cpp', '6'], ['test_servo_mock.cpp', '3'], ['test_servo_real.cpp', '11']] ,\
 [0]]
 

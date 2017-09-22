@@ -6,18 +6,20 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: joint_handler.h
- * @Last modified by:   enheragu
- * @Last modified time: 21_Sep_2017
+ * @Last modified by:   quique
+ * @Last modified time: 21-Sep-2017
  */
 
 #ifndef JOINT_HANDLER_H
 #define JOINT_HANDLER_H
 
-#include "joint_rha.h"
-#include <SoftwareSerial.h>
-#include "Arduino.h"
 #include "debug.h"
 #include "rha_types.h"
+#include "joint_rha.h"
+
+#include <SoftwareSerial.h>
+#include "Arduino.h"
+
 
 
 namespace JointHandlerConstants {
@@ -45,38 +47,6 @@ namespace JointHandlerConstants {
 
     #define G15_BAUDRATE 57600
 
-
-    /*****************************
-     * ERROR COD. G15 CUBE SERVO *
-     *****************************/
-
-    /**
-      * @defgroup SERROR_GROUP Error Group
-      * Defined to check error returned by servo (check as bit mask)
-      * @{
-      */
-    #define SERROR_PING 0X0000
-    // Return status:
-    #define SERROR_INPUTVOLTAGE 0X0001
-    #define SERROR_ANGLELIMIT 0X0002
-    #define SERROR_OVERHEATING 0X0004
-    #define SERROR_RANGE 0X0008
-    #define SERROR_CHECKSUM 0X0010
-    #define SERROR_OVERLOAD 0X0020
-    #define SERROR_INSTRUCTION 0X0040
-    // #define SERROR_ 0X0080
-    #define SERROR_PACKETLOST 0X0100
-    #define SERROR_WRONGHEADER 0X0200
-    #define SERROR_IDMISMATCH 0X0400
-    #define SERROR_CHECKSUMERROR 0X0800
-    // #define SERROR_ 0X1000
-    // #define SERROR_ 0X2000
-    // #define SERROR_ 0X4000
-    // #define SERROR_ 0X8000
-    /**
-      * @}
-      */
-
     #define NUM_JOINT 1
     #define BUFFER_LEN 30
 
@@ -86,13 +56,13 @@ namespace JointHandlerConstants {
 
 
 class JointHandler {
-    Timer control_loop_timer_;
+    RHATypes::Timer control_loop_timer_;
 
     boolean hardwareSerial_;
     SoftwareSerial* G15Serial_;
 
     uint8_t txpin_shield_, rxpin_shield_, ctrlpin_shield_;
-    
+
     uint16_t comunicatoin_error_;
  public:
     JointRHA joint_[NUM_JOINT];
@@ -100,7 +70,7 @@ class JointHandler {
     JointHandler() {}
     JointHandler(uint64_t timer);
     virtual void initJoints();
-    void setSpeedGoal(SpeedGoal goal);
+    void setSpeedGoal(RHATypes::SpeedGoal goal);
     void setTimer(uint64_t timer);
 
     virtual void controlLoop();
@@ -117,7 +87,7 @@ class JointHandler {
 
     bool checkConectionAll();
 
-    uint8_t addToSyncPacket(uint8_t *buffer, uint8_t *data);
+    uint8_t addToSyncPacket(uint8_t *buffer, uint8_t *data, uint8_t num_bytes);
 
     void sendSyncPacket(uint8_t instruction, uint8_t *buffer, uint8_t num_bytes, uint8_t num_servo);
     uint16_t sendSinglePacket(uint8_t instruction, uint8_t *buffer);

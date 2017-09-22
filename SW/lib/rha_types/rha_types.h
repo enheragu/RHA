@@ -2,12 +2,14 @@
  * @Author: Enrique Heredia Aguado <quique>
  * @Date:   17-Sep-2017
  * @Project: RHA
- * @Last modified by:   enheragu
- * @Last modified time: 21_Sep_2017
+ * @Last modified by:   quique
+ * @Last modified time: 21-Sep-2017
  */
 
- #ifndef RHA_TYPES_H
- #define RHA_TYPES_H
+#ifndef RHA_TYPES_H
+#define RHA_TYPES_H
+
+#include "debug.h"
 
 #include <stdint.h>
 #include <Arduino.h>
@@ -54,9 +56,12 @@ namespace RHATypes {
             for (uint8_t i = 0; i < INTEGER_INTERVAL; i++) sum_i_error += ierror_[i];
             return kp_ * error + kd_ * derror + ki_ * sum_i_error;
         }
+
+        float getKp() { return kp_; }
     };  // end class Regulator
 
     class Timer {
+     protected:
         uint32_t time_;
         uint64_t init_time_;
      public:
@@ -81,6 +86,8 @@ namespace RHATypes {
             if (millis() - init_time_ >= time_) return true;
             else return false;
         }
+
+        uint64_t getInitTime() { return init_time_; }
     };  // end class Timer
 
     class TimerMicroseconds : public Timer {

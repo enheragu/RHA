@@ -8,8 +8,8 @@
  * @Date:   2017_Sep_13
  * @Project: RHA
  * @Filename: utilities.h
- * @Last modified by:   enheragu
- * @Last modified time: 20_Sep_2017
+ * @Last modified by:   quique
+ * @Last modified time: 21-Sep-2017
  */
 
 #include <Arduino.h>
@@ -18,26 +18,6 @@
 // #include "cytron_g15_servo.h"
 #include "utilities.h"
 #include "joint_handler.h"
-
-/**
-  * @brief Analyses error and prints error msgs
-  */
-void printServoStatusError (uint16_t error){
-    // NOTE: MACROS NEED {} AS THEY AR SUBSTITUTED BY SOME CODE LINES, NOT JUST ONE!!
-    if (error & SERROR_PING)  {DebugSerialUtilitiesLn("Ping error in servo");}
-    if (error & SERROR_INPUTVOLTAGE)  {DebugSerialUtilitiesLn("Input voltage error in servo");}          // bit 0
-    if (error & SERROR_ANGLELIMIT)  {DebugSerialUtilitiesLn("Angle limit error in servo");}           // bit 1
-    if (error & SERROR_OVERHEATING)  {DebugSerialUtilitiesLn("Overheating error in servo");}          // bit 2
-    if (error & SERROR_RANGE)  {DebugSerialUtilitiesLn("Range error in servo");}             // bit 3
-    if (error & SERROR_CHECKSUM)  {DebugSerialUtilitiesLn("Checksum error in servo");}             // bit 4
-    if (error & SERROR_OVERLOAD)  {DebugSerialUtilitiesLn("Overload error in servo");}             // bit 5
-    if (error & SERROR_INSTRUCTION)  {DebugSerialUtilitiesLn("Instruction error in servo");}            // bit 7
-    if (error & SERROR_PACKETLOST)  {DebugSerialUtilitiesLn("Packet lost or receive time out in servo");}    // bit 8
-    if (error & SERROR_WRONGHEADER)  {DebugSerialUtilitiesLn("Wrong header in servo");}              // bit 9
-    if (error & SERROR_IDMISMATCH)  {DebugSerialUtilitiesLn("ID mismatch in servo");}                  // bit 10
-    if (error & SERROR_CHECKSUMERROR)  {DebugSerialUtilitiesLn("Checksum error in servo");}               // bit 13
-}
-
 
 
     #define SPEED 800  // torque send to check speed

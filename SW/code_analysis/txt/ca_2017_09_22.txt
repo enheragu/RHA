@@ -1,0 +1,121 @@
+================================================
+  NLOC    CCN   token  PARAM  length  location  
+------------------------------------------------
+      10      1     77      0      14 setup@29-42@/home/quique/Documentos/RHA/SW/src/main.cpp
+      22      5    271      0      26 loop@49-74@/home/quique/Documentos/RHA/SW/src/main.cpp
+       1      1     36      4       1 RHATypes::SpeedGoal::SpeedGoal@25-25@/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h
+       4      2     30      0       4 RHATypes::Regulator::Regulator@37-40@/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h
+       4      2     36      0       4 RHATypes::Regulator::resetRegulator@42-45@/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h
+       3      1     29      3       3 RHATypes::Regulator::setKRegulator@47-49@/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h
+       8      3     76      3       9 RHATypes::Regulator::regulator@51-59@/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h
+       1      1      8      0       1 RHATypes::Regulator::getKp@61-61@/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h
+       3      1     11      1       3 RHATypes::Timer::setTimer@69-71@/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h
+       4      1     16      0       4 RHATypes::Timer::activateTimer@73-76@/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h
+       6      2     37      0       6 RHATypes::Timer::checkWait@78-83@/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h
+       5      2     37      0       5 RHATypes::Timer::checkContinue@85-89@/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h
+       1      1      8      0       1 RHATypes::Timer::getInitTime@91-91@/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h
+       4      1     16      0       4 RHATypes::TimerMicroseconds::activateTimer@96-99@/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h
+       6      2     37      0       6 RHATypes::TimerMicroseconds::checkWait@101-106@/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h
+       5      2     37      0       5 RHATypes::TimerMicroseconds::checkContinue@108-112@/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h
+       3      1     16      1       3 JointHandler::JointHandler@19-21@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+       5      1     27      1       5 JointHandler::setTimer@28-32@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+      21      3    156      0      26 JointHandler::initJoints@38-63@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+      12      2     55      0      19 JointHandler::controlLoop@68-86@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+      12      2     98      0      13 JointHandler::updateJointInfo@92-104@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+       6      2     47      0       6 JointHandler::updateJointErrorTorque@110-115@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+      15      3    102      0      15 JointHandler::sendJointTorques@121-135@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+       6      3     46      1       7 JointHandler::setSpeedGoal@142-148@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+      11      2     84      0      11 JointHandler::sendSetWheelModeAll@150-160@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+      11      2     84      0      11 JointHandler::sendExitWheelModeAll@162-172@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+      11      2     88      1      11 JointHandler::sendSetTorqueLimitAll@175-185@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+      11      2     89      2      11 JointHandler::sendSetWheelSpeedAll@188-198@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+      13      3     96      0      13 JointHandler::checkConectionAll@201-213@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+       8      2     72      3       8 JointHandler::addToSyncPacket@222-229@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+      16      2    150      4      18 JointHandler::warpSyncPacket@240-257@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+      15      2    144      3      18 JointHandler::warpSinglePacket@259-276@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+      70     20    435      1      81 JointHandler::sendPacket@285-365@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+       5      1     27      3       5 JointHandler::JointHandler@372-376@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+       5      1     21      1       5 JointHandler::JointHandler@378-382@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+       7      1     40      4       7 JointHandler::initSerial@384-390@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+      18      4    109      1      18 JointHandler::begin@392-409@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+      10      3     56      1      10 JointHandler::end@411-420@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+       3      1     15      1       3 JointHandler::setTxMode@422-424@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+       3      1     15      1       3 JointHandler::setRxMode@426-428@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+       1      1      5      0       1 JointHandler::JointHandler@68-68@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h
+       1      1      5      0       1 JointRHA::JointRHA@36-36@/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h
+       1      1      8      0       1 JointRHA::getSpeedTarget@45-45@/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h
+       1      1      8      0       1 JointRHA::getSpeedSlope@46-46@/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h
+       1      1      8      0       1 JointRHA::getDirectionTarget@47-47@/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h
+       4      1     23      3       5 JointRHA::JointRHA@19-23@/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp
+       2      1      7      0       2 JointRHA::~JointRHA@27-28@/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp
+       8      1     49      3      10 JointRHA::init@35-44@/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp
+      14      2     95      1      14 JointRHA::setSpeedGoal@53-66@/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp
+      11      4    107      0      11 JointRHA::speedError@72-82@/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp
+       3      1     14      0       3 JointRHA::updateInfo@87-89@/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp
+       1      1      5      0       1 ServoRHA::ServoRHA@136-136@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getID@166-166@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getSpeed@167-167@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getSpeedDir@168-168@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getPosition@169-169@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getLoad@170-170@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getLoadDir@171-171@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getError@172-172@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getVoltage@173-173@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getTemperature@174-174@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getGoalTorque@175-175@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h
+       3      1     13      1       3 ServoRHA::ServoRHA@22-24@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+       7      1     41      1      11 ServoRHA::init@30-40@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+      18      1    158      2      27 ServoRHA::updateInfo@57-83@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+      14      6     97      3      18 ServoRHA::calculateTorque@87-104@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+       6      1     41      1       6 ServoRHA::addUpadteInfoToPacket@115-120@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+       9      1     56      2      12 ServoRHA::addReturnOptionToPacket@127-138@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+      10      1     66      1      10 ServoRHA::addTorqueToPacket@144-153@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+       6      1     44      2       7 ServoRHA::setTorqueOnOfToPacket@160-166@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+       3      1     19      1       4 ServoRHA::setWheelModeToPacket@174-177@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+       3      1     19      1       3 ServoRHA::exitWheelModeToPacket@185-187@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+       9      1     78      3      11 ServoRHA::wheelModeToPacket@197-207@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+       4      1     29      1       4 ServoRHA::pingToPacket@209-212@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+       7      1     56      2       9 ServoRHA::setTorqueLimitToPacket@214-222@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+      11      2     79      3      13 ServoRHA::setWheelSpeedToPacket@224-236@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+       9      2     69      3      11 ServoRHA::addToPacket@244-254@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+       6      3     57      3       6 compareAngles@267-272@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+       6      3     57      3       6 compareSpeed@280-285@/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+      19      6    181      4      25 MeasureUtilities::averageChauvenet@42-66@/home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp
+      35      7    195      1      41 ServoUtilities::setServoId@86-126@/home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp
+      84     17    443      0      91 ServoUtilities::fullFactoryResetBR@144-234@/home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp
+       3      1     11      0       3 Utilities::Utilities@60-62@/home/quique/Documentos/RHA/SW/lib/utilities/utilities.h
+      14      3     91      0      15 Utilities::initJoints@64-78@/home/quique/Documentos/RHA/SW/lib/utilities/utilities.h
+      21      3    263      0      24 Utilities::extractRegulatorData@85-108@/home/quique/Documentos/RHA/SW/lib/utilities/utilities.h
+      23      3    146      1      25 Utilities::checkTimeGetInfo@116-140@/home/quique/Documentos/RHA/SW/lib/utilities/utilities.h
+      13      3     73      1      15 Utilities::checkComSucces@147-161@/home/quique/Documentos/RHA/SW/lib/utilities/utilities.h
+      56      8    365      1      69 Utilities::checkSpeed@167-235@/home/quique/Documentos/RHA/SW/lib/utilities/utilities.h
+      17     14    215      2      18 printServoStatusError@14-31@/home/quique/Documentos/RHA/SW/lib/debug/debug.cpp
+      13      1    161      8      13 printServoStatus@33-45@/home/quique/Documentos/RHA/SW/lib/debug/debug.cpp
+12 file analyzed.
+==============================================================
+NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
+--------------------------------------------------------------
+     39      16.0     3.0      174.0         2     /home/quique/Documentos/RHA/SW/src/main.cpp
+     82       3.9     1.6       29.6        14     /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h
+    298      12.4     2.8       86.3        24     /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+     40       1.0     1.0        5.0         1     /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h
+     25       1.0     1.0        7.2         4     /home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h
+     43       7.0     1.7       49.2         6     /home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp
+    105       1.0     1.0        7.7        11     /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h
+    133       7.7     1.6       57.6        17     /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+    150      46.0    10.0      273.0         3     /home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp
+    157      21.7     3.5      158.2         6     /home/quique/Documentos/RHA/SW/lib/utilities/utilities.h
+     31      15.0     7.5      188.0         2     /home/quique/Documentos/RHA/SW/lib/debug/debug.cpp
+      3       0.0     0.0        0.0         0     /home/quique/Documentos/RHA/SW/lib/debug/debug.h
+
+=========================================================================================
+!!!! Warnings (cyclomatic_complexity > 15 or length > 1000 or parameter_count > 100) !!!!
+================================================
+  NLOC    CCN   token  PARAM  length  location  
+------------------------------------------------
+      70     20    435      1      81 JointHandler::sendPacket@285-365@/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+      84     17    443      0      91 ServoUtilities::fullFactoryResetBR@144-234@/home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp
+==========================================================================================
+Total nloc   Avg.NLOC  AvgCCN  Avg.token   Fun Cnt  Warning cnt   Fun Rt   nloc Rt
+------------------------------------------------------------------------------------------
+      1106       9.7     2.4       70.8       90            2      0.02    0.18

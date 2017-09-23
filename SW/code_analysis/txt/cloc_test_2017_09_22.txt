@@ -1,0 +1,14 @@
+       3 text files.
+classified 3 files       3 unique files.                              
+       0 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.01 s (221.3 files/s, 31862.8 lines/s)
+---------------------------------------------------------------------------------------------------------------------------------------
+File                                                                                                blank        comment           code
+---------------------------------------------------------------------------------------------------------------------------------------
+/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp                                49             21            142
+/home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp                   27             16             71
+/home/quique/Documentos/RHA/SW/test/b_test_joint_rha/test_joint_rha.cpp                                20             25             61
+---------------------------------------------------------------------------------------------------------------------------------------
+SUM:                                                                                                   96             62            274
+---------------------------------------------------------------------------------------------------------------------------------------

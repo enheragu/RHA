@@ -1,0 +1,30 @@
+      14 text files.
+classified 14 files      14 unique files.                              
+       2 files ignored.
+
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.0416789054870605</elapsed_seconds>
+  <n_files>12</n_files>
+  <n_lines>2043</n_lines>
+  <files_per_second>287.915430114293</files_per_second>
+  <lines_per_second>49017.6019769584</lines_per_second>
+</header>
+<files>
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp" blank="54" comment="76" code="298"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/utilities/utilities.h" blank="38" comment="34" code="163"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp" blank="32" comment="41" code="162"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp" blank="53" comment="99" code="133"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h" blank="26" comment="28" code="125"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/debug/debug.h" blank="26" comment="62" code="107"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h" blank="23" comment="7" code="86"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h" blank="31" comment="15" code="62"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp" blank="10" comment="36" code="43"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/src/main.cpp" blank="18" comment="17" code="41"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/debug/debug.cpp" blank="3" comment="11" code="31"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h" blank="13" comment="11" code="28"  language="C/C++ Header" />
+  <total blank="327" comment="437" code="1279" />
+</files>
+</results>

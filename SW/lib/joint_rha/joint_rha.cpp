@@ -5,8 +5,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: joint_rha.cpp
- * @Last modified by:   enheragu
- * @Last modified time: 22_Sep_2017
+ * @Last modified by:   quique
+ * @Last modified time: 23-Sep-2017
  */
 
 #include "joint_rha.h"
@@ -18,6 +18,7 @@
   */
 JointRHA::JointRHA(uint8_t servo_id, uint8_t up_direction, uint8_t potentiometer) {
     // servo_ = new ServoRHA (servo_id);
+    servo_.init(servo_id);
     up_direction_ = up_direction;
     potentiometer_pin_ = potentiometer;
 }
@@ -76,9 +77,9 @@ float JointRHA::speedError() {
         if (speed > speed_target_) speed = (float)speed_target_;
         time_last_ = millis();
     } else speed = speed_target_;
-    uint8_t sign = 1;
+    int8_t sign = 1;
     if (direction_target_ != servo_.getSpeedDir()) sign = -1;
-    return (sign*(float)speed - (float)servo_.getSpeed());
+    return (sign*((float)speed - (float)servo_.getSpeed()));
 }
 
 /**

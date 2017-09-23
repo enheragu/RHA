@@ -4,12 +4,12 @@
  * @Project: RHA
  * @Filename: main.cpp
  * @Last modified by:   quique
- * @Last modified time: 21-Sep-2017
+ * @Last modified time: 22-Sep-2017
  */
 
 
 
-// #ifndef UNIT_TEST  // disable program main loop while unit testing in progress
+ #ifndef UNIT_TEST  // disable program main loop while unit testing in progress
 #include <Arduino.h>
 #include "servo_rha.h"
 #include "joint_handler.h"
@@ -47,7 +47,7 @@ int sample = 0;
 float kp_samples[SAMPLE_KP] = {1.66, 5, 10, 20, 50, 100};
 
 void loop(){
-    RHATypes::SpeedGoal speed_goal(1,50,0);  // Id, speed, speed_slope
+    RHATypes::SpeedGoal speed_goal(1,50,0, CW);  // Id, speed, speed_slope
     joint_handler.setSpeedGoal(speed_goal);
     joint_handler.joint_[0].servo_.speed_regulator_.setKRegulator(kp_samples[sample],0,0);
     Serial.print("n_data"); Serial.print(sample); Serial.print(" = "); Serial.println(SAMPLE_REGULATOR);
@@ -73,4 +73,4 @@ void loop(){
 
 }
 
-// #endif
+ #endif

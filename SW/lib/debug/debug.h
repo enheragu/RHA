@@ -10,7 +10,7 @@
  * @Project: RHA
  * @Filename: debug.h
  * @Last modified by:   quique
- * @Last modified time: 21-Sep-2017
+ * @Last modified time: 23-Sep-2017
  */
 
 #ifndef DEBUG_H
@@ -59,8 +59,8 @@
  */
 
 // #define DEBUG_SERVO_RHA
-// #define DEBUG_TEST_SERVO_RHA_MOCK
-// #define DEBUG_TEST_SERVO_RHA_REAL
+// #define DEBUG_TEST_SERVO_RHA
+ #define DEBUG_TEST_JOINT_RHA
  #define DEBUG_JOINT_HANDLER
 // #define DEBUG_CYTRON_G15_SERVO
 // #define DEBUG_TEST_CYTRON_G15_SERVO
@@ -168,25 +168,25 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
 #endif
 
 /** DEBUG_TEST_SERVO_RHA_MOCK implements debug macros for test_servo_mock.cpp file */
-#ifdef DEBUG_TEST_SERVO_RHA_MOCK
-    #define DebugSerialTSRHAMockLn(a) {  Serial.print("[DT]  (mock)ServoRHA::"); Serial.println(a); }
-    #define DebugSerialTSRHAMock(a) {  Serial.print("[DT]  (mock)ServoRHA::"); Serial.print(a); }
+#ifdef DEBUG_TEST_SERVO_RHA
+    #define DebugSerialTSRHALn(a) {  Serial.print("[DT]  ServoRHA::"); Serial.println(a); }
+    #define DebugSerialTSRHA(a) {  Serial.print("[DT]  ServoRHA::"); Serial.print(a); }
 #else
-    #define DebugSerialTSRHAMockLn(a)
-    #define DebugSerialTSRHAMock(a)
+    #define DebugSerialTSRHALn(a)
+    #define DebugSerialTSRHA(a)
 #endif
 
 /** DEBUG_TEST_SERVO_RHA_REAL implements debug macros for test_servo_real.cpp file */
-#ifdef DEBUG_TEST_SERVO_RHA_REAL
-    #define DebugSerialTSRHARealLn(a) {  Serial.print("[DT]  (real)ServoRHA::"); Serial.println(a); }
-    #define DebugSerialTSRHARealLn2(a, b) {  Serial.print("[DT]  (real)ServoRHA::"); Serial.print(a); Serial.println(b); }
-    #define DebugSerialTSRHAReal(a) {  Serial.print("[DT]  (real)ServoRHA::"); Serial.print(a); }
-    #define DebugSerialTSRHARealLn4(a, b, c, d) {  Serial.print("[DT]  (real)ServoRHA::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+#ifdef DEBUG_TEST_JOINT_RHA
+    #define DebugSerialTJRHALn(a) {  Serial.print("[DT]  JointRHA::"); Serial.println(a); }
+    #define DebugSerialTJRHALn2(a, b) {  Serial.print("[DT]  JointRHA::"); Serial.print(a); Serial.println(b); }
+    #define DebugSerialTJRHA(a) {  Serial.print("[DT]  JointRHA::"); Serial.print(a); }
+    #define DebugSerialTJRHALn4(a, b, c, d) {  Serial.print("[DT]  JointRHA::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
 #else
-    #define DebugSerialTSRHARealLn(a)
-    #define DebugSerialTSRHARealLn2(a, b)
-    #define DebugSerialTSRHARealLn4(a, b, c, d)
-    #define DebugSerialTSRHAReal(a)
+    #define DebugSerialTJRHALn(a)
+    #define DebugSerialTJRHALn2(a, b)
+    #define DebugSerialTJRHALn4(a, b, c, d)
+    #define DebugSerialTJRHA(a)
 #endif
 
 

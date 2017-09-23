@@ -1,0 +1,23 @@
+      14 text files.
+classified 14 files      14 unique files.                              
+       2 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.04 s (292.7 files/s, 49832.9 lines/s)
+---------------------------------------------------------------------------------------------------------------------
+File                                                                              blank        comment           code
+---------------------------------------------------------------------------------------------------------------------
+/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp                   54             76            298
+/home/quique/Documentos/RHA/SW/lib/utilities/utilities.h                             38             34            163
+/home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp                           32             41            162
+/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp                           53             99            133
+/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h                             26             28            125
+/home/quique/Documentos/RHA/SW/lib/debug/debug.h                                     26             62            107
+/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h                             23              7             86
+/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h                     31             15             62
+/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp                           10             36             43
+/home/quique/Documentos/RHA/SW/src/main.cpp                                          18             17             41
+/home/quique/Documentos/RHA/SW/lib/debug/debug.cpp                                    3             11             31
+/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h                             13             11             28
+---------------------------------------------------------------------------------------------------------------------
+SUM:                                                                                327            437           1279
+---------------------------------------------------------------------------------------------------------------------

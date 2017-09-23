@@ -1,0 +1,40 @@
+================================================
+  NLOC    CCN   token  PARAM  length  location  
+------------------------------------------------
+      15      1    142      1      19 test_function_setSpeedGoal@21-39@/home/quique/Documentos/RHA/SW/test/b_test_joint_rha/test_joint_rha.cpp
+      21      1    213      1      37 test_function_speedError@41-77@/home/quique/Documentos/RHA/SW/test/b_test_joint_rha/test_joint_rha.cpp
+       6      1     23      0      11 process@79-89@/home/quique/Documentos/RHA/SW/test/b_test_joint_rha/test_joint_rha.cpp
+       5      1     21      0       5 setup@92-96@/home/quique/Documentos/RHA/SW/test/b_test_joint_rha/test_joint_rha.cpp
+       6      1     29      0       7 loop@98-104@/home/quique/Documentos/RHA/SW/test/b_test_joint_rha/test_joint_rha.cpp
+      10      1    119      1      12 test_function_warpSinglePacket@21-32@/home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp
+      34      1    355      1      47 test_function_warpSyncPacket@40-86@/home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp
+       6      1     23      0       9 process@89-97@/home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp
+       5      1     21      0       5 setup@100-104@/home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp
+       6      1     29      0       7 loop@106-112@/home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp
+       6      1     58      1       6 test_function_compareAngles@24-29@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+       8      1     86      1       8 test_function_compareSpeed@31-38@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+       8      1     96      1      10 test_function_addToPacket@41-50@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+       7      1     74      1       9 test_function_updateInfoToPacket@52-60@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+      13      1    126      1      17 test_function_addReturnOptionToPacket@62-78@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+      10      1    101      1      13 test_function_setTorqueOnOfToPacket@80-92@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+      17      1    172      1      21 test_function_set_exit_WheelModeToPacket@94-114@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+      13      1    133      1      20 test_function_updateInfo@116-135@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+      19      1    199      1      24 test_function_calculateTorque@137-160@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+      11      1    146      1      17 test_function_addTorqueToPacket@162-178@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+      13      1     58      0      16 process@180-195@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+       5      1     21      0       5 setup@198-202@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+       6      1     29      0       7 loop@204-210@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+3 file analyzed.
+==============================================================
+NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
+--------------------------------------------------------------
+     56      10.6     1.0       85.6         5     /home/quique/Documentos/RHA/SW/test/b_test_joint_rha/test_joint_rha.cpp
+     68      12.2     1.0      109.4         5     /home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp
+    139      10.5     1.0       99.9        13     /home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+
+=============================================================================================
+No thresholds exceeded (cyclomatic_complexity > 15 or length > 1000 or parameter_count > 100)
+==========================================================================================
+Total nloc   Avg.NLOC  AvgCCN  Avg.token   Fun Cnt  Warning cnt   Fun Rt   nloc Rt
+------------------------------------------------------------------------------------------
+       263      10.9     1.0       98.9       23            0      0.00    0.00

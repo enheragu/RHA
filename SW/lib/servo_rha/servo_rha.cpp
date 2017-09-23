@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: servo_rha.cpp
- * @Last modified by:   enheragu
- * @Last modified time: 22_Sep_2017
+ * @Last modified by:   quique
+ * @Last modified time: 23-Sep-2017
  */
 
 #include "servo_rha.h"
@@ -62,13 +62,13 @@ void ServoRHA::updateInfo(uint8_t *data, uint16_t error) {
 
     speed_ = data[2];    // acces data[2]
     speed_ |= (data[3] << 8);   // acces data[3]
-    speed_dir_  = ((speed_ & 0x0400) >> 9);  // 10th byte is direction -> 0000010000000000 binary is 400 in hex
+    speed_dir_  = ((speed_ & 0x0400) >> 10);  // 10th byte is direction -> 0000010000000000 binary is 400 in hex
     // bytes from 9 to 0 are speed value:
     speed_ = speed_ & ~0x0400;
 
-    load_ = data[4]; data++;  // acces data[4]
+    load_ = data[4];  // acces data[4]
     load_ |= (data[5] << 8);   // acces data[5]
-    load_dir_  = ((load_ & 0x0400) >> 9);  // 10th byte is direction
+    load_dir_  = ((load_ & 0x0400) >> 10);  // 10th byte is direction
     // bytes from 9 to 0 are load value:
     load_ = load_ & ~0x0400;
 
@@ -91,7 +91,7 @@ void ServoRHA::calculateTorque(float error, float derror, float ierror) {
     // error < 0 causes torque < 0 which causes change in direction of movement
     if (torque < 0 ) {
         if (speed_dir_ == CCW) direction = CW;
-        else if (speed_dir_ == CW) direction = CCW
+        else if (speed_dir_ == CW) direction = CCW;
     }
     torque = abs(torque);
     if (torque > 1023) torque = 1023;  // compensate saturation of servos

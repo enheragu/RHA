@@ -9,10 +9,9 @@
  * @Project: RHA
  * @Filename: utilities.h
  * @Last modified by:   quique
- * @Last modified time: 21-Sep-2017
+ * @Last modified time: 24-Sep-2017
  */
 
-#include <Arduino.h>
 #include "debug.h"
 #include "servo_rha.h"
 // #include "cytron_g15_servo.h"
@@ -71,165 +70,179 @@ namespace MeasureUtilities {
 
 
 
+void JHUtilitiesJH::initJoints(uint8_t joint_to_test) {
+    DebugSerialUtilitiesLn("initJoints: begin of function");
+    ServoRHA servo_broadcast(ALL_SERVO);
 
-/***************************************************************
- *        This code is derived from Cytron G15 examples        *
- ***************************************************************/
-namespace ServoUtilities{
-    #define LED       13
+    uint8_t buffer[BUFFER_LEN], txBuffer[BUFFER_LEN];
 
-    /**
-     * Function to change the ID of the servo connected to the bus (only one servo can be connected)
-     * @method setServoId
-     * @param  {uint8_t} new_id ID for the servo
-     */
-    void setServoId(uint8_t new_id){
-        Cytron_G15_Servo g15(ALL_SERVO, 2, 3, 8); // SoftwareSerial: Rx, Tx and Control pin
-        //Cytron_G15Shield g15(8); // HardwareSerial: Control pin
+    servo_broadcast.pingToPacket(buffer);
+    JointHandler::warpSinglePacket(iPING, buffer, txBuffer);
+    error_ = sendPacket(txBuffer);
+    IDcurrent_ = 0; //txBuffer[0];
+    DebugSerialUtilitiesLn2("ID from servo is: ", IDcurrent_);
+    if (error_ != 0 && error_ != SERROR_IDMISMATCH){  // Ignore ID mismatch as we broadcast to all servo
+        DebugSerialJHLn4Error(error_, ALL_SERVO);
+        DebugSerialUtilitiesLn("Error in servo comunication, end of initJoints");
+        //return;
+    }
+    joint_[joint_to_test].init(IDcurrent_, CW, A0);
 
-        word error = 0;
-        byte data[10];
+    JointHandler::sendSetWheelModeAll();
+}
 
-        g15.begin(BAUD_RATE_G15);
 
-        pinMode(LED, OUTPUT);
-        digitalWrite(LED, LOW);
-        delay(1000);
-        g15.setID(new_id);
+/**
+ * @brief extractRegulatorData tests ServoRHA regulator and prints through serial monitor all info (python list style) to make a graphic. It can test one servo. Autodetects ID of the one connected
+ * @method extractRegulatorData
+ */
+void JHUtilitiesJH::extractRegulatorData(uint8_t joint_to_test) {
+    float kp_samples[SAMPLE_KP] = KP_SAMPLES;  // macro defined in the top of utilities.h
 
-        error = g15.ping(data);
+    RHATypes::SpeedGoal speed_goal(1,50,0,CW);  // Id, speed, speed_slope
+    setSpeedGoal(speed_goal);
+    for (uint8_t samples = 0; samples < SAMPLE_KP; samples++) {
+        joint_[joint_to_test].servo_.speed_regulator_.setKRegulator(kp_samples[samples],0,0);  // KP_SAMPLES(a) defined in the top of utilities.h
+        Serial.print("n_data"); Serial.print(samples); Serial.print(" = "); Serial.println(SAMPLE_REGULATOR);
+        Serial.print("speed_target"); Serial.print(samples); Serial.print("  = "); Serial.println(joint_[joint_to_test].getSpeedTarget());
+        Serial.print("regulatorTest"); Serial.print(samples); Serial.print("  = [");
+        Serial.print("['"); Serial.print(joint_[joint_to_test].servo_.speed_regulator_.getKp()); Serial.print("']");
 
-        if(error == 0 || error == 0x0400) {// Ignore ID mistmatch since broadcast ID is used to ping the servo
-            if(data[0] == new_id) { // Succeed change to new ID!
-                while(1) {
-                    g15.setLED(new_id, ON);
-                    delay(500);
-                    g15.setLED(new_id, OFF);
-                    delay(500);
-                }
-            } else {  // Fail, new ID is different
-                while(1) {
-                    digitalWrite(LED, LOW);
-                    delay(500);
-                    digitalWrite(LED, HIGH);
-                    delay(500);
-                }
-            }
-        } else {  // Fail, other error occur
-            while(1) {
-                digitalWrite(LED, LOW);
-                delay(100);
-                digitalWrite(LED, HIGH);
-                delay(100);
-            }
+        for (int counter = 0; counter < SAMPLE_REGULATOR; counter++) {
+            unsigned long time_init = millis();
+            JointHandler::controlLoop();
+            Serial.print(",['"); Serial.print(joint_[joint_to_test].servo_.getSpeed()); Serial.print("','");
+            Serial.print(time_init); Serial.println("']\\");
+        }
+
+        Serial.println("]");
+    }
+    return;
+}
+
+/**
+ * @brief checkTimeInfo checks time spent sending and recieving packet with ServoRHA::updateInfo() . It can test one servo. Autodetects ID of the one connected
+ * @param {long} repetitions: num of repetitions the test is made (time is the average of this repetitions). Max of 255 (danger of memory overload)
+ * @see checkTimeSpeedRead(). Both are used together to compare speed rate in comunication.
+ * @see averageChauvenet()
+ */
+void JHUtilitiesJH::checkTimeGetInfo(uint8_t repetitions, uint8_t joint_to_test) {
+    DebugSerialSeparation(1);
+
+    uint64_t initTime = 0;
+    uint32_t timeSpent [repetitions];
+
+    DebugSerialUtilitiesLn("Begin of loop to take data");
+    for (uint8_t i = 0; i < repetitions; i++){
+        initTime = millis();
+        JointHandler::updateJointInfo();
+        timeSpent[i] = millis()-initTime;
+        if (joint_[joint_to_test].servo_.getError() != 0){
+            DebugSerialUtilitiesLn("Error in servo comunication, end of loop to take data");
+            DebugSerialJHLn4Error(joint_[joint_to_test].servo_.getError(), joint_[joint_to_test].servo_.getID());
+            return;
         }
     }
+    DebugSerialUtilitiesLn("Data taken, calling averageChauvenet()");
+    float average_time = 0, standard_deviation = 0;
+    MeasureUtilities::averageChauvenet(timeSpent,repetitions,average_time, standard_deviation);
+    DebugSerialUtilitiesLn2("checkTimeGetInfo: Time spent with ServoRHA::updateInfo: ", average_time);
+    DebugSerialUtilitiesLn2("checkTimeGetInfo: number of repetitions: ", repetitions);
+    DebugSerialUtilitiesLn("checkTimeSpeedRead: 8 bytes read");
+    DebugSerialSeparation(1);
+}
 
+/**
+ * @brief This function is intended to test new baudrates and it's success comunication ratio
+ * @method checkPingSucces
+ * @param  repetitions   number of repetitions to perform
+ */
+void JHUtilitiesJH::checkComSucces(uint16_t repetitions) {
+    DebugSerialUtilitiesLn("checkComSucces: begin of function");
+    DebugSerialSeparation(1);
 
-    #define DEFAULT_ID  0x01
-    #define BROADCAST   0xFE
-    #define LED 13
+    uint16_t succes_ping = 0;
+    for (uint16_t i = 0; i < repetitions; i++)
+    {
 
-    /**
-     * Makes a full factory reset and then sets ne baudrate
-     * @method fullFactoryResetBR
-     * @see #define BAUD_RATE_G15
-     */
-
-
-    word error = 0;
-    byte data[10];
-    int baudrateMode = 0;
-
-    void fullFactoryResetBR(){
-
-        Cytron_G15_Servo g15(BROADCAST,2, 3, 8);
-
-        Cytron_G15_Servo g15_restored(DEFAULT_ID,2, 3, 8);
-
-        pinMode(LED, OUTPUT);
-
-        switch(baudrateMode)
-        {
-            case 0:
-              g15.begin(1200); g15_restored.begin(1200); break;
-            case 1:
-              g15.begin(2400); g15_restored.begin(2400); break;
-            case 2:
-              g15.begin(4800); g15_restored.begin(4800); break;
-            case 3:
-              g15.begin(9600); g15_restored.begin(9600); break;
-            case 4:
-              g15.begin(19200); g15_restored.begin(19200); break;
-            case 5:
-              g15.begin(38400); g15_restored.begin(38400); break;
-            case 6:
-              g15.begin(57600); g15_restored.begin(57600); break;
-            case 7:
-              g15.begin(115200); g15_restored.begin(115200); break;
-            default: break;
-        }
-
-        g15.factoryReset();
-        delay(100);
-        error = g15_restored.ping(data);
-
-        if(error == 0 || error == 0x0400) // Ignore ID mistmatch since broadcast ID is used to ping the servo
-        {
-            if(data[0] == DEFAULT_ID) // Success
-            {
-                DebugSerialUtilitiesLn("Servo restored succesfully");
-                DebugSerialUtilitiesLn2("Baudrate mode is: ",baudrateMode);
-                g15_restored.setBaudRate(BAUD_RATE_G15); // Change to default baudrate
-                delay(100);
-                g15.end();
-                delay(100);
-                g15.begin(BAUD_RATE_G15);
-                delay(100);
-
-                while(1)
-                {
-                    g15_restored.setLED(DEFAULT_ID, ON);
-                    delay(500);
-                    g15_restored.setLED(DEFAULT_ID, OFF);
-                    delay(500);
-                }
-            }
-            else // Fail, new ID is different
-            {
-                DebugSerialUtilitiesLn("ID not expected");
-                g15_restored.end();
-                if(baudrateMode < 8) {
-                      baudrateMode++;
-                }
-                else {
-                    while(1)
-                    {
-                        digitalWrite(LED, LOW);
-                        delay(1000);
-                        digitalWrite(LED, HIGH);
-                        delay(1000);
-                    }
-                }
-            }
-          }
-        else // Fail, other error occur
-        {
-            DebugSerialUtilitiesLn("Other error ocurred");
-            g15_restored.end();
-            if(baudrateMode < 8) {
-                baudrateMode++;
-            }
-            else {
-                while(1)
-                {
-                    digitalWrite(LED, LOW);
-                    delay(200);
-                    digitalWrite(LED, HIGH);
-                    delay(200);
-                }
-            }
-        }
-        delay(100);
+        if (JointHandler::checkConectionAll()) succes_ping++;
+        delay(5);
     }
-} // End of ServoUtilities namespace
+    DebugSerialUtilitiesLn2("checkComSucces: Success total (ping): ", succes_ping);
+    DebugSerialUtilitiesLn2("checkComSucces: number of repetitions: ", repetitions);
+    DebugSerialSeparation(1);
+}
+
+
+/**
+ * @brief checkSpeed implements an encoder mode to measure real speed in RPM and check agains the measure returned by servo and torque value sent. It can test one servo. Autodetects ID of the one connected
+ */
+void JHUtilitiesJH::checkSpeed(uint8_t joint_to_test){
+    DebugSerialUtilitiesLn("checkSpeed: begin of function");
+
+    uint32_t encoderTemp = 0,
+         encoderCurrent = 0,
+         encoderFullRotation = 100,
+         encoderTotal = 0;
+
+    uint16_t speed_set = SPEED,
+        torque_set = 1023;
+
+    uint8_t encoderFlag = 0;
+
+    uint16_t pos = 0;
+
+    uint32_t initTime = 0;
+    uint32_t currentTime = 0;
+
+    JointHandler::sendSetTorqueLimitAll(torque_set);
+    delay(25);
+    JointHandler::sendSetWheelModeAll();
+    delay(25);
+    delay(25);
+
+    JointHandler::updateJointInfo();            //get the current position from servo
+    pos = joint_[joint_to_test].servo_.getPosition();
+    encoderTemp = pos;
+    encoderFlag = 1;
+    initTime = millis();
+
+    DebugSerialUtilitiesLn("Configuration done.");
+    delay(2000);
+    DebugSerialUtilitiesLn("Start moving");
+
+    JointHandler::sendSetWheelSpeedAll(speed_set, CW);
+    delay(25);
+
+    while (1) {
+        //DebugSerialUtilitiesLn("Init while loop");
+        updateJointInfo();            //get the current position from servo
+        pos = joint_[joint_to_test].servo_.getPosition();
+        encoderCurrent = pos;
+        //DebugSerialUtilitiesLn2("Current pose: ", encoderCurrent);
+
+        if (encoderCurrent < (encoderTemp + 5)  && encoderCurrent > (encoderTemp - 5) && encoderFlag == 0) {
+            encoderTotal++;
+            currentTime = millis();
+            float time_whole = ((float)(currentTime - initTime) / 1000);
+            float speed_now = ((float)encoderTotal / (float)time_whole)*60;
+            JointHandler::updateJointInfo();            //get the current position from servo
+            float speed_read = joint_[joint_to_test].servo_.getSpeed();
+            DebugSerialSeparation(1);
+            DebugSerialUtilitiesLn2("  -  Torque set is: ", speed_set);
+            DebugSerialUtilitiesLn2("  -  Speed calculated is (in rpm): ", speed_now);
+            DebugSerialUtilitiesLn2("  -  Speed calculated is (in rad/s): ", speed_now/(2*PI/60));
+            DebugSerialUtilitiesLn2("  -  Speed read is (in rpm): ", speed_read*(2*PI/60));
+            DebugSerialUtilitiesLn2("  -  Speed read is (in rad/s): ", speed_read);
+            DebugSerialUtilitiesLn2("  -  Encoder whole is: ", encoderTotal);
+            DebugSerialUtilitiesLn2("  -  Time spent is (in s): ", time_whole);
+            DebugSerialSeparation(1);
+            encoderFlag = 1;
+            if (encoderTotal == encoderFullRotation ) {
+                JointHandler::sendSetWheelSpeedAll(0, CW);
+                break;
+            }
+        }
+        if (encoderCurrent > (encoderTemp + 5) || encoderCurrent < (encoderTemp - 5)) encoderFlag = 0;
+    }
+}

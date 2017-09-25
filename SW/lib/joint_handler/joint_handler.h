@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: joint_handler.h
  * @Last modified by:   quique
- * @Last modified time: 23-Sep-2017
+ * @Last modified time: 24-Sep-2017
  */
 
 #ifndef JOINT_HANDLER_H
@@ -55,9 +55,6 @@ namespace JointHandlerConstants {
 
 class JointHandler {
     RHATypes::Timer control_loop_timer_;
-
-    boolean hardwareSerial_;
-    SoftwareSerial* G15Serial_;
 
     uint8_t txpin_shield_, rxpin_shield_, ctrlpin_shield_;
 

@@ -4,17 +4,17 @@
  * @Project: RHA
  * @Filename: main.cpp
  * @Last modified by:   quique
- * @Last modified time: 22-Sep-2017
+ * @Last modified time: 24-Sep-2017
  */
 
 
 
- #ifndef UNIT_TEST  // disable program main loop while unit testing in progress
+// #ifndef UNIT_TEST  // disable program main loop while unit testing in progress
 #include <Arduino.h>
 #include "servo_rha.h"
 #include "joint_handler.h"
 #include "rha_types.h"
-// #include "utilities.h"
+#include "utilities.h"
 // #include "joint_rha.h"
 
 // #define DEBUG_SERVO_RHA
@@ -24,28 +24,29 @@
 
 // CYTRON_G15_SERVO g15(1, 2, 3, 8);
 
-JointHandler joint_handler;
+JHUtilitiesJH joint_handler;
 
 void setup() {
   Serial.begin(9600);
   Serial.println("Setup begin");
 
-  joint_handler.initSerial(2,3,8);
-  joint_handler.initJoints();
   joint_handler.setTimer(50);
+  joint_handler.initSerial(2,3,8);
+  joint_handler.initJoints(0);
+  Serial.print("Id for servo is: "); Serial.println(joint_handler.joint_[0].servo_.getID());
 
-
-  joint_handler.joint_[0].servo_.speed_regulator_.setKRegulator(100/60, 0, 0);
-
+  joint_handler.updateJointInfo();
   delay(5000);
   Serial.println("Setup done");
 }
 
-#define SAMPLE_REGULATOR 150
-#define SAMPLE_KP 6
-int sample = 0;
-float kp_samples[SAMPLE_KP] = {1.66, 5, 10, 20, 50, 100};
+void loop() {
+    //joint_handler.extractRegulatorData(0);
+    //while (true) {
 
+    //}
+}
+/**
 void loop(){
     RHATypes::SpeedGoal speed_goal(1,50,0, CW);  // Id, speed, speed_slope
     joint_handler.setSpeedGoal(speed_goal);
@@ -71,6 +72,6 @@ void loop(){
     if (sample >= SAMPLE_KP)
         while(true) {}
 
-}
+}*/
 
- #endif
+// #endif

@@ -4,7 +4,7 @@
  * @Project: RHA
  * @Filename: test_servo_mock.cpp
  * @Last modified by:   quique
- * @Last modified time: 23-Sep-2017
+ * @Last modified time: 24-Sep-2017
  */
 
 
@@ -188,6 +188,18 @@ void test_function_addTorqueToPacket(void) {
 
 }
 
+void test_function_addPingToPacket(void) {
+    ServoRHA servo_test1(SERVO_ID);
+
+    uint8_t buffer[10] = {  0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    servo_test1.pingToPacket(buffer);  // sets init state of servo
+    // 0x0A, 0x00 -> torque = 10 (Speed bottom 8 bits, speed top 8 bits)
+    uint8_t buffer_test1[2] = {  SERVO_ID, 0x00};
+
+    TEST_ASSERT_EQUAL_UINT8_ARRAY(buffer_test1, buffer, 2);
+
+}
+
 void process() {
   UNITY_BEGIN();
 
@@ -201,6 +213,11 @@ void process() {
   RUN_TEST(test_function_updateInfo);
   RUN_TEST(test_function_calculateTorque);
   RUN_TEST(test_function_addTorqueToPacket);
+  RUN_TEST(test_function_addPingToPacket);
+  // RUN_TEST();
+  // RUN_TEST();
+  // RUN_TEST();
+  // RUN_TEST();
   UNITY_END();
 }
 

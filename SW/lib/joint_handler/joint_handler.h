@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: joint_handler.h
  * @Last modified by:   quique
- * @Last modified time: 24-Sep-2017
+ * @Last modified time: 25-Sep-2017
  */
 
 #ifndef JOINT_HANDLER_H
@@ -83,7 +83,7 @@ class JointHandler {
     bool checkConectionAll();
     uint8_t addToSyncPacket(uint8_t *buffer, uint8_t *data, uint8_t num_bytes);
 
-    void warpSyncPacket(uint8_t *buffer, uint8_t address, uint8_t *txBuffer, uint8_t num_bytes, uint8_t num_servo);
+    void warpSyncPacket(uint8_t *buffer, uint8_t adress, uint8_t *txBuffer, uint8_t num_bytes, uint8_t num_servo);
     void warpSinglePacket(uint8_t instruction, uint8_t *buffer, uint8_t *txBuffer);
     uint16_t sendPacket( uint8_t *buffer);
 

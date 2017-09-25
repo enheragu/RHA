@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: servo_rha.cpp
  * @Last modified by:   quique
- * @Last modified time: 23-Sep-2017
+ * @Last modified time: 26-Sep-2017
  */
 
 #include "servo_rha.h"
@@ -44,6 +44,9 @@ void ServoRHA::init(uint8_t servo_id) {
  ************************************************************************/
 
 /** @brief Asks the servo for all the information to be updated by class servo.
+  * @method ServoRHA::updateInfo
+  * @param {uint8_t *} data  Array containing all the data
+  * @param {uint16_t} error Error in comunication
   *
   * Reads from register PRESENT_POSITION_L (0x24) to MOVING (0x2E).
   * Position are bits 10 to 0 from register 0x24 and 0x25
@@ -83,7 +86,13 @@ void ServoRHA::updateInfo(uint8_t *data, uint16_t error) {
 }
 
 
-
+/**
+ * @brief calculates torque from speed error using regulator
+ * @method ServoRHA::calculateTorque
+ * @param  error      speed error
+ * @param  derror     derivative of speed error
+ * @param  ierror     integral of speed error
+ */
 void ServoRHA::calculateTorque(float error, float derror, float ierror) {
     // float error = (float)target_speed - (float)speed_;
     float torque = speed_regulator_.regulator(error, derror, ierror);
@@ -110,6 +119,7 @@ void ServoRHA::calculateTorque(float error, float derror, float ierror) {
 
 /**
  * @brief adds to buffer packet with the uptade info command
+ * @method ServoRHA::addUpadteInfoToPacket
  * @param {uint8_t*} buffer array in which add the information
  */
 void ServoRHA::addUpadteInfoToPacket(uint8_t *buffer) {
@@ -120,6 +130,7 @@ void ServoRHA::addUpadteInfoToPacket(uint8_t *buffer) {
 }
 
  /** @brief Saves in buffer the package return level of servo (error information for each command sent)
+   * @method ServoRHA::addReturnOptionToPacket
    * @param {uint8_t*} buffer array in which add the information
    * @param {uint8_t} option RETURN_PACKET_ALL -> servo returns packet for all commands sent; RETURN_PACKET_NONE -> servo never retunrs state packet; RETURN_PACKET_READ_INSTRUCTIONS -> servo answer packet state when a READ command is sent (to read position, temperature, etc)
    * @see addToPacket()
@@ -138,6 +149,7 @@ void ServoRHA::addReturnOptionToPacket(uint8_t *buffer, uint8_t option) {
 }
 
 /** @brief Adds this servo torque command to a buffer with his own information. This function is used to send just one packet for all servos instead of each sending their respective information
+  * @method ServoRHA::addTorqueToPacket
   * @param {uint8_t *} buffer is the buffer in which the information will be added (by reference)
   * @see addToPacket()
   */
@@ -154,6 +166,7 @@ bool ServoRHA::addTorqueToPacket(uint8_t *buffer) {
 
 /**
  * @brief Adds to buffer information about the torque option (on or off)
+ * @method ServoRHA::setTorqueOnOfToPacket
  * @param buffer array in which add the information
  * @param onOff  ON = 1; OFF = 0;
  */
@@ -167,6 +180,7 @@ void ServoRHA::setTorqueOnOfToPacket(uint8_t *buffer, uint8_t onOff) {
 
 /**
  * @brief Adds to buffer information to set wheel mode for servo
+ * @method ServoRHA::setWheelModeToPacket
  * @param buffer array in which add the information
  * @see exitWheelModeToPacket()
  * @see wheelModeToPacket()
@@ -178,6 +192,7 @@ void ServoRHA::setWheelModeToPacket(uint8_t *buffer) {
 
 /**
  * @brief Adds to buffer information to exit wheel mode for servo
+ * @method ServoRHA::exitWheelModeToPacket
  * @param buffer array in which add the information
  * @see setWheelModeToPacket()
  * @see wheelModeToPacket()
@@ -206,11 +221,22 @@ void ServoRHA::wheelModeToPacket(uint8_t *buffer, uint16_t CW_angle, uint16_t CC
     addToPacket(buffer, txBuffer, 5);
 }
 
+/**
+ * @brief Arranges data array to ping action
+ * @method ServoRHA::pingToPacket
+ * @param  buffer  Array in which to store the data
+ */
 void ServoRHA::pingToPacket(uint8_t *buffer) {
     uint8_t txBuffer[1] = {0};
     addToPacket(buffer, txBuffer, 0);
 }
 
+/**
+ * @brief Arranges data packet with torque limit
+ * @method ServoRHA::setTorqueLimitToPacket
+ * @param  buffer  Array in which to store the data
+ * @param  torque_limit  Torque limit to set
+ */
 void ServoRHA::setTorqueLimitToPacket(uint8_t *buffer, uint16_t torque_limit) {
     uint8_t txBuffer[3];
 
@@ -221,6 +247,13 @@ void ServoRHA::setTorqueLimitToPacket(uint8_t *buffer, uint16_t torque_limit) {
 
 }
 
+/**
+ * @brief Makes packet with speed goal with set direction
+ * @method ServoRHA::setWheelSpeedToPacket
+ * @param  buffer  Array in which to store the data
+ * @param  speed   Speed to set
+ * @param  direction   Direction in which servo will move
+ */
 void ServoRHA::setWheelSpeedToPacket(uint8_t *buffer, uint16_t speed, uint8_t direction) {
     uint8_t txBuffer[3];
 

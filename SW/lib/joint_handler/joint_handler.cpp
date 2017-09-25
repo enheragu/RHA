@@ -17,7 +17,8 @@ boolean hardwareSerial_ = false;
 SoftwareSerial* G15Serial_;
 
 /**
-  * @brief
+  * @brief Constructor with timer info
+  * @method JointHandler::JointHandler
   */
 JointHandler::JointHandler(uint64_t timer) {
     control_loop_timer_.setTimer(timer);
@@ -26,7 +27,7 @@ JointHandler::JointHandler(uint64_t timer) {
 /**
  * @brief Initialices timer from control_loop
  * @method JointHandler::init
- * @param  timer              [description]
+ * @param  timer              time in ms for control loop
  */
 void JointHandler::setTimer(uint64_t timer) {
     DebugSerialJHLn("setTimer: begin of function");
@@ -35,7 +36,7 @@ void JointHandler::setTimer(uint64_t timer) {
 }
 
 /**
- * @brief Initialices joints
+ * @brief Initialices joints with ID, up direction and potentiometer pin. Sets wheel mode to all servo
  * @method JointHandler::initJoints
  */
 void JointHandler::initJoints() {
@@ -71,6 +72,7 @@ void JointHandler::controlLoop() {
 /**
  * @brief Updates internal information from all joint.
  * @method JointHandler::updateJointInfo
+ * @see JointRHA::updateJointInfo
  */
 void JointHandler::updateJointInfo() {
     DebugSerialJHLn("updateJointInfo: begin of function");
@@ -98,7 +100,7 @@ void JointHandler::updateJointErrorTorque() {
 }
 
 /**
- * @brief handles the packet construction and sent for all joint torques
+ * @brief handles the packet construction and sent for all joint torques (torque goal saved in each servo)
  * @method JointHandler::sendJointTorques
  */
 void JointHandler::sendJointTorques() {
@@ -130,6 +132,10 @@ void JointHandler::setSpeedGoal(RHATypes::SpeedGoal goal) {
 
 }
 
+/**
+ * @brief Sets wheel mode for all servo
+ * @method JointHandler::sendSetWheelModeAll
+ */
 void JointHandler::sendSetWheelModeAll() {
     DebugSerialJHLn("sendSetWheelModeAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
@@ -160,6 +166,10 @@ void JointHandler::sendSetWheelModeAll() {
     eeprom_timer.checkWait();
 }
 
+/**
+ * @brief Exit wheel mode for all servo
+ * @method JointHandler::sendExitWheelModeAll
+ */
 void JointHandler::sendExitWheelModeAll() {
     DebugSerialJHLn("sendExitWheelModeAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
@@ -173,6 +183,11 @@ void JointHandler::sendExitWheelModeAll() {
 }
 
 // NOTE: testing purposes
+/**
+ * @brief Sets torque limit to all servo
+ * @method JointHandler::sendSetTorqueLimitAll
+ * @param  torque_limit    torque limit to set
+ */
 void JointHandler::sendSetTorqueLimitAll(uint16_t torque_limit) {
     DebugSerialJHLn("sendSetTorqueLimitAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
@@ -186,6 +201,12 @@ void JointHandler::sendSetTorqueLimitAll(uint16_t torque_limit) {
 }
 
 // NOTE: testing purposes
+/**
+ * @brief Interface to send speed (in wheel mode this means torque) to servos
+ * @method JointHandler::sendSetWheelSpeedAll
+ * @param  speed        speed/torque to set
+ * @param  direction    direction CW (clocwise) or CCW (counterclockwise)
+ */
 void JointHandler::sendSetWheelSpeedAll(uint16_t speed, uint8_t direction) {
     DebugSerialJHLn("sendSetWheelSpeedAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
@@ -199,6 +220,11 @@ void JointHandler::sendSetWheelSpeedAll(uint16_t speed, uint8_t direction) {
 }
 
 // NOTE: testing purposes
+/**
+ * @brief checks if can conect with all servo
+ * @method JointHandler::checkConectionAll
+ * @return retunrs true if the conection with all servo was succesfull. Returns false if failed with any of them
+ */
 bool JointHandler::checkConectionAll() {
     DebugSerialJHLn("checkConectionAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
@@ -216,8 +242,9 @@ bool JointHandler::checkConectionAll() {
 /**
  * @brief Adds data to common buffer. Intended to put commands from all servo into one packet
  * @method JointHandler::addToSyncPacket
- * @param  buffer array to write all the info
- * @param  data   contains data to copy
+ * @param  {uint8_t *} buffer array to write all the info
+ * @param  {uint8_t *} data   contains data to copy
+ * @param  {uint8_t} num_bytes   number of bytes tha have been written
  * @return        returns length copied in bytes
  */
 uint8_t JointHandler::addToSyncPacket(uint8_t *buffer, uint8_t *data, uint8_t num_bytes) {
@@ -233,12 +260,14 @@ uint8_t JointHandler::addToSyncPacket(uint8_t *buffer, uint8_t *data, uint8_t nu
 
 /** @brief wrapPacket adds information needed once all servos had been aded (header, ID, instruction...). This function is used to send just one packet for all servos instead of each sending their respective information
   * @method JointHandler::warpSyncPacket
-  * @param {uint8_t} instruction is the instruction to send
   * @param {uint8_t *} buffer is the data that have been completed by each servo (by reference)
+  * @param {uint8_t} adress Direction of servo register in which to write/read...
+  * @param {uint8_t *} txBuffer data warped and ready to send
   * @param {uint8_t} num_bytes is the length of data
   * @param {uint8_t} num_servo how many servos had been added to this packet
+  * @see JointHandler::sendPacket()
   */
-void JointHandler::warpSyncPacket(uint8_t *buffer, uint8_t address, uint8_t *txBuffer, uint8_t num_bytes, uint8_t num_servo) {
+void JointHandler::warpSyncPacket(uint8_t *buffer, uint8_t adress, uint8_t *txBuffer, uint8_t num_bytes, uint8_t num_servo) {
     DebugSerialJHLn("warpSyncPacket: begin of function");
 
     uint8_t i;
@@ -249,7 +278,7 @@ void JointHandler::warpSyncPacket(uint8_t *buffer, uint8_t address, uint8_t *txB
     txBuffer[2] = ALL_SERVO;      checksum +=  txBuffer[2];
     txBuffer[3] = num_bytes+4;     checksum +=  txBuffer[3];
     txBuffer[4] = iSYNC_WRITE;    checksum +=  txBuffer[4];
-    txBuffer[5] = address;    checksum +=  txBuffer[5];
+    txBuffer[5] = adress;    checksum +=  txBuffer[5];
     txBuffer[6] = (num_bytes/num_servo) - 1;     checksum +=  txBuffer[6];
     // num_bytes is bytes in packet + servo ID in all servo. Divided by num servo is just for one servo. Servo ID is sustracted ( - 1 )
     for (i = 0; i < num_bytes; i++) {
@@ -259,6 +288,14 @@ void JointHandler::warpSyncPacket(uint8_t *buffer, uint8_t address, uint8_t *txB
     txBuffer[i + 7] = ~checksum;                 // Checksum with Bit Inversion
 }
 
+/**
+ * @brief Warps packet info with the information needed for the comunication
+ * @method JointHandler::warpSinglePacket
+ * @param  instruction Instruction of how to access servo register (iREAD_DATA, iREG_WRITE, iWRITE_DATA...)
+ * @param {uint8_t *} buffer                         data to warp
+ * @param {uint8_t *} txBuffer                       data warped and ready to send
+ * @see JointHandler::sendPacket()
+ */
 void JointHandler::warpSinglePacket(uint8_t instruction, uint8_t *buffer, uint8_t *txBuffer) {
     DebugSerialJHLn("warpSinglePacket: begin of function");
     uint8_t i;
@@ -279,10 +316,9 @@ void JointHandler::warpSinglePacket(uint8_t instruction, uint8_t *buffer, uint8_
 }
 
 /**
- * @brief Function to send to bus information contained in buffer param (just for one servo). Contains logic to read data in case it is needed
+ * @brief Function to send to bus information contained in buffer param. Contains logic to read data in case it is needed
  * @method JointHandler::sendPacket
- * @param  instruction instruction for servo register (iREAD_DATA, iREG_WRITE, iWRITE_DATA...)
- * @param  buffer      array with all the information to send, if info is read it will be copied here
+ * @param {uint8_t *} buffer      array with all the information to send, if info is read it will be copied here
  * @return             error in comunication
  */
 uint16_t JointHandler::sendPacket(uint8_t *txBuffer) {
@@ -383,18 +419,39 @@ uint16_t JointHandler::sendPacket(uint8_t *txBuffer) {
  *        Inherited from Cytron Library        *
  ***********************************************/
 
+/**
+ * @brief Constructor with custom software serial.
+ * @method JointHandler::JointHandler
+ * @param  rxpin                    RX pin for serial comunication
+ * @param  txpin                    TX pin for serial comunication
+ * @param  ctrlpin                  control pin for serial comunication
+ */
 JointHandler::JointHandler(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin) {
      rxpin_shield_ = rxpin;
      txpin_shield_ = txpin;
      ctrlpin_shield_ = ctrlpin;
 }
 
+/**
+ * @brief Constructor with default hardwareSerial (RX in pin 0, TX in pin 1) and with set control pin
+ * @method JointHandler::JointHandler
+ * @param  ctrlpin                    control pin for serial comunication
+ */
 JointHandler::JointHandler(uint8_t ctrlpin) {
      rxpin_shield_ = 0;
      txpin_shield_ = 1;
      ctrlpin_shield_ = ctrlpin;
 }
 
+/**
+ * @brief Method to set serial data (rx, tx, ctrlpin and baudrate) to init communication
+ * @method JointHandler::initSerial
+ * @param  rxpin                    RX pin for serial comunication
+ * @param  txpin                    TX pin for serial comunication
+ * @param  ctrlpin                  control pin for serial comunication
+ * @param  baudrate                 Baudrate in which to communicate
+ * @see JointHandler::begin()
+ */
 void JointHandler::initSerial(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate){
      DebugSerialJHLn("initSerial: begin of function");
      rxpin_shield_ = rxpin;
@@ -403,6 +460,11 @@ void JointHandler::initSerial(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uin
      begin(baudrate);
 }
 
+/**
+ * @brief Cpnfigures comunication at a set baudrate. Sets the serial port
+ * @method JointHandler::begin
+ * @param  baudrate            Baudrate in which to communicate
+ */
 void JointHandler::begin(uint32_t baudrate) {
      DebugSerialJHLn2("begin: begin at baudrate: ", baudrate);
    if (rxpin_shield_ == 0 &&txpin_shield_ == 1) {

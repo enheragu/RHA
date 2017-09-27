@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: joint_handler.cpp
  * @Last modified by:   quique
- * @Last modified time: 25-Sep-2017
+ * @Last modified time: 26-Sep-2017
  */
 
 // #include "HardwareSerial.h"
@@ -95,7 +95,8 @@ void JointHandler::updateJointInfo() {
 void JointHandler::updateJointErrorTorque() {
     DebugSerialJHLn("updateJointErrorTorque: begin of function");
     for(uint8_t i = 0; i < NUM_JOINT; i++) {
-        joint_[i].servo_.calculateTorque(joint_[i].speedError());
+        joint_[i].speedError();
+        joint_[i].servo_.calculateTorque(joint_[i].getError(), joint_[i].getDError(), joint_[i].getIError());
     }
 }
 
@@ -212,7 +213,7 @@ void JointHandler::sendSetWheelSpeedAll(uint16_t speed, uint8_t direction) {
     uint8_t buffer[BUFFER_LEN];
     uint8_t txBuffer[BUFFER_LEN];
     for(uint8_t i = 0; i < NUM_JOINT; i++) {
-        joint_[i].servo_.setWheelModeToPacket(buffer);
+        joint_[i].servo_.setWheelSpeedToPacket(buffer,speed,direction);
         warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
         uint16_t error = sendPacket(txBuffer);
         DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
@@ -328,6 +329,7 @@ uint16_t JointHandler::sendPacket(uint8_t *txBuffer) {
     uint8_t packetLength = 0;
     uint8_t parameterLength = 0;
     uint8_t status[BUFFER_LEN];
+    uint8_t txBuffer_print[BUFFER_LEN];
     uint8_t checksum = 0;  // Checksum = ~(ID + Length + Instruction + Parameter1 + ... + Parameter n)
     uint16_t error = 0;
 
@@ -342,14 +344,10 @@ uint16_t JointHandler::sendPacket(uint8_t *txBuffer) {
         Serial.flush();
     } else {
         G15Serial_->listen();
-        Serial.println("- Packet Sent: ");
-        Serial.print("  [");
         for (i = 0; i < packetLength; i++) {
             G15Serial_->write(txBuffer[i]);
-            Serial.print(", "); Serial.print("0x"); Serial.print(txBuffer[i], HEX);
+            txBuffer_print[i] = txBuffer[i];
         }
-        Serial.println("]");
-        Serial.println("");
         G15Serial_->flush();
     }
 
@@ -370,13 +368,13 @@ uint16_t JointHandler::sendPacket(uint8_t *txBuffer) {
             readCount = G15Serial_->readBytes(status, packetLength);
         }
 
-        Serial.println("- Packet received: ");
-        Serial.print("  [");
-        for (i = 0; i < packetLength; i++) {
-            Serial.print(", "); Serial.print("0x"); Serial.print(status[i], HEX);
-        }
-        Serial.println("]");
-        Serial.println("");
+        // Serial.println("- Packet received: ");
+        // Serial.print("  [");
+        // for (i = 0; i < packetLength; i++) {
+            // Serial.print(", "); Serial.print("0x"); Serial.print(status[i], HEX);
+        // }
+        // Serial.println("]");
+        // Serial.println("");
         setTxMode();
 
         error = 0;
@@ -411,6 +409,21 @@ uint16_t JointHandler::sendPacket(uint8_t *txBuffer) {
             }
         }
     }
+    /*Serial.println("- Packet Sent: ");
+    Serial.print("  [");
+    for(i = 0; i < packetLength; i++) {
+        Serial.print(", "); Serial.print("0x"); Serial.print(txBuffer_print[i], HEX);
+    }
+    Serial.println("]");
+    Serial.println("");
+
+    Serial.println("- Packet received: ");
+    Serial.print("  [");
+    for (i = 0; i < packetLength; i++) {
+        Serial.print(", "); Serial.print("0x"); Serial.print(status[i], HEX);
+    }
+    Serial.println("]");
+    Serial.println("");*/
     return(error);
 }
 

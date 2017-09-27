@@ -9,7 +9,7 @@
  * @Project: RHA
  * @Filename: utilities.h
  * @Last modified by:   quique
- * @Last modified time: 24-Sep-2017
+ * @Last modified time: 27-Sep-2017
  */
 
 #include "debug.h"
@@ -23,7 +23,6 @@
     #define SPEED_TARGET 80  // speed target in rpm
     #define KP_REGULATOR 150  // kp for extractRegulatorData function
     #define LOOP_FREQUENCY 100  // in ms
-    #define SAMPLE_REGULATOR 150 // samples taken every LOOP_FREQUENCY
     #define BAUD_RATE_G15 57600
 
     #define CHAUVENET_REPETITIONS 50  // too many repetitions cause memory overfload
@@ -79,7 +78,7 @@ void JHUtilitiesJH::initJoints(uint8_t joint_to_test) {
     servo_broadcast.pingToPacket(buffer);
     JointHandler::warpSinglePacket(iPING, buffer, txBuffer);
     error_ = sendPacket(txBuffer);
-    IDcurrent_ = 0; //txBuffer[0];
+    IDcurrent_ = txBuffer[0];
     DebugSerialUtilitiesLn2("ID from servo is: ", IDcurrent_);
     if (error_ != 0 && error_ != SERROR_IDMISMATCH){  // Ignore ID mismatch as we broadcast to all servo
         DebugSerialJHLn4Error(error_, ALL_SERVO);
@@ -98,25 +97,102 @@ void JHUtilitiesJH::initJoints(uint8_t joint_to_test) {
  */
 void JHUtilitiesJH::extractRegulatorData(uint8_t joint_to_test) {
     float kp_samples[SAMPLE_KP] = KP_SAMPLES;  // macro defined in the top of utilities.h
+    float ki_samples[SAMPLE_KP] = KI_SAMPLES;  // macro defined in the top of utilities.h
+    float kd_samples[SAMPLE_KP] = KD_SAMPLES;  // macro defined in the top of utilities.h
 
-    RHATypes::SpeedGoal speed_goal(1,50,0,CW);  // Id, speed, speed_slope
+    JointHandler::sendExitWheelModeAll();
+    delay(25);
+    JointHandler::sendSetWheelModeAll();
+    RHATypes::SpeedGoal speed_goal(1,80,0,CW);  // Id, speed, speed_slope
     setSpeedGoal(speed_goal);
     for (uint8_t samples = 0; samples < SAMPLE_KP; samples++) {
-        joint_[joint_to_test].servo_.speed_regulator_.setKRegulator(kp_samples[samples],0,0);  // KP_SAMPLES(a) defined in the top of utilities.h
+        joint_[joint_to_test].servo_.speed_regulator_.setKRegulator(kp_samples[samples],ki_samples[samples],kd_samples[samples]);  // KP_SAMPLES(a) defined in the top of utilities.h
         Serial.print("n_data"); Serial.print(samples); Serial.print(" = "); Serial.println(SAMPLE_REGULATOR);
         Serial.print("speed_target"); Serial.print(samples); Serial.print("  = "); Serial.println(joint_[joint_to_test].getSpeedTarget());
+        Serial.print("regulator_offset"); Serial.print(samples); Serial.print("  = "); Serial.println(TORQUE_OFFSET);
         Serial.print("regulatorTest"); Serial.print(samples); Serial.print("  = [");
-        Serial.print("['"); Serial.print(joint_[joint_to_test].servo_.speed_regulator_.getKp()); Serial.print("']");
+        Serial.print("['"); Serial.print(joint_[joint_to_test].servo_.speed_regulator_.getKp()); Serial.print("','"); Serial.print(joint_[joint_to_test].servo_.speed_regulator_.getKi()); Serial.print("','"); Serial.print(joint_[joint_to_test].servo_.speed_regulator_.getKd());
+        Serial.print("']");
+
+        JointHandler::sendSetWheelModeAll();
 
         for (int counter = 0; counter < SAMPLE_REGULATOR; counter++) {
             unsigned long time_init = millis();
             JointHandler::controlLoop();
+            int speed = 0;
             Serial.print(",['"); Serial.print(joint_[joint_to_test].servo_.getSpeed()); Serial.print("','");
             Serial.print(time_init); Serial.println("']\\");
         }
 
+
+        JointHandler::sendExitWheelModeAll();
+        delay(1000);
+
         Serial.println("]");
     }
+    return;
+}
+
+
+void JHUtilitiesJH::extractStepInputData(uint8_t joint_to_test) {
+
+    JointHandler::sendExitWheelModeAll();
+    delay(25);
+
+
+    Serial.println("stepTest = []");
+    Serial.print("n_samples_step"); Serial.print(" = "); Serial.println(SAMPLE_TEST_STEP);
+    Serial.print("n_data_step"); Serial.print(0); Serial.print(" = "); Serial.println(SAMPLE_STEP);
+    for (uint8_t samples = 0; samples < SAMPLE_TEST_STEP; samples++) {
+        Serial.print("stepTest.append(");  Serial.print(" [0");
+        JointHandler::sendSetWheelModeAll();
+        JointHandler::updateJointInfo();
+        for (int counter = 0; counter < SAMPLE_STEP; counter++) {
+            unsigned long time_init = millis();
+            JointHandler::updateJointInfo();
+            JointHandler::sendSetWheelSpeedAll(STEP_SPEED,CW);
+            Serial.print(",['"); Serial.print(joint_[joint_to_test].servo_.getSpeed()); Serial.print("','"); Serial.print(STEP_SPEED); Serial.print("','");
+            Serial.print(time_init); Serial.println("']\\");
+        }
+
+        Serial.println(" ] ) ");
+        JointHandler::sendExitWheelModeAll();
+        delay(2000);
+    }
+
+    return;
+}
+
+
+void JHUtilitiesJH::extractSlopeInputData(uint8_t joint_to_test) {
+
+    JointHandler::sendExitWheelModeAll();
+    delay(25);
+
+
+    Serial.println("slopeTest = []");
+    Serial.print("n_samples_slope"); Serial.print(" = "); Serial.println(SAMPLE_TEST_SLOPE);
+    Serial.print("n_data_slope"); Serial.print(0); Serial.print(" = "); Serial.println(SAMPLE_STEP);
+    JointHandler::updateJointInfo();
+    for (uint8_t samples = 0; samples < SAMPLE_TEST_SLOPE; samples++) {
+        JointHandler::sendSetWheelModeAll();
+        Serial.print("slopeTest.append("); Serial.print(" [0");
+        unsigned long time_init = 0;
+        time_init = millis();
+        for (int counter = 0; counter < SAMPLE_SLOPE; counter++) {
+            int torque = SLOPE_SPEED*(millis() - time_init);
+            if (torque > 1023) torque = 1023;
+            JointHandler::updateJointInfo();
+            JointHandler::sendSetWheelSpeedAll(torque,CW);
+            Serial.print(",['"); Serial.print(joint_[joint_to_test].servo_.getSpeed()); Serial.print("','"); Serial.print(torque); Serial.print("','");
+            Serial.print(millis()); Serial.println("']\\");
+        }
+
+        Serial.println("] )");
+        JointHandler::sendExitWheelModeAll();
+        delay(2000);
+    }
+
     return;
 }
 

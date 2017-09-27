@@ -108,7 +108,7 @@ void ServoRHA::calculateTorque(float error, float derror, float ierror) {
     goal_torque_ = torque;
 
     if (direction == CW) {
-        goal_torque_ = goal_torque_ | 0x0400;
+        //goal_torque_ = goal_torque_ | 0x0400;
     }
 }
 
@@ -262,7 +262,7 @@ void ServoRHA::setWheelSpeedToPacket(uint8_t *buffer, uint16_t speed, uint8_t di
         speed = speed | 0x0400;
     }
 
-    txBuffer[0] = ServoRHAConstants::TORQUE_LIMIT_L;
+    txBuffer[0] = ServoRHAConstants::MOVING_SPEED_L;
     txBuffer[1] = speed & 0x00FF;  // Torque limit bottom 8 bits
     txBuffer[2] = speed >> 8;  // Torque limit top 8 bits
     addToPacket(buffer, txBuffer, 3);

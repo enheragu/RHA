@@ -4,7 +4,7 @@
  * @Project: RHA
  * @Filename: main.cpp
  * @Last modified by:   quique
- * @Last modified time: 24-Sep-2017
+ * @Last modified time: 26-Sep-2017
  */
 
 
@@ -27,24 +27,30 @@
 JHUtilitiesJH joint_handler;
 
 void setup() {
+  delay(2000);
   Serial.begin(9600);
-  Serial.println("Setup begin");
+  Serial.println("# Setup begin");
 
   joint_handler.setTimer(50);
   joint_handler.initSerial(2,3,8);
   joint_handler.initJoints(0);
-  Serial.print("Id for servo is: "); Serial.println(joint_handler.joint_[0].servo_.getID());
+  Serial.print("# Id for servo is: "); Serial.println(joint_handler.joint_[0].servo_.getID());
 
   joint_handler.updateJointInfo();
   delay(5000);
-  Serial.println("Setup done");
+  Serial.println("# Setup done");
 }
 
 void loop() {
     //joint_handler.extractRegulatorData(0);
-    //while (true) {
-
-    //}
+    joint_handler.extractStepInputData(0);
+    Serial.println(" "); Serial.println("########################################################"); Serial.println(" ");
+    joint_handler.extractSlopeInputData(0);
+    Serial.println(" ");
+    Serial.println("########################################################");
+    Serial.println("################## End of test #########################");
+    while (true) {
+    }
 }
 /**
 void loop(){

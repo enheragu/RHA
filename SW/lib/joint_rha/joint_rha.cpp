@@ -6,7 +6,7 @@
  * @Project: RHA
  * @Filename: joint_rha.cpp
  * @Last modified by:   quique
- * @Last modified time: 23-Sep-2017
+ * @Last modified time: 26-Sep-2017
  */
 
 #include "joint_rha.h"
@@ -68,9 +68,8 @@ uint8_t JointRHA::setSpeedGoal(RHATypes::SpeedGoal goal) {
 
 /**
  * @brief Calculates error to send to servo regulator
- * @return {uint8_t} returns error between actual position and target position
  */
-float JointRHA::speedError() {
+void JointRHA::speedError() {
     uint16_t speed = 0;
     if (speed_slope_ != 0) {
         speed = (float)servo_.getSpeed() + (float)(millis() - time_last_) * speed_slope_;
@@ -79,7 +78,10 @@ float JointRHA::speedError() {
     } else speed = speed_target_;
     int8_t sign = 1;
     if (direction_target_ != servo_.getSpeedDir()) sign = -1;
-    return (sign*((float)speed - (float)servo_.getSpeed()));
+    error_ = (sign*((float)speed - (float)servo_.getSpeed()));
+    derror_ = ( error_ - last_error_ ) / (millis() - time_last_error_);
+    ierror_ = error_ * (millis() - time_last_error_);
+    last_error_ = error_;
 }
 
 /**

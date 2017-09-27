@@ -10,7 +10,7 @@
  * @Project: RHA
  * @Filename: debug.h
  * @Last modified by:   quique
- * @Last modified time: 23-Sep-2017
+ * @Last modified time: 26-Sep-2017
  */
 
 #ifndef DEBUG_H
@@ -61,7 +61,7 @@
 // #define DEBUG_SERVO_RHA
 // #define DEBUG_TEST_SERVO_RHA
 // #define DEBUG_TEST_JOINT_RHA
- #define DEBUG_JOINT_HANDLER
+// #define DEBUG_JOINT_HANDLER
 // #define DEBUG_CYTRON_G15_SERVO
 // #define DEBUG_TEST_CYTRON_G15_SERVO
  #define DEBUG_UTILITIES
@@ -126,10 +126,10 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
 
 /** DEBUG_UTILITIES implements debug macros for utilities.h file */
 #ifdef DEBUG_UTILITIES
-    #define DebugSerialUtilitiesLn(a) {  Serial.print("[DC]  Utilities::"); Serial.println(a); }
-    #define DebugSerialUtilitiesLn2(a, b) {  Serial.print("[DC]  Utilities::"); Serial.print(a); Serial.println(b); }
-    #define DebugSerialUtilities(a) {  Serial.print("[DC]  Utilities::"); Serial.print(a); }
-    #define DebugSerialUtilitiesLn4(a, b, c, d) {  Serial.print("[DC]  Utilities::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+    #define DebugSerialUtilitiesLn(a) {  Serial.print("#[DC]  Utilities::"); Serial.println(a); }
+    #define DebugSerialUtilitiesLn2(a, b) {  Serial.print("#[DC]  Utilities::"); Serial.print(a); Serial.println(b); }
+    #define DebugSerialUtilities(a) {  Serial.print("#[DC]  Utilities::"); Serial.print(a); }
+    #define DebugSerialUtilitiesLn4(a, b, c, d) {  Serial.print("#[DC]  Utilities::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
 #else
     #define DebugSerialUtilitiesLn(a)
     #define DebugSerialUtilitiesLn2(a, b)

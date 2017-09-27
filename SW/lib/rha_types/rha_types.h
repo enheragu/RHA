@@ -73,7 +73,7 @@ namespace RHATypes {
          * @param  error     error
          * @param  derror    derivative error
          * @param  ierror    integral error
-         * @return           returns output of regulator 
+         * @return           returns output of regulator
          */
         float regulator(float error, float derror = 0, float ierror = 0) {
             ierror_[index_] = ierror;
@@ -86,6 +86,8 @@ namespace RHATypes {
         }
 
         float getKp() { return kp_; }
+        float getKi() { return ki_; }
+        float getKd() { return kd_; }
     };  // end class Regulator
 
     /**

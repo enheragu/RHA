@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: servo_rha.cpp
  * @Last modified by:   quique
- * @Last modified time: 26-Sep-2017
+ * @Last modified time: 28-Sep-2017
  */
 
 #include "servo_rha.h"
@@ -102,7 +102,7 @@ void ServoRHA::calculateTorque(float error, float derror, float ierror) {
         if (speed_dir_ == CCW) direction = CW;
         else if (speed_dir_ == CW) direction = CCW;
     }
-    torque = abs(torque);
+    torque = abs(torque) + TORQUE_OFFSET;
     if (torque > 1023) torque = 1023;  // compensate saturation of servos
 
     goal_torque_ = torque;

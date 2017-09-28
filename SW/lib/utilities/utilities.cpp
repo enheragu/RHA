@@ -9,7 +9,7 @@
  * @Project: RHA
  * @Filename: utilities.h
  * @Last modified by:   quique
- * @Last modified time: 27-Sep-2017
+ * @Last modified time: 28-Sep-2017
  */
 
 #include "debug.h"
@@ -103,7 +103,7 @@ void JHUtilitiesJH::extractRegulatorData(uint8_t joint_to_test) {
     JointHandler::sendExitWheelModeAll();
     delay(25);
     JointHandler::sendSetWheelModeAll();
-    RHATypes::SpeedGoal speed_goal(1,80,0,CW);  // Id, speed, speed_slope
+    RHATypes::SpeedGoal speed_goal(1,SPEED_REGULATOR_TEST,0,CW);  // Id, speed, speed_slope
     setSpeedGoal(speed_goal);
     for (uint8_t samples = 0; samples < SAMPLE_KP; samples++) {
         joint_[joint_to_test].servo_.speed_regulator_.setKRegulator(kp_samples[samples],ki_samples[samples],kd_samples[samples]);  // KP_SAMPLES(a) defined in the top of utilities.h
@@ -121,7 +121,18 @@ void JHUtilitiesJH::extractRegulatorData(uint8_t joint_to_test) {
             JointHandler::controlLoop();
             int speed = 0;
             Serial.print(",['"); Serial.print(joint_[joint_to_test].servo_.getSpeed()); Serial.print("','");
-            Serial.print(time_init); Serial.println("']\\");
+            Serial.print(time_init);
+            Serial.print("','");
+            Serial.print(joint_[joint_to_test].servo_.getGoalTorque());
+            Serial.print("','");
+            Serial.print(joint_[joint_to_test].servo_.getSpeed());
+            Serial.println("']\\");
+
+
+            if(joint_[joint_to_test].servo_.getError() != 0) {
+                DebugSerialJHLn4Error(joint_[joint_to_test].servo_.getError(), joint_[joint_to_test].servo_.getID());
+                // return;
+            }
         }
 
 
@@ -137,7 +148,7 @@ void JHUtilitiesJH::extractRegulatorData(uint8_t joint_to_test) {
 void JHUtilitiesJH::extractStepInputData(uint8_t joint_to_test) {
 
     JointHandler::sendExitWheelModeAll();
-    delay(25);
+    delay(500);
 
 
     Serial.println("stepTest = []");
@@ -167,12 +178,12 @@ void JHUtilitiesJH::extractStepInputData(uint8_t joint_to_test) {
 void JHUtilitiesJH::extractSlopeInputData(uint8_t joint_to_test) {
 
     JointHandler::sendExitWheelModeAll();
-    delay(25);
+    delay(500);
 
 
     Serial.println("slopeTest = []");
     Serial.print("n_samples_slope"); Serial.print(" = "); Serial.println(SAMPLE_TEST_SLOPE);
-    Serial.print("n_data_slope"); Serial.print(0); Serial.print(" = "); Serial.println(SAMPLE_STEP);
+    Serial.print("n_data_slope"); Serial.print(0); Serial.print(" = "); Serial.println(SAMPLE_SLOPE);
     JointHandler::updateJointInfo();
     for (uint8_t samples = 0; samples < SAMPLE_TEST_SLOPE; samples++) {
         JointHandler::sendSetWheelModeAll();

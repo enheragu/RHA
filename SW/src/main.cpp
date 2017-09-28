@@ -4,7 +4,7 @@
  * @Project: RHA
  * @Filename: main.cpp
  * @Last modified by:   quique
- * @Last modified time: 26-Sep-2017
+ * @Last modified time: 28-Sep-2017
  */
 
 
@@ -42,10 +42,10 @@ void setup() {
 }
 
 void loop() {
-    //joint_handler.extractRegulatorData(0);
-    joint_handler.extractStepInputData(0);
+    joint_handler.extractRegulatorData(0);
+    //joint_handler.extractStepInputData(0);
     Serial.println(" "); Serial.println("########################################################"); Serial.println(" ");
-    joint_handler.extractSlopeInputData(0);
+    //joint_handler.extractSlopeInputData(0);
     Serial.println(" ");
     Serial.println("########################################################");
     Serial.println("################## End of test #########################");

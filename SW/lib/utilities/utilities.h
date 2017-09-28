@@ -9,7 +9,7 @@
  * @Project: RHA
  * @Filename: utilities.h
  * @Last modified by:   quique
- * @Last modified time: 27-Sep-2017
+ * @Last modified time: 28-Sep-2017
  */
 
 #include "debug.h"
@@ -31,14 +31,17 @@ namespace ServoUtilities {
 
 namespace RegulatorTestData {
     #define SAMPLE_REGULATOR 500
+    #define SPEED_REGULATOR_TEST 120
     #define SAMPLE_KP 6
-    #define KP_SAMPLES {1.6,  20,  20,  20,  20,  20};  // Mixed presentation
-    #define KD_SAMPLES {0,    0,    1,  15,  15,  15};  // Mixed presentation
-    #define KI_SAMPLES {0,    0,    0,   0, 0.1,   1};  // Mixed presentation
+    // #define KP_SAMPLES {1.6,  20,  20,  20,  20,  20};  // Mixed presentation
+    // #define KD_SAMPLES {0,    0,    1,  15,  15,  15};  // Mixed presentation
+    // #define KI_SAMPLES {0,    0,    0,   0, 0.1,   1};  // Mixed presentation
 
     // #define KP_SAMPLES {20, 50, 70, 90, 110, 130};  // 6
     // #define KP_SAMPLES {20, 20, 20, 20, 20, 20};  // 2, 3, 4, 5, 7
-    // #define KP_SAMPLES {1.66, 5, 10, 20, 50, 100};  // 1
+     #define KP_SAMPLES {1.66, 5, 10, 20, 50, 100};  // 1
+     #define KD_SAMPLES {0,0,0,0,0,0};  // 1
+     #define KI_SAMPLES {0,0,0,0,0,0};  // 1
     // #define KD_SAMPLES {15,15,15,15,15,15};  // 4, 5, 6 y 7
     // #define KD_SAMPLES {1,5,10,15,20,25};  // 3
     // #define KD_SAMPLES {1,2,3,4,5,6};  // 2
@@ -49,13 +52,13 @@ namespace RegulatorTestData {
 }  // End of RegulatorTestData namespace
 
 namespace StepTest {
-    #define SAMPLE_STEP 60
+    #define SAMPLE_STEP 80
     #define SAMPLE_TEST_STEP 20
     #define STEP_SPEED 1000
 }
 
 namespace SlopeTest {
-    #define SAMPLE_SLOPE 60
+    #define SAMPLE_SLOPE 80
     #define SAMPLE_TEST_SLOPE 20
     #define SLOPE_SPEED 1
 }

@@ -10,7 +10,7 @@
  * @Project: RHA
  * @Filename: debug.h
  * @Last modified by:   quique
- * @Last modified time: 26-Sep-2017
+ * @Last modified time: 28-Sep-2017
  */
 
 #ifndef DEBUG_H
@@ -116,13 +116,16 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
     #define DebugSerialJHLn(a) {  Serial.print("[DC]  JointHandler::"); Serial.println(a); }
     #define DebugSerialJHLn2(a, b) {  Serial.print("[DC]  JointHandler::"); Serial.print(a); Serial.println(b); }
     #define DebugSerialJHLn4(a, b, c, d) {  Serial.print("[DC]  JointHandler::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
-    #define DebugSerialJHLn4Error(a, b) { printServoStatusError(a, b); }
+    // #define DebugSerialJHLn4Error(a, b) { printServoStatusError(a, b); }
 #else
     #define DebugSerialJHLn(a)
     #define DebugSerialJHLn2(a, b)
     #define DebugSerialJHLn4(a, b, c, d)
-    #define DebugSerialJHLn4Error(a, b)
+    // #define DebugSerialJHLn4Error(a, b)
 #endif
+
+
+#define DebugSerialJHLn4Error(a, b) { printServoStatusError(a, b); }
 
 /** DEBUG_UTILITIES implements debug macros for utilities.h file */
 #ifdef DEBUG_UTILITIES

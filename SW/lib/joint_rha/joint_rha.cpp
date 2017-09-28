@@ -6,7 +6,7 @@
  * @Project: RHA
  * @Filename: joint_rha.cpp
  * @Last modified by:   quique
- * @Last modified time: 26-Sep-2017
+ * @Last modified time: 28-Sep-2017
  */
 
 #include "joint_rha.h"
@@ -82,6 +82,7 @@ void JointRHA::speedError() {
     derror_ = ( error_ - last_error_ ) / (millis() - time_last_error_);
     ierror_ = error_ * (millis() - time_last_error_);
     last_error_ = error_;
+    time_last_error_ = millis();
 }
 
 /**

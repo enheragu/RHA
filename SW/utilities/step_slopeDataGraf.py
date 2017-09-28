@@ -52,27 +52,31 @@ def makeRegulatorPlot (import_file, name):
         for index_all in range(0,module.n_samples_step):
             step_sum += int(module.stepTest[index_all][index_test][0])
             time_step_sum += (int(module.stepTest[index_all][index_test][2]) - int(module.stepTest[index_all][1][2]))
-        speed_current0.append(step_sum/(int(module.n_samples_step)-1))
-        time0.append(time_step_sum/(int(module.n_samples_step)-1))
+        speed_current0.append(step_sum/(int(module.n_samples_step)))
+        time0.append(time_step_sum/(int(module.n_samples_step)))
 
 
     for index_test in range(1,module.n_data_slope0):
         slope_sum = 0
         time_slope_sum = 0
         torque_slope_sum = 0
-        for index_all in range(0,module.n_samples_slope):
-            step_sum += int(module.slopeTest[index_all][index_test][0])
-            torque_slope_sum += int(module.slopeTest[index_all][index_test][1])
-            time_slope_sum += (int(module.slopeTest[index_all][index_test][2]) - int(module.slopeTest[index_all][1][2]))
-        speed_current1.append(slope_sum/(int(module.n_samples_slope)-1))
-        time1.append(time_slope_sum/(int(module.n_samples_slope)-1))
-        torque_target_array1.append((int(time_slope_sum)/(int(module.n_samples_slope)-1))/1.5)
+        for index_all in module.slopeTest:
+            slope_sum += int(index_all[index_test][0])
+            torque_slope_sum += int(index_all[index_test][1])
+            time_slope_sum += (int(index_all[index_test][2]) - int(index_all[1][2]))
+        #for index_all in range(0,module.n_samples_slope):
+        #    slope_sum += int(module.slopeTest[index_all][0][0])
+        #    torque_slope_sum += int(module.slopeTest[index_all][index_test][1])
+        #    time_slope_sum += (int(module.slopeTest[index_all][index_test][2]) - int(module.slopeTest[index_all][1][2]))
+        speed_current1.append(slope_sum/(int(module.n_samples_slope)))
+        time1.append(time_slope_sum/(int(module.n_samples_slope)))
+        torque_target_array1.append((int(torque_slope_sum)/(int(module.n_samples_slope)))/1.75)
 
 
-    [torque_target_array0.append( int(module.stepTest[0][index][1])/1.5 ) for index in range(1,module.n_data_step0)]
+    [torque_target_array0.append( int(module.stepTest[0][index][1])/1.72 ) for index in range(1,module.n_data_step0)]
 
     gs_top = plt.GridSpec(5, 1, top=0.95)
-    fig, (ax0, ax1) = plt.subplots(2,1, facecolor=light_grey_c)
+    fig, (ax0, ax1) = plt.subplots(2,1, sharex=True, facecolor=light_grey_c)
 
     label_ax0 = "Step test (average of 20 tests)"
     ax0.plot(time0, speed_current0, 'r-o', label=label_ax0, lw=2, color=red_c)
@@ -111,4 +115,4 @@ def makeRegulatorPlot (import_file, name):
 
 
 
-makeRegulatorPlot("step_slope_average_data_test_1", "Graficos Step_Slope Average. Test 1")
+makeRegulatorPlot("step_slope_average_data_test_2", "Graficos Step_Slope Average. Test 2")

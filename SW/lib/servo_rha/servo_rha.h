@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: servo_rha.h
- * @Last modified by:   enheragu
- * @Last modified time: 22_Sep_2017
+ * @Last modified by:   quique
+ * @Last modified time: 28-Sep-2017
  */
 
 
@@ -36,7 +36,7 @@ namespace ServoRHAConstants {
     #define RETURN_PACKET_NONE 0x00
     #define RETURN_PACKET_READ_INSTRUCTIONS 0x01
 
-    #define TORQUE_OFFSET 100  // under this torque servo does not move
+    #define TORQUE_OFFSET 80  // under this torque servo does not move
 
     #define CW 1
     #define CCW 0

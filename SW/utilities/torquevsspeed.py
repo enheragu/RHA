@@ -1,8 +1,9 @@
-# @Author: Enrique Heredia Aguado <enheragu>
-# @Date:   12-Sep-2017
+# @Author: Enrique Heredia Aguado <quique>
+# @Date:   28-Sep-2017
 # @Project: RHA
 # @Last modified by:   quique
 # @Last modified time: 28-Sep-2017
+
 
 
 from matplotlib import pyplot as plt
@@ -66,12 +67,12 @@ def makeRegulatorPlot (import_file, name):
     [speed_current4.append( module.regulatorTest4[index][0] ) for index in range(1,module.n_data0)]
     [speed_current5.append( module.regulatorTest5[index][0] ) for index in range(1,module.n_data0)]
     [speed_target_array.append( module.speed_target0 ) for index in range(1,module.n_data0)]
-    [time0.append( str(int(module.regulatorTest0[index][1])-time_normalizer0) ) for index in range(1,module.n_data0)]
-    [time1.append( str(int(module.regulatorTest1[index][1])-time_normalizer1) ) for index in range(1,module.n_data0)]
-    [time2.append( str(int(module.regulatorTest2[index][1])-time_normalizer2) ) for index in range(1,module.n_data0)]
-    [time3.append( str(int(module.regulatorTest3[index][1])-time_normalizer3) ) for index in range(1,module.n_data0)]
-    [time4.append( str(int(module.regulatorTest4[index][1])-time_normalizer4) ) for index in range(1,module.n_data0)]
-    [time5.append( str(int(module.regulatorTest5[index][1])-time_normalizer5) ) for index in range(1,module.n_data0)]
+    [time0.append( str(int(module.regulatorTest0[index][2])) ) for index in range(1,module.n_data0)]
+    [time1.append( str(int(module.regulatorTest1[index][2])) ) for index in range(1,module.n_data0)]
+    [time2.append( str(int(module.regulatorTest2[index][2])) ) for index in range(1,module.n_data0)]
+    [time3.append( str(int(module.regulatorTest3[index][2])) ) for index in range(1,module.n_data0)]
+    [time4.append( str(int(module.regulatorTest4[index][2])) ) for index in range(1,module.n_data0)]
+    [time5.append( str(int(module.regulatorTest5[index][2])) ) for index in range(1,module.n_data0)]
 
     gs_top = plt.GridSpec(5, 1, top=0.95)
     fig, ((ax0, ax3), (ax1, ax4), (ax2, ax5)) = plt.subplots(3,2, sharex=True, facecolor=light_grey_c)
@@ -140,14 +141,4 @@ def makeRegulatorPlot (import_file, name):
 
 
 
-
-#makeRegulatorPlot("regulator_data_test_1", "Graficos Regulador. Test 1")
-#makeRegulatorPlot("regulator_data_test_2", "Graficos Regulador. Test 2")
-#makeRegulatorPlot("regulator_data_test_3", "Graficos Regulador. Test 3")
-#makeRegulatorPlot("regulator_data_test_4", "Graficos Regulador. Test 4")
-#makeRegulatorPlot("regulator_data_test_5", "Graficos Regulador. Test 5")
-#makeRegulatorPlot("regulator_data_test_6", "Graficos Regulador. Test 6")
-#makeRegulatorPlot("regulator_data_test_7", "Graficos Regulador. Test 7")
-#makeRegulatorPlot("regulator_data_test_(1-7)", "Graficos Regulador. Test (1-7)")
-#makeRegulatorPlot("regulator_data_test_(1-7)_2", "Graficos Regulador. Test (1-7)_2")
-makeRegulatorPlot("regulator_data_test_14", "Graficos Regulador. Test 14")
+makeRegulatorPlot("regulator_data_test_15", "Graficos Regulador. Test 15")

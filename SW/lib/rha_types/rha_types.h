@@ -3,7 +3,7 @@
  * @Date:   17-Sep-2017
  * @Project: RHA
  * @Last modified by:   quique
- * @Last modified time: 26-Sep-2017
+ * @Last modified time: 29-Sep-2017
  */
 
 #ifndef RHA_TYPES_H
@@ -30,7 +30,7 @@ namespace RHATypes {
      } ;
 
 
-    #define INTEGER_INTERVAL 5  // How many intervals are taken when error is integrated
+    #define INTEGER_INTERVAL 15  // How many intervals are taken when error is integrated
 
     /**
      * @brief Implements a standard PID regulator

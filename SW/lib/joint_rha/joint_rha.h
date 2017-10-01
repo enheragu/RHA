@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: joint_rha.h
  * @Last modified by:   quique
- * @Last modified time: 26-Sep-2017
+ * @Last modified time: 29-Sep-2017
  */
 
 #ifndef JOINT_RHA_H
@@ -26,16 +26,11 @@ class ServoRHA;
 
 class JointRHA {
   uint8_t up_direction_, potentiometer_pin_, position_pot_;
-  uint8_t direction_target_;
-  uint16_t speed_slope_, speed_target_;
-  uint64_t time_last_;
-  uint64_t time_last_error_;
-  float error_, last_error_, derror_, ierror_;
 
  public:
   ServoRHA servo_;
   JointRHA(uint8_t servo_id, uint8_t up_direction, uint8_t potentiometer);
-  JointRHA() {time_last_error_ = 0; time_last_ = 0; last_error_ = 0;}
+  JointRHA() {}
   ~JointRHA();
 
   void init(uint8_t servo_id, uint8_t up_direction, uint8_t potentiometer);
@@ -43,13 +38,6 @@ class JointRHA {
 
   void speedError();
   void updateInfo();
-
-  uint16_t getSpeedTarget() { return speed_target_; }
-  uint16_t getSpeedSlope() { return speed_slope_; }
-  uint8_t getDirectionTarget() { return direction_target_; }
-  float getError() { return error_; }
-  float getDError() { return derror_; }
-  float getIError() { return ierror_; }
 
  private:
 };

@@ -4,7 +4,7 @@
  * @Project: RHA
  * @Filename: main.cpp
  * @Last modified by:   quique
- * @Last modified time: 28-Sep-2017
+ * @Last modified time: 30-Sep-2017
  */
 
 
@@ -32,7 +32,7 @@ void setup() {
   Serial.println("# Setup begin");
 
   joint_handler.setTimer(50);
-  joint_handler.initSerial(2,3,8);
+  joint_handler.initSerial(2,3,8,57600);
   joint_handler.initJoints(0);
   Serial.print("# Id for servo is: "); Serial.println(joint_handler.joint_[0].servo_.getID());
 

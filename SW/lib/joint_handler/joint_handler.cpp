@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: joint_handler.cpp
  * @Last modified by:   quique
- * @Last modified time: 26-Sep-2017
+ * @Last modified time: 30-Sep-2017
  */
 
 // #include "HardwareSerial.h"
@@ -51,7 +51,7 @@ void JointHandler::initJoints() {
   */
 void JointHandler::controlLoop() {
     DebugSerialJHLn("controlLoop: begin of function");
-    if(control_loop_timer_.checkContinue()) {
+    //if(control_loop_timer_.checkContinue()) {
         // Firt all info have to be updated
         DebugSerialJHLn("controlLoop: Updating joint info");
         updateJointInfo();
@@ -61,12 +61,13 @@ void JointHandler::controlLoop() {
         updateJointErrorTorque();
 
         DebugSerialJHLn("controlLoop: send new torque to servos");
-        sendJointTorques();
+        // TODO: sendJointTorques(); <- uses sync packet which aparently does not work well
+        sendSetWheelSpeedAll(joint_[0].servo_.getGoalTorque(), joint_[0].servo_.getDirectionTarget());
         //Send buffer
 
         control_loop_timer_.activateTimer();
 
-    }
+    //}
 }
 
 /**
@@ -95,8 +96,8 @@ void JointHandler::updateJointInfo() {
 void JointHandler::updateJointErrorTorque() {
     DebugSerialJHLn("updateJointErrorTorque: begin of function");
     for(uint8_t i = 0; i < NUM_JOINT; i++) {
-        joint_[i].speedError();
-        joint_[i].servo_.calculateTorque(joint_[i].getError(), joint_[i].getDError(), joint_[i].getIError());
+        joint_[i].servo_.speedError();
+        joint_[i].servo_.calculateTorque();
     }
 }
 
@@ -116,7 +117,7 @@ void JointHandler::sendJointTorques() {
         }
     }
     uint8_t txBuffer[BUFFER_LEN];
-    warpSyncPacket(buffer_to_send, ServoRHAConstants::MOVING_SPEED_L, txBuffer, num_bytes, num_servo);
+    warpSyncPacket(buffer_to_send, buffer[2], txBuffer, num_bytes, num_servo);
     sendPacket(txBuffer);
 }
 
@@ -128,7 +129,7 @@ void JointHandler::sendJointTorques() {
 void JointHandler::setSpeedGoal(RHATypes::SpeedGoal goal) {
     DebugSerialJHLn("setSpeedGoal: begin of function");
     for (uint8_t i = 0; i < NUM_JOINT; i++) {
-        if (joint_[i].setSpeedGoal(goal)) return;
+        if (joint_[i].servo_.setSpeedGoal(goal)) return;
     }
 
 }
@@ -368,13 +369,6 @@ uint16_t JointHandler::sendPacket(uint8_t *txBuffer) {
             readCount = G15Serial_->readBytes(status, packetLength);
         }
 
-        // Serial.println("- Packet received: ");
-        // Serial.print("  [");
-        // for (i = 0; i < packetLength; i++) {
-            // Serial.print(", "); Serial.print("0x"); Serial.print(status[i], HEX);
-        // }
-        // Serial.println("]");
-        // Serial.println("");
         setTxMode();
 
         error = 0;
@@ -409,9 +403,10 @@ uint16_t JointHandler::sendPacket(uint8_t *txBuffer) {
             }
         }
     }
-    /*Serial.println("- Packet Sent: ");
+    /*
+    Serial.println("- Packet Sent: ");
     Serial.print("  [");
-    for(i = 0; i < packetLength; i++) {
+    for(i = 0; i < txBuffer_print[3]+4; i++) {
         Serial.print(", "); Serial.print("0x"); Serial.print(txBuffer_print[i], HEX);
     }
     Serial.println("]");

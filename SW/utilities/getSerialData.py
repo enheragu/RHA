@@ -2,13 +2,13 @@
 # @Date:   12-Sep-2017
 # @Project: RHA
 # @Last modified by:   quique
-# @Last modified time: 26-Sep-2017
+# @Last modified time: 30-Sep-2017
 
 
 import serial
 
 ser = serial.Serial('/dev/ttyACM0', 9600)
-file_object = open('regulator_data_test_.py', "w")
+file_object = open('regulator_data_3_test_.py', "w")
 print "Serial conection established, file opened"
 
 while True:

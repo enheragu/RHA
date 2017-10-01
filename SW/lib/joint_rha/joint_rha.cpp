@@ -6,7 +6,7 @@
  * @Project: RHA
  * @Filename: joint_rha.cpp
  * @Last modified by:   quique
- * @Last modified time: 28-Sep-2017
+ * @Last modified time: 29-Sep-2017
  */
 
 #include "joint_rha.h"
@@ -42,47 +42,6 @@ void JointRHA::init(uint8_t servo_id, uint8_t up_direction, uint8_t potentiomete
     servo_.init(servo_id);
 
     pinMode(potentiometer_pin_, INPUT);
-}
-
-/**
- * @brief Sets speed goal to achieve with speed slope
- * @param {uint16_t} speed_target speed to achieve
- * @param {uint16_t} speed_slope slope from actual speed to speed_target (acceleration)
- * @param {uint16_t} direction_target move CW or CCW
- */
-
-uint8_t JointRHA::setSpeedGoal(RHATypes::SpeedGoal goal) {
-    DebugSerialJRHALn("setSpeedGoal: seting speed goal");
-    DebugSerialJRHALn2("setSpeedGoal: servo id now is: ", servo_.getID());
-    DebugSerialJRHALn2("setSpeedGoal: goal intended for id: ", goal.servo_id);
-    if (servo_.getID() == goal.servo_id) {
-        speed_slope_ = goal.speed_slope;
-        speed_target_ = goal.speed;
-        direction_target_ = goal.direction;
-        time_last_ = millis();
-        DebugSerialJRHALn2("setSpeedGoal: Speed set to: ", speed_target_);
-        DebugSerialJRHALn2("setSpeedGoal: Speed slope set to: ", speed_slope_);
-        return true;
-    } else return false;
-}
-
-/**
- * @brief Calculates error to send to servo regulator
- */
-void JointRHA::speedError() {
-    uint16_t speed = 0;
-    if (speed_slope_ != 0) {
-        speed = (float)servo_.getSpeed() + (float)(millis() - time_last_) * speed_slope_;
-        if (speed > speed_target_) speed = (float)speed_target_;
-        time_last_ = millis();
-    } else speed = speed_target_;
-    int8_t sign = 1;
-    if (direction_target_ != servo_.getSpeedDir()) sign = -1;
-    error_ = (sign*((float)speed - (float)servo_.getSpeed()));
-    derror_ = ( error_ - last_error_ ) / (millis() - time_last_error_);
-    ierror_ = error_ * (millis() - time_last_error_);
-    last_error_ = error_;
-    time_last_error_ = millis();
 }
 
 /**

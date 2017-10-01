@@ -1,0 +1,46 @@
+================================================
+  NLOC    CCN   token  PARAM  length  location  
+------------------------------------------------
+      17      1    175      1      20 test_function_setSpeedGoal@21-40@/home/quique/Documentos/RHA/SW/test/b_test_joint_rha/test_joint_rha.cpp
+      27      2    312      1      44 test_function_speedError@42-85@/home/quique/Documentos/RHA/SW/test/b_test_joint_rha/test_joint_rha.cpp
+       6      1     23      0      11 process@87-97@/home/quique/Documentos/RHA/SW/test/b_test_joint_rha/test_joint_rha.cpp
+       5      1     21      0       5 setup@100-104@/home/quique/Documentos/RHA/SW/test/b_test_joint_rha/test_joint_rha.cpp
+       6      1     29      0       7 loop@106-112@/home/quique/Documentos/RHA/SW/test/b_test_joint_rha/test_joint_rha.cpp
+      11      1    143      1      14 test_function_warpSinglePacket@23-36@/home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp
+      23      1    216      1      27 test_function_addToSyncPacket@44-70@/home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp
+      34      1    357      1      46 test_function_warpSyncPacket@72-117@/home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp
+      12      1    114      1      16 test_function_checkConection_mock@119-134@/home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp
+      22      1    256      1      32 test_function_sendSetWheelModeAll_mock@136-167@/home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp
+      26      1    281      1      39 test_function_controlLoop_oneJoint@169-207@/home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp
+      10      1     43      0      13 process@209-221@/home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp
+       5      1     21      0       5 setup@224-228@/home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp
+       6      1     29      0       7 loop@230-236@/home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp
+       4      2     42      1       4 cleanBuffer@24-27@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+       6      1     66      1       6 test_function_compareAngles@29-34@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+       8      1     98      1       8 test_function_compareSpeed@36-43@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+       8      1     96      1      10 test_function_addToPacket@46-55@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+       7      1     74      1       9 test_function_updateInfoToPacket@57-65@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+      15      1    142      1      19 test_function_addReturnOptionToPacket@67-85@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+      11      1    110      1      14 test_function_setTorqueOnOfToPacket@87-100@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+      17      1    176      1      21 test_function_set_exit_WheelModeToPacket@102-122@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+      13      1    149      1      20 test_function_updateInfo@124-143@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+      21      1    242      1      27 test_function_calculateTorque@145-171@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+      11      1    146      1      17 test_function_addTorqueToPacket@173-189@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+       7      1     68      1      11 test_function_addPingToPacket@191-201@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+      15      1     68      0      20 process@203-222@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+       5      1     21      0       5 setup@225-229@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+       6      1     29      0       7 loop@231-237@/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+3 file analyzed.
+==============================================================
+NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
+--------------------------------------------------------------
+     64      12.2     1.2      112.0         5     /home/quique/Documentos/RHA/SW/test/b_test_joint_rha/test_joint_rha.cpp
+    157      16.6     1.0      162.2         9     /home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp
+    157      10.3     1.1      101.8        15     /home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp
+
+=============================================================================================
+No thresholds exceeded (cyclomatic_complexity > 15 or length > 1000 or parameter_count > 100)
+==========================================================================================
+Total nloc   Avg.NLOC  AvgCCN  Avg.token   Fun Cnt  Warning cnt   Fun Rt   nloc Rt
+------------------------------------------------------------------------------------------
+       378      12.6     1.1      122.3       29            0      0.00    0.00

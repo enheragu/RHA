@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: servo_rha.h
  * @Last modified by:   quique
- * @Last modified time: 28-Sep-2017
+ * @Last modified time: 30-Sep-2017
  */
 
 
@@ -37,6 +37,7 @@ namespace ServoRHAConstants {
     #define RETURN_PACKET_READ_INSTRUCTIONS 0x01
 
     #define TORQUE_OFFSET 80  // under this torque servo does not move
+    #define TORQUE_PREALIMENTATION 1.2  // 1.666  // without load servo goes 60rpm faster with 100torque increment. It will be multiplied by speed_target_
 
     #define CW 1
     #define CCW 0
@@ -129,17 +130,23 @@ class ServoRHA {
     uint8_t voltage_, temperature_;
     uint16_t goal_torque_;
 
+    uint8_t direction_target_;
+    uint16_t speed_slope_, speed_target_;
+    uint64_t time_last_;
+    uint64_t time_last_error_;
+    float error_, last_error_, derror_, ierror_;
+
  public:
     RHATypes::Regulator speed_regulator_;
 
  public:
-    ServoRHA() {}
+    ServoRHA() { time_last_error_ = 0; time_last_ = 0; last_error_ = 0;
+                error_ = 0; derror_ = 0; ierror_ = 0; }
     ServoRHA(uint8_t servo_id);
     void init(uint8_t servo_id);
     void init();
 
     void updateInfo(uint8_t *data, uint16_t error);
-    void setSpeedGoal(RHATypes::SpeedGoal goal);
 
     void addReturnOptionToPacket(uint8_t *buffer, uint8_t option);
     void addUpadteInfoToPacket(uint8_t *buffer);
@@ -151,7 +158,9 @@ class ServoRHA {
     void addToPacket(uint8_t *buffer, uint8_t *packet, uint8_t packet_len);
     void pingToPacket(uint8_t *buffer);
 
-    void calculateTorque(float error, float derror = 0, float ierror = 0);
+    uint8_t setSpeedGoal(RHATypes::SpeedGoal goal);
+    void speedError();
+    void calculateTorque();
 
 
     /**********************************************************************
@@ -169,10 +178,17 @@ class ServoRHA {
     virtual uint16_t getPosition() { return position_; }
     virtual uint16_t getLoad() { return load_; }
     virtual uint16_t getLoadDir() { return load_dir_; }
-    virtual uint16_t getError() { return error_comunication_; }
+    virtual uint16_t getCommError() { return error_comunication_; }
     virtual uint8_t getVoltage() { return voltage_; }
     virtual uint8_t getTemperature() { return temperature_; }
     virtual uint16_t getGoalTorque() { return goal_torque_; }
+    uint16_t getSpeedTarget() { return speed_target_; }
+    uint16_t getSpeedSlope() { return speed_slope_; }
+    uint8_t getDirectionTarget() { return direction_target_; }
+    float getError() { return error_; }
+    float getDError() { return derror_; }
+    float getIError() { return ierror_; }
+
 
 };
 

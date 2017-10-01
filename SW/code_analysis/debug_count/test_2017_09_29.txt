@@ -1,0 +1,3 @@
+test/a_test_servo_rha/test_servo_rha.cpp:0
+test/b_test_joint_rha/test_joint_rha.cpp:6
+test/c_test_joint_handler_mock/test_joint_handler.cpp:4

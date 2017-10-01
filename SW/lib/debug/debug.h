@@ -10,7 +10,7 @@
  * @Project: RHA
  * @Filename: debug.h
  * @Last modified by:   quique
- * @Last modified time: 28-Sep-2017
+ * @Last modified time: 30-Sep-2017
  */
 
 #ifndef DEBUG_H
@@ -61,7 +61,7 @@
 // #define DEBUG_SERVO_RHA
 // #define DEBUG_TEST_SERVO_RHA
 // #define DEBUG_TEST_JOINT_RHA
-// #define DEBUG_JOINT_HANDLER
+// #define DEBUG_JOINT_HANDLER  // -> Not stable 
 // #define DEBUG_CYTRON_G15_SERVO
 // #define DEBUG_TEST_CYTRON_G15_SERVO
  #define DEBUG_UTILITIES

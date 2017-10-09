@@ -475,7 +475,7 @@ void JointHandler::initSerial(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uin
  */
 void JointHandler::begin(uint32_t baudrate) {
      DebugSerialJHLn2("begin: begin at baudrate: ", baudrate);
-   if (rxpin_shield_ == 0 &&txpin_shield_ == 1) {
+   if (rxpin_shield_ == 0 && txpin_shield_ == 1 || CHECK_MEGA_HARDWARESERIAL(rxpin_shield_,txpin_shield_)) {
          hardwareSerial_ = true;
          Serial.begin(baudrate);
          while (!Serial) {}

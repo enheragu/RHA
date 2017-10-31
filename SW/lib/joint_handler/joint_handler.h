@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: joint_handler.h
- * @Last modified by:   quique
- * @Last modified time: 26-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 31_Oct_2017
  */
 
 #ifndef JOINT_HANDLER_H
@@ -76,7 +76,7 @@ class JointHandler {
 
     uint8_t txpin_shield_, rxpin_shield_, ctrlpin_shield_;
 
-    uint16_t comunicatoin_error_;
+    uint16_t comunication_error_;
  public:
     JointRHA joint_[NUM_JOINT];
 
@@ -96,7 +96,7 @@ class JointHandler {
     void sendExitWheelModeAll();
 
     void sendSetTorqueLimitAll(uint16_t torque_limit);
-    void sendSetWheelSpeedAll(uint16_t speed, uint8_t direction);
+    void sendSetWheelSpeedAll(uint16_t speed = 0, uint8_t direction = 0);
 
     bool checkConectionAll();
     uint8_t addToSyncPacket(uint8_t *buffer, uint8_t *data, uint8_t num_bytes);

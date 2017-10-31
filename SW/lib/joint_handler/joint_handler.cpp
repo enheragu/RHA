@@ -6,8 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: joint_handler.cpp
- * @Last modified by:   quique
- * @Last modified time: 30-Sep-2017
+ * @Last modified by:   enheragu
+ * @Last modified time: 31_Oct_2017
  */
 
 // #include "HardwareSerial.h"
@@ -42,6 +42,7 @@ void JointHandler::setTimer(uint64_t timer) {
 void JointHandler::initJoints() {
     DebugSerialJHLn("initJoints: begin of function");
     joint_[0].init(1, CW, A0);
+    joint_[1].init(2, CW, A1);
 
     sendSetWheelModeAll();
 }
@@ -51,7 +52,7 @@ void JointHandler::initJoints() {
   */
 void JointHandler::controlLoop() {
     DebugSerialJHLn("controlLoop: begin of function");
-    //if(control_loop_timer_.checkContinue()) {
+    if(control_loop_timer_.checkContinue()) {
         // Firt all info have to be updated
         DebugSerialJHLn("controlLoop: Updating joint info");
         updateJointInfo();
@@ -62,12 +63,12 @@ void JointHandler::controlLoop() {
 
         DebugSerialJHLn("controlLoop: send new torque to servos");
         // TODO: sendJointTorques(); <- uses sync packet which aparently does not work well
-        sendSetWheelSpeedAll(joint_[0].servo_.getGoalTorque(), joint_[0].servo_.getDirectionTarget());
+        sendSetWheelSpeedAll();  // <- uses astnc/single packet to each servo
         //Send buffer
 
         control_loop_timer_.activateTimer();
 
-    //}
+    }
 }
 
 /**
@@ -214,7 +215,7 @@ void JointHandler::sendSetWheelSpeedAll(uint16_t speed, uint8_t direction) {
     uint8_t buffer[BUFFER_LEN];
     uint8_t txBuffer[BUFFER_LEN];
     for(uint8_t i = 0; i < NUM_JOINT; i++) {
-        joint_[i].servo_.setWheelSpeedToPacket(buffer,speed,direction);
+        joint_[i].servo_.setWheelSpeedToPacket(buffer,joint_[i].servo_.getGoalTorque(), joint_[i].servo_.getDirectionTarget());
         warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
         uint16_t error = sendPacket(txBuffer);
         DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
@@ -240,6 +241,11 @@ bool JointHandler::checkConectionAll() {
     }
     return true;
 }
+
+
+/****************************************************
+ *   Comunication and packet construction methods   *
+ ****************************************************/
 
 /**
  * @brief Adds data to common buffer. Intended to put commands from all servo into one packet

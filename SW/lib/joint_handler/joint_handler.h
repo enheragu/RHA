@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: joint_handler.h
  * @Last modified by:   quique
- * @Last modified time: 26-Sep-2017
+ * @Last modified time: 26-Oct-2017
  */
 
 #ifndef JOINT_HANDLER_H
@@ -20,23 +20,22 @@
 #include <SoftwareSerial.h>
 #include "Arduino.h"
 
+#define __AVR_ATmega1280__
+
 // Arduino mega
 #if defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
-    #define Serial Serial1
-    #define CHECK_MEGA_HARDWARESERIAL(rx,tx){(rx == 19 && tx == 18)}
+    #define Serial_G15_lib Serial1
+    #define CHECK_MEGA_HARDWARESERIAL(rx, tx) (rx == 19 && tx == 18)
     // Serial1 on pins 19 (RX) and 18 (TX)
     // Serial2 on pins 17 (RX) and 16 (TX)
     // Serial3 on pins 15 (RX) and 14 (TX)
-#else
-    #define CHECK_MEGA_HARDWARESERIAL(rx,tx){false}
-    #define Serial Serial
-#endif
-
 // Arduino Leonardo
-#if defined (__AVR_ATmega32U4__)
-    #define Serial Serial1
+#elif defined (__AVR_ATmega32U4__)
+    #define Serial_G15_lib Serial1
+    #define CHECK_MEGA_HARDWARESERIAL(rx, tx) false
 #else
-    #define Serial Serial
+    #define CHECK_MEGA_HARDWARESERIAL(rx, tx) false
+    #define Serial_G15_lib Serial
 #endif
 
 

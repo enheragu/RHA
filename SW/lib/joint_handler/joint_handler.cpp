@@ -7,7 +7,7 @@
  * @Project: RHA
  * @Filename: joint_handler.cpp
  * @Last modified by:   quique
- * @Last modified time: 30-Sep-2017
+ * @Last modified time: 29-Oct-2017
  */
 
 // #include "HardwareSerial.h"
@@ -340,9 +340,9 @@ uint16_t JointHandler::sendPacket(uint8_t *txBuffer) {
 
     if (hardwareSerial_ == true) {
         for (i = 0; i < packetLength; i++) {
-          Serial.write(txBuffer[i]);
+          Serial_G15_lib.write(txBuffer[i]);
         }
-        Serial.flush();
+        Serial_G15_lib.flush();
     } else {
         G15Serial_->listen();
         for (i = 0; i < packetLength; i++) {
@@ -364,7 +364,7 @@ uint16_t JointHandler::sendPacket(uint8_t *txBuffer) {
         setRxMode();
 
         if (hardwareSerial_ == true) {
-            readCount = Serial.readBytes(status, packetLength);
+            readCount = Serial_G15_lib.readBytes(status, packetLength);
         } else {
             readCount = G15Serial_->readBytes(status, packetLength);
         }
@@ -475,11 +475,11 @@ void JointHandler::initSerial(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uin
  */
 void JointHandler::begin(uint32_t baudrate) {
      DebugSerialJHLn2("begin: begin at baudrate: ", baudrate);
-   if (rxpin_shield_ == 0 && txpin_shield_ == 1 || CHECK_MEGA_HARDWARESERIAL(rxpin_shield_,txpin_shield_)) {
+   if ((rxpin_shield_ == 0 && txpin_shield_ == 1) || (CHECK_MEGA_HARDWARESERIAL(rxpin_shield_,txpin_shield_))) {
          hardwareSerial_ = true;
-         Serial.begin(baudrate);
+         Serial_G15_lib.begin(baudrate);
          while (!Serial) {}
-         Serial.setTimeout(SerialTimeOut);
+         Serial_G15_lib.setTimeout(SerialTimeOut);
      } else {
          hardwareSerial_ = false;
          pinMode(rxpin_shield_, INPUT);
@@ -493,8 +493,8 @@ void JointHandler::begin(uint32_t baudrate) {
 }
 
 void JointHandler::end(void) {
-     if (rxpin_shield_ == 0 &&txpin_shield_ == 1) {
-         Serial.end();
+     if ((rxpin_shield_ == 0 && txpin_shield_ == 1)  || CHECK_MEGA_HARDWARESERIAL(rxpin_shield_, txpin_shield_)) {
+         Serial_G15_lib.end();
      } else {
          pinMode(rxpin_shield_, INPUT);
          pinMode(txpin_shield_, INPUT);

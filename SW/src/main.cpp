@@ -4,7 +4,7 @@
  * @Project: RHA
  * @Filename: main.cpp
  * @Last modified by:   quique
- * @Last modified time: 30-Sep-2017
+ * @Last modified time: 29-Oct-2017
  */
 
 
@@ -28,11 +28,11 @@ JHUtilitiesJH joint_handler;
 
 void setup() {
   delay(2000);
-  Serial.begin(9600);
+  Serial.begin(921600); //115200 230400 250000 460800 921600
   Serial.println("# Setup begin");
 
   joint_handler.setTimer(50);
-  joint_handler.initSerial(2,3,8,57600);
+  joint_handler.initSerial(19,18,8,460800);  // baudrate 460800 means 57.6 bytes/milisecond
   joint_handler.initJoints(0);
   Serial.print("# Id for servo is: "); Serial.println(joint_handler.joint_[0].servo_.getID());
 
@@ -42,14 +42,17 @@ void setup() {
 }
 
 void loop() {
-    joint_handler.extractRegulatorData(0);
+    //joint_handler.extractRegulatorData(0);
     //joint_handler.extractStepInputData(0);
     Serial.println(" "); Serial.println("########################################################"); Serial.println(" ");
+    joint_handler.checkComSucces(150);
     //joint_handler.extractSlopeInputData(0);
     Serial.println(" ");
-    Serial.println("########################################################");
-    Serial.println("################## End of test #########################");
+    Serial.println("###############################################################");
+    Serial.println("######################### End of test #########################");
+    Serial.println("###############################################################");
     while (true) {
+        delay(150);
     }
 }
 /**

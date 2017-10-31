@@ -10,7 +10,7 @@
  * @Project: RHA
  * @Filename: debug.h
  * @Last modified by:   quique
- * @Last modified time: 30-Sep-2017
+ * @Last modified time: 29-Oct-2017
  */
 
 #ifndef DEBUG_H
@@ -61,7 +61,7 @@
 // #define DEBUG_SERVO_RHA
 // #define DEBUG_TEST_SERVO_RHA
 // #define DEBUG_TEST_JOINT_RHA
-// #define DEBUG_JOINT_HANDLER  // -> Not stable 
+// #define DEBUG_JOINT_HANDLER  // -> Not stable
 // #define DEBUG_CYTRON_G15_SERVO
 // #define DEBUG_TEST_CYTRON_G15_SERVO
  #define DEBUG_UTILITIES
@@ -154,7 +154,7 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
 #endif
 
 /** DebugSerialSeparation prints a horizontal line to separate different set of debug information */
-#define DebugSerialSeparation(a) {Serial.println("#=========================================================#");}
+#define DebugSerialSeparation(a) {Serial.println("#===============================================================#");}
 
 
 /********************************************************

@@ -9,7 +9,7 @@
  * @Project: RHA
  * @Filename: utilities.h
  * @Last modified by:   quique
- * @Last modified time: 30-Sep-2017
+ * @Last modified time: 29-Oct-2017
  */
 
 #include "debug.h"
@@ -23,7 +23,7 @@
     #define SPEED_TARGET 80  // speed target in rpm
     #define KP_REGULATOR 150  // kp for extractRegulatorData function
     #define LOOP_FREQUENCY 100  // in ms
-    #define BAUD_RATE_G15 57600
+    #define BAUD_RATE_G15 460800
 
     #define CHAUVENET_REPETITIONS 50  // too many repetitions cause memory overfload
     #define KN 1.54 // Chauvenet coeficient for n = 4

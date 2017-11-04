@@ -1,0 +1,31 @@
+      16 text files.
+classified 16 files      16 unique files.                              
+       5 files ignored.
+
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.0480530261993408</elapsed_seconds>
+  <n_files>13</n_files>
+  <n_lines>2268</n_lines>
+  <files_per_second>270.534470525778</files_per_second>
+  <lines_per_second>47197.8599348049</lines_per_second>
+</header>
+<files>
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp" blank="55" comment="161" code="302"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp" blank="56" comment="62" code="224"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp" blank="55" comment="152" code="158"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h" blank="28" comment="28" code="139"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/debug/debug.h" blank="28" comment="64" code="106"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h" blank="24" comment="73" code="88"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h" blank="31" comment="20" code="72"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/utilities/utilities.h" blank="16" comment="30" code="48"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/debug/debug.cpp" blank="3" comment="11" code="31"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/src/main.cpp" blank="15" comment="42" code="29"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h" blank="12" comment="11" code="22"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp" blank="7" comment="26" code="19"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.h" blank="5" comment="8" code="7"  language="C/C++ Header" />
+  <total blank="335" comment="688" code="1245" />
+</files>
+</results>

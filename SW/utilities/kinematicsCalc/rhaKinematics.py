@@ -3,11 +3,11 @@ from sympy import *  #symbolic maths
 #from math import sin, cos, pi
 from data_dummy import dummy
 
-#install sympy, first install mpmath: https://github.com/fredrik-johansson/mpmath
+#install sympy, first install mpmath: https://github.com/fredrik-johansson/mpmath.git
 #then install sympy: https://github.com/sympy/sympy.git
 
 
-################### Symbols #################### 
+################### Symbols ####################
 
 th1 = Symbol('th1', rational=True)
 l1 = Symbol('l1', rational=True)
@@ -33,7 +33,7 @@ oz = Symbol('oz', rational=True)
 az = Symbol('az', rational=True)
 pz = Symbol('pz', rational=True)
 
-################################################ 
+################################################
 
 class DHMatrix:
     def __init__(self, theta, d, a, alpha):
@@ -91,7 +91,7 @@ class InverseKinematics:
         self.costh3 = (px**2 + py**2 + pz**2 - l2**2 - l3**2)/(2*l2*l3)
         self.inverse_k_th3_ = simplify((+sqrt(1-self.costh3**2))/(self.costh3)) #could be + or - depending on the joint
         self.inverse_k_th2_ = simplify(atan2(pz, (sqrt(px**2 + py**2))) - atan2(l3*sin(self.inverse_k_th3_),l2+l3*cos(self.inverse_k_th3_)))
-    
+
     def setConstants(self, _l1, _l2, _l3):
         self.eq_inverse_th1_ = self.inverse_k_th1_.subs(l1, _l1).subs(l2, _l2).subs(l3, _l3)
         self.eq_inverse_th2_ = self.inverse_k_th2_.subs(l1, _l1).subs(l2, _l2).subs(l3, _l3)
@@ -150,7 +150,7 @@ class Jacobian:
         print "#############################"
 
     def calculateArticularSpeed(self, speed_x, speed_y, speed_z):
-        print "Compute direct kinematiks for: speed_x = ", speed_x, ", speed_y = ", speed_y, ", speed_z = ", speed_z
+        print "Compute inverse jacobian for: speed_x = ", speed_x, ", speed_y = ", speed_y, ", speed_z = ", speed_z
         cartesian_speed = Matrix ([[speed_x],[speed_y],[speed_z]])
 
         self.articular_speed_ = N(simplify(self.eq_J_inverse_ * cartesian_speed))
@@ -159,7 +159,7 @@ class Jacobian:
         print " - speed_th3 = ", self.articular_speed_[2]
         print "#############################"
 
-#################### A matrix #################### 
+#################### A matrix ####################
 
 A1 = DHMatrix(th1, l1, 0, 90)
 A2 = DHMatrix(th2, 0, l2, 0)
@@ -199,6 +199,3 @@ print "###################################################"
 ##################################################
 
 print "End of script"
-
-
-

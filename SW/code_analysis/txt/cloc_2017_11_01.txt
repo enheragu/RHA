@@ -1,0 +1,26 @@
+      18 text files.
+classified 18 files      18 unique files.                              
+       4 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.14 s (107.5 files/s, 18784.4 lines/s)
+---------------------------------------------------------------------------------------------------------------------
+File                                                                              blank        comment           code
+---------------------------------------------------------------------------------------------------------------------
+/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp                   62            168            327
+/home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp                           56             62            224
+/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp                           55            152            158
+/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h                             28             28            139
+/home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h                          45             62            121
+/home/quique/Documentos/RHA/SW/lib/debug/debug.h                                     28             64            106
+/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h                             24             73             88
+/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h                     32             20             73
+/home/quique/Documentos/RHA/SW/lib/utilities/utilities.h                             16             30             48
+/home/quique/Documentos/RHA/SW/src/main.cpp                                          18             58             37
+/home/quique/Documentos/RHA/SW/lib/debug/debug.cpp                                    3             11             31
+/home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.h                              8              8             26
+/home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.cpp                           10              0             26
+/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h                             12             11             22
+/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp                            7             26             19
+---------------------------------------------------------------------------------------------------------------------
+SUM:                                                                                404            773           1445
+---------------------------------------------------------------------------------------------------------------------

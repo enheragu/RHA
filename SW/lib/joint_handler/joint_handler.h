@@ -62,7 +62,7 @@ namespace JointHandlerConstants {
 
     #define G15_BAUDRATE 57600
 
-    #define NUM_JOINT 1
+    #define NUM_JOINT 2
     #define BUFFER_LEN 30
 
     #define EEMPROM_DELAY 25
@@ -96,6 +96,8 @@ class JointHandler {
 
     void sendSetTorqueLimitAll(uint16_t torque_limit);
     void sendSetWheelSpeedAll(uint16_t speed = 0, uint8_t direction = 0);
+
+    void setReturnPacketOption(uint8_t option);
 
     bool checkConectionAll();
     uint8_t addToSyncPacket(uint8_t *buffer, uint8_t *data, uint8_t num_bytes);

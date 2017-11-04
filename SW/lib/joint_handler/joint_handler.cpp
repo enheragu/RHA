@@ -6,13 +6,8 @@
  * @Date:   2017_Sep_08
  * @Project: RHA
  * @Filename: joint_handler.cpp
-<<<<<<< HEAD
- * @Last modified by:   quique
- * @Last modified time: 29-Oct-2017
-=======
  * @Last modified by:   enheragu
  * @Last modified time: 31_Oct_2017
->>>>>>> d2d20aeebf72c68f084a80bdf129472401bd8082
  */
 
 // #include "HardwareSerial.h"
@@ -49,7 +44,18 @@ void JointHandler::initJoints() {
     joint_[0].init(1, CW, A0);
     joint_[1].init(2, CW, A1);
 
+    RHATypes::Timer eeprom_timer;
+    eeprom_timer.setTimer(EEMPROM_DELAY);
+    eeprom_timer.activateTimer();
+
     sendSetWheelModeAll();
+
+    eeprom_timer.checkWait();
+    eeprom_timer.activateTimer();
+
+    setReturnPacketOption(RETURN_PACKET_ALL);  // RETURN_PACKET_ALL  RETURN_PACKET_READ_INSTRUCTIONS
+
+    eeprom_timer.checkWait();
 }
 
 /**
@@ -67,9 +73,9 @@ void JointHandler::controlLoop() {
         updateJointErrorTorque();
 
         DebugSerialJHLn("controlLoop: send new torque to servos");
-        // TODO: sendJointTorques(); <- uses sync packet which aparently does not work well
-        sendSetWheelSpeedAll();  // <- uses astnc/single packet to each servo
-        //Send buffer
+        // TODO: sendJointTorques();  // <- uses sync packet which aparently does not work well
+        sendSetWheelSpeedAll();  // <- uses async/single packet to each servo
+        // Send buffer
 
         control_loop_timer_.activateTimer();
 
@@ -140,6 +146,18 @@ void JointHandler::setSpeedGoal(RHATypes::SpeedGoal goal) {
 
 }
 
+void JointHandler::setReturnPacketOption(uint8_t option) {
+    DebugSerialJHLn("setReturnPacketOption: begin of function");
+    uint8_t buffer[BUFFER_LEN];
+    uint8_t txBuffer[BUFFER_LEN];
+    for (uint8_t i = 0; i < NUM_JOINT; i++) {
+        joint_[i].servo_.addReturnOptionToPacket(buffer, option);
+        warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
+        uint16_t error = sendPacket(txBuffer);
+        DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
+    }
+}
+
 /**
  * @brief Sets wheel mode for all servo
  * @method JointHandler::sendSetWheelModeAll
@@ -182,12 +200,28 @@ void JointHandler::sendExitWheelModeAll() {
     DebugSerialJHLn("sendExitWheelModeAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
     uint8_t txBuffer[BUFFER_LEN];
+
+    RHATypes::Timer eeprom_timer;
+    eeprom_timer.setTimer(EEMPROM_DELAY);
+    eeprom_timer.activateTimer();
+
     for(uint8_t i = 0; i < NUM_JOINT; i++) {
         joint_[i].servo_.exitWheelModeToPacket(buffer);
         warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
         uint16_t error = sendPacket(txBuffer);
         DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
     }
+    eeprom_timer.checkWait();
+    eeprom_timer.activateTimer();
+    DebugSerialJHLn("sendSetWheelModeAll: set torque OFF");
+    /*for(uint8_t i = 0; i < NUM_JOINT; i++) {
+        // Then set torque ON
+        joint_[i].servo_.setTorqueOnOfToPacket(buffer, OFF);
+        warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
+        uint16_t error = sendPacket(txBuffer);
+        DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
+    }*/
+    eeprom_timer.checkWait();
 }
 
 // NOTE: testing purposes
@@ -220,7 +254,7 @@ void JointHandler::sendSetWheelSpeedAll(uint16_t speed, uint8_t direction) {
     uint8_t buffer[BUFFER_LEN];
     uint8_t txBuffer[BUFFER_LEN];
     for(uint8_t i = 0; i < NUM_JOINT; i++) {
-        joint_[i].servo_.setWheelSpeedToPacket(buffer,joint_[i].servo_.getGoalTorque(), joint_[i].servo_.getDirectionTarget());
+        joint_[i].servo_.setWheelSpeedToPacket(buffer, joint_[i].servo_.getGoalTorque(), joint_[i].servo_.getDirectionTarget());  // getGoalTorque if used with realimentation, getSpeedTarget if not
         warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
         uint16_t error = sendPacket(txBuffer);
         DebugSerialJHLn4Error(error, joint_[i].servo_.getID());

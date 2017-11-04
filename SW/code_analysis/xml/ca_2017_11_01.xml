@@ -1,0 +1,738 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/terryyin/lizard/master/lizard.xsl"?>
+<cppncss>
+	<measure type="Function">
+		<labels>
+			<label>Nr.</label>
+			<label>NCSS</label>
+			<label>CCN</label>
+		</labels>
+		<item name="setup(...) at /home/quique/Documentos/RHA/SW/src/main.cpp:32">
+			<value>1</value>
+			<value>24</value>
+			<value>1</value>
+		</item>
+		<item name="loop(...) at /home/quique/Documentos/RHA/SW/src/main.cpp:67">
+			<value>2</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="14"/>
+		<average label="CCN" value="1"/>
+		<item name="RHATypes::SpeedGoal::SpeedGoal(...) at /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h:29">
+			<value>3</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::Regulator::Regulator(...) at /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h:45">
+			<value>4</value>
+			<value>4</value>
+			<value>2</value>
+		</item>
+		<item name="RHATypes::Regulator::resetRegulator(...) at /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h:54">
+			<value>5</value>
+			<value>4</value>
+			<value>2</value>
+		</item>
+		<item name="RHATypes::Regulator::setKRegulator(...) at /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h:66">
+			<value>6</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::Regulator::regulator(...) at /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h:78">
+			<value>7</value>
+			<value>8</value>
+			<value>3</value>
+		</item>
+		<item name="RHATypes::Regulator::getKp(...) at /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h:88">
+			<value>8</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::Regulator::getKi(...) at /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h:89">
+			<value>9</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::Regulator::getKd(...) at /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h:90">
+			<value>10</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::Timer::setTimer(...) at /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h:103">
+			<value>11</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::Timer::activateTimer(...) at /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h:111">
+			<value>12</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::Timer::checkWait(...) at /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h:120">
+			<value>13</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="RHATypes::Timer::checkContinue(...) at /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h:132">
+			<value>14</value>
+			<value>5</value>
+			<value>2</value>
+		</item>
+		<item name="RHATypes::Timer::getInitTime(...) at /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h:143">
+			<value>15</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::TimerMicroseconds::activateTimer(...) at /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h:157">
+			<value>16</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::TimerMicroseconds::checkWait(...) at /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h:166">
+			<value>17</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="RHATypes::TimerMicroseconds::checkContinue(...) at /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h:177">
+			<value>18</value>
+			<value>5</value>
+			<value>2</value>
+		</item>
+		<average label="NCSS" value="4"/>
+		<average label="CCN" value="1"/>
+		<item name="JointHandler::JointHandler(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:23">
+			<value>19</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::setTimer(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:32">
+			<value>20</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::initJoints(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:42">
+			<value>21</value>
+			<value>13</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::controlLoop(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:64">
+			<value>22</value>
+			<value>12</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::updateJointInfo(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:90">
+			<value>23</value>
+			<value>12</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::updateJointErrorTorque(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:108">
+			<value>24</value>
+			<value>7</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::sendJointTorques(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:120">
+			<value>25</value>
+			<value>15</value>
+			<value>3</value>
+		</item>
+		<item name="JointHandler::setSpeedGoal(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:141">
+			<value>26</value>
+			<value>6</value>
+			<value>3</value>
+		</item>
+		<item name="JointHandler::setReturnPacketOption(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:149">
+			<value>27</value>
+			<value>11</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::sendSetWheelModeAll(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:165">
+			<value>28</value>
+			<value>25</value>
+			<value>3</value>
+		</item>
+		<item name="JointHandler::sendExitWheelModeAll(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:199">
+			<value>29</value>
+			<value>18</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::sendSetTorqueLimitAll(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:233">
+			<value>30</value>
+			<value>11</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::sendSetWheelSpeedAll(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:252">
+			<value>31</value>
+			<value>11</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::checkConectionAll(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:270">
+			<value>32</value>
+			<value>13</value>
+			<value>3</value>
+		</item>
+		<item name="JointHandler::addToSyncPacket(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:297">
+			<value>33</value>
+			<value>8</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::warpSyncPacket(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:317">
+			<value>34</value>
+			<value>17</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::warpSinglePacket(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:346">
+			<value>35</value>
+			<value>15</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::sendPacket(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:371">
+			<value>36</value>
+			<value>71</value>
+			<value>20</value>
+		</item>
+		<item name="JointHandler::JointHandler(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:482">
+			<value>37</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::JointHandler(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:493">
+			<value>38</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::initSerial(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:508">
+			<value>39</value>
+			<value>7</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::begin(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:521">
+			<value>40</value>
+			<value>18</value>
+			<value>5</value>
+		</item>
+		<item name="JointHandler::end(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:540">
+			<value>41</value>
+			<value>10</value>
+			<value>4</value>
+		</item>
+		<item name="JointHandler::setTxMode(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:551">
+			<value>42</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::setRxMode(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp:555">
+			<value>43</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="9"/>
+		<average label="CCN" value="2"/>
+		<item name="JointHandler::JointHandler(...) at /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h:82">
+			<value>44</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="9"/>
+		<average label="CCN" value="2"/>
+		<item name="RobotRHA::initJointHandler(...) at /home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.cpp:3">
+			<value>45</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="RobotRHA::initChuckHandler(...) at /home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.cpp:9">
+			<value>46</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="RobotRHA::handleRobot(...) at /home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.cpp:13">
+			<value>47</value>
+			<value>2</value>
+			<value>1</value>
+		</item>
+		<item name="RobotRHA::setCartesianSpeedGoal(...) at /home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.cpp:17">
+			<value>48</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="RobotRHA::setSpeedToServos(...) at /home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.cpp:23">
+			<value>49</value>
+			<value>5</value>
+			<value>2</value>
+		</item>
+		<item name="RobotRHA::handleWithChuck(...) at /home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.cpp:30">
+			<value>50</value>
+			<value>5</value>
+			<value>2</value>
+		</item>
+		<average label="NCSS" value="8"/>
+		<average label="CCN" value="2"/>
+		<average label="NCSS" value="8"/>
+		<average label="CCN" value="2"/>
+		<item name="JointRHA::JointRHA(...) at /home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h:33">
+			<value>51</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="8"/>
+		<average label="CCN" value="2"/>
+		<item name="JointRHA::JointRHA(...) at /home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp:19">
+			<value>52</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="JointRHA::~JointRHA(...) at /home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp:28">
+			<value>53</value>
+			<value>2</value>
+			<value>1</value>
+		</item>
+		<item name="JointRHA::init(...) at /home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp:36">
+			<value>54</value>
+			<value>8</value>
+			<value>1</value>
+		</item>
+		<item name="JointRHA::updateInfo(...) at /home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp:50">
+			<value>55</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="8"/>
+		<average label="CCN" value="1"/>
+		<item name="ServoRHA::ServoRHA(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:143">
+			<value>56</value>
+			<value>2</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getID(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:175">
+			<value>57</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getSpeed(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:176">
+			<value>58</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getSpeedDir(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:177">
+			<value>59</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getPosition(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:178">
+			<value>60</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getLoad(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:179">
+			<value>61</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getLoadDir(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:180">
+			<value>62</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getCommError(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:181">
+			<value>63</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getVoltage(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:182">
+			<value>64</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getTemperature(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:183">
+			<value>65</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getGoalTorque(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:184">
+			<value>66</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getSpeedTarget(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:185">
+			<value>67</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getSpeedSlope(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:186">
+			<value>68</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getDirectionTarget(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:187">
+			<value>69</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getError(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:188">
+			<value>70</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getDError(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:189">
+			<value>71</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getIError(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h:190">
+			<value>72</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="6"/>
+		<average label="CCN" value="1"/>
+		<item name="ServoRHA::ServoRHA(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:22">
+			<value>73</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::init(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:30">
+			<value>74</value>
+			<value>7</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::updateInfo(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:60">
+			<value>75</value>
+			<value>18</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::setSpeedGoal(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:95">
+			<value>76</value>
+			<value>14</value>
+			<value>2</value>
+		</item>
+		<item name="ServoRHA::speedError(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:113">
+			<value>77</value>
+			<value>11</value>
+			<value>2</value>
+		</item>
+		<item name="ServoRHA::calculateTorque(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:137">
+			<value>78</value>
+			<value>10</value>
+			<value>3</value>
+		</item>
+		<item name="ServoRHA::addUpadteInfoToPacket(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:166">
+			<value>79</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::addReturnOptionToPacket(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:179">
+			<value>80</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::addTorqueToPacket(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:197">
+			<value>81</value>
+			<value>14</value>
+			<value>2</value>
+		</item>
+		<item name="ServoRHA::setTorqueOnOfToPacket(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:220">
+			<value>82</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::setWheelModeToPacket(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:235">
+			<value>83</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::exitWheelModeToPacket(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:247">
+			<value>84</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::wheelModeToPacket(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:259">
+			<value>85</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::pingToPacket(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:276">
+			<value>86</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::setTorqueLimitToPacket(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:287">
+			<value>87</value>
+			<value>7</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::setWheelSpeedToPacket(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:304">
+			<value>88</value>
+			<value>11</value>
+			<value>2</value>
+		</item>
+		<item name="ServoRHA::addToPacket(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:324">
+			<value>89</value>
+			<value>9</value>
+			<value>2</value>
+		</item>
+		<item name="compareAngles(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:347">
+			<value>90</value>
+			<value>6</value>
+			<value>3</value>
+		</item>
+		<item name="compareSpeed(...) at /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:360">
+			<value>91</value>
+			<value>6</value>
+			<value>3</value>
+		</item>
+		<average label="NCSS" value="6"/>
+		<average label="CCN" value="1"/>
+		<item name="MeasureUtilities::averageChauvenet(...) at /home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp:40">
+			<value>92</value>
+			<value>19</value>
+			<value>6</value>
+		</item>
+		<item name="JHUtilitiesJH::initJoints(...) at /home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp:72">
+			<value>93</value>
+			<value>20</value>
+			<value>3</value>
+		</item>
+		<item name="JHUtilitiesJH::extractRegulatorData(...) at /home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp:103">
+			<value>94</value>
+			<value>34</value>
+			<value>4</value>
+		</item>
+		<item name="JHUtilitiesJH::extractStepInputData(...) at /home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp:149">
+			<value>95</value>
+			<value>21</value>
+			<value>3</value>
+		</item>
+		<item name="JHUtilitiesJH::extractSlopeInputData(...) at /home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp:188">
+			<value>96</value>
+			<value>25</value>
+			<value>4</value>
+		</item>
+		<item name="JHUtilitiesJH::checkTimeGetInfo(...) at /home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp:223">
+			<value>97</value>
+			<value>23</value>
+			<value>3</value>
+		</item>
+		<item name="JHUtilitiesJH::checkComSucces(...) at /home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp:254">
+			<value>98</value>
+			<value>13</value>
+			<value>3</value>
+		</item>
+		<item name="JHUtilitiesJH::checkSpeed(...) at /home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp:274">
+			<value>99</value>
+			<value>56</value>
+			<value>8</value>
+		</item>
+		<average label="NCSS" value="8"/>
+		<average label="CCN" value="1"/>
+		<item name="JHUtilitiesJH::JHUtilitiesJH(...) at /home/quique/Documentos/RHA/SW/lib/utilities/utilities.h:82">
+			<value>100</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="8"/>
+		<average label="CCN" value="1"/>
+		<item name="WiiChuck::begin(...) at /home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h:78">
+			<value>101</value>
+			<value>21</value>
+			<value>2</value>
+		</item>
+		<item name="WiiChuck::calibrateJoy(...) at /home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h:109">
+			<value>102</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::update(...) at /home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h:114">
+			<value>103</value>
+			<value>21</value>
+			<value>4</value>
+		</item>
+		<item name="WiiChuck::readAccelX(...) at /home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h:154">
+			<value>104</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::readAccelY(...) at /home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h:158">
+			<value>105</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::readAccelZ(...) at /home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h:162">
+			<value>106</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::zPressed(...) at /home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h:167">
+			<value>107</value>
+			<value>3</value>
+			<value>2</value>
+		</item>
+		<item name="WiiChuck::cPressed(...) at /home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h:170">
+			<value>108</value>
+			<value>3</value>
+			<value>2</value>
+		</item>
+		<item name="WiiChuck::rightJoy(...) at /home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h:175">
+			<value>109</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::leftJoy(...) at /home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h:180">
+			<value>110</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::readJoyX(...) at /home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h:185">
+			<value>111</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::readJoyY(...) at /home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h:189">
+			<value>112</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::readRoll(...) at /home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h:201">
+			<value>113</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::readPitch(...) at /home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h:206">
+			<value>114</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::_nunchuk_decode_byte(...) at /home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h:211">
+			<value>115</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::_send_zero(...) at /home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h:218">
+			<value>116</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="8"/>
+		<average label="CCN" value="1"/>
+		<item name="printServoStatusError(...) at /home/quique/Documentos/RHA/SW/lib/debug/debug.cpp:14">
+			<value>117</value>
+			<value>17</value>
+			<value>15</value>
+		</item>
+		<item name="printServoStatus(...) at /home/quique/Documentos/RHA/SW/lib/debug/debug.cpp:33">
+			<value>118</value>
+			<value>13</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="8"/>
+		<average label="CCN" value="1"/>
+		<average label="NCSS" value="8"/>
+		<average label="CCN" value="1"/>
+	</measure>
+	<measure type="File">
+		<labels>
+			<label>Nr.</label>
+			<label>NCSS</label>
+			<label>CCN</label>
+			<label>Functions</label>
+		</labels>
+		<item name="/home/quique/Documentos/RHA/SW/src/main.cpp">
+			<value>1</value>
+			<value>37</value>
+			<value>2</value>
+			<value>2</value>
+		</item>
+		<item name="/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h">
+			<value>2</value>
+			<value>84</value>
+			<value>24</value>
+			<value>16</value>
+		</item>
+		<item name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp">
+			<value>3</value>
+			<value>327</value>
+			<value>69</value>
+			<value>25</value>
+		</item>
+		<item name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h">
+			<value>4</value>
+			<value>40</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="/home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.cpp">
+			<value>5</value>
+			<value>26</value>
+			<value>8</value>
+			<value>6</value>
+		</item>
+		<item name="/home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.h">
+			<value>6</value>
+			<value>14</value>
+			<value>0</value>
+			<value>0</value>
+		</item>
+		<item name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h">
+			<value>7</value>
+			<value>19</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp">
+			<value>8</value>
+			<value>19</value>
+			<value>4</value>
+			<value>4</value>
+		</item>
+		<item name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h">
+			<value>9</value>
+			<value>118</value>
+			<value>17</value>
+			<value>17</value>
+		</item>
+		<item name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp">
+			<value>10</value>
+			<value>158</value>
+			<value>30</value>
+			<value>19</value>
+		</item>
+		<item name="/home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp">
+			<value>11</value>
+			<value>217</value>
+			<value>34</value>
+			<value>8</value>
+		</item>
+		<item name="/home/quique/Documentos/RHA/SW/lib/utilities/utilities.h">
+			<value>12</value>
+			<value>34</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="/home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h">
+			<value>13</value>
+			<value>112</value>
+			<value>22</value>
+			<value>16</value>
+		</item>
+		<item name="/home/quique/Documentos/RHA/SW/lib/debug/debug.cpp">
+			<value>14</value>
+			<value>31</value>
+			<value>16</value>
+			<value>2</value>
+		</item>
+		<item name="/home/quique/Documentos/RHA/SW/lib/debug/debug.h">
+			<value>15</value>
+			<value>3</value>
+			<value>0</value>
+			<value>0</value>
+		</item>
+		<average label="NCSS" value="82"/>
+		<average label="CCN" value="15"/>
+		<average label="Functions" value="7"/>
+		<sum label="NCSS" value="1239"/>
+		<sum label="CCN" value="229"/>
+		<sum label="Functions" value="118"/>
+		<average label="NCSS" value="10"/>
+		<average label="CCN" value="1"/>
+	</measure>
+</cppncss>
+

@@ -65,6 +65,7 @@
 // #define DEBUG_CYTRON_G15_SERVO
 // #define DEBUG_TEST_CYTRON_G15_SERVO
  #define DEBUG_UTILITIES
+//s #define DEBUG_ROBOT_RHA
 // #define DEBUG_RHA_TYPES
 // #define DEBUG_JOINT_RHA
 
@@ -156,6 +157,16 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
 /** DebugSerialSeparation prints a horizontal line to separate different set of debug information */
 #define DebugSerialSeparation(a) {Serial.println("#===============================================================#");}
 
+/** DEBUG_ROBOT_RHA implements debug macros for robot_rha.h and .cpp files */
+#ifdef DEBUG_ROBOT_RHA
+    #define DebugSerialRRHALn(a) {  Serial.print("[DC]  ROBOT_RHA::"); Serial.println(a); }
+    #define DebugSerialRRHALn2(a, b) {  Serial.print("[DC]  ROBOT_RHA::"); Serial.print(a); Serial.println(b); }
+    #define DebugSerialRRHAn4(a, b, c, d) {  Serial.print("[DC]  ROBOT_RHA::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+#else
+    #define DebugSerialRRHALn(a)
+    #define DebugSerialRRHALn2(a, b)
+    #define DebugSerialRRHALn4(a, b, c, d)
+#endif
 
 /********************************************************
  *       Debugging macro definition for test files      *

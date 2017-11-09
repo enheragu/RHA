@@ -26,7 +26,7 @@ namespace RHATypes {
         int16_t speed_slope;
         uint8_t direction;
         SpeedGoal();
-        SpeedGoal(uint8_t id, int16_t speed, int16_t speed_slope, uint8_t direction): servo_id(id), speed(speed), speed_slope(speed_slope), direction(direction) {}
+        SpeedGoal(uint8_t _id, int16_t _speed, int16_t _speed_slope, uint8_t _direction): servo_id(_id), speed(_speed), speed_slope(_speed_slope), direction(_direction) {}
      } ;
 
 
@@ -63,8 +63,8 @@ namespace RHATypes {
          * @param  ki            Integral K
          * @param  kd            Derivative K
          */
-        void setKRegulator(float kp, float ki = 0, float kd = 0) {
-            kp_ = kp; ki_ = ki; kd_ = kd;
+        void setKRegulator(float _kp, float _ki = 0, float _kd = 0) {
+            kp_ = _kp; ki_ = _ki; kd_ = _kd;
         }
 
         /**
@@ -75,14 +75,14 @@ namespace RHATypes {
          * @param  ierror    integral error
          * @return           returns output of regulator
          */
-        float regulator(float error, float derror = 0, float ierror = 0) {
-            ierror_[index_] = ierror;
+        float regulator(float _error, float _derror = 0, float _ierror = 0) {
+            ierror_[index_] = _ierror;
             index_ ++;
             if (index_ > INTEGER_INTERVAL) index_ = 0;
 
             float sum_i_error = 0;
             for (uint8_t i = 0; i < INTEGER_INTERVAL; i++) sum_i_error += ierror_[i];
-            return kp_ * error + kd_ * derror + ki_ * sum_i_error;
+            return kp_ * _error + kd_ * _derror + ki_ * sum_i_error;
         }
 
         float getKp() { return kp_; }
@@ -100,8 +100,8 @@ namespace RHATypes {
         uint32_t time_;
         uint64_t init_time_;
      public:
-        void setTimer(uint32_t time_set) {
-            time_ = time_set;
+        void setTimer(uint32_t _time_set) {
+            time_ = _time_set;
         }
 
         /**

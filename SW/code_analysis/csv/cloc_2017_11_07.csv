@@ -1,0 +1,21 @@
+      19 text files.
+classified 19 files      19 unique files.                              
+       4 files ignored.
+
+language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.60  T=0.05 s (300.0 files/s, 52671.2 lines/s)"
+C++,/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp,62,168,328
+C++,/home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp,56,62,224
+C++,/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp,55,152,158
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h,28,28,139
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h,45,62,121
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/debug/debug.h,28,66,115
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h,24,73,88
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h,32,20,73
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/chuck_handler/chuck_handler.h,18,17,62
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/utilities/utilities.h,15,30,50
+C++,/home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.cpp,7,26,36
+C++,/home/quique/Documentos/RHA/SW/lib/debug/debug.cpp,3,11,31
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.h,9,8,26
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h,12,11,26
+C++,/home/quique/Documentos/RHA/SW/src/main.cpp,22,95,23
+C++,/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp,7,34,23

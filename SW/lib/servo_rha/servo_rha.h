@@ -142,23 +142,23 @@ class ServoRHA {
  public:
     ServoRHA() { time_last_error_ = 0; time_last_ = 0; last_error_ = 0;
                 error_ = 0; derror_ = 0; ierror_ = 0; }
-    ServoRHA(uint8_t servo_id);
-    void init(uint8_t servo_id);
+    ServoRHA(uint8_t _servo_id);
+    void init(uint8_t _servo_id);
     void init();
 
-    void updateInfo(uint8_t *data, uint16_t error);
+    void updateInfo(uint8_t *_data, uint16_t _error);
 
-    void addReturnOptionToPacket(uint8_t *buffer, uint8_t option);
-    void addUpadteInfoToPacket(uint8_t *buffer);
-    bool addTorqueToPacket(uint8_t *buffer);
-    void setTorqueOnOfToPacket(uint8_t *buffer, uint8_t onOff);
-    void setWheelModeToPacket(uint8_t *buffer);
-    void exitWheelModeToPacket(uint8_t *buffer);
-    void wheelModeToPacket(uint8_t *buffer, uint16_t CW_angle, uint16_t CCW_angle);
-    void addToPacket(uint8_t *buffer, uint8_t *packet, uint8_t packet_len);
-    void pingToPacket(uint8_t *buffer);
+    void addReturnOptionToPacket(uint8_t *_buffer, uint8_t _option);
+    void addUpadteInfoToPacket(uint8_t *_buffer);
+    bool addTorqueToPacket(uint8_t *_buffer);
+    void setTorqueOnOfToPacket(uint8_t *_buffer, uint8_t _onOff);
+    void setWheelModeToPacket(uint8_t *_buffer);
+    void exitWheelModeToPacket(uint8_t *_buffer);
+    void wheelModeToPacket(uint8_t *_buffer, uint16_t _CW_angle, uint16_t _CCW_angle);
+    void addToPacket(uint8_t *_buffer, uint8_t *_packet, uint8_t _packet_len);
+    void pingToPacket(uint8_t *_buffer);
 
-    uint8_t setSpeedGoal(RHATypes::SpeedGoal goal);
+    uint8_t setSpeedGoal(RHATypes::SpeedGoal _goal);
     void speedError();
     void calculateTorque();
 
@@ -166,8 +166,8 @@ class ServoRHA {
     /**********************************************************************
      *        Set of functions which imitates original G15 library        *
      **********************************************************************/
-    void setTorqueLimitToPacket(uint8_t *buffer, uint16_t torque_limit);
-    void setWheelSpeedToPacket(uint8_t *buffer, uint16_t torque_limit, uint8_t direction);
+    void setTorqueLimitToPacket(uint8_t *_buffer, uint16_t _torque_limit);
+    void setWheelSpeedToPacket(uint8_t *_buffer, uint16_t _torque_limit, uint8_t _direction);
 
     /*************************************
      *        Interface functions        *

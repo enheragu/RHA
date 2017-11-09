@@ -13,7 +13,7 @@
 #include "chuck_handler.h"
 #include "joint_handler.h"
 
-#define SPEED_CONTROL_PERIOD 50
+#define SPEED_CONTROL_PERIOD (3 * NUM_JOINT) //50
 #define CHUCK_UPDATE_PERIOD 100
 
 #define G15_BAUDRATE 460800
@@ -27,16 +27,17 @@
 
 class RobotRHA {
  protected:
-    JointHandler joint_handler_;
-    ChuckHandler chuck_handler_;
  public:
     void initJointHandler();
     void initChuckHandler();
 
     void handleRobot();
-    void setCartesianSpeedGoal(float speed_x, float speed_y, float speed_z);
-    void setSpeedToServos(float speed, uint8_t servo_id);
+    void setCartesianSpeedGoal(float _speed_x, float _speed_y, float _speed_z);
+    void setSpeedToServos(float _speed, uint8_t _servo_id);
 
     void handleWithChuck();
+
+   JointHandler joint_handler_;
+   ChuckHandler chuck_handler_;
 };
 #endif

@@ -45,7 +45,7 @@ class ClocHandler( xml.sax.ContentHandler ):
             self.whole_num_lblank = int(attributes["blank"])
             self.whole_num_lcode = int(attributes["code"])
             self.whole_num_lcomment = int(attributes["comment"])
-            self.whole_percentage_lcomment = float(self.whole_num_lcomment*100) / float(self.whole_num_lcode)
+            self.whole_percentage_lcomment = float(self.whole_num_lcomment*100) / (float(self.whole_num_lcode) + float(self.whole_num_lcomment))
 
         if tag == "file":
             #print "*****File*****"

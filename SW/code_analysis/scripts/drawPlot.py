@@ -82,27 +82,29 @@ def makeClocPlot ( info_list , name):
     lines = []
     labels_fig = []
 
-    dates = mpdates.date2num(data)
+    #dates = mpdates.date2num(data)
+    dates = []
+    [dates.append( index ) for index in range(0,n_cloc)]
 
     gs_top = plt.GridSpec(5, 1, top=0.95)
     fig, ((ax1, ax4), (ax2, ax5), (ax3, ax6)) = plt.subplots(3,2, sharex=True, facecolor=light_grey_c)#, sharey=True)
 
-    ax1.plot_date(dates, code_lines, 'r-o', label="Code lines", lw=2, color=red_c)
+    ax1.plot_date(dates, code_lines, 'r-', label="Code lines", lw=2, color=red_c)
     ax1.set_title("Code lines:",weight = "bold")
 
-    ax2.plot_date(dates, comment_lines, 'g-o', label="Comment lines", lw=2, color=yell_c)
+    ax2.plot_date(dates, comment_lines, 'g-', label="Comment lines", lw=2, color=yell_c)
     ax2.set_title("Comment lines:",weight = "bold")
 
-    ax3.plot_date(dates, comment_percentage_lines, 'b-o', label="Comment % lines", color=blue_c)
+    ax3.plot_date(dates, comment_percentage_lines, 'b-', label="Comment % lines", color=blue_c)
     ax3.plot_date(dates, comment_percentage_lines_max, 'b--', label="Comment % lines (max)", color=blue_c)
     ax3.plot_date(dates, comment_percentage_lines_min, 'b--', label="Comment % lines (min)", color=blue_c)
 
     ax4.axis('off')
 
-    ax5.plot_date(dates, debug_lines, 'm-o', label="Debug lines", lw=2, color=grey_c)
+    ax5.plot_date(dates, debug_lines, 'm-', label="Debug lines", lw=2, color=grey_c)
     ax5.set_title("Debug lines:",weight = "bold")
 
-    ax6.plot_date(dates, debug_percentage_lines, 'c-o', label="Debug % lines", color=green_c)
+    ax6.plot_date(dates, debug_percentage_lines, 'c-', label="Debug % lines", color=green_c)
     ax6.plot_date(dates, debug_percentage_lines_max, 'c--', label="Debug % lines (max)", color=green_c)
     ax6.plot_date(dates, debug_percentage_lines_min, 'c--', label="Debug % lines (min)", color=green_c)
 
@@ -120,14 +122,18 @@ def makeClocPlot ( info_list , name):
     ax2.set_ylabel('Number of lines',weight = "bold")
     ax3.set_ylabel('Percentage',weight = "bold")
 
+    ax3.set_xlabel('  -->  Time  -->  ',weight = "bold")
+    ax6.set_xlabel('  -->  Time  -->  ',weight = "bold")
+
     ax4.legend( handles_all[::1], labels_all[::1], loc="upper left", bbox_to_anchor=[0.15,1.1], ncol=1, shadow=True, fancybox=True, fontsize=8)
     #fontsize : int or float or {‘xx-small’, ‘x-small’, ‘small’, ‘medium’, ‘large’, ‘x-large’, ‘xx-large’}
     #title="Legend",
 
     #fig.suptitle(name)
-    fig.autofmt_xdate()
+    #fig.autofmt_xdate()
     fig.subplots_adjust(left=0.13, bottom=0.11, right=0.93, top=0.92, wspace=0.15, hspace=0.25)
 
+    plt.xticks([])
     plt.show()
     img_name = name
     img_name.replace(" ","")

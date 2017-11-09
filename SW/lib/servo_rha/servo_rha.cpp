@@ -27,11 +27,11 @@ ServoRHA::ServoRHA(uint8_t servo_id) {
 /** @brief Handles the inicialization of all ServoRHA internal parameters when default constructor is used
   * @param {uint8_t} servo_id servo id controlled by this object
   */
-void ServoRHA::init(uint8_t servo_id) {
+void ServoRHA::init(uint8_t _servo_id) {
     DebugSerialSRHALn("initServo: begin of inicialitationfunction");
     // calibrateTorque();
 
-    servo_id_ = servo_id;
+    servo_id_ = _servo_id;
     DebugSerialSRHALn2("initServo: id is now: ", servo_id_);
 
     speed_regulator_.setKRegulator(KP,KI,KD);
@@ -57,29 +57,29 @@ void ServoRHA::init(uint8_t servo_id) {
   * Action registered (pending from activation) flag is in register 0x2C
   * Moving flag is in register 0x2E
   */
-void ServoRHA::updateInfo(uint8_t *data, uint16_t error) {
+void ServoRHA::updateInfo(uint8_t *_data, uint16_t _error) {
     DebugSerialSRHALn("updateInfo: begin of function");
 
-    position_ = data[0];  // acces data[0]
-    position_ |= (data[1] << 8);  // acces data[1]
+    position_ = _data[0];  // acces data[0]
+    position_ |= (_data[1] << 8);  // acces data[1]
 
-    speed_ = data[2];    // acces data[2]
-    speed_ |= (data[3] << 8);   // acces data[3]
+    speed_ = _data[2];    // acces data[2]
+    speed_ |= (_data[3] << 8);   // acces data[3]
     speed_dir_  = ((speed_ & 0x0400) >> 10);  // 10th byte is direction -> 0000010000000000 binary is 400 in hex
     // bytes from 9 to 0 are speed value:
     speed_ = speed_ & ~0x0400;
 
-    load_ = data[4];  // acces data[4]
-    load_ |= (data[5] << 8);   // acces data[5]
+    load_ = _data[4];  // acces data[4]
+    load_ |= (_data[5] << 8);   // acces data[5]
     load_dir_  = ((load_ & 0x0400) >> 10);  // 10th byte is direction
     // bytes from 9 to 0 are load value:
     load_ = load_ & ~0x0400;
 
-    voltage_ = data[6];   // acces data[6]  // NOTE: ¿should be divided by 10?
+    voltage_ = _data[6];   // acces data[6]  // NOTE: ¿should be divided by 10?
 
-    temperature_ = data[7] ; // acces data[7]
+    temperature_ = _data[7] ; // acces data[7]
 
-    error_comunication_ = error;
+    error_comunication_ = _error;
 
     DebugSerialSRHALn("updateInfo: Information updated");
     DebuSerialRHALnPrintServoStatus(position_, speed_, speed_dir_, load_, load_dir_, voltage_, temperature_, error_comunication_);
@@ -92,14 +92,14 @@ void ServoRHA::updateInfo(uint8_t *data, uint16_t error) {
  * @param {uint16_t} direction_target move CW or CCW
  */
 
-uint8_t ServoRHA::setSpeedGoal(RHATypes::SpeedGoal goal) {
+uint8_t ServoRHA::setSpeedGoal(RHATypes::SpeedGoal _goal) {
     DebugSerialJRHALn("setSpeedGoal: seting speed goal");
     DebugSerialSRHALn2("setSpeedGoal: servo id now is: ", servo_.getID());
-    DebugSerialSRHALn2("setSpeedGoal: goal intended for id: ", goal.servo_id);
-    if (servo_id_ == goal.servo_id) {
-        speed_slope_ = goal.speed_slope;
-        speed_target_ = goal.speed;
-        direction_target_ = goal.direction;
+    DebugSerialSRHALn2("setSpeedGoal: goal intended for id: ", _goal.servo_id);
+    if (servo_id_ == _goal.servo_id) {
+        speed_slope_ = _goal.speed_slope;
+        speed_target_ = _goal.speed;
+        direction_target_ = _goal.direction;
         time_last_ = millis();
         DebugSerialSRHALn2("setSpeedGoal: Speed set to: ", speed_target_);
         DebugSerialSRHALn2("setSpeedGoal: Speed slope set to: ", speed_slope_);
@@ -163,11 +163,11 @@ void ServoRHA::calculateTorque() {
  * @method ServoRHA::addUpadteInfoToPacket
  * @param {uint8_t*} buffer array in which add the information
  */
-void ServoRHA::addUpadteInfoToPacket(uint8_t *buffer) {
+void ServoRHA::addUpadteInfoToPacket(uint8_t *_buffer) {
      uint8_t data[2];
      data[0] = ServoRHAConstants::PRESENT_POSITION_L;
      data[1] = 0x08;  // Wants to read 8 bytes from PRESENT_POSITION_L
-     addToPacket(buffer, data, 2);
+     addToPacket(_buffer, data, 2);
 }
 
  /** @brief Saves in buffer the package return level of servo (error information for each command sent)
@@ -176,14 +176,14 @@ void ServoRHA::addUpadteInfoToPacket(uint8_t *buffer) {
    * @param {uint8_t} option RETURN_PACKET_ALL -> servo returns packet for all commands sent; RETURN_PACKET_NONE -> servo never retunrs state packet; RETURN_PACKET_READ_INSTRUCTIONS -> servo answer packet state when a READ command is sent (to read position, temperature, etc)
    * @see addToPacket()
    */
-void ServoRHA::addReturnOptionToPacket(uint8_t *buffer, uint8_t option) {
+void ServoRHA::addReturnOptionToPacket(uint8_t *_buffer, uint8_t _option) {
      DebugSerialSRHALn("returnPacketSet: begin of function.");
 
      uint8_t optionPacket[2];
      optionPacket[0] = ServoRHAConstants::STATUS_RETURN_LEVEL;         // Control Starting Address
-     optionPacket[1] = option;             // ON = 1, OFF = 0
+     optionPacket[1] = _option;             // ON = 1, OFF = 0
 
-     addToPacket(buffer, optionPacket, 2);
+     addToPacket(_buffer, optionPacket, 2);
 
      DebugSerialSRHALn("returnPacketSet: end of function.");
      return;
@@ -194,7 +194,7 @@ void ServoRHA::addReturnOptionToPacket(uint8_t *buffer, uint8_t option) {
   * @param {uint8_t *} buffer is the buffer in which the information will be added (by reference)
   * @see addToPacket()
   */
-bool ServoRHA::addTorqueToPacket(uint8_t *buffer) {
+bool ServoRHA::addTorqueToPacket(uint8_t *_buffer) {
     DebugSerialSRHALn("addToPacket: begin of function");
     uint8_t txBuffer[3];
 
@@ -206,7 +206,7 @@ bool ServoRHA::addTorqueToPacket(uint8_t *buffer) {
     txBuffer[0] = ServoRHAConstants::MOVING_SPEED_L;
     txBuffer[1] = goal_torque_ & 0x00FF;  // Speed bottom 8 bits
     txBuffer[2] = goal_torque_ >> 8;  // Speed top 8 bits
-    addToPacket(buffer, txBuffer, 3);
+    addToPacket(_buffer, txBuffer, 3);
     DebugSerialSRHALn("addToPacket: end of function");
     return true;
 }
@@ -217,12 +217,12 @@ bool ServoRHA::addTorqueToPacket(uint8_t *buffer) {
  * @param buffer array in which add the information
  * @param onOff  ON = 1; OFF = 0;
  */
-void ServoRHA::setTorqueOnOfToPacket(uint8_t *buffer, uint8_t onOff) {
+void ServoRHA::setTorqueOnOfToPacket(uint8_t *_buffer, uint8_t _onOff) {
     uint8_t txBuffer[2];
     txBuffer[0] = ServoRHAConstants::TORQUE_ENABLE;
-    txBuffer[1] = onOff;  // ON = 1, OFF = 0
+    txBuffer[1] = _onOff;  // ON = 1, OFF = 0
 
-    addToPacket(buffer, txBuffer, 2);
+    addToPacket(_buffer, txBuffer, 2);
 }
 
 /**
@@ -232,8 +232,8 @@ void ServoRHA::setTorqueOnOfToPacket(uint8_t *buffer, uint8_t onOff) {
  * @see exitWheelModeToPacket()
  * @see wheelModeToPacket()
  */
-void ServoRHA::setWheelModeToPacket(uint8_t *buffer) {
-    wheelModeToPacket(buffer, 0, 0);  // Enable wheel mode
+void ServoRHA::setWheelModeToPacket(uint8_t *_buffer) {
+    wheelModeToPacket(_buffer, 0, 0);  // Enable wheel mode
 
 }
 
@@ -244,8 +244,8 @@ void ServoRHA::setWheelModeToPacket(uint8_t *buffer) {
  * @see setWheelModeToPacket()
  * @see wheelModeToPacket()
  */
-void ServoRHA::exitWheelModeToPacket(uint8_t *buffer) {
-    wheelModeToPacket(buffer, 0, 1087);  // Reset to default angle limit
+void ServoRHA::exitWheelModeToPacket(uint8_t *_buffer) {
+    wheelModeToPacket(_buffer, 0, 1087);  // Reset to default angle limit
 }
 
 /**
@@ -256,16 +256,16 @@ void ServoRHA::exitWheelModeToPacket(uint8_t *buffer) {
  * @see setWheelModeToPacket()
  * @see exitWheelModeToPacket()
  */
-void ServoRHA::wheelModeToPacket(uint8_t *buffer, uint16_t CW_angle, uint16_t CCW_angle) {
+void ServoRHA::wheelModeToPacket(uint8_t *_buffer, uint16_t _CW_angle, uint16_t _CCW_angle) {
     uint8_t txBuffer[5];
 
     txBuffer[0] = ServoRHAConstants::CW_ANGLE_LIMIT_L;
-    txBuffer[1] = CW_angle & 0x00FF;   // CW limit bottom 8 bits
-    txBuffer[2] = CW_angle >> 8;       // CW limit top 8 bits
-    txBuffer[3] = CCW_angle & 0x00FF;  // CCW limit bottom 8 bits
-    txBuffer[4] = CCW_angle >> 8;      // CCW limit top 8 bits
+    txBuffer[1] = _CW_angle & 0x00FF;   // CW limit bottom 8 bits
+    txBuffer[2] = _CW_angle >> 8;       // CW limit top 8 bits
+    txBuffer[3] = _CCW_angle & 0x00FF;  // CCW limit bottom 8 bits
+    txBuffer[4] = _CCW_angle >> 8;      // CCW limit top 8 bits
 
-    addToPacket(buffer, txBuffer, 5);
+    addToPacket(_buffer, txBuffer, 5);
 }
 
 /**
@@ -273,9 +273,9 @@ void ServoRHA::wheelModeToPacket(uint8_t *buffer, uint16_t CW_angle, uint16_t CC
  * @method ServoRHA::pingToPacket
  * @param  buffer  Array in which to store the data
  */
-void ServoRHA::pingToPacket(uint8_t *buffer) {
+void ServoRHA::pingToPacket(uint8_t *_buffer) {
     uint8_t txBuffer[1] = {0};
-    addToPacket(buffer, txBuffer, 0);
+    addToPacket(_buffer, txBuffer, 0);
 }
 
 /**
@@ -284,13 +284,13 @@ void ServoRHA::pingToPacket(uint8_t *buffer) {
  * @param  buffer  Array in which to store the data
  * @param  torque_limit  Torque limit to set
  */
-void ServoRHA::setTorqueLimitToPacket(uint8_t *buffer, uint16_t torque_limit) {
+void ServoRHA::setTorqueLimitToPacket(uint8_t *_buffer, uint16_t _torque_limit) {
     uint8_t txBuffer[3];
 
     txBuffer[0] = ServoRHAConstants::TORQUE_LIMIT_L;
-    txBuffer[1] = torque_limit & 0x00FF;  // Torque limit bottom 8 bits
-    txBuffer[2] = torque_limit >> 8;  // Torque limit top 8 bits
-    addToPacket(buffer, txBuffer, 3);
+    txBuffer[1] = _torque_limit & 0x00FF;  // Torque limit bottom 8 bits
+    txBuffer[2] = _torque_limit >> 8;  // Torque limit top 8 bits
+    addToPacket(_buffer, txBuffer, 3);
 
 }
 
@@ -301,18 +301,18 @@ void ServoRHA::setTorqueLimitToPacket(uint8_t *buffer, uint16_t torque_limit) {
  * @param  speed   Speed to set
  * @param  direction   Direction in which servo will move
  */
-void ServoRHA::setWheelSpeedToPacket(uint8_t *buffer, uint16_t speed, uint8_t direction) {
+void ServoRHA::setWheelSpeedToPacket(uint8_t *_buffer, uint16_t _speed, uint8_t _direction) {
     uint8_t txBuffer[3];
 
-    speed = speed & 0x03FF;  // Eliminate bits which are non speed
-    if (direction == CW) {
-        speed = speed | 0x0400;
+    _speed = _speed & 0x03FF;  // Eliminate bits which are non speed
+    if (_direction == CW) {
+        _speed = _speed | 0x0400;
     }
 
     txBuffer[0] = ServoRHAConstants::MOVING_SPEED_L;
-    txBuffer[1] = speed & 0x00FF;  // Torque limit bottom 8 bits
-    txBuffer[2] = speed >> 8;  // Torque limit top 8 bits
-    addToPacket(buffer, txBuffer, 3);
+    txBuffer[1] = _speed & 0x00FF;  // Torque limit bottom 8 bits
+    txBuffer[2] = _speed >> 8;  // Torque limit top 8 bits
+    addToPacket(_buffer, txBuffer, 3);
 }
 
 
@@ -321,12 +321,12 @@ void ServoRHA::setWheelSpeedToPacket(uint8_t *buffer, uint16_t speed, uint8_t di
   * @param {uint8_t *} packet small packet to add. Note that it can be speed, torque, position... It can be a combination (go to an X position with an Y speed) (by reference)
   * @param {uint8_t} packet_len length of the small packet to add (uint8_ts)
   */
-void ServoRHA::addToPacket(uint8_t *buffer, uint8_t *packet, uint8_t packet_len) {
+void ServoRHA::addToPacket(uint8_t *_buffer, uint8_t *_packet, uint8_t _packet_len) {
     DebugSerialSRHALn("addToPacket: begin of function");
-    buffer[0] = servo_id_;
-    buffer[1] = packet_len;
-    for (int i = 0; i < packet_len; i++) {
-      buffer[2 + i] = packet[i];
+    _buffer[0] = servo_id_;
+    _buffer[1] = _packet_len;
+    for (int i = 0; i < _packet_len; i++) {
+      _buffer[2 + i] = _packet[i];
 
 
     DebugSerialSRHALn("addToPacket: end of function");
@@ -344,10 +344,10 @@ void ServoRHA::addToPacket(uint8_t *buffer, uint8_t *packet, uint8_t packet_len)
   * @param {uint8_t} angle_margin margin in which the angle1 will be considered to be equal to angle2 [angle2-angle_margin, angle2+angle_margin]
   * @return {uint8_t} Returns enumeration defined in servo_rha.h -> LESS_THAN, GREATER_THAN or EQUAL
   */
-uint8_t compareAngles(uint16_t angle1, uint16_t angle2, uint8_t angle_margin) {
-    DebugSerialSRHALn4("ServoRHA.cpp::compareAngles: begin of function. Angle 1: ", angle1, ". Angle 2: ", angle2);
-    if (angle1 < angle2-angle_margin) return ServoRHAConstants::LESS_THAN;
-    else if (angle1 > angle2+angle_margin) return ServoRHAConstants::GREATER_THAN;
+uint8_t compareAngles(uint16_t _angle1, uint16_t _angle2, uint8_t _angle_margin) {
+    DebugSerialSRHALn4("ServoRHA.cpp::compareAngles: begin of function. Angle 1: ", _angle1, ". Angle 2: ", _angle2);
+    if (_angle1 < _angle2-_angle_margin) return ServoRHAConstants::LESS_THAN;
+    else if (_angle1 > _angle2+_angle_margin) return ServoRHAConstants::GREATER_THAN;
     else return ServoRHAConstants::EQUAL;
 }
 
@@ -357,9 +357,9 @@ uint8_t compareAngles(uint16_t angle1, uint16_t angle2, uint8_t angle_margin) {
   * @param {uint8_t} speed_margin margin in which the speed will be considered to be equal to speed2 [speed2-speed_margin, speed2+speed_margin]
   * @return {uint8_t} Returns enumeration defined in servo_rha.h -> LESS_THAN, GREATER_THAN or EQUAL
   */
-uint8_t compareSpeed(uint16_t speed1, uint16_t speed2, uint8_t speed_margin) {
-    DebugSerialSRHALn4("ServoRHA.cpp::compareSpeed: begin of function. Speed 1: ", speed1, ". Speed 2: ", speed2);
-    if (speed1 < speed2-speed_margin) return ServoRHAConstants::LESS_THAN;
-    else if (speed1 > speed2+speed_margin) return ServoRHAConstants::GREATER_THAN;
+uint8_t compareSpeed(uint16_t _speed1, uint16_t _speed2, uint8_t _speed_margin) {
+    DebugSerialSRHALn4("ServoRHA.cpp::compareSpeed: begin of function. Speed 1: ", _speed1, ". Speed 2: ", _speed2);
+    if (_speed1 < _speed2-_speed_margin) return ServoRHAConstants::LESS_THAN;
+    else if (_speed1 > _speed2+_speed_margin) return ServoRHAConstants::GREATER_THAN;
     else return ServoRHAConstants::EQUAL;
 }

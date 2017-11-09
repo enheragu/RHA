@@ -5,7 +5,7 @@
 #include "rha_types.h"
 #include "WiiChuck.h"
 
-#define CHUCK_MARGIN 20
+#define CHUCK_MARGIN 40
 #define CHUCK_MAX_VALUE 90
 
 struct ChuckReadStruct {
@@ -23,6 +23,11 @@ class ChuckHandler {
          chuck_.begin();
     }
 
+    /**
+     * @brief Sets period of chuck read axis refresh
+     * @method setTimer
+     * @param  timer    period in ms
+     */
     void setTimer(uint64_t timer) {
         chuck_refresh_timer_.setTimer(timer);
         chuck_refresh_timer_.activateTimer();
@@ -36,6 +41,11 @@ class ChuckHandler {
          Serial.print("C value is: "); Serial.println(chuck_.buttonC);
     }
 
+    /**
+     * @brief Reads values from chuck and returns an X,Y,Z speed
+     * @method readAxis
+     * @return ChuckReadStruct is a struct with speed values in it (X,Y,Z) from -100 to 100 (direction and module)
+     */
     ChuckReadStruct readAxis() {
         if(chuck_refresh_timer_.checkContinue()) {
 
@@ -47,10 +57,10 @@ class ChuckHandler {
             bool c_value = chuck_.buttonC;
             bool z_value = chuck_.buttonZ;
 
-            if( c_value && z_value) info.Z_ = 0;
+            /*if( c_value && z_value) info.Z_ = 0;
             else if( c_value ) info.Z_ = 50;
             else if( z_value ) info.Z_ = -50;
-            else info.Z_ = 0;
+            else info.Z_ = 0;*/
 
             if (x_value > CHUCK_MAX_VALUE || x_value < -CHUCK_MAX_VALUE) x_value = (x_value > 0) ? CHUCK_MAX_VALUE : -CHUCK_MAX_VALUE;
             if (y_value > CHUCK_MAX_VALUE || y_value < -CHUCK_MAX_VALUE) y_value = (y_value > 0) ? CHUCK_MAX_VALUE : -CHUCK_MAX_VALUE;
@@ -63,16 +73,24 @@ class ChuckHandler {
             else if (y_value < -CHUCK_MARGIN) info.Y_ = map(y_value, -CHUCK_MAX_VALUE, -CHUCK_MARGIN,  -100, 0);
             else info.Y_ = 0;
 
-            Serial.print(" X value is: "); Serial.println(info.X_);
-            Serial.print(" Y value is: "); Serial.println(info.Y_);
-            Serial.print(" Z value is: "); Serial.println(info.Z_);
+            if( c_value ) {
+                info.Z_ = info.X_;
+                info.X_ = 0;
+                info.Y_ = 0;
+            }
+            else
+                info.Z_ = 0;
+
+            //Serial.print(" X value is: "); Serial.println(info.X_);
+            //Serial.print(" Y value is: "); Serial.println(info.Y_);
+            //Serial.print(" Z value is: "); Serial.println(info.Z_);
 
             info.updated_ = true;
 
             chuck_refresh_timer_.activateTimer();
             return info;
         }
-        return ChuckReadStruct();
+        return ChuckReadStruct(0,0,0,false);
     }
 
 };

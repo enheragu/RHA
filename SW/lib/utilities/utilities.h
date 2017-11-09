@@ -18,8 +18,9 @@
 // #include "cytron_g15_servo.h"
 #include <Arduino.h>
 
-
-void averageChauvenet(uint32_t *data, uint8_t n, float &arithmetic_average, float &standard_deviation);
+namespace MeasureUtilities {
+    void averageChauvenet(uint32_t *data, uint8_t n, float &arithmetic_average, float &standard_deviation);
+}
 
 namespace ServoUtilities {
     void setServoId(uint8_t new_id);

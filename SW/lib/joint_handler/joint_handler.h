@@ -60,12 +60,12 @@ namespace JointHandlerConstants {
     #define ALL_SERVO 0xFE
     #define DEFAULT_ID  0x01
 
-    #define G15_BAUDRATE 57600
+    #define G15_BAUDRATE 460800
 
-    #define NUM_JOINT 2
+    #define NUM_JOINT 3
     #define BUFFER_LEN 30
 
-    #define EEMPROM_DELAY 25
+    #define EEMPROM_WRITE_DELAY 25
 
 }  // namespace JointHandlerConstants
 
@@ -82,7 +82,7 @@ class JointHandler {
     JointHandler() {}
     JointHandler(uint64_t timer);
     virtual void initJoints();
-    void setSpeedGoal(RHATypes::SpeedGoal goal);
+    void setSpeedGoal(RHATypes::SpeedGoal _goal);
     void setTimer(uint64_t timer);
 
     virtual void controlLoop();
@@ -94,27 +94,27 @@ class JointHandler {
     void sendSetWheelModeAll();
     void sendExitWheelModeAll();
 
-    void sendSetTorqueLimitAll(uint16_t torque_limit);
-    void sendSetWheelSpeedAll(uint16_t speed = 0, uint8_t direction = 0);
+    void sendSetTorqueLimitAll(uint16_t _torque_limit);
+    void sendSetWheelSpeedAll(uint16_t _speed = 0, uint8_t _direction = 0);
 
-    void setReturnPacketOption(uint8_t option);
+    void setReturnPacketOption(uint8_t _option);
 
     bool checkConectionAll();
-    uint8_t addToSyncPacket(uint8_t *buffer, uint8_t *data, uint8_t num_bytes);
+    uint8_t addToSyncPacket(uint8_t *_buffer, uint8_t *_data, uint8_t _num_bytes);
 
-    void warpSyncPacket(uint8_t *buffer, uint8_t adress, uint8_t *txBuffer, uint8_t num_bytes, uint8_t num_servo);
-    void warpSinglePacket(uint8_t instruction, uint8_t *buffer, uint8_t *txBuffer);
-    uint16_t sendPacket( uint8_t *buffer);
+    void warpSyncPacket(uint8_t *_buffer, uint8_t _adress, uint8_t *_txBuffer, uint8_t _num_bytes, uint8_t _num_servo);
+    void warpSinglePacket(uint8_t _instruction, uint8_t *_buffer, uint8_t *_txBuffer);
+    uint16_t sendPacket( uint8_t *_buffer);
 
 
     /**************************************
      *        Serial Port Handling        *
      **************************************/
-    JointHandler(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin);
-    JointHandler(uint8_t ctrlpin);
-    void initSerial(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate = G15_BAUDRATE);
+    JointHandler(uint8_t _rxpin, uint8_t _txpin, uint8_t _ctrlpin);
+    JointHandler(uint8_t _ctrlpin);
+    void initSerial(uint8_t _rxpin, uint8_t _txpin, uint8_t _ctrlpin, uint32_t _baudrate = G15_BAUDRATE);
 
-    void begin(uint32_t baudrate);
+    void begin(uint32_t _baudrate);
     void end(void);
 
     void setTxMode(void);

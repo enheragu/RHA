@@ -74,6 +74,11 @@ void loop() {
     //joint_handler.extractStepInputData(0);
     //delay(500);
     robo_health_arm.handleWithChuck();
+    if (i % 1000 == 0){
+        Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getGoalTorque()); Serial.print(",\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[2].servo_.getGoalTorque()); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[1].servo_.getGoalTorque());
+    }
+    i++;
     /*for (i = 0; i < 800; i++) {
         timeNow = millis();
         robo_health_arm.handleWithChuck();

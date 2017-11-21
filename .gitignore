@@ -33,3 +33,19 @@
 
 # Logging
 *.log
+
+# Aux files
+*.save
+
+# cmake related files
+CMakeCache.txt
+*.cmake
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+install_manifest.txt
+compile_commands.json
+
+
+

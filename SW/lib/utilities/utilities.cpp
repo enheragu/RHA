@@ -19,13 +19,13 @@
 #include "joint_handler.h"
 
 
-    #define SPEED_TARGET 80  // speed target in rpm
-    #define KP_REGULATOR 150  // kp for extractRegulatorData function
-    #define LOOP_FREQUENCY 100  // in ms
-    #define BAUD_RATE_G15 460800
+#define SPEED_TARGET 80  // speed target in rpm
+#define KP_REGULATOR 150  // kp for extractRegulatorData function
+#define LOOP_FREQUENCY 100  // in ms
+#define BAUD_RATE_G15 460800
 
-    #define CHAUVENET_REPETITIONS 50  // too many repetitions cause memory overfload
-    #define KN 1.54  // Chauvenet coeficient for n = 4
+#define CHAUVENET_REPETITIONS 50  // too many repetitions cause memory overfload
+#define KN 1.54  // Chauvenet coeficient for n = 4
 
 namespace MeasureUtilities {
 
@@ -108,27 +108,26 @@ void JHUtilitiesJH::extractRegulatorData(uint8_t _joint_to_test) {
 
     RHATypes::SpeedGoal speed_goal(joint_[_joint_to_test].servo_.getID(), SPEED_REGULATOR_TEST, CW);  // Id, speed, speed_slope
     setSpeedGoal(speed_goal);
-    for (samples = 0; samples < SAMPLE_KP; samples++) {
-        joint_[_joint_to_test].servo_.torque_regulator_.setKRegulator(kp_samples[samples], ki_samples[samples], kd_samples[samples]);  // KP_SAMPLES(a) defined in the top of utilities.h
-        Serial.print("n_data"); Serial.print(samples); Serial.print(" = "); Serial.println(SAMPLE_REGULATOR);
-        Serial.print("speed_target"); Serial.print(samples); Serial.print("  = "); Serial.println(joint_[_joint_to_test].servo_.getSpeedTarget());
-        Serial.print("regulator_offset"); Serial.print(samples); Serial.print("  = "); Serial.println(TORQUE_OFFSET);
-        Serial.print("regulator_prealimentation"); Serial.print(samples); Serial.print("  = "); Serial.println(TORQUE_PREALIMENTATION_SLOPE);
-        Serial.print("regulatorTest"); Serial.print(samples); Serial.print("  = [");
-        Serial.print("['"); Serial.print(joint_[_joint_to_test].servo_.torque_regulator_.getKp()); Serial.print("','"); Serial.print(joint_[_joint_to_test].servo_.torque_regulator_.getKi()); Serial.print("','"); Serial.print(joint_[_joint_to_test].servo_.torque_regulator_.getKd());
-        Serial.print("']");
+    for (uint8_t samples = 0; samples < SAMPLE_KP; samples++) {
+        joint_[joint_to_test].servo_.speed_regulator_.setKRegulator(kp_samples[samples],ki_samples[samples],kd_samples[samples]);  // KP_SAMPLES(a) defined in the top of utilities.h
+        output("n_data"); output(samples); output(" = "); outputln(SAMPLE_REGULATOR);
+        output("speed_target"); output(samples); output("  = "); outputln(joint_[joint_to_test].servo_.getSpeedTarget());
+        output("regulator_offset"); output(samples); output("  = "); outputln(TORQUE_OFFSET);
+        output("regulator_prealimentation"); output(samples); output("  = "); outputln(TORQUE_PREALIMENTATION);
+        output("regulatorTest"); output(samples); output("  = [");
+        output("['"); output(joint_[joint_to_test].servo_.speed_regulator_.getKp()); output("','"); output(joint_[joint_to_test].servo_.speed_regulator_.getKi()); output("','"); output(joint_[joint_to_test].servo_.speed_regulator_.getKd());
+        output("']");
 
         JointHandler::sendSetWheelModeAll();
 
         for (counter = 0; counter < SAMPLE_REGULATOR; counter++) {
             time_init = millis();
             JointHandler::controlLoopTorque();
-
-            Serial.print(",['"); Serial.print(joint_[_joint_to_test].servo_.getSpeed()); Serial.print("','");
-            Serial.print((unsigned long)time_init);
-            Serial.print("','");
-            Serial.print(joint_[_joint_to_test].servo_.getGoalTorque() & ~0x0400);
-            Serial.println("']\\");
+            output(",['"); output(joint_[joint_to_test].servo_.getSpeed()); output("','");
+            output(time_init);
+            output("','");
+            output(joint_[joint_to_test].servo_.getGoalTorque() & ~0x0400);
+            outputln("']\\");
 
             if (joint_[_joint_to_test].servo_.getError() != 0) {
                 //DebugSerialJHLn4Error(joint_[_joint_to_test].servo_.getCommError(), joint_[_joint_to_test].servo_.getID());
@@ -140,7 +139,7 @@ void JHUtilitiesJH::extractRegulatorData(uint8_t _joint_to_test) {
         JointHandler::sendExitWheelModeAll();
         delay(1000);
 
-        Serial.println("]");
+        outputln("]");
     }
     return;
 }
@@ -183,7 +182,7 @@ void JHUtilitiesJH::resetEncoder() {
 
 void JHUtilitiesJH::updateEncoder(uint8_t _joint_to_test) {
     pos_ = joint_[_joint_to_test].servo_.getPosition();
-    // Serial.print("Pos read from servo is: "); Serial.println(pos_);
+    // printf("Pos read from servo is: "); printfln(pos_);
     encoderCurrent_ = pos_;
     if (encoderCurrent_ < (encoderTemp_ + ENCODER_ANGLE_MARGIN)  && encoderCurrent_ > (encoderTemp_ - ENCODER_ANGLE_MARGIN) && encoderFlag_ == 0) {
         encoderTotal_++;
@@ -208,8 +207,8 @@ void JHUtilitiesJH::returnToStartPositionTest(uint8_t _joint_to_test, uint8_t di
         else if (angle_end_position < 0) angle_end_position += 1087;
     }
 
-    // Serial.print("## Turns made during test to be undone: "); Serial.println(turns_to_undo);
-    // Serial.print("## Angle last position: "); Serial.println(angle_end_position);
+    // printf("## Turns made during test to be undone: "); printfln(turns_to_undo);
+    // printf("## Angle last position: "); printfln(angle_end_position);
     JointHandler::updateJointInfo();
     resetEncoder();
     startEncoder(_joint_to_test);
@@ -234,7 +233,7 @@ void JHUtilitiesJH::returnToStartPositionTest(uint8_t _joint_to_test, uint8_t di
             turns_to_undo = 1;
             angleEndPositionFlag_ = 1;
             angle_end_position = 0;
-            // Serial.print("## Reset encoder to got to: "); Serial.println(encoderTemp_);
+            // printf("## Reset encoder to got to: "); printfln(encoderTemp_);
         }
         else if ((encoderTotal_ >= turns_to_undo || turns_to_undo == 0) && angle_end_position == 0)
             break;
@@ -258,23 +257,23 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
 
     unsigned int num_test, num_repetitions;
     if (_option == STEP) {
-        Serial.println("##  ===== START OF DATA SET, STEP TEST ===== ");
-        Serial.print("## n_samples_step"); Serial.print(" = "); Serial.println(SAMPLE_TEST_STEP);
-        Serial.print("## n_data_step"); Serial.print(0); Serial.print(" = "); Serial.println(SAMPLE_STEP);
+        printfln("##  ===== START OF DATA SET, STEP TEST ===== ");
+        printf("## n_samples_step"); printf(" = "); printfln(SAMPLE_TEST_STEP);
+        printf("## n_data_step"); printf(0); printf(" = "); printfln(SAMPLE_STEP);
         num_repetitions = SAMPLE_STEP;
         num_test = SAMPLE_TEST_STEP;
     } else if (_option == SLOPE) {
-        Serial.println("##  ===== START OF DATA SET, SLOPE TEST ===== ");
-        Serial.print("## n_samples_slope"); Serial.print(" = "); Serial.println(SAMPLE_TEST_SLOPE);
-        Serial.print("## n_data_slope"); Serial.print(0); Serial.print(" = "); Serial.println(SAMPLE_SLOPE);
+        printfln("##  ===== START OF DATA SET, SLOPE TEST ===== ");
+        printf("## n_samples_slope"); printf(" = "); printfln(SAMPLE_TEST_SLOPE);
+        printf("## n_data_slope"); printf(0); printf(" = "); printfln(SAMPLE_SLOPE);
         num_repetitions = SAMPLE_SLOPE;
         num_test = SAMPLE_TEST_SLOPE;
     }
 
     uint8_t direction = DOWN;
     uint8_t back_direction = UP;
-    Serial.println("## This test is performed with 0.5 kg, in favour");
-    Serial.println("## Data printed is, on each column: speed, torque sent, and time");
+    printfln("## This test is performed with 0.5 kg, in favour");
+    printfln("## Data printed is, on each column: speed, torque sent, and time");
 
     testOnProcess(false);
     blinkLed(LED_VERDE, 100);
@@ -282,7 +281,7 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
     delay(25);
     while (!digitalRead(PULSADOR)) {
         delay(25);
-        // Serial.print(digitalRead(PULSADOR));
+        // printf(digitalRead(PULSADOR));
     }
     delay(1000);
     while (!digitalRead(PULSADOR)) {
@@ -292,14 +291,14 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
             JointHandler::sendSetWheelSpeedAll(STEP_SPEED/3, back_direction);
         }
         delay(25);
-        // Serial.print(digitalRead(PULSADOR));
+        // printf(digitalRead(PULSADOR));
     }
     JointHandler::sendExitWheelModeAll();
     delay(25);
     delay(1000);
     while (!digitalRead(PULSADOR)) {
         delay(25);
-        // Serial.print(digitalRead(PULSADOR));
+        // printf(digitalRead(PULSADOR));
     }
     blinkLed(LED_ROJO, 100);
     testOnProcess(true);
@@ -312,14 +311,14 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
     unsigned int counter = 0;
 
     for ( samples = 0; samples < num_test; samples++) {
-        // Serial.print("stepTest.append(");  Serial.print(" [0");
+        // printf("stepTest.append(");  printf(" [0");
         JointHandler::sendSetWheelModeAll();
         delay(25);
         JointHandler::updateJointInfo();
         if (_option == STEP) {
-            Serial.print("Step(:,:,"); Serial.print(samples+1); Serial.print(") = [");
+            printf("Step(:,:,"); printf(samples+1); printf(") = [");
         } else if (_option == SLOPE) {
-            Serial.print("Slope(:,:,"); Serial.print(samples+1); Serial.print(") = [");
+            printf("Slope(:,:,"); printf(samples+1); printf(") = [");
         }
         time_init = micros();
         time_now = 0;
@@ -339,10 +338,10 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
             if (torque > 1023) torque = 1023;
             JointHandler::updateJointInfo();
             JointHandler::sendSetWheelSpeedAll(torque, direction);
-            if (counter != 0)  Serial.print(";");
+            if (counter != 0)  printf(";");
             time_now = micros() - time_init;
-            Serial.print(" "); Serial.print(joint_[_joint_to_test].servo_.getSpeed()); Serial.print(" "); Serial.print(torque); Serial.print(" ");
-            Serial.print((unsigned long)time_now);  // Serial.println("']\\");
+            printf(" "); printf(joint_[_joint_to_test].servo_.getSpeed()); printf(" "); printf(torque); printf(" ");
+            printf((unsigned long)time_now);  // printfln("']\\");
             // measure_period.checkWait();
             while (!measure_period.checkContinue()) {  // while time has not been finished
                 JointHandler::updateJointInfo();
@@ -351,10 +350,9 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
             measure_period.activateTimer();
         }
         double average_time = (time_now / num_repetitions);
-        Serial.println("];");
-        Serial.print("## Average time between each mesaure = "); Serial.println(average_time);
-        Serial.println("##  ===== END OF DATA SET ===== ");
-
+        printfln("];");
+        printf("## Average time between each mesaure = "); printfln(average_time);
+        printfln("##  ===== END OF DATA SET ===== ");
         JointHandler::sendExitWheelModeAll();
         delay(25);
 

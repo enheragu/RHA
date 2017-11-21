@@ -35,10 +35,10 @@ class ChuckHandler {
 
     void printChuckValues() {
          chuck_.update();
-         Serial.print("Joy X value is: "); Serial.println(chuck_.readJoyX());
-         Serial.print("Joy Y value is: "); Serial.println(chuck_.readJoyY());
-         Serial.print("Z value is: "); Serial.println(chuck_.buttonZ);
-         Serial.print("C value is: "); Serial.println(chuck_.buttonC);
+         output("Joy X value is: "); outputln(chuck_.readJoyX());
+         output("Joy Y value is: "); outputln(chuck_.readJoyY());
+         output("Z value is: "); outputln(chuck_.buttonZ);
+         output("C value is: "); outputln(chuck_.buttonC);
     }
 
     /**
@@ -81,9 +81,9 @@ class ChuckHandler {
             else
                 info.Z_ = 0;
 
-            //Serial.print(" X value is: "); Serial.println(info.X_);
-            //Serial.print(" Y value is: "); Serial.println(info.Y_);
-            //Serial.print(" Z value is: "); Serial.println(info.Z_);
+            //output(" X value is: "); outputln(info.X_);
+            //output(" Y value is: "); outputln(info.Y_);
+            //output(" Z value is: "); outputln(info.Z_);
 
             info.updated_ = true;
 

@@ -14,32 +14,32 @@
  void printServoStatusError (uint16_t error, uint8_t ID) {
      // NOTE: MACROS NEED {} AS THEY AR SUBSTITUTED BY SOME CODE LINES, NOT JUST ONE!!
      if (error != 0){
-         Serial.print("#[!]   Error in comunication detected in servo: "); Serial.println(ID);
+         output("#[!]   Error in comunication detected in servo: "); outputln(ID);
      } else return;
-     if (error & SERROR_PING)  {Serial.println("#[!]   Ping error in servo");}
-     if (error & SERROR_INPUTVOLTAGE)  {Serial.println("#[!]   Input voltage error in servo");}          // bit 0
-     if (error & SERROR_ANGLELIMIT)  {Serial.println("#[!]   Angle limit error in servo");}           // bit 1
-     if (error & SERROR_OVERHEATING)  {Serial.println("#[!]   Overheating error in servo");}          // bit 2
-     if (error & SERROR_RANGE)  {Serial.println("#[!]   Range error in servo");}             // bit 3
-     if (error & SERROR_CHECKSUM)  {Serial.println("#[!]   Checksum error in servo");}             // bit 4
-     if (error & SERROR_OVERLOAD)  {Serial.println("#[!]   Overload error in servo");}             // bit 5
-     if (error & SERROR_INSTRUCTION)  {Serial.println("#[!]   Instruction error in servo");}            // bit 7
-     if (error & SERROR_PACKETLOST)  {Serial.println("#[!]   Packet lost or receive time out in servo");}    // bit 8
-     if (error & SERROR_WRONGHEADER)  {Serial.println("#[!]   Wrong header in servo");}              // bit 9
-     if (error & SERROR_IDMISMATCH && ID != 0xFE)  {Serial.println("#[!]   ID mismatch in servo");}                  // bit 10 // If id is for all servo don't print ID mismatch
-     if (error & SERROR_CHECKSUMERROR)  {Serial.println("#[!]   Checksum error in servo");}               // bit 13
+     if (error & SERROR_PING)  {outputln("#[!]   Ping error in servo");}
+     if (error & SERROR_INPUTVOLTAGE)  {outputln("#[!]   Input voltage error in servo");}          // bit 0
+     if (error & SERROR_ANGLELIMIT)  {outputln("#[!]   Angle limit error in servo");}           // bit 1
+     if (error & SERROR_OVERHEATING)  {outputln("#[!]   Overheating error in servo");}          // bit 2
+     if (error & SERROR_RANGE)  {outputln("#[!]   Range error in servo");}             // bit 3
+     if (error & SERROR_CHECKSUM)  {outputln("#[!]   Checksum error in servo");}             // bit 4
+     if (error & SERROR_OVERLOAD)  {outputln("#[!]   Overload error in servo");}             // bit 5
+     if (error & SERROR_INSTRUCTION)  {outputln("#[!]   Instruction error in servo");}            // bit 7
+     if (error & SERROR_PACKETLOST)  {outputln("#[!]   Packet lost or receive time out in servo");}    // bit 8
+     if (error & SERROR_WRONGHEADER)  {outputln("#[!]   Wrong header in servo");}              // bit 9
+     if (error & SERROR_IDMISMATCH && ID != 0xFE)  {outputln("#[!]   ID mismatch in servo");}                  // bit 10 // If id is for all servo don't print ID mismatch
+     if (error & SERROR_CHECKSUMERROR)  {outputln("#[!]   Checksum error in servo");}               // bit 13
  }
 
  void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t load, uint8_t load_dir, uint8_t voltage, uint8_t temperature, uint16_t error) {
-     Serial.println(" ");
-     Serial.println("[DC]  ServoRHA::Printing servo stats: ");
-     Serial.println("              - Position: "); Serial.println(pos);
-     Serial.println("              - Speed: "); Serial.println(speed);
-     Serial.println("              - Speed dir (CW = 1; CCW = 0): "); Serial.println(speed_dir);
-     Serial.println("              - Load: "); Serial.println(load);
-     Serial.println("              - Load dir (CW = 1; CCW = 0): "); Serial.println(load_dir);
-     Serial.println("              - Voltage: "); Serial.println(voltage);
-     Serial.println("              - Temperature: "); Serial.println(temperature);
-     Serial.println("              - Error in comunication: "); Serial.println(error);
-     Serial.println(" ");
+     outputln(" ");
+     outputln("[DC]  ServoRHA::Printing servo stats: ");
+     outputln("              - Position: "); outputln(pos);
+     outputln("              - Speed: "); outputln(speed);
+     outputln("              - Speed dir (CW = 1; CCW = 0): "); outputln(speed_dir);
+     outputln("              - Load: "); outputln(load);
+     outputln("              - Load dir (CW = 1; CCW = 0): "); outputln(load_dir);
+     outputln("              - Voltage: "); outputln(voltage);
+     outputln("              - Temperature: "); outputln(temperature);
+     outputln("              - Error in comunication: "); outputln(error);
+     outputln(" ");
  }

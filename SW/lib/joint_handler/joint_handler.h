@@ -13,15 +13,19 @@
 #ifndef JOINT_HANDLER_H
 #define JOINT_HANDLER_H
 
-#include "debug.h"
-#include "rha_types.h"
-#include "joint_rha.h"
+//#define __AVR_ATmega1280__
+#define __RASPBERRY_PI_3B__
 
-#include <SoftwareSerial.h>
-#include "Arduino.h"
-
-#define __AVR_ATmega1280__
-
+#if defined(__RASPBERRY_PI_3B__)
+	#define A0 0
+	#define A1 1
+	#define A2 2
+    #define Serial_G15_lib Serial
+    #define RASPBRRY_PI_3B true
+#else
+    #define RASPBRRY_PI_3B false
+#endif
+	
 // Arduino mega
 #if defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
     #define Serial_G15_lib Serial1
@@ -37,6 +41,19 @@
     #define CHECK_MEGA_HARDWARESERIAL(rx, tx) false
     #define Serial_G15_lib Serial
 #endif
+
+#include "debug.h"
+#include "rha_types.h"
+#include "joint_rha.h"
+
+#if defined(__RASPBERRY_PI_3B__)
+	#include "SoftwareSerialDummy.h"
+#else
+	#include <SoftwareSerial.h>
+#endif
+
+#include "HardwareSerial.h"
+#include "Arduino.h"
 
 
 namespace JointHandlerConstants {
@@ -68,7 +85,6 @@ namespace JointHandlerConstants {
     #define EEMPROM_WRITE_DELAY 25
 
 }  // namespace JointHandlerConstants
-
 
 class JointHandler {
     RHATypes::Timer control_loop_timer_;

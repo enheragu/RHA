@@ -19,7 +19,6 @@
 #include "debug.h"
 
 #include "Arduino.h"
-#include <SoftwareSerial.h>
 
 
 class ServoRHA;

@@ -10,7 +10,7 @@
  * @Last modified time: 31_Oct_2017
  */
 
-// #include "HardwareSerial.h"
+#include "HardwareSerial.h"
 #include "joint_handler.h"
 
 boolean hardwareSerial_ = false;
@@ -450,21 +450,21 @@ uint16_t JointHandler::sendPacket(uint8_t *_txBuffer) {
         }
     }
     /*
-    Serial.println("- Packet Sent: ");
-    Serial.print("  [");
+    outputln("- Packet Sent: ");
+    output("  [");
     for(i = 0; i < txBuffer_print[3]+4; i++) {
-        Serial.print(", "); Serial.print("0x"); Serial.print(txBuffer_print[i], HEX);
+        output(", "); output("0x"); output(txBuffer_print[i], HEX);
     }
-    Serial.println("]");
-    Serial.println("");
+    outputln("]");
+    outputln("");
 
-    Serial.println("- Packet received: ");
-    Serial.print("  [");
+    outputln("- Packet received: ");
+    output("  [");
     for (i = 0; i < packetLength; i++) {
-        Serial.print(", "); Serial.print("0x"); Serial.print(status[i], HEX);
+        output(", "); output("0x"); output(status[i], HEX);
     }
-    Serial.println("]");
-    Serial.println("");*/
+    outputln("]");
+    outputln("");*/
     return(error);
 }
 
@@ -521,25 +521,27 @@ void JointHandler::initSerial(uint8_t _rxpin, uint8_t _txpin, uint8_t _ctrlpin, 
  */
 void JointHandler::begin(uint32_t _baudrate) {
      DebugSerialJHLn2("begin: begin at baudrate: ", _baudrate);
-   if ((rxpin_shield_ == 0 && txpin_shield_ == 1) || (CHECK_MEGA_HARDWARESERIAL(rxpin_shield_,txpin_shield_))) {
+   if ((rxpin_shield_ == 0 && txpin_shield_ == 1) || (CHECK_MEGA_HARDWARESERIAL(rxpin_shield_,txpin_shield_)) || RASPBRRY_PI_3B) {
          hardwareSerial_ = true;
          Serial_G15_lib.begin(_baudrate);
          while (!Serial) {}
          Serial_G15_lib.setTimeout(SerialTimeOut);
      } else {
-         hardwareSerial_ = false;
-         pinMode(rxpin_shield_, INPUT);
-         pinMode(txpin_shield_, OUTPUT);
-         G15Serial_ = new SoftwareSerial(rxpin_shield_, txpin_shield_);
-         G15Serial_->begin(_baudrate);
-         G15Serial_->setTimeout(SerialTimeOut);
+		 hardwareSerial_ = false;
+		 #if !defined(__RASPBERRY_PI_3B__)
+			 pinMode(rxpin_shield_, INPUT);
+			 pinMode(txpin_shield_, OUTPUT);
+			 G15Serial_ = new SoftwareSerial(rxpin_shield_, txpin_shield_);
+			 G15Serial_->begin(_baudrate);
+			 G15Serial_->setTimeout(SerialTimeOut);
+         #endif
      }
      pinMode(ctrlpin_shield_, OUTPUT);
      setTxMode();
 }
 
 void JointHandler::end(void) {
-     if ((rxpin_shield_ == 0 && txpin_shield_ == 1)  || CHECK_MEGA_HARDWARESERIAL(rxpin_shield_, txpin_shield_)) {
+     if ((rxpin_shield_ == 0 && txpin_shield_ == 1)  || CHECK_MEGA_HARDWARESERIAL(rxpin_shield_, txpin_shield_) || RASPBRRY_PI_3B) {
          Serial_G15_lib.end();
      } else {
          pinMode(rxpin_shield_, INPUT);

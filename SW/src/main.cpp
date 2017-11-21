@@ -140,14 +140,23 @@
 //}
 
 ////#endif
-#include <Arduino.h>
-#include <wiringSerial.h>
 
+
+#include <Arduino.h>
+// #include "rha_types.h"
+// #include "utilities.h"
+// #include "servo_rha.h"
+// #include "joint_handler.h"
+// #include "joint_rha.h"
+#include "robot_rha.h"
+
+#include <wiringSerial.h>
 
 #include <stdio.h>
 #include <unistd.h>			//Used for UART
 #include <fcntl.h>			//Used for UART
 #include <termios.h>		//Used for UART
+<<<<<<< HEAD
 
 int fd ;
 

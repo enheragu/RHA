@@ -12,6 +12,7 @@ SET(LIB
 	wiringPi
 )
 
+<<<<<<< HEAD
 ##### Raspberry Pi version sources path #####
 SET(RHASPDUINO_PATH
 	${CMAKE_SOURCE_DIR}/RHAspberry/external/
@@ -33,6 +34,19 @@ SET(RHASPDUINO_CPP_FILES
 )
 
 ##### RHA Arduino version sources path #####
+=======
+SET(PIDUIO_PATH
+	${CMAKE_SOURCE_DIR}/lib/piduino
+	${CMAKE_SOURCE_DIR}/lib/Wire
+	${CMAKE_SOURCE_DIR}/lib/Wire/utility
+)
+
+SET(PIDUINO_CPP_FILES
+	${CMAKE_SOURCE_DIR}/lib/Wire/Wire.cpp
+	${CMAKE_SOURCE_DIR}/lib/Wire/utility/twi.c
+)
+
+>>>>>>> Raspberry adaptation first commit
 SET(RHA_LIB_PATH
 	${CMAKE_SOURCE_DIR}/lib/
 	${CMAKE_SOURCE_DIR}/lib/chuck_handler
@@ -40,13 +54,20 @@ SET(RHA_LIB_PATH
 	${CMAKE_SOURCE_DIR}/lib/debug
 	${CMAKE_SOURCE_DIR}/lib/joint_handler
 	${CMAKE_SOURCE_DIR}/lib/joint_rha
+<<<<<<< HEAD
+=======
+	${CMAKE_SOURCE_DIR}/lib/piduino
+>>>>>>> Raspberry adaptation first commit
 	${CMAKE_SOURCE_DIR}/lib/rha_types
 	${CMAKE_SOURCE_DIR}/lib/robot_rha
 	${CMAKE_SOURCE_DIR}/lib/servo_rha
 	${CMAKE_SOURCE_DIR}/lib/utilities
 )
 
+<<<<<<< HEAD
 ##### RHA Arduino version sources #####
+=======
+>>>>>>> Raspberry adaptation first commit
 SET(RHA_CPP_FILES
 	${CMAKE_SOURCE_DIR}/lib/joint_handler/joint_handler.cpp
 	${CMAKE_SOURCE_DIR}/lib/utilities/utilities.cpp
@@ -62,6 +83,7 @@ SET(RHA_CPP_FILES
 SET(CMKE_BUILD_TYPE DEBUG)
 SET(CMAKE_C_FLAGS "-fPIC -MD -Wall -Winline -pipe -g")
 
+<<<<<<< HEAD
 include_directories(${RHA_LIB_PATH} ${RHASPDUINO_PATH} ${LIB_PATH})
 
 link_directories(${RHA_LIB_PATH} ${RHASPDUINO_PATH} ${LIB_PATH})
@@ -70,6 +92,16 @@ add_executable(${PROJECT_NAME}_node ${CMAKE_SOURCE_DIR}/RHAspberry/external/pidu
 				${CMAKE_SOURCE_DIR}/src/main.cpp 
 				${RHA_CPP_FILES} 
 				${RHASPDUINO_CPP_FILES}
+=======
+include_directories(${RHA_LIB_PATH} ${PIDUIO_PATH} ${LIB_PATH})
+
+link_directories(${RHA_LIB_PATH} ${PIDUIO_PATH} ${LIB_PATH})
+
+add_executable(${PROJECT_NAME}_node ${CMAKE_SOURCE_DIR}/lib/piduino/wiring_main.cpp 
+									${CMAKE_SOURCE_DIR}/src/main.cpp 
+									${RHA_CPP_FILES} 
+									${PIDUINO_CPP_FILES}
+>>>>>>> Raspberry adaptation first commit
 ) 
 
 target_link_libraries(${PROJECT_NAME}_node ${LIB} "-lc -lm")

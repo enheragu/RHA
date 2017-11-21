@@ -82,7 +82,7 @@ namespace RHATypes {
 
             float sum_i_error = 0;
             for (uint8_t i = 0; i < INTEGER_INTERVAL; i++) sum_i_error += ierror_[i];
-            return kp_ * _error + kd_ * _derror + ki_ * sum_i_error;
+            return (kp_ * _error + kd_ * _derror + ki_ * sum_i_error);
         }
 
         float getKp() { return kp_; }

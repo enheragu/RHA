@@ -119,7 +119,7 @@ void ServoRHA::speedError() {
     // } else
     speed = speed_target_;
     int8_t sign = 1;
-    if (direction_target_ != speed_dir_) sign = -1;
+    // TODO: if (direction_target_ != speed_dir_) sign = -1;
     error_ = (sign*((float)speed - (float)speed_));
     derror_ = ( error_ - last_error_ ) / (millis() - time_last_error_);
     ierror_ = error_ * (millis() - time_last_error_);
@@ -148,7 +148,7 @@ void ServoRHA::calculateTorque() {
         torque = abs(torque);
     }
     torque = torque + TORQUE_OFFSET + TORQUE_PREALIMENTATION*float(speed_target_);
-    if (torque > 1023) torque = 1023;  // compensate saturation of servos
+    if (torque > MAX_TORQUE_VALUE) torque = MAX_TORQUE_VALUE;  // compensate saturation of servos
 
     goal_torque_ = uint16_t(torque);
 }

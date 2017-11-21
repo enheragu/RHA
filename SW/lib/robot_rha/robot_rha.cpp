@@ -62,7 +62,13 @@ void RobotRHA::handleWithChuck() {
     DebugSerialRRHALn("handleWithChuck: getting speed commands");
     ChuckReadStruct speed_commands = chuck_handler_.readAxis();
     DebugSerialRRHALn("handleWithChuck: setting goal speed to servos");
-    if (speed_commands.updated_) setCartesianSpeedGoal(speed_commands.X_, speed_commands.Y_, speed_commands.Z_);
+    if (speed_commands.updated_) {
+        //Chuck returns % in speed.
+        int speed_x = (speed_commands.X_) * 100/ MAX_SPEED_VALUE;
+        int speed_y = (speed_commands.Y_) * 100/ MAX_SPEED_VALUE;
+        int speed_z = (speed_commands.Z_) * 100/ MAX_SPEED_VALUE;
+        setCartesianSpeedGoal(speed_x, speed_y, speed_z);
+    }
     //else setCartesianSpeedGoal(speed_commands.X_, speed_commands.Y_, speed_commands.Z_);
     DebugSerialRRHALn("handleWithChuck: calling joint_handler control loop");
     joint_handler_.controlLoop();

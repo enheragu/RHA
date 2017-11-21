@@ -39,6 +39,9 @@ namespace ServoRHAConstants {
     #define TORQUE_OFFSET 80  // under this torque servo does not move
     #define TORQUE_PREALIMENTATION 1.2  // 1.666  // without load servo goes 60rpm faster with 100torque increment. It will be multiplied by speed_target_
 
+    #define MAX_TORQUE_VALUE 1023
+    #define MAX_SPEED_VALUE 65  // in rpm/min
+
     #define CW 1
     #define CCW 0
 

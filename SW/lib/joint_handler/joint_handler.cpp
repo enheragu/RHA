@@ -10,7 +10,7 @@
  * @Last modified time: 31_Oct_2017
  */
 
-// #include "HardwareSerial.h"
+#include "HardwareSerial.h"
 #include "joint_handler.h"
 
 boolean hardwareSerial_ = false;
@@ -598,21 +598,22 @@ uint16_t JointHandler::sendPacket(uint8_t *_txBuffer) {
         }
     }
 
-    /*Serial.println("- Packet Sent: ");
-    Serial.print("  [");
-    for (i = 0; i < txBuffer_print[3]+4; i++) {
-        Serial.print(", "); Serial.print("0x"); Serial.print(txBuffer_print[i], HEX);
+    /*
+    outputln("- Packet Sent: ");
+    output("  [");
+    for(i = 0; i < txBuffer_print[3]+4; i++) {
+        output(", "); output("0x"); output(txBuffer_print[i], HEX);
     }
-    Serial.println("]");
-    Serial.println("");
+    outputln("]");
+    outputln("");
 
-    Serial.println("- Packet received: ");
-    Serial.print("  [");
+    outputln("- Packet received: ");
+    output("  [");
     for (i = 0; i < packetLength; i++) {
-        Serial.print(", "); Serial.print("0x"); Serial.print(buffer[i], HEX);
+        output(", "); output("0x"); output(status[i], HEX);
     }
-    Serial.println("]");
-    Serial.println("");*/
+    outputln("]");
+    outputln("");*/
     return(error);
 }
 
@@ -669,7 +670,7 @@ void JointHandler::initSerial() {  // uint8_t _rxpin, uint8_t _txpin, uint8_t _c
  */
 void JointHandler::begin() {  // uint32_t _baudrate) {
     DebugSerialJHLn2("begin: begin at baudrate: ", G15_BAUDRATE);
-    if ((CHECK_MEGA_HARDWARESERIAL(G15_RX_PIN, G15_TX_PIN))) {  // (rxpin_shield_ == 0 && txpin_shield_ == 1) ||
+    if ((CHECK_MEGA_HARDWARESERIAL(G15_RX_PIN, G15_TX_PIN)) || RASPBRRY_PI_3B)) {  // (rxpin_shield_ == 0 && txpin_shield_ == 1) ||
         hardwareSerial_ = true;
         Serial_G15_lib.begin(G15_BAUDRATE);
         while (!Serial) {}
@@ -687,7 +688,7 @@ void JointHandler::begin() {  // uint32_t _baudrate) {
 }
 
 void JointHandler::end(void) {
-    if (CHECK_MEGA_HARDWARESERIAL( G15_RX_PIN, G15_TX_PIN)) {  //  G15_RX_PIN == 0 && txpin_shield_ == 1)  ||
+    if (CHECK_MEGA_HARDWARESERIAL( G15_RX_PIN, G15_TX_PIN) || RASPBRRY_PI_3B)) {  //  G15_RX_PIN == 0 && txpin_shield_ == 1)  ||
         Serial_G15_lib.end();
     } else {
         pinMode( G15_RX_PIN, INPUT);

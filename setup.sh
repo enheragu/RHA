@@ -45,20 +45,24 @@ make clean
 make all
 
 printGreen "- Creating simbolic link to piduino"
-<<<<<<< HEAD
+#<<<<<<< HEAD
+#<<<<<<< HEAD
 cd ${HOME}/rha_project/RHA/SW/RHAspberry/external
 ln -s $HOME/rha_project/RasPiArduino/cores/piduino
 ln -s $HOME/rha_project/RasPiArduino/libraries/Wire
 ln -s $HOME/rha_project/RasPiArduino/tools/build/libPiDuino.so
 cd ${HOME}/rha_project/RHA/SW/RHAspberry/external/piduino
 ln -s $HOME/rha_project/RasPiArduino/variants/bplus/pins_arduino.h
-=======
+#=======
 cd ${HOME}/rha_project/RHA/SW/lib
+#=======
+cd ${HOME}/rha_project/RHA/SW/RHAspberry_lib
+#>>>>>>> Prepare estructure for new functionalities
 ln -s $HOME/rha_project/RasPiArduino/cores/piduino
 #ln -s $HOME/rha_project/RasPiArduino/variants/bplus/pins_arduino.h
 ln -s $HOME/rha_project/RasPiArduino/libraries/Wire
 ln -s $HOME/rha_project/RasPiArduino/tools/build/libPiDuino.so
->>>>>>> Raspberry adaptation first commit
+#>>>>>>> Raspberry adaptation first commit
 
 
 ########## RASPBERRY PI CONFIG ##########

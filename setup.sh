@@ -45,7 +45,7 @@ make clean
 make all
 
 printGreen "- Creating simbolic link to piduino"
-cd ${HOME}/rha_project/RHA/SW/lib
+cd ${HOME}/rha_project/RHA/SW/RHAspberry_lib
 ln -s $HOME/rha_project/RasPiArduino/cores/piduino
 #ln -s $HOME/rha_project/RasPiArduino/variants/bplus/pins_arduino.h
 ln -s $HOME/rha_project/RasPiArduino/libraries/Wire

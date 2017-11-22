@@ -14,21 +14,21 @@ SET(LIB
 
 ##### Raspberry Pi version sources path #####
 SET(RHASPDUINO_PATH
-	${CMAKE_SOURCE_DIR}/RHAspberry_lib/external/RHASPDUINO
-	${CMAKE_SOURCE_DIR}/RHAspberry_lib/external/Wire
-	${CMAKE_SOURCE_DIR}/RHAspberry_lib/external/Wire/utility
-	${CMAKE_SOURCE_DIR}/RHAspberry_lib/gci
-	${CMAKE_SOURCE_DIR}/RHAspberry_lib/logger
+	${CMAKE_SOURCE_DIR}/RHAspberry/external/RHASPDUINO
+	${CMAKE_SOURCE_DIR}/RHAspberry/external/Wire
+	${CMAKE_SOURCE_DIR}/RHAspberry/external/Wire/utility
+	${CMAKE_SOURCE_DIR}/RHAspberry/gci
+	${CMAKE_SOURCE_DIR}/RHAspberry/logger
 )
 
 ##### Raspberry Pi version sources #####
 SET(RHASPDUINO_CPP_FILES
 	#RHA Raspberry Pi version libs:
-	${CMAKE_SOURCE_DIR}/RHAspberry_lib/gci/gci.cpp
-	${CMAKE_SOURCE_DIR}/RHAspberry_lib/logger/logger.cpp
+	${CMAKE_SOURCE_DIR}/RHAspberry/gci/gci.cpp
+	${CMAKE_SOURCE_DIR}/RHAspberry/logger/logger.cpp
 	# From External lib:
-	${CMAKE_SOURCE_DIR}/RHAspberry_lib/external/Wire/Wire.cpp
-	${CMAKE_SOURCE_DIR}/RHAspberry_lib/external/Wire/utility/twi.c
+	${CMAKE_SOURCE_DIR}/RHAspberry/external/Wire/Wire.cpp
+	${CMAKE_SOURCE_DIR}/RHAspberry/external/Wire/utility/twi.c
 )
 
 ##### RHA Arduino version sources path #####
@@ -65,7 +65,7 @@ include_directories(${RHA_LIB_PATH} ${RHASPDUINO_PATH} ${LIB_PATH})
 
 link_directories(${RHA_LIB_PATH} ${RHASPDUINO_PATH} ${LIB_PATH})
 
-add_executable(${PROJECT_NAME}_node ${CMAKE_SOURCE_DIR}/RHAspberry_lib/external/RHASPDUINO/wiring_main.cpp 
+add_executable(${PROJECT_NAME}_node ${CMAKE_SOURCE_DIR}/RHAspberry/external/RHASPDUINO/wiring_main.cpp 
 				${CMAKE_SOURCE_DIR}/src/main.cpp 
 				${RHA_CPP_FILES} 
 				${RHASPDUINO_CPP_FILES}

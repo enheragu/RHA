@@ -1,0 +1,326 @@
+================================================
+  NLOC    CCN   token  PARAM  length  location  
+------------------------------------------------
+      13      5     75      2      21 main@513-533@/home/gmv/RHA/SW/build/CMakeFiles/3.7.2/CompilerIdCXX/CMakeCXXCompilerId.cpp
+       1      1      5      0       1 main@533-533@/home/gmv/RHA/SW/build/CMakeFiles/3.7.2/CompilerIdC/CMakeCCompilerId.c
+      14      5     81      2      23 main@538-560@/home/gmv/RHA/SW/build/CMakeFiles/3.7.2/CompilerIdC/CMakeCCompilerId.c
+       1      1     22      2       1 main@405-405@/home/gmv/RHA/SW/build/CMakeFiles/feature_tests.cxx
+       1      1     22      2       1 main@34-34@/home/gmv/RHA/SW/build/CMakeFiles/feature_tests.c
+       6      2     34      3       6 rapidxml::internal::copy_chars@37-42@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+      35      8    334      4      35 rapidxml::internal::copy_and_expand_chars@47-81@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+       6      2     36      3       6 rapidxml::internal::fill_chars@85-90@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+       7      3     34      2       7 rapidxml::internal::find_char@94-100@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+       6      2     62      4       6 rapidxml::internal::print_children@111-116@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+      25      5    251      3      27 rapidxml::internal::print_attributes@120-146@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+       8      2     88      4       8 rapidxml::internal::print_data_node@150-157@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+      20      2    215      4      20 rapidxml::internal::print_cdata_node@161-180@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+      40      9    380      4      53 rapidxml::internal::print_element_node@184-236@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+      14      2    135      4      20 rapidxml::internal::print_declaration_node@240-259@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+      15      2    160      4      15 rapidxml::internal::print_comment_node@263-277@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+      19      2    204      4      19 rapidxml::internal::print_doctype_node@281-299@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+      14      2    163      4      14 rapidxml::internal::print_pi_node@303-316@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+       8      2     83      4       8 rapidxml::internal::print_literal_node@320-327@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+      39     11    225      4      63 rapidxml::internal::print_node@332-394@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+       4      1     35      3       4 rapidxml::print@408-411@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+       5      1     46      3       5 rapidxml::print@421-425@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+       4      1     31      2       4 rapidxml::operator < <@432-435@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+      14      2    114      1      20 rapidxml::file::file@28-47@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp
+       9      3     73      1      11 rapidxml::file::file@51-61@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp
+       4      1     13      0       4 rapidxml::file::data@65-68@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp
+       4      1     14      0       4 rapidxml::file::data@72-75@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp
+       4      1     13      0       4 rapidxml::file::size@79-82@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp
+      11      2     51      1      11 rapidxml::count_children@93-103@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp
+      11      2     51      1      11 rapidxml::count_attributes@108-118@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp
+       4      1     10      0       4 rapidxml::node_iterator::node_iterator@27-30@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       4      1     20      1       4 rapidxml::node_iterator::node_iterator@32-35@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       5      1     16      0       5 rapidxml::node_iterator::operator *@37-41@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       5      1     15      0       5 rapidxml::node_iterator::operator ->@43-47@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       6      1     23      0       6 rapidxml::node_iterator::operator ++@49-54@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       6      1     19      1       6 rapidxml::node_iterator::operator ++@56-61@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       6      2     29      0       6 rapidxml::node_iterator::operator --@63-68@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       6      1     19      1       6 rapidxml::node_iterator::operator --@70-75@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       4      1     20      1       4 rapidxml::node_iterator::operator ==@77-80@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       4      1     20      1       4 rapidxml::node_iterator::operator !=@82-85@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       4      1     10      0       4 rapidxml::attribute_iterator::attribute_iterator@106-109@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       4      1     20      1       4 rapidxml::attribute_iterator::attribute_iterator@111-114@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       5      1     16      0       5 rapidxml::attribute_iterator::operator *@116-120@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       5      1     15      0       5 rapidxml::attribute_iterator::operator ->@122-126@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       6      1     23      0       6 rapidxml::attribute_iterator::operator ++@128-133@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       6      1     19      1       6 rapidxml::attribute_iterator::operator ++@135-140@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       6      2     29      0       6 rapidxml::attribute_iterator::operator --@142-147@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       6      1     19      1       6 rapidxml::attribute_iterator::operator --@149-154@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       4      1     20      1       4 rapidxml::attribute_iterator::operator ==@156-159@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       4      1     20      1       4 rapidxml::attribute_iterator::operator !=@161-164@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+       5      1     25      2       5 rapidxml::parse_error::parse_error@79-83@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1     16      0       4 rapidxml::parse_error::where@89-92@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       1      1     20      2       1 rapidxml::eof_error::eof_error@100-100@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       2      1     16      1       2 rapidxml::validation_error::validation_error@106-107@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       7      2     29      1       7 rapidxml::internal::measure@330-336@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      18      7    142      5      18 rapidxml::internal::compare@340-357@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       6      1     19      0       6 rapidxml::memory_pool::memory_pool@410-415@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1      9      0       4 rapidxml::memory_pool::~memory_pool@420-423@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      30      5    162      5      30 rapidxml::memory_pool::allocate_node@435-464@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      21      5    124      4      21 rapidxml::memory_pool::allocate_attribute@475-495@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      11      5     96      2      11 rapidxml::memory_pool::allocate_string@505-515@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       6      2     20      0       6 rapidxml::memory_pool::nullstr@517-522@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       7      2     34      1       7 rapidxml::memory_pool::xmlns_xml@523-529@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       7      2     34      1       7 rapidxml::memory_pool::xmlns_xmlns@530-536@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      18      4    191      2      24 rapidxml::memory_pool::clone_node@548-571@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      13      3     54      0      13 rapidxml::memory_pool::clear@576-588@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       6      2     34      2       6 rapidxml::memory_pool::set_allocator@603-608@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       9      1     37      0       9 rapidxml::memory_pool::init@617-625@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       5      1     45      1       5 rapidxml::memory_pool::align@627-631@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      16      4     64      1      19 rapidxml::memory_pool::allocate_raw@633-651@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      21      3    137      1      33 rapidxml::memory_pool::allocate_aligned@653-685@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       8      1     30      0       8 rapidxml::xml_base::xml_base@714-721@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1      9      0       4 rapidxml::xml_base::name@732-735@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      2     13      0       4 rapidxml::xml_base::name_size@740-743@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1      9      0       4 rapidxml::xml_base::value@751-754@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      2     13      0       4 rapidxml::xml_base::value_size@759-762@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       5      1     29      2       5 rapidxml::xml_base::name@779-783@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1     23      1       4 rapidxml::xml_base::name@788-791@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       5      1     29      2       5 rapidxml::xml_base::value@809-813@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1     23      1       4 rapidxml::xml_base::value@818-821@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1      9      0       4 rapidxml::xml_base::parent@827-830@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       3      1     30      0       3 rapidxml::xml_attribute::xml_attribute@859-861@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      11      4     66      0      11 rapidxml::xml_attribute::document@868-878@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      16      8    134      0      16 rapidxml::xml_attribute::xmlns@880-895@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      2     17      0       4 rapidxml::xml_attribute::xmlns_size@896-899@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      14      6    105      3      14 rapidxml::xml_attribute::previous_attribute@905-918@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      14      6    105      3      14 rapidxml::xml_attribute::next_attribute@925-938@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      11      5     64      0      11 rapidxml::xml_attribute::local_name@940-950@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1     27      0       4 rapidxml::xml_attribute::local_name_size@952-955@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      16      1     72      1      16 rapidxml::xml_node::xml_node@989-1004@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1      9      0       4 rapidxml::xml_node::type@1011-1014@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       5      1     29      2       5 rapidxml::xml_node::prefix@1016-1020@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1     23      1       4 rapidxml::xml_node::prefix@1021-1024@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1      9      0       4 rapidxml::xml_node::prefix@1026-1029@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      2     13      0       4 rapidxml::xml_node::prefix_size@1031-1034@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       5      1     22      2       5 rapidxml::xml_node::contents@1036-1040@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1      9      0       4 rapidxml::xml_node::contents@1041-1044@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      2     13      0       4 rapidxml::xml_node::contents_size@1045-1048@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       6      2     27      0       6 rapidxml::xml_node::xmlns@1050-1055@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      57     20    386      4      58 rapidxml::xml_node::xmlns_lookup@1057-1114@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       6      2     22      0       6 rapidxml::xml_node::xmlns_size@1116-1121@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       7      3     64      0       7 rapidxml::xml_node::document@1128-1134@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      14     12    180      5      16 rapidxml::xml_node::first_node@1141-1156@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      15     12    185      5      17 rapidxml::xml_node::last_node@1165-1181@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      21     12    194      5      23 rapidxml::xml_node::previous_sibling@1190-1212@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      21     12    194      5      23 rapidxml::xml_node::next_sibling@1221-1243@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      14      5     99      3      14 rapidxml::xml_node::first_attribute@1250-1263@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      14      6    103      3      14 rapidxml::xml_node::last_attribute@1270-1283@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1     11      1       4 rapidxml::xml_node::type@1290-1293@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      17      4     80      1      17 rapidxml::xml_node::prepend_node@1301-1317@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      17      4     80      1      17 rapidxml::xml_node::append_node@1322-1338@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      17      6    112      2      17 rapidxml::xml_node::insert_node@1344-1360@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      11      2     52      0      11 rapidxml::xml_node::remove_first_node@1365-1375@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      13      2     54      0      13 rapidxml::xml_node::remove_last_node@1380-1392@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      15      4     81      1      15 rapidxml::xml_node::remove_node@1396-1410@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       6      2     36      0       6 rapidxml::xml_node::remove_all_nodes@1413-1418@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      17      3     72      1      17 rapidxml::xml_node::prepend_attribute@1422-1438@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      17      3     72      1      17 rapidxml::xml_node::append_attribute@1442-1458@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      17      5    104      2      17 rapidxml::xml_node::insert_attribute@1464-1480@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      13      2     54      0      13 rapidxml::xml_node::remove_first_attribute@1485-1497@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      13      2     54      0      13 rapidxml::xml_node::remove_last_attribute@1502-1514@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      14      4     76      1      14 rapidxml::xml_node::remove_attribute@1518-1531@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       6      2     36      0       6 rapidxml::xml_node::remove_all_attributes@1534-1539@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      26      9    230      0      26 rapidxml::xml_node::validate@1541-1566@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1     13      0       4 rapidxml::xml_document::xml_document@1621-1624@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      29      9    173      2      38 rapidxml::xml_document::parse@1638-1675@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1     27      2       4 rapidxml::xml_document::parse@1677-1680@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       6      1     26      0       6 rapidxml::xml_document::clear@1684-1689@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      34     11    310      2      36 rapidxml::xml_document::fixup@1694-1729@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       8      2     39      0       8 rapidxml::xml_document::validate@1732-1739@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1     27      1       4 rapidxml::xml_document::whitespace_pred::test@1749-1752@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1     27      1       4 rapidxml::xml_document::node_name_pred::test@1758-1761@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1     27      1       4 rapidxml::xml_document::element_name_pred::test@1767-1770@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1     27      1       4 rapidxml::xml_document::attribute_name_pred::test@1776-1779@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1     27      1       4 rapidxml::xml_document::text_pred::test@1785-1788@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1     27      1       4 rapidxml::xml_document::text_pure_no_ws_pred::test@1794-1797@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       4      1     27      1       4 rapidxml::xml_document::text_pure_with_ws_pred::test@1803-1806@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       8      3     68      1       8 rapidxml::xml_document::attribute_value_pred::test@1813-1820@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       8      3     68      1       8 rapidxml::xml_document::attribute_value_pure_pred::test@1827-1834@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      41      6    315      2      44 rapidxml::xml_document::insert_coded_character@1839-1882@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       7      2     32      1       7 rapidxml::xml_document::skip@1886-1892@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+     118     36    651      1     149 rapidxml::xml_document::skip_and_expand_character_refs@1898-2046@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       9      4     59      1      10 rapidxml::xml_document::parse_bom@2053-2062@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      19      7    139      1      30 rapidxml::xml_document::parse_xml_declaration@2066-2095@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      25     11    186      1      36 rapidxml::xml_document::parse_comment@2099-2134@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      44     10    187      1      63 rapidxml::xml_document::parse_doctype@2138-2200@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      38     10    250      1      54 rapidxml::xml_document::parse_pi@2204-2257@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      39     11    239      3      55 rapidxml::xml_document::parse_and_append_data@2263-2317@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      27     11    183      1      36 rapidxml::xml_document::parse_cdata@2321-2356@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      46     12    337      1      59 rapidxml::xml_document::parse_element@2360-2418@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      58     29    409      1      83 rapidxml::xml_document::parse_node@2422-2504@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      54     11    284      2      75 rapidxml::xml_document::parse_node_contents@2509-2583@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      38     10    328      2      62 rapidxml::xml_document::parse_node_attributes@2587-2648@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+       2      1      5      0       3 setupRHAspberryOptions@8-10@/home/gmv/RHA/SW/RHAspberry/rhaspberry_wrapper.cpp
+       2      1      9      1       3 getConfigurationFile@12-14@/home/gmv/RHA/SW/RHAspberry/rhaspberry_wrapper.cpp
+      21      2    115      0      29 WiiChuck::begin@78-106@/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+       4      1     13      0       4 WiiChuck::calibrateJoy@109-112@/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+      21      4    189      0      33 WiiChuck::update@114-146@/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+       3      1     16      0       4 WiiChuck::readAccelX@154-157@/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+       3      1     16      0       4 WiiChuck::readAccelY@158-161@/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+       3      1     16      0       4 WiiChuck::readAccelZ@162-165@/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+       3      2     13      0       3 WiiChuck::zPressed@167-169@/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+       3      2     13      0       3 WiiChuck::cPressed@170-172@/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+       3      1     22      1       3 WiiChuck::rightJoy@175-177@/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+       3      1     24      1       3 WiiChuck::leftJoy@180-182@/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+       3      1     13      0       3 WiiChuck::readJoyX@185-187@/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+       3      1     13      0       3 WiiChuck::readJoyY@189-191@/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+       3      1     28      0       3 WiiChuck::readRoll@201-203@/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+       3      1     26      0       3 WiiChuck::readPitch@206-208@/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+       4      1     10      1       6 WiiChuck::_nunchuk_decode_byte@211-216@/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+       6      1     28      0       6 WiiChuck::_send_zero@218-223@/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+       1      1     44      4       1 ChuckReadStruct::ChuckReadStruct@14-14@/home/gmv/RHA/SW/lib/chuck_handler/chuck_handler.h
+       3      1     11      0       3 ChuckHandler::begin@22-24@/home/gmv/RHA/SW/lib/chuck_handler/chuck_handler.h
+       4      1     20      1       4 ChuckHandler::setTimer@31-34@/home/gmv/RHA/SW/lib/chuck_handler/chuck_handler.h
+       7      1     63      0       7 ChuckHandler::printChuckValues@36-42@/home/gmv/RHA/SW/lib/chuck_handler/chuck_handler.h
+      29     13    280      0      46 ChuckHandler::readAxis@49-94@/home/gmv/RHA/SW/lib/chuck_handler/chuck_handler.h
+       3      1     13      1       3 ServoRHA::ServoRHA@22-24@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       7      1     41      1      11 ServoRHA::init@30-40@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      18      1    155      2      27 ServoRHA::updateInfo@60-86@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      14      2     91      1      14 ServoRHA::setSpeedGoal@95-108@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      11      2     88      0      16 ServoRHA::speedError@113-128@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      10      3     71      0      18 ServoRHA::calculateTorque@137-154@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       6      1     41      1       6 ServoRHA::addUpadteInfoToPacket@166-171@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       9      1     56      2      12 ServoRHA::addReturnOptionToPacket@179-190@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      14      2     86      1      16 ServoRHA::addTorqueToPacket@197-212@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       6      1     44      2       7 ServoRHA::setTorqueOnOfToPacket@220-226@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       3      1     19      1       4 ServoRHA::setWheelModeToPacket@235-238@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       3      1     19      1       3 ServoRHA::exitWheelModeToPacket@247-249@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       9      1     78      3      11 ServoRHA::wheelModeToPacket@259-269@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       4      1     29      1       4 ServoRHA::pingToPacket@276-279@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       7      1     56      2       9 ServoRHA::setTorqueLimitToPacket@287-295@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+      11      2     79      3      13 ServoRHA::setWheelSpeedToPacket@304-316@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       9      2     69      3      11 ServoRHA::addToPacket@324-334@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       6      3     57      3       6 compareAngles@347-352@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       6      3     57      3       6 compareSpeed@360-365@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+       2      1     29      0       2 ServoRHA::ServoRHA@143-144@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getID@175-175@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getSpeed@176-176@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getSpeedDir@177-177@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getPosition@178-178@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getLoad@179-179@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getLoadDir@180-180@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getCommError@181-181@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getVoltage@182-182@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getTemperature@183-183@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getGoalTorque@184-184@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getSpeedTarget@185-185@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getSpeedSlope@186-186@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getDirectionTarget@187-187@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getError@188-188@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getDError@189-189@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      8      0       1 ServoRHA::getIError@190-190@/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+       1      1      5      0       1 JointRHA::JointRHA@34-34@/home/gmv/RHA/SW/lib/joint_rha/joint_rha.h
+       5      1     30      3       6 JointRHA::JointRHA@19-24@/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+       2      1      7      0       2 JointRHA::~JointRHA@28-29@/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+       8      2     55      3       9 JointRHA::init@36-44@/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+       3      1     24      0       3 JointRHA::updatePosition@51-53@/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+       4      1     28      2       4 JointRHA::updateInfo@61-64@/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+       3      1      9      0       3 JHUtilitiesJH::JHUtilitiesJH@83-85@/home/gmv/RHA/SW/lib/utilities/utilities.h
+      19      6    181      4      25 MeasureUtilities::averageChauvenet@40-64@/home/gmv/RHA/SW/lib/utilities/utilities.cpp
+      20      3    137      1      25 JHUtilitiesJH::initJoints@72-96@/home/gmv/RHA/SW/lib/utilities/utilities.cpp
+      34      4    427      1      44 JHUtilitiesJH::extractRegulatorData@103-146@/home/gmv/RHA/SW/lib/utilities/utilities.cpp
+      21      3    188      1      37 JHUtilitiesJH::extractStepInputData@149-185@/home/gmv/RHA/SW/lib/utilities/utilities.cpp
+      25      4    222      1      28 JHUtilitiesJH::extractSlopeInputData@188-215@/home/gmv/RHA/SW/lib/utilities/utilities.cpp
+      23      3    172      2      25 JHUtilitiesJH::checkTimeGetInfo@223-247@/home/gmv/RHA/SW/lib/utilities/utilities.cpp
+      13      3     75      1      15 JHUtilitiesJH::checkComSucces@254-268@/home/gmv/RHA/SW/lib/utilities/utilities.cpp
+      56      8    383      1      69 JHUtilitiesJH::checkSpeed@274-342@/home/gmv/RHA/SW/lib/utilities/utilities.cpp
+       1      1     36      4       1 RHATypes::SpeedGoal::SpeedGoal@29-29@/home/gmv/RHA/SW/lib/rha_types/rha_types.h
+       4      2     30      0       4 RHATypes::Regulator::Regulator@45-48@/home/gmv/RHA/SW/lib/rha_types/rha_types.h
+       4      2     36      0       4 RHATypes::Regulator::resetRegulator@54-57@/home/gmv/RHA/SW/lib/rha_types/rha_types.h
+       3      1     29      3       3 RHATypes::Regulator::setKRegulator@66-68@/home/gmv/RHA/SW/lib/rha_types/rha_types.h
+       8      3     76      3       9 RHATypes::Regulator::regulator@78-86@/home/gmv/RHA/SW/lib/rha_types/rha_types.h
+       1      1      8      0       1 RHATypes::Regulator::getKp@88-88@/home/gmv/RHA/SW/lib/rha_types/rha_types.h
+       1      1      8      0       1 RHATypes::Regulator::getKi@89-89@/home/gmv/RHA/SW/lib/rha_types/rha_types.h
+       1      1      8      0       1 RHATypes::Regulator::getKd@90-90@/home/gmv/RHA/SW/lib/rha_types/rha_types.h
+       3      1     11      1       3 RHATypes::Timer::setTimer@103-105@/home/gmv/RHA/SW/lib/rha_types/rha_types.h
+       4      1     16      0       4 RHATypes::Timer::activateTimer@111-114@/home/gmv/RHA/SW/lib/rha_types/rha_types.h
+       6      2     37      0       6 RHATypes::Timer::checkWait@120-125@/home/gmv/RHA/SW/lib/rha_types/rha_types.h
+       5      2     37      0       5 RHATypes::Timer::checkContinue@132-136@/home/gmv/RHA/SW/lib/rha_types/rha_types.h
+       1      1      8      0       1 RHATypes::Timer::getInitTime@143-143@/home/gmv/RHA/SW/lib/rha_types/rha_types.h
+       4      1     16      0       4 RHATypes::TimerMicroseconds::activateTimer@157-160@/home/gmv/RHA/SW/lib/rha_types/rha_types.h
+       6      2     37      0       6 RHATypes::TimerMicroseconds::checkWait@166-171@/home/gmv/RHA/SW/lib/rha_types/rha_types.h
+       5      2     37      0       5 RHATypes::TimerMicroseconds::checkContinue@177-181@/home/gmv/RHA/SW/lib/rha_types/rha_types.h
+       5      1     33      0       5 RobotRHA::initJointHandler@7-11@/home/gmv/RHA/SW/lib/robot_rha/robot_rha.cpp
+       4      1     20      0       4 RobotRHA::initChuckHandler@17-20@/home/gmv/RHA/SW/lib/robot_rha/robot_rha.cpp
+       2      1      7      0       3 RobotRHA::handleRobot@22-24@/home/gmv/RHA/SW/lib/robot_rha/robot_rha.cpp
+       9      1     62      3       9 RobotRHA::setCartesianSpeedGoal@33-41@/home/gmv/RHA/SW/lib/robot_rha/robot_rha.cpp
+       6      2     54      2       6 RobotRHA::setSpeedToServos@49-54@/home/gmv/RHA/SW/lib/robot_rha/robot_rha.cpp
+       9      2     63      0      10 RobotRHA::handleWithChuck@60-69@/home/gmv/RHA/SW/lib/robot_rha/robot_rha.cpp
+       1      1      5      0       1 JointHandler::JointHandler@98-98@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.h
+       3      1     16      1       3 JointHandler::JointHandler@23-25@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+       5      1     27      1       5 JointHandler::setTimer@32-36@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      14      1     99      0      19 JointHandler::initJoints@42-60@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      12      2     55      0      20 JointHandler::controlLoop@65-84@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      12      2     97      0      13 JointHandler::updateJointInfo@91-103@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+       7      2     50      0       7 JointHandler::updateJointErrorTorque@109-115@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      15      3    106      0      15 JointHandler::sendJointTorques@121-135@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+       6      3     48      1       7 JointHandler::setSpeedGoal@142-148@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      11      2     89      1      11 JointHandler::setReturnPacketOption@150-160@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      25      3    194      0      29 JointHandler::sendSetWheelModeAll@166-194@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      18      2    126      0      27 JointHandler::sendExitWheelModeAll@200-226@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      11      2     89      1      11 JointHandler::sendSetTorqueLimitAll@234-244@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      11      2    112      2      11 JointHandler::sendSetWheelSpeedAll@253-263@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      13      3     97      0      13 JointHandler::checkConectionAll@271-283@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+       8      2     74      3       8 JointHandler::addToSyncPacket@298-305@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      17      2    173      5      20 JointHandler::warpSyncPacket@318-337@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      15      2    144      3      18 JointHandler::warpSinglePacket@347-364@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      71     20    454      1      98 JointHandler::sendPacket@372-469@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+       5      1     27      3       5 JointHandler::JointHandler@483-487@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+       5      1     21      1       5 JointHandler::JointHandler@494-498@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+       7      1     40      4       7 JointHandler::initSerial@509-515@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      18      7    122      1      20 JointHandler::begin@522-541@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      10      5     67      1      10 JointHandler::end@543-552@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+       3      1     15      1       3 JointHandler::setTxMode@554-556@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+       3      1     15      1       3 JointHandler::setRxMode@558-560@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      17     15    191      2      18 printServoStatusError@14-31@/home/gmv/RHA/SW/lib/debug/debug.cpp
+      13      1    123      8      13 printServoStatus@33-45@/home/gmv/RHA/SW/lib/debug/debug.cpp
+       3      1     10      0      10 setup@12-21@/home/gmv/RHA/SW/src/main.cpp
+      39      5    229      0      57 loop@24-80@/home/gmv/RHA/SW/src/main.cpp
+26 file analyzed.
+==============================================================
+NLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file
+--------------------------------------------------------------
+     40      13.0     5.0       75.0         1     /home/gmv/RHA/SW/build/CMakeFiles/3.7.2/CompilerIdCXX/CMakeCXXCompilerId.cpp
+     40       7.5     3.0       43.0         2     /home/gmv/RHA/SW/build/CMakeFiles/3.7.2/CompilerIdC/CMakeCCompilerId.c
+    231       1.0     1.0       22.0         1     /home/gmv/RHA/SW/build/CMakeFiles/feature_tests.cxx
+     19       1.0     1.0       22.0         1     /home/gmv/RHA/SW/build/CMakeFiles/feature_tests.c
+      0       0.0     0.0        0.0         0     /home/gmv/RHA/SW/RHAspberry/logger/logger.cpp
+    305      15.3     3.3      139.8        18     /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp
+     74       8.1     1.7       47.0         7     /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp
+    128       5.0     1.1       19.1        20     /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp
+   1945      14.4     4.5       91.4       103     /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      9       2.0     1.0        7.0         2     /home/gmv/RHA/SW/RHAspberry/rhaspberry_wrapper.cpp
+    112       5.6     1.4       34.7        16     /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h
+     57       8.8     3.4       83.6         5     /home/gmv/RHA/SW/lib/chuck_handler/chuck_handler.h
+    158       8.2     1.6       60.5        19     /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp
+    118       1.1     1.0        9.2        17     /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h
+     22       1.0     1.0        5.0         1     /home/gmv/RHA/SW/lib/joint_rha/joint_rha.h
+     23       4.4     1.2       28.8         5     /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp
+     36       3.0     1.0        9.0         1     /home/gmv/RHA/SW/lib/utilities/utilities.h
+    217      26.4     4.2      223.1         8     /home/gmv/RHA/SW/lib/utilities/utilities.cpp
+     84       3.6     1.5       26.9        16     /home/gmv/RHA/SW/lib/rha_types/rha_types.h
+     14       0.0     0.0        0.0         0     /home/gmv/RHA/SW/lib/robot_rha/robot_rha.h
+     36       5.8     1.3       39.8         6     /home/gmv/RHA/SW/lib/robot_rha/robot_rha.cpp
+     42       1.0     1.0        5.0         1     /home/gmv/RHA/SW/lib/joint_handler/joint_handler.h
+    329      13.0     2.9       94.3        25     /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+      4       0.0     0.0        0.0         0     /home/gmv/RHA/SW/lib/debug/debug.h
+     31      15.0     8.0      157.0         2     /home/gmv/RHA/SW/lib/debug/debug.cpp
+     49      21.0     3.0      119.5         2     /home/gmv/RHA/SW/src/main.cpp
+
+=========================================================================================
+!!!! Warnings (cyclomatic_complexity > 15 or length > 1000 or parameter_count > 100) !!!!
+================================================
+  NLOC    CCN   token  PARAM  length  location  
+------------------------------------------------
+      57     20    386      4      58 rapidxml::xml_node::xmlns_lookup@1057-1114@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+     118     36    651      1     149 rapidxml::xml_document::skip_and_expand_character_refs@1898-2046@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      58     29    409      1      83 rapidxml::xml_document::parse_node@2422-2504@/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp
+      71     20    454      1      98 JointHandler::sendPacket@372-469@/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp
+==========================================================================================
+Total nloc   Avg.NLOC  AvgCCN  Avg.token   Fun Cnt  Warning cnt   Fun Rt   nloc Rt
+------------------------------------------------------------------------------------------
+      4123      10.7     2.9       74.1      279            4      0.01    0.10

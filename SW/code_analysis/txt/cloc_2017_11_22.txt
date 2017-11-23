@@ -1,0 +1,33 @@
+      27 text files.
+classified 27 files      27 unique files.                              
+      12 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.23 s (97.5 files/s, 30587.4 lines/s)
+-----------------------------------------------------------------------------------------------------------------------
+File                                                                                blank        comment           code
+-----------------------------------------------------------------------------------------------------------------------
+/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp                            297            696           1976
+/home/gmv/RHA/SW/RHAspberry/external/rapidxml/manual.html                              23              0            383
+/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp                                   62            167            331
+/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp                       54             75            312
+/home/gmv/RHA/SW/lib/utilities/utilities.cpp                                           56             62            224
+/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp                                           55            152            158
+/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h                                             28             28            139
+/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp                   37              6            131
+/home/gmv/RHA/SW/lib/debug/debug.h                                                     29             68            123
+/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h                                          45             62            121
+/home/gmv/RHA/SW/lib/rha_types/rha_types.h                                             24             73             88
+/home/gmv/RHA/SW/lib/joint_handler/joint_handler.h                                     33             21             87
+/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp                       21             24             77
+/home/gmv/RHA/SW/lib/chuck_handler/chuck_handler.h                                     18             17             62
+/home/gmv/RHA/SW/lib/utilities/utilities.h                                             15             30             50
+/home/gmv/RHA/SW/src/main.cpp                                                          14             17             49
+/home/gmv/RHA/SW/lib/robot_rha/robot_rha.cpp                                            7             26             36
+/home/gmv/RHA/SW/lib/debug/debug.cpp                                                    3             11             31
+/home/gmv/RHA/SW/lib/robot_rha/robot_rha.h                                              9              8             26
+/home/gmv/RHA/SW/lib/joint_rha/joint_rha.h                                             12             11             25
+/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp                                            7             34             23
+/home/gmv/RHA/SW/RHAspberry/rhaspberry_wrapper.cpp                                      6              0             10
+-----------------------------------------------------------------------------------------------------------------------
+SUM:                                                                                  855           1588           4462
+-----------------------------------------------------------------------------------------------------------------------

@@ -1,0 +1,1631 @@
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="https://raw.githubusercontent.com/terryyin/lizard/master/lizard.xsl"?>
+<cppncss>
+	<measure type="Function">
+		<labels>
+			<label>Nr.</label>
+			<label>NCSS</label>
+			<label>CCN</label>
+		</labels>
+		<item name="main(...) at /home/gmv/RHA/SW/build/CMakeFiles/3.7.2/CompilerIdCXX/CMakeCXXCompilerId.cpp:513">
+			<value>1</value>
+			<value>13</value>
+			<value>5</value>
+		</item>
+		<average label="NCSS" value="13"/>
+		<average label="CCN" value="5"/>
+		<item name="main(...) at /home/gmv/RHA/SW/build/CMakeFiles/3.7.2/CompilerIdC/CMakeCCompilerId.c:533">
+			<value>2</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="main(...) at /home/gmv/RHA/SW/build/CMakeFiles/3.7.2/CompilerIdC/CMakeCCompilerId.c:538">
+			<value>3</value>
+			<value>14</value>
+			<value>5</value>
+		</item>
+		<average label="NCSS" value="9"/>
+		<average label="CCN" value="3"/>
+		<item name="main(...) at /home/gmv/RHA/SW/build/CMakeFiles/feature_tests.cxx:405">
+			<value>4</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="7"/>
+		<average label="CCN" value="3"/>
+		<item name="main(...) at /home/gmv/RHA/SW/build/CMakeFiles/feature_tests.c:34">
+			<value>5</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="6"/>
+		<average label="CCN" value="2"/>
+		<average label="NCSS" value="6"/>
+		<average label="CCN" value="2"/>
+		<item name="rapidxml::internal::copy_chars(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:37">
+			<value>6</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::internal::copy_and_expand_chars(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:47">
+			<value>7</value>
+			<value>35</value>
+			<value>8</value>
+		</item>
+		<item name="rapidxml::internal::fill_chars(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:85">
+			<value>8</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::internal::find_char(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:94">
+			<value>9</value>
+			<value>7</value>
+			<value>3</value>
+		</item>
+		<item name="rapidxml::internal::print_children(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:111">
+			<value>10</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::internal::print_attributes(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:120">
+			<value>11</value>
+			<value>25</value>
+			<value>5</value>
+		</item>
+		<item name="rapidxml::internal::print_data_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:150">
+			<value>12</value>
+			<value>8</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::internal::print_cdata_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:161">
+			<value>13</value>
+			<value>20</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::internal::print_element_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:184">
+			<value>14</value>
+			<value>40</value>
+			<value>9</value>
+		</item>
+		<item name="rapidxml::internal::print_declaration_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:240">
+			<value>15</value>
+			<value>14</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::internal::print_comment_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:263">
+			<value>16</value>
+			<value>15</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::internal::print_doctype_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:281">
+			<value>17</value>
+			<value>19</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::internal::print_pi_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:303">
+			<value>18</value>
+			<value>14</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::internal::print_literal_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:320">
+			<value>19</value>
+			<value>8</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::internal::print_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:332">
+			<value>20</value>
+			<value>39</value>
+			<value>11</value>
+		</item>
+		<item name="rapidxml::print(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:408">
+			<value>21</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::print(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:421">
+			<value>22</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::operator &lt; &lt;(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp:432">
+			<value>23</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="13"/>
+		<average label="CCN" value="3"/>
+		<item name="rapidxml::file::file(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp:28">
+			<value>24</value>
+			<value>14</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::file::file(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp:51">
+			<value>25</value>
+			<value>9</value>
+			<value>3</value>
+		</item>
+		<item name="rapidxml::file::data(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp:65">
+			<value>26</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::file::data(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp:72">
+			<value>27</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::file::size(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp:79">
+			<value>28</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::count_children(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp:93">
+			<value>29</value>
+			<value>11</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::count_attributes(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp:108">
+			<value>30</value>
+			<value>11</value>
+			<value>2</value>
+		</item>
+		<average label="NCSS" value="12"/>
+		<average label="CCN" value="2"/>
+		<item name="rapidxml::node_iterator::node_iterator(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:27">
+			<value>31</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::node_iterator::node_iterator(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:32">
+			<value>32</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::node_iterator::operator *(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:37">
+			<value>33</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::node_iterator::operator -&gt;(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:43">
+			<value>34</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::node_iterator::operator ++(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:49">
+			<value>35</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::node_iterator::operator ++(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:56">
+			<value>36</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::node_iterator::operator --(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:63">
+			<value>37</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::node_iterator::operator --(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:70">
+			<value>38</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::node_iterator::operator ==(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:77">
+			<value>39</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::node_iterator::operator !=(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:82">
+			<value>40</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::attribute_iterator::attribute_iterator(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:106">
+			<value>41</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::attribute_iterator::attribute_iterator(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:111">
+			<value>42</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::attribute_iterator::operator *(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:116">
+			<value>43</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::attribute_iterator::operator -&gt;(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:122">
+			<value>44</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::attribute_iterator::operator ++(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:128">
+			<value>45</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::attribute_iterator::operator ++(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:135">
+			<value>46</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::attribute_iterator::operator --(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:142">
+			<value>47</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::attribute_iterator::operator --(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:149">
+			<value>48</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::attribute_iterator::operator ==(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:156">
+			<value>49</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::attribute_iterator::operator !=(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp:161">
+			<value>50</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="9"/>
+		<average label="CCN" value="2"/>
+		<item name="rapidxml::parse_error::parse_error(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:79">
+			<value>51</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::parse_error::where(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:89">
+			<value>52</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::eof_error::eof_error(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:100">
+			<value>53</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::validation_error::validation_error(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:106">
+			<value>54</value>
+			<value>2</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::internal::measure(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:330">
+			<value>55</value>
+			<value>7</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::internal::compare(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:340">
+			<value>56</value>
+			<value>18</value>
+			<value>7</value>
+		</item>
+		<item name="rapidxml::memory_pool::memory_pool(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:410">
+			<value>57</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::memory_pool::~memory_pool(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:420">
+			<value>58</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::memory_pool::allocate_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:435">
+			<value>59</value>
+			<value>30</value>
+			<value>5</value>
+		</item>
+		<item name="rapidxml::memory_pool::allocate_attribute(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:475">
+			<value>60</value>
+			<value>21</value>
+			<value>5</value>
+		</item>
+		<item name="rapidxml::memory_pool::allocate_string(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:505">
+			<value>61</value>
+			<value>11</value>
+			<value>5</value>
+		</item>
+		<item name="rapidxml::memory_pool::nullstr(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:517">
+			<value>62</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::memory_pool::xmlns_xml(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:523">
+			<value>63</value>
+			<value>7</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::memory_pool::xmlns_xmlns(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:530">
+			<value>64</value>
+			<value>7</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::memory_pool::clone_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:548">
+			<value>65</value>
+			<value>18</value>
+			<value>4</value>
+		</item>
+		<item name="rapidxml::memory_pool::clear(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:576">
+			<value>66</value>
+			<value>13</value>
+			<value>3</value>
+		</item>
+		<item name="rapidxml::memory_pool::set_allocator(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:603">
+			<value>67</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::memory_pool::init(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:617">
+			<value>68</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::memory_pool::align(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:627">
+			<value>69</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::memory_pool::allocate_raw(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:633">
+			<value>70</value>
+			<value>16</value>
+			<value>4</value>
+		</item>
+		<item name="rapidxml::memory_pool::allocate_aligned(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:653">
+			<value>71</value>
+			<value>21</value>
+			<value>3</value>
+		</item>
+		<item name="rapidxml::xml_base::xml_base(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:714">
+			<value>72</value>
+			<value>8</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_base::name(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:732">
+			<value>73</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_base::name_size(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:740">
+			<value>74</value>
+			<value>4</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::xml_base::value(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:751">
+			<value>75</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_base::value_size(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:759">
+			<value>76</value>
+			<value>4</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::xml_base::name(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:779">
+			<value>77</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_base::name(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:788">
+			<value>78</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_base::value(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:809">
+			<value>79</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_base::value(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:818">
+			<value>80</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_base::parent(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:827">
+			<value>81</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_attribute::xml_attribute(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:859">
+			<value>82</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_attribute::document(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:868">
+			<value>83</value>
+			<value>11</value>
+			<value>4</value>
+		</item>
+		<item name="rapidxml::xml_attribute::xmlns(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:880">
+			<value>84</value>
+			<value>16</value>
+			<value>8</value>
+		</item>
+		<item name="rapidxml::xml_attribute::xmlns_size(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:896">
+			<value>85</value>
+			<value>4</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::xml_attribute::previous_attribute(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:905">
+			<value>86</value>
+			<value>14</value>
+			<value>6</value>
+		</item>
+		<item name="rapidxml::xml_attribute::next_attribute(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:925">
+			<value>87</value>
+			<value>14</value>
+			<value>6</value>
+		</item>
+		<item name="rapidxml::xml_attribute::local_name(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:940">
+			<value>88</value>
+			<value>11</value>
+			<value>5</value>
+		</item>
+		<item name="rapidxml::xml_attribute::local_name_size(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:952">
+			<value>89</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_node::xml_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:989">
+			<value>90</value>
+			<value>16</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_node::type(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1011">
+			<value>91</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_node::prefix(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1016">
+			<value>92</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_node::prefix(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1021">
+			<value>93</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_node::prefix(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1026">
+			<value>94</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_node::prefix_size(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1031">
+			<value>95</value>
+			<value>4</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::xml_node::contents(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1036">
+			<value>96</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_node::contents(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1041">
+			<value>97</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_node::contents_size(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1045">
+			<value>98</value>
+			<value>4</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::xml_node::xmlns(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1050">
+			<value>99</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::xml_node::xmlns_lookup(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1057">
+			<value>100</value>
+			<value>57</value>
+			<value>20</value>
+		</item>
+		<item name="rapidxml::xml_node::xmlns_size(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1116">
+			<value>101</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::xml_node::document(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1128">
+			<value>102</value>
+			<value>7</value>
+			<value>3</value>
+		</item>
+		<item name="rapidxml::xml_node::first_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1141">
+			<value>103</value>
+			<value>14</value>
+			<value>12</value>
+		</item>
+		<item name="rapidxml::xml_node::last_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1165">
+			<value>104</value>
+			<value>15</value>
+			<value>12</value>
+		</item>
+		<item name="rapidxml::xml_node::previous_sibling(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1190">
+			<value>105</value>
+			<value>21</value>
+			<value>12</value>
+		</item>
+		<item name="rapidxml::xml_node::next_sibling(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1221">
+			<value>106</value>
+			<value>21</value>
+			<value>12</value>
+		</item>
+		<item name="rapidxml::xml_node::first_attribute(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1250">
+			<value>107</value>
+			<value>14</value>
+			<value>5</value>
+		</item>
+		<item name="rapidxml::xml_node::last_attribute(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1270">
+			<value>108</value>
+			<value>14</value>
+			<value>6</value>
+		</item>
+		<item name="rapidxml::xml_node::type(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1290">
+			<value>109</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_node::prepend_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1301">
+			<value>110</value>
+			<value>17</value>
+			<value>4</value>
+		</item>
+		<item name="rapidxml::xml_node::append_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1322">
+			<value>111</value>
+			<value>17</value>
+			<value>4</value>
+		</item>
+		<item name="rapidxml::xml_node::insert_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1344">
+			<value>112</value>
+			<value>17</value>
+			<value>6</value>
+		</item>
+		<item name="rapidxml::xml_node::remove_first_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1365">
+			<value>113</value>
+			<value>11</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::xml_node::remove_last_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1380">
+			<value>114</value>
+			<value>13</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::xml_node::remove_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1396">
+			<value>115</value>
+			<value>15</value>
+			<value>4</value>
+		</item>
+		<item name="rapidxml::xml_node::remove_all_nodes(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1413">
+			<value>116</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::xml_node::prepend_attribute(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1422">
+			<value>117</value>
+			<value>17</value>
+			<value>3</value>
+		</item>
+		<item name="rapidxml::xml_node::append_attribute(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1442">
+			<value>118</value>
+			<value>17</value>
+			<value>3</value>
+		</item>
+		<item name="rapidxml::xml_node::insert_attribute(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1464">
+			<value>119</value>
+			<value>17</value>
+			<value>5</value>
+		</item>
+		<item name="rapidxml::xml_node::remove_first_attribute(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1485">
+			<value>120</value>
+			<value>13</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::xml_node::remove_last_attribute(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1502">
+			<value>121</value>
+			<value>13</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::xml_node::remove_attribute(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1518">
+			<value>122</value>
+			<value>14</value>
+			<value>4</value>
+		</item>
+		<item name="rapidxml::xml_node::remove_all_attributes(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1534">
+			<value>123</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::xml_node::validate(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1541">
+			<value>124</value>
+			<value>26</value>
+			<value>9</value>
+		</item>
+		<item name="rapidxml::xml_document::xml_document(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1621">
+			<value>125</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_document::parse(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1638">
+			<value>126</value>
+			<value>29</value>
+			<value>9</value>
+		</item>
+		<item name="rapidxml::xml_document::parse(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1677">
+			<value>127</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_document::clear(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1684">
+			<value>128</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_document::fixup(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1694">
+			<value>129</value>
+			<value>34</value>
+			<value>11</value>
+		</item>
+		<item name="rapidxml::xml_document::validate(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1732">
+			<value>130</value>
+			<value>8</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::xml_document::whitespace_pred::test(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1749">
+			<value>131</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_document::node_name_pred::test(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1758">
+			<value>132</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_document::element_name_pred::test(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1767">
+			<value>133</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_document::attribute_name_pred::test(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1776">
+			<value>134</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_document::text_pred::test(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1785">
+			<value>135</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_document::text_pure_no_ws_pred::test(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1794">
+			<value>136</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_document::text_pure_with_ws_pred::test(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1803">
+			<value>137</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="rapidxml::xml_document::attribute_value_pred::test(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1813">
+			<value>138</value>
+			<value>8</value>
+			<value>3</value>
+		</item>
+		<item name="rapidxml::xml_document::attribute_value_pure_pred::test(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1827">
+			<value>139</value>
+			<value>8</value>
+			<value>3</value>
+		</item>
+		<item name="rapidxml::xml_document::insert_coded_character(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1839">
+			<value>140</value>
+			<value>41</value>
+			<value>6</value>
+		</item>
+		<item name="rapidxml::xml_document::skip(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1886">
+			<value>141</value>
+			<value>7</value>
+			<value>2</value>
+		</item>
+		<item name="rapidxml::xml_document::skip_and_expand_character_refs(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:1898">
+			<value>142</value>
+			<value>118</value>
+			<value>36</value>
+		</item>
+		<item name="rapidxml::xml_document::parse_bom(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:2053">
+			<value>143</value>
+			<value>9</value>
+			<value>4</value>
+		</item>
+		<item name="rapidxml::xml_document::parse_xml_declaration(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:2066">
+			<value>144</value>
+			<value>19</value>
+			<value>7</value>
+		</item>
+		<item name="rapidxml::xml_document::parse_comment(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:2099">
+			<value>145</value>
+			<value>25</value>
+			<value>11</value>
+		</item>
+		<item name="rapidxml::xml_document::parse_doctype(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:2138">
+			<value>146</value>
+			<value>44</value>
+			<value>10</value>
+		</item>
+		<item name="rapidxml::xml_document::parse_pi(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:2204">
+			<value>147</value>
+			<value>38</value>
+			<value>10</value>
+		</item>
+		<item name="rapidxml::xml_document::parse_and_append_data(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:2263">
+			<value>148</value>
+			<value>39</value>
+			<value>11</value>
+		</item>
+		<item name="rapidxml::xml_document::parse_cdata(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:2321">
+			<value>149</value>
+			<value>27</value>
+			<value>11</value>
+		</item>
+		<item name="rapidxml::xml_document::parse_element(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:2360">
+			<value>150</value>
+			<value>46</value>
+			<value>12</value>
+		</item>
+		<item name="rapidxml::xml_document::parse_node(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:2422">
+			<value>151</value>
+			<value>58</value>
+			<value>29</value>
+		</item>
+		<item name="rapidxml::xml_document::parse_node_contents(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:2509">
+			<value>152</value>
+			<value>54</value>
+			<value>11</value>
+		</item>
+		<item name="rapidxml::xml_document::parse_node_attributes(...) at /home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp:2587">
+			<value>153</value>
+			<value>38</value>
+			<value>10</value>
+		</item>
+		<average label="NCSS" value="12"/>
+		<average label="CCN" value="3"/>
+		<item name="setupRHAspberryOptions(...) at /home/gmv/RHA/SW/RHAspberry/rhaspberry_wrapper.cpp:8">
+			<value>154</value>
+			<value>2</value>
+			<value>1</value>
+		</item>
+		<item name="getConfigurationFile(...) at /home/gmv/RHA/SW/RHAspberry/rhaspberry_wrapper.cpp:12">
+			<value>155</value>
+			<value>2</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="12"/>
+		<average label="CCN" value="3"/>
+		<item name="WiiChuck::begin(...) at /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h:78">
+			<value>156</value>
+			<value>21</value>
+			<value>2</value>
+		</item>
+		<item name="WiiChuck::calibrateJoy(...) at /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h:109">
+			<value>157</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::update(...) at /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h:114">
+			<value>158</value>
+			<value>21</value>
+			<value>4</value>
+		</item>
+		<item name="WiiChuck::readAccelX(...) at /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h:154">
+			<value>159</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::readAccelY(...) at /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h:158">
+			<value>160</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::readAccelZ(...) at /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h:162">
+			<value>161</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::zPressed(...) at /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h:167">
+			<value>162</value>
+			<value>3</value>
+			<value>2</value>
+		</item>
+		<item name="WiiChuck::cPressed(...) at /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h:170">
+			<value>163</value>
+			<value>3</value>
+			<value>2</value>
+		</item>
+		<item name="WiiChuck::rightJoy(...) at /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h:175">
+			<value>164</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::leftJoy(...) at /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h:180">
+			<value>165</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::readJoyX(...) at /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h:185">
+			<value>166</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::readJoyY(...) at /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h:189">
+			<value>167</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::readRoll(...) at /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h:201">
+			<value>168</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::readPitch(...) at /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h:206">
+			<value>169</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::_nunchuk_decode_byte(...) at /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h:211">
+			<value>170</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="WiiChuck::_send_zero(...) at /home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h:218">
+			<value>171</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="11"/>
+		<average label="CCN" value="3"/>
+		<item name="ChuckReadStruct::ChuckReadStruct(...) at /home/gmv/RHA/SW/lib/chuck_handler/chuck_handler.h:14">
+			<value>172</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ChuckHandler::begin(...) at /home/gmv/RHA/SW/lib/chuck_handler/chuck_handler.h:22">
+			<value>173</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="ChuckHandler::setTimer(...) at /home/gmv/RHA/SW/lib/chuck_handler/chuck_handler.h:31">
+			<value>174</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="ChuckHandler::printChuckValues(...) at /home/gmv/RHA/SW/lib/chuck_handler/chuck_handler.h:36">
+			<value>175</value>
+			<value>7</value>
+			<value>1</value>
+		</item>
+		<item name="ChuckHandler::readAxis(...) at /home/gmv/RHA/SW/lib/chuck_handler/chuck_handler.h:49">
+			<value>176</value>
+			<value>29</value>
+			<value>13</value>
+		</item>
+		<average label="NCSS" value="11"/>
+		<average label="CCN" value="3"/>
+		<item name="ServoRHA::ServoRHA(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:22">
+			<value>177</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::init(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:30">
+			<value>178</value>
+			<value>7</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::updateInfo(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:60">
+			<value>179</value>
+			<value>18</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::setSpeedGoal(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:95">
+			<value>180</value>
+			<value>14</value>
+			<value>2</value>
+		</item>
+		<item name="ServoRHA::speedError(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:113">
+			<value>181</value>
+			<value>11</value>
+			<value>2</value>
+		</item>
+		<item name="ServoRHA::calculateTorque(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:137">
+			<value>182</value>
+			<value>10</value>
+			<value>3</value>
+		</item>
+		<item name="ServoRHA::addUpadteInfoToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:166">
+			<value>183</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::addReturnOptionToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:179">
+			<value>184</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::addTorqueToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:197">
+			<value>185</value>
+			<value>14</value>
+			<value>2</value>
+		</item>
+		<item name="ServoRHA::setTorqueOnOfToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:220">
+			<value>186</value>
+			<value>6</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::setWheelModeToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:235">
+			<value>187</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::exitWheelModeToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:247">
+			<value>188</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::wheelModeToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:259">
+			<value>189</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::pingToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:276">
+			<value>190</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::setTorqueLimitToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:287">
+			<value>191</value>
+			<value>7</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::setWheelSpeedToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:304">
+			<value>192</value>
+			<value>11</value>
+			<value>2</value>
+		</item>
+		<item name="ServoRHA::addToPacket(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:324">
+			<value>193</value>
+			<value>9</value>
+			<value>2</value>
+		</item>
+		<item name="compareAngles(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:347">
+			<value>194</value>
+			<value>6</value>
+			<value>3</value>
+		</item>
+		<item name="compareSpeed(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp:360">
+			<value>195</value>
+			<value>6</value>
+			<value>3</value>
+		</item>
+		<average label="NCSS" value="11"/>
+		<average label="CCN" value="3"/>
+		<item name="ServoRHA::ServoRHA(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:143">
+			<value>196</value>
+			<value>2</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getID(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:175">
+			<value>197</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getSpeed(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:176">
+			<value>198</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getSpeedDir(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:177">
+			<value>199</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getPosition(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:178">
+			<value>200</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getLoad(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:179">
+			<value>201</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getLoadDir(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:180">
+			<value>202</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getCommError(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:181">
+			<value>203</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getVoltage(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:182">
+			<value>204</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getTemperature(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:183">
+			<value>205</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getGoalTorque(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:184">
+			<value>206</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getSpeedTarget(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:185">
+			<value>207</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getSpeedSlope(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:186">
+			<value>208</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getDirectionTarget(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:187">
+			<value>209</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getError(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:188">
+			<value>210</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getDError(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:189">
+			<value>211</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="ServoRHA::getIError(...) at /home/gmv/RHA/SW/lib/servo_rha/servo_rha.h:190">
+			<value>212</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="10"/>
+		<average label="CCN" value="3"/>
+		<item name="JointRHA::JointRHA(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.h:34">
+			<value>213</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="10"/>
+		<average label="CCN" value="3"/>
+		<item name="JointRHA::JointRHA(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp:19">
+			<value>214</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="JointRHA::~JointRHA(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp:28">
+			<value>215</value>
+			<value>2</value>
+			<value>1</value>
+		</item>
+		<item name="JointRHA::init(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp:36">
+			<value>216</value>
+			<value>8</value>
+			<value>2</value>
+		</item>
+		<item name="JointRHA::updatePosition(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp:51">
+			<value>217</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="JointRHA::updateInfo(...) at /home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp:61">
+			<value>218</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="10"/>
+		<average label="CCN" value="3"/>
+		<item name="JHUtilitiesJH::JHUtilitiesJH(...) at /home/gmv/RHA/SW/lib/utilities/utilities.h:83">
+			<value>219</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="10"/>
+		<average label="CCN" value="3"/>
+		<item name="MeasureUtilities::averageChauvenet(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:40">
+			<value>220</value>
+			<value>19</value>
+			<value>6</value>
+		</item>
+		<item name="JHUtilitiesJH::initJoints(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:72">
+			<value>221</value>
+			<value>20</value>
+			<value>3</value>
+		</item>
+		<item name="JHUtilitiesJH::extractRegulatorData(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:103">
+			<value>222</value>
+			<value>34</value>
+			<value>4</value>
+		</item>
+		<item name="JHUtilitiesJH::extractStepInputData(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:149">
+			<value>223</value>
+			<value>21</value>
+			<value>3</value>
+		</item>
+		<item name="JHUtilitiesJH::extractSlopeInputData(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:188">
+			<value>224</value>
+			<value>25</value>
+			<value>4</value>
+		</item>
+		<item name="JHUtilitiesJH::checkTimeGetInfo(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:223">
+			<value>225</value>
+			<value>23</value>
+			<value>3</value>
+		</item>
+		<item name="JHUtilitiesJH::checkComSucces(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:254">
+			<value>226</value>
+			<value>13</value>
+			<value>3</value>
+		</item>
+		<item name="JHUtilitiesJH::checkSpeed(...) at /home/gmv/RHA/SW/lib/utilities/utilities.cpp:274">
+			<value>227</value>
+			<value>56</value>
+			<value>8</value>
+		</item>
+		<average label="NCSS" value="10"/>
+		<average label="CCN" value="3"/>
+		<item name="RHATypes::SpeedGoal::SpeedGoal(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:29">
+			<value>228</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::Regulator::Regulator(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:45">
+			<value>229</value>
+			<value>4</value>
+			<value>2</value>
+		</item>
+		<item name="RHATypes::Regulator::resetRegulator(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:54">
+			<value>230</value>
+			<value>4</value>
+			<value>2</value>
+		</item>
+		<item name="RHATypes::Regulator::setKRegulator(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:66">
+			<value>231</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::Regulator::regulator(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:78">
+			<value>232</value>
+			<value>8</value>
+			<value>3</value>
+		</item>
+		<item name="RHATypes::Regulator::getKp(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:88">
+			<value>233</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::Regulator::getKi(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:89">
+			<value>234</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::Regulator::getKd(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:90">
+			<value>235</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::Timer::setTimer(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:103">
+			<value>236</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::Timer::activateTimer(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:111">
+			<value>237</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::Timer::checkWait(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:120">
+			<value>238</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="RHATypes::Timer::checkContinue(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:132">
+			<value>239</value>
+			<value>5</value>
+			<value>2</value>
+		</item>
+		<item name="RHATypes::Timer::getInitTime(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:143">
+			<value>240</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::TimerMicroseconds::activateTimer(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:157">
+			<value>241</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="RHATypes::TimerMicroseconds::checkWait(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:166">
+			<value>242</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="RHATypes::TimerMicroseconds::checkContinue(...) at /home/gmv/RHA/SW/lib/rha_types/rha_types.h:177">
+			<value>243</value>
+			<value>5</value>
+			<value>2</value>
+		</item>
+		<average label="NCSS" value="10"/>
+		<average label="CCN" value="2"/>
+		<average label="NCSS" value="10"/>
+		<average label="CCN" value="2"/>
+		<item name="RobotRHA::initJointHandler(...) at /home/gmv/RHA/SW/lib/robot_rha/robot_rha.cpp:7">
+			<value>244</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="RobotRHA::initChuckHandler(...) at /home/gmv/RHA/SW/lib/robot_rha/robot_rha.cpp:17">
+			<value>245</value>
+			<value>4</value>
+			<value>1</value>
+		</item>
+		<item name="RobotRHA::handleRobot(...) at /home/gmv/RHA/SW/lib/robot_rha/robot_rha.cpp:22">
+			<value>246</value>
+			<value>2</value>
+			<value>1</value>
+		</item>
+		<item name="RobotRHA::setCartesianSpeedGoal(...) at /home/gmv/RHA/SW/lib/robot_rha/robot_rha.cpp:33">
+			<value>247</value>
+			<value>9</value>
+			<value>1</value>
+		</item>
+		<item name="RobotRHA::setSpeedToServos(...) at /home/gmv/RHA/SW/lib/robot_rha/robot_rha.cpp:49">
+			<value>248</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="RobotRHA::handleWithChuck(...) at /home/gmv/RHA/SW/lib/robot_rha/robot_rha.cpp:60">
+			<value>249</value>
+			<value>9</value>
+			<value>2</value>
+		</item>
+		<average label="NCSS" value="10"/>
+		<average label="CCN" value="2"/>
+		<item name="JointHandler::JointHandler(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.h:98">
+			<value>250</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="10"/>
+		<average label="CCN" value="2"/>
+		<item name="JointHandler::JointHandler(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:23">
+			<value>251</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::setTimer(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:32">
+			<value>252</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::initJoints(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:42">
+			<value>253</value>
+			<value>14</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::controlLoop(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:65">
+			<value>254</value>
+			<value>12</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::updateJointInfo(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:91">
+			<value>255</value>
+			<value>12</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::updateJointErrorTorque(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:109">
+			<value>256</value>
+			<value>7</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::sendJointTorques(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:121">
+			<value>257</value>
+			<value>15</value>
+			<value>3</value>
+		</item>
+		<item name="JointHandler::setSpeedGoal(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:142">
+			<value>258</value>
+			<value>6</value>
+			<value>3</value>
+		</item>
+		<item name="JointHandler::setReturnPacketOption(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:150">
+			<value>259</value>
+			<value>11</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::sendSetWheelModeAll(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:166">
+			<value>260</value>
+			<value>25</value>
+			<value>3</value>
+		</item>
+		<item name="JointHandler::sendExitWheelModeAll(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:200">
+			<value>261</value>
+			<value>18</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::sendSetTorqueLimitAll(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:234">
+			<value>262</value>
+			<value>11</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::sendSetWheelSpeedAll(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:253">
+			<value>263</value>
+			<value>11</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::checkConectionAll(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:271">
+			<value>264</value>
+			<value>13</value>
+			<value>3</value>
+		</item>
+		<item name="JointHandler::addToSyncPacket(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:298">
+			<value>265</value>
+			<value>8</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::warpSyncPacket(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:318">
+			<value>266</value>
+			<value>17</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::warpSinglePacket(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:347">
+			<value>267</value>
+			<value>15</value>
+			<value>2</value>
+		</item>
+		<item name="JointHandler::sendPacket(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:372">
+			<value>268</value>
+			<value>71</value>
+			<value>20</value>
+		</item>
+		<item name="JointHandler::JointHandler(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:483">
+			<value>269</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::JointHandler(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:494">
+			<value>270</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::initSerial(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:509">
+			<value>271</value>
+			<value>7</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::begin(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:522">
+			<value>272</value>
+			<value>18</value>
+			<value>7</value>
+		</item>
+		<item name="JointHandler::end(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:543">
+			<value>273</value>
+			<value>10</value>
+			<value>5</value>
+		</item>
+		<item name="JointHandler::setTxMode(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:554">
+			<value>274</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="JointHandler::setRxMode(...) at /home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp:558">
+			<value>275</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="10"/>
+		<average label="CCN" value="2"/>
+		<average label="NCSS" value="10"/>
+		<average label="CCN" value="2"/>
+		<item name="printServoStatusError(...) at /home/gmv/RHA/SW/lib/debug/debug.cpp:14">
+			<value>276</value>
+			<value>17</value>
+			<value>15</value>
+		</item>
+		<item name="printServoStatus(...) at /home/gmv/RHA/SW/lib/debug/debug.cpp:33">
+			<value>277</value>
+			<value>13</value>
+			<value>1</value>
+		</item>
+		<average label="NCSS" value="10"/>
+		<average label="CCN" value="2"/>
+		<item name="setup(...) at /home/gmv/RHA/SW/src/main.cpp:12">
+			<value>278</value>
+			<value>3</value>
+			<value>1</value>
+		</item>
+		<item name="loop(...) at /home/gmv/RHA/SW/src/main.cpp:24">
+			<value>279</value>
+			<value>39</value>
+			<value>5</value>
+		</item>
+		<average label="NCSS" value="10"/>
+		<average label="CCN" value="2"/>
+	</measure>
+	<measure type="File">
+		<labels>
+			<label>Nr.</label>
+			<label>NCSS</label>
+			<label>CCN</label>
+			<label>Functions</label>
+		</labels>
+		<item name="/home/gmv/RHA/SW/build/CMakeFiles/3.7.2/CompilerIdCXX/CMakeCXXCompilerId.cpp">
+			<value>1</value>
+			<value>40</value>
+			<value>5</value>
+			<value>1</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/build/CMakeFiles/3.7.2/CompilerIdC/CMakeCCompilerId.c">
+			<value>2</value>
+			<value>40</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/build/CMakeFiles/feature_tests.cxx">
+			<value>3</value>
+			<value>231</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/build/CMakeFiles/feature_tests.c">
+			<value>4</value>
+			<value>19</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/RHAspberry/logger/logger.cpp">
+			<value>5</value>
+			<value>0</value>
+			<value>0</value>
+			<value>0</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp">
+			<value>6</value>
+			<value>305</value>
+			<value>59</value>
+			<value>18</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp">
+			<value>7</value>
+			<value>74</value>
+			<value>12</value>
+			<value>7</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp">
+			<value>8</value>
+			<value>128</value>
+			<value>22</value>
+			<value>20</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp">
+			<value>9</value>
+			<value>1945</value>
+			<value>459</value>
+			<value>103</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/RHAspberry/rhaspberry_wrapper.cpp">
+			<value>10</value>
+			<value>9</value>
+			<value>2</value>
+			<value>2</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h">
+			<value>11</value>
+			<value>112</value>
+			<value>22</value>
+			<value>16</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/chuck_handler/chuck_handler.h">
+			<value>12</value>
+			<value>57</value>
+			<value>17</value>
+			<value>5</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp">
+			<value>13</value>
+			<value>158</value>
+			<value>30</value>
+			<value>19</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h">
+			<value>14</value>
+			<value>118</value>
+			<value>17</value>
+			<value>17</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/joint_rha/joint_rha.h">
+			<value>15</value>
+			<value>22</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp">
+			<value>16</value>
+			<value>23</value>
+			<value>6</value>
+			<value>5</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/utilities/utilities.h">
+			<value>17</value>
+			<value>36</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/utilities/utilities.cpp">
+			<value>18</value>
+			<value>217</value>
+			<value>34</value>
+			<value>8</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/rha_types/rha_types.h">
+			<value>19</value>
+			<value>84</value>
+			<value>24</value>
+			<value>16</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/robot_rha/robot_rha.h">
+			<value>20</value>
+			<value>14</value>
+			<value>0</value>
+			<value>0</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/robot_rha/robot_rha.cpp">
+			<value>21</value>
+			<value>36</value>
+			<value>8</value>
+			<value>6</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/joint_handler/joint_handler.h">
+			<value>22</value>
+			<value>42</value>
+			<value>1</value>
+			<value>1</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp">
+			<value>23</value>
+			<value>329</value>
+			<value>72</value>
+			<value>25</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/debug/debug.h">
+			<value>24</value>
+			<value>4</value>
+			<value>0</value>
+			<value>0</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/lib/debug/debug.cpp">
+			<value>25</value>
+			<value>31</value>
+			<value>16</value>
+			<value>2</value>
+		</item>
+		<item name="/home/gmv/RHA/SW/src/main.cpp">
+			<value>26</value>
+			<value>49</value>
+			<value>6</value>
+			<value>2</value>
+		</item>
+		<average label="NCSS" value="158"/>
+		<average label="CCN" value="31"/>
+		<average label="Functions" value="10"/>
+		<sum label="NCSS" value="4123"/>
+		<sum label="CCN" value="822"/>
+		<sum label="Functions" value="279"/>
+		<average label="NCSS" value="14"/>
+		<average label="CCN" value="2"/>
+	</measure>
+</cppncss>
+

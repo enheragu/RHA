@@ -1,0 +1,40 @@
+      27 text files.
+classified 27 files      27 unique files.                              
+      12 files ignored.
+
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.0911688804626465</elapsed_seconds>
+  <n_files>22</n_files>
+  <n_lines>6905</n_lines>
+  <files_per_second>241.310410837103</files_per_second>
+  <lines_per_second>75738.5630377363</lines_per_second>
+</header>
+<files>
+  <file name="/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml.hpp" blank="297" comment="696" code="1976"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/RHAspberry/external/rapidxml/manual.html" blank="23" comment="0" code="383"  language="HTML" />
+  <file name="/home/gmv/RHA/SW/lib/joint_handler/joint_handler.cpp" blank="62" comment="167" code="331"  language="C++" />
+  <file name="/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_print.hpp" blank="54" comment="75" code="312"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/utilities/utilities.cpp" blank="56" comment="62" code="224"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.cpp" blank="55" comment="152" code="158"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/servo_rha/servo_rha.h" blank="28" comment="28" code="139"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_iterators.hpp" blank="37" comment="6" code="131"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/debug/debug.h" blank="29" comment="68" code="123"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/chuck_handler/WiiChuck.h" blank="45" comment="62" code="121"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/rha_types/rha_types.h" blank="24" comment="73" code="88"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/joint_handler/joint_handler.h" blank="33" comment="21" code="87"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/RHAspberry/external/rapidxml/rapidxml_utils.hpp" blank="21" comment="24" code="77"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/chuck_handler/chuck_handler.h" blank="18" comment="17" code="62"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/utilities/utilities.h" blank="15" comment="30" code="50"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/src/main.cpp" blank="14" comment="17" code="49"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/robot_rha/robot_rha.cpp" blank="7" comment="26" code="36"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/debug/debug.cpp" blank="3" comment="11" code="31"  language="C++" />
+  <file name="/home/gmv/RHA/SW/lib/robot_rha/robot_rha.h" blank="9" comment="8" code="26"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/joint_rha/joint_rha.h" blank="12" comment="11" code="25"  language="C/C++ Header" />
+  <file name="/home/gmv/RHA/SW/lib/joint_rha/joint_rha.cpp" blank="7" comment="34" code="23"  language="C++" />
+  <file name="/home/gmv/RHA/SW/RHAspberry/rhaspberry_wrapper.cpp" blank="6" comment="0" code="10"  language="C++" />
+  <total blank="855" comment="1588" code="4462" />
+</files>
+</results>

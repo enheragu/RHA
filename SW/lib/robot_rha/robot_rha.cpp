@@ -1,3 +1,14 @@
+/**
+ * @Author: Enrique Heredia Aguado <enheragu>
+ * @Date:   31_Oct_2017
+ * @Project: RHA
+ * @Filename: robot_rha.cpp
+ * @Last modified by:   enheragu
+ * @Last modified time: 23_Nov_2017
+ */
+
+
+
 #include "robot_rha.h"
 
 /**

@@ -1,3 +1,14 @@
+/**
+ * @Author: Enrique Heredia Aguado <enheragu>
+ * @Date:   18_Nov_2017
+ * @Project: RHA
+ * @Filename: main.cpp
+ * @Last modified by:   enheragu
+ * @Last modified time: 23_Nov_2017
+ */
+
+
+
 #include <Arduino.h>
 #include <wiringSerial.h>
 
@@ -9,7 +20,7 @@
 
 int fd ;
 
-void setup() {  
+void setup() {
 	//wiringPiSetup();
 	/*if ((fd = serialOpen ("/dev/ttyAMA0", 115200)) < 0)
 	{
@@ -21,12 +32,12 @@ void setup() {
 }
 
 
-void loop() {	
+void loop() {
     int i = 0;
     printf("##############################");
     printf("\nInicio del loop\n");
 
-	printf("Ahora en otro ");    
+	printf("Ahora en otro ");
 	//Serial.write("cacafuti");
 	/*serialPrintf(fd, "Ahora en uno") ;
     fflush(stdout) ;*/
@@ -36,9 +47,9 @@ void loop() {
     }
     printf("\nFin del loop\n");
     printf("##############################");
-    
-    
-    
+
+
+
     int uart0_filestream = -1;
     uart0_filestream = open("/dev/ttyAMA0", O_RDWR | O_NOCTTY | O_NDELAY);		//Open in non blocking read/write mode
 	if (uart0_filestream == -1)
@@ -54,11 +65,11 @@ void loop() {
 	options.c_lflag = 0;
 	tcflush(uart0_filestream, TCIFLUSH);
 	tcsetattr(uart0_filestream, TCSANOW, &options);
-	
+
 	//----- TX BYTES -----
 	unsigned char tx_buffer[20];
 	unsigned char *p_tx_buffer;
-	
+
 	p_tx_buffer = &tx_buffer[0];
 	*p_tx_buffer++ = 0xFF;
 	//*p_tx_buffer++ = 'H';
@@ -66,7 +77,7 @@ void loop() {
 	//*p_tx_buffer++ = 'l';
 	//*p_tx_buffer++ = 'l';
 	//*p_tx_buffer++ = 'o';
-	
+
 	if (uart0_filestream != -1)
 	{
 		int count = write(uart0_filestream, &tx_buffer[0], (p_tx_buffer - &tx_buffer[0]));		//Filestream, bytes to write, number of bytes to write
@@ -75,6 +86,6 @@ void loop() {
 			printf("UART TX error\n");
 		}
 	}
-	
+
 	close(uart0_filestream);
 }

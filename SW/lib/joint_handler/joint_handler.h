@@ -21,10 +21,7 @@
 	#define A1 1
 	#define A2 2
     #define Serial_G15_lib Serial
-    #define RASPBRRY_PI_3B true
-#else
-    #define RASPBRRY_PI_3B false
-#endif
+    #define CHECK_HARDWARESERIAL(rx, tx) (rx == 15 && tx == 14)
 	
 // Arduino mega
 #if defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
@@ -37,11 +34,12 @@
     // Serial3 on pins 15 (RX) and 14 (TX)
 // Arduino Leonardo
 #elif defined (__AVR_ATmega32U4__)
-    #define Serial_G15_lib Serial1
-    #define CHECK_MEGA_HARDWARESERIAL(rx, tx) false
+	#define Serial_G15_lib Serial1
+	#define CHECK_HARDWARESERIAL(rx, tx) false
 #else
-    #define CHECK_MEGA_HARDWARESERIAL(rx, tx) false
-    #define Serial_G15_lib Serial
+	#define CHECK_HARDWARESERIAL(rx, tx) false
+	#define Serial_G15_lib Serial
+
 #endif
 
 #include "debug.h"

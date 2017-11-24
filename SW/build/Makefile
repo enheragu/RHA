@@ -123,59 +123,140 @@ RHA_node/fast:
 	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/build
 .PHONY : RHA_node/fast
 
-lib/Wire/Wire.o: lib/Wire/Wire.cpp.o
+RHAspberry/external/Wire/Wire.o: RHAspberry/external/Wire/Wire.cpp.o
 
-.PHONY : lib/Wire/Wire.o
-
-# target to build an object file
-lib/Wire/Wire.cpp.o:
-	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.o
-.PHONY : lib/Wire/Wire.cpp.o
-
-lib/Wire/Wire.i: lib/Wire/Wire.cpp.i
-
-.PHONY : lib/Wire/Wire.i
-
-# target to preprocess a source file
-lib/Wire/Wire.cpp.i:
-	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.i
-.PHONY : lib/Wire/Wire.cpp.i
-
-lib/Wire/Wire.s: lib/Wire/Wire.cpp.s
-
-.PHONY : lib/Wire/Wire.s
-
-# target to generate assembly for a file
-lib/Wire/Wire.cpp.s:
-	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.s
-.PHONY : lib/Wire/Wire.cpp.s
-
-lib/Wire/utility/twi.o: lib/Wire/utility/twi.c.o
-
-.PHONY : lib/Wire/utility/twi.o
+.PHONY : RHAspberry/external/Wire/Wire.o
 
 # target to build an object file
-lib/Wire/utility/twi.c.o:
-	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.o
-.PHONY : lib/Wire/utility/twi.c.o
+RHAspberry/external/Wire/Wire.cpp.o:
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.o
+.PHONY : RHAspberry/external/Wire/Wire.cpp.o
 
-lib/Wire/utility/twi.i: lib/Wire/utility/twi.c.i
+RHAspberry/external/Wire/Wire.i: RHAspberry/external/Wire/Wire.cpp.i
 
-.PHONY : lib/Wire/utility/twi.i
+.PHONY : RHAspberry/external/Wire/Wire.i
 
 # target to preprocess a source file
-lib/Wire/utility/twi.c.i:
-	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.i
-.PHONY : lib/Wire/utility/twi.c.i
+RHAspberry/external/Wire/Wire.cpp.i:
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.i
+.PHONY : RHAspberry/external/Wire/Wire.cpp.i
 
-lib/Wire/utility/twi.s: lib/Wire/utility/twi.c.s
+RHAspberry/external/Wire/Wire.s: RHAspberry/external/Wire/Wire.cpp.s
 
-.PHONY : lib/Wire/utility/twi.s
+.PHONY : RHAspberry/external/Wire/Wire.s
 
 # target to generate assembly for a file
-lib/Wire/utility/twi.c.s:
-	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.s
-.PHONY : lib/Wire/utility/twi.c.s
+RHAspberry/external/Wire/Wire.cpp.s:
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.s
+.PHONY : RHAspberry/external/Wire/Wire.cpp.s
+
+RHAspberry/external/Wire/utility/twi.o: RHAspberry/external/Wire/utility/twi.c.o
+
+.PHONY : RHAspberry/external/Wire/utility/twi.o
+
+# target to build an object file
+RHAspberry/external/Wire/utility/twi.c.o:
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.o
+.PHONY : RHAspberry/external/Wire/utility/twi.c.o
+
+RHAspberry/external/Wire/utility/twi.i: RHAspberry/external/Wire/utility/twi.c.i
+
+.PHONY : RHAspberry/external/Wire/utility/twi.i
+
+# target to preprocess a source file
+RHAspberry/external/Wire/utility/twi.c.i:
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.i
+.PHONY : RHAspberry/external/Wire/utility/twi.c.i
+
+RHAspberry/external/Wire/utility/twi.s: RHAspberry/external/Wire/utility/twi.c.s
+
+.PHONY : RHAspberry/external/Wire/utility/twi.s
+
+# target to generate assembly for a file
+RHAspberry/external/Wire/utility/twi.c.s:
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.s
+.PHONY : RHAspberry/external/Wire/utility/twi.c.s
+
+RHAspberry/external/piduino/wiring_main.o: RHAspberry/external/piduino/wiring_main.cpp.o
+
+.PHONY : RHAspberry/external/piduino/wiring_main.o
+
+# target to build an object file
+RHAspberry/external/piduino/wiring_main.cpp.o:
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.o
+.PHONY : RHAspberry/external/piduino/wiring_main.cpp.o
+
+RHAspberry/external/piduino/wiring_main.i: RHAspberry/external/piduino/wiring_main.cpp.i
+
+.PHONY : RHAspberry/external/piduino/wiring_main.i
+
+# target to preprocess a source file
+RHAspberry/external/piduino/wiring_main.cpp.i:
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.i
+.PHONY : RHAspberry/external/piduino/wiring_main.cpp.i
+
+RHAspberry/external/piduino/wiring_main.s: RHAspberry/external/piduino/wiring_main.cpp.s
+
+.PHONY : RHAspberry/external/piduino/wiring_main.s
+
+# target to generate assembly for a file
+RHAspberry/external/piduino/wiring_main.cpp.s:
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.s
+.PHONY : RHAspberry/external/piduino/wiring_main.cpp.s
+
+RHAspberry/gci/gci.o: RHAspberry/gci/gci.cpp.o
+
+.PHONY : RHAspberry/gci/gci.o
+
+# target to build an object file
+RHAspberry/gci/gci.cpp.o:
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.o
+.PHONY : RHAspberry/gci/gci.cpp.o
+
+RHAspberry/gci/gci.i: RHAspberry/gci/gci.cpp.i
+
+.PHONY : RHAspberry/gci/gci.i
+
+# target to preprocess a source file
+RHAspberry/gci/gci.cpp.i:
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.i
+.PHONY : RHAspberry/gci/gci.cpp.i
+
+RHAspberry/gci/gci.s: RHAspberry/gci/gci.cpp.s
+
+.PHONY : RHAspberry/gci/gci.s
+
+# target to generate assembly for a file
+RHAspberry/gci/gci.cpp.s:
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.s
+.PHONY : RHAspberry/gci/gci.cpp.s
+
+RHAspberry/logger/logger.o: RHAspberry/logger/logger.cpp.o
+
+.PHONY : RHAspberry/logger/logger.o
+
+# target to build an object file
+RHAspberry/logger/logger.cpp.o:
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.o
+.PHONY : RHAspberry/logger/logger.cpp.o
+
+RHAspberry/logger/logger.i: RHAspberry/logger/logger.cpp.i
+
+.PHONY : RHAspberry/logger/logger.i
+
+# target to preprocess a source file
+RHAspberry/logger/logger.cpp.i:
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.i
+.PHONY : RHAspberry/logger/logger.cpp.i
+
+RHAspberry/logger/logger.s: RHAspberry/logger/logger.cpp.s
+
+.PHONY : RHAspberry/logger/logger.s
+
+# target to generate assembly for a file
+RHAspberry/logger/logger.cpp.s:
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.s
+.PHONY : RHAspberry/logger/logger.cpp.s
 
 lib/debug/debug.o: lib/debug/debug.cpp.o
 
@@ -257,33 +338,6 @@ lib/joint_rha/joint_rha.s: lib/joint_rha/joint_rha.cpp.s
 lib/joint_rha/joint_rha.cpp.s:
 	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/lib/joint_rha/joint_rha.cpp.s
 .PHONY : lib/joint_rha/joint_rha.cpp.s
-
-lib/piduino/wiring_main.o: lib/piduino/wiring_main.cpp.o
-
-.PHONY : lib/piduino/wiring_main.o
-
-# target to build an object file
-lib/piduino/wiring_main.cpp.o:
-	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.o
-.PHONY : lib/piduino/wiring_main.cpp.o
-
-lib/piduino/wiring_main.i: lib/piduino/wiring_main.cpp.i
-
-.PHONY : lib/piduino/wiring_main.i
-
-# target to preprocess a source file
-lib/piduino/wiring_main.cpp.i:
-	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.i
-.PHONY : lib/piduino/wiring_main.cpp.i
-
-lib/piduino/wiring_main.s: lib/piduino/wiring_main.cpp.s
-
-.PHONY : lib/piduino/wiring_main.s
-
-# target to generate assembly for a file
-lib/piduino/wiring_main.cpp.s:
-	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.s
-.PHONY : lib/piduino/wiring_main.cpp.s
 
 lib/robot_rha/robot_rha.o: lib/robot_rha/robot_rha.cpp.o
 
@@ -402,12 +456,21 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... RHA_node"
-	@echo "... lib/Wire/Wire.o"
-	@echo "... lib/Wire/Wire.i"
-	@echo "... lib/Wire/Wire.s"
-	@echo "... lib/Wire/utility/twi.o"
-	@echo "... lib/Wire/utility/twi.i"
-	@echo "... lib/Wire/utility/twi.s"
+	@echo "... RHAspberry/external/Wire/Wire.o"
+	@echo "... RHAspberry/external/Wire/Wire.i"
+	@echo "... RHAspberry/external/Wire/Wire.s"
+	@echo "... RHAspberry/external/Wire/utility/twi.o"
+	@echo "... RHAspberry/external/Wire/utility/twi.i"
+	@echo "... RHAspberry/external/Wire/utility/twi.s"
+	@echo "... RHAspberry/external/piduino/wiring_main.o"
+	@echo "... RHAspberry/external/piduino/wiring_main.i"
+	@echo "... RHAspberry/external/piduino/wiring_main.s"
+	@echo "... RHAspberry/gci/gci.o"
+	@echo "... RHAspberry/gci/gci.i"
+	@echo "... RHAspberry/gci/gci.s"
+	@echo "... RHAspberry/logger/logger.o"
+	@echo "... RHAspberry/logger/logger.i"
+	@echo "... RHAspberry/logger/logger.s"
 	@echo "... lib/debug/debug.o"
 	@echo "... lib/debug/debug.i"
 	@echo "... lib/debug/debug.s"
@@ -417,9 +480,6 @@ help:
 	@echo "... lib/joint_rha/joint_rha.o"
 	@echo "... lib/joint_rha/joint_rha.i"
 	@echo "... lib/joint_rha/joint_rha.s"
-	@echo "... lib/piduino/wiring_main.o"
-	@echo "... lib/piduino/wiring_main.i"
-	@echo "... lib/piduino/wiring_main.s"
 	@echo "... lib/robot_rha/robot_rha.o"
 	@echo "... lib/robot_rha/robot_rha.i"
 	@echo "... lib/robot_rha/robot_rha.s"

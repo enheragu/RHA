@@ -8,13 +8,14 @@ SET(LIB_PATH
 
 SET(LIB
 	pthread
-	RHASPDUINO
+	PiDuino
 	wiringPi
 )
 
 ##### Raspberry Pi version sources path #####
 SET(RHASPDUINO_PATH
-	${CMAKE_SOURCE_DIR}/RHAspberry/external/RHASPDUINO
+	${CMAKE_SOURCE_DIR}/RHAspberry/external/
+	${CMAKE_SOURCE_DIR}/RHAspberry/external/piduino
 	${CMAKE_SOURCE_DIR}/RHAspberry/external/Wire
 	${CMAKE_SOURCE_DIR}/RHAspberry/external/Wire/utility
 	${CMAKE_SOURCE_DIR}/RHAspberry/gci
@@ -65,7 +66,7 @@ include_directories(${RHA_LIB_PATH} ${RHASPDUINO_PATH} ${LIB_PATH})
 
 link_directories(${RHA_LIB_PATH} ${RHASPDUINO_PATH} ${LIB_PATH})
 
-add_executable(${PROJECT_NAME}_node ${CMAKE_SOURCE_DIR}/RHAspberry/external/RHASPDUINO/wiring_main.cpp 
+add_executable(${PROJECT_NAME}_node ${CMAKE_SOURCE_DIR}/RHAspberry/external/piduino/wiring_main.cpp 
 				${CMAKE_SOURCE_DIR}/src/main.cpp 
 				${RHA_CPP_FILES} 
 				${RHASPDUINO_CPP_FILES}

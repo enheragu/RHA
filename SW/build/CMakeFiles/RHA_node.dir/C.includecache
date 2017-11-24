@@ -6,65 +6,65 @@
 
 #IncludeRegexTransform: 
 
-../lib/piduino/Arduino.h
+../RHAspberry/external/piduino/Arduino.h
 bcm2835_registers.h
-../lib/piduino/bcm2835_registers.h
+../RHAspberry/external/piduino/bcm2835_registers.h
 math.h
 -
 pthread.h
 -
 pgmspace.h
-../lib/piduino/pgmspace.h
+../RHAspberry/external/piduino/pgmspace.h
 WCharacter.h
-../lib/piduino/WCharacter.h
+../RHAspberry/external/piduino/WCharacter.h
 WString.h
-../lib/piduino/WString.h
+../RHAspberry/external/piduino/WString.h
 HardwareSerial.h
-../lib/piduino/HardwareSerial.h
+../RHAspberry/external/piduino/HardwareSerial.h
 Console.h
-../lib/piduino/Console.h
+../RHAspberry/external/piduino/Console.h
 binary.h
-../lib/piduino/binary.h
+../RHAspberry/external/piduino/binary.h
 pins_arduino.h
-../lib/piduino/pins_arduino.h
+../RHAspberry/external/piduino/pins_arduino.h
 
-../lib/piduino/Console.h
+../RHAspberry/external/piduino/Console.h
 stdint.h
 -
 unistd.h
 -
 Stream.h
-../lib/piduino/Stream.h
+../RHAspberry/external/piduino/Stream.h
 
-../lib/piduino/HardwareSerial.h
+../RHAspberry/external/piduino/HardwareSerial.h
 Stream.h
-../lib/piduino/Stream.h
+../RHAspberry/external/piduino/Stream.h
 
-../lib/piduino/Print.h
+../RHAspberry/external/piduino/Print.h
 inttypes.h
 -
 stdio.h
 -
 WString.h
-../lib/piduino/WString.h
+../RHAspberry/external/piduino/WString.h
 Printable.h
-../lib/piduino/Printable.h
+../RHAspberry/external/piduino/Printable.h
 
-../lib/piduino/Printable.h
+../RHAspberry/external/piduino/Printable.h
 stdlib.h
 -
 
-../lib/piduino/Stream.h
+../RHAspberry/external/piduino/Stream.h
 inttypes.h
 -
 Print.h
-../lib/piduino/Print.h
+../RHAspberry/external/piduino/Print.h
 
-../lib/piduino/WCharacter.h
+../RHAspberry/external/piduino/WCharacter.h
 ctype.h
 -
 
-../lib/piduino/WString.h
+../RHAspberry/external/piduino/WString.h
 stdlib.h
 -
 string.h
@@ -74,7 +74,7 @@ ctype.h
 stdlib_noniso.h
 -
 
-../lib/piduino/bcm2835_registers.h
+../RHAspberry/external/piduino/bcm2835_registers.h
 stdint.h
 -
 stdio.h
@@ -94,23 +94,23 @@ fcntl.h
 string.h
 -
 
-../lib/piduino/binary.h
+../RHAspberry/external/piduino/binary.h
 
-../lib/piduino/pgmspace.h
+../RHAspberry/external/piduino/pgmspace.h
 
-../lib/piduino/pins_arduino.h
+../RHAspberry/external/piduino/pins_arduino.h
 bcm2835_registers.h
-../lib/piduino/bcm2835_registers.h
+../RHAspberry/external/piduino/bcm2835_registers.h
 
-../lib/piduino/stdlib_noniso.h
+../RHAspberry/external/piduino/stdlib_noniso.h
 
-/home/pi/rha_project/RHA/SW/lib/Wire/utility/twi.c
+/home/pi/rha_project/RHA/SW/RHAspberry/external/Wire/utility/twi.c
 Arduino.h
-/home/pi/rha_project/RHA/SW/lib/Wire/utility/Arduino.h
+/home/pi/rha_project/RHA/SW/RHAspberry/external/Wire/utility/Arduino.h
 twi.h
-/home/pi/rha_project/RHA/SW/lib/Wire/utility/twi.h
+/home/pi/rha_project/RHA/SW/RHAspberry/external/Wire/utility/twi.h
 
-/home/pi/rha_project/RHA/SW/lib/Wire/utility/twi.h
+/home/pi/rha_project/RHA/SW/RHAspberry/external/Wire/utility/twi.h
 inttypes.h
 -
 

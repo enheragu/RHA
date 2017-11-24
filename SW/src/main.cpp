@@ -10,6 +10,7 @@
 //#ifndef UNIT_TEST  // disable program main loop while unit testing in progress
 
 
+// #ifndef UNIT_TEST  // disable program main loop while unit testing in progress
 #include <Arduino.h>
 // #include "rha_types.h"
 // #include "utilities.h"
@@ -20,17 +21,19 @@
 
 #include <wiringSerial.h>
 
-#include <stdio.h>
-#include <unistd.h>			//Used for UART
-#include <fcntl.h>			//Used for UART
-#include <termios.h>		//Used for UART
+
+// CYTRON_G15_SERVO g15(1, 2, 3, 8);
 
 RobotRHA robo_health_arm;
 
 void setup() {
     pinMode(LED_BUILTIN, OUTPUT);
     delay(2000);
-    Serial.begin(921600);  // 115200 230400 250000 460800 921600
+	printf("Esto es un setup corriendo en una raspy\n");
+	#if !defined(__RASPBERRY_PI_3B__)
+		delay(2000);
+		Serial.begin(921600); //115200 230400 250000 460800 921600
+	#endif
     printf("# Start setup\n");
     printf("# TX_BUFFER = ");
     printf(SERIAL_TX_BUFFER_SIZE);
@@ -313,3 +316,4 @@ void loop() {
 
 	//close(uart0_filestream);
 //}
+

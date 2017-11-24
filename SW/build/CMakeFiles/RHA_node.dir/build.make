@@ -57,28 +57,28 @@ include CMakeFiles/RHA_node.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/RHA_node.dir/flags.make
 
-CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.o: CMakeFiles/RHA_node.dir/flags.make
-CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.o: ../lib/piduino/wiring_main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/rha_project/RHA/SW/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.o -c /home/pi/rha_project/RHA/SW/lib/piduino/wiring_main.cpp
+CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.o: CMakeFiles/RHA_node.dir/flags.make
+CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.o: ../RHAspberry/external/piduino/wiring_main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/rha_project/RHA/SW/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.o -c /home/pi/rha_project/RHA/SW/RHAspberry/external/piduino/wiring_main.cpp
 
-CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rha_project/RHA/SW/lib/piduino/wiring_main.cpp > CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.i
+CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rha_project/RHA/SW/RHAspberry/external/piduino/wiring_main.cpp > CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.i
 
-CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rha_project/RHA/SW/lib/piduino/wiring_main.cpp -o CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.s
+CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rha_project/RHA/SW/RHAspberry/external/piduino/wiring_main.cpp -o CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.s
 
-CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.o.requires:
+CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.o.requires:
 
-.PHONY : CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.o.requires
+.PHONY : CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.o.requires
 
-CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.o.provides: CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.o.requires
-	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.o.provides.build
-.PHONY : CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.o.provides
+CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.o.provides: CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.o.requires
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.o.provides.build
+.PHONY : CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.o.provides
 
-CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.o.provides.build: CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.o
+CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.o.provides.build: CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.o
 
 
 CMakeFiles/RHA_node.dir/src/main.cpp.o: CMakeFiles/RHA_node.dir/flags.make
@@ -249,57 +249,105 @@ CMakeFiles/RHA_node.dir/lib/servo_rha/servo_rha.cpp.o.provides: CMakeFiles/RHA_n
 CMakeFiles/RHA_node.dir/lib/servo_rha/servo_rha.cpp.o.provides.build: CMakeFiles/RHA_node.dir/lib/servo_rha/servo_rha.cpp.o
 
 
-CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.o: CMakeFiles/RHA_node.dir/flags.make
-CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.o: ../lib/Wire/Wire.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/rha_project/RHA/SW/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.o -c /home/pi/rha_project/RHA/SW/lib/Wire/Wire.cpp
+CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.o: CMakeFiles/RHA_node.dir/flags.make
+CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.o: ../RHAspberry/gci/gci.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/rha_project/RHA/SW/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.o -c /home/pi/rha_project/RHA/SW/RHAspberry/gci/gci.cpp
 
-CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rha_project/RHA/SW/lib/Wire/Wire.cpp > CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.i
+CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rha_project/RHA/SW/RHAspberry/gci/gci.cpp > CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.i
 
-CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rha_project/RHA/SW/lib/Wire/Wire.cpp -o CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.s
+CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rha_project/RHA/SW/RHAspberry/gci/gci.cpp -o CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.s
 
-CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.o.requires:
+CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.o.requires:
 
-.PHONY : CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.o.requires
+.PHONY : CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.o.requires
 
-CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.o.provides: CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.o.requires
-	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.o.provides.build
-.PHONY : CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.o.provides
+CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.o.provides: CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.o.requires
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.o.provides.build
+.PHONY : CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.o.provides
 
-CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.o.provides.build: CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.o
+CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.o.provides.build: CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.o
 
 
-CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.o: CMakeFiles/RHA_node.dir/flags.make
-CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.o: ../lib/Wire/utility/twi.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/rha_project/RHA/SW/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.o"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.o   -c /home/pi/rha_project/RHA/SW/lib/Wire/utility/twi.c
+CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.o: CMakeFiles/RHA_node.dir/flags.make
+CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.o: ../RHAspberry/logger/logger.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/rha_project/RHA/SW/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.o -c /home/pi/rha_project/RHA/SW/RHAspberry/logger/logger.cpp
 
-CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.i"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/rha_project/RHA/SW/lib/Wire/utility/twi.c > CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.i
+CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rha_project/RHA/SW/RHAspberry/logger/logger.cpp > CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.i
 
-CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.s"
-	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/rha_project/RHA/SW/lib/Wire/utility/twi.c -o CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.s
+CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rha_project/RHA/SW/RHAspberry/logger/logger.cpp -o CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.s
 
-CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.o.requires:
+CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.o.requires:
 
-.PHONY : CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.o.requires
+.PHONY : CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.o.requires
 
-CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.o.provides: CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.o.requires
-	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.o.provides.build
-.PHONY : CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.o.provides
+CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.o.provides: CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.o.requires
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.o.provides.build
+.PHONY : CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.o.provides
 
-CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.o.provides.build: CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.o
+CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.o.provides.build: CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.o
+
+
+CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.o: CMakeFiles/RHA_node.dir/flags.make
+CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.o: ../RHAspberry/external/Wire/Wire.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/rha_project/RHA/SW/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.o -c /home/pi/rha_project/RHA/SW/RHAspberry/external/Wire/Wire.cpp
+
+CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rha_project/RHA/SW/RHAspberry/external/Wire/Wire.cpp > CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.i
+
+CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rha_project/RHA/SW/RHAspberry/external/Wire/Wire.cpp -o CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.s
+
+CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.o.requires:
+
+.PHONY : CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.o.requires
+
+CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.o.provides: CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.o.requires
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.o.provides.build
+.PHONY : CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.o.provides
+
+CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.o.provides.build: CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.o
+
+
+CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.o: CMakeFiles/RHA_node.dir/flags.make
+CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.o: ../RHAspberry/external/Wire/utility/twi.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/pi/rha_project/RHA/SW/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building C object CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.o"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.o   -c /home/pi/rha_project/RHA/SW/RHAspberry/external/Wire/utility/twi.c
+
+CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.i"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/pi/rha_project/RHA/SW/RHAspberry/external/Wire/utility/twi.c > CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.i
+
+CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.s"
+	/usr/bin/cc  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/pi/rha_project/RHA/SW/RHAspberry/external/Wire/utility/twi.c -o CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.s
+
+CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.o.requires:
+
+.PHONY : CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.o.requires
+
+CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.o.provides: CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.o.requires
+	$(MAKE) -f CMakeFiles/RHA_node.dir/build.make CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.o.provides.build
+.PHONY : CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.o.provides
+
+CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.o.provides.build: CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.o
 
 
 # Object files for target RHA_node
 RHA_node_OBJECTS = \
-"CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.o" \
+"CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.o" \
 "CMakeFiles/RHA_node.dir/src/main.cpp.o" \
 "CMakeFiles/RHA_node.dir/lib/joint_handler/joint_handler.cpp.o" \
 "CMakeFiles/RHA_node.dir/lib/utilities/utilities.cpp.o" \
@@ -307,13 +355,15 @@ RHA_node_OBJECTS = \
 "CMakeFiles/RHA_node.dir/lib/debug/debug.cpp.o" \
 "CMakeFiles/RHA_node.dir/lib/robot_rha/robot_rha.cpp.o" \
 "CMakeFiles/RHA_node.dir/lib/servo_rha/servo_rha.cpp.o" \
-"CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.o" \
-"CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.o"
+"CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.o" \
+"CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.o" \
+"CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.o" \
+"CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.o"
 
 # External object files for target RHA_node
 RHA_node_EXTERNAL_OBJECTS =
 
-RHA_node: CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.o
+RHA_node: CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.o
 RHA_node: CMakeFiles/RHA_node.dir/src/main.cpp.o
 RHA_node: CMakeFiles/RHA_node.dir/lib/joint_handler/joint_handler.cpp.o
 RHA_node: CMakeFiles/RHA_node.dir/lib/utilities/utilities.cpp.o
@@ -321,11 +371,13 @@ RHA_node: CMakeFiles/RHA_node.dir/lib/joint_rha/joint_rha.cpp.o
 RHA_node: CMakeFiles/RHA_node.dir/lib/debug/debug.cpp.o
 RHA_node: CMakeFiles/RHA_node.dir/lib/robot_rha/robot_rha.cpp.o
 RHA_node: CMakeFiles/RHA_node.dir/lib/servo_rha/servo_rha.cpp.o
-RHA_node: CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.o
-RHA_node: CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.o
+RHA_node: CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.o
+RHA_node: CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.o
+RHA_node: CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.o
+RHA_node: CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.o
 RHA_node: CMakeFiles/RHA_node.dir/build.make
 RHA_node: CMakeFiles/RHA_node.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/rha_project/RHA/SW/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable RHA_node"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/pi/rha_project/RHA/SW/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable RHA_node"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/RHA_node.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -333,7 +385,7 @@ CMakeFiles/RHA_node.dir/build: RHA_node
 
 .PHONY : CMakeFiles/RHA_node.dir/build
 
-CMakeFiles/RHA_node.dir/requires: CMakeFiles/RHA_node.dir/lib/piduino/wiring_main.cpp.o.requires
+CMakeFiles/RHA_node.dir/requires: CMakeFiles/RHA_node.dir/RHAspberry/external/piduino/wiring_main.cpp.o.requires
 CMakeFiles/RHA_node.dir/requires: CMakeFiles/RHA_node.dir/src/main.cpp.o.requires
 CMakeFiles/RHA_node.dir/requires: CMakeFiles/RHA_node.dir/lib/joint_handler/joint_handler.cpp.o.requires
 CMakeFiles/RHA_node.dir/requires: CMakeFiles/RHA_node.dir/lib/utilities/utilities.cpp.o.requires
@@ -341,8 +393,10 @@ CMakeFiles/RHA_node.dir/requires: CMakeFiles/RHA_node.dir/lib/joint_rha/joint_rh
 CMakeFiles/RHA_node.dir/requires: CMakeFiles/RHA_node.dir/lib/debug/debug.cpp.o.requires
 CMakeFiles/RHA_node.dir/requires: CMakeFiles/RHA_node.dir/lib/robot_rha/robot_rha.cpp.o.requires
 CMakeFiles/RHA_node.dir/requires: CMakeFiles/RHA_node.dir/lib/servo_rha/servo_rha.cpp.o.requires
-CMakeFiles/RHA_node.dir/requires: CMakeFiles/RHA_node.dir/lib/Wire/Wire.cpp.o.requires
-CMakeFiles/RHA_node.dir/requires: CMakeFiles/RHA_node.dir/lib/Wire/utility/twi.c.o.requires
+CMakeFiles/RHA_node.dir/requires: CMakeFiles/RHA_node.dir/RHAspberry/gci/gci.cpp.o.requires
+CMakeFiles/RHA_node.dir/requires: CMakeFiles/RHA_node.dir/RHAspberry/logger/logger.cpp.o.requires
+CMakeFiles/RHA_node.dir/requires: CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/Wire.cpp.o.requires
+CMakeFiles/RHA_node.dir/requires: CMakeFiles/RHA_node.dir/RHAspberry/external/Wire/utility/twi.c.o.requires
 
 .PHONY : CMakeFiles/RHA_node.dir/requires
 

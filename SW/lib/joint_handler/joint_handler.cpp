@@ -521,7 +521,7 @@ void JointHandler::initSerial(uint8_t _rxpin, uint8_t _txpin, uint8_t _ctrlpin, 
  */
 void JointHandler::begin(uint32_t _baudrate) {
      DebugSerialJHLn2("begin: begin at baudrate: ", _baudrate);
-   if ((rxpin_shield_ == 0 && txpin_shield_ == 1) || (CHECK_MEGA_HARDWARESERIAL(rxpin_shield_,txpin_shield_)) || RASPBRRY_PI_3B) {
+   if ((rxpin_shield_ == 0 && txpin_shield_ == 1) || (CHECK_HARDWARESERIAL(rxpin_shield_,txpin_shield_))) {
          hardwareSerial_ = true;
          Serial_G15_lib.begin(_baudrate);
          while (!Serial) {}
@@ -541,7 +541,7 @@ void JointHandler::begin(uint32_t _baudrate) {
 }
 
 void JointHandler::end(void) {
-     if ((rxpin_shield_ == 0 && txpin_shield_ == 1)  || CHECK_MEGA_HARDWARESERIAL(rxpin_shield_, txpin_shield_) || RASPBRRY_PI_3B) {
+     if ((rxpin_shield_ == 0 && txpin_shield_ == 1)  || CHECK_HARDWARESERIAL(rxpin_shield_, txpin_shield_)) {
          Serial_G15_lib.end();
      } else {
          pinMode(rxpin_shield_, INPUT);

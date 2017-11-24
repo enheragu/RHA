@@ -23,8 +23,8 @@
 //#include <iostream>
 
 #if defined(__RASPBERRY_PI_3B__)
-	#define output(x) { printf(x); fflush(stdout);} // { std::cout << std::string(x); }  // 
-	#define outputln(x) { printf(x); fflush(stdout);} // { std::cout << std::string(x) << std::endl; }  // 
+	#define output(x) { printf(x); } // { std::cout << std::string(x); }  // 
+	#define outputln(x) { printf(x); printf("\n"); } // { std::cout << std::string(x) << std::endl; }  // 
 #else
 	#define output(x) Serial.print(x);
 	#define outputln(x) Serial.println(x);
@@ -76,7 +76,7 @@
 // #define DEBUG_CYTRON_G15_SERVO
 // #define DEBUG_TEST_CYTRON_G15_SERVO
  #define DEBUG_UTILITIES
-//s #define DEBUG_ROBOT_RHA
+// #define DEBUG_ROBOT_RHA
 // #define DEBUG_RHA_TYPES
 // #define DEBUG_JOINT_RHA
 

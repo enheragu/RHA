@@ -17,8 +17,8 @@
 #define CHUCK_UPDATE_PERIOD 100
 
 #define G15_BAUDRATE 460800
-#define G15_RX_PIN 19
-#define G15_TX_PIN 18
+#define G15_RX_PIN 15
+#define G15_TX_PIN 14
 #define G15_CONTRL_PIN 8
 
 #define J1 1

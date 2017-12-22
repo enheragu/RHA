@@ -147,7 +147,7 @@ void ServoRHA::calculateTorque() {
     else {
         torque = abs(torque);
     }
-    torque = torque + TORQUE_OFFSET + TORQUE_PREALIMENTATION*float(speed_target_);
+    if (torque > 0) torque = torque + TORQUE_OFFSET + TORQUE_PREALIMENTATION*float(speed_target_);
     if (torque > MAX_TORQUE_VALUE) torque = MAX_TORQUE_VALUE;  // compensate saturation of servos
 
     goal_torque_ = uint16_t(torque);

@@ -117,7 +117,7 @@ namespace ServoRHAConstants {
       */
 
     namespace SpeedRegulatorK {
-        #define KP 1.66
+        #define KP 10 //1.66
         #define KD 0
         #define KI 0
     }

@@ -81,9 +81,9 @@ class ChuckHandler {
             else
                 info.Z_ = 0;
 
-            //Serial.print(" X value is: "); Serial.println(info.X_);
-            //Serial.print(" Y value is: "); Serial.println(info.Y_);
-            //Serial.print(" Z value is: "); Serial.println(info.Z_);
+            Serial.print(" X value is: "); Serial.println(info.X_);
+            Serial.print(" Y value is: "); Serial.println(info.Y_);
+            Serial.print(" Z value is: "); Serial.println(info.Z_);
 
             info.updated_ = true;
 

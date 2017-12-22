@@ -31,9 +31,11 @@ RobotRHA robo_health_arm;
 void setup() {
   delay(2000);
   Serial.begin(921600); //115200 230400 250000 460800 921600
+  Serial.println("# Start setup");
   Serial.println("# Setup begin");
 
   robo_health_arm.initJointHandler();
+  Serial.println("#Joint Handler initialiced");
   robo_health_arm.initChuckHandler();
 
   /*joint_handler.setTimer(50);
@@ -74,9 +76,21 @@ void loop() {
     //joint_handler.extractStepInputData(0);
     //delay(500);
     robo_health_arm.handleWithChuck();
-    if (i % 1000 == 0){
+    if (i % 10 == 0){
+        Serial.print("Load in servos:"); Serial.print("\t\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getLoad()); Serial.print(",\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[2].servo_.getLoad()); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[1].servo_.getLoad());
+
+        Serial.print("Goal Torque:"); Serial.print("\t\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getGoalTorque()); Serial.print(",\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[2].servo_.getGoalTorque()); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[1].servo_.getGoalTorque());
+
+        Serial.print("Speed in servos:"); Serial.print("\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getSpeed()); Serial.print(",\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[2].servo_.getSpeed()); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[1].servo_.getSpeed());
+
+        Serial.println();
+        Serial.println();
     }
     i++;
     /*for (i = 0; i < 800; i++) {

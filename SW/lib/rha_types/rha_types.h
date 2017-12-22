@@ -13,6 +13,7 @@
 
 #include <stdint.h>
 #include <Arduino.h>
+#include "pid_regulator.h"
 
 namespace RHATypes {
 
@@ -29,66 +30,6 @@ namespace RHATypes {
         SpeedGoal(uint8_t _id, int16_t _speed, int16_t _speed_slope, uint8_t _direction): servo_id(_id), speed(_speed), speed_slope(_speed_slope), direction(_direction) {}
      } ;
 
-
-    #define INTEGER_INTERVAL 15  // How many intervals are taken when error is integrated
-
-    /**
-     * @brief Implements a standard PID regulator
-     * @class Regulator
-     */
-    class Regulator {
-        float kp_, ki_, kd_;
-        float ierror_[INTEGER_INTERVAL];
-        uint8_t index_;
-
-     public:
-        Regulator() {
-            index_ = 0;
-            for (uint8_t i = 0; i < INTEGER_INTERVAL; i++) ierror_[i] = 0;
-        }
-
-        /**
-         * @brief Resets all regulator data to 0
-         * @method resetRegulator
-         */
-        void resetRegulator() {
-            kp_ = ki_ = kd_ = index_ = 0;
-            for (uint8_t i = 0; i < INTEGER_INTERVAL; i++) ierror_[i] = 0;
-        }
-
-        /**
-         * Sets PID regulator constants
-         * @method setKRegulator
-         * @param  kp            Proportional K
-         * @param  ki            Integral K
-         * @param  kd            Derivative K
-         */
-        void setKRegulator(float _kp, float _ki = 0, float _kd = 0) {
-            kp_ = _kp; ki_ = _ki; kd_ = _kd;
-        }
-
-        /**
-         * @brief Calculates output of regulator to a set error
-         * @method regulator
-         * @param  error     error
-         * @param  derror    derivative error
-         * @param  ierror    integral error
-         * @return           returns output of regulator
-         */
-        float regulator(float _error, float _derror = 0, float _ierror = 0) {
-            ierror_[index_] = _ierror;
-            index_ ++;
-            if (index_ > INTEGER_INTERVAL) index_ = 0;
-
-            float sum_i_error = 0;
-            for (uint8_t i = 0; i < INTEGER_INTERVAL; i++) sum_i_error += ierror_[i];
-            return (kp_ * _error + kd_ * _derror + ki_ * sum_i_error);
-        }
-
-        float getKp() { return kp_; }
-        float getKi() { return ki_; }
-        float getKd() { return kd_; }
-    };  // end class Regulator
 
     /**
      * Class which implements a timer

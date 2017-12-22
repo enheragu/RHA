@@ -1,0 +1,21 @@
+       3 text files.
+classified 3 files       3 unique files.                              
+       0 files ignored.
+
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.020888090133667</elapsed_seconds>
+  <n_files>3</n_files>
+  <n_lines>591</n_lines>
+  <files_per_second>143.622513154741</files_per_second>
+  <lines_per_second>28293.6350914839</lines_per_second>
+</header>
+<files>
+  <file name="/home/quique/Documentos/RHA/SW/test/a_test_servo_rha/test_servo_rha.cpp" blank="55" comment="24" code="160"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/c_test_joint_handler_mock/test_joint_handler.cpp" blank="55" comment="23" code="160"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/b_test_joint_rha/test_joint_rha.cpp" blank="20" comment="25" code="69"  language="C++" />
+  <total blank="130" comment="72" code="389" />
+</files>
+</results>

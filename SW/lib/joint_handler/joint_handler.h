@@ -24,8 +24,10 @@
 
 // Arduino mega
 #if defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
-    #define Serial_G15_lib Serial1
-    #define CHECK_MEGA_HARDWARESERIAL(rx, tx) (rx == 19 && tx == 18)
+    #define Serial_G15_lib Serial3
+    //#define CHECK_MEGA_HARDWARESERIAL(rx, tx) (rx == 19 && tx == 18)
+    //#define CHECK_MEGA_HARDWARESERIAL(rx, tx) (rx == 17 && tx == 16)
+    #define CHECK_MEGA_HARDWARESERIAL(rx, tx) (rx == 15 && tx == 14)
     // Serial1 on pins 19 (RX) and 18 (TX)
     // Serial2 on pins 17 (RX) and 16 (TX)
     // Serial3 on pins 15 (RX) and 14 (TX)

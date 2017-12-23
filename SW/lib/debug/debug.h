@@ -65,7 +65,7 @@
 // #define DEBUG_CYTRON_G15_SERVO
 // #define DEBUG_TEST_CYTRON_G15_SERVO
  #define DEBUG_UTILITIES
-//s #define DEBUG_ROBOT_RHA
+ #define DEBUG_ROBOT_RHA
 // #define DEBUG_RHA_TYPES
 // #define DEBUG_JOINT_RHA
 
@@ -117,12 +117,12 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
     #define DebugSerialJHLn(a) {  Serial.print("[DC]  JointHandler::"); Serial.println(a); }
     #define DebugSerialJHLn2(a, b) {  Serial.print("[DC]  JointHandler::"); Serial.print(a); Serial.println(b); }
     #define DebugSerialJHLn4(a, b, c, d) {  Serial.print("[DC]  JointHandler::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
-    // #define DebugSerialJHLn4Error(a, b) { printServoStatusError(a, b); }
+    //#define DebugSerialJHLn4Error(a, b) { printServoStatusError(a, b); }
 #else
     #define DebugSerialJHLn(a)
     #define DebugSerialJHLn2(a, b)
     #define DebugSerialJHLn4(a, b, c, d)
-    // #define DebugSerialJHLn4Error(a, b)
+    //#define DebugSerialJHLn4Error(a, b)
 #endif
 
 

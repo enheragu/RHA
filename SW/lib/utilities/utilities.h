@@ -58,7 +58,7 @@ namespace RegulatorTestData {
 
 namespace StepTest {
     #define SAMPLE_STEP 80
-    #define SAMPLE_TEST_STEP 20
+    #define SAMPLE_TEST_STEP 5
     #define STEP_SPEED 1023
 }
 

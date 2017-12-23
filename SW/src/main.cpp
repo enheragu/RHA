@@ -9,7 +9,7 @@
 
 
 
-// #ifndef UNIT_TEST  // disable program main loop while unit testing in progress
+ #ifndef UNIT_TEST  // disable program main loop while unit testing in progress
 #include <Arduino.h>
 #include "rha_types.h"
 #include "utilities.h"
@@ -32,7 +32,6 @@ void setup() {
   delay(2000);
   Serial.begin(921600); //115200 230400 250000 460800 921600
   Serial.println("# Start setup");
-  Serial.println("# Setup begin");
 
   robo_health_arm.initJointHandler();
   Serial.println("#Joint Handler initialiced");
@@ -156,4 +155,4 @@ void loop(){
 
 }*/
 
-// #endif
+ #endif

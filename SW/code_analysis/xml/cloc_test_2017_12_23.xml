@@ -1,0 +1,25 @@
+       8 text files.
+classified 8 files       8 unique files.                              
+       1 file ignored.
+
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.0340688228607178</elapsed_seconds>
+  <n_files>7</n_files>
+  <n_lines>876</n_lines>
+  <files_per_second>205.466447391441</files_per_second>
+  <lines_per_second>25712.6582735575</lines_per_second>
+</header>
+<files>
+  <file name="/home/quique/Documentos/RHA/SW/test/d_test_servo_rha/test_servo_rha.cpp" blank="65" comment="35" code="209"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/f_test_joint_handler_mock/test_joint_handler.cpp" blank="56" comment="23" code="159"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/b_test_pid_regulator/test_pid_regulator.cpp" blank="29" comment="20" code="97"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/a_test_rha_types/test_rha_types.cpp" blank="16" comment="11" code="60"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/e_test_joint_rha/test_joint_rha.cpp" blank="13" comment="14" code="23"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/c_test_fuzzy_regulator/test_fuzzy_regulator.cpp" blank="9" comment="13" code="20"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/test/perform_test.sh" blank="1" comment="0" code="3"  language="Bourne Shell" />
+  <total blank="189" comment="116" code="571" />
+</files>
+</results>

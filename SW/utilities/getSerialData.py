@@ -7,8 +7,8 @@
 
 import serial
 
-ser = serial.Serial('/dev/ttyACM0', 9600)
-file_object = open('regulator_data_3_test_.py', "w")
+ser = serial.Serial('/dev/ttyACM0', 921600)
+file_object = open('log_execution.py', "w") #('step_test_0_load.py', "w")
 print "Serial conection established, file opened"
 
 while True:

@@ -11,9 +11,12 @@
 
 #include "debug.h"
 
+#include "pid_regulator.h"
+#include "fuzzy_regulator.h"
+
 #include <stdint.h>
 #include <Arduino.h>
-#include "pid_regulator.h"
+
 
 namespace RHATypes {
 

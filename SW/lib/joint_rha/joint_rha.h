@@ -39,7 +39,6 @@ class JointRHA {
   void initPotMeasurment(uint32_t _pot_min_value, uint32_t _pot_max_value, uint8_t _angle_min_value, uint8_t _angle_max_value);
   uint8_t setSpeedGoal(RHATypes::SpeedGoal _goal);
 
-  void speedError();
   float updatePosition();
   void updateInfo(uint8_t *_data, uint16_t _error);
 

@@ -1,0 +1,12 @@
+       8 text files.
+classified 8 files       8 unique files.                              
+       1 file ignored.
+
+language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.60  T=0.04 s (179.9 files/s, 22510.0 lines/s)"
+C++,/home/quique/Documentos/RHA/SW/test/d_test_servo_rha/test_servo_rha.cpp,65,35,209
+C++,/home/quique/Documentos/RHA/SW/test/f_test_joint_handler_mock/test_joint_handler.cpp,56,23,159
+C++,/home/quique/Documentos/RHA/SW/test/b_test_pid_regulator/test_pid_regulator.cpp,29,20,97
+C++,/home/quique/Documentos/RHA/SW/test/a_test_rha_types/test_rha_types.cpp,16,11,60
+C++,/home/quique/Documentos/RHA/SW/test/e_test_joint_rha/test_joint_rha.cpp,13,14,23
+C++,/home/quique/Documentos/RHA/SW/test/c_test_fuzzy_regulator/test_fuzzy_regulator.cpp,9,13,20
+Bourne Shell,/home/quique/Documentos/RHA/SW/test/perform_test.sh,1,0,3

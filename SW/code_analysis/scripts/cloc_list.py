@@ -1,6 +1,6 @@
 #!/usr/bin/python
-n_cloc_test = 34
-n_cloc = 34
+n_cloc_test = 39
+n_cloc = 39
 
 #List for Cloc data
 # file = [date (index 0), whole_blank_lines (index 1), whole_code_lines (index 2), whole_comment_lines (index 3), whole_debug_lines (index 4), whole_comment_percentage (index 5), max_comment_percentage (index 6), max_comment_name (index 7), min_comment_percentage (index 8), min_comment_name (index 9), whole_debug_percentage (index 10), max_debug_percentage (index 11), max_debug_name (index 12), min_debug_percentage (index 13), min_debug_name (index 14)]
@@ -38,6 +38,11 @@ cloc = [['2017_08_23', '209', '831', '232', '38', '21.8250235183', '92.857142857
 ['2017_11_01', '404', '1445', '773', '101', '34.8512173129', '61.0526315789', 'main.cpp', '0.0', 'robot_rha.cpp', '2.34365904212', '13.986013986', 'utilities.cpp', '0.0', 'servo_rha.h'] ,\
 ['2017_11_02', '421', '1507', '773', '101', '33.9035087719', '61.0526315789', 'main.cpp', '0.0', 'chuck_handler.h', '2.19718035198', '13.986013986', 'utilities.cpp', '0.0', 'servo_rha.h'] ,\
 ['2017_11_03', '420', '1513', '820', '101', '35.1478782683', '61.0526315789', 'main.cpp', '16.7664670659', 'servo_rha.h', '2.13870081982', '13.986013986', 'utilities.cpp', '0.0', 'servo_rha.h'] ,\
+['2017_11_07', '423', '1523', '863', '110', '36.1693210394', '80.5084745763', 'main.cpp', '16.7664670659', 'servo_rha.h', '3.0450933744', '14.5161290323', 'robot_rha.cpp', '0.0', 'servo_rha.h'] ,\
+['2017_11_21', '424', '1534', '865', '110', '36.0566902876', '77.2357723577', 'main.cpp', '16.5680473373', 'servo_rha.h', '2.96504119224', '13.986013986', 'utilities.cpp', '0.0', 'servo_rha.h'] ,\
+['2017_12_21', '427', '1533', '879', '110', '36.4427860697', '70.8955223881', 'main.cpp', '16.5680473373', 'servo_rha.h', '2.96504119224', '13.986013986', 'utilities.cpp', '0.0', 'servo_rha.h'] ,\
+['2017_12_22', '451', '1594', '918', '110', '36.5445859873', '70.8955223881', 'main.cpp', '16.5680473373', 'servo_rha.h', '2.73158313643', '13.986013986', 'utilities.cpp', '0.0', 'servo_rha.h'] ,\
+['2017_12_23', '453', '1640', '881', '78', '34.9464498215', '69.9248120301', 'main.cpp', '16.5680473373', 'servo_rha.h', '2.13336765706', '14.4927536232', 'robot_rha.cpp', '0.0', 'utilities.cpp'] ,\
 [0]]
 
 cloc_test = [['2017_08_23', '69', '353', '43', '17', '10.8585858586', '16.7597765363', 'test_cytron_g15_servo.cpp', '5.8064516129', 'test_servo_mock.cpp', '6.06355499489', '12.9032258065', 'test_servo_real.cpp', '1.93548387097', 'test_servo_mock.cpp'] ,\
@@ -74,5 +79,10 @@ cloc_test = [['2017_08_23', '69', '353', '43', '17', '10.8585858586', '16.759776
 ['2017_11_01', '130', '389', '72', '10', '15.6182212581', '26.5957446809', 'test_joint_rha.cpp', '12.5683060109', 'test_joint_handler.cpp', '2.85625702438', '6.3829787234', 'test_joint_rha.cpp', '0.0', 'test_servo_rha.cpp'] ,\
 ['2017_11_02', '130', '389', '72', '10', '15.6182212581', '26.5957446809', 'test_joint_rha.cpp', '12.5683060109', 'test_joint_handler.cpp', '2.85625702438', '6.3829787234', 'test_joint_rha.cpp', '0.0', 'test_servo_rha.cpp'] ,\
 ['2017_11_03', '130', '389', '72', '10', '15.6182212581', '26.5957446809', 'test_joint_rha.cpp', '12.5683060109', 'test_joint_handler.cpp', '2.85625702438', '6.3829787234', 'test_joint_rha.cpp', '0.0', 'test_servo_rha.cpp'] ,\
+['2017_11_07', '130', '389', '72', '10', '15.6182212581', '26.5957446809', 'test_joint_rha.cpp', '12.5683060109', 'test_joint_handler.cpp', '2.85625702438', '6.3829787234', 'test_joint_rha.cpp', '0.0', 'test_servo_rha.cpp'] ,\
+['2017_11_21', '130', '389', '72', '10', '15.6182212581', '26.5957446809', 'test_joint_rha.cpp', '12.5683060109', 'test_joint_handler.cpp', '2.85625702438', '6.3829787234', 'test_joint_rha.cpp', '0.0', 'test_servo_rha.cpp'] ,\
+['2017_12_21', '130', '389', '72', '10', '15.6182212581', '26.5957446809', 'test_joint_rha.cpp', '12.5683060109', 'test_joint_handler.cpp', '2.85625702438', '6.3829787234', 'test_joint_rha.cpp', '0.0', 'test_servo_rha.cpp'] ,\
+['2017_12_22', '130', '389', '72', '10', '15.6182212581', '26.5957446809', 'test_joint_rha.cpp', '12.5683060109', 'test_joint_handler.cpp', '2.85625702438', '6.3829787234', 'test_joint_rha.cpp', '0.0', 'test_servo_rha.cpp'] ,\
+['2017_12_23', '189', '571', '116', '10', '16.885007278', '39.3939393939', 'test_fuzzy_regulator.cpp', '0.0', 'perform_test.sh', '0.665259798749', '2.45901639344', 'test_servo_rha.cpp', '0.0', 'test_pid_regulator.cpp'] ,\
 [0]]
 

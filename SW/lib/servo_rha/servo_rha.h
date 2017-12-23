@@ -163,7 +163,7 @@ class ServoRHA {
 
     uint8_t setSpeedGoal(RHATypes::SpeedGoal _goal);
     void speedError();
-    void calculateTorque();
+    void calculateTorque(float _error = 0, float _derror = 0, float _ierror = 0);
 
 
     /**********************************************************************

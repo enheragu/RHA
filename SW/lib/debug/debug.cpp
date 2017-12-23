@@ -13,7 +13,7 @@
    */
  void printServoStatusError (uint16_t error, uint8_t ID) {
      // NOTE: MACROS NEED {} AS THEY AR SUBSTITUTED BY SOME CODE LINES, NOT JUST ONE!!
-     /*if (error != 0){
+     if (error != 0){
          Serial.print("#[!]   Error in comunication detected in servo: "); Serial.println(ID);
      } else return;
      if (error & SERROR_PING)  {Serial.println("#[!]   Ping error in servo");}
@@ -27,7 +27,7 @@
      if (error & SERROR_PACKETLOST)  {Serial.println("#[!]   Packet lost or receive time out in servo");}    // bit 8
      if (error & SERROR_WRONGHEADER)  {Serial.println("#[!]   Wrong header in servo");}              // bit 9
      if (error & SERROR_IDMISMATCH && ID != 0xFE)  {Serial.println("#[!]   ID mismatch in servo");}                  // bit 10 // If id is for all servo don't print ID mismatch
-     if (error & SERROR_CHECKSUMERROR)  {Serial.println("#[!]   Checksum error in servo");}               // bit 13*/
+     if (error & SERROR_CHECKSUMERROR)  {Serial.println("#[!]   Checksum error in servo");}               // bit 13
  }
 
  void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t load, uint8_t load_dir, uint8_t voltage, uint8_t temperature, uint16_t error) {

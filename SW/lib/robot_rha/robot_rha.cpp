@@ -60,10 +60,11 @@ void RobotRHA::setSpeedToServos(float _speed, uint8_t _servo_id) {
 void RobotRHA::handleWithChuck() {
     DebugSerialRRHALn("handleWithChuck: begin of function");
     DebugSerialRRHALn("handleWithChuck: getting speed commands");
-    ChuckReadStruct speed_commands = chuck_handler_.readAxis();
+    ChuckReadStruct speed_commands = ChuckReadStruct(20,20,20,true);//chuck_handler_.readAxis();
     DebugSerialRRHALn("handleWithChuck: setting goal speed to servos");
     if (speed_commands.updated_) {
         //Chuck returns % in speed.
+        DebugSerialRRHALn("handleWithChuck: speed command was updated");
         int speed_x = (speed_commands.X_) * 100/ MAX_SPEED_VALUE;
         int speed_y = (speed_commands.Y_) * 100/ MAX_SPEED_VALUE;
         int speed_z = (speed_commands.Z_) * 100/ MAX_SPEED_VALUE;

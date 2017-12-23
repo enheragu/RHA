@@ -16,65 +16,66 @@
 #include <stdint.h>
 #include <Arduino.h>
 
-
-#define INTEGER_INTERVAL 15  // How many intervals are taken when error is integrated
-
-/**
- * @brief Implements a standard PID regulator
- * @class Regulator
- */
-class Regulator {
-    float kp_, ki_, kd_;
-    float ierror_[INTEGER_INTERVAL];
-    uint8_t index_;
-
- public:
-    Regulator() {
-        index_ = 0;
-        for (uint8_t i = 0; i < INTEGER_INTERVAL; i++) ierror_[i] = 0;
-    }
+namespace RHATypes {
+    #define INTEGER_INTERVAL 15  // How many intervals are taken when error is integrated
 
     /**
-     * @brief Resets all regulator data to 0
-     * @method resetRegulator
+     * @brief Implements a standard PID regulator
+     * @class Regulator
      */
-    virtual void resetRegulator() {
-        kp_ = ki_ = kd_ = index_ = 0;
-        for (uint8_t i = 0; i < INTEGER_INTERVAL; i++) ierror_[i] = 0;
-    }
+    class Regulator {
+        float kp_, ki_, kd_;
+        float ierror_[INTEGER_INTERVAL];
+        uint8_t index_;
 
-    /**
-     * Sets PID regulator constants
-     * @method setKRegulator
-     * @param  _kp            Proportional K
-     * @param  _ki            Integral K
-     * @param  _kd            Derivative K
-     */
-    virtual void setKRegulator(float _kp, float _ki = 0, float _kd = 0) {
-        kp_ = _kp; ki_ = _ki; kd_ = _kd;
-    }
+     public:
+        Regulator() {
+            index_ = 0;
+            kp_ = ki_ = kd_ = 0;
+            for (uint8_t i = 0; i < INTEGER_INTERVAL; i++) ierror_[i] = 0;
+        }
 
-    /**
-     * @brief Calculates output of regulator to a set error
-     * @method regulator
-     * @param  _error     error
-     * @param  _derror    derivative error
-     * @param  _ierror    integral error
-     * @return           returns output of regulator
-     */
-    virtual float regulator(float _error, float _derror = 0, float _ierror = 0) {
-        ierror_[index_] = _ierror;
-        index_ ++;
-        if (index_ > INTEGER_INTERVAL) index_ = 0;
+        /**
+         * @brief Resets all regulator data to 0
+         * @method resetRegulator
+         */
+        virtual void resetRegulator() {
+            kp_ = ki_ = kd_ = index_ = 0;
+            for (uint8_t i = 0; i < INTEGER_INTERVAL; i++) ierror_[i] = 0;
+        }
 
-        float sum_i_error = 0;
-        for (uint8_t i = 0; i < INTEGER_INTERVAL; i++) sum_i_error += ierror_[i];
-        return (kp_ * _error + kd_ * _derror + ki_ * sum_i_error);
-    }
+        /**
+         * Sets PID regulator constants
+         * @method setKRegulator
+         * @param  _kp            Proportional K
+         * @param  _ki            Integral K
+         * @param  _kd            Derivative K
+         */
+        virtual void setKRegulator(float _kp, float _ki = 0, float _kd = 0) {
+            kp_ = _kp; ki_ = _ki; kd_ = _kd;
+        }
 
-    float getKp() { return kp_; }
-    float getKi() { return ki_; }
-    float getKd() { return kd_; }
-};  // end class Regulator
+        /**
+         * @brief Calculates output of regulator to a set error
+         * @method regulator
+         * @param  _error     error
+         * @param  _derror    derivative error
+         * @param  _ierror    integral error
+         * @return           returns output of regulator
+         */
+        virtual float regulator(float _error, float _derror = 0, float _ierror = 0) {
+            ierror_[index_] = _ierror;
+            index_ ++;
+            if (index_ > INTEGER_INTERVAL) index_ = 0;
 
+            float sum_i_error = 0;
+            for (uint8_t i = 0; i < INTEGER_INTERVAL; i++) sum_i_error += ierror_[i];
+            return (kp_ * _error + kd_ * _derror + ki_ * sum_i_error);
+        }
+
+        float getKp() { return kp_; }
+        float getKi() { return ki_; }
+        float getKd() { return kd_; }
+    };  // end class Regulator
+}  // End RHATypes namespace
 #endif

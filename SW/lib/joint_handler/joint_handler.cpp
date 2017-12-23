@@ -42,8 +42,8 @@ void JointHandler::setTimer(uint64_t _timer) {
 void JointHandler::initJoints() {
     DebugSerialJHLn("initJoints: begin of function");
     joint_[0].init(1, CW, A0);
-    joint_[1].init(2, CW, A1);
-    joint_[2].init(3, CW, A2);
+    //joint_[1].init(2, CW, A1);
+    //joint_[2].init(3, CW, A2);
 
     RHATypes::Timer eeprom_timer;
     eeprom_timer.setTimer(EEMPROM_WRITE_DELAY);
@@ -214,7 +214,7 @@ void JointHandler::sendExitWheelModeAll() {
     }
     eeprom_timer.checkWait();
     eeprom_timer.activateTimer();
-    DebugSerialJHLn("sendSetWheelModeAll: set torque OFF");
+    DebugSerialJHLn("sendExitWheelModeAll: set torque OFF");
     /*for(uint8_t i = 0; i < NUM_JOINT; i++) {
         // Then set torque ON
         joint_[i].servo_.setTorqueOnOfToPacket(buffer, OFF);
@@ -449,7 +449,7 @@ uint16_t JointHandler::sendPacket(uint8_t *_txBuffer) {
             }
         }
     }
-    /*
+
     Serial.println("- Packet Sent: ");
     Serial.print("  [");
     for(i = 0; i < txBuffer_print[3]+4; i++) {
@@ -464,7 +464,7 @@ uint16_t JointHandler::sendPacket(uint8_t *_txBuffer) {
         Serial.print(", "); Serial.print("0x"); Serial.print(status[i], HEX);
     }
     Serial.println("]");
-    Serial.println("");*/
+    Serial.println("");
     return(error);
 }
 

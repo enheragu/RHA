@@ -94,7 +94,7 @@ void ServoRHA::updateInfo(uint8_t *_data, uint16_t _error) {
 
 uint8_t ServoRHA::setSpeedGoal(RHATypes::SpeedGoal _goal) {
     DebugSerialJRHALn("setSpeedGoal: seting speed goal");
-    DebugSerialSRHALn2("setSpeedGoal: servo id now is: ", servo_.getID());
+    DebugSerialSRHALn2("setSpeedGoal: servo id now is: ", this->getID());
     DebugSerialSRHALn2("setSpeedGoal: goal intended for id: ", _goal.servo_id);
     if (servo_id_ == _goal.servo_id) {
         speed_slope_ = _goal.speed_slope;
@@ -111,6 +111,7 @@ uint8_t ServoRHA::setSpeedGoal(RHATypes::SpeedGoal _goal) {
  * @brief Calculates error to send to servo regulator
  */
 void ServoRHA::speedError() {
+    DebugSerialSRHALn("speedError: begin of function");
     uint16_t speed = 0;
     // TODO: if (speed_slope_ != 0) {
     //     speed = (float)speed_ + (float)(millis() - time_last_) * speed_slope_;
@@ -125,18 +126,25 @@ void ServoRHA::speedError() {
     ierror_ = error_ * (millis() - time_last_error_);
     last_error_ = error_;
     time_last_error_ = millis();
+    DebugSerialSRHALn2("speedError: target speed is: ", speed_target_);
+    DebugSerialSRHALn2("speedError: error is: ", error_);
 }
 
 /**
- * @brief calculates torque from speed error using regulator
+ * @brief calculates torque from speed error using regulator. Params are by default 0, it is only used with params for testing pourposes
  * @method ServoRHA::calculateTorque
  * @param  error      speed error
  * @param  derror     derivative of speed error
  * @param  ierror     integral of speed error
  */
-void ServoRHA::calculateTorque() {
+void ServoRHA::calculateTorque(float _error, float _derror, float _ierror) {
+    DebugSerialSRHALn("calculateTorque: begin of function");
     // float error = (float)target_speed - (float)speed_;
-    float torque = speed_regulator_.regulator(error_, derror_, ierror_);
+    float torque;
+    if (_error != 0)
+        error_ = _error; derror_ = _derror; ierror_ = _ierror;
+
+    torque = speed_regulator_.regulator(error_, derror_, ierror_);
     // uint8_t direction = 0;
     // error < 0 causes torque < 0 which causes change in direction of movement
     // TODO: if (torque < 0 ) {
@@ -150,6 +158,7 @@ void ServoRHA::calculateTorque() {
     if (torque > 0) torque = torque + TORQUE_OFFSET + TORQUE_PREALIMENTATION*float(speed_target_);
     if (torque > MAX_TORQUE_VALUE) torque = MAX_TORQUE_VALUE;  // compensate saturation of servos
 
+    DebugSerialSRHALn2("calculateTorque: torque calculated is: ", goal_torque_);
     goal_torque_ = uint16_t(torque);
 }
 
@@ -302,6 +311,8 @@ void ServoRHA::setTorqueLimitToPacket(uint8_t *_buffer, uint16_t _torque_limit) 
  * @param  direction   Direction in which servo will move
  */
 void ServoRHA::setWheelSpeedToPacket(uint8_t *_buffer, uint16_t _speed, uint8_t _direction) {
+    DebugSerialSRHALn("setWheelSpeedToPacket: begin of function");
+    DebugSerialSRHALn2("setWheelSpeedToPacket: speed to set is: ", _speed);
     uint8_t txBuffer[3];
 
     _speed = _speed & 0x03FF;  // Eliminate bits which are non speed

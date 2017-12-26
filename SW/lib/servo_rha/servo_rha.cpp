@@ -63,11 +63,13 @@ void ServoRHA::updateInfo(uint8_t *_data, uint16_t _error) {
     position_ = _data[0];  // acces data[0]
     position_ |= (_data[1] << 8);  // acces data[1]
 
-    speed_ = _data[2];    // acces data[2]
-    speed_ |= (_data[3] << 8);   // acces data[3]
-    speed_dir_  = ((speed_ & 0x0400) >> 10);  // 10th byte is direction -> 0000010000000000 binary is 400 in hex
+    uint16_t speed;
+    speed = _data[2];    // acces data[2]
+    speed |= (_data[3] << 8);   // acces data[3]
+    speed_dir_  = ((speed & 0x0400) >> 10);  // 10th byte is direction -> 0000010000000000 binary is 400 in hex
     // bytes from 9 to 0 are speed value:
-    speed_ = speed_ & ~0x0400;
+    speed = speed & ~0x0400;  // Speed is in rad/s
+    speed_ = (float(speed) * 112.83) / 1023;  // Speed in register is from 0 to 1023, this operation is to transform it into RPM (is taken from servo docs)
 
     load_ = _data[4];  // acces data[4]
     load_ |= (_data[5] << 8);   // acces data[5]
@@ -152,10 +154,10 @@ void ServoRHA::calculateTorque(float _error, float _derror, float _ierror) {
     //     else if (speed_dir_ == CW) direction = CCW;
     // }
     if(error_ < 0) torque = 0;
-    else {
-        torque = abs(torque);
-    }
-    if (torque > 0) torque = torque + TORQUE_OFFSET + TORQUE_PREALIMENTATION*float(speed_target_);
+    // else {
+    //     torque = abs(torque);
+    // }
+    else if (torque > 0) torque = torque + TORQUE_OFFSET + TORQUE_PREALIMENTATION*float(speed_target_);
     if (torque > MAX_TORQUE_VALUE) torque = MAX_TORQUE_VALUE;  // compensate saturation of servos
 
     DebugSerialSRHALn2("calculateTorque: torque calculated is: ", goal_torque_);
@@ -227,6 +229,7 @@ bool ServoRHA::addTorqueToPacket(uint8_t *_buffer) {
  * @param onOff  ON = 1; OFF = 0;
  */
 void ServoRHA::setTorqueOnOfToPacket(uint8_t *_buffer, uint8_t _onOff) {
+    DebugSerialSRHALn("setTorqueOnOfToPacket: begin of function");
     uint8_t txBuffer[2];
     txBuffer[0] = ServoRHAConstants::TORQUE_ENABLE;
     txBuffer[1] = _onOff;  // ON = 1, OFF = 0
@@ -242,6 +245,7 @@ void ServoRHA::setTorqueOnOfToPacket(uint8_t *_buffer, uint8_t _onOff) {
  * @see wheelModeToPacket()
  */
 void ServoRHA::setWheelModeToPacket(uint8_t *_buffer) {
+    DebugSerialSRHALn("setWheelModeToPacket: begin of function");
     wheelModeToPacket(_buffer, 0, 0);  // Enable wheel mode
 
 }
@@ -254,6 +258,7 @@ void ServoRHA::setWheelModeToPacket(uint8_t *_buffer) {
  * @see wheelModeToPacket()
  */
 void ServoRHA::exitWheelModeToPacket(uint8_t *_buffer) {
+    DebugSerialSRHALn("exitWheelModeToPacket: begin of function");
     wheelModeToPacket(_buffer, 0, 1087);  // Reset to default angle limit
 }
 
@@ -294,6 +299,7 @@ void ServoRHA::pingToPacket(uint8_t *_buffer) {
  * @param  torque_limit  Torque limit to set
  */
 void ServoRHA::setTorqueLimitToPacket(uint8_t *_buffer, uint16_t _torque_limit) {
+    DebugSerialSRHALn("setTorqueLimitToPacket: begin of function");
     uint8_t txBuffer[3];
 
     txBuffer[0] = ServoRHAConstants::TORQUE_LIMIT_L;

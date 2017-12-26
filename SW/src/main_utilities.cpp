@@ -54,6 +54,7 @@ void loop() {
     //joint_handler.extractRegulatorData(0);
     //joint_handler.extractStepInputData(0);
     joint_handler.extractSlopeInputData(0);
+    //joint_handler.checkSpeed(0);
     while (true) {
         delay(100);
     }

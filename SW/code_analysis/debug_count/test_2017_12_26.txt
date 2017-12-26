@@ -1,0 +1,9 @@
+test/a_test_rha_types/test_rha_types.cpp:0
+test/b_test_pid_regulator/test_pid_regulator.cpp:0
+test/c_test_fuzzy_regulator/test_fuzzy_regulator.cpp:0
+test/d_test_servo_rha/test_servo_rha.cpp:6
+test/e_test_joint_rha/test_joint_rha.cpp:0
+test/f_test_joint_handler_mock/test_joint_handler.cpp:4
+test/log/log_execution.log:0
+test/log/log_test_2017-12-23_19:44.log:0
+test/perform_test.sh:0

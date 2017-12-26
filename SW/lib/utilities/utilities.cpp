@@ -19,7 +19,7 @@
 #include "joint_handler.h"
 
 
-    #define SPEED 800  // torque send to check speed
+    #define SPEED 1023  // torque send to check speed
     #define SPEED_TARGET 80  // speed target in rpm
     #define KP_REGULATOR 150  // kp for extractRegulatorData function
     #define LOOP_FREQUENCY 100  // in ms
@@ -156,15 +156,18 @@ void JHUtilitiesJH::extractStepInputData(uint8_t joint_to_test) {
     for (uint8_t samples = 0; samples < SAMPLE_TEST_STEP; samples++) {
         //Serial.print("stepTest.append(");  Serial.print(" [0");
         JointHandler::sendSetWheelModeAll();
+        delay(25);
         JointHandler::updateJointInfo();
+        Serial.print("Test"); Serial.print(samples); Serial.print(" = [");
+        unsigned long time_init = millis();
         for (int counter = 0; counter < SAMPLE_STEP; counter++) {
-            unsigned long time_init = millis();
             JointHandler::updateJointInfo();
             JointHandler::sendSetWheelSpeedAll(STEP_SPEED,CW);
+            if (counter != 0)  Serial.print(";");
             Serial.print(" "); Serial.print(joint_[joint_to_test].servo_.getSpeed()); Serial.print(" "); Serial.print(STEP_SPEED); Serial.print(" ");
-            Serial.println(time_init); //Serial.println("']\\");
+            Serial.print(millis() - time_init); //Serial.println("']\\");
         }
-
+        Serial.println("]");
         Serial.println(" ===== END OF DATA SET ===== ");
         JointHandler::sendExitWheelModeAll();
         delay(2000);
@@ -182,8 +185,10 @@ void JHUtilitiesJH::extractSlopeInputData(uint8_t joint_to_test) {
     Serial.println("Data printed is, on each column:\nspeed, torque sent, and time");
     JointHandler::updateJointInfo();
     for (uint8_t samples = 0; samples < SAMPLE_TEST_SLOPE; samples++) {
-        JointHandler::sendSetWheelModeAll();
         //Serial.print("slopeTest.append("); Serial.print(" [0");
+        Serial.print("Test"); Serial.print(samples); Serial.print(" = [");
+        JointHandler::sendSetWheelModeAll();
+        delay(25);
         unsigned long time_init = 0;
         time_init = millis();
         for (int counter = 0; counter < SAMPLE_SLOPE; counter++) {
@@ -191,11 +196,12 @@ void JHUtilitiesJH::extractSlopeInputData(uint8_t joint_to_test) {
             if (torque > 1023) torque = 1023;
             JointHandler::updateJointInfo();
             JointHandler::sendSetWheelSpeedAll(torque,CW);
+            if (counter != 0)  Serial.print(";");
             Serial.print(" "); Serial.print(joint_[joint_to_test].servo_.getSpeed()); Serial.print(" "); Serial.print(torque); Serial.print(" ");
-            Serial.println(millis()); //Serial.println("']\\");
+            Serial.print(millis() - time_init);//Serial.println("']\\");
             delay(100);
         }
-
+        Serial.println("]");
         Serial.println(" ===== END OF DATA SET ===== ");
         JointHandler::sendExitWheelModeAll();
         delay(2000);
@@ -266,7 +272,7 @@ void JHUtilitiesJH::checkSpeed(uint8_t joint_to_test){
 
     uint32_t encoderTemp = 0,
          encoderCurrent = 0,
-         encoderFullRotation = 100,
+         encoderFullRotation = 500,
          encoderTotal = 0;
 
     uint16_t speed_set = SPEED,
@@ -315,9 +321,9 @@ void JHUtilitiesJH::checkSpeed(uint8_t joint_to_test){
             DebugSerialSeparation(1);
             DebugSerialUtilitiesLn2("  -  Torque set is: ", speed_set);
             DebugSerialUtilitiesLn2("  -  Speed calculated is (in rpm): ", speed_now);
-            DebugSerialUtilitiesLn2("  -  Speed calculated is (in rad/s): ", speed_now/(2*PI/60));
-            DebugSerialUtilitiesLn2("  -  Speed read is (in rpm): ", speed_read*(2*PI/60));
-            DebugSerialUtilitiesLn2("  -  Speed read is (in rad/s): ", speed_read);
+            DebugSerialUtilitiesLn2("  -  Speed calculated is (in rad/s): ", speed_now*(2*PI/60));
+            //DebugSerialUtilitiesLn2("  -  Speed read is (in rpm): ", speed_read*(2*PI/60));
+            DebugSerialUtilitiesLn2("  -  Speed read is (directly from register): ", speed_read);
             DebugSerialUtilitiesLn2("  -  Encoder whole is: ", encoderTotal);
             DebugSerialUtilitiesLn2("  -  Time spent is (in s): ", time_whole);
             DebugSerialSeparation(1);

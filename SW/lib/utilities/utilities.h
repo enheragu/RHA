@@ -57,13 +57,13 @@ namespace RegulatorTestData {
 }  // End of RegulatorTestData namespace
 
 namespace StepTest {
-    #define SAMPLE_STEP 80
-    #define SAMPLE_TEST_STEP 5
+    #define SAMPLE_STEP 220
+    #define SAMPLE_TEST_STEP 20
     #define STEP_SPEED 1023
 }
 
 namespace SlopeTest {
-    #define SAMPLE_SLOPE 110
+    #define SAMPLE_SLOPE 120
     #define SAMPLE_TEST_SLOPE 20
     #define SLOPE_SPEED 0.1
 }

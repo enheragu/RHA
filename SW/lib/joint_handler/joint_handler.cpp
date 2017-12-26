@@ -245,7 +245,7 @@ void JointHandler::sendSetTorqueLimitAll(uint16_t _torque_limit) {
 
 // NOTE: testing purposes
 /**
- * @brief Interface to send speed (in wheel mode this means torque) to servos
+ * @brief Interface to send speed (in wheel mode this means torque) to servos. Params are by default 0, if this is the case servos work in a closed control loop, if not they use the speed set.
  * @method JointHandler::sendSetWheelSpeedAll
  * @param  speed        speed/torque to set
  * @param  direction    direction CW (clocwise) or CCW (counterclockwise)
@@ -255,7 +255,14 @@ void JointHandler::sendSetWheelSpeedAll(uint16_t _speed, uint8_t _direction) {
     uint8_t buffer[BUFFER_LEN];
     uint8_t txBuffer[BUFFER_LEN];
     for(uint8_t i = 0; i < NUM_JOINT; i++) {
-        joint_[i].servo_.setWheelSpeedToPacket(buffer, joint_[i].servo_.getGoalTorque(), joint_[i].servo_.getDirectionTarget());  // getGoalTorque if used with realimentation, getSpeedTarget if not
+        if (_speed != 0) {
+            DebugSerialJHLn2("sendSetWheelSpeedAll: speed to set is: ", _speed);
+            DebugSerialJHLn2("sendSetWheelSpeedAll: in direction: (CW = 1; CCW = 0)", _direction);
+            joint_[i].servo_.setWheelSpeedToPacket(buffer, _speed, _direction);
+        }
+        else {
+            joint_[i].servo_.setWheelSpeedToPacket(buffer, joint_[i].servo_.getGoalTorque(), joint_[i].servo_.getDirectionTarget());  // getGoalTorque if used with realimentation, getSpeedTarget if not
+        }
         warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
         uint16_t error = sendPacket(txBuffer);
         DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
@@ -450,7 +457,7 @@ uint16_t JointHandler::sendPacket(uint8_t *_txBuffer) {
         }
     }
 
-    Serial.println("- Packet Sent: ");
+    /*Serial.println("- Packet Sent: ");
     Serial.print("  [");
     for(i = 0; i < txBuffer_print[3]+4; i++) {
         Serial.print(", "); Serial.print("0x"); Serial.print(txBuffer_print[i], HEX);
@@ -464,7 +471,7 @@ uint16_t JointHandler::sendPacket(uint8_t *_txBuffer) {
         Serial.print(", "); Serial.print("0x"); Serial.print(status[i], HEX);
     }
     Serial.println("]");
-    Serial.println("");
+    Serial.println("");*/
     return(error);
 }
 

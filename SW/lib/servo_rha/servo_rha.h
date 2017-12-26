@@ -129,7 +129,8 @@ uint8_t compareSpeed(uint16_t speed1, uint16_t speed2, uint8_t speed_margin = 0)
 class ServoRHA {
  protected:
     uint8_t servo_id_;
-    uint16_t speed_, speed_dir_, position_, load_, load_dir_, error_comunication_;
+    uint16_t speed_dir_, position_, load_, load_dir_, error_comunication_;
+    float  speed_;  // Speed is saved in RPM
     uint8_t voltage_, temperature_;
     uint16_t goal_torque_;
 
@@ -176,7 +177,7 @@ class ServoRHA {
      *        Interface functions        *
      *************************************/
     virtual uint8_t getID() { return servo_id_; }
-    virtual uint16_t getSpeed() { return speed_; }
+    virtual float getSpeed() { return speed_; }
     virtual uint16_t getSpeedDir() { return speed_dir_; }
     virtual uint16_t getPosition() { return position_; }
     virtual uint16_t getLoad() { return load_; }

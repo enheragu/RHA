@@ -56,21 +56,26 @@ namespace RegulatorTestData {
     // #define KI_SAMPLES {1,5,10,15,20,25};  // 1, 2, 3, 4 y 5
 }  // End of RegulatorTestData namespace
 
+
+namespace OptionsTest{
+    #define STEP 0
+    #define SLOPE 1
+}
 namespace StepTest {
-    #define SAMPLE_STEP 220
+    #define SAMPLE_STEP 300
     #define SAMPLE_TEST_STEP 20
     #define STEP_SPEED 1023
 }
 
 namespace SlopeTest {
-    #define SAMPLE_SLOPE 120
+    #define SAMPLE_SLOPE 800
     #define SAMPLE_TEST_SLOPE 20
-    #define SLOPE_SPEED 0.1
+    #define SLOPE_SPEED 0.15
 }
 
 
 namespace CheckSpeedTestData {
-    #define SPEED 800  // torque send to check speed
+    #define SPEED 1023  // torque send to check speed
 }  // End of CheckSpeedTestData namespace
 
 
@@ -84,12 +89,11 @@ class JHUtilitiesJH : public JointHandler {
          baudrateMode_ = 0;
      }
 
-    void initJoints(uint8_t joint_to_test);
-    void extractRegulatorData(uint8_t joint_to_test);
-    void extractStepInputData(uint8_t joint_to_test);
-    void extractSlopeInputData(uint8_t joint_to_test);
-    void checkTimeGetInfo(uint8_t repetitions, uint8_t joint_to_test);
+    void initJoints(uint8_t _joint_to_test);
+    void extractRegulatorData(uint8_t _joint_to_test);
+    void extractStepSlopeData(uint8_t __joint_to_test, uint8_t _option);
+    void checkTimeGetInfo(uint8_t repetitions, uint8_t _joint_to_test);
     void checkComSucces(uint16_t repetitions);
-    void checkSpeed(uint8_t joint_to_test);
+    void checkSpeed(uint8_t _joint_to_test);
 
 };

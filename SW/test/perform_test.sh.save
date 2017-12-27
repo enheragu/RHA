@@ -1,0 +1,3 @@
+#!/bin/bash
+
+(cd .. && pio test -v >test/log/log_testing_${$date+'%f{$date+'%f_%R'}_%R'}.log 2>&1)

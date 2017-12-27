@@ -52,8 +52,9 @@ float standard_deviation = 0;
 
 void loop() {
     //joint_handler.extractRegulatorData(0);
-    //joint_handler.extractStepInputData(0);
-    joint_handler.extractSlopeInputData(0);
+    //
+    joint_handler.extractStepSlopeData(0, STEP);
+    joint_handler.extractStepSlopeData(0, SLOPE);
     //joint_handler.checkSpeed(0);
     while (true) {
         delay(100);

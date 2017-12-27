@@ -71,6 +71,7 @@ void ServoRHA::updateInfo(uint8_t *_data, uint16_t _error) {
     speed = speed & ~0x0400;  // Speed is in rad/s
     speed_ = (float(speed) * 112.83) / 1023;  // Speed in register is from 0 to 1023, this operation is to transform it into RPM (is taken from servo docs)
 
+/*  Load is load performed by the servo, for now this information is no being used so its not asked to the servo to save time
     load_ = _data[4];  // acces data[4]
     load_ |= (_data[5] << 8);   // acces data[5]
     load_dir_  = ((load_ & 0x0400) >> 10);  // 10th byte is direction
@@ -80,7 +81,7 @@ void ServoRHA::updateInfo(uint8_t *_data, uint16_t _error) {
     voltage_ = _data[6];   // acces data[6]  // NOTE: ¿should be divided by 10?
 
     temperature_ = _data[7] ; // acces data[7]
-
+*/
     error_comunication_ = _error;
 
     DebugSerialSRHALn("updateInfo: Information updated");
@@ -177,7 +178,7 @@ void ServoRHA::calculateTorque(float _error, float _derror, float _ierror) {
 void ServoRHA::addUpadteInfoToPacket(uint8_t *_buffer) {
      uint8_t data[2];
      data[0] = ServoRHAConstants::PRESENT_POSITION_L;
-     data[1] = 0x08;  // Wants to read 8 bytes from PRESENT_POSITION_L
+     data[1] = 0x04;  // Wants to read 4 bytes from PRESENT_POSITION_L
      addToPacket(_buffer, data, 2);
 }
 

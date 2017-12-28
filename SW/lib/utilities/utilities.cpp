@@ -144,8 +144,42 @@ void JHUtilitiesJH::extractRegulatorData(uint8_t _joint_to_test) {
     return;
 }
 
+#define LED_ROJO 3
+#define LED_VERDE 4
+#define PULSADOR 5
+
+void blinkLed (uint8_t pin_led, uint8_t time_blink) {
+    RHATypes::Timer blink_period;
+    blink_period.setTimer(time_blink);
+    blink_period.activateTimer();
+    for (uint8_t i = 0; i < 10; i++) {
+            blink_period.checkWait();
+            blink_period.activateTimer();
+            digitalWrite(pin_led, HIGH);
+            blink_period.checkWait();
+            blink_period.activateTimer();
+            digitalWrite(pin_led, LOW);
+
+    }
+}
+
+void testOnProcess (uint8_t true_false) {
+    if (true_false) {
+        digitalWrite(LED_ROJO, HIGH);
+        digitalWrite(LED_VERDE, LOW);
+    }
+    else if (!true_false) {
+        digitalWrite(LED_VERDE, HIGH);
+        digitalWrite(LED_ROJO, LOW);
+    }
+}
 
 void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option) {
+
+    pinMode(LED_ROJO, OUTPUT);
+    pinMode(LED_VERDE, OUTPUT);
+    pinMode(PULSADOR, INPUT);
+
     unsigned int num_test, num_repetitions;
     if (_option == STEP) {
         Serial.println("##  ===== START OF DATA SET, STEP TEST ===== ");
@@ -162,9 +196,14 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
         num_test = SAMPLE_TEST_SLOPE;
     }
 
+    Serial.println("## This test is performed with: kg");
     Serial.println("## Data printed is, on each column:\n## speed, torque sent, and time");
     JointHandler::updateJointInfo();
     for (uint8_t samples = 0; samples < num_test; samples++) {
+
+        blinkLed(LED_ROJO, 100);
+        testOnProcess(true);
+
         //Serial.print("stepTest.append(");  Serial.print(" [0");
         JointHandler::sendSetWheelModeAll();
         delay(25);
@@ -190,7 +229,7 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
             else if (_option == SLOPE) torque = SLOPE_SPEED*(millis() - time_init/1000);
             if (torque > 1023) torque = 1023;
             JointHandler::updateJointInfo();
-            JointHandler::sendSetWheelSpeedAll(torque,CW);
+            JointHandler::sendSetWheelSpeedAll(torque,CCW);
             if (counter != 0)  Serial.print(";");
             time_now = micros() - time_init;
             Serial.print(" "); Serial.print(joint_[_joint_to_test].servo_.getSpeed()); Serial.print(" "); Serial.print(torque); Serial.print(" ");
@@ -202,7 +241,28 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
         Serial.println("]");
         Serial.print("## Average time between each mesaure = "); Serial.println(average_time);
         Serial.println("##  ===== END OF DATA SET ===== ");
+
         JointHandler::sendExitWheelModeAll();
+        delay(25);
+
+        blinkLed(LED_VERDE, 100);
+        testOnProcess(false);
+        JointHandler::sendSetWheelModeAll();
+        delay(25);
+        while (!digitalRead(PULSADOR)) {
+            JointHandler::sendSetWheelSpeedAll(STEP_SPEED/3,CW);
+            delay(25);
+            //Serial.print(digitalRead(PULSADOR));
+        }
+        JointHandler::sendExitWheelModeAll();
+        delay(25);
+        delay(1000);
+        while (!digitalRead(PULSADOR)) {
+            delay(25);
+            //Serial.print(digitalRead(PULSADOR));
+        }
+        testOnProcess(true);
+
         delay(2000);
     }
 

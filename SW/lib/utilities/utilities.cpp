@@ -238,7 +238,7 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
             measure_period.activateTimer();
         }
         double average_time = (time_now / num_repetitions);
-        Serial.println("]");
+        Serial.println("];");
         Serial.print("## Average time between each mesaure = "); Serial.println(average_time);
         Serial.println("##  ===== END OF DATA SET ===== ");
 

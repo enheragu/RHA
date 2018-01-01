@@ -299,7 +299,7 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
 
     JointHandler::updateJointInfo();
 
-    for (uint8_t samples = 0; samples < num_test; samples++) {
+    for (uint8_t samples = 10; samples < num_test; samples++) {
 
         //Serial.print("stepTest.append(");  Serial.print(" [0");
         JointHandler::sendSetWheelModeAll();

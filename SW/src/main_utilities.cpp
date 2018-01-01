@@ -59,7 +59,7 @@ void loop() {
         //Serial.print(digitalRead(PULSADOR));
     }
     joint_handler.sendExitWheelModeAll();
-    joint_handler.extractStepSlopeData(0, STEP);
+    //joint_handler.extractStepSlopeData(0, STEP);
     joint_handler.extractStepSlopeData(0, SLOPE);
     //joint_handler.checkSpeed(0);
     while (true) {

@@ -144,10 +144,6 @@ void JHUtilitiesJH::extractRegulatorData(uint8_t _joint_to_test) {
     return;
 }
 
-#define LED_ROJO 3
-#define LED_VERDE 4
-#define PULSADOR 5
-
 void blinkLed (uint8_t pin_led, uint8_t time_blink) {
     RHATypes::Timer blink_period;
     blink_period.setTimer(time_blink);
@@ -174,6 +170,82 @@ void testOnProcess (uint8_t true_false) {
     }
 }
 
+void JHUtilitiesJH::resetEncoder() {
+    encoderTemp_ = 0;
+    encoderCurrent_ = 0;
+    encoderTotal_ = 0;
+    encoderFlag_ = 1;
+    angleEndPositionFlag_ = 0;
+    pos_ = 0;
+}
+
+#define ENCODER_ANGLE_MARGIN 15
+
+void JHUtilitiesJH::updateEncoder(uint8_t _joint_to_test) {
+    pos_ = joint_[_joint_to_test].servo_.getPosition();
+    //Serial.print("Pos read from servo is: "); Serial.println(pos_);
+    encoderCurrent_ = pos_;
+    if (encoderCurrent_ < (encoderTemp_ + ENCODER_ANGLE_MARGIN)  && encoderCurrent_ > (encoderTemp_ - ENCODER_ANGLE_MARGIN) && encoderFlag_ == 0) {
+        encoderTotal_++;
+        encoderFlag_ = 1;
+    }
+    if (encoderCurrent_ > (encoderTemp_ + ENCODER_ANGLE_MARGIN) || encoderCurrent_ < (encoderTemp_ - ENCODER_ANGLE_MARGIN)) encoderFlag_ = 0;
+}
+
+void JHUtilitiesJH::startEncoder(uint8_t _joint_to_test) {
+    pos_ = joint_[_joint_to_test].servo_.getPosition();
+    encoderTemp_ = pos_;
+    encoderFlag_ = 1;
+}
+
+void JHUtilitiesJH::returnToStartPositionTest(uint8_t _joint_to_test, uint8_t direction) {
+    unsigned int turns_to_undo = encoderTotal_;
+
+    int angle_end_position = 0;
+    if (!(encoderCurrent_ < (encoderTemp_ + ENCODER_ANGLE_MARGIN)  && encoderCurrent_ > (encoderTemp_ - ENCODER_ANGLE_MARGIN))) {
+        angle_end_position = encoderCurrent_ - encoderTemp_;
+        if (angle_end_position > 1087) angle_end_position -= 1087;
+        else if (angle_end_position < 0) angle_end_position += 1087;
+    }
+
+    //Serial.print("## Turns made during test to be undone: "); Serial.println(turns_to_undo);
+    //Serial.print("## Angle last position: "); Serial.println(angle_end_position);
+    JointHandler::updateJointInfo();
+    resetEncoder();
+    startEncoder(_joint_to_test);
+
+    JointHandler::sendSetWheelModeAll();
+    delay(25);
+
+    while (true) {
+        JointHandler::updateJointInfo();
+        updateEncoder(_joint_to_test);
+        if (angleEndPositionFlag_ == 0 && (encoderTotal_ >= turns_to_undo || turns_to_undo == 0) && angle_end_position != 0) {
+            resetEncoder();
+            startEncoder(_joint_to_test);
+            if (direction == CW)
+                encoderTemp_ -= angle_end_position;
+            else if (direction == CCW)
+                encoderTemp_ += angle_end_position;
+
+            if (encoderTemp_ > 1087) encoderTemp_ -= 1087;
+            else if (encoderTemp_ < 0) encoderTemp_ += 1087;
+
+            turns_to_undo = 1;
+            angleEndPositionFlag_ = 1;
+            angle_end_position = 0;
+            //Serial.print("## Reset encoder to got to: "); Serial.println(encoderTemp_);
+        }
+        else if ((encoderTotal_ >= turns_to_undo || turns_to_undo == 0) && angle_end_position == 0) break;
+        JointHandler::sendSetWheelSpeedAll(STEP_SPEED/3,direction);
+        delay(25);
+    }
+
+    JointHandler::sendExitWheelModeAll();
+    delay(25);
+}
+
+
 void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option) {
 
     pinMode(LED_ROJO, OUTPUT);
@@ -196,13 +268,38 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
         num_test = SAMPLE_TEST_SLOPE;
     }
 
-    Serial.println("## This test is performed with: kg");
-    Serial.println("## Data printed is, on each column:\n## speed, torque sent, and time");
-    JointHandler::updateJointInfo();
-    for (uint8_t samples = 0; samples < num_test; samples++) {
+    uint8_t direction = UP;
+    uint8_t back_direction = DOWN;
+    Serial.println("## This test is performed with 2.0 kg, against");
+    Serial.println("## Data printed is, on each column: speed, torque sent, and time");
 
-        blinkLed(LED_ROJO, 100);
-        testOnProcess(true);
+    testOnProcess(false);
+    blinkLed(LED_VERDE, 100);
+    JointHandler::sendSetWheelModeAll();
+    delay(25);
+    while (!digitalRead(PULSADOR)) {
+        delay(25);
+        //Serial.print(digitalRead(PULSADOR));
+    }
+    delay(1000);
+    while (!digitalRead(PULSADOR)) {
+        JointHandler::sendSetWheelSpeedAll(STEP_SPEED/3,back_direction);
+        delay(25);
+        //Serial.print(digitalRead(PULSADOR));
+    }
+    JointHandler::sendExitWheelModeAll();
+    delay(25);
+    delay(1000);
+    while (!digitalRead(PULSADOR)) {
+        delay(25);
+        //Serial.print(digitalRead(PULSADOR));
+    }
+    blinkLed(LED_ROJO, 100);
+    testOnProcess(true);
+
+    JointHandler::updateJointInfo();
+
+    for (uint8_t samples = 0; samples < num_test; samples++) {
 
         //Serial.print("stepTest.append(");  Serial.print(" [0");
         JointHandler::sendSetWheelModeAll();
@@ -223,13 +320,17 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
 
         unsigned int torque;
 
-        for (int counter = 0; counter < num_repetitions; counter++) {
+        resetEncoder();
+        startEncoder(_joint_to_test);
+
+        for (unsigned int counter = 0; counter < num_repetitions; counter++) {
 
             if (_option == STEP) torque = STEP_SPEED;
             else if (_option == SLOPE) torque = SLOPE_SPEED*(millis() - time_init/1000);
             if (torque > 1023) torque = 1023;
             JointHandler::updateJointInfo();
-            JointHandler::sendSetWheelSpeedAll(torque,CCW);
+            updateEncoder(_joint_to_test);
+            JointHandler::sendSetWheelSpeedAll(torque,direction);
             if (counter != 0)  Serial.print(";");
             time_now = micros() - time_init;
             Serial.print(" "); Serial.print(joint_[_joint_to_test].servo_.getSpeed()); Serial.print(" "); Serial.print(torque); Serial.print(" ");
@@ -245,23 +346,7 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
         JointHandler::sendExitWheelModeAll();
         delay(25);
 
-        blinkLed(LED_VERDE, 100);
-        testOnProcess(false);
-        JointHandler::sendSetWheelModeAll();
-        delay(25);
-        while (!digitalRead(PULSADOR)) {
-            JointHandler::sendSetWheelSpeedAll(STEP_SPEED/3,CW);
-            delay(25);
-            //Serial.print(digitalRead(PULSADOR));
-        }
-        JointHandler::sendExitWheelModeAll();
-        delay(25);
-        delay(1000);
-        while (!digitalRead(PULSADOR)) {
-            delay(25);
-            //Serial.print(digitalRead(PULSADOR));
-        }
-        testOnProcess(true);
+        returnToStartPositionTest(_joint_to_test, back_direction);
 
         delay(2000);
     }

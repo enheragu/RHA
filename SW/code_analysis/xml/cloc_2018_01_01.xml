@@ -1,0 +1,36 @@
+      22 text files.
+classified 22 files      22 unique files.                              
+       5 files ignored.
+
+<?xml version="1.0"?><results>
+<header>
+  <cloc_url>http://cloc.sourceforge.net</cloc_url>
+  <cloc_version>1.60</cloc_version>
+  <elapsed_seconds>0.0794680118560791</elapsed_seconds>
+  <n_files>18</n_files>
+  <n_lines>3110</n_lines>
+  <files_per_second>226.506232880206</files_per_second>
+  <lines_per_second>39135.2435698578</lines_per_second>
+</header>
+<files>
+  <file name="/home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp" blank="79" comment="63" code="340"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp" blank="63" comment="169" code="333"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp" blank="55" comment="165" code="164"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h" blank="29" comment="28" code="142"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h" blank="45" comment="62" code="121"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/debug/debug.h" blank="28" comment="65" code="116"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h" blank="32" comment="22" code="73"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/utilities/utilities.h" blank="19" comment="31" code="67"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/chuck_handler/chuck_handler.h" blank="18" comment="14" code="65"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/rha_types/fuzzy_regulator.h" blank="17" comment="32" code="61"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h" blank="18" comment="50" code="61"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.cpp" blank="7" comment="27" code="42"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/src/main_utilities.cpp" blank="16" comment="51" code="39"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/rha_types/pid_regulator.h" blank="13" comment="30" code="38"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/debug/debug.cpp" blank="3" comment="11" code="31"  language="C++" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.h" blank="9" comment="8" code="26"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h" blank="12" comment="11" code="25"  language="C/C++ Header" />
+  <file name="/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp" blank="7" comment="34" code="23"  language="C++" />
+  <total blank="470" comment="873" code="1767" />
+</files>
+</results>

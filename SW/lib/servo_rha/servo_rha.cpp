@@ -60,6 +60,7 @@ void ServoRHA::init(uint8_t _servo_id) {
 void ServoRHA::updateInfo(uint8_t *_data, uint16_t _error) {
     DebugSerialSRHALn("updateInfo: begin of function");
 
+    // Position is measured from 0 to 1087 (if needed convert to 0-360 range)
     position_ = _data[0];  // acces data[0]
     position_ |= (_data[1] << 8);  // acces data[1]
 

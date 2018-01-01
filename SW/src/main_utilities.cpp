@@ -37,9 +37,8 @@ void setup() {
   joint_handler.initJoints(0);
   //Serial.print("# Id for servo is: "); Serial.println(joint_handler.joint_[0].servo_.getID());
   joint_handler.updateJointInfo();
-  delay(5000);
+  delay(1000);
   Serial.println("# Setup done");
-
 
   Serial.println("# Init loop");
 }
@@ -53,6 +52,13 @@ float standard_deviation = 0;
 void loop() {
     //joint_handler.extractRegulatorData(0);
     //
+    joint_handler.sendSetWheelModeAll();
+    while (!digitalRead(PULSADOR)) {
+        joint_handler.sendSetWheelSpeedAll(STEP_SPEED,UP);
+        delay(25);
+        //Serial.print(digitalRead(PULSADOR));
+    }
+    joint_handler.sendExitWheelModeAll();
     joint_handler.extractStepSlopeData(0, STEP);
     joint_handler.extractStepSlopeData(0, SLOPE);
     //joint_handler.checkSpeed(0);

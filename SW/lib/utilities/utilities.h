@@ -78,11 +78,24 @@ namespace CheckSpeedTestData {
     #define SPEED 1023  // torque send to check speed
 }  // End of CheckSpeedTestData namespace
 
+#define UP CCW
+#define DOWN CW
+
+#define LED_ROJO 3
+#define LED_VERDE 4
+#define PULSADOR 5
 
 class JHUtilitiesJH : public JointHandler {
     uint16_t error_;
     uint8_t IDcurrent_;
     int baudrateMode_;
+
+    // Encoder variables:
+    int32_t encoderTemp_ = 0,
+             encoderCurrent_ = 0,
+             encoderTotal_ = 0;
+    uint8_t encoderFlag_ = 0, angleEndPositionFlag_ = 0;
+    uint16_t pos_ = 0;
 
  public:
      JHUtilitiesJH() {
@@ -95,5 +108,10 @@ class JHUtilitiesJH : public JointHandler {
     void checkTimeGetInfo(uint8_t repetitions, uint8_t _joint_to_test);
     void checkComSucces(uint16_t repetitions);
     void checkSpeed(uint8_t _joint_to_test);
+
+    void resetEncoder();
+    void updateEncoder(uint8_t _joint_to_test);
+    void startEncoder(uint8_t _joint_to_test);
+    void returnToStartPositionTest(uint8_t _joint_to_test, uint8_t direction);
 
 };

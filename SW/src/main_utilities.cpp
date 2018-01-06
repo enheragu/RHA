@@ -54,7 +54,7 @@ void loop() {
     //
     joint_handler.sendSetWheelModeAll();
     while (!digitalRead(PULSADOR)) {
-        joint_handler.sendSetWheelSpeedAll(STEP_SPEED,UP);
+        joint_handler.sendSetWheelSpeedAll(STEP_SPEED,DOWN);
         delay(25);
         //Serial.print(digitalRead(PULSADOR));
     }

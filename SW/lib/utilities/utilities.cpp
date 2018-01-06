@@ -223,9 +223,9 @@ void JHUtilitiesJH::returnToStartPositionTest(uint8_t _joint_to_test, uint8_t di
         if (angleEndPositionFlag_ == 0 && (encoderTotal_ >= turns_to_undo || turns_to_undo == 0) && angle_end_position != 0) {
             resetEncoder();
             startEncoder(_joint_to_test);
-            if (direction == CW)
-                encoderTemp_ -= angle_end_position;
-            else if (direction == CCW)
+            if (direction == CW)  // CW means down
+                encoderTemp_ -= angle_end_position; // this was -
+            else if (direction == CCW)  // CCW means UP
                 encoderTemp_ += angle_end_position;
 
             if (encoderTemp_ > 1087) encoderTemp_ -= 1087;
@@ -237,7 +237,12 @@ void JHUtilitiesJH::returnToStartPositionTest(uint8_t _joint_to_test, uint8_t di
             //Serial.print("## Reset encoder to got to: "); Serial.println(encoderTemp_);
         }
         else if ((encoderTotal_ >= turns_to_undo || turns_to_undo == 0) && angle_end_position == 0) break;
-        JointHandler::sendSetWheelSpeedAll(STEP_SPEED/3,direction);
+        if (direction == UP) {
+            JointHandler::sendSetWheelSpeedAll(STEP_SPEED,direction);
+        }
+        else if (direction == DOWN) {
+            JointHandler::sendSetWheelSpeedAll(STEP_SPEED/3,direction);
+        }
         delay(25);
     }
 
@@ -268,9 +273,9 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
         num_test = SAMPLE_TEST_SLOPE;
     }
 
-    uint8_t direction = UP;
-    uint8_t back_direction = DOWN;
-    Serial.println("## This test is performed with 2.0 kg, against");
+    uint8_t direction = DOWN;
+    uint8_t back_direction = UP;
+    Serial.println("## This test is performed with 0.5 kg, in favour");
     Serial.println("## Data printed is, on each column: speed, torque sent, and time");
 
     testOnProcess(false);
@@ -283,7 +288,12 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
     }
     delay(1000);
     while (!digitalRead(PULSADOR)) {
-        JointHandler::sendSetWheelSpeedAll(STEP_SPEED/3,back_direction);
+        if (back_direction == UP) {
+            JointHandler::sendSetWheelSpeedAll(STEP_SPEED,back_direction);
+        }
+        else if (back_direction == DOWN) {
+            JointHandler::sendSetWheelSpeedAll(STEP_SPEED/3,back_direction);
+        }
         delay(25);
         //Serial.print(digitalRead(PULSADOR));
     }
@@ -299,7 +309,7 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
 
     JointHandler::updateJointInfo();
 
-    for (uint8_t samples = 10; samples < num_test; samples++) {
+    for (uint8_t samples = 0; samples < num_test; samples++) {
 
         //Serial.print("stepTest.append(");  Serial.print(" [0");
         JointHandler::sendSetWheelModeAll();
@@ -329,13 +339,16 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
             else if (_option == SLOPE) torque = SLOPE_SPEED*(millis() - time_init/1000);
             if (torque > 1023) torque = 1023;
             JointHandler::updateJointInfo();
-            updateEncoder(_joint_to_test);
             JointHandler::sendSetWheelSpeedAll(torque,direction);
             if (counter != 0)  Serial.print(";");
             time_now = micros() - time_init;
             Serial.print(" "); Serial.print(joint_[_joint_to_test].servo_.getSpeed()); Serial.print(" "); Serial.print(torque); Serial.print(" ");
             Serial.print(time_now); //Serial.println("']\\");
-            measure_period.checkWait();
+            //measure_period.checkWait();
+            while (!measure_period.checkContinue()) {  // while time has not been finished
+                JointHandler::updateJointInfo();
+                updateEncoder(_joint_to_test);
+            }
             measure_period.activateTimer();
         }
         double average_time = (time_now / num_repetitions);

@@ -1,0 +1,23 @@
+      22 text files.
+classified 22 files      22 unique files.                              
+       5 files ignored.
+
+language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.60  T=0.05 s (371.5 files/s, 64449.0 lines/s)"
+C++,/home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp,79,64,352
+C++,/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp,63,169,333
+C++,/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp,55,165,164
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h,29,28,142
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h,45,62,121
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/debug/debug.h,28,65,116
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h,32,22,73
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/utilities/utilities.h,19,31,67
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/chuck_handler/chuck_handler.h,18,14,65
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/rha_types/fuzzy_regulator.h,17,32,61
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h,18,50,61
+C++,/home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.cpp,7,27,42
+C++,/home/quique/Documentos/RHA/SW/src/main_utilities.cpp,16,52,38
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/rha_types/pid_regulator.h,13,30,38
+C++,/home/quique/Documentos/RHA/SW/lib/debug/debug.cpp,3,11,31
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.h,9,8,26
+C/C++ Header,/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h,12,11,25
+C++,/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp,7,34,23

@@ -26,6 +26,8 @@ class ServoRHA;
 
 class JointRHA {
   uint8_t up_direction_, potentiometer_pin_, position_pot_;
+  float joint_pot_relation_;
+
   uint32_t pot_max_value, pot_min_value;
   uint8_t angle_max_value, angle_min_value;
 
@@ -36,6 +38,7 @@ class JointRHA {
   ~JointRHA();
 
   void init(uint8_t _servo_id, uint8_t _up_direction, uint8_t _potentiometer = 255);
+  void setPotRelation(float _relation = 1);
   void initPotMeasurment(uint32_t _pot_min_value, uint32_t _pot_max_value, uint8_t _angle_min_value, uint8_t _angle_max_value);
   uint8_t setSpeedGoal(RHATypes::SpeedGoal _goal);
 

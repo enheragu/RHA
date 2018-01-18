@@ -38,19 +38,32 @@ void JointRHA::init(uint8_t _servo_id, uint8_t _up_direction, uint8_t _potentiom
     DebugSerialJRHALn2("init: initialazing with id: ", _servo_id);
     up_direction_ = _up_direction;
     potentiometer_pin_ = _potentiometer;
+    joint_pot_relation_ = 1;
 
     servo_.init(_servo_id);
     if (potentiometer_pin_ != 255) pinMode(potentiometer_pin_, INPUT);
 }
 
 /**
- * @brief Updates position reading from potentiometer if there is a pot to read (not 255)
+ * @brief Updates position reading from potentiometer if there is a pot to read (not 255). Updates joint angle position
  * @method JointRHA::updatePosition
  * @return returns position value in joint reference
  */
 float JointRHA::updatePosition() {
-    return map(digitalRead(potentiometer_pin_),0,5,0,90);  // from 0 to 5V transform to 0-90 degrees
+    if (potentiometer_pin_ != 255)
+        return map(analogRead(potentiometer_pin_),0,1023,0,255)*joint_pot_relation_;  // from 0 to 5V transform to 0-255 degrees (max angle of potentiometer)
+    else return -1;
 }
+
+/**
+ * Sets the relation between the potentiometer angle (in grads) and the joint angle
+ * @method JointRHA::setPotRelation
+ * @param  _relation            relation between measures. diameter of pot gear / diameter of bar gear
+ */
+void JointRHA::setPotRelation(float _relation) {
+    joint_pot_relation_ = _relation;
+}
+
 
 /**
  * @brief Updates all the information of servo object information and position feedback of joint  to use it in next control iteration (in control loop)

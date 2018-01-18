@@ -52,6 +52,10 @@ void ServoRHA::init(uint8_t _servo_id) {
   * Position are bits 10 to 0 from register 0x24 and 0x25
   * Speed are bits 9 to 0 from register 0x26 and 0x27, 10th bit is direction
   * Load are bits 9 to 0 from register 0x28 and 0x29, 10th bit is direction
+  *
+  * To avoid spending too much time the following parameter have been commented as they
+  * are not used
+  *
   * Voltage is in register 0x2a
   * Temperature is in register 0x2B
   * Action registered (pending from activation) flag is in register 0x2C
@@ -72,13 +76,13 @@ void ServoRHA::updateInfo(uint8_t *_data, uint16_t _error) {
     speed = speed & ~0x0400;  // Speed is in rad/s
     speed_ = (float(speed) * 112.83) / 1023;  // Speed in register is from 0 to 1023, this operation is to transform it into RPM (is taken from servo docs)
 
-/*  Load is load performed by the servo, for now this information is no being used so its not asked to the servo to save time
+    // Load is load performed by the servo
     load_ = _data[4];  // acces data[4]
     load_ |= (_data[5] << 8);   // acces data[5]
     load_dir_  = ((load_ & 0x0400) >> 10);  // 10th byte is direction
     // bytes from 9 to 0 are load value:
     load_ = load_ & ~0x0400;
-
+/*  For now this information is no being used so its not asked to the servo to save time
     voltage_ = _data[6];   // acces data[6]  // NOTE: ¿should be divided by 10?
 
     temperature_ = _data[7] ; // acces data[7]
@@ -149,17 +153,9 @@ void ServoRHA::calculateTorque(float _error, float _derror, float _ierror) {
         error_ = _error; derror_ = _derror; ierror_ = _ierror;
 
     torque = speed_regulator_.regulator(error_, derror_, ierror_);
-    // uint8_t direction = 0;
-    // error < 0 causes torque < 0 which causes change in direction of movement
-    // TODO: if (torque < 0 ) {
-    //     if (speed_dir_ == CCW) direction = CW;
-    //     else if (speed_dir_ == CW) direction = CCW;
-    // }
-    if(error_ < 0) torque = 0;
-    // else {
-    //     torque = abs(torque);
-    // }
-    else if (torque > 0) torque = torque + TORQUE_OFFSET + TORQUE_PREALIMENTATION*float(speed_target_);
+    uint16_t torque_offset = load_ - uint16_t(speed_ / TORQUE_PREALIMENTATION_SLOPE);
+    uint16_t prealimentation = torque_offset + TORQUE_PREALIMENTATION_SLOPE*float(speed_target_);
+    torque = torque + prealimentation;
     if (torque > MAX_TORQUE_VALUE) torque = MAX_TORQUE_VALUE;  // compensate saturation of servos
 
     DebugSerialSRHALn2("calculateTorque: torque calculated is: ", goal_torque_);
@@ -179,7 +175,7 @@ void ServoRHA::calculateTorque(float _error, float _derror, float _ierror) {
 void ServoRHA::addUpadteInfoToPacket(uint8_t *_buffer) {
      uint8_t data[2];
      data[0] = ServoRHAConstants::PRESENT_POSITION_L;
-     data[1] = 0x04;  // Wants to read 4 bytes from PRESENT_POSITION_L
+     data[1] = 0x06;  // Wants to read 4 bytes from PRESENT_POSITION_L
      addToPacket(_buffer, data, 2);
 }
 

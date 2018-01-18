@@ -42,8 +42,10 @@ void JointHandler::setTimer(uint64_t _timer) {
 void JointHandler::initJoints() {
     DebugSerialJHLn("initJoints: begin of function");
     joint_[0].init(1, CW, A0);
-    //joint_[1].init(2, CW, A1);
-    //joint_[2].init(3, CW, A2);
+    joint_[1].init(2, CW); // does not have potentiometer, not realimented
+    joint_[2].init(3, CW, A1);
+
+    joint_[2].setPotRelation(29/42);
 
     RHATypes::Timer eeprom_timer;
     eeprom_timer.setTimer(EEMPROM_WRITE_DELAY);

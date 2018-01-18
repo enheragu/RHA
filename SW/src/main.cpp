@@ -76,10 +76,6 @@ void loop() {
     //delay(500);
     robo_health_arm.handleWithChuck();
     if (i % 10 == 0){
-        Serial.print("Load in servos:"); Serial.print("\t\t");
-        Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getLoad()); Serial.print(",\t");
-        Serial.print(robo_health_arm.joint_handler_.joint_[2].servo_.getLoad()); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[1].servo_.getLoad());
-
         Serial.print("Goal Torque:"); Serial.print("\t\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getGoalTorque()); Serial.print(",\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[2].servo_.getGoalTorque()); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[1].servo_.getGoalTorque());

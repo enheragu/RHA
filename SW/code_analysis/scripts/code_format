@@ -1,0 +1,52 @@
+/home/quique/Documentos/RHA/SW/lib/chuck_handler/chuck_handler.h:82:  If an else has a brace on one side, it should have it on both  [readability/braces] [5]
+Ignoring /home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp.txt; not a valid file name (cpp, h)
+Ignoring /home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h.txt; not a valid file name (cpp, h)
+/home/quique/Documentos/RHA/SW/lib/debug/debug.cpp:18:  If an else has a brace on one side, it should have it on both  [readability/braces] [5]
+Ignoring /home/quique/Documentos/RHA/SW/lib/debug/debug.h.gch; not a valid file name (cpp, h)
+Ignoring /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h.gch; not a valid file name (cpp, h)
+Ignoring /home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h.gch; not a valid file name (cpp, h)
+Ignoring /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h.gch; not a valid file name (cpp, h)
+Ignoring /home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.h~; not a valid file name (cpp, h)
+Ignoring /home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.h.gch; not a valid file name (cpp, h)
+/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp:115:  If an else has a brace on one side, it should have it on both  [readability/braces] [5]
+Ignoring /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h.gch; not a valid file name (cpp, h)
+/home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp:233:  An else should appear on the same line as the preceding }  [whitespace/newline] [4]
+Ignoring /home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp.old; not a valid file name (cpp, h)
+Ignoring /home/quique/Documentos/RHA/SW/src/main_utilities.cpp_; not a valid file name (cpp, h)
+Category 'readability/braces' errors found: 3
+Category 'whitespace/newline' errors found: 1
+Done processing /home/quique/Documentos/RHA/SW/lib/chuck_handler/chuck_handler.h
+Done processing /home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.cpp.txt
+Done processing /home/quique/Documentos/RHA/SW/lib/cytron_g15_servo/cytron_g15_servo.h.txt
+Done processing /home/quique/Documentos/RHA/SW/lib/debug/debug.cpp
+Done processing /home/quique/Documentos/RHA/SW/lib/debug/debug.h
+Done processing /home/quique/Documentos/RHA/SW/lib/debug/debug.h.gch
+Done processing /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp
+Done processing /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h
+Done processing /home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h.gch
+Done processing /home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp
+Done processing /home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h
+Done processing /home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h.gch
+Done processing /home/quique/Documentos/RHA/SW/lib/rha_types/fuzzy_regulator.h
+Done processing /home/quique/Documentos/RHA/SW/lib/rha_types/pid_regulator.h
+Done processing /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h
+Done processing /home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h.gch
+Done processing /home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.cpp
+Done processing /home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.h
+Done processing /home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.h~
+Done processing /home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.h.gch
+Done processing /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp
+Done processing /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h
+Done processing /home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h.gch
+Done processing /home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp
+Done processing /home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp.old
+Done processing /home/quique/Documentos/RHA/SW/lib/utilities/utilities.h
+Done processing /home/quique/Documentos/RHA/SW/src/main.cpp
+Done processing /home/quique/Documentos/RHA/SW/src/main_utilities.cpp_
+Done processing /home/quique/Documentos/RHA/SW/test/a_test_rha_types/test_rha_types.cpp
+Done processing /home/quique/Documentos/RHA/SW/test/b_test_pid_regulator/test_pid_regulator.cpp
+Done processing /home/quique/Documentos/RHA/SW/test/c_test_fuzzy_regulator/test_fuzzy_regulator.cpp
+Done processing /home/quique/Documentos/RHA/SW/test/d_test_servo_rha/test_servo_rha.cpp
+Done processing /home/quique/Documentos/RHA/SW/test/e_test_joint_rha/test_joint_rha.cpp
+Done processing /home/quique/Documentos/RHA/SW/test/f_test_joint_handler_mock/test_joint_handler.cpp
+Total errors found: 4

@@ -1,0 +1,19 @@
+      10 text files.
+classified 10 files      10 unique files.                              
+       2 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.03 s (284.6 files/s, 31842.7 lines/s)
+---------------------------------------------------------------------------------------------------------------------------------------
+File                                                                                                blank        comment           code
+---------------------------------------------------------------------------------------------------------------------------------------
+/home/quique/Documentos/RHA/SW/test/d_test_servo_rha/test_servo_rha.cpp                                64             55            204
+/home/quique/Documentos/RHA/SW/test/f_test_joint_handler_mock/test_joint_handler.cpp                   56             48            136
+/home/quique/Documentos/RHA/SW/test/b_test_pid_regulator/test_pid_regulator.cpp                        29             20             97
+/home/quique/Documentos/RHA/SW/test/a_test_rha_types/test_rha_types.cpp                                16             11             60
+/home/quique/Documentos/RHA/SW/test/e_test_joint_rha/test_joint_rha.cpp                                13             14             23
+/home/quique/Documentos/RHA/SW/test/c_test_fuzzy_regulator/test_fuzzy_regulator.cpp                     9             13             20
+/home/quique/Documentos/RHA/SW/test/perform_test.sh                                                     1              0              3
+/home/quique/Documentos/RHA/SW/test/perform_test.sh.save                                                1              0              2
+---------------------------------------------------------------------------------------------------------------------------------------
+SUM:                                                                                                  189            161            545
+---------------------------------------------------------------------------------------------------------------------------------------

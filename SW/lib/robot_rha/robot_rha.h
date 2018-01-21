@@ -7,13 +7,13 @@
  * @Last modified time: 31_Oct_2017
  */
 
- #ifndef ROBOT_RHA_H
- #define ROBOT_RHA_H
+#ifndef ROBOT_RHA_H
+#define ROBOT_RHA_H
 
 #include "chuck_handler.h"
 #include "joint_handler.h"
 
-#define SPEED_CONTROL_PERIOD (3 * NUM_JOINT) //50
+#define SPEED_CONTROL_PERIOD (3 * NUM_JOINT)  // 50
 #define CHUCK_UPDATE_PERIOD 100
 
 #define G15_BAUDRATE 460800
@@ -26,7 +26,6 @@
 #define J3 3
 
 class RobotRHA {
- protected:
  public:
     void initJointHandler();
     void initChuckHandler();
@@ -37,7 +36,7 @@ class RobotRHA {
 
     void handleWithChuck();
 
-   JointHandler joint_handler_;
-   ChuckHandler chuck_handler_;
+    JointHandler joint_handler_;
+    ChuckHandler chuck_handler_;
 };
 #endif

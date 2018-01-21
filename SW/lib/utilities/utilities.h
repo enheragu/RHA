@@ -20,7 +20,7 @@
 
 namespace MeasureUtilities {
     void averageChauvenet(uint32_t *data, uint8_t n, float &arithmetic_average, float &standard_deviation);
-}
+}  // namespace MeasureUtilities
 
 namespace ServoUtilities {
     void setServoId(uint8_t new_id);
@@ -28,15 +28,15 @@ namespace ServoUtilities {
 
     void fullFactoryResetBR();
     void setServoId(uint8_t new_id);
-} // End of ServoUtilities namespace
+}  // namespace ServoUtilities
 
 namespace RegulatorTestData {
     #define SAMPLE_REGULATOR 500
     #define SPEED_REGULATOR_TEST 120
     #define SAMPLE_KP 3
     #define KP_SAMPLES {2, 2, 2};  // 1
-    #define KD_SAMPLES {0,0.5,0};  // 1
-    #define KI_SAMPLES {0,0,0.1};  // 1
+    #define KD_SAMPLES {0, 0.5, 0};  // 1
+    #define KI_SAMPLES {0, 0, 0.1};  // 1
     // #define SAMPLE_KP 6
     // #define KP_SAMPLES {1.6,  20,  20,  20,  20,  20};  // Mixed presentation
     // #define KD_SAMPLES {0,    0,    1,  15,  15,  15};  // Mixed presentation
@@ -54,10 +54,10 @@ namespace RegulatorTestData {
     // #define KI_SAMPLES {0.1,0.5,1.0,1.5,2.0,2.5};  // 5
     // #define KI_SAMPLES {0.01,0.05,0.10,0.15,0.20,0.25};  // 7
     // #define KI_SAMPLES {1,5,10,15,20,25};  // 1, 2, 3, 4 y 5
-}  // End of RegulatorTestData namespace
+}  // namespace RegulatorTestData
 
 
-namespace OptionsTest{
+namespace OptionsTest {
     #define STEP 0
     #define SLOPE 1
 }
@@ -76,7 +76,7 @@ namespace SlopeTest {
 
 namespace CheckSpeedTestData {
     #define SPEED 1023  // torque send to check speed
-}  // End of CheckSpeedTestData namespace
+}  // namespace CheckSpeedTestData
 
 #define UP CCW
 #define DOWN CW
@@ -113,5 +113,4 @@ class JHUtilitiesJH : public JointHandler {
     void updateEncoder(uint8_t _joint_to_test);
     void startEncoder(uint8_t _joint_to_test);
     void returnToStartPositionTest(uint8_t _joint_to_test, uint8_t direction);
-
 };

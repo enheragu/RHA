@@ -53,7 +53,7 @@
 
 
 class WiiChuck {
-    private:
+ private:
         uint8_t cnt;
         uint8_t status[6];              // array to store wiichuck output
         uint8_t averageCounter;
@@ -61,7 +61,7 @@ class WiiChuck {
         int i;
         int total;
         uint8_t zeroJoyX;   // these are about where mine are
-        uint8_t zeroJoyY; // use calibrateJoy when the stick is at zero to correct
+        uint8_t zeroJoyY;  // use calibrateJoy when the stick is at zero to correct
         int lastJoyX;
         int lastJoyY;
         int angles[3];
@@ -113,10 +113,10 @@ class WiiChuck {
 
         void update() {
 
-            Wire.requestFrom (0x52, 6); // request data from nunchuck
+            Wire.requestFrom (0x52, 6);  // request data from nunchuck
             while (Wire.available ()) {
                 // receive byte as an integer
-                status[cnt] = _nunchuk_decode_byte (Wire.read()); //
+                status[cnt] = _nunchuk_decode_byte (Wire.read());  //
                 cnt++;
             }
             if (cnt > 5) {
@@ -140,7 +140,7 @@ class WiiChuck {
 
                 buttonZ = !( status[5] & B00000001);
                 buttonC = !((status[5] & B00000010) >> 1);
-                _send_zero(); // send the request for next bytes
+                _send_zero();  // send the request for next bytes
 
             }
         }
@@ -152,15 +152,15 @@ class WiiChuck {
     //}
 
     float readAccelX() {
-       // total = 0; // accelArray[xyz][averageCounter] * FAST_WEIGHT;
+       // total = 0;  // accelArray[xyz][averageCounter] * FAST_WEIGHT;
         return (float)angles[0] - ZEROX;
     }
     float readAccelY() {
-        // total = 0; // accelArray[xyz][averageCounter] * FAST_WEIGHT;
+        // total = 0;  // accelArray[xyz][averageCounter] * FAST_WEIGHT;
         return (float)angles[1] - ZEROY;
     }
     float readAccelZ() {
-        // total = 0; // accelArray[xyz][averageCounter] * FAST_WEIGHT;
+        // total = 0;  // accelArray[xyz][averageCounter] * FAST_WEIGHT;
         return (float)angles[2] - ZEROZ;
     }
 
@@ -207,7 +207,7 @@ class WiiChuck {
         return (int) (acos(readAccelY()/RADIUS)/ M_PI * 180.0);  // optionally swap 'RADIUS' for 'R()'
     }
 
-    private:
+ private:
         uint8_t _nunchuk_decode_byte (uint8_t x)
         {
             //decode is only necessary with certain initializations

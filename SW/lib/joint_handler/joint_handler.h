@@ -25,14 +25,14 @@
 // Arduino mega
 #if defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
     #define Serial_G15_lib Serial2
-    //#define CHECK_MEGA_HARDWARESERIAL(rx, tx) (rx == 19 && tx == 18)
+    // #define CHECK_MEGA_HARDWARESERIAL(rx, tx) (rx == 19 && tx == 18)
     #define CHECK_MEGA_HARDWARESERIAL(rx, tx) (rx == 17 && tx == 16)
-    //#define CHECK_MEGA_HARDWARESERIAL(rx, tx) (rx == 15 && tx == 14)
+    // #define CHECK_MEGA_HARDWARESERIAL(rx, tx) (rx == 15 && tx == 14)
     // Serial1 on pins 19 (RX) and 18 (TX)
     // Serial2 on pins 17 (RX) and 16 (TX)
     // Serial3 on pins 15 (RX) and 14 (TX)
 // Arduino Leonardo
-#elif defined (__AVR_ATmega32U4__)
+#elif defined __AVR_ATmega32U4__
     #define Serial_G15_lib Serial1
     #define CHECK_MEGA_HARDWARESERIAL(rx, tx) false
 #else
@@ -68,8 +68,7 @@ namespace JointHandlerConstants {
     #define BUFFER_LEN 30
 
     #define EEMPROM_WRITE_DELAY 25
-
-}  // namespace JointHandlerConstants
+}  // namespace JointHandlerConstants
 
 
 class JointHandler {
@@ -78,11 +77,12 @@ class JointHandler {
     uint8_t txpin_shield_, rxpin_shield_, ctrlpin_shield_;
 
     uint16_t comunication_error_;
+
  public:
     JointRHA joint_[NUM_JOINT];
 
     JointHandler() {}
-    JointHandler(uint64_t timer);
+    explicit JointHandler(uint64_t timer);
     virtual void initJoints();
     void setSpeedGoal(RHATypes::SpeedGoal _goal);
     void setTimer(uint64_t timer);
@@ -106,14 +106,14 @@ class JointHandler {
 
     void warpSyncPacket(uint8_t *_buffer, uint8_t _adress, uint8_t *_txBuffer, uint8_t _num_bytes, uint8_t _num_servo);
     void warpSinglePacket(uint8_t _instruction, uint8_t *_buffer, uint8_t *_txBuffer);
-    uint16_t sendPacket( uint8_t *_buffer);
+    uint16_t sendPacket(uint8_t *_buffer);
 
 
     /**************************************
      *        Serial Port Handling        *
      **************************************/
     JointHandler(uint8_t _rxpin, uint8_t _txpin, uint8_t _ctrlpin);
-    JointHandler(uint8_t _ctrlpin);
+    explicit JointHandler(uint8_t _ctrlpin);
     void initSerial(uint8_t _rxpin, uint8_t _txpin, uint8_t _ctrlpin, uint32_t _baudrate = G15_BAUDRATE);
 
     void begin(uint32_t _baudrate);
@@ -121,7 +121,6 @@ class JointHandler {
 
     void setTxMode(void);
     void setRxMode(void);
-
 };
 
 #endif

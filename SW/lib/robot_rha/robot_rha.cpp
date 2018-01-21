@@ -6,7 +6,7 @@
  */
 void RobotRHA::initJointHandler() {
     joint_handler_.setTimer(SPEED_CONTROL_PERIOD);
-    joint_handler_.initSerial(G15_RX_PIN,G15_TX_PIN,G15_CONTRL_PIN,G15_BAUDRATE);  // baudrate 460800 means 57.6 bytes/milisecond
+    joint_handler_.initSerial(G15_RX_PIN, G15_TX_PIN, G15_CONTRL_PIN, G15_BAUDRATE);  // baudrate 460800 means 57.6 bytes/milisecond
     joint_handler_.initJoints();
 }
 
@@ -20,7 +20,6 @@ void RobotRHA::initChuckHandler() {
 }
 
 void RobotRHA::handleRobot() {
-
 }
 
 /**
@@ -60,17 +59,17 @@ void RobotRHA::setSpeedToServos(float _speed, uint8_t _servo_id) {
 void RobotRHA::handleWithChuck() {
     DebugSerialRRHALn("handleWithChuck: begin of function");
     DebugSerialRRHALn("handleWithChuck: getting speed commands");
-    ChuckReadStruct speed_commands = ChuckReadStruct(20,20,20,true);//chuck_handler_.readAxis();
+    ChuckReadStruct speed_commands = ChuckReadStruct(20, 20, 20, true);  // chuck_handler_.readAxis();
     DebugSerialRRHALn("handleWithChuck: setting goal speed to servos");
     if (speed_commands.updated_) {
-        //Chuck returns % in speed.
+        // Chuck returns % in speed.
         DebugSerialRRHALn("handleWithChuck: speed command was updated");
         int speed_x = (speed_commands.X_) * 100/ MAX_SPEED_VALUE;
         int speed_y = (speed_commands.Y_) * 100/ MAX_SPEED_VALUE;
         int speed_z = (speed_commands.Z_) * 100/ MAX_SPEED_VALUE;
         setCartesianSpeedGoal(speed_x, speed_y, speed_z);
     }
-    //else setCartesianSpeedGoal(speed_commands.X_, speed_commands.Y_, speed_commands.Z_);
+    // else setCartesianSpeedGoal(speed_commands.X_, speed_commands.Y_, speed_commands.Z_);
     DebugSerialRRHALn("handleWithChuck: calling joint_handler control loop");
     joint_handler_.controlLoop();
 }

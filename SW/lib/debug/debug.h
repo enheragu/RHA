@@ -16,7 +16,7 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
-//#include "joint_handler.h"  // Needs error definitions
+// #include "joint_handler.h"  // Needs error definitions
 #include <Arduino.h>
 
 /*****************************
@@ -64,12 +64,12 @@
 // #define DEBUG_JOINT_HANDLER  // -> Not stable
 // #define DEBUG_CYTRON_G15_SERVO
 // #define DEBUG_TEST_CYTRON_G15_SERVO
- #define DEBUG_UTILITIES
- #define DEBUG_ROBOT_RHA
+#define DEBUG_UTILITIES
+#define DEBUG_ROBOT_RHA
 // #define DEBUG_RHA_TYPES
 // #define DEBUG_JOINT_RHA
 
-void printServoStatusError (uint16_t error, uint8_t ID);
+void printServoStatusError(uint16_t error, uint8_t ID);
 void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t load, uint8_t load_dir, uint8_t voltage, uint8_t temperature, uint16_t error);
 
 
@@ -117,12 +117,12 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
     #define DebugSerialJHLn(a) {  Serial.print("[DC]  JointHandler::"); Serial.println(a); }
     #define DebugSerialJHLn2(a, b) {  Serial.print("[DC]  JointHandler::"); Serial.print(a); Serial.println(b); }
     #define DebugSerialJHLn4(a, b, c, d) {  Serial.print("[DC]  JointHandler::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
-    //#define DebugSerialJHLn4Error(a, b) { printServoStatusError(a, b); }
+    // #define DebugSerialJHLn4Error(a, b) { printServoStatusError(a, b); }
 #else
     #define DebugSerialJHLn(a)
     #define DebugSerialJHLn2(a, b)
     #define DebugSerialJHLn4(a, b, c, d)
-    //#define DebugSerialJHLn4Error(a, b)
+    // #define DebugSerialJHLn4Error(a, b)
 #endif
 
 
@@ -155,7 +155,7 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
 #endif
 
 /** DebugSerialSeparation prints a horizontal line to separate different set of debug information */
-#define DebugSerialSeparation(a) {Serial.println("#===============================================================#");}
+#define DebugSerialSeparation(a) { Serial.println("#===============================================================#"); }
 
 /** DEBUG_ROBOT_RHA implements debug macros for robot_rha.h and .cpp files */
 #ifdef DEBUG_ROBOT_RHA

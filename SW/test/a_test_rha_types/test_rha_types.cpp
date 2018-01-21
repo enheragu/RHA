@@ -24,8 +24,8 @@
 
 void test_class_timer_function_checkwait(void) {
     RHATypes::Timer timer_test;
-	timer_test.setTimer(TIMER_TEST_TIME_MILIS);
-    long init_time = millis();
+    timer_test.setTimer(TIMER_TEST_TIME_MILIS);
+    int64_t init_time = millis();
     timer_test.activateTimer();
     timer_test.checkWait();
     TEST_ASSERT_TRUE(millis() >= (init_time + TIMER_TEST_TIME_MILIS) );
@@ -33,29 +33,29 @@ void test_class_timer_function_checkwait(void) {
 
 void test_class_timer_function_checkcontinue(void) {
     RHATypes::Timer timer_test;
-	timer_test.setTimer(TIMER_TEST_TIME_MILIS);
-    long init_time = millis();
+    timer_test.setTimer(TIMER_TEST_TIME_MILIS);
+    int64_t init_time = millis();
     timer_test.activateTimer();
     timer_test.checkContinue();
-    TEST_ASSERT_TRUE(millis() < (init_time + TIME_SPENT_EXECUTING_COMMANDS_MILIS) );
+    TEST_ASSERT_TRUE(millis() < (init_time + TIME_SPENT_EXECUTING_COMMANDS_MILIS));
 }
 
 void test_class_timer_micros_function_checkwait(void) {
     RHATypes::Timer timer_test;
-	timer_test.setTimer(TIMER_TEST_TIME_MILIS);
-    long init_time = micros();
+    timer_test.setTimer(TIMER_TEST_TIME_MILIS);
+    int64_t init_time = micros();
     timer_test.activateTimer();
     timer_test.checkWait();
-    TEST_ASSERT_TRUE(micros() > (init_time + TIMER_TEST_TIME_MICROS) );
+    TEST_ASSERT_TRUE(micros() > (init_time + TIMER_TEST_TIME_MICROS));
 }
 
 void test_class_timer_micros_function_checkcontinue(void) {
     RHATypes::Timer timer_test;
-	timer_test.setTimer(TIMER_TEST_TIME_MILIS);
-    long init_time = micros();
+    timer_test.setTimer(TIMER_TEST_TIME_MILIS);
+    int64_t init_time = micros();
     timer_test.activateTimer();
     timer_test.checkContinue();
-    TEST_ASSERT_TRUE(micros() < (init_time + TIME_SPENT_EXECUTING_COMMANDS_MICROS) );
+    TEST_ASSERT_TRUE(micros() < (init_time + TIME_SPENT_EXECUTING_COMMANDS_MICROS));
 }
 
 

@@ -28,7 +28,7 @@
 
 void test_class_regulator_function_setRegulator(void) {
     RHATypes::Regulator regulator_test;
-    regulator_test.setKRegulator(KP_TEST,KI_TEST,KD_TEST);
+    regulator_test.setKRegulator(KP_TEST, KI_TEST, KD_TEST);
     TEST_ASSERT_EQUAL(KP_TEST, regulator_test.getKp());
     TEST_ASSERT_EQUAL(KI_TEST, regulator_test.getKi());
     TEST_ASSERT_EQUAL(KD_TEST, regulator_test.getKd());
@@ -40,7 +40,7 @@ void test_class_regulator_function_resetRegulator(void) {
     TEST_ASSERT_EQUAL(0, regulator_test.getKi());
     TEST_ASSERT_EQUAL(0, regulator_test.getKd());
 
-    regulator_test.setKRegulator(KP_TEST,KI_TEST,KD_TEST);
+    regulator_test.setKRegulator(KP_TEST, KI_TEST, KD_TEST);
 
     regulator_test.resetRegulator();
     TEST_ASSERT_EQUAL(0, regulator_test.getKp());
@@ -51,7 +51,7 @@ void test_class_regulator_function_resetRegulator(void) {
 // Test regulator function when it hasn't accumulated ierror
 void test_class_regulator_function_regulator_simple(void) {
     RHATypes::Regulator regulator_test;
-    regulator_test.setKRegulator(KP_TEST,KI_TEST,KD_TEST);
+    regulator_test.setKRegulator(KP_TEST, KI_TEST, KD_TEST);
 
     float result_1 = regulator_test.regulator(ERROR_TEST, DERROR_TEST, IERROR_TEST);
     // Regulator should return in first iteration:
@@ -61,7 +61,7 @@ void test_class_regulator_function_regulator_simple(void) {
 
 void test_class_regulator_function_regulator_simple_acumulative_1(void) {
     RHATypes::Regulator regulator_test;
-    regulator_test.setKRegulator(KP_TEST,KI_TEST,KD_TEST);
+    regulator_test.setKRegulator(KP_TEST, KI_TEST, KD_TEST);
 
     regulator_test.regulator(ERROR_TEST, DERROR_TEST, IERROR_TEST);
     float result_2 = regulator_test.regulator(ERROR_TEST, DERROR_TEST, IERROR_TEST);
@@ -73,7 +73,7 @@ void test_class_regulator_function_regulator_simple_acumulative_1(void) {
 // Test that ierror adds all values from the vector (now with full ierror)
 void test_class_regulator_function_regulator_simple_acumulative_2(void) {
     RHATypes::Regulator regulator_test;
-    regulator_test.setKRegulator(KP_TEST,KI_TEST,KD_TEST);
+    regulator_test.setKRegulator(KP_TEST, KI_TEST, KD_TEST);
 
     float result_3 = 0;
     float ierror_accumulated = 0;
@@ -89,7 +89,7 @@ void test_class_regulator_function_regulator_simple_acumulative_2(void) {
 // Test how ierror adds new info once the vector overloads
 void test_class_regulator_function_regulator_simple_acumulative_overload(void) {
     RHATypes::Regulator regulator_test;
-    regulator_test.setKRegulator(KP_TEST,KI_TEST,KD_TEST);
+    regulator_test.setKRegulator(KP_TEST, KI_TEST, KD_TEST);
 
     // Test that the ierror is overloaded properly
     float result_4 = 0;
@@ -102,7 +102,7 @@ void test_class_regulator_function_regulator_simple_acumulative_overload(void) {
     for (uint8_t i = 0; i < INTEGER_INTERVAL*3; i++) {
         result_4 = regulator_test.regulator(ERROR_TEST, DERROR_TEST, IERROR_TEST + i);
         ierror_expected[index] = IERROR_TEST + i;
-        index ++;
+        index++;
         if (index > INTEGER_INTERVAL) index = 0;
     }
 

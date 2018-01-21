@@ -30,7 +30,7 @@ uint8_t txpin_shield = 0, rxpin_shield = 0, ctrlpin_shield = 0;
 // This Code is using Serial library
 // baudrate 300, 1200, 2400, 4800, 9600, 14400, 19200, 28800, 38400, 57600, or 115200
 
-void initCytronG15Shield(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin){
+void initCytronG15Shield(uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin) {
     rxpin_shield = rxpin;
     txpin_shield = txpin;
     ctrlpin_shield = ctrlpin;
@@ -49,13 +49,13 @@ Cytron_G15_Servo::Cytron_G15_Servo(uint8_t ctrlpin) {
     initCytronG15Shield(0, 1, ctrlpin);
 }
 
-void Cytron_G15_Servo::init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate){
+void Cytron_G15_Servo::init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin, uint32_t baudrate) {
     servo_id_ = servo_id;
     initCytronG15Shield(rxpin, txpin, ctrlpin);
     begin(baudrate);
 }
 
-void Cytron_G15_Servo::init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin){
+void Cytron_G15_Servo::init(uint8_t servo_id, uint8_t rxpin, uint8_t txpin, uint8_t ctrlpin) {
     servo_id_ = servo_id;
     initCytronG15Shield(rxpin, txpin, ctrlpin);
 }

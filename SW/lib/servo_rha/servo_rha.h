@@ -116,12 +116,12 @@ namespace ServoRHAConstants {
       * @}
       */
 
-    namespace SpeedRegulatorK {
-        #define KP 10 //1.66
-        #define KD 0
-        #define KI 0
-    }
-}  // namespace ServoRHAConstants
+namespace SpeedRegulatorK {
+    #define KP 10  // 1.66
+    #define KD 0
+    #define KI 0
+}
+}  // namespace ServoRHAConstants
 
 uint8_t compareAngles(uint16_t angle1, uint16_t angle2, uint8_t angle_margin = 0);
 uint8_t compareSpeed(uint16_t speed1, uint16_t speed2, uint8_t speed_margin = 0);
@@ -146,7 +146,7 @@ class ServoRHA {
  public:
     ServoRHA() { time_last_error_ = 0; time_last_ = 0; last_error_ = 0;
                 error_ = 0; derror_ = 0; ierror_ = 0; }
-    ServoRHA(uint8_t _servo_id);
+    explicit ServoRHA(uint8_t _servo_id);
     void init(uint8_t _servo_id);
     void init();
 
@@ -192,8 +192,6 @@ class ServoRHA {
     float getError() { return error_; }
     float getDError() { return derror_; }
     float getIError() { return ierror_; }
-
-
 };
 
 #endif

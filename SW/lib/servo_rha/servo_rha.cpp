@@ -34,7 +34,7 @@ void ServoRHA::init(uint8_t _servo_id) {
     servo_id_ = _servo_id;
     DebugSerialSRHALn2("initServo: id is now: ", servo_id_);
 
-    speed_regulator_.setKRegulator(KP,KI,KD);
+    speed_regulator_.setKRegulator(KP, KI, KD);
 
     DebugSerialSRHALn("initServo: end of inicialitation function");
 }
@@ -85,7 +85,7 @@ void ServoRHA::updateInfo(uint8_t *_data, uint16_t _error) {
 /*  For now this information is no being used so its not asked to the servo to save time
     voltage_ = _data[6];   // acces data[6]  // NOTE: ¿should be divided by 10?
 
-    temperature_ = _data[7] ; // acces data[7]
+    temperature_ = _data[7] ;  // acces data[7]
 */
     error_comunication_ = _error;
 
@@ -112,7 +112,8 @@ uint8_t ServoRHA::setSpeedGoal(RHATypes::SpeedGoal _goal) {
         DebugSerialSRHALn2("setSpeedGoal: Speed set to: ", speed_target_);
         DebugSerialSRHALn2("setSpeedGoal: Speed slope set to: ", speed_slope_);
         return true;
-    } else return false;
+    } else
+        return false;
 }
 
 /**
@@ -121,16 +122,16 @@ uint8_t ServoRHA::setSpeedGoal(RHATypes::SpeedGoal _goal) {
 void ServoRHA::speedError() {
     DebugSerialSRHALn("speedError: begin of function");
     uint16_t speed = 0;
-    // TODO: if (speed_slope_ != 0) {
+    // TODO(eeha): if (speed_slope_ != 0) {
     //     speed = (float)speed_ + (float)(millis() - time_last_) * speed_slope_;
     //     if (speed > speed_target_) speed = (float)speed_target_;
     //     time_last_ = millis();
     // } else
     speed = speed_target_;
     int8_t sign = 1;
-    // TODO: if (direction_target_ != speed_dir_) sign = -1;
+    // TODO(eeha): if (direction_target_ != speed_dir_) sign = -1;
     error_ = (sign*((float)speed - (float)speed_));
-    derror_ = ( error_ - last_error_ ) / (millis() - time_last_error_);
+    derror_ = (error_ - last_error_) / (millis() - time_last_error_);
     ierror_ = error_ * (millis() - time_last_error_);
     last_error_ = error_;
     time_last_error_ = millis();
@@ -149,9 +150,9 @@ void ServoRHA::calculateTorque(float _error, float _derror, float _ierror) {
     DebugSerialSRHALn("calculateTorque: begin of function");
     // float error = (float)target_speed - (float)speed_;
     float torque;
-    if (_error != 0)
+    if (_error != 0) {
         error_ = _error; derror_ = _derror; ierror_ = _ierror;
-
+    }
     torque = speed_regulator_.regulator(error_, derror_, ierror_);
     uint16_t torque_offset = load_ - uint16_t(speed_ / TORQUE_PREALIMENTATION_SLOPE);
     uint16_t prealimentation = torque_offset + TORQUE_PREALIMENTATION_SLOPE*float(speed_target_);
@@ -245,7 +246,6 @@ void ServoRHA::setTorqueOnOfToPacket(uint8_t *_buffer, uint8_t _onOff) {
 void ServoRHA::setWheelModeToPacket(uint8_t *_buffer) {
     DebugSerialSRHALn("setWheelModeToPacket: begin of function");
     wheelModeToPacket(_buffer, 0, 0);  // Enable wheel mode
-
 }
 
 /**
@@ -304,7 +304,6 @@ void ServoRHA::setTorqueLimitToPacket(uint8_t *_buffer, uint16_t _torque_limit) 
     txBuffer[1] = _torque_limit & 0x00FF;  // Torque limit bottom 8 bits
     txBuffer[2] = _torque_limit >> 8;  // Torque limit top 8 bits
     addToPacket(_buffer, txBuffer, 3);
-
 }
 
 /**
@@ -363,7 +362,8 @@ uint8_t compareAngles(uint16_t _angle1, uint16_t _angle2, uint8_t _angle_margin)
     DebugSerialSRHALn4("ServoRHA.cpp::compareAngles: begin of function. Angle 1: ", _angle1, ". Angle 2: ", _angle2);
     if (_angle1 < _angle2-_angle_margin) return ServoRHAConstants::LESS_THAN;
     else if (_angle1 > _angle2+_angle_margin) return ServoRHAConstants::GREATER_THAN;
-    else return ServoRHAConstants::EQUAL;
+    else
+        return ServoRHAConstants::EQUAL;
 }
 
 /** @brief compareSpeed function compares two speeds with a margin set.
@@ -376,5 +376,6 @@ uint8_t compareSpeed(uint16_t _speed1, uint16_t _speed2, uint8_t _speed_margin) 
     DebugSerialSRHALn4("ServoRHA.cpp::compareSpeed: begin of function. Speed 1: ", _speed1, ". Speed 2: ", _speed2);
     if (_speed1 < _speed2-_speed_margin) return ServoRHAConstants::LESS_THAN;
     else if (_speed1 > _speed2+_speed_margin) return ServoRHAConstants::GREATER_THAN;
-    else return ServoRHAConstants::EQUAL;
+    else
+        return ServoRHAConstants::EQUAL;
 }

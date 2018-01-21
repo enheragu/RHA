@@ -51,8 +51,9 @@ void JointRHA::init(uint8_t _servo_id, uint8_t _up_direction, uint8_t _potentiom
  */
 float JointRHA::updatePosition() {
     if (potentiometer_pin_ != 255)
-        return map(analogRead(potentiometer_pin_),0,1023,0,255)*joint_pot_relation_;  // from 0 to 5V transform to 0-255 degrees (max angle of potentiometer)
-    else return -1;
+        return map(analogRead(potentiometer_pin_), 0, 1023, 0, 255)*joint_pot_relation_;  // from 0 to 5V transform to 0-255 degrees (max angle of potentiometer)
+    else
+        return -1;
 }
 
 /**

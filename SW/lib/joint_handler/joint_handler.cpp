@@ -41,9 +41,9 @@ void JointHandler::setTimer(uint64_t _timer) {
  */
 void JointHandler::initJoints() {
     DebugSerialJHLn("initJoints: begin of function");
-    joint_[0].init(1, CW, A0);
-    joint_[1].init(2, CW); // does not have potentiometer, not realimented
-    joint_[2].init(3, CW, A1);
+    joint_[0].init(1, CW, A8);
+    joint_[1].init(2, CW);  // does not have potentiometer, not realimented
+    joint_[2].init(3, CW, A9);
 
     joint_[2].setPotRelation(29/42);
 
@@ -66,7 +66,7 @@ void JointHandler::initJoints() {
   */
 void JointHandler::controlLoop() {
     DebugSerialJHLn("controlLoop: begin of function");
-    if(control_loop_timer_.checkContinue()) {
+    if (control_loop_timer_.checkContinue()) {
         // Firt all info have to be updated
         DebugSerialJHLn("controlLoop: Updating joint info");
         updateJointInfo();
@@ -76,12 +76,11 @@ void JointHandler::controlLoop() {
         updateJointErrorTorque();
 
         DebugSerialJHLn("controlLoop: send new torque to servos");
-        // TODO: sendJointTorques();  // <- uses sync packet which aparently does not work well
+        // TODO(eeha): sendJointTorques();  // <- uses sync packet which aparently does not work well
         sendSetWheelSpeedAll();  // <- uses async/single packet to each servo
         // Send buffer
 
         control_loop_timer_.activateTimer();
-
     }
 }
 
@@ -93,7 +92,7 @@ void JointHandler::controlLoop() {
 void JointHandler::updateJointInfo() {
     DebugSerialJHLn("updateJointInfo: begin of function");
     uint8_t buffer[BUFFER_LEN];
-    for(uint8_t i = 0; i < NUM_JOINT; i++) {
+    for (uint8_t i = 0; i < NUM_JOINT; i++) {
         joint_[i].servo_.addUpadteInfoToPacket(buffer);
         uint8_t txBuffer[BUFFER_LEN];
         warpSinglePacket(iREAD_DATA, buffer, txBuffer);
@@ -101,7 +100,6 @@ void JointHandler::updateJointInfo() {
         DebugSerialJHLn4Error(error, joint_[i].servo_.getID());
         joint_[i].updateInfo(txBuffer, error);
     }
-
 }
 
 /**
@@ -110,7 +108,7 @@ void JointHandler::updateJointInfo() {
  */
 void JointHandler::updateJointErrorTorque() {
     DebugSerialJHLn("updateJointErrorTorque: begin of function");
-    for(uint8_t i = 0; i < NUM_JOINT; i++) {
+    for (uint8_t i = 0; i < NUM_JOINT; i++) {
         joint_[i].servo_.speedError();
         joint_[i].servo_.calculateTorque();
     }
@@ -125,7 +123,7 @@ void JointHandler::sendJointTorques() {
     uint8_t buffer[BUFFER_LEN];
     uint8_t buffer_to_send[BUFFER_LEN];
     uint8_t num_bytes = 0, num_servo = 0;
-    for(uint8_t i = 0; i < NUM_JOINT; i++) {
+    for (uint8_t i = 0; i < NUM_JOINT; i++) {
         if (joint_[i].servo_.addTorqueToPacket(buffer)) {
             num_servo++;
             num_bytes = addToSyncPacket(buffer_to_send, buffer, num_bytes);
@@ -146,7 +144,6 @@ void JointHandler::setSpeedGoal(RHATypes::SpeedGoal _goal) {
     for (uint8_t i = 0; i < NUM_JOINT; i++) {
         if (joint_[i].servo_.setSpeedGoal(_goal)) return;
     }
-
 }
 
 void JointHandler::setReturnPacketOption(uint8_t _option) {
@@ -175,7 +172,7 @@ void JointHandler::sendSetWheelModeAll() {
     eeprom_timer.activateTimer();
 
     DebugSerialJHLn("sendSetWheelModeAll: set wheel mode");
-    for(uint8_t i = 0; i < NUM_JOINT; i++) {
+    for (uint8_t i = 0; i < NUM_JOINT; i++) {
         // First set angle limit
         joint_[i].servo_.setWheelModeToPacket(buffer);
         warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
@@ -185,7 +182,7 @@ void JointHandler::sendSetWheelModeAll() {
     eeprom_timer.checkWait();
     eeprom_timer.activateTimer();
     DebugSerialJHLn("sendSetWheelModeAll: set torque ON");
-    for(uint8_t i = 0; i < NUM_JOINT; i++) {
+    for (uint8_t i = 0; i < NUM_JOINT; i++) {
         // Then set torque ON
         joint_[i].servo_.setTorqueOnOfToPacket(buffer, ON);
         warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
@@ -208,7 +205,7 @@ void JointHandler::sendExitWheelModeAll() {
     eeprom_timer.setTimer(EEMPROM_WRITE_DELAY);
     eeprom_timer.activateTimer();
 
-    for(uint8_t i = 0; i < NUM_JOINT; i++) {
+    for (uint8_t i = 0; i < NUM_JOINT; i++) {
         joint_[i].servo_.exitWheelModeToPacket(buffer);
         warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
         uint16_t error = sendPacket(txBuffer);
@@ -217,7 +214,7 @@ void JointHandler::sendExitWheelModeAll() {
     eeprom_timer.checkWait();
     eeprom_timer.activateTimer();
     DebugSerialJHLn("sendExitWheelModeAll: set torque OFF");
-    /*for(uint8_t i = 0; i < NUM_JOINT; i++) {
+    /*for (uint8_t i = 0; i < NUM_JOINT; i++) {
         // Then set torque ON
         joint_[i].servo_.setTorqueOnOfToPacket(buffer, OFF);
         warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
@@ -237,7 +234,7 @@ void JointHandler::sendSetTorqueLimitAll(uint16_t _torque_limit) {
     DebugSerialJHLn("sendSetTorqueLimitAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
     uint8_t txBuffer[BUFFER_LEN];
-    for(uint8_t i = 0; i < NUM_JOINT; i++) {
+    for (uint8_t i = 0; i < NUM_JOINT; i++) {
         joint_[i].servo_.setTorqueLimitToPacket(buffer, _torque_limit);
         warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
         uint16_t error = sendPacket(txBuffer);
@@ -256,13 +253,12 @@ void JointHandler::sendSetWheelSpeedAll(uint16_t _speed, uint8_t _direction) {
     DebugSerialJHLn("sendSetWheelSpeedAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
     uint8_t txBuffer[BUFFER_LEN];
-    for(uint8_t i = 0; i < NUM_JOINT; i++) {
+    for (uint8_t i = 0; i < NUM_JOINT; i++) {
         if (_speed != 0) {
             DebugSerialJHLn2("sendSetWheelSpeedAll: speed to set is: ", _speed);
             DebugSerialJHLn2("sendSetWheelSpeedAll: in direction: (CW = 1; CCW = 0)", _direction);
             joint_[i].servo_.setWheelSpeedToPacket(buffer, _speed, _direction);
-        }
-        else {
+        } else {
             joint_[i].servo_.setWheelSpeedToPacket(buffer, joint_[i].servo_.getGoalTorque(), joint_[i].servo_.getDirectionTarget());  // getGoalTorque if used with realimentation, getSpeedTarget if not
         }
         warpSinglePacket(iWRITE_DATA, buffer, txBuffer);
@@ -281,7 +277,7 @@ bool JointHandler::checkConectionAll() {
     DebugSerialJHLn("checkConectionAll: begin of function");
     uint8_t buffer[BUFFER_LEN];
     uint8_t txBuffer[BUFFER_LEN];
-    for(uint8_t i = 0; i < NUM_JOINT; i++) {
+    for (uint8_t i = 0; i < NUM_JOINT; i++) {
         joint_[i].servo_.pingToPacket(buffer);
         warpSinglePacket(iPING, buffer, txBuffer);
         uint16_t error = sendPacket(txBuffer);
@@ -307,7 +303,7 @@ bool JointHandler::checkConectionAll() {
 uint8_t JointHandler::addToSyncPacket(uint8_t *_buffer, uint8_t *_data, uint8_t _num_bytes) {
     DebugSerialJHLn("addToSyncPacket: begin of function");
     _buffer[ _num_bytes] = _data[0];  _num_bytes++;
-    for (int i = 0; i < _data[1]-1; i++) {  //skips lenght and register addres
+    for (int i = 0; i < _data[1]-1; i++) {  // skips lenght and register addres
         _buffer[ _num_bytes] = _data[i+3];   _num_bytes++;  // component 2 and 3 are packet_len and instruction
     }
     return  _num_bytes;  // Packet len + servo ID
@@ -461,7 +457,7 @@ uint16_t JointHandler::sendPacket(uint8_t *_txBuffer) {
 
     /*Serial.println("- Packet Sent: ");
     Serial.print("  [");
-    for(i = 0; i < txBuffer_print[3]+4; i++) {
+    for (i = 0; i < txBuffer_print[3]+4; i++) {
         Serial.print(", "); Serial.print("0x"); Serial.print(txBuffer_print[i], HEX);
     }
     Serial.println("]");
@@ -515,7 +511,7 @@ JointHandler::JointHandler(uint8_t _ctrlpin) {
  * @param  baudrate                 Baudrate in which to communicate
  * @see JointHandler::begin()
  */
-void JointHandler::initSerial(uint8_t _rxpin, uint8_t _txpin, uint8_t _ctrlpin, uint32_t _baudrate){
+void JointHandler::initSerial(uint8_t _rxpin, uint8_t _txpin, uint8_t _ctrlpin, uint32_t _baudrate) {
      DebugSerialJHLn("initSerial: begin of function");
      rxpin_shield_ = _rxpin;
      txpin_shield_ = _txpin;
@@ -529,33 +525,33 @@ void JointHandler::initSerial(uint8_t _rxpin, uint8_t _txpin, uint8_t _ctrlpin, 
  * @param  baudrate            Baudrate in which to communicate
  */
 void JointHandler::begin(uint32_t _baudrate) {
-     DebugSerialJHLn2("begin: begin at baudrate: ", _baudrate);
-   if ((rxpin_shield_ == 0 && txpin_shield_ == 1) || (CHECK_MEGA_HARDWARESERIAL(rxpin_shield_,txpin_shield_))) {
-         hardwareSerial_ = true;
-         Serial_G15_lib.begin(_baudrate);
-         while (!Serial) {}
-         Serial_G15_lib.setTimeout(SerialTimeOut);
-     } else {
-         hardwareSerial_ = false;
-         pinMode(rxpin_shield_, INPUT);
-         pinMode(txpin_shield_, OUTPUT);
-         G15Serial_ = new SoftwareSerial(rxpin_shield_, txpin_shield_);
-         G15Serial_->begin(_baudrate);
-         G15Serial_->setTimeout(SerialTimeOut);
-     }
-     pinMode(ctrlpin_shield_, OUTPUT);
-     setTxMode();
+    DebugSerialJHLn2("begin: begin at baudrate: ", _baudrate);
+    if ((rxpin_shield_ == 0 && txpin_shield_ == 1) || (CHECK_MEGA_HARDWARESERIAL(rxpin_shield_, txpin_shield_))) {
+        hardwareSerial_ = true;
+        Serial_G15_lib.begin(_baudrate);
+        while (!Serial) {}
+        Serial_G15_lib.setTimeout(SerialTimeOut);
+    } else {
+        hardwareSerial_ = false;
+        pinMode(rxpin_shield_, INPUT);
+        pinMode(txpin_shield_, OUTPUT);
+        G15Serial_ = new SoftwareSerial(rxpin_shield_, txpin_shield_);
+        G15Serial_->begin(_baudrate);
+        G15Serial_->setTimeout(SerialTimeOut);
+    }
+    pinMode(ctrlpin_shield_, OUTPUT);
+    setTxMode();
 }
 
 void JointHandler::end(void) {
-     if ((rxpin_shield_ == 0 && txpin_shield_ == 1)  || CHECK_MEGA_HARDWARESERIAL(rxpin_shield_, txpin_shield_)) {
-         Serial_G15_lib.end();
-     } else {
-         pinMode(rxpin_shield_, INPUT);
-         pinMode(txpin_shield_, INPUT);
-         G15Serial_->end();
-     }
-     pinMode(ctrlpin_shield_, INPUT);
+    if ((rxpin_shield_ == 0 && txpin_shield_ == 1)  || CHECK_MEGA_HARDWARESERIAL(rxpin_shield_, txpin_shield_)) {
+        Serial_G15_lib.end();
+    } else {
+        pinMode(rxpin_shield_, INPUT);
+        pinMode(txpin_shield_, INPUT);
+        G15Serial_->end();
+    }
+    pinMode(ctrlpin_shield_, INPUT);
 }
 
 void JointHandler::setTxMode(void) {

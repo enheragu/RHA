@@ -127,7 +127,7 @@ void test_function_checkConection_mock(void) {
 
     jh_test1.warpSinglePacket(iPING, buffer, txBuffer);
 
-    uint8_t checksum = ~ (SERVO_ID + 0x02 + iPING);
+    uint8_t checksum = ~(SERVO_ID + 0x02 + iPING);
     uint8_t buffer_test[6] = { 0xFF, 0xFF, SERVO_ID, 0x02, iPING, checksum};
 
     TEST_ASSERT_EQUAL_UINT8_ARRAY(buffer_test, txBuffer, txBuffer[3]+4);
@@ -138,7 +138,8 @@ void test_function_sendSetWheelModeAll_mock(void) {
     uint8_t buffer[10];
     uint8_t txBuffer[BUFFER_LEN];
 
-    jh_test1.joint_[0].init(SERVO_ID, CW, A0);RHATypes::Timer eeprom_timer;
+    jh_test1.joint_[0].init(SERVO_ID, CW, A0);
+    RHATypes::Timer eeprom_timer;
     eeprom_timer.setTimer(EEMPROM_WRITE_DELAY);
     eeprom_timer.activateTimer();
 
@@ -167,7 +168,7 @@ void test_function_sendSetWheelModeAll_mock(void) {
 }
 
 void test_function_controlLoop_oneJoint(void) {
-    // TODO: syncPacket does not work, no testing for it
+    // TODO(eeha): syncPacket does not work, no testing for it
     /*JointHandler jh_test1;
     uint8_t buffer[10];
     uint8_t buffer_to_send[BUFFER_LEN];

@@ -25,7 +25,8 @@
 class ServoRHA;
 
 class JointRHA {
-  uint8_t up_direction_, potentiometer_pin_, position_pot_;
+  uint8_t up_direction_, potentiometer_pin_;
+  float position_pot_;
   float joint_pot_relation_;
 
   uint32_t pot_max_value, pot_min_value;
@@ -45,7 +46,7 @@ class JointRHA {
   float updatePosition();
   void updateInfo(uint8_t *_data, uint16_t _error);
 
- private:
+  float getPosition() { return position_pot_; }
 };
 
 #endif

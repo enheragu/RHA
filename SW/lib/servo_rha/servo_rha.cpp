@@ -158,7 +158,7 @@ void ServoRHA::calculateTorque(float _error, float _derror, float _ierror) {
     uint16_t prealimentation = torque_offset + TORQUE_PREALIMENTATION_SLOPE*float(speed_target_);
     torque = torque + prealimentation;
     if (torque > MAX_TORQUE_VALUE) torque = MAX_TORQUE_VALUE;  // compensate saturation of servos
-
+    if (speed_target_ == 0) torque = 0;
     DebugSerialSRHALn2("calculateTorque: torque calculated is: ", goal_torque_);
     goal_torque_ = uint16_t(torque);
 }

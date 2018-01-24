@@ -64,8 +64,8 @@
 // #define DEBUG_JOINT_HANDLER  // -> Not stable
 // #define DEBUG_CYTRON_G15_SERVO
 // #define DEBUG_TEST_CYTRON_G15_SERVO
-#define DEBUG_UTILITIES
-#define DEBUG_ROBOT_RHA
+// #define DEBUG_UTILITIES
+// #define DEBUG_ROBOT_RHA
 // #define DEBUG_RHA_TYPES
 // #define DEBUG_JOINT_RHA
 

@@ -32,7 +32,7 @@
     // Serial2 on pins 17 (RX) and 16 (TX)
     // Serial3 on pins 15 (RX) and 14 (TX)
 // Arduino Leonardo
-#elif defined __AVR_ATmega32U4__
+#elif defined (__AVR_ATmega32U4__)
     #define Serial_G15_lib Serial1
     #define CHECK_MEGA_HARDWARESERIAL(rx, tx) false
 #else

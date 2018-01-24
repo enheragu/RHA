@@ -5,9 +5,11 @@
  * @method RobotRHA::initJointHandler
  */
 void RobotRHA::initJointHandler() {
+    DebugSerialRRHALn("initJointHandler: begin of function");
     joint_handler_.setTimer(SPEED_CONTROL_PERIOD);
     joint_handler_.initSerial(G15_RX_PIN, G15_TX_PIN, G15_CONTRL_PIN, G15_BAUDRATE);  // baudrate 460800 means 57.6 bytes/milisecond
     joint_handler_.initJoints();
+    DebugSerialRRHALn("initJointHandler: end of function");
 }
 
 /**
@@ -15,8 +17,10 @@ void RobotRHA::initJointHandler() {
  * @method RobotRHA::initChuckHandler
  */
 void RobotRHA::initChuckHandler() {
+    DebugSerialRRHALn("initChuckHandler: begin of function");
     chuck_handler_.begin();
     chuck_handler_.setTimer(CHUCK_UPDATE_PERIOD);
+    DebugSerialRRHALn("initChuckHandler: end of function");
 }
 
 void RobotRHA::handleRobot() {
@@ -59,7 +63,8 @@ void RobotRHA::setSpeedToServos(float _speed, uint8_t _servo_id) {
 void RobotRHA::handleWithChuck() {
     DebugSerialRRHALn("handleWithChuck: begin of function");
     DebugSerialRRHALn("handleWithChuck: getting speed commands");
-    ChuckReadStruct speed_commands = ChuckReadStruct(20, 20, 20, true);  // chuck_handler_.readAxis();
+    // ChuckReadStruct speed_commands = ChuckReadStruct(20, 20, 20, true);
+    ChuckReadStruct speed_commands = chuck_handler_.readAxis();
     DebugSerialRRHALn("handleWithChuck: setting goal speed to servos");
     if (speed_commands.updated_) {
         // Chuck returns % in speed.

@@ -19,34 +19,63 @@
 #include "debug.h"
 
 #include "Arduino.h"
-#include <SoftwareSerial.h>
 
+namespace JointRHAConstants {
+
+#define ANGLE_TOLERANCE 2
+
+namespace SpeedRegulatorK {
+    #define KP 0.75  // 1.66
+    #define KD 0
+    #define KI 0
+}
+}  // namespace JointRHAConstants
 
 class ServoRHA;
 
 class JointRHA {
-  uint8_t up_direction_, potentiometer_pin_;
+  bool up_direction_;
+  uint8_t potentiometer_pin_;
   float position_pot_;
   float joint_pot_relation_;
 
   uint32_t pot_max_value, pot_min_value;
   uint8_t angle_max_value, angle_min_value;
 
+  int position_target_;
+  float pos_error_, pos_last_error_, pos_derror_, pos_ierror_;
+  uint64_t time_last_error_;
+
+  RHATypes::SpeedGoal goal_speed_;
+
  public:
+  RHATypes::Regulator speed_regulator_;
+
   ServoRHA servo_;
-  JointRHA(uint8_t _servo_id, uint8_t _up_direction, uint8_t _potentiometer = 255);
-  JointRHA() {}
+  JointRHA(uint8_t _servo_id, uint8_t _up_direction, uint8_t _potentiometer = 245);
+  JointRHA();
   ~JointRHA();
 
-  void init(uint8_t _servo_id, uint8_t _up_direction, uint8_t _potentiometer = 255);
+  void init(uint8_t _servo_id, uint8_t _up_direction, uint8_t _potentiometer = 245);
   void setPotRelation(float _relation = 1);
   void initPotMeasurment(uint32_t _pot_min_value, uint32_t _pot_max_value, uint8_t _angle_min_value, uint8_t _angle_max_value);
   uint8_t setSpeedGoal(RHATypes::SpeedGoal _goal);
 
-  float updatePosition();
+  void updatePosition();
   void updateInfo(uint8_t *_data, uint16_t _error);
 
+  void setPositionGoal(int _position);
+  void posError();
+  void calculateSpeed(float _error = 0, float _derror = 0, float _ierror = 0);
+  void updateServoSpeedGoal();
+
+  bool reachedGoalPosition();
   float getPosition() { return position_pot_; }
+  float getGoalSpeed() { return goal_speed_.speed; }
+  int getPosTarget() { return position_target_; }
+  float getError() { return pos_error_; }
+  float getDError() { return pos_derror_; }
+  float getIError() { return pos_ierror_; }
 };
 
 #endif

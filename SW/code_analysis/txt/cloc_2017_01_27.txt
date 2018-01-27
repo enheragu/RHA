@@ -1,0 +1,29 @@
+      22 text files.
+classified 22 files      22 unique files.                              
+       5 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.09 s (190.5 files/s, 35405.5 lines/s)
+---------------------------------------------------------------------------------------------------------------------
+File                                                                              blank        comment           code
+---------------------------------------------------------------------------------------------------------------------
+/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp                   69            192            366
+/home/quique/Documentos/RHA/SW/lib/utilities/utilities.cpp                           71             64            346
+/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.cpp                           50            158            175
+/home/quique/Documentos/RHA/SW/lib/servo_rha/servo_rha.h                             27             28            142
+/home/quique/Documentos/RHA/SW/lib/chuck_handler/WiiChuck.h                          45             62            121
+/home/quique/Documentos/RHA/SW/lib/debug/debug.h                                     28             65            117
+/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.cpp                           17             66             80
+/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.h                     32             22             78
+/home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.cpp                           10             38             71
+/home/quique/Documentos/RHA/SW/lib/utilities/utilities.h                             18             31             67
+/home/quique/Documentos/RHA/SW/lib/chuck_handler/chuck_handler.h                     18             16             66
+/home/quique/Documentos/RHA/SW/lib/rha_types/rha_types.h                             18             51             62
+/home/quique/Documentos/RHA/SW/lib/rha_types/fuzzy_regulator.h                       17             32             60
+/home/quique/Documentos/RHA/SW/lib/joint_rha/joint_rha.h                             19             11             51
+/home/quique/Documentos/RHA/SW/src/main.cpp                                          14             35             46
+/home/quique/Documentos/RHA/SW/lib/rha_types/pid_regulator.h                         13             30             38
+/home/quique/Documentos/RHA/SW/lib/debug/debug.cpp                                    3             12             33
+/home/quique/Documentos/RHA/SW/lib/robot_rha/robot_rha.h                              9              8             28
+---------------------------------------------------------------------------------------------------------------------
+SUM:                                                                                478            921           1947
+---------------------------------------------------------------------------------------------------------------------

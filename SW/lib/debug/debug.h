@@ -61,13 +61,14 @@
 // #define DEBUG_SERVO_RHA
 // #define DEBUG_TEST_SERVO_RHA
 // #define DEBUG_TEST_JOINT_RHA
-// #define DEBUG_JOINT_HANDLER  // -> Not stable
+ #define DEBUG_JOINT_HANDLER  // -> Not stable
 // #define DEBUG_CYTRON_G15_SERVO
 // #define DEBUG_TEST_CYTRON_G15_SERVO
 // #define DEBUG_UTILITIES
 // #define DEBUG_ROBOT_RHA
 // #define DEBUG_RHA_TYPES
-// #define DEBUG_JOINT_RHA
+ #define DEBUG_JOINT_RHA
+ #define PRINT_SERVO_ERROR_MSG false
 
 void printServoStatusError(uint16_t error, uint8_t ID);
 void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t load, uint8_t load_dir, uint8_t voltage, uint8_t temperature, uint16_t error);

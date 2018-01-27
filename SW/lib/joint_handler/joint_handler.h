@@ -64,7 +64,7 @@ namespace JointHandlerConstants {
 
     #define G15_BAUDRATE 460800
 
-    #define NUM_JOINT 1
+    #define NUM_JOINT 3
     #define BUFFER_LEN 30
 
     #define EEMPROM_WRITE_DELAY 25
@@ -72,7 +72,8 @@ namespace JointHandlerConstants {
 
 
 class JointHandler {
-    RHATypes::Timer control_loop_timer_;
+    RHATypes::Timer torque_control_loop_timer_;  /**< This timer is intended for servo speed control loop (input is speed goal, output is torque for servos)*/
+    RHATypes::Timer speed_control_loop_timer_;  /**< This timer is intended for joint position control loop (input is pos goal, output is servo for servoRHA)*/
 
     uint8_t txpin_shield_, rxpin_shield_, ctrlpin_shield_;
 
@@ -85,13 +86,18 @@ class JointHandler {
     explicit JointHandler(uint64_t timer);
     virtual void initJoints();
     void setSpeedGoal(RHATypes::SpeedGoal _goal);
-    void setTimer(uint64_t timer);
+    void setTorqueControlTimer(uint64_t timer);
+    void setSpeedControlTimer(uint64_t timer);
 
-    virtual void controlLoop();
+    virtual void controlLoopTorque();
+    virtual void controlLoopSpeed();
 
     void updateJointInfo();
     void updateJointErrorTorque();
     void sendJointTorques();
+
+    void updateJointErrorSpeed();
+    void sendSpeedGoalAll();
 
     void sendSetWheelModeAll();
     void sendExitWheelModeAll();

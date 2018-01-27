@@ -104,20 +104,20 @@ void JHUtilitiesJH::extractRegulatorData(uint8_t _joint_to_test) {
     RHATypes::SpeedGoal speed_goal(joint_[_joint_to_test].servo_.getID(), SPEED_REGULATOR_TEST, 0, CW);  // Id, speed, speed_slope
     setSpeedGoal(speed_goal);
     for (uint8_t samples = 0; samples < SAMPLE_KP; samples++) {
-        joint_[_joint_to_test].servo_.speed_regulator_.setKRegulator(kp_samples[samples], ki_samples[samples], kd_samples[samples]);  // KP_SAMPLES(a) defined in the top of utilities.h
+        joint_[_joint_to_test].servo_.torque_regulator_.setKRegulator(kp_samples[samples], ki_samples[samples], kd_samples[samples]);  // KP_SAMPLES(a) defined in the top of utilities.h
         Serial.print("n_data"); Serial.print(samples); Serial.print(" = "); Serial.println(SAMPLE_REGULATOR);
         Serial.print("speed_target"); Serial.print(samples); Serial.print("  = "); Serial.println(joint_[_joint_to_test].servo_.getSpeedTarget());
         Serial.print("regulator_offset"); Serial.print(samples); Serial.print("  = "); Serial.println(TORQUE_OFFSET);
         Serial.print("regulator_prealimentation"); Serial.print(samples); Serial.print("  = "); Serial.println(TORQUE_PREALIMENTATION_SLOPE);
         Serial.print("regulatorTest"); Serial.print(samples); Serial.print("  = [");
-        Serial.print("['"); Serial.print(joint_[_joint_to_test].servo_.speed_regulator_.getKp()); Serial.print("','"); Serial.print(joint_[_joint_to_test].servo_.speed_regulator_.getKi()); Serial.print("','"); Serial.print(joint_[_joint_to_test].servo_.speed_regulator_.getKd());
+        Serial.print("['"); Serial.print(joint_[_joint_to_test].servo_.torque_regulator_.getKp()); Serial.print("','"); Serial.print(joint_[_joint_to_test].servo_.torque_regulator_.getKi()); Serial.print("','"); Serial.print(joint_[_joint_to_test].servo_.torque_regulator_.getKd());
         Serial.print("']");
 
         JointHandler::sendSetWheelModeAll();
 
         for (int counter = 0; counter < SAMPLE_REGULATOR; counter++) {
             uint64_t time_init = millis();
-            JointHandler::controlLoop();
+            JointHandler::controlLoopTorque();
 
             Serial.print(",['"); Serial.print(joint_[_joint_to_test].servo_.getSpeed()); Serial.print("','");
             Serial.print((unsigned long)time_init);

@@ -8,6 +8,9 @@
 #define CHUCK_MARGIN 40
 #define CHUCK_MAX_VALUE 90
 
+// SDA goes to pin A4
+// SCL goes to pin A5
+
 struct ChuckReadStruct {
     int X_, Y_, Z_;
     bool updated_;

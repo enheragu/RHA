@@ -13,7 +13,8 @@
 #include "chuck_handler.h"
 #include "joint_handler.h"
 
-#define SPEED_CONTROL_PERIOD (3 * NUM_JOINT)  // 50
+#define TORQUE_CONTROL_PERIOD (3 * NUM_JOINT)  // 50
+#define SPEED_CONTROL_PERIOD (TORQUE_CONTROL_PERIOD * 10)
 #define CHUCK_UPDATE_PERIOD 100
 
 #define G15_BAUDRATE 460800
@@ -35,6 +36,8 @@ class RobotRHA {
     void setSpeedToServos(float _speed, uint8_t _servo_id);
 
     void handleWithChuck();
+    void handleWithSerialPort();
+    int getGoalFromSerialInput(int _joint_target);
 
     JointHandler joint_handler_;
     ChuckHandler chuck_handler_;

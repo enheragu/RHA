@@ -6,7 +6,8 @@
  */
 void RobotRHA::initJointHandler() {
     DebugSerialRRHALn("initJointHandler: begin of function");
-    joint_handler_.setTimer(SPEED_CONTROL_PERIOD);
+    joint_handler_.setTorqueControlTimer(TORQUE_CONTROL_PERIOD);
+    joint_handler_.setSpeedControlTimer(SPEED_CONTROL_PERIOD);
     joint_handler_.initSerial(G15_RX_PIN, G15_TX_PIN, G15_CONTRL_PIN, G15_BAUDRATE);  // baudrate 460800 means 57.6 bytes/milisecond
     joint_handler_.initJoints();
     DebugSerialRRHALn("initJointHandler: end of function");
@@ -75,6 +76,44 @@ void RobotRHA::handleWithChuck() {
         setCartesianSpeedGoal(speed_x, speed_y, speed_z);
     }
     // else setCartesianSpeedGoal(speed_commands.X_, speed_commands.Y_, speed_commands.Z_);
-    DebugSerialRRHALn("handleWithChuck: calling joint_handler control loop");
-    joint_handler_.controlLoop();
+    DebugSerialRRHALn("handleWithChuck: calling joint_handler control loop for servo torque");
+    joint_handler_.controlLoopTorque();
+}
+
+/**
+ * @brief Handles all GDL with serial port input. Ask Goal position for all GDL and then goes to it
+ * @method RobotRHA::handleWithSerialPort
+ */
+void RobotRHA::handleWithSerialPort() {
+    DebugSerialRRHALn("handleWithSerialPort: begin of function");
+    int goal_pos_joint_0, goal_pos_joint_1, goal_pos_joint_2;
+    if (joint_handler_.joint_[0].reachedGoalPosition() && joint_handler_.joint_[2].reachedGoalPosition()) {
+        goal_pos_joint_0 = getGoalFromSerialInput(0);
+        // goal_pos_joint_1 = getGoalFromSerialInput(2);
+        goal_pos_joint_2 = getGoalFromSerialInput(2);
+
+        joint_handler_.joint_[0].setPositionGoal(goal_pos_joint_0);
+        joint_handler_.joint_[2].setPositionGoal(goal_pos_joint_2);
+    }
+
+    DebugSerialRRHALn("handleWithSerialPort: calling joint_handler control loop for ServoRHA speed");
+    joint_handler_.controlLoopSpeed();
+    DebugSerialRRHALn("handleWithSerialPort: calling joint_handler control loop for servo torque");
+    joint_handler_.controlLoopTorque();
+}
+
+/**
+  * @brief Asks a position to go through the serial port and returns it
+  * @method RobotRHA::getGoalFromSerialInput
+  * @param  _joint_target         joint for which the goal is intended
+ */
+int RobotRHA::getGoalFromSerialInput(int _joint_target) {
+    Serial.print("Join to command is now in pos = "); Serial.println(joint_handler_.joint_[_joint_target].getPosition());
+    Serial.print("Introduce goal position for joint: "); Serial.println(_joint_target);
+    while(Serial.available() <= 0) {
+        delay(1);  // Wait for msg, if theres no msg do nothing
+    }
+    int incoming_value = Serial.read();
+    Serial.print("Going to "); Serial.print(incoming_value); Serial.println(" position");
+    return incoming_value;
 }

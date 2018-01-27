@@ -147,7 +147,7 @@ void test_function_calculateTorque(void) {
     // Needs speed goal in order to calculate the prealimentation correctly
     RHATypes::SpeedGoal speed_goal(SERVO_ID, 50, 0, CW);  // target for servo with id=SERVO_ID to 50 rpm with no accel slope in CW dir
     servo_test1.setSpeedGoal(speed_goal);
-    servo_test1.speed_regulator_.setKRegulator(10.0F, 10.0F, 10.0F);
+    servo_test1.torque_regulator_.setKRegulator(10.0F, 10.0F, 10.0F);
 
     uint8_t data[8] = {  0xF4, 0x01, 0xC5, 0x05, 0x37, 0x04, 0x0C, 0x20};
     servo_test1.updateInfo(data, SERROR_INSTRUCTION);  // sets init state of servo starting in CW dir
@@ -183,7 +183,7 @@ void test_function_addTorqueToPacket(void) {
     // Needs speed goal in order to calculate the prealimentation correctly
     RHATypes::SpeedGoal speed_goal(SERVO_ID, 50, 0, CW);  // target for servo with id=SERVO_ID to 0 rpm with no accel slope in CW dir
     servo_test1.setSpeedGoal(speed_goal);
-    servo_test1.speed_regulator_.setKRegulator(10.0F, 10.0F, 10.0F);
+    servo_test1.torque_regulator_.setKRegulator(10.0F, 10.0F, 10.0F);
 
     uint8_t data[8] = {  0xF4, 0x01, 0xC5, 0x05, 0x37, 0x04, 0x0C, 0x20};
     servo_test1.updateInfo(data, SERROR_INSTRUCTION);  // sets init state of servo

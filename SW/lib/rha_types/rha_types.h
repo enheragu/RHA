@@ -29,7 +29,7 @@ struct SpeedGoal {
     int16_t speed;
     int16_t speed_slope;
     uint8_t direction;
-    SpeedGoal();
+    SpeedGoal() {}
     SpeedGoal(uint8_t _id, int16_t _speed, int16_t _speed_slope, uint8_t _direction): servo_id(_id), speed(_speed), speed_slope(_speed_slope), direction(_direction) {}
 };
 

@@ -21,18 +21,29 @@ SoftwareSerial* G15Serial_;
   * @method JointHandler::JointHandler
   */
 JointHandler::JointHandler(uint64_t _timer) {
-    control_loop_timer_.setTimer(_timer);
+    torque_control_loop_timer_.setTimer(_timer);
 }
 
 /**
- * @brief Initialices timer from control_loop
+ * @brief Initialices timer from control_loop for speed in ServoRHA
  * @method JointHandler::init
  * @param  timer              time in ms for control loop
  */
-void JointHandler::setTimer(uint64_t _timer) {
+void JointHandler::setTorqueControlTimer(uint64_t _timer) {
     DebugSerialJHLn("setTimer: begin of function");
-    control_loop_timer_.setTimer(_timer);
-    control_loop_timer_.activateTimer();
+    speed_control_loop_timer_.setTimer(_timer);
+    speed_control_loop_timer_.activateTimer();
+}
+
+/**
+ * @brief Initialices timer from control_loop for position in JointRHA
+ * @method JointHandler::init
+ * @param  timer              time in ms for control loop
+ */
+void JointHandler::setSpeedControlTimer(uint64_t _timer) {
+    DebugSerialJHLn("setTimer: begin of function");
+    torque_control_loop_timer_.setTimer(_timer);
+    torque_control_loop_timer_.activateTimer();
 }
 
 /**
@@ -41,12 +52,12 @@ void JointHandler::setTimer(uint64_t _timer) {
  */
 void JointHandler::initJoints() {
     DebugSerialJHLn("initJoints: begin of function");
-    joint_[0].init(1, CW, A0);
+    joint_[0].init(1, CW, 0);
     joint_[1].init(2, CW);  // does not have potentiometer, not realimented
-    joint_[2].init(3, CW, A1);
+    joint_[2].init(3, CW, 1);
 
-    joint_[0].setPotRelation(1);
-    joint_[2].setPotRelation(29/42);
+    joint_[0].setPotRelation(29/42);
+    joint_[2].setPotRelation(1);
 
     RHATypes::Timer eeprom_timer;
     eeprom_timer.setTimer(EEMPROM_WRITE_DELAY);
@@ -65,11 +76,11 @@ void JointHandler::initJoints() {
 }
 
 /**
-  * @brief controlLoop() function handles control loop for servo speed
+  * @brief controlLoopTorque() function handles control loop for servo speed (output of regulator is torque for servo)
   */
-void JointHandler::controlLoop() {
+void JointHandler::controlLoopTorque() {
     DebugSerialJHLn("controlLoop: begin of function");
-    if (control_loop_timer_.checkContinue()) {
+    if (torque_control_loop_timer_.checkContinue()) {
         // Firt all info have to be updated
         DebugSerialJHLn("controlLoop: Updating joint info");
         updateJointInfo();
@@ -83,9 +94,30 @@ void JointHandler::controlLoop() {
         sendSetWheelSpeedAll();  // <- uses async/single packet to each servo
         // Send buffer
 
-        control_loop_timer_.activateTimer();
+        torque_control_loop_timer_.activateTimer();
     }
 }
+
+/**
+ * @brief controlLoopSpeed() function handles control loop for joint position (output of regulator is speed for ServoRHA)
+ * @method JointHandler::updateJointInfo
+ */
+ void JointHandler::controlLoopSpeed() {
+     DebugSerialJHLn("controlLoopSpeed: begin of function");
+     if (speed_control_loop_timer_.checkContinue()) {
+         // Info is supposed to be updated faster in the other control loop. It is not updated here to avoid losing time comunicating
+         //DebugSerialJHLn("controlLoopSpeed: Updating joint info");
+         //updateJointInfo();
+
+         DebugSerialJHLn("controlLoopSpeed: Updating joint error pos");
+         updateJointErrorSpeed();
+
+         DebugSerialJHLn("controlLoopSpeed: send new speed to ServoRHA");
+         sendSpeedGoalAll();
+
+         speed_control_loop_timer_.activateTimer();
+     }
+ }
 
 /**
  * @brief Updates internal information from all joint.
@@ -138,6 +170,30 @@ void JointHandler::sendJointTorques() {
 }
 
 /**
+ * @brief Updates all joint position error to update speed goal sor ServoRHA
+ * @method JointHandler::updateJointErrorSpeed
+ */
+void JointHandler::updateJointErrorSpeed() {
+    DebugSerialJHLn("updateJointErrorSpeed: begin of function");
+    for (uint8_t i = 0; i < NUM_JOINT; i++) {
+        joint_[i].posError();
+        joint_[i].calculateSpeed();
+    }
+}
+
+/**
+ * @brief Sends speed goal calculated to ServoRHA
+ * @method JointHandler::sendSpeedGoalAll
+ */
+void JointHandler::sendSpeedGoalAll() {
+    DebugSerialJHLn("sendSpeedGoalAll: begin of function");
+    for (uint8_t i = 0; i < NUM_JOINT; i++) {
+        joint_[i].updateServoSpeedGoal();
+    }
+}
+
+
+/**
  * @brief Sets speed goal to a given joint (based on servo ID in goal)
  * @method JointHandler::setSpeedGoal
  * @param  goal Goal containing speed, speed_slope and ID
@@ -149,6 +205,11 @@ void JointHandler::setSpeedGoal(RHATypes::SpeedGoal _goal) {
     }
 }
 
+/**
+ * @brief Sets retunr packet option for all joints
+ * @method JointHandler::setReturnPacketOption
+ * @param  _option                             [description]
+ */
 void JointHandler::setReturnPacketOption(uint8_t _option) {
     DebugSerialJHLn("setReturnPacketOption: begin of function");
     uint8_t buffer[BUFFER_LEN];

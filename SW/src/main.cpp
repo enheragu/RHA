@@ -26,7 +26,7 @@ void setup() {
 
     robo_health_arm.initJointHandler();
     Serial.println("#Joint Handler initialiced");
-    robo_health_arm.initChuckHandler();
+    //robo_health_arm.initChuckHandler();
 
     /*joint_handler.setTimer(50);
     Serial.println("# Init G15 serial port");
@@ -62,14 +62,21 @@ float standard_deviation = 0;
 
 void loop() {
     // delay(500);
-    robo_health_arm.handleWithChuck();
-
-    if (i == 5000) {
+    //robo_health_arm.handleWithChuck();
+    // robo_health_arm.handleWithSerialPort();
+    if (i == 999) {
+        robo_health_arm.joint_handler_.updateJointInfo();
+        robo_health_arm.joint_handler_.controlLoopSpeed();
+    }
+    if (i == 1000) {
         i = 0;
         Serial.print("Pot value:"); Serial.print("\t\t");
         Serial.print(analogRead(A0)); Serial.print(",\t");
         Serial.print("-"); Serial.print(",\t"); Serial.println(analogRead(A1));
-        Serial.println(i);
+
+        Serial.print("Articulation position:"); Serial.print("\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[0].getPosition()); Serial.print(",\t");
+        Serial.print("-"); Serial.print(",\t");  Serial.println(robo_health_arm.joint_handler_.joint_[2].getPosition());
 
         Serial.print("Goal Torque:"); Serial.print("\t\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getGoalTorque()); Serial.print(",\t");

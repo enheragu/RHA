@@ -13,6 +13,8 @@
    */
 void printServoStatusError(uint16_t error, uint8_t ID) {
      // NOTE: MACROS NEED {} AS THEY AR SUBSTITUTED BY SOME CODE LINES, NOT JUST ONE!!
+     // NOTE: turn to false to print servo status error msg, to true to avoid them
+     if (!PRINT_SERVO_ERROR_MSG) return;
      if (error != 0) {
          Serial.print("#[!]   Error in comunication detected in servo: "); Serial.println(ID);
      } else

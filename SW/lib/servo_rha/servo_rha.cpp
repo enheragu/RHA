@@ -21,6 +21,7 @@
   */
 ServoRHA::ServoRHA(uint8_t servo_id) {
     servo_id_ = servo_id;
+    time_last_error_ = 0;
 }
 
 
@@ -34,7 +35,7 @@ void ServoRHA::init(uint8_t _servo_id) {
     servo_id_ = _servo_id;
     DebugSerialSRHALn2("initServo: id is now: ", servo_id_);
 
-    speed_regulator_.setKRegulator(KP, KI, KD);
+    torque_regulator_.setKRegulator(KP, KI, KD);
 
     DebugSerialSRHALn("initServo: end of inicialitation function");
 }
@@ -118,6 +119,7 @@ uint8_t ServoRHA::setSpeedGoal(RHATypes::SpeedGoal _goal) {
 
 /**
  * @brief Calculates error to send to servo regulator
+ * @method ServoRHA::speedError
  */
 void ServoRHA::speedError() {
     DebugSerialSRHALn("speedError: begin of function");
@@ -153,7 +155,7 @@ void ServoRHA::calculateTorque(float _error, float _derror, float _ierror) {
     if (_error != 0) {
         error_ = _error; derror_ = _derror; ierror_ = _ierror;
     }
-    torque = speed_regulator_.regulator(error_, derror_, ierror_);
+    torque = torque_regulator_.regulator(error_, derror_, ierror_);
     uint16_t torque_offset = load_ - uint16_t(speed_ / TORQUE_PREALIMENTATION_SLOPE);
     uint16_t prealimentation = torque_offset + TORQUE_PREALIMENTATION_SLOPE*float(speed_target_);
     torque = torque + prealimentation;

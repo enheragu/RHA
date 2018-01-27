@@ -141,7 +141,7 @@ class ServoRHA {
     float error_, last_error_, derror_, ierror_;
 
  public:
-    RHATypes::Regulator speed_regulator_;
+    RHATypes::Regulator torque_regulator_;
 
  public:
     ServoRHA() { time_last_error_ = 0; time_last_ = 0; last_error_ = 0;

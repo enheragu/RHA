@@ -37,7 +37,7 @@ namespace ServoRHAConstants {
     #define RETURN_PACKET_READ_INSTRUCTIONS 0x01
 
     #define TORQUE_OFFSET 80  // under this torque servo does not move (without load)
-    #define TORQUE_PREALIMENTATION_SLOPE 1.2  // 1.666  // without load servo goes 60rpm faster with 100torque increment. It will be multiplied by speed_target_
+    #define TORQUE_PREALIMENTATION_SLOPE 1.2  // 1.2 is the inverse of the real slope of representing slope (x axis) VS speed (y axis)// 1.666  // without load servo goes 60rpm faster with 100torque increment. It will be multiplied by speed_target_
 
     #define MAX_TORQUE_VALUE 1023
     #define MAX_SPEED_VALUE 30  //mas speed is 65  // in rpm/min

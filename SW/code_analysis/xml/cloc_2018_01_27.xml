@@ -6,11 +6,11 @@ classified 22 files      22 unique files.
 <header>
   <cloc_url>http://cloc.sourceforge.net</cloc_url>
   <cloc_version>1.60</cloc_version>
-  <elapsed_seconds>0.0680410861968994</elapsed_seconds>
+  <elapsed_seconds>0.121129989624023</elapsed_seconds>
   <n_files>18</n_files>
   <n_lines>3346</n_lines>
-  <files_per_second>264.546041312613</files_per_second>
-  <lines_per_second>49176.1696795557</lines_per_second>
+  <files_per_second>148.600689687751</files_per_second>
+  <lines_per_second>27623.2170941786</lines_per_second>
 </header>
 <files>
   <file name="/home/quique/Documentos/RHA/SW/lib/joint_handler/joint_handler.cpp" blank="69" comment="192" code="366"  language="C++" />

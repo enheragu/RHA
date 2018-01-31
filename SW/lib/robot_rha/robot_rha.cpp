@@ -87,13 +87,20 @@ void RobotRHA::handleWithChuck() {
 void RobotRHA::handleWithSerialPort() {
     DebugSerialRRHALn("handleWithSerialPort: begin of function");
     int goal_pos_joint_0, goal_pos_joint_1, goal_pos_joint_2;
-    if (joint_handler_.joint_[0].reachedGoalPosition() && joint_handler_.joint_[2].reachedGoalPosition()) {
+    if (joint_handler_.joint_[0].reachedGoalPosition() && joint_handler_.joint_[2].reachedGoalPosition() || first_time_serial_goal_) {
         goal_pos_joint_0 = getGoalFromSerialInput(0);
         // goal_pos_joint_1 = getGoalFromSerialInput(2);
         goal_pos_joint_2 = getGoalFromSerialInput(2);
 
-        joint_handler_.joint_[0].setPositionGoal(goal_pos_joint_0);
-        joint_handler_.joint_[2].setPositionGoal(goal_pos_joint_2);
+        /*while (true) {
+            delay(50);
+        }*/
+        joint_handler_.joint_[0].setPositionGoal(60);  // goal_pos_joint_0);
+        RHATypes::SpeedGoal goal0;
+        joint_handler_.joint_[1].servo_.setSpeedGoal(goal0);
+        joint_handler_.joint_[2].servo_.setSpeedGoal(goal0);
+        //joint_handler_.joint_[2].setPositionGoal(goal_pos_joint_2);
+        first_time_serial_goal_ = false;
     }
 
     DebugSerialRRHALn("handleWithSerialPort: calling joint_handler control loop for ServoRHA speed");
@@ -108,12 +115,14 @@ void RobotRHA::handleWithSerialPort() {
   * @param  _joint_target         joint for which the goal is intended
  */
 int RobotRHA::getGoalFromSerialInput(int _joint_target) {
-    Serial.print("Join to command is now in pos = "); Serial.println(joint_handler_.joint_[_joint_target].getPosition());
-    Serial.print("Introduce goal position for joint: "); Serial.println(_joint_target);
+    Serial.print("Joint to command is now in pos = "); Serial.println(joint_handler_.joint_[_joint_target].getPosition());
+    /*Serial.print("Introduce goal position for joint: "); Serial.println(_joint_target);
     while(Serial.available() <= 0) {
         delay(1);  // Wait for msg, if theres no msg do nothing
     }
-    int incoming_value = Serial.read();
-    Serial.print("Going to "); Serial.print(incoming_value); Serial.println(" position");
-    return incoming_value;
+    if (Serial.available() > 0) {
+        int incoming_value = Serial.read();
+        Serial.print("Going to "); Serial.print(incoming_value); Serial.println(" position");
+        return incoming_value;
+    }*/
 }

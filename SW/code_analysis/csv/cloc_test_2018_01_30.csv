@@ -2,7 +2,7 @@
 classified 10 files      10 unique files.                              
        2 files ignored.
 
-language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.60  T=0.04 s (225.4 files/s, 26175.7 lines/s)"
+language,filename,blank,comment,code,"http://cloc.sourceforge.net v 1.60  T=0.06 s (135.0 files/s, 15671.7 lines/s)"
 C++,/home/quique/Documentos/RHA/SW/test/d_test_servo_rha/test_servo_rha.cpp,64,55,204
 C++,/home/quique/Documentos/RHA/SW/test/f_test_joint_handler_mock/test_joint_handler.cpp,56,48,136
 C++,/home/quique/Documentos/RHA/SW/test/b_test_pid_regulator/test_pid_regulator.cpp,29,20,97

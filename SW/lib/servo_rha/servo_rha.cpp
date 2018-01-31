@@ -360,12 +360,12 @@ void ServoRHA::addToPacket(uint8_t *_buffer, uint8_t *_packet, uint8_t _packet_l
   * @param {uint8_t} angle_margin margin in which the angle1 will be considered to be equal to angle2 [angle2-angle_margin, angle2+angle_margin]
   * @return {uint8_t} Returns enumeration defined in servo_rha.h -> LESS_THAN, GREATER_THAN or EQUAL
   */
-uint8_t compareAngles(uint16_t _angle1, uint16_t _angle2, uint8_t _angle_margin) {
+uint8_t compareAngles(float _angle1, float _angle2, float _angle_margin) {
     DebugSerialSRHALn4("ServoRHA.cpp::compareAngles: begin of function. Angle 1: ", _angle1, ". Angle 2: ", _angle2);
+    float dif = _angle1 - _angle2;
     if (_angle1 < _angle2-_angle_margin) return ServoRHAConstants::LESS_THAN;
     else if (_angle1 > _angle2+_angle_margin) return ServoRHAConstants::GREATER_THAN;
-    else
-        return ServoRHAConstants::EQUAL;
+    else if (fabs(dif) < _angle_margin) return ServoRHAConstants::EQUAL;
 }
 
 /** @brief compareSpeed function compares two speeds with a margin set.
@@ -374,7 +374,7 @@ uint8_t compareAngles(uint16_t _angle1, uint16_t _angle2, uint8_t _angle_margin)
   * @param {uint8_t} speed_margin margin in which the speed will be considered to be equal to speed2 [speed2-speed_margin, speed2+speed_margin]
   * @return {uint8_t} Returns enumeration defined in servo_rha.h -> LESS_THAN, GREATER_THAN or EQUAL
   */
-uint8_t compareSpeed(uint16_t _speed1, uint16_t _speed2, uint8_t _speed_margin) {
+uint8_t compareSpeed(float _speed1, float _speed2, float _speed_margin) {
     DebugSerialSRHALn4("ServoRHA.cpp::compareSpeed: begin of function. Speed 1: ", _speed1, ". Speed 2: ", _speed2);
     if (_speed1 < _speed2-_speed_margin) return ServoRHAConstants::LESS_THAN;
     else if (_speed1 > _speed2+_speed_margin) return ServoRHAConstants::GREATER_THAN;

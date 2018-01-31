@@ -27,7 +27,10 @@
 #define J3 3
 
 class RobotRHA {
+ private:
+    bool first_time_serial_goal_;
  public:
+    RobotRHA() : first_time_serial_goal_(true) {}
     void initJointHandler();
     void initChuckHandler();
 

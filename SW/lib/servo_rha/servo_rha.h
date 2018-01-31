@@ -40,7 +40,7 @@ namespace ServoRHAConstants {
     #define TORQUE_PREALIMENTATION_SLOPE 1.2  // 1.666  // without load servo goes 60rpm faster with 100torque increment. It will be multiplied by speed_target_
 
     #define MAX_TORQUE_VALUE 1023
-    #define MAX_SPEED_VALUE 65  // in rpm/min
+    #define MAX_SPEED_VALUE 30  //mas speed is 65  // in rpm/min
 
     #define CW 1
     #define CCW 0
@@ -123,8 +123,8 @@ namespace SpeedRegulatorK {
 }
 }  // namespace ServoRHAConstants
 
-uint8_t compareAngles(uint16_t angle1, uint16_t angle2, uint8_t angle_margin = 0);
-uint8_t compareSpeed(uint16_t speed1, uint16_t speed2, uint8_t speed_margin = 0);
+uint8_t compareAngles(float angle1, float angle2, float angle_margin = 0);
+uint8_t compareSpeed(float speed1, float speed2, float speed_margin = 0);
 
 class ServoRHA {
  protected:

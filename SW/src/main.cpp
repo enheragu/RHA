@@ -59,14 +59,18 @@ int64_t timeNow = 0;
 int64_t timeBuffer[800];
 float average = 0;
 float standard_deviation = 0;
+bool flag = false;
 
 void loop() {
     // delay(500);
     //robo_health_arm.handleWithChuck();
-    // robo_health_arm.handleWithSerialPort();
+
+    if (flag) {
+        robo_health_arm.handleWithSerialPort();
+    }
     if (i == 999) {
         robo_health_arm.joint_handler_.updateJointInfo();
-        robo_health_arm.joint_handler_.controlLoopSpeed();
+        //robo_health_arm.joint_handler_.controlLoopSpeed();
     }
     if (i == 1000) {
         i = 0;
@@ -74,21 +78,36 @@ void loop() {
         Serial.print(analogRead(A0)); Serial.print(",\t");
         Serial.print("-"); Serial.print(",\t"); Serial.println(analogRead(A1));
 
+
+        Serial.print("Goal pos:"); Serial.print("\t\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[0].getPosTarget()); Serial.print(",\t");
+        Serial.print("-"); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[2].getPosTarget());
+
         Serial.print("Articulation position:"); Serial.print("\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[0].getPosition()); Serial.print(",\t");
         Serial.print("-"); Serial.print(",\t");  Serial.println(robo_health_arm.joint_handler_.joint_[2].getPosition());
 
+        Serial.print("Speed calculated:"); Serial.print("\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[0].getGoalSpeed()); Serial.print(",\t");
+        Serial.print("-"); Serial.print(",\t");  Serial.println(robo_health_arm.joint_handler_.joint_[2].getGoalSpeed());
+
+        Serial.print("Error calculated:"); Serial.print("\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[0].getError()); Serial.print(",\t");
+        Serial.print("-"); Serial.print(",\t");  Serial.println(robo_health_arm.joint_handler_.joint_[2].getError());
+
         Serial.print("Goal Torque:"); Serial.print("\t\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getGoalTorque()); Serial.print(",\t");
-        Serial.print(robo_health_arm.joint_handler_.joint_[2].servo_.getGoalTorque()); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[1].servo_.getGoalTorque());
+        Serial.print(robo_health_arm.joint_handler_.joint_[1].servo_.getGoalTorque()); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[2].servo_.getGoalTorque());
 
         Serial.print("Speed in servos:"); Serial.print("\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getSpeed()); Serial.print(",\t");
-        Serial.print(robo_health_arm.joint_handler_.joint_[2].servo_.getSpeed()); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[1].servo_.getSpeed());
+        Serial.print(robo_health_arm.joint_handler_.joint_[1].servo_.getSpeed()); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[2].servo_.getSpeed());
 
         Serial.println();
         Serial.println();
+        flag = true;
     }
+
     i++;
 }
 

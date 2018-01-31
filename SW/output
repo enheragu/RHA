@@ -1,0 +1,617 @@
+JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+d is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::updatePosition: for potentiometer in pin: 0
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+Pot value:		259,	-,	758
+Goal pos:		0,	-,	60
+Articulation position:	46.23,	-,	-1.00
+Speed calculated:	16.00,	-,	0.00
+Error calculated:	-46.23,	-,	0.00
+Goal Torque:		0,	0,	0
+Speed in servos:	21.62,	0.00,	0.00
+
+
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::updatePosition: for potentiometer in pin: 0
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+Pot value:		259,	-,	757
+Goal pos:		0,	-,	60
+Articulation position:	46.23,	-,	-1.00
+Speed calculated:	16.00,	-,	0.00
+Error calculated:	-46.23,	-,	0.00
+Goal Torque:		0,	0,	0
+Speed in servos:	21.62,	0.00,	0.00
+
+
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::updatePosition: for potentiometer in pin: 0
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+Pot value:		259,	-,	757
+Goal pos:		0,	-,	60
+Articulation position:	46.23,	-,	-1.00
+Speed calculated:	16.00,	-,	0.00
+Error calculated:	-46.23,	-,	0.00
+Goal Torque:		0,	0,	0
+Speed in servos:	21.62,	0.00,	0.00
+
+
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::updatePosition: for potentiometer in pin: 0
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+Pot value:		259,	-,	757
+Goal pos:		0,	-,	60
+Articulation position:	46.23,	-,	-1.00
+Speed calculated:	16.00,	-,	0.00
+Error calculated:	-46.23,	-,	0.00
+Goal Torque:		0,	0,	0
+Speed in servos:	21.62,	0.00,	0.00
+
+
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 197
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 197
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 197
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 197
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 197
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 197
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::updatePosition: for potentiometer in pin: 0
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 197
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+Pot value:		259,	-,	758
+Goal pos:		0,	-,	60
+Articulation position:	46.23,	-,	-1.00
+Speed calculated:	16.00,	-,	0.00
+Error calculated:	-46.23,	-,	0.00
+Goal Torque:		0,	0,	0
+Speed in servos:	21.73,	0.00,	0.00
+
+
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 197
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 197
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 197
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 197
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 197
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 197
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::updatePosition: for potentiometer in pin: 0
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 197
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+Pot value:		259,	-,	757
+Goal pos:		0,	-,	60
+Articulation position:	46.23,	-,	-1.00
+Speed calculated:	16.00,	-,	0.00
+Error calculated:	-46.23,	-,	0.00
+Goal Torque:		0,	0,	0
+Speed in servos:	21.73,	0.00,	0.00
+
+
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 197
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 197
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::updatePosition: for potentiometer in pin: 0
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+Pot value:		259,	-,	757
+Goal pos:		0,	-,	60
+Articulation position:	46.23,	-,	-1.00
+Speed calculated:	16.00,	-,	0.00
+Error calculated:	-46.23,	-,	0.00
+Goal Torque:		0,	0,	0
+Speed in servos:	21.62,	0.00,	0.00
+
+
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::updatePosition: for potentiometer in pin: 0
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+Pot value:		259,	-,	758
+Goal pos:		0,	-,	60
+Articulation position:	46.23,	-,	-1.00
+Speed calculated:	16.00,	-,	0.00
+Error calculated:	-46.23,	-,	0.00
+Goal Torque:		0,	0,	0
+Speed in servos:	21.62,	0.00,	0.00
+
+
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::updatePosition: for potentiometer in pin: 0
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::updatePosition: not updated for potentiometer in pin: 255
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+Pot value:		259,	-,	758
+Goal pos:		0,	-,	60
+Articulation position:	46.23,	-,	-1.00
+Speed calculated:	16.00,	-,	0.00
+Error calculated:	-46.23,	-,	0.00
+Goal Torque:		0,	0,	0
+Speed in servos:	21.62,	0.00,	0.00
+
+
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal
+[DC]  JointRHA::posError: begin of function
+[DC]  JointRHA::posError: target pos is: 0
+[DC]  JointRHA::posError: error is: -46.23
+[DC]  JointRHA::calculateSpeed: begin of function for joint 196
+[DC]  JointRHA::calculateSpeed: speed calculated is: -16.18
+[DC]  JointRHA::calculateSpeed: speed calculated is (uint16_t cast): 16
+[DC]  JointRHA::calculateSpeed: move joint in: DOWN
+[DC]  JointRHA::setSpeedGoal: seting speed goal

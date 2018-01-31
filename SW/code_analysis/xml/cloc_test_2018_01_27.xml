@@ -6,11 +6,11 @@ classified 10 files      10 unique files.
 <header>
   <cloc_url>http://cloc.sourceforge.net</cloc_url>
   <cloc_version>1.60</cloc_version>
-  <elapsed_seconds>0.0327010154724121</elapsed_seconds>
+  <elapsed_seconds>0.0642750263214111</elapsed_seconds>
   <n_files>8</n_files>
   <n_lines>929</n_lines>
-  <files_per_second>244.640720920398</files_per_second>
-  <lines_per_second>28408.9037168813</lines_per_second>
+  <files_per_second>124.465137672531</files_per_second>
+  <lines_per_second>14453.5141122227</lines_per_second>
 </header>
 <files>
   <file name="/home/quique/Documentos/RHA/SW/test/d_test_servo_rha/test_servo_rha.cpp" blank="64" comment="55" code="204"  language="C++" />

@@ -22,12 +22,13 @@
 
 namespace JointRHAConstants {
 
-#define ANGLE_TOLERANCE 2
+#define ANGLE_TOLERANCE 6
+#define NO_POTENTIOMETER 255
 
 namespace SpeedRegulatorK {
-    #define KP 0.75  // 1.66
-    #define KD 0
-    #define KI 0
+    #define KP 0.35  // 1.66
+    #define KD 1
+    #define KI 1
 }
 }  // namespace JointRHAConstants
 
@@ -52,11 +53,11 @@ class JointRHA {
   RHATypes::Regulator speed_regulator_;
 
   ServoRHA servo_;
-  JointRHA(uint8_t _servo_id, uint8_t _up_direction, uint8_t _potentiometer = 245);
+  JointRHA(uint8_t _servo_id, uint8_t _up_direction, uint8_t _potentiometer = NO_POTENTIOMETER);
   JointRHA();
   ~JointRHA();
 
-  void init(uint8_t _servo_id, uint8_t _up_direction, uint8_t _potentiometer = 245);
+  void init(uint8_t _servo_id, uint8_t _up_direction, uint8_t _potentiometer = NO_POTENTIOMETER);
   void setPotRelation(float _relation = 1);
   void initPotMeasurment(uint32_t _pot_min_value, uint32_t _pot_max_value, uint8_t _angle_min_value, uint8_t _angle_max_value);
   uint8_t setSpeedGoal(RHATypes::SpeedGoal _goal);

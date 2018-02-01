@@ -10,6 +10,8 @@
 #ifndef ROBOT_RHA_H
 #define ROBOT_RHA_H
 
+#include <math.h>
+
 #include "chuck_handler.h"
 #include "joint_handler.h"
 
@@ -25,6 +27,13 @@
 #define J1 1
 #define J2 2
 #define J3 3
+
+namespace MechanicalConstantMesaures {
+    #define L1 455.0
+    #define L2 455.0
+    #define L3_Y 42.0
+    #define L3_X 30.0
+}
 
 class RobotRHA {
  private:
@@ -42,7 +51,16 @@ class RobotRHA {
     void handleWithSerialPort();
     int getGoalFromSerialInput(int _joint_target);
 
+    void updateInfo();
+
+    void goToCartesianPos(RHATypes::Point3 _cartesian_pos);
+    void goToArticularPos(RHATypes::Point3 _articular_pos);
+
+    RHATypes::Point3 forwardKinematics(RHATypes::Point3 _articular_pos);
+    RHATypes::Point3 inverseKinematics(RHATypes::Point3 _cartesian_pos);
+
     JointHandler joint_handler_;
-    ChuckHandler chuck_handler_;
+    //ChuckHandler chuck_handler_;
+    RHATypes::Point3 articular_position_, cartesian_position_;
 };
 #endif

@@ -8,24 +8,67 @@ void RobotRHA::initJointHandler() {
     DebugSerialRRHALn("initJointHandler: begin of function");
     joint_handler_.setTorqueControlTimer(TORQUE_CONTROL_PERIOD);
     joint_handler_.setSpeedControlTimer(SPEED_CONTROL_PERIOD);
-    joint_handler_.initSerial(G15_RX_PIN, G15_TX_PIN, G15_CONTRL_PIN, G15_BAUDRATE);  // baudrate 460800 means 57.6 bytes/milisecond
+    joint_handler_.initSerial();  // baudrate 460800 means 57.6 bytes/milisecond
     joint_handler_.initJoints();
     DebugSerialRRHALn("initJointHandler: end of function");
+}
+
+
+
+void RobotRHA::handleRobot() {
+}
+
+void RobotRHA::goToCartesianPos(RHATypes::Point3 _cartesian_pos) {
+    RHATypes::Point3 articular_pos = inverseKinematics(_cartesian_pos);
+    goToArticularPos(articular_pos);
+}
+
+void RobotRHA::goToArticularPos(RHATypes::Point3 _articular_pos) {
+    joint_handler_.joint_[0].setPositionGoal( _articular_pos.x);
+    joint_handler_.joint_[1].setPositionGoal( _articular_pos.y);
+    joint_handler_.joint_[2].setPositionGoal( _articular_pos.z);
+}
+
+RHATypes::Point3 RobotRHA::forwardKinematics (RHATypes::Point3 _articular_pos) {
+    RHATypes::Point3 cartesian_pos;
+    cartesian_pos.x = L1*cos(_articular_pos.y) + L2*cos(_articular_pos.z) + L3_X;
+    cartesian_pos.z = L1*sin(_articular_pos.y) - L2*sin(_articular_pos.z) + L3_Y;
+    return cartesian_pos;
+}
+
+RHATypes::Point3 RobotRHA::inverseKinematics (RHATypes::Point3 _cartesian_pos) {
+    RHATypes::Point3 articular_pos;
+    float xa = _cartesian_pos.x - L3_X;
+    float ya = _cartesian_pos.z - L3_Y;
+    // get q2:
+    // float r = sqrt(pow(xa,2)+pow(ya,2));
+    // float num = pow(r,2) + pow(L1,2) - pow(L2,2);
+    // float dem = 2*r*L1;
+    // float beta = acos(num/dem);
+    articular_pos.y = atan2(ya,xa) + acos((pow((sqrt(pow(xa,2)+pow(ya,2))),2) + pow(L1,2) - pow(L2,2))/(2*(sqrt(pow(xa,2)+pow(ya,2)))*L1));
+    //get q3:
+    // float num2 = pow(L1,2) + pow(L2,2) - pow((sqrt(pow(xa,2)+pow(ya,2))),2);
+    // float dem2 = 2*L1*L2;
+    //float gamma = acos((pow(L1,2) + pow(L2,2) - pow((sqrt(pow(xa,2)+pow(ya,2))),2))/(2*L1*L2));
+    articular_pos.z = PI - acos((pow(L1,2) + pow(L2,2) - pow((sqrt(pow(xa,2)+pow(ya,2))),2))/(2*L1*L2)) - articular_pos.y;
+
+    return articular_pos;
+}
+
+void updateInfo() {
+    //articular_position_, cartesian_position_;
 }
 
 /**
  * @brief Inits chuck handler timer
  * @method RobotRHA::initChuckHandler
  */
-void RobotRHA::initChuckHandler() {
+/*void RobotRHA::initChuckHandler() {
     DebugSerialRRHALn("initChuckHandler: begin of function");
     chuck_handler_.begin();
     chuck_handler_.setTimer(CHUCK_UPDATE_PERIOD);
     DebugSerialRRHALn("initChuckHandler: end of function");
-}
-
-void RobotRHA::handleRobot() {
-}
+}*/
 
 /**
  * @brief Sets X, Y, X speed to Joints applyin transformation
@@ -52,8 +95,8 @@ void RobotRHA::setCartesianSpeedGoal(float _speed_x, float _speed_y, float _spee
  */
 void RobotRHA::setSpeedToServos(float _speed, uint8_t _servo_id) {
     DebugSerialRRHALn("setSpeedToServos: begin of function");
-    bool direction = (_speed > 0) ? CW : CCW;
-    RHATypes::SpeedGoal speed_goal(_servo_id, abs(_speed), 0, direction);
+    //bool direction = (_speed > 0) ? CW : CCW;
+    RHATypes::SpeedGoal speed_goal(_servo_id, abs(_speed), (_speed>0)?CW:CCW);
     joint_handler_.setSpeedGoal(speed_goal);
 }
 
@@ -61,7 +104,7 @@ void RobotRHA::setSpeedToServos(float _speed, uint8_t _servo_id) {
  * @brief Handles all GDL with nunchuck input. This method calls chuck reading ,sets speed goals and calls Joint handler controlLoop
  * @method RobotRHA::handleWithChuck
  */
-void RobotRHA::handleWithChuck() {
+/*void RobotRHA::handleWithChuck() {
     DebugSerialRRHALn("handleWithChuck: begin of function");
     DebugSerialRRHALn("handleWithChuck: getting speed commands");
     // ChuckReadStruct speed_commands = ChuckReadStruct(20, 20, 20, true);
@@ -78,7 +121,7 @@ void RobotRHA::handleWithChuck() {
     // else setCartesianSpeedGoal(speed_commands.X_, speed_commands.Y_, speed_commands.Z_);
     DebugSerialRRHALn("handleWithChuck: calling joint_handler control loop for servo torque");
     joint_handler_.controlLoopTorque();
-}
+}*/
 
 /**
  * @brief Handles all GDL with serial port input. Ask Goal position for all GDL and then goes to it
@@ -86,18 +129,17 @@ void RobotRHA::handleWithChuck() {
  */
 void RobotRHA::handleWithSerialPort() {
     DebugSerialRRHALn("handleWithSerialPort: begin of function");
-    int goal_pos_joint_0, goal_pos_joint_1, goal_pos_joint_2;
     if (joint_handler_.joint_[0].reachedGoalPosition() && joint_handler_.joint_[2].reachedGoalPosition() || first_time_serial_goal_) {
-        goal_pos_joint_0 = getGoalFromSerialInput(0);
-        // goal_pos_joint_1 = getGoalFromSerialInput(2);
-        goal_pos_joint_2 = getGoalFromSerialInput(2);
+        // gjoint_handler_.joint_[0].setPositionGoal( getGoalFromSerialInput(0));
+        // joint_handler_.joint_[1].setPositionGoal( getGoalFromSerialInput(2));
+        // joint_handler_.joint_[2].setPositionGoal( getGoalFromSerialInput(2));
 
         /*while (true) {
             delay(50);
         }*/
-        joint_handler_.joint_[0].setPositionGoal(60);  // goal_pos_joint_0);
+        joint_handler_.joint_[1].setPositionGoal( 60 );// goal_pos_joint_0);
         RHATypes::SpeedGoal goal0;
-        joint_handler_.joint_[1].servo_.setSpeedGoal(goal0);
+        joint_handler_.joint_[0].servo_.setSpeedGoal(goal0);
         joint_handler_.joint_[2].servo_.setSpeedGoal(goal0);
         //joint_handler_.joint_[2].setPositionGoal(goal_pos_joint_2);
         first_time_serial_goal_ = false;
@@ -116,7 +158,7 @@ void RobotRHA::handleWithSerialPort() {
  */
 int RobotRHA::getGoalFromSerialInput(int _joint_target) {
     Serial.print("Joint to command is now in pos = "); Serial.println(joint_handler_.joint_[_joint_target].getPosition());
-    /*Serial.print("Introduce goal position for joint: "); Serial.println(_joint_target);
+    Serial.print("Introduce goal position for joint: "); Serial.println(_joint_target);
     while(Serial.available() <= 0) {
         delay(1);  // Wait for msg, if theres no msg do nothing
     }
@@ -124,5 +166,5 @@ int RobotRHA::getGoalFromSerialInput(int _joint_target) {
         int incoming_value = Serial.read();
         Serial.print("Going to "); Serial.print(incoming_value); Serial.println(" position");
         return incoming_value;
-    }*/
+    }
 }

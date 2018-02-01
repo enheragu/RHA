@@ -10,22 +10,23 @@
 #ifndef UNIT_TEST  // disable program main loop while unit testing in progress
 
 #include <Arduino.h>
-#include "rha_types.h"
-#include "utilities.h"
-#include "servo_rha.h"
-#include "joint_handler.h"
+// #include "rha_types.h"
+// #include "utilities.h"
+// #include "servo_rha.h"
+// #include "joint_handler.h"
 #include "robot_rha.h"
 // #include "joint_rha.h"
+#include "MemoryFree.h"
 
 RobotRHA robo_health_arm;
 
 void setup() {
     delay(2000);
     Serial.begin(921600);  // 115200 230400 250000 460800 921600
-    Serial.println("# Start setup");
+    Serial.println(F("# Start setup"));
 
     robo_health_arm.initJointHandler();
-    Serial.println("#Joint Handler initialiced");
+    Serial.println(F("#Joint Handler initialiced"));
     //robo_health_arm.initChuckHandler();
 
     /*joint_handler.setTimer(50);
@@ -51,14 +52,10 @@ void setup() {
     /*Serial.println("# Set wheel speed in single mode");
     joint_handler.sendSetWheelSpeedAll(500,CW);
     delay(5000);*/
-    Serial.println("# Init loop");
+    Serial.println("F(# Init loop)");
 }
 
 uint32_t i = 0, c = 0;
-int64_t timeNow = 0;
-int64_t timeBuffer[800];
-float average = 0;
-float standard_deviation = 0;
 bool flag = false;
 
 void loop() {
@@ -72,34 +69,48 @@ void loop() {
         robo_health_arm.joint_handler_.updateJointInfo();
         //robo_health_arm.joint_handler_.controlLoopSpeed();
     }
-    if (i == 1000) {
+    if (i == 500) {
         i = 0;
+
+        Serial.print("freeMemory()= ");
+        Serial.println(freeMemory());
+
+        Serial.print("ID Servo:"); Serial.print("\t\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getID()); Serial.print(",\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[1].servo_.getID()); Serial.print(",\t");
+        Serial.println(robo_health_arm.joint_handler_.joint_[2].servo_.getID());
+
         Serial.print("Pot value:"); Serial.print("\t\t");
-        Serial.print(analogRead(A0)); Serial.print(",\t");
-        Serial.print("-"); Serial.print(",\t"); Serial.println(analogRead(A1));
+        Serial.print("-"); Serial.print(",\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[1].getAnalogReadPot()); Serial.print(",\t");
+        Serial.println(robo_health_arm.joint_handler_.joint_[2].getAnalogReadPot());
 
 
-        Serial.print("Goal pos:"); Serial.print("\t\t");
-        Serial.print(robo_health_arm.joint_handler_.joint_[0].getPosTarget()); Serial.print(",\t");
-        Serial.print("-"); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[2].getPosTarget());
+        Serial.print(F("Goal pos:")); Serial.print("\t\t");
+        Serial.print("-"); Serial.print(",\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[1].getPosTarget()); Serial.print(",\t");
+        Serial.println(robo_health_arm.joint_handler_.joint_[2].getPosTarget());
 
-        Serial.print("Articulation position:"); Serial.print("\t");
-        Serial.print(robo_health_arm.joint_handler_.joint_[0].getPosition()); Serial.print(",\t");
-        Serial.print("-"); Serial.print(",\t");  Serial.println(robo_health_arm.joint_handler_.joint_[2].getPosition());
+        Serial.print(F("Articulation position:")); Serial.print("\t");
+        Serial.print("-"); Serial.print(",\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[1].getPosition()); Serial.print(",\t");
+        Serial.println(robo_health_arm.joint_handler_.joint_[2].getPosition());
 
-        Serial.print("Speed calculated:"); Serial.print("\t");
-        Serial.print(robo_health_arm.joint_handler_.joint_[0].getGoalSpeed()); Serial.print(",\t");
-        Serial.print("-"); Serial.print(",\t");  Serial.println(robo_health_arm.joint_handler_.joint_[2].getGoalSpeed());
+        Serial.print(F("Speed calculated:")); Serial.print("\t");
+        Serial.print("-"); Serial.print(",\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[1].getGoalSpeed()); Serial.print(",\t");
+        Serial.println(robo_health_arm.joint_handler_.joint_[2].getGoalSpeed());
 
-        Serial.print("Error calculated:"); Serial.print("\t");
-        Serial.print(robo_health_arm.joint_handler_.joint_[0].getError()); Serial.print(",\t");
-        Serial.print("-"); Serial.print(",\t");  Serial.println(robo_health_arm.joint_handler_.joint_[2].getError());
+        Serial.print(F("Error calculated:")); Serial.print("\t");
+        Serial.print("-"); Serial.print(",\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[1].getError()); Serial.print(",\t");
+        Serial.println(robo_health_arm.joint_handler_.joint_[2].getError());
 
-        Serial.print("Goal Torque:"); Serial.print("\t\t");
+        Serial.print(F("Goal Torque:")); Serial.print("\t\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getGoalTorque()); Serial.print(",\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[1].servo_.getGoalTorque()); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[2].servo_.getGoalTorque());
 
-        Serial.print("Speed in servos:"); Serial.print("\t");
+        Serial.print(F("Speed in servos:")); Serial.print("\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getSpeed()); Serial.print(",\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[1].servo_.getSpeed()); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[2].servo_.getSpeed());
 

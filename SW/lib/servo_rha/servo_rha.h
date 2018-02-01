@@ -125,27 +125,29 @@ namespace SpeedRegulatorK {
 
 uint8_t compareAngles(float angle1, float angle2, float angle_margin = 0);
 uint8_t compareSpeed(float speed1, float speed2, float speed_margin = 0);
+float floatMap(float x, float in_min, float in_max, float out_min, float out_max);
 
 class ServoRHA {
  protected:
-    uint8_t servo_id_;
     uint16_t speed_dir_, position_, load_, load_dir_, error_comunication_;
     float  speed_;  // Speed is saved in RPM
-    uint8_t voltage_, temperature_;
+    //uint8_t voltage_, temperature_;
     uint16_t goal_torque_;
 
     uint8_t direction_target_;
-    uint16_t speed_slope_, speed_target_;
+    //uint16_t speed_slope_;
+    uint16_t speed_target_;
     uint64_t time_last_;
     uint64_t time_last_error_;
     float error_, last_error_, derror_, ierror_;
+
+    uint8_t servo_id_;
 
  public:
     RHATypes::Regulator torque_regulator_;
 
  public:
-    ServoRHA() { time_last_error_ = 0; time_last_ = 0; last_error_ = 0;
-                error_ = 0; derror_ = 0; ierror_ = 0; }
+    ServoRHA();
     explicit ServoRHA(uint8_t _servo_id);
     void init(uint8_t _servo_id);
     void init();
@@ -182,12 +184,11 @@ class ServoRHA {
     virtual uint16_t getPosition() { return position_; }
     virtual uint16_t getLoad() { return load_; }
     virtual uint16_t getLoadDir() { return load_dir_; }
-    virtual uint16_t getCommError() { return error_comunication_; }
-    virtual uint8_t getVoltage() { return voltage_; }
-    virtual uint8_t getTemperature() { return temperature_; }
+    //virtual uint16_t getCommError() { return error_comunication_; }
+    //virtual uint8_t getVoltage() { return voltage_; }
+    //virtual uint8_t getTemperature() { return temperature_; }
     virtual uint16_t getGoalTorque() { return goal_torque_; }
     uint16_t getSpeedTarget() { return speed_target_; }
-    uint16_t getSpeedSlope() { return speed_slope_; }
     uint8_t getDirectionTarget() { return direction_target_; }
     float getError() { return error_; }
     float getDError() { return derror_; }

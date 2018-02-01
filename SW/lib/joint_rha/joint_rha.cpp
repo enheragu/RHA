@@ -40,11 +40,12 @@ JointRHA::~JointRHA() {
   * @param {uint8_t} up_direction direction in which the servo has to move (CW or CCW) so the joint moves up.
   * @param {uint8_t} potentiometer pin in which the potentiometer for this joint is connected. If there is no realim for this joint value will be 255
   */
-void JointRHA::init(uint8_t _servo_id, uint8_t _up_direction, uint8_t _potentiometer) {
+void JointRHA::init(uint8_t _servo_id, uint8_t _up_direction, int _zero_compensation, uint8_t _potentiometer) {
     DebugSerialJRHALn("init: begin of function");
     DebugSerialJRHALn2("init: initialazing with id: ", _servo_id);
     up_direction_ = _up_direction;
     potentiometer_pin_ = _potentiometer;
+    zero_pos_compensation_ = _zero_compensation;
     joint_pot_relation_ = 1;
     DebugSerialJRHALn2("init: potentiometer in pin: ", potentiometer_pin_);
 
@@ -67,7 +68,11 @@ void JointRHA::updatePosition() {
     if (potentiometer_pin_ != NO_POTENTIOMETER) {
         // Serial.print("UpdatePositionPot: ");
         DebugSerialJRHALn2("updatePosition: for potentiometer in pin: ", potentiometer_pin_);
-        position_pot_ = map(analogRead(potentiometer_pin_), 0, 1023, 0, 265) * joint_pot_relation_;  // from 0 to 5V transform to 0-265 degrees (max angle of potentiometer)
+        pot_analog_read_ = analogRead(potentiometer_pin_);
+        //Serial.print("Art: "); Serial.print(servo_.getID(), DEC); Serial.print(", pot: "); Serial.println(pot_analog_read_);
+        position_pot_ = floatMap(pot_analog_read_, 0, 1023, 0, 265) * joint_pot_relation_;  // from 0 to 5V transform to 0-265 degrees (max angle of potentiometer)
+        //position_pot_ = position_pot_ - zero_pos_compensation_;
+
         // Serial.println(position_pot_);
     } else {
         position_pot_ = -1;
@@ -113,9 +118,7 @@ void JointRHA::setPositionGoal(int _position) {
 void JointRHA::posError() {
     if (potentiometer_pin_ == NO_POTENTIOMETER ) return;
     DebugSerialJRHALn("posError: begin of function");
-    float position = (float)position_target_;
-    float sign = 1;
-    pos_error_ = (sign*(position - (float)position_pot_));
+    pos_error_ = (((float)position_target_ - (float)position_pot_));
     pos_derror_ = (pos_error_ - pos_last_error_) / (millis() - time_last_error_);
     pos_ierror_ = pos_error_ * (millis() - time_last_error_);
     pos_last_error_ = pos_error_;
@@ -151,7 +154,6 @@ void JointRHA::calculateSpeed(float _error, float _derror, float _ierror) {
     goal_speed_.speed = uint16_t(abs(speed));
     goal_speed_.servo_id = servo_.getID();
     goal_speed_.direction = (speed < 0)?!up_direction_:up_direction_;
-    goal_speed_.speed_slope = 0;
 }
 
 /**
@@ -169,6 +171,5 @@ void JointRHA::updateServoSpeedGoal() {
  * @return [description]
  */
 bool JointRHA::reachedGoalPosition() {
-    bool reached = (compareAngles(position_pot_, position_target_, ANGLE_TOLERANCE) == ServoRHAConstants::EQUAL)?true:false;
-    return reached;
+    return (compareAngles(position_pot_, position_target_, ANGLE_TOLERANCE) == ServoRHAConstants::EQUAL)?true:false;
 }

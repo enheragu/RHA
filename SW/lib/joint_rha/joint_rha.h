@@ -37,11 +37,10 @@ class ServoRHA;
 class JointRHA {
   bool up_direction_;
   uint8_t potentiometer_pin_;
+  int pot_analog_read_;
   float position_pot_;
+  float zero_pos_compensation_;
   float joint_pot_relation_;
-
-  uint32_t pot_max_value, pot_min_value;
-  uint8_t angle_max_value, angle_min_value;
 
   int position_target_;
   float pos_error_, pos_last_error_, pos_derror_, pos_ierror_;
@@ -57,7 +56,7 @@ class JointRHA {
   JointRHA();
   ~JointRHA();
 
-  void init(uint8_t _servo_id, uint8_t _up_direction, uint8_t _potentiometer = NO_POTENTIOMETER);
+  void init(uint8_t _servo_id, uint8_t _up_direction, int _zero_compensation = 0, uint8_t _potentiometer = NO_POTENTIOMETER);
   void setPotRelation(float _relation = 1);
   void initPotMeasurment(uint32_t _pot_min_value, uint32_t _pot_max_value, uint8_t _angle_min_value, uint8_t _angle_max_value);
   uint8_t setSpeedGoal(RHATypes::SpeedGoal _goal);
@@ -77,6 +76,7 @@ class JointRHA {
   float getError() { return pos_error_; }
   float getDError() { return pos_derror_; }
   float getIError() { return pos_ierror_; }
+  int getAnalogReadPot() { return pot_analog_read_; }
 };
 
 #endif

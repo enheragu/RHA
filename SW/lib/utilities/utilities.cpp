@@ -40,15 +40,17 @@ namespace MeasureUtilities {
         DebugSerialUtilitiesLn("averageChauvenet: begin of function");
         float values_kept[n];
         uint8_t n_values = 0;
-        for (uint8_t i = 0; i < n; i++) arithmetic_average += data[i];
+        uint8_t i = 0;
+
+        for (i = 0; i < n; i++) arithmetic_average += data[i];
         arithmetic_average /= (float)n;
         // DebugSerialUtilitiesLn2("averageChauvenet: arithmetic average calculated: ", arithmetic_average);
-        for (uint8_t i = 0; i < n; i++) standard_deviation += pow((data[i]-arithmetic_average), 2);
+        for (i = 0; i < n; i++) standard_deviation += pow((data[i]-arithmetic_average), 2);
         // DebugSerialUtilitiesLn2("averageChauvenet: standard_deviation al cuadrado: ", standard_deviation);
         standard_deviation = sqrt(standard_deviation / (n-1));  // n-1 is used due to Bessel correction
         // DebugSerialUtilitiesLn2("averageChauvenet: standard deviation calculated: ", standard_deviation);
         // Data with more than 2 times standar deviation from average are discarded
-        for (uint8_t i = 0; i < n; i++) {
+        for (i = 0; i < n; i++) {
             if (abs(data[i]-arithmetic_average) > KN*standard_deviation) {
                 // DebugSerialUtilitiesLn4("Value discarded:", data[i], ", in position: ", n);
             } else {
@@ -56,7 +58,7 @@ namespace MeasureUtilities {
                 n_values++;
             }
         }
-        for (uint8_t i = 0; i < n_values; i++) arithmetic_average += values_kept[i];  // Once all the values have been discarded the average is made again
+        for (i = 0; i < n_values; i++) arithmetic_average += values_kept[i];  // Once all the values have been discarded the average is made again
         arithmetic_average /= n_values;
         // DebugSerialUtilitiesLn2("averageChauvenet: arithmetic average calculated after discard values: ", arithmetic_average);
     }
@@ -100,10 +102,13 @@ void JHUtilitiesJH::extractRegulatorData(uint8_t _joint_to_test) {
     float kp_samples[SAMPLE_KP] = KP_SAMPLES;  // macro defined in the top of utilities.h
     float ki_samples[SAMPLE_KP] = KI_SAMPLES;  // macro defined in the top of utilities.h
     float kd_samples[SAMPLE_KP] = KD_SAMPLES;  // macro defined in the top of utilities.h
+    uint8_t samples = 0;
+    int counter = 0;
+    uint64_t time_init = 0;
 
-    RHATypes::SpeedGoal speed_goal(joint_[_joint_to_test].servo_.getID(), SPEED_REGULATOR_TEST, 0, CW);  // Id, speed, speed_slope
+    RHATypes::SpeedGoal speed_goal(joint_[_joint_to_test].servo_.getID(), SPEED_REGULATOR_TEST, CW);  // Id, speed, speed_slope
     setSpeedGoal(speed_goal);
-    for (uint8_t samples = 0; samples < SAMPLE_KP; samples++) {
+    for (samples = 0; samples < SAMPLE_KP; samples++) {
         joint_[_joint_to_test].servo_.torque_regulator_.setKRegulator(kp_samples[samples], ki_samples[samples], kd_samples[samples]);  // KP_SAMPLES(a) defined in the top of utilities.h
         Serial.print("n_data"); Serial.print(samples); Serial.print(" = "); Serial.println(SAMPLE_REGULATOR);
         Serial.print("speed_target"); Serial.print(samples); Serial.print("  = "); Serial.println(joint_[_joint_to_test].servo_.getSpeedTarget());
@@ -115,8 +120,8 @@ void JHUtilitiesJH::extractRegulatorData(uint8_t _joint_to_test) {
 
         JointHandler::sendSetWheelModeAll();
 
-        for (int counter = 0; counter < SAMPLE_REGULATOR; counter++) {
-            uint64_t time_init = millis();
+        for (counter = 0; counter < SAMPLE_REGULATOR; counter++) {
+            time_init = millis();
             JointHandler::controlLoopTorque();
 
             Serial.print(",['"); Serial.print(joint_[_joint_to_test].servo_.getSpeed()); Serial.print("','");
@@ -126,7 +131,7 @@ void JHUtilitiesJH::extractRegulatorData(uint8_t _joint_to_test) {
             Serial.println("']\\");
 
             if (joint_[_joint_to_test].servo_.getError() != 0) {
-                DebugSerialJHLn4Error(joint_[_joint_to_test].servo_.getCommError(), joint_[_joint_to_test].servo_.getID());
+                //DebugSerialJHLn4Error(joint_[_joint_to_test].servo_.getCommError(), joint_[_joint_to_test].servo_.getID());
                 // return;
             }
         }
@@ -144,7 +149,8 @@ void blinkLed(uint8_t pin_led, uint8_t time_blink) {
     RHATypes::Timer blink_period;
     blink_period.setTimer(time_blink);
     blink_period.activateTimer();
-    for (uint8_t i = 0; i < 10; i++) {
+    uint8_t i = 0;
+    for (i = 0; i < 10; i++) {
             blink_period.checkWait();
             blink_period.activateTimer();
             digitalWrite(pin_led, HIGH);
@@ -300,7 +306,12 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
 
     JointHandler::updateJointInfo();
 
-    for (uint8_t samples = 0; samples < num_test; samples++) {
+    uint64_t time_init = micros();
+    uint64_t time_now = 0;
+    uint8_t samples = 0;
+    unsigned int counter = 0;
+
+    for ( samples = 0; samples < num_test; samples++) {
         // Serial.print("stepTest.append(");  Serial.print(" [0");
         JointHandler::sendSetWheelModeAll();
         delay(25);
@@ -310,8 +321,8 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
         } else if (_option == SLOPE) {
             Serial.print("Slope(:,:,"); Serial.print(samples+1); Serial.print(") = [");
         }
-        uint64_t time_init = micros();
-        uint64_t time_now = 0;
+        time_init = micros();
+        time_now = 0;
 
         RHATypes::Timer measure_period;
         if (_option == STEP) measure_period.setTimer(3);
@@ -322,7 +333,7 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
         resetEncoder();
         startEncoder(_joint_to_test);
 
-        for (unsigned int counter = 0; counter < num_repetitions; counter++) {
+        for (counter = 0; counter < num_repetitions; counter++) {
             if (_option == STEP) torque = STEP_SPEED;
             else if (_option == SLOPE) torque = SLOPE_SPEED*(millis() - time_init/1000);
             if (torque > 1023) torque = 1023;
@@ -366,9 +377,10 @@ void JHUtilitiesJH::checkTimeGetInfo(uint8_t repetitions, uint8_t _joint_to_test
 
     uint64_t initTime = 0;
     uint32_t timeSpent[repetitions];
+    uint8_t i = 0;
 
     DebugSerialUtilitiesLn("Begin of loop to take data");
-    for (uint8_t i = 0; i < repetitions; i++) {
+    for (i = 0; i < repetitions; i++) {
         initTime = millis();
         JointHandler::updateJointInfo();
         timeSpent[i] = millis()-initTime;
@@ -397,7 +409,8 @@ void JHUtilitiesJH::checkComSucces(uint16_t repetitions) {
     DebugSerialSeparation(1);
 
     uint16_t succes_ping = 0;
-    for (uint16_t i = 0; i < repetitions; i++) {
+    uint16_t i = 0;
+    for (i = 0; i < repetitions; i++) {
         if (JointHandler::checkConectionAll()) succes_ping++;
         delay(5);
     }
@@ -441,11 +454,15 @@ void JHUtilitiesJH::checkSpeed(uint8_t _joint_to_test) {
     initTime = millis();
 
     DebugSerialUtilitiesLn("Configuration done.");
-    delay(2000);
+    delay(2000);float time_whole
     DebugSerialUtilitiesLn("Start moving");
 
     JointHandler::sendSetWheelSpeedAll(speed_set, CW);
     delay(25);
+
+    float time_whole = 0;
+    float speed_now = 0;
+    float speed_read = 0;
 
     while (1) {
         // DebugSerialUtilitiesLn("Init while loop");
@@ -457,10 +474,10 @@ void JHUtilitiesJH::checkSpeed(uint8_t _joint_to_test) {
         if (encoderCurrent < (encoderTemp + 5)  && encoderCurrent > (encoderTemp - 5) && encoderFlag == 0) {
             encoderTotal++;
             currentTime = millis();
-            float time_whole = ((float)(currentTime - initTime) / 1000);
-            float speed_now = ((float)encoderTotal / (float)time_whole)*60;
+            time_whole = ((float)(currentTime - initTime) / 1000);
+            speed_now = ((float)encoderTotal / (float)time_whole)*60;
             JointHandler::updateJointInfo();            // get the current position from servo
-            float speed_read = joint_[_joint_to_test].servo_.getSpeed();
+            speed_read = joint_[_joint_to_test].servo_.getSpeed();
             DebugSerialSeparation(1);
             DebugSerialUtilitiesLn2("  -  Torque set is: ", speed_set);
             DebugSerialUtilitiesLn2("  -  Speed calculated is (in rpm): ", speed_now);

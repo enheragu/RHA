@@ -27,10 +27,17 @@ namespace RHATypes {
 struct SpeedGoal {
     uint8_t servo_id;
     int16_t speed;
-    int16_t speed_slope;
     uint8_t direction;
-    SpeedGoal() {}
-    SpeedGoal(uint8_t _id, int16_t _speed, int16_t _speed_slope, uint8_t _direction): servo_id(_id), speed(_speed), speed_slope(_speed_slope), direction(_direction) {}
+    SpeedGoal(): servo_id(0), speed(0), direction(0) {}
+    SpeedGoal(uint8_t _id, int16_t _speed, uint8_t _direction): servo_id(_id), speed(_speed), direction(_direction) {}
+};
+
+struct Point3 {
+    float x;
+    float y;
+    float z;
+    Point3(): x(0), y(0), z(0) {}
+    Point3(uint8_t _x, int16_t _y, int16_t _z): x(_x), y(_y), z(_z) {}
 };
 
 

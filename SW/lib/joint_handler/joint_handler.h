@@ -65,9 +65,14 @@ namespace JointHandlerConstants {
     #define G15_BAUDRATE 460800
 
     #define NUM_JOINT 3
-    #define BUFFER_LEN 30
+    #define BUFFER_LEN 20
 
     #define EEMPROM_WRITE_DELAY 25
+
+    #define G15_BAUDRATE 460800
+    #define G15_RX_PIN 17
+    #define G15_TX_PIN 16
+    #define G15_CONTRL_PIN 8
 }  // namespace JointHandlerConstants
 
 
@@ -75,14 +80,15 @@ class JointHandler {
     RHATypes::Timer torque_control_loop_timer_;  /**< This timer is intended for servo speed control loop (input is speed goal, output is torque for servos)*/
     RHATypes::Timer speed_control_loop_timer_;  /**< This timer is intended for joint position control loop (input is pos goal, output is servo for servoRHA)*/
 
-    uint8_t txpin_shield_, rxpin_shield_, ctrlpin_shield_;
-
     uint16_t comunication_error_;
+
+    uint8_t buffer[BUFFER_LEN];
+    uint8_t txBuffer[BUFFER_LEN];
 
  public:
     JointRHA joint_[NUM_JOINT];
 
-    JointHandler() {}
+    JointHandler();
     explicit JointHandler(uint64_t timer);
     virtual void initJoints();
     void setSpeedGoal(RHATypes::SpeedGoal _goal);
@@ -120,13 +126,15 @@ class JointHandler {
      **************************************/
     JointHandler(uint8_t _rxpin, uint8_t _txpin, uint8_t _ctrlpin);
     explicit JointHandler(uint8_t _ctrlpin);
-    void initSerial(uint8_t _rxpin, uint8_t _txpin, uint8_t _ctrlpin, uint32_t _baudrate = G15_BAUDRATE);
+    void initSerial();  // uint8_t _rxpin, uint8_t _txpin, uint8_t _ctrlpin, uint32_t _baudrate = G15_BAUDRATE);
 
-    void begin(uint32_t _baudrate);
+    void begin();  // uint32_t _baudrate);
     void end(void);
 
     void setTxMode(void);
     void setRxMode(void);
+
+    void resetBuffer(uint8_t buffer[]);
 };
 
 #endif

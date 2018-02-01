@@ -80,9 +80,9 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
 
 /** DEBUG_CYTRON_G15_SERVO implements debug macros for cytron_g15_servo.h and .cpp files */
 #ifdef DEBUG_CYTRON_G15_SERVO
-    #define DebugSerialG15Ln(a) {  Serial.print("[DC]  CYTRON_G15_SERVO::"); Serial.println(a); }
-    #define DebugSerialG15Ln2(a, b) {  Serial.print("[DC]  CYTRON_G15_SERVO::"); Serial.print(a); Serial.println(b); }
-    #define DebugSerialG15Ln4(a, b, c, d) {  Serial.print("[DC]  CYTRON_G15_SERVO::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+    #define DebugSerialG15Ln(a) {  Serial.print(F("[DC]  CYTRON_G15_SERVO::")); Serial.println(a); }
+    #define DebugSerialG15Ln2(a, b) {  Serial.print(F("[DC]  CYTRON_G15_SERVO::")); Serial.print(a); Serial.println(b); }
+    #define DebugSerialG15Ln4(a, b, c, d) {  Serial.print(F("[DC]  CYTRON_G15_SERVO::")); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
 #else
     #define DebugSerialG15Ln(a)
     #define DebugSerialG15Ln2(a, b)
@@ -91,9 +91,9 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
 
 /** DEBUG_SERVO_RHA implements debug macros for servo_rha.h and .cpp files */
 #ifdef DEBUG_SERVO_RHA
-    #define DebugSerialSRHALn(a) {  Serial.print("[DC]  ServoRHA::"); Serial.println(a); }
-    #define DebugSerialSRHALn2(a, b) {  Serial.print("[DC]  ServoRHA::"); Serial.print(a); Serial.println(b); }
-    #define DebugSerialSRHALn4(a, b, c, d) {  Serial.print("[DC]  ServoRHA::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+    #define DebugSerialSRHALn(a) {  Serial.print(F("[DC]  ServoRHA::")); Serial.println(a); }
+    #define DebugSerialSRHALn2(a, b) {  Serial.print(F("[DC]  ServoRHA::")); Serial.print(a); Serial.println(b); }
+    #define DebugSerialSRHALn4(a, b, c, d) {  Serial.print(F("[DC]  ServoRHA::")); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
     #define DebuSerialRHALnPrintServoStatus(pos, speed, speed_dir, load, load_dir, voltage, temperature, error) { printServoStatus(pos, speed, speed_dir, load, load_dir, voltage, temperature, error); }
 #else
     #define DebugSerialSRHALn(a)
@@ -104,9 +104,9 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
 
 /** DEBUG_JOINT_RHA implements debug macros for joint_rha.h and .cpp files */
 #ifdef DEBUG_JOINT_RHA
-    #define DebugSerialJRHALn(a) {  Serial.print("[DC]  JointRHA::"); Serial.println(a); }
-    #define DebugSerialJRHALn2(a, b) {  Serial.print("[DC]  JointRHA::"); Serial.print(a); Serial.println(b); }
-    #define DebugSerialJRHALn4(a, b, c, d) {  Serial.print("[DC]  JointRHA::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+    #define DebugSerialJRHALn(a) {  Serial.print(F("[DC]  JointRHA::")); Serial.println(a); }
+    #define DebugSerialJRHALn2(a, b) {  Serial.print(F("[DC]  JointRHA::")); Serial.print(a); Serial.println(b); }
+    #define DebugSerialJRHALn4(a, b, c, d) {  Serial.print(F("[DC]  JointRHA::")); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
 #else
     #define DebugSerialJRHALn(a)
     #define DebugSerialJRHALn2(a, b)
@@ -115,9 +115,9 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
 
 /** DEBUG_JOINT_HANDLER implements debug macros for servo_rha.h and .cpp files */
 #ifdef DEBUG_JOINT_HANDLER
-    #define DebugSerialJHLn(a) {  Serial.print("[DC]  JointHandler::"); Serial.println(a); }
-    #define DebugSerialJHLn2(a, b) {  Serial.print("[DC]  JointHandler::"); Serial.print(a); Serial.println(b); }
-    #define DebugSerialJHLn4(a, b, c, d) {  Serial.print("[DC]  JointHandler::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+    #define DebugSerialJHLn(a) {  Serial.print(F("[DC]  JointHandler::")); Serial.println(a); }
+    #define DebugSerialJHLn2(a, b) {  Serial.print(F("[DC]  JointHandler::")); Serial.print(a); Serial.println(b); }
+    #define DebugSerialJHLn4(a, b, c, d) {  Serial.print(F("[DC]  JointHandler::")); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
     // #define DebugSerialJHLn4Error(a, b) { printServoStatusError(a, b); }
 #else
     #define DebugSerialJHLn(a)
@@ -131,10 +131,10 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
 
 /** DEBUG_UTILITIES implements debug macros for utilities.h file */
 #ifdef DEBUG_UTILITIES
-    #define DebugSerialUtilitiesLn(a) {  Serial.print("#[DC]  Utilities::"); Serial.println(a); }
-    #define DebugSerialUtilitiesLn2(a, b) {  Serial.print("#[DC]  Utilities::"); Serial.print(a); Serial.println(b); }
-    #define DebugSerialUtilities(a) {  Serial.print("#[DC]  Utilities::"); Serial.print(a); }
-    #define DebugSerialUtilitiesLn4(a, b, c, d) {  Serial.print("#[DC]  Utilities::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+    #define DebugSerialUtilitiesLn(a) {  Serial.print("#[DC]  Utilities::")); Serial.println(a); }
+    #define DebugSerialUtilitiesLn2(a, b) {  Serial.print("#[DC]  Utilities::")); Serial.print(a); Serial.println(b); }
+    #define DebugSerialUtilities(a) {  Serial.print("#[DC]  Utilities::")); Serial.print(a); }
+    #define DebugSerialUtilitiesLn4(a, b, c, d) {  Serial.print("#[DC]  Utilities::")); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
 #else
     #define DebugSerialUtilitiesLn(a)
     #define DebugSerialUtilitiesLn2(a, b)
@@ -144,10 +144,10 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
 
 /** DEBUG_RHA_TYPES implements debug macros for rha_types.h file */
 #ifdef DEBUG_RHA_TYPES
-    #define DebugSerialRHATypesLn(a) {  Serial.print("[DC]  RHATypes::"); Serial.println(a); }
-    #define DebugSerialRHATypesLn2(a, b) {  Serial.print("[DC]  RHATypes::"); Serial.print(a); Serial.println(b); }
-    #define DebugSerialRHATypes(a) {  Serial.print("[DC]  RHATypes::"); Serial.print(a); }
-    #define DebugSerialRHATypesLn4(a, b, c, d) {  Serial.print("[DC]  RHATypes::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+    #define DebugSerialRHATypesLn(a) {  Serial.print(F("[DC]  RHATypes::")); Serial.println(a); }
+    #define DebugSerialRHATypesLn2(a, b) {  Serial.print(F("[DC]  RHATypes::")); Serial.print(a); Serial.println(b); }
+    #define DebugSerialRHATypes(a) {  Serial.print(F("[DC]  RHATypes::")); Serial.print(a); }
+    #define DebugSerialRHATypesLn4(a, b, c, d) {  Serial.print(F("[DC]  RHATypes::")); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
 #else
     #define DebugSerialRHATypesLn(a)
     #define DebugSerialRHATypesLn2(a, b)
@@ -160,9 +160,9 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
 
 /** DEBUG_ROBOT_RHA implements debug macros for robot_rha.h and .cpp files */
 #ifdef DEBUG_ROBOT_RHA
-    #define DebugSerialRRHALn(a) {  Serial.print("[DC]  ROBOT_RHA::"); Serial.println(a); }
-    #define DebugSerialRRHALn2(a, b) {  Serial.print("[DC]  ROBOT_RHA::"); Serial.print(a); Serial.println(b); }
-    #define DebugSerialRRHAn4(a, b, c, d) {  Serial.print("[DC]  ROBOT_RHA::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+    #define DebugSerialRRHALn(a) {  Serial.print(F("[DC]  ROBOT_RHA::")); Serial.println(a); }
+    #define DebugSerialRRHALn2(a, b) {  Serial.print(F("[DC]  ROBOT_RHA::")); Serial.print(a); Serial.println(b); }
+    #define DebugSerialRRHAn4(a, b, c, d) {  Serial.print(F("[DC]  ROBOT_RHA::")); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
 #else
     #define DebugSerialRRHALn(a)
     #define DebugSerialRRHALn2(a, b)
@@ -175,8 +175,8 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
 
 /** DEBUG_TEST_CYTRON_G15_SERVO implements debug macros for test_cytron_g15_servo.cpp file */
 #ifdef DEBUG_TEST_CYTRON_G15_SERVO
-    #define DebugSerialTG15Ln(a) {  Serial.print("[DT]  CYTRON_G15_SERVO::"); Serial.println(a); }
-    #define DebugSerialTG15(a) {  Serial.print("[DT]  "); Serial.print(a); }
+    #define DebugSerialTG15Ln(a) {  Serial.print(F("[DT]  CYTRON_G15_SERVO::")); Serial.println(a); }
+    #define DebugSerialTG15(a) {  Serial.print(F("[DT]  "); Serial.print(a); }
 #else
     #define DebugSerialTG15Ln(a)
     #define DebugSerialTG15(a)
@@ -184,8 +184,8 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
 
 /** DEBUG_TEST_SERVO_RHA_MOCK implements debug macros for test_servo_mock.cpp file */
 #ifdef DEBUG_TEST_SERVO_RHA
-    #define DebugSerialTSRHALn(a) {  Serial.print("[DT]  ServoRHA::"); Serial.println(a); }
-    #define DebugSerialTSRHA(a) {  Serial.print("[DT]  ServoRHA::"); Serial.print(a); }
+    #define DebugSerialTSRHALn(a) {  Serial.print(F("[DT]  ServoRHA::")); Serial.println(a); }
+    #define DebugSerialTSRHA(a) {  Serial.print(F("[DT]  ServoRHA::")); Serial.print(a); }
 #else
     #define DebugSerialTSRHALn(a)
     #define DebugSerialTSRHA(a)
@@ -193,10 +193,10 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
 
 /** DEBUG_TEST_SERVO_RHA_REAL implements debug macros for test_servo_real.cpp file */
 #ifdef DEBUG_TEST_JOINT_RHA
-    #define DebugSerialTJRHALn(a) {  Serial.print("[DT]  JointRHA::"); Serial.println(a); }
-    #define DebugSerialTJRHALn2(a, b) {  Serial.print("[DT]  JointRHA::"); Serial.print(a); Serial.println(b); }
-    #define DebugSerialTJRHA(a) {  Serial.print("[DT]  JointRHA::"); Serial.print(a); }
-    #define DebugSerialTJRHALn4(a, b, c, d) {  Serial.print("[DT]  JointRHA::"); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
+    #define DebugSerialTJRHALn(a) {  Serial.print(F("[DT]  JointRHA::")); Serial.println(a); }
+    #define DebugSerialTJRHALn2(a, b) {  Serial.print(F("[DT]  JointRHA::")); Serial.print(a); Serial.println(b); }
+    #define DebugSerialTJRHA(a) {  Serial.print(F("[DT]  JointRHA::")); Serial.print(a); }
+    #define DebugSerialTJRHALn4(a, b, c, d) {  Serial.print(F("[DT]  JointRHA::")); Serial.print(a); Serial.print(b); Serial.print(c); Serial.println(d); }
 #else
     #define DebugSerialTJRHALn(a)
     #define DebugSerialTJRHALn2(a, b)

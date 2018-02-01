@@ -16,6 +16,29 @@
 
 // using namespace ServoRHAConstants;
 
+ServoRHA::ServoRHA() {
+    servo_id_ = 0;
+    speed_dir_ = 0;
+    position_ = 0;
+    load_ = 0;
+    load_dir_ = 0;
+    error_comunication_ = 0;
+    speed_ = 0; // Speed is saved in RPM
+    //uint8_t voltage_, temperature_;
+    goal_torque_ = 0;
+
+    direction_target_ = 0;
+    //uint16_t speed_slope_;
+    speed_target_ = 0;
+    time_last_ = 0;
+    time_last_error_ = 0;
+    error_= 0;
+    last_error_= 0;
+    derror_= 0;
+    ierror_= 0;
+}
+
+
 /** @brief Constructor of ServoRHA class.
   * @param {uint8_t} servo_id servo id controlled by this object
   */
@@ -64,12 +87,12 @@ void ServoRHA::init(uint8_t _servo_id) {
   */
 void ServoRHA::updateInfo(uint8_t *_data, uint16_t _error) {
     DebugSerialSRHALn("updateInfo: begin of function");
+    uint16_t speed = 0;
 
     // Position is measured from 0 to 1087 (if needed convert to 0-360 range)
     position_ = _data[0];  // acces data[0]
     position_ |= (_data[1] << 8);  // acces data[1]
 
-    uint16_t speed;
     speed = _data[2];    // acces data[2]
     speed |= (_data[3] << 8);   // acces data[3]
     speed_dir_  = ((speed & 0x0400) >> 10);  // 10th byte is direction -> 0000010000000000 binary is 400 in hex
@@ -91,13 +114,12 @@ void ServoRHA::updateInfo(uint8_t *_data, uint16_t _error) {
     error_comunication_ = _error;
 
     DebugSerialSRHALn("updateInfo: Information updated");
-    DebuSerialRHALnPrintServoStatus(position_, speed_, speed_dir_, load_, load_dir_, voltage_, temperature_, error_comunication_);
+    //DebuSerialRHALnPrintServoStatus(position_, speed_, speed_dir_, load_, load_dir_, voltage_, temperature_, error_comunication_);
 }
 
 /**
  * @brief Sets speed goal to achieve with speed slope
  * @param {uint16_t} speed_target speed to achieve
- * @param {uint16_t} speed_slope slope from actual speed to speed_target (acceleration)
  * @param {uint16_t} direction_target move CW or CCW
  */
 
@@ -106,12 +128,10 @@ uint8_t ServoRHA::setSpeedGoal(RHATypes::SpeedGoal _goal) {
     DebugSerialSRHALn2("setSpeedGoal: servo id now is: ", this->getID());
     DebugSerialSRHALn2("setSpeedGoal: goal intended for id: ", _goal.servo_id);
     if (servo_id_ == _goal.servo_id) {
-        speed_slope_ = _goal.speed_slope;
         speed_target_ = _goal.speed;
         direction_target_ = _goal.direction;
         time_last_ = millis();
         DebugSerialSRHALn2("setSpeedGoal: Speed set to: ", speed_target_);
-        DebugSerialSRHALn2("setSpeedGoal: Speed slope set to: ", speed_slope_);
         return true;
     } else
         return false;
@@ -123,16 +143,8 @@ uint8_t ServoRHA::setSpeedGoal(RHATypes::SpeedGoal _goal) {
  */
 void ServoRHA::speedError() {
     DebugSerialSRHALn("speedError: begin of function");
-    uint16_t speed = 0;
-    // TODO(eeha): if (speed_slope_ != 0) {
-    //     speed = (float)speed_ + (float)(millis() - time_last_) * speed_slope_;
-    //     if (speed > speed_target_) speed = (float)speed_target_;
-    //     time_last_ = millis();
-    // } else
-    speed = speed_target_;
-    int8_t sign = 1;
     // TODO(eeha): if (direction_target_ != speed_dir_) sign = -1;
-    error_ = (sign*((float)speed - (float)speed_));
+    error_ = ((float)speed_target_ - (float)speed_);
     derror_ = (error_ - last_error_) / (millis() - time_last_error_);
     ierror_ = error_ * (millis() - time_last_error_);
     last_error_ = error_;
@@ -156,9 +168,10 @@ void ServoRHA::calculateTorque(float _error, float _derror, float _ierror) {
         error_ = _error; derror_ = _derror; ierror_ = _ierror;
     }
     torque = torque_regulator_.regulator(error_, derror_, ierror_);
-    uint16_t torque_offset = load_ - uint16_t(speed_ / TORQUE_PREALIMENTATION_SLOPE);
-    uint16_t prealimentation = torque_offset + TORQUE_PREALIMENTATION_SLOPE*float(speed_target_);
-    torque = torque + prealimentation;
+    // torque_offset = load_ - uint16_t(speed_ / TORQUE_PREALIMENTATION_SLOPE);
+    // prealimentation = torque_offset + TORQUE_PREALIMENTATION_SLOPE*float(speed_target_);
+    // torque = torque + prealimentation;
+    torque = torque + load_ - uint16_t(speed_ / TORQUE_PREALIMENTATION_SLOPE) + TORQUE_PREALIMENTATION_SLOPE*float(speed_target_);
     if (torque > MAX_TORQUE_VALUE) torque = MAX_TORQUE_VALUE;  // compensate saturation of servos
     if (speed_target_ == 0) torque = 0;
     DebugSerialSRHALn2("calculateTorque: torque calculated is: ", goal_torque_);
@@ -380,4 +393,9 @@ uint8_t compareSpeed(float _speed1, float _speed2, float _speed_margin) {
     else if (_speed1 > _speed2+_speed_margin) return ServoRHAConstants::GREATER_THAN;
     else
         return ServoRHAConstants::EQUAL;
+}
+
+float floatMap(float x, float in_min, float in_max, float out_min, float out_max)
+{
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }

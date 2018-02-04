@@ -129,6 +129,10 @@ float floatMap(float x, float in_min, float in_max, float out_min, float out_max
 
 class ServoRHA {
  protected:
+    uint8_t empty_var;
+    uint8_t empty_var_2;
+    volatile uint8_t servo_id_;
+    //NOTE: servo_id_ gets lost when declared here
     uint16_t speed_dir_, position_, load_, load_dir_, error_comunication_;
     float  speed_;  // Speed is saved in RPM
     //uint8_t voltage_, temperature_;
@@ -141,9 +145,11 @@ class ServoRHA {
     uint64_t time_last_error_;
     float error_, last_error_, derror_, ierror_;
 
-    uint8_t servo_id_;
+    //NOTE: servo_id_ is "safe" here
 
  public:
+    void printCheckVar() { Serial.print("Value is: "); Serial.print(empty_var); Serial.print("\t"); Serial.print("Value 2 is: "); Serial.println(empty_var_2);}
+    
     RHATypes::Regulator torque_regulator_;
 
  public:
@@ -163,6 +169,8 @@ class ServoRHA {
     void wheelModeToPacket(uint8_t *_buffer, uint16_t _CW_angle, uint16_t _CCW_angle);
     void addToPacket(uint8_t *_buffer, uint8_t *_packet, uint8_t _packet_len);
     void pingToPacket(uint8_t *_buffer);
+
+    bool checkSecurity();
 
     uint8_t setSpeedGoal(RHATypes::SpeedGoal _goal);
     void speedError();

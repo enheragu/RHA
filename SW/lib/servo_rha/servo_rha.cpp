@@ -178,6 +178,18 @@ void ServoRHA::calculateTorque(float _error, float _derror, float _ierror) {
     goal_torque_ = uint16_t(torque);
 }
 
+/**
+ * @brief checks that everithing goes as espected. If not it stops the servo
+ * @method checkSecurity
+ * @return Returns true when theres no problem, false otherwise
+ */
+bool ServoRHA::checkSecurity() {
+    if(error_comunication_ != 0) {
+        Serial.print("[Error] Some error ocurred while communicating with servo: "); Serial.println(servo_id_);
+        return false;
+    }
+    else return true;
+}
 
 /*****************************************
  *       Packet handling functions       *

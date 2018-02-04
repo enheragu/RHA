@@ -28,16 +28,21 @@
 #define J2 2
 #define J3 3
 
+#define degreesToRad(angle) (float)((angle) * PI / 180)
+#define radToDegrees(position) (float)((position) * 180 / PI)
+
 namespace MechanicalConstantMesaures {
-    #define L1 455.0
-    #define L2 455.0
-    #define L3_Y 42.0
-    #define L3_X 30.0
+    #define L2 0.4550
+    #define L3 0.4550
+    #define LA 0.0300
+    #define LB 0.0420
 }
 
 class RobotRHA {
  private:
     bool first_time_serial_goal_;
+    bool robot_error_;
+
  public:
     RobotRHA() : first_time_serial_goal_(true) {}
     void initJointHandler();
@@ -56,11 +61,16 @@ class RobotRHA {
     void goToCartesianPos(RHATypes::Point3 _cartesian_pos);
     void goToArticularPos(RHATypes::Point3 _articular_pos);
 
+    bool checkError();
+    RHATypes::Point3 getCartesianPos() { return cartesian_position_; }
+
     RHATypes::Point3 forwardKinematics(RHATypes::Point3 _articular_pos);
     RHATypes::Point3 inverseKinematics(RHATypes::Point3 _cartesian_pos);
 
     JointHandler joint_handler_;
     //ChuckHandler chuck_handler_;
     RHATypes::Point3 articular_position_, cartesian_position_;
+
+    bool isError() { return robot_error_; }
 };
 #endif

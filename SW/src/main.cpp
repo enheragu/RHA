@@ -7,84 +7,100 @@
  * @Last modified time: 29-Oct-2017
  */
 
-#ifndef UNIT_TEST  // disable program main loop while unit testing in progress
+//#ifndef UNIT_TEST  // disable program main loop while unit testing in progress
 
 #include <Arduino.h>
 // #include "rha_types.h"
 // #include "utilities.h"
 // #include "servo_rha.h"
 // #include "joint_handler.h"
-#include "robot_rha.h"
 // #include "joint_rha.h"
+#include "robot_rha.h"
 #include "MemoryFree.h"
 
 RobotRHA robo_health_arm;
 
 void setup() {
+    pinMode(LED_BUILTIN, OUTPUT);
     delay(2000);
     Serial.begin(921600);  // 115200 230400 250000 460800 921600
     Serial.println(F("# Start setup"));
 
     robo_health_arm.initJointHandler();
     Serial.println(F("#Joint Handler initialiced"));
-    //robo_health_arm.initChuckHandler();
+    // robo_health_arm.initChuckHandler();
 
-    /*joint_handler.setTimer(50);
-    Serial.println("# Init G15 serial port");
-    joint_handler.initSerial(19,18,8,460800);  // baudrate 460800 means 57.6 bytes/milisecond
-    Serial.println("# Init Joints");
-    joint_handler.initJoints();
-    Serial.println("# Exit wheel mode");
-    joint_handler.sendExitWheelModeAll();
-    delay(100);
-    Serial.println("# Set wheel mode");
-    joint_handler.sendSetWheelModeAll();
-    //Serial.print("# Id for servo is: "); Serial.println(joint_handler.joint_[0].servo_.getID());
-    joint_handler.updateJointInfo();
-    delay(5000);
-    Serial.println("# Setup done");
-
-    RHATypes::SpeedGoal speed_goal(1,150,0,CW);  // Id, speed, speed_slope
-    joint_handler.setSpeedGoal(speed_goal);
-    RHATypes::SpeedGoal speed_goal2(2,150,0,CW);  // Id, speed, speed_slope
-    joint_handler.setSpeedGoal(speed_goal2);
-    */
-    /*Serial.println("# Set wheel speed in single mode");
-    joint_handler.sendSetWheelSpeedAll(500,CW);
-    delay(5000);*/
     Serial.println("F(# Init loop)");
+    robo_health_arm.joint_handler_.updateJointInfo();
+    robo_health_arm.updateInfo();
+
+    RHATypes::Point3 cartesian_pos;
+    cartesian_pos.x = 0.8;
+    cartesian_pos.z = 0.1;
+    robo_health_arm.goToCartesianPos(cartesian_pos);
 }
 
-uint32_t i = 0, c = 0;
-bool flag = false;
+int i = 0;
+int k = 0;
 
 void loop() {
-    // delay(500);
-    //robo_health_arm.handleWithChuck();
-
-    if (flag) {
-        robo_health_arm.handleWithSerialPort();
+    robo_health_arm.joint_handler_.updateJointInfo();
+    robo_health_arm.handleRobot();
+    RHATypes::Point3 pos_now = robo_health_arm.getCartesianPos();
+    uint8_t checksum = ~(uint8_t(pos_now.x)+uint8_t(pos_now.y)+uint8_t(pos_now.z));
+    uint8_t buffer[6] = {0xFF,0xFF,uint8_t(pos_now.x),uint8_t(pos_now.y),uint8_t(pos_now.z),checksum};
+    Serial_G15_lib.flush();
+    for (i = 0; i < 5; i++) {
+      //Serial.print(buffer[i]);
     }
-    if (i == 999) {
-        robo_health_arm.joint_handler_.updateJointInfo();
-        //robo_health_arm.joint_handler_.controlLoopSpeed();
+    //Serial.println();
+    if (robo_health_arm.isError()) {
+        while (true) {
+            Serial.println("[Error] Some error ocurred while running, arm in error mode. Needs reset to work again");
+            digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+            delay(500);                       // wait for a second
+            digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+            delay(500);
+            break;
+        }
     }
-    if (i == 500) {
-        i = 0;
+    if (k >= 10) {
+        k = 0;
 
-        Serial.print("freeMemory()= ");
+        /*Serial.print("freeMemory()= ");
         Serial.println(freeMemory());
+
+        Serial.println();
+        Serial.print("Servo 0:"); Serial.print("\t");
+        robo_health_arm.joint_handler_.joint_[0].servo_.printCheckVar();
+        Serial.print("Servo 1:"); Serial.print("\t");
+        robo_health_arm.joint_handler_.joint_[1].servo_.printCheckVar();
+        Serial.print("Servo 2:"); Serial.print("\t");
+        robo_health_arm.joint_handler_.joint_[2].servo_.printCheckVar();
+        Serial.print("joint 0:"); Serial.print("\t");
+        robo_health_arm.joint_handler_.joint_[0].printCheckVar();
+        Serial.print("joint 1:"); Serial.print("\t");
+        robo_health_arm.joint_handler_.joint_[1].printCheckVar();
+        Serial.print("joint 2:"); Serial.print("\t");
+        robo_health_arm.joint_handler_.joint_[2].printCheckVar();
+        Serial.print("joint handler:"); Serial.print("\t");
+        robo_health_arm.joint_handler_.printCheckVar();
+        Serial.println();*/
 
         Serial.print("ID Servo:"); Serial.print("\t\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getID()); Serial.print(",\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[1].servo_.getID()); Serial.print(",\t");
         Serial.println(robo_health_arm.joint_handler_.joint_[2].servo_.getID());
 
+        Serial.print("Pot pin:"); Serial.print("\t\t");
+        Serial.print("-"); Serial.print(",\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[1].getPotentiometerPin()); Serial.print(",\t");
+        Serial.println(robo_health_arm.joint_handler_.joint_[2].getPotentiometerPin());
+
         Serial.print("Pot value:"); Serial.print("\t\t");
         Serial.print("-"); Serial.print(",\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[1].getAnalogReadPot()); Serial.print(",\t");
         Serial.println(robo_health_arm.joint_handler_.joint_[2].getAnalogReadPot());
-
 
         Serial.print(F("Goal pos:")); Serial.print("\t\t");
         Serial.print("-"); Serial.print(",\t");
@@ -116,10 +132,9 @@ void loop() {
 
         Serial.println();
         Serial.println();
-        flag = true;
     }
 
-    i++;
+    k++;
 }
 
-#endif
+//#endif

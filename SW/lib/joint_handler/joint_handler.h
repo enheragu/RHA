@@ -77,15 +77,19 @@ namespace JointHandlerConstants {
 
 
 class JointHandler {
+    uint8_t empty_var;
+    uint8_t empty_var_2;
     RHATypes::Timer torque_control_loop_timer_;  /**< This timer is intended for servo speed control loop (input is speed goal, output is torque for servos)*/
     RHATypes::Timer speed_control_loop_timer_;  /**< This timer is intended for joint position control loop (input is pos goal, output is servo for servoRHA)*/
-
-    uint16_t comunication_error_;
 
     uint8_t buffer[BUFFER_LEN];
     uint8_t txBuffer[BUFFER_LEN];
 
+    uint8_t error_joint_;
+    uint8_t error_servo_;
+
  public:
+    void printCheckVar() { Serial.print("Value is: "); Serial.print(empty_var); Serial.print("\t"); Serial.print("Value 2 is: "); Serial.println(empty_var_2);}
     JointRHA joint_[NUM_JOINT];
 
     JointHandler();
@@ -97,6 +101,9 @@ class JointHandler {
 
     virtual void controlLoopTorque();
     virtual void controlLoopSpeed();
+
+    bool checkJointSecurityAll();
+    bool checkServoSecurityAll();
 
     void updateJointInfo();
     void updateJointErrorTorque();
@@ -120,6 +127,7 @@ class JointHandler {
     void warpSinglePacket(uint8_t _instruction, uint8_t *_buffer, uint8_t *_txBuffer);
     uint16_t sendPacket(uint8_t *_buffer);
 
+    bool isError() { return error_joint_ || error_servo_; } /**< Returns whether theres any error or not */
 
     /**************************************
      *        Serial Port Handling        *

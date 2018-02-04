@@ -19,6 +19,8 @@ SoftwareSerial* G15Serial_;
 JointHandler::JointHandler() {
     resetBuffer(buffer);
     resetBuffer(txBuffer);
+    error_joint_ = false;
+    error_servo_ = false;
 }
 
 /**
@@ -58,8 +60,8 @@ void JointHandler::setSpeedControlTimer(uint64_t _timer) {
 void JointHandler::initJoints() {
     DebugSerialJHLn("initJoints: begin of function");
     joint_[0].init(2, CW);  // does not have potentiometer, not realimented
-    joint_[1].init(1, CW,0, 0);
-    joint_[2].init(3, CW,0, 1);
+    joint_[1].init(1, CW, -63.19, 0);
+    joint_[2].init(3, CCW, 109, 1);
 
     joint_[1].setPotRelation(0.69);  // (float)(29/42));
     joint_[2].setPotRelation(1);
@@ -84,6 +86,7 @@ void JointHandler::initJoints() {
   * @brief controlLoopTorque() function handles control loop for servo speed (output of regulator is torque for servo)
   */
 void JointHandler::controlLoopTorque() {
+    if (error_servo_) return;
     DebugSerialJHLn("controlLoop: begin of function");
     if (torque_control_loop_timer_.checkContinue()) {
         // Firt all info have to be updated
@@ -94,10 +97,22 @@ void JointHandler::controlLoopTorque() {
         DebugSerialJHLn("controlLoop: Updating joint error torque");
         updateJointErrorTorque();
 
-        DebugSerialJHLn("controlLoop: send new torque to servos");
-        // TODO(eeha): sendJointTorques();  // <- uses sync packet which aparently does not work well
-        sendSetWheelSpeedAll();  // <- uses async/single packet to each servo
-        // Send buffer
+        if (checkServoSecurityAll()) {
+            DebugSerialJHLn("controlLoop: send new torque to servos");
+            // TODO(eeha): sendJointTorques();  // <- uses sync packet which aparently does not work well
+            sendSetWheelSpeedAll();  // <- uses async/single packet to each servo
+            // Send buffer
+            error_servo_ = false;
+        } else {
+            DebugSerialJHLn("controlLoop: ERROR: Servos turned to 0 speed due to unexpected error");
+            // In case of error in any servo it stops all of them
+            RHATypes::SpeedGoal goal_to_zero;
+            setSpeedGoal(goal_to_zero);
+            sendSetWheelSpeedAll();
+            error_servo_ = true;
+        }
+
+
 
         torque_control_loop_timer_.activateTimer();
     }
@@ -108,6 +123,7 @@ void JointHandler::controlLoopTorque() {
  * @method JointHandler::updateJointInfo
  */
  void JointHandler::controlLoopSpeed() {
+     if (error_joint_) return;
      DebugSerialJHLn("controlLoopSpeed: begin of function");
      if (speed_control_loop_timer_.checkContinue()) {
          // Info is supposed to be updated faster in the other control loop. It is not updated here to avoid losing time comunicating
@@ -117,12 +133,46 @@ void JointHandler::controlLoopTorque() {
          DebugSerialJHLn("controlLoopSpeed: Updating joint error pos");
          updateJointErrorSpeed();
 
-         DebugSerialJHLn("controlLoopSpeed: send new speed to ServoRHA");
-         sendSpeedGoalAll();
+         if (checkJointSecurityAll()) {
+             DebugSerialJHLn("controlLoopSpeed: send new speed to ServoRHA");
+             sendSpeedGoalAll();
+             error_joint_ = false;
+         } else {
+             DebugSerialJHLn("controlLoop: ERROR: Joints turned to 0 speed due to unexpected error");
+             // In case of error in any joint it stops all of them
+             RHATypes::SpeedGoal goal_to_zero;
+             setSpeedGoal(goal_to_zero);
+             sendSetWheelSpeedAll();
+             error_joint_ = true;
+         }
 
          speed_control_loop_timer_.activateTimer();
      }
  }
+
+/**
+ * @brief Checks that is secure to move all joints
+ * @method checkJointSecurityAll
+ * @return returns true in case of safety, ralse otherwise
+ */
+bool JointHandler::checkJointSecurityAll() {
+    for (uint8_t i = 0; i < NUM_JOINT; i++) {
+        if(!joint_[i].checkSecurity()) return false;
+    }
+    return true;
+}
+
+/**
+ * @brief Checks that is secure to move all servo
+ * @method checkJointSecurityAll
+ * @return returns true in case of safety, ralse otherwise
+ */
+bool JointHandler::checkServoSecurityAll() {
+    for (uint8_t i = 0; i < NUM_JOINT; i++) {
+        if(!joint_[i].servo_.checkSecurity()) return false;
+    }
+    return true;
+}
 
 /**
  * @brief Updates internal information from all joint.

@@ -14,7 +14,9 @@
 JointRHA::JointRHA() {
     time_last_error_ = 0;
     position_pot_ = 0;
+    position_pot_last_ = 0;
     position_target_ = 0;
+    error_moving_ = 0;
 }
 
 /** @brief Cunstructor of JointRHA class.
@@ -40,7 +42,7 @@ JointRHA::~JointRHA() {
   * @param {uint8_t} up_direction direction in which the servo has to move (CW or CCW) so the joint moves up.
   * @param {uint8_t} potentiometer pin in which the potentiometer for this joint is connected. If there is no realim for this joint value will be 255
   */
-void JointRHA::init(uint8_t _servo_id, uint8_t _up_direction, int _zero_compensation, uint8_t _potentiometer) {
+void JointRHA::init(uint8_t _servo_id, uint8_t _up_direction, float _zero_compensation, uint8_t _potentiometer) {
     DebugSerialJRHALn("init: begin of function");
     DebugSerialJRHALn2("init: initialazing with id: ", _servo_id);
     up_direction_ = _up_direction;
@@ -70,7 +72,9 @@ void JointRHA::updatePosition() {
         DebugSerialJRHALn2("updatePosition: for potentiometer in pin: ", potentiometer_pin_);
         pot_analog_read_ = analogRead(potentiometer_pin_);
         //Serial.print("Art: "); Serial.print(servo_.getID(), DEC); Serial.print(", pot: "); Serial.println(pot_analog_read_);
+        position_pot_last_ = position_pot_;
         position_pot_ = floatMap(pot_analog_read_, 0, 1023, 0, 265) * joint_pot_relation_;  // from 0 to 5V transform to 0-265 degrees (max angle of potentiometer)
+        position_pot_ = position_pot_ - zero_pos_compensation_;
         //position_pot_ = position_pot_ - zero_pos_compensation_;
 
         // Serial.println(position_pot_);
@@ -172,4 +176,21 @@ void JointRHA::updateServoSpeedGoal() {
  */
 bool JointRHA::reachedGoalPosition() {
     return (compareAngles(position_pot_, position_target_, ANGLE_TOLERANCE) == ServoRHAConstants::EQUAL)?true:false;
+}
+
+
+/**
+ * @brief checks that everithing goes as espected. If not it stops the servo
+ * @method checkSecurity
+ * @return Returns true when theres no problem, false otherwise
+ */
+bool JointRHA::checkSecurity() {
+    if (abs(servo_.getSpeed()) > 0 && compareAngles(position_pot_, position_pot_last_, ANGLE_TOLERANCE) == ServoRHAConstants::EQUAL )
+        error_moving_++;
+    else error_moving_ = 0;
+    if (error_moving_ > ERROR_MOVING_MARGIN) {
+            Serial.print("[Error] Some error ocurred, joint should be moving but its not. Joint: "); Serial.println(servo_.getID());
+            return false;
+    }
+    else return true;
 }

@@ -65,7 +65,7 @@
 // #define DEBUG_CYTRON_G15_SERVO
 // #define DEBUG_TEST_CYTRON_G15_SERVO
 // #define DEBUG_UTILITIES
-// #define DEBUG_ROBOT_RHA
+ #define DEBUG_ROBOT_RHA
 // #define DEBUG_RHA_TYPES
 // #define DEBUG_JOINT_RHA
  #define PRINT_SERVO_ERROR_MSG false

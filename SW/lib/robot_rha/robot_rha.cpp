@@ -14,16 +14,46 @@ void RobotRHA::initJointHandler() {
 }
 
 
-
 void RobotRHA::handleRobot() {
+    DebugSerialRRHALn("handleRobot: begin of function");
+    updateInfo();
+    robot_error_ = checkError();
+    if (robot_error_){
+        DebugSerialRRHALn("handleRobot: error detected. Not going through control loops");
+        return;
+    } else {
+        joint_handler_.controlLoopTorque();
+        joint_handler_.controlLoopSpeed();
+    }
 }
 
+
 void RobotRHA::goToCartesianPos(RHATypes::Point3 _cartesian_pos) {
+    DebugSerialRRHALn("goToCartesianPos: begin of function");
+    DebugSerialRRHALn("goToCartesianPos: getting goal as articular space goal");
+    DebugSerialRRHALn("goToCartesianPos: begin of function");
+    DebugSerialRRHALn("goToCartesianPos: Going to pos:");
+    DebugSerialRRHALn2("x: ", _cartesian_pos.x);
+    DebugSerialRRHALn2("y: ", _cartesian_pos.y);
+    DebugSerialRRHALn2("z: ", _cartesian_pos.z);
+    DebugSerialRRHALn("goToCartesianPos: From pos:");
+    DebugSerialRRHALn2("x: ", cartesian_position_.x);
+    DebugSerialRRHALn2("y: ", cartesian_position_.y);
+    DebugSerialRRHALn2("z: ", cartesian_position_.z);
     RHATypes::Point3 articular_pos = inverseKinematics(_cartesian_pos);
     goToArticularPos(articular_pos);
 }
 
 void RobotRHA::goToArticularPos(RHATypes::Point3 _articular_pos) {
+    DebugSerialRRHALn("goToArticularPos: begin of function");
+    DebugSerialRRHALn("goToArticularPos: Going to pos:");
+    DebugSerialRRHALn2("q1: ", _articular_pos.x);
+    DebugSerialRRHALn2("q2: ", _articular_pos.y);
+    DebugSerialRRHALn2("q3: ", _articular_pos.z);
+    DebugSerialRRHALn("goToArticularPos: From pos:");
+    DebugSerialRRHALn2("q1: ", articular_position_.x);
+    DebugSerialRRHALn2("q2: ", articular_position_.y);
+    DebugSerialRRHALn2("q3: ", articular_position_.z);
     joint_handler_.joint_[0].setPositionGoal( _articular_pos.x);
     joint_handler_.joint_[1].setPositionGoal( _articular_pos.y);
     joint_handler_.joint_[2].setPositionGoal( _articular_pos.z);
@@ -31,32 +61,35 @@ void RobotRHA::goToArticularPos(RHATypes::Point3 _articular_pos) {
 
 RHATypes::Point3 RobotRHA::forwardKinematics (RHATypes::Point3 _articular_pos) {
     RHATypes::Point3 cartesian_pos;
-    cartesian_pos.x = L1*cos(_articular_pos.y) + L2*cos(_articular_pos.z) + L3_X;
-    cartesian_pos.z = L1*sin(_articular_pos.y) - L2*sin(_articular_pos.z) + L3_Y;
+
+    cartesian_pos.x  = LA + L2*cos(PI/2-degreesToRad(180-_articular_pos.y)) + L2*cos(degreesToRad(180-_articular_pos.z)-PI/2);
+    cartesian_pos.z = LB + L2*sin(PI/2-degreesToRad(180-_articular_pos.y)) - L2*sin(degreesToRad(180-_articular_pos.z)-PI/2);
+
     return cartesian_pos;
 }
 
 RHATypes::Point3 RobotRHA::inverseKinematics (RHATypes::Point3 _cartesian_pos) {
     RHATypes::Point3 articular_pos;
-    float xa = _cartesian_pos.x - L3_X;
-    float ya = _cartesian_pos.z - L3_Y;
-    // get q2:
-    // float r = sqrt(pow(xa,2)+pow(ya,2));
-    // float num = pow(r,2) + pow(L1,2) - pow(L2,2);
-    // float dem = 2*r*L1;
-    // float beta = acos(num/dem);
-    articular_pos.y = atan2(ya,xa) + acos((pow((sqrt(pow(xa,2)+pow(ya,2))),2) + pow(L1,2) - pow(L2,2))/(2*(sqrt(pow(xa,2)+pow(ya,2)))*L1));
-    //get q3:
-    // float num2 = pow(L1,2) + pow(L2,2) - pow((sqrt(pow(xa,2)+pow(ya,2))),2);
-    // float dem2 = 2*L1*L2;
-    //float gamma = acos((pow(L1,2) + pow(L2,2) - pow((sqrt(pow(xa,2)+pow(ya,2))),2))/(2*L1*L2));
-    articular_pos.z = PI - acos((pow(L1,2) + pow(L2,2) - pow((sqrt(pow(xa,2)+pow(ya,2))),2))/(2*L1*L2)) - articular_pos.y;
+    float xa = _cartesian_pos.x - LA;
+    float za = _cartesian_pos.z - LB;
+
+    articular_pos.y = 180-radToDegrees(PI/2 - (acos(sqrt(xa*xa + za*za)/(2*L2)) + atan2(za,xa)));
+    articular_pos.z = 180-radToDegrees(PI - (acos(sqrt(xa*xa + za*za)/(2*L2)) + atan2(za,xa)) - acos((L2*L2+L2*L2-sqrt(xa*xa + za*za)*sqrt(xa*xa + za*za))/(2*L2*L2)) + PI/2);
 
     return articular_pos;
 }
 
-void updateInfo() {
-    //articular_position_, cartesian_position_;
+void RobotRHA::updateInfo() {
+    // articular_position_, cartesian_position_;
+    // articular_position_.x = <- Unknown for now
+    articular_position_.y = joint_handler_.joint_[1].getPosition();
+    articular_position_.z = joint_handler_.joint_[2].getPosition();
+    cartesian_position_ = forwardKinematics(articular_position_);
+
+}
+
+bool RobotRHA::checkError() {
+    return joint_handler_.isError();
 }
 
 /**

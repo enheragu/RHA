@@ -1,0 +1,23 @@
+#include <Arduino.h>
+
+uint32_t c = 0;
+
+uint8_t *memory_corrupt = (uint8_t *)0xF2;
+uint8_t *memory_corrupt2 = (uint8_t *)0xED;
+uint8_t *memory_corrupt3 = (uint8_t *)0xE5;
+
+void setup() {
+    delay(2000);
+    Serial.begin(115200);  // 115200 230400 250000 460800 921600
+}
+
+void loop() {
+
+    Serial.print(F("Check var: Iteration ")); Serial.print(c); Serial.println();
+    Serial.print(F("Memory corruption in 0xF2: Value now -> ")); Serial.print(*memory_corrupt); Serial.print("\t"); Serial.print(F(" In dir: ")); Serial.println(uint8_t(memory_corrupt), HEX);
+    Serial.print(F("Memory corruption in 0xED: Value now -> ")); Serial.print(*memory_corrupt2); Serial.print("\t"); Serial.print(F(" In dir: ")); Serial.println(uint8_t(memory_corrupt2), HEX);
+    Serial.print(F("Memory corruption in 0xE5: Value now -> ")); Serial.print(*memory_corrupt3); Serial.print("\t"); Serial.print(F(" In dir: ")); Serial.println(uint8_t(memory_corrupt3), HEX);
+
+    c++;
+    if (c>2000) while(true) { delay(100);}
+}

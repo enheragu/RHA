@@ -149,7 +149,7 @@ class ServoRHA {
 
  public:
     void printCheckVar() { Serial.print("Value is: "); Serial.print(empty_var); Serial.print("\t"); Serial.print("Value 2 is: "); Serial.println(empty_var_2);}
-    
+
     RHATypes::Regulator torque_regulator_;
 
  public:
@@ -201,6 +201,20 @@ class ServoRHA {
     float getError() { return error_; }
     float getDError() { return derror_; }
     float getIError() { return ierror_; }
+    uint16_t getSpeedWithDir() {
+        uint16_t speed = (uint16_t)getSpeed() & 0x03FF;
+        if (getSpeedDir() == CW) {
+            speed = speed | 0x0400;
+        }
+        return speed;
+    }
+    uint16_t getTorqueWithDir() {
+        uint16_t load = getLoad() & 0x03FF;
+        if (getLoadDir() == CW) {
+            load = load | 0x0400;
+        }
+        return load;
+    }
 };
 
 #endif

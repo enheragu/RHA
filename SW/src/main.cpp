@@ -27,32 +27,33 @@ void setup() {
     Serial.println(F("# Start setup"));
 
     robo_health_arm.initJointHandler();
+    robo_health_arm.initPynterface();
     Serial.println(F("#Joint Handler initialiced"));
     // robo_health_arm.initChuckHandler();
 
     Serial.println("F(# Init loop)");
     robo_health_arm.joint_handler_.updateJointInfo();
     robo_health_arm.updateInfo();
+    RHATypes::Point3 init_pos;
+    init_pos.x = robo_health_arm.joint_handler_.joint_[0].getPosition();
+    init_pos.y = robo_health_arm.joint_handler_.joint_[1].getPosition();
+    init_pos.z = robo_health_arm.joint_handler_.joint_[2].getPosition();
+    robo_health_arm.goToArticularPos(init_pos);
 
-    RHATypes::Point3 cartesian_pos;
+    /*RHATypes::Point3 cartesian_pos;
     cartesian_pos.x = 0.8;
     cartesian_pos.z = 0.1;
-    robo_health_arm.goToCartesianPos(cartesian_pos);
+    robo_health_arm.goToCartesianPos(cartesian_pos);*/
 }
 
 int i = 0;
 int k = 0;
 
 void loop() {
-    robo_health_arm.joint_handler_.updateJointInfo();
+    robo_health_arm.handleWithPynterface();
+    /*robo_health_arm.joint_handler_.updateJointInfo();
     robo_health_arm.handleRobot();
-    RHATypes::Point3 pos_now = robo_health_arm.getCartesianPos();
-    uint8_t checksum = ~(uint8_t(pos_now.x)+uint8_t(pos_now.y)+uint8_t(pos_now.z));
-    uint8_t buffer[6] = {0xFF,0xFF,uint8_t(pos_now.x),uint8_t(pos_now.y),uint8_t(pos_now.z),checksum};
-    Serial_G15_lib.flush();
-    for (i = 0; i < 5; i++) {
-      //Serial.print(buffer[i]);
-    }
+
     //Serial.println();
     if (robo_health_arm.isError()) {
         while (true) {
@@ -63,7 +64,7 @@ void loop() {
             delay(500);
             break;
         }
-    }
+    }*/
     if (k >= 10) {
         k = 0;
 
@@ -87,7 +88,7 @@ void loop() {
         robo_health_arm.joint_handler_.printCheckVar();
         Serial.println();*/
 
-        Serial.print("ID Servo:"); Serial.print("\t\t");
+        /*Serial.print("ID Servo:"); Serial.print("\t\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getID()); Serial.print(",\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[1].servo_.getID()); Serial.print(",\t");
         Serial.println(robo_health_arm.joint_handler_.joint_[2].servo_.getID());
@@ -131,7 +132,7 @@ void loop() {
         Serial.print(robo_health_arm.joint_handler_.joint_[1].servo_.getSpeed()); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[2].servo_.getSpeed());
 
         Serial.println();
-        Serial.println();
+        Serial.println();*/
     }
 
     k++;

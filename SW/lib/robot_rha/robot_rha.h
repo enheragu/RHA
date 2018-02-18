@@ -11,6 +11,7 @@
 #define ROBOT_RHA_H
 
 #include <math.h>
+#include <Arduino.h>
 
 #include "chuck_handler.h"
 #include "joint_handler.h"
@@ -31,7 +32,20 @@
 #define degreesToRad(angle) (float)((angle) * PI / 180)
 #define radToDegrees(position) (float)((position) * 180 / PI)
 
+namespace PynterfaceConstants {
+    // Serial1 on pins 19 (RX) and 18 (TX)
+    // Serial2 on pins 17 (RX) and 16 (TX)
+    // Serial3 on pins 15 (RX) and 14 (TX)
+    // Check what serial is used by joint_handler
+    #define Serial_PYNTERFACE Serial
+    #define PYNTERFACE_MSG_LENGTH 20
+    #define PYNTERFACE_BAUDRATE 921600
+    #define SEND_PYNTERFACE_DELAY PYNTERFACE_MSG_LENGTH/(PYNTERFACE_BAUDRATE*0.125*0.001)  // Baudrate * 0.125 = bytes/s; *0.001 -> bytes/milisecond
+    enum package_content {UPDATE_INFO = 0, ERROR, ARTICULAR_GOAL};
+}
+
 namespace MechanicalConstantMesaures {
+    #define L1 0.3070
     #define L2 0.4550
     #define L3 0.4550
     #define LA 0.0300
@@ -44,6 +58,8 @@ class RobotRHA {
     bool robot_error_;
 
  public:
+    RHATypes::Timer send_pynterface_data_;
+
     RobotRHA() : first_time_serial_goal_(true) {}
     void initJointHandler();
     void initChuckHandler();
@@ -51,6 +67,12 @@ class RobotRHA {
     void handleRobot();
     void setCartesianSpeedGoal(float _speed_x, float _speed_y, float _speed_z);
     void setSpeedToServos(float _speed, uint8_t _servo_id);
+
+    void initPynterface();
+    void handleWithPynterface();
+    bool sendPackage();
+    void getPackage();
+
 
     void handleWithChuck();
     void handleWithSerialPort();
@@ -69,8 +91,8 @@ class RobotRHA {
 
     JointHandler joint_handler_;
     //ChuckHandler chuck_handler_;
-    RHATypes::Point3 articular_position_, cartesian_position_;
+    RHATypes::Point3 articular_position_, cartesian_position_, pynterface_goal_;
 
-    bool isError() { return robot_error_; }
+    bool isError() { return joint_handler_.isError(); }
 };
 #endif

@@ -60,8 +60,8 @@ void JointHandler::setSpeedControlTimer(uint64_t _timer) {
 void JointHandler::initJoints() {
     DebugSerialJHLn("initJoints: begin of function");
     joint_[0].init(2, CW);  // does not have potentiometer, not realimented
-    joint_[1].init(1, CW, -63.19, 0);
-    joint_[2].init(3, CCW, 109, 1);
+    joint_[1].init(1, CW, -66.47, 0);
+    joint_[2].init(3, CW, 109.72, 1);
 
     joint_[1].setPotRelation(0.69);  // (float)(29/42));
     joint_[2].setPotRelation(1);

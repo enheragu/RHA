@@ -63,7 +63,7 @@ RHATypes::Point3 RobotRHA::forwardKinematics (RHATypes::Point3 _articular_pos) {
     RHATypes::Point3 cartesian_pos;
 
     cartesian_pos.x  = LA + L2*cos(PI/2-degreesToRad(180-_articular_pos.y)) + L2*cos(degreesToRad(180-_articular_pos.z)-PI/2);
-    cartesian_pos.z = LB + L2*sin(PI/2-degreesToRad(180-_articular_pos.y)) - L2*sin(degreesToRad(180-_articular_pos.z)-PI/2);
+    cartesian_pos.z = LB + L2*sin(PI/2-degreesToRad(180-_articular_pos.y)) - L2*sin(degreesToRad(180-_articular_pos.z)-PI/2) + L1;
 
     return cartesian_pos;
 }
@@ -71,7 +71,7 @@ RHATypes::Point3 RobotRHA::forwardKinematics (RHATypes::Point3 _articular_pos) {
 RHATypes::Point3 RobotRHA::inverseKinematics (RHATypes::Point3 _cartesian_pos) {
     RHATypes::Point3 articular_pos;
     float xa = _cartesian_pos.x - LA;
-    float za = _cartesian_pos.z - LB;
+    float za = _cartesian_pos.z - L1 - LB;
 
     articular_pos.y = 180-radToDegrees(PI/2 - (acos(sqrt(xa*xa + za*za)/(2*L2)) + atan2(za,xa)));
     articular_pos.z = 180-radToDegrees(PI - (acos(sqrt(xa*xa + za*za)/(2*L2)) + atan2(za,xa)) - acos((L2*L2+L2*L2-sqrt(xa*xa + za*za)*sqrt(xa*xa + za*za))/(2*L2*L2)) + PI/2);
@@ -91,6 +91,7 @@ void RobotRHA::updateInfo() {
 bool RobotRHA::checkError() {
     return joint_handler_.isError();
 }
+
 
 /**
  * @brief Inits chuck handler timer
@@ -199,5 +200,109 @@ int RobotRHA::getGoalFromSerialInput(int _joint_target) {
         int incoming_value = Serial.read();
         Serial.print("Going to "); Serial.print(incoming_value); Serial.println(" position");
         return incoming_value;
+    }
+}
+
+
+void RobotRHA::initPynterface() {
+    Serial_PYNTERFACE.begin(PYNTERFACE_BAUDRATE);
+    send_pynterface_data_.setTimer(SEND_PYNTERFACE_DELAY);
+    send_pynterface_data_.activateTimer();
+}
+
+void RobotRHA::handleWithPynterface(){
+    handleRobot();
+    sendPackage();
+    getPackage();
+}
+
+
+bool RobotRHA::sendPackage() {
+    uint8_t i;
+    uint8_t buffer[PYNTERFACE_MSG_LENGTH];
+    uint8_t checksum;
+    if(send_pynterface_data_.checkContinue()) {
+        if (isError()) {
+            checksum = 0;
+            buffer[0] = 0xFF;
+            buffer[1] = 0xFF;
+            buffer[2] = 4;  // length without header
+            buffer[3] = PynterfaceConstants::ERROR;
+            buffer[4] = 0;
+            buffer[4] += joint_handler_.joint_[0].servo_.checkSecurity()?0x01:0;
+            buffer[4] += joint_handler_.joint_[1].servo_.checkSecurity()?0x02:0;
+            buffer[4] += joint_handler_.joint_[2].servo_.checkSecurity()?0x04:0;
+            buffer[5] = 0;
+            buffer[5] = joint_handler_.joint_[0].checkSecurity()?0x01:0;
+            buffer[5] = joint_handler_.joint_[1].checkSecurity()?0x02:0;
+            buffer[5] = joint_handler_.joint_[2].checkSecurity()?0x04:0;
+            checksum += buffer[2];
+            checksum += buffer[3];
+            checksum += buffer[4];
+            checksum += buffer[5];
+            for (i = 0; i < buffer[2]+2; i++) {
+                Serial_PYNTERFACE.write(buffer[i]);
+            }
+        }
+        else {
+            checksum = 0;
+            buffer[0] = 0xFF;
+            buffer[1] = 0xFF;                                                           // Header is not included in checksum
+            buffer[2] = 18;                                                             checksum += buffer[2];  // Length without header
+            buffer[3] = PynterfaceConstants::UPDATE_INFO;                               checksum += buffer[3];  // Package pourpose
+            buffer[4] = uint8_t(articular_position_.x);                                 checksum += buffer[4];  // Package:
+            buffer[5] = joint_handler_.joint_[0].servo_.getSpeedWithDir() & 0x00FF;     checksum += buffer[5];
+            buffer[6] = joint_handler_.joint_[0].servo_.getSpeedWithDir() >> 8;         checksum += buffer[6];
+            buffer[7] = joint_handler_.joint_[0].servo_.getTorqueWithDir() & 0x00FF;    checksum += buffer[7];
+            buffer[8] = joint_handler_.joint_[0].servo_.getTorqueWithDir() >> 8;        checksum += buffer[8];
+            buffer[9] = uint8_t(articular_position_.y);                                 checksum += buffer[9];
+            buffer[10] = joint_handler_.joint_[1].servo_.getSpeedWithDir() & 0x00FF;    checksum += buffer[10];
+            buffer[11] = joint_handler_.joint_[1].servo_.getSpeedWithDir() >> 8;        checksum += buffer[11];
+            buffer[12] = joint_handler_.joint_[1].servo_.getTorqueWithDir() & 0x00FF;   checksum += buffer[12];
+            buffer[13] = joint_handler_.joint_[1].servo_.getTorqueWithDir() >> 8;       checksum += buffer[13];
+            buffer[14] = uint8_t(articular_position_.z);                                checksum += buffer[14];
+            buffer[15] = joint_handler_.joint_[2].servo_.getSpeedWithDir() & 0x00FF;    checksum += buffer[15];
+            buffer[16] = joint_handler_.joint_[2].servo_.getSpeedWithDir() >> 8;        checksum += buffer[16];
+            buffer[17] = joint_handler_.joint_[2].servo_.getTorqueWithDir() & 0x00FF;   checksum += buffer[17];
+            buffer[18] = joint_handler_.joint_[2].servo_.getTorqueWithDir() >> 8;       checksum += buffer[18];
+            buffer[19] = ~(checksum);
+            for (i = 0; i < buffer[2]+2; i++) {
+                Serial_PYNTERFACE.write(buffer[i]);
+            }
+        }
+        return true;
+        send_pynterface_data_.activateTimer();
+    }
+    else return false;
+
+}
+void RobotRHA::getPackage() {
+    uint8_t i;
+    uint8_t buffer[PYNTERFACE_MSG_LENGTH+1];
+    uint8_t length = 0;
+    uint8_t checksum;
+
+
+    // Reads command sent by pynterface
+    uint8_t readCount = 0;
+    // Serial read returns -1 if theres no data to read in buffer
+    if (Serial_PYNTERFACE.read() == 0xFF && Serial_PYNTERFACE.read() == 0xFF) {
+        // Now a msg can be read. Header was ok
+        length = Serial_PYNTERFACE.read(); checksum += length;
+        readCount = Serial_PYNTERFACE.readBytes(buffer, length-1);
+        // Check if checksum is correct
+        for (i = 0; i < length-1; i++) {
+            checksum += buffer[i];
+        }
+        // If its correct it can handle the information
+        // Checksum is the last byte in package
+        if (checksum == buffer[length] && readCount == length-1) {
+            if (buffer[0] == PynterfaceConstants::ARTICULAR_GOAL) {
+                pynterface_goal_.x = buffer[1];
+                pynterface_goal_.y = buffer[2];
+                pynterface_goal_.z = buffer[3];
+                goToArticularPos(pynterface_goal_);
+            }
+        }
     }
 }

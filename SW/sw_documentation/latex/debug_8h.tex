@@ -1,0 +1,259 @@
+\hypertarget{debug_8h}{}\section{lib/debug/debug.h File Reference}
+\label{debug_8h}\index{lib/debug/debug.\+h@{lib/debug/debug.\+h}}
+
+
+Implements debugging macros with Serial printig that can be activated or not for each different librari or file.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\\*
+Include dependency graph for debug.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{debug_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{debug_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries S\+E\+R\+R\+O\+R\+\_\+\+P\+I\+NG}~0\+X0000
+\item 
+\#define {\bfseries S\+E\+R\+R\+O\+R\+\_\+\+I\+N\+P\+U\+T\+V\+O\+L\+T\+A\+GE}~0\+X0001
+\item 
+\#define {\bfseries S\+E\+R\+R\+O\+R\+\_\+\+A\+N\+G\+L\+E\+L\+I\+M\+IT}~0\+X0002
+\item 
+\#define {\bfseries S\+E\+R\+R\+O\+R\+\_\+\+O\+V\+E\+R\+H\+E\+A\+T\+I\+NG}~0\+X0004
+\item 
+\#define {\bfseries S\+E\+R\+R\+O\+R\+\_\+\+R\+A\+N\+GE}~0\+X0008
+\item 
+\#define {\bfseries S\+E\+R\+R\+O\+R\+\_\+\+C\+H\+E\+C\+K\+S\+UM}~0\+X0010
+\item 
+\#define {\bfseries S\+E\+R\+R\+O\+R\+\_\+\+O\+V\+E\+R\+L\+O\+AD}~0\+X0020
+\item 
+\#define {\bfseries S\+E\+R\+R\+O\+R\+\_\+\+I\+N\+S\+T\+R\+U\+C\+T\+I\+ON}~0\+X0040
+\item 
+\#define {\bfseries S\+E\+R\+R\+O\+R\+\_\+\+P\+A\+C\+K\+E\+T\+L\+O\+ST}~0\+X0100
+\item 
+\#define {\bfseries S\+E\+R\+R\+O\+R\+\_\+\+W\+R\+O\+N\+G\+H\+E\+A\+D\+ER}~0\+X0200
+\item 
+\#define {\bfseries S\+E\+R\+R\+O\+R\+\_\+\+I\+D\+M\+I\+S\+M\+A\+T\+CH}~0\+X0400
+\item 
+\#define {\bfseries S\+E\+R\+R\+O\+R\+\_\+\+C\+H\+E\+C\+K\+S\+U\+M\+E\+R\+R\+OR}~0\+X0800
+\item 
+\#define {\bfseries D\+E\+B\+U\+G\+\_\+\+R\+O\+B\+O\+T\+\_\+\+R\+HA}\hypertarget{debug_8h_a9f59a6b49cbd5611a077cfb5b38868e6}{}\label{debug_8h_a9f59a6b49cbd5611a077cfb5b38868e6}
+
+\item 
+\#define {\bfseries P\+R\+I\+N\+T\+\_\+\+S\+E\+R\+V\+O\+\_\+\+E\+R\+R\+O\+R\+\_\+\+M\+SG}~false\hypertarget{debug_8h_ac0d2a521ce6f2e527cb846bc0e90747f}{}\label{debug_8h_ac0d2a521ce6f2e527cb846bc0e90747f}
+
+\item 
+\#define \hyperlink{debug_8h_a195f4f12e8f7eb49a02c0fdcc3c09254}{Debug\+Serial\+G15\+Ln}(a)
+\item 
+\#define {\bfseries Debug\+Serial\+G15\+Ln2}(a,  b)\hypertarget{debug_8h_a377cb2bc56545dd0c5344c544af1ec53}{}\label{debug_8h_a377cb2bc56545dd0c5344c544af1ec53}
+
+\item 
+\#define {\bfseries Debug\+Serial\+G15\+Ln4}(a,  b,  c,  d)\hypertarget{debug_8h_a0763cacc40537ae208c5cabc821a502a}{}\label{debug_8h_a0763cacc40537ae208c5cabc821a502a}
+
+\item 
+\#define \hyperlink{debug_8h_a8c21e78c66c39d131f680bfc750f7cb2}{Debug\+Serial\+S\+R\+H\+A\+Ln}(a)
+\item 
+\#define {\bfseries Debug\+Serial\+S\+R\+H\+A\+Ln2}(a,  b)\hypertarget{debug_8h_abd539799161c8ef607d721c04e21c9dd}{}\label{debug_8h_abd539799161c8ef607d721c04e21c9dd}
+
+\item 
+\#define {\bfseries Debug\+Serial\+S\+R\+H\+A\+Ln4}(a,  b,  c,  d)\hypertarget{debug_8h_a75d23ac365a38dbd2a18037e6f725783}{}\label{debug_8h_a75d23ac365a38dbd2a18037e6f725783}
+
+\item 
+\#define {\bfseries Debu\+Serial\+R\+H\+A\+Ln\+Print\+Servo\+Status}(pos,  speed,  speed\+\_\+dir,  load,  load\+\_\+dir,  voltage,  temperature,  error)\hypertarget{debug_8h_a8fee51f8841aeb8a074d322e72d4f58e}{}\label{debug_8h_a8fee51f8841aeb8a074d322e72d4f58e}
+
+\item 
+\#define \hyperlink{debug_8h_a73faeb89c9153afe58268d88fea1748d}{Debug\+Serial\+J\+R\+H\+A\+Ln}(a)
+\item 
+\#define {\bfseries Debug\+Serial\+J\+R\+H\+A\+Ln2}(a,  b)\hypertarget{debug_8h_a3ca8d99938658f4fe972331d5870e82f}{}\label{debug_8h_a3ca8d99938658f4fe972331d5870e82f}
+
+\item 
+\#define {\bfseries Debug\+Serial\+J\+R\+H\+A\+Ln4}(a,  b,  c,  d)\hypertarget{debug_8h_ae53ebea4d016d018f100e47772b8fae6}{}\label{debug_8h_ae53ebea4d016d018f100e47772b8fae6}
+
+\item 
+\#define \hyperlink{debug_8h_a8c55a00777a902cdafe93ce840d9058a}{Debug\+Serial\+J\+H\+Ln}(a)
+\item 
+\#define {\bfseries Debug\+Serial\+J\+H\+Ln2}(a,  b)\hypertarget{debug_8h_a636d8f0034302713b6d0077cf920333c}{}\label{debug_8h_a636d8f0034302713b6d0077cf920333c}
+
+\item 
+\#define {\bfseries Debug\+Serial\+J\+H\+Ln4}(a,  b,  c,  d)\hypertarget{debug_8h_a8ec5347f4e22a39da0652db411b87204}{}\label{debug_8h_a8ec5347f4e22a39da0652db411b87204}
+
+\item 
+\#define {\bfseries Debug\+Serial\+J\+H\+Ln4\+Error}(a,  b)~\{ \hyperlink{debug_8h_ac72abba79a207d4720aef2e8c9fe4b51}{print\+Servo\+Status\+Error}(a, b); \}\hypertarget{debug_8h_a0f4b90ebf47285c962b79ec5138c65ab}{}\label{debug_8h_a0f4b90ebf47285c962b79ec5138c65ab}
+
+\item 
+\#define \hyperlink{debug_8h_a5252d45d26a7bc560130ef8f12a0716a}{Debug\+Serial\+Utilities\+Ln}(a)
+\item 
+\#define {\bfseries Debug\+Serial\+Utilities\+Ln2}(a,  b)\hypertarget{debug_8h_a25c02d8c573e390feb1cea152f2f2f44}{}\label{debug_8h_a25c02d8c573e390feb1cea152f2f2f44}
+
+\item 
+\#define {\bfseries Debug\+Serial\+Utilities}(a)\hypertarget{debug_8h_af7417e341b05785268a5370629aa29cd}{}\label{debug_8h_af7417e341b05785268a5370629aa29cd}
+
+\item 
+\#define {\bfseries Debug\+Serial\+Utilities\+Ln4}(a,  b,  c,  d)\hypertarget{debug_8h_a7991787c91487ea96bbdf717d91ee124}{}\label{debug_8h_a7991787c91487ea96bbdf717d91ee124}
+
+\item 
+\#define \hyperlink{debug_8h_aad80cd5e6ec9c1d40e5f6d121c095cdc}{Debug\+Serial\+R\+H\+A\+Types\+Ln}(a)
+\item 
+\#define {\bfseries Debug\+Serial\+R\+H\+A\+Types\+Ln2}(a,  b)\hypertarget{debug_8h_a2d55104c53b07fe9053badae8dc406b8}{}\label{debug_8h_a2d55104c53b07fe9053badae8dc406b8}
+
+\item 
+\#define {\bfseries Debug\+Serial\+R\+H\+A\+Types}(a)\hypertarget{debug_8h_a60508789e3ab79723b8af1425d906643}{}\label{debug_8h_a60508789e3ab79723b8af1425d906643}
+
+\item 
+\#define {\bfseries Debug\+Serial\+R\+H\+A\+Types\+Ln4}(a,  b,  c,  d)\hypertarget{debug_8h_a32e7cd0b6664eaded5b8fec38dc798d7}{}\label{debug_8h_a32e7cd0b6664eaded5b8fec38dc798d7}
+
+\item 
+\#define \hyperlink{debug_8h_ae415bfde264326c977dbceb9c15dbf0b}{Debug\+Serial\+Separation}(a)~\{ Serial.\+println(\char`\"{}\#===============================================================\#\char`\"{}); \}
+\item 
+\#define \hyperlink{debug_8h_aaf60949afbac53e80d559422ed6f4aaf}{Debug\+Serial\+R\+R\+H\+A\+Ln}(a)~\{  Serial.\+print(F(\char`\"{}\mbox{[}DC\mbox{]}  R\+O\+B\+O\+T\+\_\+\+R\+H\+A\+::\char`\"{})); Serial.\+println(a); \}
+\item 
+\#define {\bfseries Debug\+Serial\+R\+R\+H\+A\+Ln2}(a,  b)~\{  Serial.\+print(F(\char`\"{}\mbox{[}DC\mbox{]}  R\+O\+B\+O\+T\+\_\+\+R\+H\+A\+::\char`\"{})); Serial.\+print(a); Serial.\+println(b); \}\hypertarget{debug_8h_abacc6ab8962710168fbaefbcba4ed4a5}{}\label{debug_8h_abacc6ab8962710168fbaefbcba4ed4a5}
+
+\item 
+\#define {\bfseries Debug\+Serial\+R\+R\+H\+An4}(a,  b,  c,  d)~\{  Serial.\+print(F(\char`\"{}\mbox{[}DC\mbox{]}  R\+O\+B\+O\+T\+\_\+\+R\+H\+A\+::\char`\"{})); Serial.\+print(a); Serial.\+print(b); Serial.\+print(c); Serial.\+println(d); \}\hypertarget{debug_8h_aa21472ea47a4d48a9eb0a1e4f2866ff0}{}\label{debug_8h_aa21472ea47a4d48a9eb0a1e4f2866ff0}
+
+\item 
+\#define \hyperlink{debug_8h_a4c6755ee11caa8cffc48f0dc57a7e3a5}{Debug\+Serial\+T\+G15\+Ln}(a)
+\item 
+\#define {\bfseries Debug\+Serial\+T\+G15}(a)\hypertarget{debug_8h_ad9046efa7d5554ab69caa28a685ad76c}{}\label{debug_8h_ad9046efa7d5554ab69caa28a685ad76c}
+
+\item 
+\#define \hyperlink{debug_8h_a45e00c8379590be90431df718b717d0a}{Debug\+Serial\+T\+S\+R\+H\+A\+Ln}(a)
+\item 
+\#define {\bfseries Debug\+Serial\+T\+S\+R\+HA}(a)\hypertarget{debug_8h_a7140b6ad10803799cd91c85229629a38}{}\label{debug_8h_a7140b6ad10803799cd91c85229629a38}
+
+\item 
+\#define \hyperlink{debug_8h_ac91497d362d741d8302389841587ccb5}{Debug\+Serial\+T\+J\+R\+H\+A\+Ln}(a)
+\item 
+\#define {\bfseries Debug\+Serial\+T\+J\+R\+H\+A\+Ln2}(a,  b)\hypertarget{debug_8h_ac8ec36e4c31af0789c1cd19590871967}{}\label{debug_8h_ac8ec36e4c31af0789c1cd19590871967}
+
+\item 
+\#define {\bfseries Debug\+Serial\+T\+J\+R\+H\+A\+Ln4}(a,  b,  c,  d)\hypertarget{debug_8h_a032172837a73de8fd523a195e40bca54}{}\label{debug_8h_a032172837a73de8fd523a195e40bca54}
+
+\item 
+\#define {\bfseries Debug\+Serial\+T\+J\+R\+HA}(a)\hypertarget{debug_8h_afab351f5d42b33a99209527ed2f06ef5}{}\label{debug_8h_afab351f5d42b33a99209527ed2f06ef5}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{debug_8h_ac72abba79a207d4720aef2e8c9fe4b51}{print\+Servo\+Status\+Error} (uint16\+\_\+t error, uint8\+\_\+t ID)
+\begin{DoxyCompactList}\small\item\em Analyses error and prints error msgs. \end{DoxyCompactList}\item 
+void {\bfseries print\+Servo\+Status} (uint16\+\_\+t pos, uint16\+\_\+t speed, uint8\+\_\+t speed\+\_\+dir, uint16\+\_\+t load, uint8\+\_\+t load\+\_\+dir, uint8\+\_\+t voltage, uint8\+\_\+t temperature, uint16\+\_\+t error)\hypertarget{debug_8h_aa4fdb676351409fa07951a5c30fcc056}{}\label{debug_8h_aa4fdb676351409fa07951a5c30fcc056}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements debugging macros with Serial printig that can be activated or not for each different librari or file. 
+
+Each set of macros has a define option, if it\textquotesingle{}s been defined all debugging options in the set will be printed. If it\textquotesingle{}s not defined Debug commands en that file will be ignored. Each set has different macros which admit different number of parameters to print.
+
+\+: Enrique Heredia Aguado $<$enheragu$>$ \+: 2017\+\_\+\+Sep\+\_\+08 \+: R\+HA \+: \hyperlink{debug_8h}{debug.\+h}  modified by\+: quique  modified time\+: 29-\/\+Oct-\/2017 
+
+\subsection{Macro Definition Documentation}
+\index{debug.\+h@{debug.\+h}!Debug\+Serial\+G15\+Ln@{Debug\+Serial\+G15\+Ln}}
+\index{Debug\+Serial\+G15\+Ln@{Debug\+Serial\+G15\+Ln}!debug.\+h@{debug.\+h}}
+\subsubsection[{\texorpdfstring{Debug\+Serial\+G15\+Ln}{DebugSerialG15Ln}}]{\setlength{\rightskip}{0pt plus 5cm}\#define Debug\+Serial\+G15\+Ln(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)}\hypertarget{debug_8h_a195f4f12e8f7eb49a02c0fdcc3c09254}{}\label{debug_8h_a195f4f12e8f7eb49a02c0fdcc3c09254}
+D\+E\+B\+U\+G\+\_\+\+C\+Y\+T\+R\+O\+N\+\_\+\+G15\+\_\+\+S\+E\+R\+VO implements debug macros for cytron\+\_\+g15\+\_\+servo.\+h and .cpp files \index{debug.\+h@{debug.\+h}!Debug\+Serial\+J\+H\+Ln@{Debug\+Serial\+J\+H\+Ln}}
+\index{Debug\+Serial\+J\+H\+Ln@{Debug\+Serial\+J\+H\+Ln}!debug.\+h@{debug.\+h}}
+\subsubsection[{\texorpdfstring{Debug\+Serial\+J\+H\+Ln}{DebugSerialJHLn}}]{\setlength{\rightskip}{0pt plus 5cm}\#define Debug\+Serial\+J\+H\+Ln(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)}\hypertarget{debug_8h_a8c55a00777a902cdafe93ce840d9058a}{}\label{debug_8h_a8c55a00777a902cdafe93ce840d9058a}
+D\+E\+B\+U\+G\+\_\+\+J\+O\+I\+N\+T\+\_\+\+H\+A\+N\+D\+L\+ER implements debug macros for \hyperlink{servo__rha_8h}{servo\+\_\+rha.\+h} and .cpp files \index{debug.\+h@{debug.\+h}!Debug\+Serial\+J\+R\+H\+A\+Ln@{Debug\+Serial\+J\+R\+H\+A\+Ln}}
+\index{Debug\+Serial\+J\+R\+H\+A\+Ln@{Debug\+Serial\+J\+R\+H\+A\+Ln}!debug.\+h@{debug.\+h}}
+\subsubsection[{\texorpdfstring{Debug\+Serial\+J\+R\+H\+A\+Ln}{DebugSerialJRHALn}}]{\setlength{\rightskip}{0pt plus 5cm}\#define Debug\+Serial\+J\+R\+H\+A\+Ln(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)}\hypertarget{debug_8h_a73faeb89c9153afe58268d88fea1748d}{}\label{debug_8h_a73faeb89c9153afe58268d88fea1748d}
+D\+E\+B\+U\+G\+\_\+\+J\+O\+I\+N\+T\+\_\+\+R\+HA implements debug macros for \hyperlink{joint__rha_8h}{joint\+\_\+rha.\+h} and .cpp files \index{debug.\+h@{debug.\+h}!Debug\+Serial\+R\+H\+A\+Types\+Ln@{Debug\+Serial\+R\+H\+A\+Types\+Ln}}
+\index{Debug\+Serial\+R\+H\+A\+Types\+Ln@{Debug\+Serial\+R\+H\+A\+Types\+Ln}!debug.\+h@{debug.\+h}}
+\subsubsection[{\texorpdfstring{Debug\+Serial\+R\+H\+A\+Types\+Ln}{DebugSerialRHATypesLn}}]{\setlength{\rightskip}{0pt plus 5cm}\#define Debug\+Serial\+R\+H\+A\+Types\+Ln(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)}\hypertarget{debug_8h_aad80cd5e6ec9c1d40e5f6d121c095cdc}{}\label{debug_8h_aad80cd5e6ec9c1d40e5f6d121c095cdc}
+D\+E\+B\+U\+G\+\_\+\+R\+H\+A\+\_\+\+T\+Y\+P\+ES implements debug macros for \hyperlink{rha__types_8h_source}{rha\+\_\+types.\+h} file \index{debug.\+h@{debug.\+h}!Debug\+Serial\+R\+R\+H\+A\+Ln@{Debug\+Serial\+R\+R\+H\+A\+Ln}}
+\index{Debug\+Serial\+R\+R\+H\+A\+Ln@{Debug\+Serial\+R\+R\+H\+A\+Ln}!debug.\+h@{debug.\+h}}
+\subsubsection[{\texorpdfstring{Debug\+Serial\+R\+R\+H\+A\+Ln}{DebugSerialRRHALn}}]{\setlength{\rightskip}{0pt plus 5cm}\#define Debug\+Serial\+R\+R\+H\+A\+Ln(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~\{  Serial.\+print(F(\char`\"{}\mbox{[}DC\mbox{]}  R\+O\+B\+O\+T\+\_\+\+R\+H\+A\+::\char`\"{})); Serial.\+println(a); \}}\hypertarget{debug_8h_aaf60949afbac53e80d559422ed6f4aaf}{}\label{debug_8h_aaf60949afbac53e80d559422ed6f4aaf}
+D\+E\+B\+U\+G\+\_\+\+R\+O\+B\+O\+T\+\_\+\+R\+HA implements debug macros for \hyperlink{robot__rha_8h_source}{robot\+\_\+rha.\+h} and .cpp files \index{debug.\+h@{debug.\+h}!Debug\+Serial\+Separation@{Debug\+Serial\+Separation}}
+\index{Debug\+Serial\+Separation@{Debug\+Serial\+Separation}!debug.\+h@{debug.\+h}}
+\subsubsection[{\texorpdfstring{Debug\+Serial\+Separation}{DebugSerialSeparation}}]{\setlength{\rightskip}{0pt plus 5cm}\#define Debug\+Serial\+Separation(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)~\{ Serial.\+println(\char`\"{}\#===============================================================\#\char`\"{}); \}}\hypertarget{debug_8h_ae415bfde264326c977dbceb9c15dbf0b}{}\label{debug_8h_ae415bfde264326c977dbceb9c15dbf0b}
+Debug\+Serial\+Separation prints a horizontal line to separate different set of debug information \index{debug.\+h@{debug.\+h}!Debug\+Serial\+S\+R\+H\+A\+Ln@{Debug\+Serial\+S\+R\+H\+A\+Ln}}
+\index{Debug\+Serial\+S\+R\+H\+A\+Ln@{Debug\+Serial\+S\+R\+H\+A\+Ln}!debug.\+h@{debug.\+h}}
+\subsubsection[{\texorpdfstring{Debug\+Serial\+S\+R\+H\+A\+Ln}{DebugSerialSRHALn}}]{\setlength{\rightskip}{0pt plus 5cm}\#define Debug\+Serial\+S\+R\+H\+A\+Ln(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)}\hypertarget{debug_8h_a8c21e78c66c39d131f680bfc750f7cb2}{}\label{debug_8h_a8c21e78c66c39d131f680bfc750f7cb2}
+D\+E\+B\+U\+G\+\_\+\+S\+E\+R\+V\+O\+\_\+\+R\+HA implements debug macros for \hyperlink{servo__rha_8h}{servo\+\_\+rha.\+h} and .cpp files \index{debug.\+h@{debug.\+h}!Debug\+Serial\+T\+G15\+Ln@{Debug\+Serial\+T\+G15\+Ln}}
+\index{Debug\+Serial\+T\+G15\+Ln@{Debug\+Serial\+T\+G15\+Ln}!debug.\+h@{debug.\+h}}
+\subsubsection[{\texorpdfstring{Debug\+Serial\+T\+G15\+Ln}{DebugSerialTG15Ln}}]{\setlength{\rightskip}{0pt plus 5cm}\#define Debug\+Serial\+T\+G15\+Ln(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)}\hypertarget{debug_8h_a4c6755ee11caa8cffc48f0dc57a7e3a5}{}\label{debug_8h_a4c6755ee11caa8cffc48f0dc57a7e3a5}
+D\+E\+B\+U\+G\+\_\+\+T\+E\+S\+T\+\_\+\+C\+Y\+T\+R\+O\+N\+\_\+\+G15\+\_\+\+S\+E\+R\+VO implements debug macros for test\+\_\+cytron\+\_\+g15\+\_\+servo.\+cpp file \index{debug.\+h@{debug.\+h}!Debug\+Serial\+T\+J\+R\+H\+A\+Ln@{Debug\+Serial\+T\+J\+R\+H\+A\+Ln}}
+\index{Debug\+Serial\+T\+J\+R\+H\+A\+Ln@{Debug\+Serial\+T\+J\+R\+H\+A\+Ln}!debug.\+h@{debug.\+h}}
+\subsubsection[{\texorpdfstring{Debug\+Serial\+T\+J\+R\+H\+A\+Ln}{DebugSerialTJRHALn}}]{\setlength{\rightskip}{0pt plus 5cm}\#define Debug\+Serial\+T\+J\+R\+H\+A\+Ln(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)}\hypertarget{debug_8h_ac91497d362d741d8302389841587ccb5}{}\label{debug_8h_ac91497d362d741d8302389841587ccb5}
+D\+E\+B\+U\+G\+\_\+\+T\+E\+S\+T\+\_\+\+S\+E\+R\+V\+O\+\_\+\+R\+H\+A\+\_\+\+R\+E\+AL implements debug macros for test\+\_\+servo\+\_\+real.\+cpp file \index{debug.\+h@{debug.\+h}!Debug\+Serial\+T\+S\+R\+H\+A\+Ln@{Debug\+Serial\+T\+S\+R\+H\+A\+Ln}}
+\index{Debug\+Serial\+T\+S\+R\+H\+A\+Ln@{Debug\+Serial\+T\+S\+R\+H\+A\+Ln}!debug.\+h@{debug.\+h}}
+\subsubsection[{\texorpdfstring{Debug\+Serial\+T\+S\+R\+H\+A\+Ln}{DebugSerialTSRHALn}}]{\setlength{\rightskip}{0pt plus 5cm}\#define Debug\+Serial\+T\+S\+R\+H\+A\+Ln(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)}\hypertarget{debug_8h_a45e00c8379590be90431df718b717d0a}{}\label{debug_8h_a45e00c8379590be90431df718b717d0a}
+D\+E\+B\+U\+G\+\_\+\+T\+E\+S\+T\+\_\+\+S\+E\+R\+V\+O\+\_\+\+R\+H\+A\+\_\+\+M\+O\+CK implements debug macros for test\+\_\+servo\+\_\+mock.\+cpp file \index{debug.\+h@{debug.\+h}!Debug\+Serial\+Utilities\+Ln@{Debug\+Serial\+Utilities\+Ln}}
+\index{Debug\+Serial\+Utilities\+Ln@{Debug\+Serial\+Utilities\+Ln}!debug.\+h@{debug.\+h}}
+\subsubsection[{\texorpdfstring{Debug\+Serial\+Utilities\+Ln}{DebugSerialUtilitiesLn}}]{\setlength{\rightskip}{0pt plus 5cm}\#define Debug\+Serial\+Utilities\+Ln(
+\begin{DoxyParamCaption}
+\item[{}]{a}
+\end{DoxyParamCaption}
+)}\hypertarget{debug_8h_a5252d45d26a7bc560130ef8f12a0716a}{}\label{debug_8h_a5252d45d26a7bc560130ef8f12a0716a}
+D\+E\+B\+U\+G\+\_\+\+U\+T\+I\+L\+I\+T\+I\+ES implements debug macros for \hyperlink{utilities_8h}{utilities.\+h} file 
+
+\subsection{Function Documentation}
+\index{debug.\+h@{debug.\+h}!print\+Servo\+Status\+Error@{print\+Servo\+Status\+Error}}
+\index{print\+Servo\+Status\+Error@{print\+Servo\+Status\+Error}!debug.\+h@{debug.\+h}}
+\subsubsection[{\texorpdfstring{print\+Servo\+Status\+Error(uint16\+\_\+t error, uint8\+\_\+t I\+D)}{printServoStatusError(uint16_t error, uint8_t ID)}}]{\setlength{\rightskip}{0pt plus 5cm}void print\+Servo\+Status\+Error (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t}]{error, }
+\item[{uint8\+\_\+t}]{ID}
+\end{DoxyParamCaption}
+)}\hypertarget{debug_8h_ac72abba79a207d4720aef2e8c9fe4b51}{}\label{debug_8h_ac72abba79a207d4720aef2e8c9fe4b51}
+
+
+Analyses error and prints error msgs. 
+
+\+: Enrique Heredia Aguado $<$quique$>$ \+: 21-\/\+Sep-\/2017 \+: R\+HA  modified by\+: quique  modified time\+: 28-\/\+Sep-\/2017 

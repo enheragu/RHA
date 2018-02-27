@@ -1,0 +1,436 @@
+\hypertarget{classJointHandler}{}\section{Joint\+Handler Class Reference}
+\label{classJointHandler}\index{Joint\+Handler@{Joint\+Handler}}
+
+
+Inheritance diagram for Joint\+Handler\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=155pt]{classJointHandler__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Joint\+Handler\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{classJointHandler__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries print\+Check\+Var} ()\hypertarget{classJointHandler_a959c1e24c4cbd665d497c021edcf8e96}{}\label{classJointHandler_a959c1e24c4cbd665d497c021edcf8e96}
+
+\item 
+\hyperlink{classJointHandler_ab7a86a3c24b204f1f8d702836b2bf379}{Joint\+Handler} (uint64\+\_\+t timer)\hypertarget{classJointHandler_ab7a86a3c24b204f1f8d702836b2bf379}{}\label{classJointHandler_ab7a86a3c24b204f1f8d702836b2bf379}
+
+\begin{DoxyCompactList}\small\item\em Constructor with timer info  Joint\+Handler\+::\+Joint\+Handler. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classJointHandler_a8a4fd8b876ad5118d27dbc668a003f28}{init\+Joints} ()\hypertarget{classJointHandler_a8a4fd8b876ad5118d27dbc668a003f28}{}\label{classJointHandler_a8a4fd8b876ad5118d27dbc668a003f28}
+
+\begin{DoxyCompactList}\small\item\em Initialices joints with ID, up direction and potentiometer pin. Sets wheel mode to all servo  \hyperlink{classJointHandler_a8a4fd8b876ad5118d27dbc668a003f28}{Joint\+Handler\+::init\+Joints}. \end{DoxyCompactList}\item 
+void \hyperlink{classJointHandler_ad566695ecc649f08c799555976bb24bb}{set\+Speed\+Goal} (\hyperlink{structRHATypes_1_1SpeedGoal}{R\+H\+A\+Types\+::\+Speed\+Goal} \+\_\+goal)
+\begin{DoxyCompactList}\small\item\em Sets speed goal to a given joint (based on servo ID in goal)  \hyperlink{classJointHandler_ad566695ecc649f08c799555976bb24bb}{Joint\+Handler\+::set\+Speed\+Goal}. \end{DoxyCompactList}\item 
+void \hyperlink{classJointHandler_a6272112038118715e929fcf7e99085d1}{set\+Torque\+Control\+Timer} (uint64\+\_\+t timer)
+\begin{DoxyCompactList}\small\item\em Initialices timer from control\+\_\+loop for speed in \hyperlink{classServoRHA}{Servo\+R\+HA}  Joint\+Handler\+::init. \end{DoxyCompactList}\item 
+void \hyperlink{classJointHandler_aea4109237963e0ebf94beb842b08bfb6}{set\+Speed\+Control\+Timer} (uint64\+\_\+t timer)
+\begin{DoxyCompactList}\small\item\em Initialices timer from control\+\_\+loop for position in \hyperlink{classJointRHA}{Joint\+R\+HA}  Joint\+Handler\+::init. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classJointHandler_a0edb0662d2f8f080d4d85f6a105eb6af}{control\+Loop\+Torque} ()\hypertarget{classJointHandler_a0edb0662d2f8f080d4d85f6a105eb6af}{}\label{classJointHandler_a0edb0662d2f8f080d4d85f6a105eb6af}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classJointHandler_a0edb0662d2f8f080d4d85f6a105eb6af}{control\+Loop\+Torque()} function handles control loop for servo speed (output of regulator is torque for servo) \end{DoxyCompactList}\item 
+virtual void \hyperlink{classJointHandler_adc80ca17f1a1835f16c8045c82b0c06d}{control\+Loop\+Speed} ()\hypertarget{classJointHandler_adc80ca17f1a1835f16c8045c82b0c06d}{}\label{classJointHandler_adc80ca17f1a1835f16c8045c82b0c06d}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classJointHandler_adc80ca17f1a1835f16c8045c82b0c06d}{control\+Loop\+Speed()} function handles control loop for joint position (output of regulator is speed for \hyperlink{classServoRHA}{Servo\+R\+HA})  \hyperlink{classJointHandler_a0c52f5090368d69e6c9168ce51c9b8de}{Joint\+Handler\+::update\+Joint\+Info} \end{DoxyCompactList}\item 
+bool \hyperlink{classJointHandler_a3e249d868fd829ab13726a5e129e6585}{check\+Joint\+Security\+All} ()
+\begin{DoxyCompactList}\small\item\em Checks that is secure to move all joints  check\+Joint\+Security\+All. \end{DoxyCompactList}\item 
+bool \hyperlink{classJointHandler_a44f1c7082cb09077fef7f599ec776a6d}{check\+Servo\+Security\+All} ()
+\begin{DoxyCompactList}\small\item\em Checks that is secure to move all servo  check\+Joint\+Security\+All. \end{DoxyCompactList}\item 
+void \hyperlink{classJointHandler_a0c52f5090368d69e6c9168ce51c9b8de}{update\+Joint\+Info} ()
+\begin{DoxyCompactList}\small\item\em Updates internal information from all joint.  \hyperlink{classJointHandler_a0c52f5090368d69e6c9168ce51c9b8de}{Joint\+Handler\+::update\+Joint\+Info}. \end{DoxyCompactList}\item 
+void \hyperlink{classJointHandler_ac567fe6ca46f91a3cd6a08888bff54bf}{update\+Joint\+Error\+Torque} ()\hypertarget{classJointHandler_ac567fe6ca46f91a3cd6a08888bff54bf}{}\label{classJointHandler_ac567fe6ca46f91a3cd6a08888bff54bf}
+
+\begin{DoxyCompactList}\small\item\em Updates all joints error to update torque goal  \hyperlink{classJointHandler_ac567fe6ca46f91a3cd6a08888bff54bf}{Joint\+Handler\+::update\+Joint\+Error\+Torque}. \end{DoxyCompactList}\item 
+void \hyperlink{classJointHandler_a9c5ad1c7aca5efeba1df8a82de596acf}{send\+Joint\+Torques} ()\hypertarget{classJointHandler_a9c5ad1c7aca5efeba1df8a82de596acf}{}\label{classJointHandler_a9c5ad1c7aca5efeba1df8a82de596acf}
+
+\begin{DoxyCompactList}\small\item\em handles the packet construction and sent for all joint torques (torque goal saved in each servo)  \hyperlink{classJointHandler_a9c5ad1c7aca5efeba1df8a82de596acf}{Joint\+Handler\+::send\+Joint\+Torques} \end{DoxyCompactList}\item 
+void \hyperlink{classJointHandler_acf6a0134ccb850298f3b81e191ad4151}{update\+Joint\+Error\+Speed} ()\hypertarget{classJointHandler_acf6a0134ccb850298f3b81e191ad4151}{}\label{classJointHandler_acf6a0134ccb850298f3b81e191ad4151}
+
+\begin{DoxyCompactList}\small\item\em Updates all joint position error to update speed goal sor \hyperlink{classServoRHA}{Servo\+R\+HA}  \hyperlink{classJointHandler_acf6a0134ccb850298f3b81e191ad4151}{Joint\+Handler\+::update\+Joint\+Error\+Speed}. \end{DoxyCompactList}\item 
+void \hyperlink{classJointHandler_a81d3c45328fc3f646769598fdcc75027}{send\+Speed\+Goal\+All} ()\hypertarget{classJointHandler_a81d3c45328fc3f646769598fdcc75027}{}\label{classJointHandler_a81d3c45328fc3f646769598fdcc75027}
+
+\begin{DoxyCompactList}\small\item\em Sends speed goal calculated to \hyperlink{classServoRHA}{Servo\+R\+HA}  \hyperlink{classJointHandler_a81d3c45328fc3f646769598fdcc75027}{Joint\+Handler\+::send\+Speed\+Goal\+All}. \end{DoxyCompactList}\item 
+void \hyperlink{classJointHandler_aee0036fd8a3a225e1789ce09007d8f7a}{send\+Set\+Wheel\+Mode\+All} ()\hypertarget{classJointHandler_aee0036fd8a3a225e1789ce09007d8f7a}{}\label{classJointHandler_aee0036fd8a3a225e1789ce09007d8f7a}
+
+\begin{DoxyCompactList}\small\item\em Sets wheel mode for all servo  \hyperlink{classJointHandler_aee0036fd8a3a225e1789ce09007d8f7a}{Joint\+Handler\+::send\+Set\+Wheel\+Mode\+All}. \end{DoxyCompactList}\item 
+void \hyperlink{classJointHandler_a31299dcc02d8224d5f87255fcbcad99e}{send\+Exit\+Wheel\+Mode\+All} ()\hypertarget{classJointHandler_a31299dcc02d8224d5f87255fcbcad99e}{}\label{classJointHandler_a31299dcc02d8224d5f87255fcbcad99e}
+
+\begin{DoxyCompactList}\small\item\em Exit wheel mode for all servo  \hyperlink{classJointHandler_a31299dcc02d8224d5f87255fcbcad99e}{Joint\+Handler\+::send\+Exit\+Wheel\+Mode\+All}. \end{DoxyCompactList}\item 
+void \hyperlink{classJointHandler_aa0711667447671babd3b417385d3bbee}{send\+Set\+Torque\+Limit\+All} (uint16\+\_\+t \+\_\+torque\+\_\+limit)
+\begin{DoxyCompactList}\small\item\em Sets torque limit to all servo  \hyperlink{classJointHandler_aa0711667447671babd3b417385d3bbee}{Joint\+Handler\+::send\+Set\+Torque\+Limit\+All}. \end{DoxyCompactList}\item 
+void \hyperlink{classJointHandler_abd69485030fc62c47802fcb3cab8738a}{send\+Set\+Wheel\+Speed\+All} (uint16\+\_\+t \+\_\+speed=0, uint8\+\_\+t \+\_\+direction=0)
+\begin{DoxyCompactList}\small\item\em Interface to send speed (in wheel mode this means torque) to servos. Params are by default 0, if this is the case servos work in a closed control loop, if not they use the speed set.  \hyperlink{classJointHandler_abd69485030fc62c47802fcb3cab8738a}{Joint\+Handler\+::send\+Set\+Wheel\+Speed\+All}. \end{DoxyCompactList}\item 
+void \hyperlink{classJointHandler_acf3cb441ecda0e8cd6fcad4c513cd133}{set\+Return\+Packet\+Option} (uint8\+\_\+t \+\_\+option)
+\begin{DoxyCompactList}\small\item\em Sets retunr packet option for all joints  \hyperlink{classJointHandler_acf3cb441ecda0e8cd6fcad4c513cd133}{Joint\+Handler\+::set\+Return\+Packet\+Option}. \end{DoxyCompactList}\item 
+bool \hyperlink{classJointHandler_accde2d403ce4493a53192b2a0e9ce6a2}{check\+Conection\+All} ()
+\begin{DoxyCompactList}\small\item\em checks if can conect with all servo  \hyperlink{classJointHandler_accde2d403ce4493a53192b2a0e9ce6a2}{Joint\+Handler\+::check\+Conection\+All} \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{classJointHandler_a32b4a64db24964d159890aa4560711db}{add\+To\+Sync\+Packet} (uint8\+\_\+t $\ast$\+\_\+buffer, uint8\+\_\+t $\ast$\+\_\+data, uint8\+\_\+t \+\_\+num\+\_\+bytes)
+\begin{DoxyCompactList}\small\item\em Adds data to common buffer. Intended to put commands from all servo into one packet  \hyperlink{classJointHandler_a32b4a64db24964d159890aa4560711db}{Joint\+Handler\+::add\+To\+Sync\+Packet}. \end{DoxyCompactList}\item 
+void \hyperlink{classJointHandler_aaaea003506b5d446b81a89924335d8e6}{warp\+Sync\+Packet} (uint8\+\_\+t $\ast$\+\_\+buffer, uint8\+\_\+t \+\_\+adress, uint8\+\_\+t $\ast$\+\_\+tx\+Buffer, uint8\+\_\+t \+\_\+num\+\_\+bytes, uint8\+\_\+t \+\_\+num\+\_\+servo)
+\begin{DoxyCompactList}\small\item\em wrap\+Packet adds information needed once all servos had been aded (header, ID, instruction...). This function is used to send just one packet for all servos instead of each sending their respective information  \hyperlink{classJointHandler_aaaea003506b5d446b81a89924335d8e6}{Joint\+Handler\+::warp\+Sync\+Packet} \end{DoxyCompactList}\item 
+void \hyperlink{classJointHandler_aab13ed27ee90a1bc5db5f601d58b361c}{warp\+Single\+Packet} (uint8\+\_\+t \+\_\+instruction, uint8\+\_\+t $\ast$\+\_\+buffer, uint8\+\_\+t $\ast$\+\_\+tx\+Buffer)
+\begin{DoxyCompactList}\small\item\em Warps packet info with the information needed for the comunication  \hyperlink{classJointHandler_aab13ed27ee90a1bc5db5f601d58b361c}{Joint\+Handler\+::warp\+Single\+Packet}. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{classJointHandler_a222cfc7c9e451e5d8c2872d7584e9d3e}{send\+Packet} (uint8\+\_\+t $\ast$\+\_\+buffer)
+\begin{DoxyCompactList}\small\item\em Function to send to bus information contained in buffer param. Contains logic to read data in case it is needed  \hyperlink{classJointHandler_a222cfc7c9e451e5d8c2872d7584e9d3e}{Joint\+Handler\+::send\+Packet}. \end{DoxyCompactList}\item 
+bool \hyperlink{classJointHandler_afeb90e610d4704acc2e8ea8100649778}{is\+Error} ()
+\item 
+{\bfseries Joint\+Handler} (uint8\+\_\+t \+\_\+rxpin, uint8\+\_\+t \+\_\+txpin, uint8\+\_\+t \+\_\+ctrlpin)\hypertarget{classJointHandler_a8a5900f8e9e6efce5017cee4a0ce3809}{}\label{classJointHandler_a8a5900f8e9e6efce5017cee4a0ce3809}
+
+\item 
+{\bfseries Joint\+Handler} (uint8\+\_\+t \+\_\+ctrlpin)\hypertarget{classJointHandler_a0fee18580cac7d1204d85d8e68b0a9d7}{}\label{classJointHandler_a0fee18580cac7d1204d85d8e68b0a9d7}
+
+\item 
+void \hyperlink{classJointHandler_a07ae726dc11e63b114ce75cfb29c512e}{init\+Serial} ()
+\begin{DoxyCompactList}\small\item\em Constructor with custom software serial.  Joint\+Handler\+::\+Joint\+Handler. \end{DoxyCompactList}\item 
+void \hyperlink{classJointHandler_a7e9040e7d08d4aef28039bf9fa3489fc}{begin} ()
+\begin{DoxyCompactList}\small\item\em Cpnfigures comunication at a set baudrate. Sets the serial port  \hyperlink{classJointHandler_a7e9040e7d08d4aef28039bf9fa3489fc}{Joint\+Handler\+::begin}. \end{DoxyCompactList}\item 
+void {\bfseries end} (void)\hypertarget{classJointHandler_a3255e1808b7f1dde7e506b01c442e376}{}\label{classJointHandler_a3255e1808b7f1dde7e506b01c442e376}
+
+\item 
+void {\bfseries set\+Tx\+Mode} (void)\hypertarget{classJointHandler_a17bd9652b2c42fac0190347e962c134d}{}\label{classJointHandler_a17bd9652b2c42fac0190347e962c134d}
+
+\item 
+void {\bfseries set\+Rx\+Mode} (void)\hypertarget{classJointHandler_a3f78a794156c4e4bc42a5021158bc5f3}{}\label{classJointHandler_a3f78a794156c4e4bc42a5021158bc5f3}
+
+\item 
+void {\bfseries reset\+Buffer} (uint8\+\_\+t buffer\mbox{[}$\,$\mbox{]})\hypertarget{classJointHandler_ab0f0ab5f9af2865b07c0e61abac3b604}{}\label{classJointHandler_ab0f0ab5f9af2865b07c0e61abac3b604}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classJointRHA}{Joint\+R\+HA} {\bfseries joint\+\_\+} \mbox{[}N\+U\+M\+\_\+\+J\+O\+I\+NT\mbox{]}\hypertarget{classJointHandler_ad2dc857e0c3c93a54848ef43b653e9ab}{}\label{classJointHandler_ad2dc857e0c3c93a54848ef43b653e9ab}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{Joint\+Handler@{Joint\+Handler}!add\+To\+Sync\+Packet@{add\+To\+Sync\+Packet}}
+\index{add\+To\+Sync\+Packet@{add\+To\+Sync\+Packet}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{add\+To\+Sync\+Packet(uint8\+\_\+t $\ast$\+\_\+buffer, uint8\+\_\+t $\ast$\+\_\+data, uint8\+\_\+t \+\_\+num\+\_\+bytes)}{addToSyncPacket(uint8_t *_buffer, uint8_t *_data, uint8_t _num_bytes)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t Joint\+Handler\+::add\+To\+Sync\+Packet (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{\+\_\+buffer, }
+\item[{uint8\+\_\+t $\ast$}]{\+\_\+data, }
+\item[{uint8\+\_\+t}]{\+\_\+num\+\_\+bytes}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointHandler_a32b4a64db24964d159890aa4560711db}{}\label{classJointHandler_a32b4a64db24964d159890aa4560711db}
+
+
+Adds data to common buffer. Intended to put commands from all servo into one packet  \hyperlink{classJointHandler_a32b4a64db24964d159890aa4560711db}{Joint\+Handler\+::add\+To\+Sync\+Packet}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t} & $\ast$\} buffer array to write all the info \\
+\hline
+{\em \{uint8\+\_\+t} & $\ast$\} data contains data to copy \\
+\hline
+{\em \{uint8\+\_\+t\}} & num\+\_\+bytes number of bytes tha have been written \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns length copied in bytes 
+\end{DoxyReturn}
+\index{Joint\+Handler@{Joint\+Handler}!begin@{begin}}
+\index{begin@{begin}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{begin()}{begin()}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+Handler\+::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointHandler_a7e9040e7d08d4aef28039bf9fa3489fc}{}\label{classJointHandler_a7e9040e7d08d4aef28039bf9fa3489fc}
+
+
+Cpnfigures comunication at a set baudrate. Sets the serial port  \hyperlink{classJointHandler_a7e9040e7d08d4aef28039bf9fa3489fc}{Joint\+Handler\+::begin}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em baudrate} & Baudrate in which to communicate \\
+\hline
+\end{DoxyParams}
+\index{Joint\+Handler@{Joint\+Handler}!check\+Conection\+All@{check\+Conection\+All}}
+\index{check\+Conection\+All@{check\+Conection\+All}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{check\+Conection\+All()}{checkConectionAll()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Joint\+Handler\+::check\+Conection\+All (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointHandler_accde2d403ce4493a53192b2a0e9ce6a2}{}\label{classJointHandler_accde2d403ce4493a53192b2a0e9ce6a2}
+
+
+checks if can conect with all servo  \hyperlink{classJointHandler_accde2d403ce4493a53192b2a0e9ce6a2}{Joint\+Handler\+::check\+Conection\+All} 
+
+\begin{DoxyReturn}{Returns}
+retunrs true if the conection with all servo was succesfull. Returns false if failed with any of them 
+\end{DoxyReturn}
+\index{Joint\+Handler@{Joint\+Handler}!check\+Joint\+Security\+All@{check\+Joint\+Security\+All}}
+\index{check\+Joint\+Security\+All@{check\+Joint\+Security\+All}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{check\+Joint\+Security\+All()}{checkJointSecurityAll()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Joint\+Handler\+::check\+Joint\+Security\+All (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointHandler_a3e249d868fd829ab13726a5e129e6585}{}\label{classJointHandler_a3e249d868fd829ab13726a5e129e6585}
+
+
+Checks that is secure to move all joints  check\+Joint\+Security\+All. 
+
+\begin{DoxyReturn}{Returns}
+returns true in case of safety, ralse otherwise 
+\end{DoxyReturn}
+\index{Joint\+Handler@{Joint\+Handler}!check\+Servo\+Security\+All@{check\+Servo\+Security\+All}}
+\index{check\+Servo\+Security\+All@{check\+Servo\+Security\+All}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{check\+Servo\+Security\+All()}{checkServoSecurityAll()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Joint\+Handler\+::check\+Servo\+Security\+All (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointHandler_a44f1c7082cb09077fef7f599ec776a6d}{}\label{classJointHandler_a44f1c7082cb09077fef7f599ec776a6d}
+
+
+Checks that is secure to move all servo  check\+Joint\+Security\+All. 
+
+\begin{DoxyReturn}{Returns}
+returns true in case of safety, ralse otherwise 
+\end{DoxyReturn}
+\index{Joint\+Handler@{Joint\+Handler}!init\+Serial@{init\+Serial}}
+\index{init\+Serial@{init\+Serial}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{init\+Serial()}{initSerial()}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+Handler\+::init\+Serial (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointHandler_a07ae726dc11e63b114ce75cfb29c512e}{}\label{classJointHandler_a07ae726dc11e63b114ce75cfb29c512e}
+
+
+Constructor with custom software serial.  Joint\+Handler\+::\+Joint\+Handler. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rxpin} & RX pin for serial comunication \\
+\hline
+{\em txpin} & TX pin for serial comunication \\
+\hline
+{\em ctrlpin} & control pin for serial comunication Constructor with default hardware\+Serial (RX in pin 0, TX in pin 1) and with set control pin  Joint\+Handler\+::\+Joint\+Handler \\
+\hline
+{\em ctrlpin} & control pin for serial comunication Method to set serial data (rx, tx, ctrlpin and baudrate) to init communication  \hyperlink{classJointHandler_a07ae726dc11e63b114ce75cfb29c512e}{Joint\+Handler\+::init\+Serial} \\
+\hline
+{\em rxpin} & RX pin for serial comunication \\
+\hline
+{\em txpin} & TX pin for serial comunication \\
+\hline
+{\em ctrlpin} & control pin for serial comunication \\
+\hline
+{\em baudrate} & Baudrate in which to communicate \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classJointHandler_a7e9040e7d08d4aef28039bf9fa3489fc}{Joint\+Handler\+::begin()} 
+\end{DoxySeeAlso}
+\index{Joint\+Handler@{Joint\+Handler}!is\+Error@{is\+Error}}
+\index{is\+Error@{is\+Error}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{is\+Error()}{isError()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Joint\+Handler\+::is\+Error (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classJointHandler_afeb90e610d4704acc2e8ea8100649778}{}\label{classJointHandler_afeb90e610d4704acc2e8ea8100649778}
+Returns whether theres any error or not \index{Joint\+Handler@{Joint\+Handler}!send\+Packet@{send\+Packet}}
+\index{send\+Packet@{send\+Packet}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{send\+Packet(uint8\+\_\+t $\ast$\+\_\+buffer)}{sendPacket(uint8_t *_buffer)}}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t Joint\+Handler\+::send\+Packet (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{\+\_\+tx\+Buffer}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointHandler_a222cfc7c9e451e5d8c2872d7584e9d3e}{}\label{classJointHandler_a222cfc7c9e451e5d8c2872d7584e9d3e}
+
+
+Function to send to bus information contained in buffer param. Contains logic to read data in case it is needed  \hyperlink{classJointHandler_a222cfc7c9e451e5d8c2872d7584e9d3e}{Joint\+Handler\+::send\+Packet}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t} & $\ast$\} buffer array with all the information to send, if info is read it will be copied here \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+error in comunication 
+\end{DoxyReturn}
+\index{Joint\+Handler@{Joint\+Handler}!send\+Set\+Torque\+Limit\+All@{send\+Set\+Torque\+Limit\+All}}
+\index{send\+Set\+Torque\+Limit\+All@{send\+Set\+Torque\+Limit\+All}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{send\+Set\+Torque\+Limit\+All(uint16\+\_\+t \+\_\+torque\+\_\+limit)}{sendSetTorqueLimitAll(uint16_t _torque_limit)}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+Handler\+::send\+Set\+Torque\+Limit\+All (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t}]{\+\_\+torque\+\_\+limit}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointHandler_aa0711667447671babd3b417385d3bbee}{}\label{classJointHandler_aa0711667447671babd3b417385d3bbee}
+
+
+Sets torque limit to all servo  \hyperlink{classJointHandler_aa0711667447671babd3b417385d3bbee}{Joint\+Handler\+::send\+Set\+Torque\+Limit\+All}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em torque\+\_\+limit} & torque limit to set \\
+\hline
+\end{DoxyParams}
+\index{Joint\+Handler@{Joint\+Handler}!send\+Set\+Wheel\+Speed\+All@{send\+Set\+Wheel\+Speed\+All}}
+\index{send\+Set\+Wheel\+Speed\+All@{send\+Set\+Wheel\+Speed\+All}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{send\+Set\+Wheel\+Speed\+All(uint16\+\_\+t \+\_\+speed=0, uint8\+\_\+t \+\_\+direction=0)}{sendSetWheelSpeedAll(uint16_t _speed=0, uint8_t _direction=0)}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+Handler\+::send\+Set\+Wheel\+Speed\+All (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t}]{\+\_\+speed = {\ttfamily 0}, }
+\item[{uint8\+\_\+t}]{\+\_\+direction = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointHandler_abd69485030fc62c47802fcb3cab8738a}{}\label{classJointHandler_abd69485030fc62c47802fcb3cab8738a}
+
+
+Interface to send speed (in wheel mode this means torque) to servos. Params are by default 0, if this is the case servos work in a closed control loop, if not they use the speed set.  \hyperlink{classJointHandler_abd69485030fc62c47802fcb3cab8738a}{Joint\+Handler\+::send\+Set\+Wheel\+Speed\+All}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em speed} & speed/torque to set \\
+\hline
+{\em direction} & direction CW (clocwise) or C\+CW (counterclockwise) \\
+\hline
+\end{DoxyParams}
+\index{Joint\+Handler@{Joint\+Handler}!set\+Return\+Packet\+Option@{set\+Return\+Packet\+Option}}
+\index{set\+Return\+Packet\+Option@{set\+Return\+Packet\+Option}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{set\+Return\+Packet\+Option(uint8\+\_\+t \+\_\+option)}{setReturnPacketOption(uint8_t _option)}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+Handler\+::set\+Return\+Packet\+Option (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{\+\_\+option}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointHandler_acf3cb441ecda0e8cd6fcad4c513cd133}{}\label{classJointHandler_acf3cb441ecda0e8cd6fcad4c513cd133}
+
+
+Sets retunr packet option for all joints  \hyperlink{classJointHandler_acf3cb441ecda0e8cd6fcad4c513cd133}{Joint\+Handler\+::set\+Return\+Packet\+Option}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+option} & \mbox{[}description\mbox{]} \\
+\hline
+\end{DoxyParams}
+\index{Joint\+Handler@{Joint\+Handler}!set\+Speed\+Control\+Timer@{set\+Speed\+Control\+Timer}}
+\index{set\+Speed\+Control\+Timer@{set\+Speed\+Control\+Timer}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{set\+Speed\+Control\+Timer(uint64\+\_\+t timer)}{setSpeedControlTimer(uint64_t timer)}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+Handler\+::set\+Speed\+Control\+Timer (
+\begin{DoxyParamCaption}
+\item[{uint64\+\_\+t}]{\+\_\+timer}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointHandler_aea4109237963e0ebf94beb842b08bfb6}{}\label{classJointHandler_aea4109237963e0ebf94beb842b08bfb6}
+
+
+Initialices timer from control\+\_\+loop for position in \hyperlink{classJointRHA}{Joint\+R\+HA}  Joint\+Handler\+::init. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timer} & time in ms for control loop \\
+\hline
+\end{DoxyParams}
+\index{Joint\+Handler@{Joint\+Handler}!set\+Speed\+Goal@{set\+Speed\+Goal}}
+\index{set\+Speed\+Goal@{set\+Speed\+Goal}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{set\+Speed\+Goal(\+R\+H\+A\+Types\+::\+Speed\+Goal \+\_\+goal)}{setSpeedGoal(RHATypes::SpeedGoal _goal)}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+Handler\+::set\+Speed\+Goal (
+\begin{DoxyParamCaption}
+\item[{{\bf R\+H\+A\+Types\+::\+Speed\+Goal}}]{\+\_\+goal}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointHandler_ad566695ecc649f08c799555976bb24bb}{}\label{classJointHandler_ad566695ecc649f08c799555976bb24bb}
+
+
+Sets speed goal to a given joint (based on servo ID in goal)  \hyperlink{classJointHandler_ad566695ecc649f08c799555976bb24bb}{Joint\+Handler\+::set\+Speed\+Goal}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em goal} & Goal containing speed, speed\+\_\+slope and ID \\
+\hline
+\end{DoxyParams}
+\index{Joint\+Handler@{Joint\+Handler}!set\+Torque\+Control\+Timer@{set\+Torque\+Control\+Timer}}
+\index{set\+Torque\+Control\+Timer@{set\+Torque\+Control\+Timer}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{set\+Torque\+Control\+Timer(uint64\+\_\+t timer)}{setTorqueControlTimer(uint64_t timer)}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+Handler\+::set\+Torque\+Control\+Timer (
+\begin{DoxyParamCaption}
+\item[{uint64\+\_\+t}]{\+\_\+timer}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointHandler_a6272112038118715e929fcf7e99085d1}{}\label{classJointHandler_a6272112038118715e929fcf7e99085d1}
+
+
+Initialices timer from control\+\_\+loop for speed in \hyperlink{classServoRHA}{Servo\+R\+HA}  Joint\+Handler\+::init. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timer} & time in ms for control loop \\
+\hline
+\end{DoxyParams}
+\index{Joint\+Handler@{Joint\+Handler}!update\+Joint\+Info@{update\+Joint\+Info}}
+\index{update\+Joint\+Info@{update\+Joint\+Info}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{update\+Joint\+Info()}{updateJointInfo()}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+Handler\+::update\+Joint\+Info (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointHandler_a0c52f5090368d69e6c9168ce51c9b8de}{}\label{classJointHandler_a0c52f5090368d69e6c9168ce51c9b8de}
+
+
+Updates internal information from all joint.  \hyperlink{classJointHandler_a0c52f5090368d69e6c9168ce51c9b8de}{Joint\+Handler\+::update\+Joint\+Info}. 
+
+\begin{DoxySeeAlso}{See also}
+Joint\+R\+H\+A\+::update\+Joint\+Info 
+\end{DoxySeeAlso}
+\index{Joint\+Handler@{Joint\+Handler}!warp\+Single\+Packet@{warp\+Single\+Packet}}
+\index{warp\+Single\+Packet@{warp\+Single\+Packet}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{warp\+Single\+Packet(uint8\+\_\+t \+\_\+instruction, uint8\+\_\+t $\ast$\+\_\+buffer, uint8\+\_\+t $\ast$\+\_\+tx\+Buffer)}{warpSinglePacket(uint8_t _instruction, uint8_t *_buffer, uint8_t *_txBuffer)}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+Handler\+::warp\+Single\+Packet (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{\+\_\+instruction, }
+\item[{uint8\+\_\+t $\ast$}]{\+\_\+buffer, }
+\item[{uint8\+\_\+t $\ast$}]{\+\_\+tx\+Buffer}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointHandler_aab13ed27ee90a1bc5db5f601d58b361c}{}\label{classJointHandler_aab13ed27ee90a1bc5db5f601d58b361c}
+
+
+Warps packet info with the information needed for the comunication  \hyperlink{classJointHandler_aab13ed27ee90a1bc5db5f601d58b361c}{Joint\+Handler\+::warp\+Single\+Packet}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em instruction} & Instruction of how to access servo register (i\+R\+E\+A\+D\+\_\+\+D\+A\+TA, i\+R\+E\+G\+\_\+\+W\+R\+I\+TE, i\+W\+R\+I\+T\+E\+\_\+\+D\+A\+TA...) \\
+\hline
+{\em \{uint8\+\_\+t} & $\ast$\} buffer data to warp \\
+\hline
+{\em \{uint8\+\_\+t} & $\ast$\} tx\+Buffer data warped and ready to send \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classJointHandler_a222cfc7c9e451e5d8c2872d7584e9d3e}{Joint\+Handler\+::send\+Packet()} 
+\end{DoxySeeAlso}
+\index{Joint\+Handler@{Joint\+Handler}!warp\+Sync\+Packet@{warp\+Sync\+Packet}}
+\index{warp\+Sync\+Packet@{warp\+Sync\+Packet}!Joint\+Handler@{Joint\+Handler}}
+\subsubsection[{\texorpdfstring{warp\+Sync\+Packet(uint8\+\_\+t $\ast$\+\_\+buffer, uint8\+\_\+t \+\_\+adress, uint8\+\_\+t $\ast$\+\_\+tx\+Buffer, uint8\+\_\+t \+\_\+num\+\_\+bytes, uint8\+\_\+t \+\_\+num\+\_\+servo)}{warpSyncPacket(uint8_t *_buffer, uint8_t _adress, uint8_t *_txBuffer, uint8_t _num_bytes, uint8_t _num_servo)}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+Handler\+::warp\+Sync\+Packet (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{\+\_\+buffer, }
+\item[{uint8\+\_\+t}]{\+\_\+adress, }
+\item[{uint8\+\_\+t $\ast$}]{\+\_\+tx\+Buffer, }
+\item[{uint8\+\_\+t}]{\+\_\+num\+\_\+bytes, }
+\item[{uint8\+\_\+t}]{\+\_\+num\+\_\+servo}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointHandler_aaaea003506b5d446b81a89924335d8e6}{}\label{classJointHandler_aaaea003506b5d446b81a89924335d8e6}
+
+
+wrap\+Packet adds information needed once all servos had been aded (header, ID, instruction...). This function is used to send just one packet for all servos instead of each sending their respective information  \hyperlink{classJointHandler_aaaea003506b5d446b81a89924335d8e6}{Joint\+Handler\+::warp\+Sync\+Packet} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t} & $\ast$\} buffer is the data that have been completed by each servo (by reference) \\
+\hline
+{\em \{uint8\+\_\+t\}} & adress Direction of servo register in which to write/read... \\
+\hline
+{\em \{uint8\+\_\+t} & $\ast$\} tx\+Buffer data warped and ready to send \\
+\hline
+{\em \{uint8\+\_\+t\}} & num\+\_\+bytes is the length of data \\
+\hline
+{\em \{uint8\+\_\+t\}} & num\+\_\+servo how many servos had been added to this packet \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classJointHandler_a222cfc7c9e451e5d8c2872d7584e9d3e}{Joint\+Handler\+::send\+Packet()} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/joint\+\_\+handler/\hyperlink{joint__handler_8h}{joint\+\_\+handler.\+h}\item 
+lib/joint\+\_\+handler/\hyperlink{joint__handler_8cpp}{joint\+\_\+handler.\+cpp}\end{DoxyCompactItemize}

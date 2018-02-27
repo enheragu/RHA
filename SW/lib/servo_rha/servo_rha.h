@@ -117,8 +117,8 @@ namespace ServoRHAConstants {
       */
 
 namespace SpeedRegulatorK {
-    #define KP 10  // 1.66
-    #define KD 0
+    #define KP 3  // 1.66
+    #define KD 1
     #define KI 0
 }
 }  // namespace ServoRHAConstants
@@ -202,15 +202,15 @@ class ServoRHA {
     float getDError() { return derror_; }
     float getIError() { return ierror_; }
     uint16_t getSpeedWithDir() {
-        uint16_t speed = (uint16_t)getSpeed() & 0x03FF;
-        if (getSpeedDir() == CW) {
+        uint16_t speed = (uint16_t)speed_ & 0x03FF;
+        if (speed_dir_ == CW) {
             speed = speed | 0x0400;
         }
         return speed;
     }
     uint16_t getTorqueWithDir() {
-        uint16_t load = getLoad() & 0x03FF;
-        if (getLoadDir() == CW) {
+        uint16_t load = load_ & 0x03FF;
+        if (load_dir_ == CW) {
             load = load | 0x0400;
         }
         return load;

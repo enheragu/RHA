@@ -1,0 +1,7 @@
+<map id="lib/joint_handler/joint_handler.h" name="lib/joint_handler/joint_handler.h">
+<area shape="rect" id="node2" href="$debug_8h.html" title="Implements debugging macros with Serial printig that can be activated or not for each different libra..." alt="" coords="159,393,227,420"/>
+<area shape="rect" id="node4" href="$rha__types_8h_source.html" title="rha_types.h" alt="" coords="413,244,504,271"/>
+<area shape="rect" id="node7" href="$joint__rha_8h.html" title="Implements JointRHA class. This object combines potentiometer with ServoRHA object readings to enhanc..." alt="" coords="417,95,500,121"/>
+<area shape="rect" id="node5" href="$pid__regulator_8h_source.html" title="pid_regulator.h" alt="" coords="245,319,352,345"/>
+<area shape="rect" id="node8" href="$servo__rha_8h.html" title="Implements ServoRHA class. This object inherits from CytronG15Servo object to enhance its capabilitie..." alt="" coords="331,169,421,196"/>
+</map>

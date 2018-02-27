@@ -17,6 +17,11 @@ JointRHA::JointRHA() {
     position_pot_last_ = 0;
     position_target_ = 0;
     error_moving_ = 0;
+    joint_ok_ = false;
+    /*iterator_filter = 0;
+    for (uint8_t i = 0; i < FILTER_POTENTIOMETER; i++){
+        pos_filter_vector[i] = 0;
+    }*/
 }
 
 /** @brief Cunstructor of JointRHA class.
@@ -51,7 +56,7 @@ void JointRHA::init(uint8_t _servo_id, uint8_t _up_direction, float _zero_compen
     joint_pot_relation_ = 1;
     DebugSerialJRHALn2("init: potentiometer in pin: ", potentiometer_pin_);
 
-    speed_regulator_.setKRegulator(KP, KI, KD);
+    speed_regulator_.setKRegulator(SpeedRegulatorK_KP, SpeedRegulatorK_KI, SpeedRegulatorK_KD);
 
     DebugSerialJRHALn2("init: setKRegulator kp: ", KP);
     DebugSerialJRHALn2("init: setKRegulator ki: ", KI);
@@ -75,6 +80,19 @@ void JointRHA::updatePosition() {
         position_pot_last_ = position_pot_;
         position_pot_ = floatMap(pot_analog_read_, 0, 1023, 0, 265) * joint_pot_relation_;  // from 0 to 5V transform to 0-265 degrees (max angle of potentiometer)
         position_pot_ = position_pot_ - zero_pos_compensation_;
+        /*TODO: filter pot measures
+        pos_filter_vector[iterator_filter] = position_pot_ - zero_pos_compensation_;
+        for (uint8_t i = 0; i < FILTER_POTENTIOMETER; i++)
+        {
+            if (pos_filter_vector[i]!=0)
+                position_pot_ += pos_filter_vector[i];
+            else
+                position_pot_ += position_pot_;
+        }
+        position_pot_ = position_pot_/FILTER_POTENTIOMETER;
+        iterator_filter++;
+        if (iterator_filter > FILTER_POTENTIOMETER)
+            iterator_filter = 0;*/
         //position_pot_ = position_pot_ - zero_pos_compensation_;
 
         // Serial.println(position_pot_);
@@ -104,6 +122,7 @@ void JointRHA::setPotRelation(float _relation) {
 void JointRHA::updateInfo(uint8_t *_data, uint16_t _error) {
     updatePosition();
     servo_.updateInfo(_data, _error);
+    joint_ok_ = checkSecurityJoint();
 }
 
 /**
@@ -157,7 +176,14 @@ void JointRHA::calculateSpeed(float _error, float _derror, float _ierror) {
     DebugSerialJRHALn2("calculateSpeed: move joint in: ", (speed > 0)?"UP":"DOWN");
     goal_speed_.speed = uint16_t(abs(speed));
     goal_speed_.servo_id = servo_.getID();
-    goal_speed_.direction = (speed < 0)?!up_direction_:up_direction_;
+    if (speed >= 0)
+        goal_speed_.direction = CW;  // up_direction_;
+    else
+        if (true)  // (up_direction_ == CW)
+            goal_speed_.direction = CCW;
+        else
+            goal_speed_.direction = CW;
+    //goal_speed_.direction = (speed >= 0)?up_direction_:!up_direction_;
 }
 
 /**
@@ -181,10 +207,11 @@ bool JointRHA::reachedGoalPosition() {
 
 /**
  * @brief checks that everithing goes as espected. If not it stops the servo
- * @method checkSecurity
+ * @method checkSecurityJoint
  * @return Returns true when theres no problem, false otherwise
  */
-bool JointRHA::checkSecurity() {
+bool JointRHA::checkSecurityJoint() {
+    if (potentiometer_pin_ == NO_POTENTIOMETER ) return true;  // no way to detect error if theres is no pot
     if (abs(servo_.getSpeed()) > 0 && compareAngles(position_pot_, position_pot_last_, ANGLE_TOLERANCE) == ServoRHAConstants::EQUAL )
         error_moving_++;
     else error_moving_ = 0;

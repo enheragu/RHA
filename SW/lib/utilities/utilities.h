@@ -78,8 +78,8 @@ namespace CheckSpeedTestData {
     #define SPEED 1023  // torque send to check speed
 }  // namespace CheckSpeedTestData
 
-#define UP CCW
-#define DOWN CW
+//#define UP CCW
+//#define DOWN CW
 
 #define LED_ROJO 3
 #define LED_VERDE 4

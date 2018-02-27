@@ -1,0 +1,125 @@
+\hypertarget{joint__handler_8h}{}\section{lib/joint\+\_\+handler/joint\+\_\+handler.h File Reference}
+\label{joint__handler_8h}\index{lib/joint\+\_\+handler/joint\+\_\+handler.\+h@{lib/joint\+\_\+handler/joint\+\_\+handler.\+h}}
+
+
+Implements \hyperlink{classJointHandler}{Joint\+Handler} class. This object is in charge to sync all joints.  
+
+
+{\ttfamily \#include \char`\"{}debug.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rha\+\_\+types.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}joint\+\_\+rha.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$Software\+Serial.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}Arduino.\+h\char`\"{}}\\*
+Include dependency graph for joint\+\_\+handler.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{joint__handler_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{joint__handler_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classJointHandler}{Joint\+Handler}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries \+\_\+\+\_\+\+A\+V\+R\+\_\+\+A\+Tmega1280\+\_\+\+\_\+}\hypertarget{joint__handler_8h_a365ec278ac8d317e8867132f12643815}{}\label{joint__handler_8h_a365ec278ac8d317e8867132f12643815}
+
+\item 
+\#define {\bfseries Serial\+\_\+\+G15\+\_\+lib}~Serial2\hypertarget{joint__handler_8h_af55e375f025c3871a2490e02d3fdefc1}{}\label{joint__handler_8h_af55e375f025c3871a2490e02d3fdefc1}
+
+\item 
+\#define {\bfseries C\+H\+E\+C\+K\+\_\+\+M\+E\+G\+A\+\_\+\+H\+A\+R\+D\+W\+A\+R\+E\+S\+E\+R\+I\+AL}(rx,  tx)~(rx == 17 \&\& tx == 16)\hypertarget{joint__handler_8h_ae31a07c8064d9328f008152edd6588f4}{}\label{joint__handler_8h_ae31a07c8064d9328f008152edd6588f4}
+
+\item 
+\#define {\bfseries i\+P\+I\+NG}~0x01\hypertarget{joint__handler_8h_a84f64a26a9c0c862ef3c83394a7ca241}{}\label{joint__handler_8h_a84f64a26a9c0c862ef3c83394a7ca241}
+
+\item 
+\#define {\bfseries i\+R\+E\+A\+D\+\_\+\+D\+A\+TA}~0x02\hypertarget{joint__handler_8h_abdab86c81459f14f1ae28061eb8533d6}{}\label{joint__handler_8h_abdab86c81459f14f1ae28061eb8533d6}
+
+\item 
+\#define {\bfseries i\+W\+R\+I\+T\+E\+\_\+\+D\+A\+TA}~0x03\hypertarget{joint__handler_8h_a08c4cd8cfb87535b807bb7c7cb74aa54}{}\label{joint__handler_8h_a08c4cd8cfb87535b807bb7c7cb74aa54}
+
+\item 
+\#define {\bfseries i\+R\+E\+G\+\_\+\+W\+R\+I\+TE}~0x04\hypertarget{joint__handler_8h_a4d64f7f80f286344d1b105be3f7392d8}{}\label{joint__handler_8h_a4d64f7f80f286344d1b105be3f7392d8}
+
+\item 
+\#define {\bfseries i\+A\+C\+T\+I\+ON}~0x05\hypertarget{joint__handler_8h_ada63b4d5ec654128d02a6b6824920593}{}\label{joint__handler_8h_ada63b4d5ec654128d02a6b6824920593}
+
+\item 
+\#define {\bfseries i\+R\+E\+S\+ET}~0x06\hypertarget{joint__handler_8h_acd2064debab786f57fc4e5d9f9c8efe3}{}\label{joint__handler_8h_acd2064debab786f57fc4e5d9f9c8efe3}
+
+\item 
+\#define {\bfseries i\+S\+Y\+N\+C\+\_\+\+W\+R\+I\+TE}~0x83\hypertarget{joint__handler_8h_a070bd11056c6d88659c72eb720774521}{}\label{joint__handler_8h_a070bd11056c6d88659c72eb720774521}
+
+\item 
+\#define {\bfseries Serial\+Time\+Out}~100L\hypertarget{joint__handler_8h_a4b0b396f703f760db46d68f260cda050}{}\label{joint__handler_8h_a4b0b396f703f760db46d68f260cda050}
+
+\item 
+\#define {\bfseries Tx\+Mode}~L\+OW\hypertarget{joint__handler_8h_a35575c2130c8d01459c94aa5b9277313}{}\label{joint__handler_8h_a35575c2130c8d01459c94aa5b9277313}
+
+\item 
+\#define {\bfseries Rx\+Mode}~H\+I\+GH\hypertarget{joint__handler_8h_ab22c9936327c2a3f047637ac463692c5}{}\label{joint__handler_8h_ab22c9936327c2a3f047637ac463692c5}
+
+\item 
+\#define {\bfseries Convert\+Angle\+To\+Pos}(angle)~(uint16\+\_\+t)((uint16\+\_\+t)(angle) $\ast$ 1088\+U\+L  / 360\+U\+L)\hypertarget{joint__handler_8h_a5ce4ebb8be360540b88fa12952d67d57}{}\label{joint__handler_8h_a5ce4ebb8be360540b88fa12952d67d57}
+
+\item 
+\#define {\bfseries Convert\+Pos\+To\+Angle}(position)~static\+\_\+cast$<$float$>$((position) $\ast$ 360.\+0  / 1088.\+0)\hypertarget{joint__handler_8h_a0e179365b35f828a0a7b478f10424a2e}{}\label{joint__handler_8h_a0e179365b35f828a0a7b478f10424a2e}
+
+\item 
+\#define {\bfseries Convert\+Time}(time)~(uint16\+\_\+t)(time $\ast$ 10\+U\+L)\hypertarget{joint__handler_8h_a7b3f9bbd9ac10aca53267d6adb4a761a}{}\label{joint__handler_8h_a7b3f9bbd9ac10aca53267d6adb4a761a}
+
+\item 
+\#define \hyperlink{joint__handler_8h_a13e3053a6ffabe9a61da82d87f08f295}{A\+L\+L\+\_\+\+S\+E\+R\+VO}~0x\+FE
+\item 
+\#define {\bfseries D\+E\+F\+A\+U\+L\+T\+\_\+\+ID}~0x01\hypertarget{joint__handler_8h_a50f28d60b2b6da9c769708953aaa34d0}{}\label{joint__handler_8h_a50f28d60b2b6da9c769708953aaa34d0}
+
+\item 
+\#define {\bfseries G15\+\_\+\+B\+A\+U\+D\+R\+A\+TE}~460800\hypertarget{joint__handler_8h_a80327d4862f751fcaf6606f073bf6df6}{}\label{joint__handler_8h_a80327d4862f751fcaf6606f073bf6df6}
+
+\item 
+\#define {\bfseries N\+U\+M\+\_\+\+J\+O\+I\+NT}~3\hypertarget{joint__handler_8h_a5ec6c0e91f743660f58ed41594adda29}{}\label{joint__handler_8h_a5ec6c0e91f743660f58ed41594adda29}
+
+\item 
+\#define {\bfseries B\+U\+F\+F\+E\+R\+\_\+\+L\+EN}~20\hypertarget{joint__handler_8h_a46130dc86f2322714bba26960b64e7bb}{}\label{joint__handler_8h_a46130dc86f2322714bba26960b64e7bb}
+
+\item 
+\#define {\bfseries E\+E\+M\+P\+R\+O\+M\+\_\+\+W\+R\+I\+T\+E\+\_\+\+D\+E\+L\+AY}~25\hypertarget{joint__handler_8h_ad56f36771d96f7a04fe3c3bfc6e67c2a}{}\label{joint__handler_8h_ad56f36771d96f7a04fe3c3bfc6e67c2a}
+
+\item 
+\#define {\bfseries G15\+\_\+\+B\+A\+U\+D\+R\+A\+TE}~460800\hypertarget{joint__handler_8h_a80327d4862f751fcaf6606f073bf6df6}{}\label{joint__handler_8h_a80327d4862f751fcaf6606f073bf6df6}
+
+\item 
+\#define {\bfseries G15\+\_\+\+R\+X\+\_\+\+P\+IN}~17\hypertarget{joint__handler_8h_a857de0c4b5b3cd5f4ba4350db1034dd9}{}\label{joint__handler_8h_a857de0c4b5b3cd5f4ba4350db1034dd9}
+
+\item 
+\#define {\bfseries G15\+\_\+\+T\+X\+\_\+\+P\+IN}~16\hypertarget{joint__handler_8h_a5c91cd2b4132277e53a63173b8077845}{}\label{joint__handler_8h_a5c91cd2b4132277e53a63173b8077845}
+
+\item 
+\#define {\bfseries G15\+\_\+\+C\+O\+N\+T\+R\+L\+\_\+\+P\+IN}~8\hypertarget{joint__handler_8h_a7c14655d73b1aedd5871aeca859b8f20}{}\label{joint__handler_8h_a7c14655d73b1aedd5871aeca859b8f20}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements \hyperlink{classJointHandler}{Joint\+Handler} class. This object is in charge to sync all joints. 
+
+\+: Enrique Heredia Aguado $<$enheragu$>$ \+: 2017\+\_\+\+Sep\+\_\+08 \+: R\+HA \+: \hyperlink{joint__handler_8h}{joint\+\_\+handler.\+h}  modified by\+: enheragu  modified time\+: 31\+\_\+\+Oct\+\_\+2017 
+
+\subsection{Macro Definition Documentation}
+\index{joint\+\_\+handler.\+h@{joint\+\_\+handler.\+h}!A\+L\+L\+\_\+\+S\+E\+R\+VO@{A\+L\+L\+\_\+\+S\+E\+R\+VO}}
+\index{A\+L\+L\+\_\+\+S\+E\+R\+VO@{A\+L\+L\+\_\+\+S\+E\+R\+VO}!joint\+\_\+handler.\+h@{joint\+\_\+handler.\+h}}
+\subsubsection[{\texorpdfstring{A\+L\+L\+\_\+\+S\+E\+R\+VO}{ALL_SERVO}}]{\setlength{\rightskip}{0pt plus 5cm}\#define A\+L\+L\+\_\+\+S\+E\+R\+VO~0x\+FE}\hypertarget{joint__handler_8h_a13e3053a6ffabe9a61da82d87f08f295}{}\label{joint__handler_8h_a13e3053a6ffabe9a61da82d87f08f295}
+A\+L\+L\+\_\+\+S\+E\+R\+VO is ID to broadcast to all servo in bus. 

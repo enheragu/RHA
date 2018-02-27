@@ -5,7 +5,7 @@ import serial
 from tkinter import messagebox, font
 from math import *
 
-L1 = 0.3070
+L1 = 0.3070 + 0.02
 L2 = 0.4550
 L3  = 0.4550
 LA = 0.0300
@@ -47,17 +47,18 @@ class Interface():
         self.frame_control_entries = Frame(self.root, borderwidth=2, relief="raised")
         custom_font = font.Font(weight='bold')
         self.frame_info = Frame(self.frame_control_entries, borderwidth=2, relief="raised")
+        self.frame_control_entries.pack(side=RIGHT, pady=(10,10))
         self.etiq1 = Label(self.frame_info, text="Información general:", font=custom_font).pack(side=TOP)
-        self.tinfo = Text(self.frame_info, width=40, height=18)
+        self.tinfo = Text(self.frame_info, width=45, height=18)
         self.tinfo.pack(side=TOP)
-        self.frame_info.pack(side=TOP, pady=(10,10))
+        self.frame_info.pack(side=LEFT, pady=(10,10))
 
         #self.articular_pos_goal = structure()
         #self.articular_pos_goal.q1 = self.articular_pos_goal.q2 = self.articular_pos_goal.q3 = 0
         #self.cartesian_pos_goal = structure()
         #self.cartesian_pos_goal.x = self.cartesian_pos_goal.y = self.cartesian_pos_goal.z = 0
 
-        frame_articular_coords = Frame(self.frame_control_entries, borderwidth=2, relief="raised", width=40, height=10)
+        frame_articular_coords = Frame(self.frame_control_entries, borderwidth=2, relief="raised", width=45, height=10)
         self.etiq_articular = Label(frame_articular_coords, text="Coordenadas Articulares:", font=custom_font).grid(row=0,padx=(10,0), pady=(4,4), columnspan=2)
         self.etiq_q1 = self.makeentry(frame_articular_coords, "Q1:", 1, 0, 6) #, textvariable=self.articular_pos_goal.q1)
         self.etiq_q2 = self.makeentry(frame_articular_coords, "Q2:", 2, 0, 6) #, textvariable=self.articular_pos_goal.q2)
@@ -65,7 +66,7 @@ class Interface():
         self.boton_aceptar_articular = Button(frame_articular_coords, text="Send", width=30, command=self.sendArticular).grid(row=4, padx=(10,10), pady=(4,4), columnspan=2)
         frame_articular_coords.pack(side=TOP, padx=(10,10), pady=(10,10))
 
-        frame_cartesian_coords = Frame(self.frame_control_entries, borderwidth=2, relief="raised", width=40, height=10)
+        frame_cartesian_coords = Frame(self.frame_control_entries, borderwidth=2, relief="raised", width=45, height=10)
         self.etiq_articular = Label(frame_cartesian_coords, text="Coordenadas Cartesianas:", font=custom_font).grid(row=0,padx=(10,0), pady=(4,4), columnspan=2)
         self.etiq_x = self.makeentry(frame_cartesian_coords, "X:", 1, 0, 6) #, textvariable=self.cartesian_pos_goal.x)
         self.etiq_y = self.makeentry(frame_cartesian_coords, "Y:", 2, 0, 6) #, textvariable=self.cartesian_pos_goal.y)
@@ -73,7 +74,6 @@ class Interface():
         self.boton_aceptar_cartesian = Button(frame_cartesian_coords, text="Send", width=30, command=self.sendCartesian).grid(row=4, padx=(10,10), pady=(4,4), columnspan=2)
         frame_cartesian_coords.pack(side=TOP, padx=(10,10), pady=(10,10))
 
-        self.frame_control_entries.pack(side=LEFT, pady=(10,10))
     def makeentry(self, parent, caption, position_row, position_column, width=None, **options):
         Label(parent, text=caption).grid(row=position_row, column=position_column)
         entry = Entry(parent, **options)
@@ -84,9 +84,9 @@ class Interface():
 
     def sendArticular(self):
         articular_pos = structure()
-        articular_pos.q1 = float(self.etiq_q1.get()) #self.articular_pos_goal.q1
-        articular_pos.q2 = float(self.etiq_q2.get()) #self.articular_pos_goal.q2
-        articular_pos.q3 = float(self.etiq_q3.get()) #self.articular_pos_goal.q3
+        articular_pos.x = int(self.etiq_q1.get()) #self.articular_pos_goal.q1
+        articular_pos.y = int(self.etiq_q2.get()) #self.articular_pos_goal.q2
+        articular_pos.z = int(self.etiq_q3.get()) #self.articular_pos_goal.q3
         self.sendSerialInfo(articular_pos)
 
     def sendCartesian(self):
@@ -102,7 +102,7 @@ class Interface():
 
         #setting up a tkinter canvas with scrollbars
         #frame = Frame(root, bd=2, relief=SUNKEN)
-        self.frame = Frame(self.root, bd=2, relief=SUNKEN, width=self.total_pix_x, height = self.total_pix_y)
+        """self.frame = Frame(self.root, bd=2, relief=SUNKEN, width=self.total_pix_x, height = self.total_pix_y)
         self.frame.grid_rowconfigure(1, weight=1)
         self.frame.grid_columnconfigure(0, weight=1)
         #xscroll = Scrollbar(self.frame, orient=HORIZONTAL)
@@ -131,7 +131,7 @@ class Interface():
         #mouseclick event
         self.canvas.bind("<ButtonPress-1>", self.on_button_press)
         self.canvas.bind("<ButtonRelease-1>", self.on_button_release)
-        #canvas.bind("<Button 1>",printcoords)
+        #canvas.bind("<Button 1>",printcoords)"""
         self.root.mainloop()
 
     def on_button_press(self, event):
@@ -156,30 +156,45 @@ class Interface():
         sendSerialInfo(articular_pos)
 
     def sendSerialInfo(self, articular_pos):
-        checksum = (~(6 + 3 + int(articular_pos.q1) + int(articular_pos.q2) + int(articular_pos.q3)) & 0xF) #in python is needed to mask the operation
+        checksum = (~(6 + 2 + int(articular_pos.x) + int(articular_pos.y) + int(articular_pos.z)) & 0xF) #in python is needed to mask the operation
 
-        print ("Goal sent: "+str(articular_pos.q1)+" "+str(articular_pos.q2)+" "+str(articular_pos.q3))
-        values = bytearray([int(255),int(255),int(6),int(3),int(articular_pos.q1),int(articular_pos.q2),int(articular_pos.q3),checksum]) #255 is 0xFF in hex
+        if (articular_pos.y > 158 or articular_pos.z < 37 or articular_pos.z > 107):
+            print ("[ERROR] Limite de articulacion superado")
+            return
+        print ("Goal sent: "+str(articular_pos.x)+" "+str(articular_pos.y)+" "+str(articular_pos.z))
+        values = bytearray([int(255),int(255),int(6),int(2),int(articular_pos.x),int(articular_pos.y),int(articular_pos.z),checksum]) #255 is 0xFF in hex
         # length = 6 bytes (not header)
         # 3 -> articular_position goal
         #print (values)
         self.ser.write(values)
 
-    def forwardKinematics (self, articular_pos):
+    def forwardKinematics (self, _articular_pos):
         cartesian_pos = structure()
-        cartesian_pos.x  = LA + L2*cos(pi/2-degreesToRad(180-articular_pos.y)) + L2*cos(degreesToRad(180-articular_pos.z)-pi/2)
-        cartesian_pos.y = 0
-        cartesian_pos.z = LB + L2*sin(pi/2-degreesToRad(180-articular_pos.y)) - L2*sin(degreesToRad(180-articular_pos.z)-pi/2) + L1
+
+        q2_transf = degreesToRad(_articular_pos.y) - pi/2
+        q3_trans = pi/2 - degreesToRad(_articular_pos.z)
+
+        cartesian_pos.x = cos(degreesToRad(_articular_pos.x))*(LA + L2*cos(q2_transf) + L2*cos(q3_trans))
+        cartesian_pos.y = sin(degreesToRad(_articular_pos.x))*(LA + L2*cos(q2_transf) + L2*cos(q3_trans))
+        cartesian_pos.z = LB + L2*sin(q2_transf) - L2*sin(q3_trans) + L1
+
         return cartesian_pos
 
-    def inverseKinematics (self, cartesian_pos):
+    def inverseKinematics (self, _cartesian_pos):
         articular_pos = structure()
-        xa = cartesian_pos.x - LA
-        za = cartesian_pos.z - L1 - LB
 
-        articular_pos.q1 = 0
-        articular_pos.q2 = 180-radToDegrees(pi/2 - (acos(sqrt(xa*xa + za*za)/(2*L2)) + atan2(za,xa)));
-        articular_pos.q3 = 180-radToDegrees(pi - (acos(sqrt(xa*xa + za*za)/(2*L2)) + atan2(za,xa)) - acos((L2*L2+L2*L2-sqrt(xa*xa + za*za)*sqrt(xa*xa + za*za))/(2*L2*L2)) + pi/2);
+        x_prima = sqrt(_cartesian_pos.x**2 + _cartesian_pos.y**2) - LA;
+        z_prima = _cartesian_pos.z - LB - L1;
+
+        r_prima = sqrt(x_prima**2 + z_prima**2);
+
+        q2_transf = (acos(r_prima/(2*L2)) + atan2(z_prima,x_prima));
+        q3_transf = pi - q2_transf - acos((L2**2+L3**2-r_prima**2)/(2*L2*L3));
+
+        articular_pos.x = radToDegrees(atan2( _cartesian_pos.y,_cartesian_pos.x));
+        articular_pos.y =  radToDegrees(q2_transf + pi/2);
+        articular_pos.z = radToDegrees(pi/2 - q3_transf) ;
+
         return articular_pos
 
     def printInfo(self):
@@ -195,19 +210,19 @@ class Interface():
 
         text_info = "\n"
         text_info += " Primera Articulación: " + "\n"
-        text_info += "   Posición: " + str(self.joint_first.pose) + "\n"
-        text_info += "   Velocidad: " + str(self.joint_first.speed) + "\t\t\t dir: " + {True: "UP", False: "DOWN"}[self.joint_first.speed_dir is True] + "\n"
-        text_info += "   Torque Aplicado: " + str(self.joint_first.torque) + "\t\t\t dir: " + {True: "CW", False: "CCW"}[self.joint_first.torque_dir is True] + "\n"
+        text_info += "   Posición: " + str(self.joint_first.pose)  + "\t\t\t Objetivo: " + str(self.joint_first.pos_goal) + "\n"
+        text_info += "   Velocidad: " + str(self.joint_first.speed) + "\t\t\t dir: " + {True: "UP", False: "DOWN"}[self.joint_first.speed_dir is 1] + "\n"
+        text_info += "   Torque Aplicado: " + str(self.joint_first.torque) + "\t\t\t dir: " + {True: "CW", False: "CCW"}[self.joint_first.torque_dir is 1] + "\n"
         text_info += "\n"
         text_info += " Segunda Articulación: " + "\n"
-        text_info += "   Posición: " + str(self.joint_second.pose) + "\n"
-        text_info += "   Velocidad: " + str(self.joint_second.speed) + "\t\t\t dir: " + {True: "UP", False: "DOWN"}[self.joint_second.speed_dir is True] + "\n"
-        text_info += "   Torque Aplicado: " + str(self.joint_second.torque) + "\t\t\t dir: " + {True: "CW", False: "CCW"}[self.joint_second.torque_dir is True] + "\n"
+        text_info += "   Posición: " + str(self.joint_second.pose) + "\t\t\t Objetivo: " + str(self.joint_second.pos_goal) + "\n"
+        text_info += "   Velocidad: " + str(self.joint_second.speed) + "\t\t\t dir: " + {True: "UP", False: "DOWN"}[self.joint_second.speed_dir is 1] + "\n"
+        text_info += "   Torque Aplicado: " + str(self.joint_second.torque) + "\t\t\t dir: " + {True: "CW", False: "CCW"}[self.joint_second.torque_dir is 1] + "\n"
         text_info += "\n"
         text_info += " Tercera Articulación: " + "\n"
-        text_info += "   Posición: " + str(self.joint_third.pose) + "\n"
-        text_info += "   Velocidad: " + str(self.joint_third.speed) + "\t\t\t dir: " + {True: "UP", False: "DOWN"}[self.joint_third.speed_dir is True] + "\n"
-        text_info += "   Torque Aplicado: " + str(self.joint_third.torque) + "\t\t\t dir: " + {True: "CW", False: "CCW"}[self.joint_third.torque_dir is True] + "\n"
+        text_info += "   Posición: " + str(self.joint_third.pose) + "\t\t\t Objetivo: " + str(self.joint_third.pos_goal) + "\n"
+        text_info += "   Velocidad: " + str(self.joint_third.speed) + "\t\t\t dir: " + {True: "UP", False: "DOWN"}[self.joint_third.speed_dir is 1] + "\n"
+        text_info += "   Torque Aplicado: " + str(self.joint_third.torque) + "\t\t\t dir: " + {True: "CW", False: "CCW"}[self.joint_third.torque_dir is 1] + "\n"
         text_info += "\n"
         text_info += " Posición extremo (m): (" + '%.2f'%(cartesian_pos.x) + "," + '%.2f'%(cartesian_pos.y) + "," + '%.2f'%(cartesian_pos.z) + ")" + "\n"
 
@@ -248,6 +263,10 @@ class Interface():
                     self.joint_third.torque = (int(value[14]) | (int(value[15]) << 8))
                     self.joint_third.torque_dir = ((self.joint_third.torque & 0x0400) >> 10)
                     self.joint_third.torque = self.joint_third.torque & ~0x0400
+
+                    self.joint_first.pos_goal = (int(value[16]))
+                    self.joint_second.pos_goal = (int(value[17]))
+                    self.joint_third.pos_goal = (int(value[18]))
                     self.printInfo()
                 elif value[0] == 1: #packet contains error information
                     error = ""

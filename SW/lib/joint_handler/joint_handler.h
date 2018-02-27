@@ -99,8 +99,8 @@ class JointHandler {
     void setTorqueControlTimer(uint64_t timer);
     void setSpeedControlTimer(uint64_t timer);
 
-    virtual void controlLoopTorque();
-    virtual void controlLoopSpeed();
+    virtual bool controlLoopTorque(uint8_t _calibration = false);
+    virtual void controlLoopSpeed(uint8_t _calibration = false);
 
     bool checkJointSecurityAll();
     bool checkServoSecurityAll();

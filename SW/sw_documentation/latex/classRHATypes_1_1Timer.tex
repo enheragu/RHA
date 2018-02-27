@@ -1,0 +1,77 @@
+\hypertarget{classRHATypes_1_1Timer}{}\section{R\+H\+A\+Types\+:\+:Timer Class Reference}
+\label{classRHATypes_1_1Timer}\index{R\+H\+A\+Types\+::\+Timer@{R\+H\+A\+Types\+::\+Timer}}
+
+
+Inheritance diagram for R\+H\+A\+Types\+:\+:Timer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{classRHATypes_1_1Timer__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries set\+Timer} (uint32\+\_\+t \+\_\+time\+\_\+set)\hypertarget{classRHATypes_1_1Timer_a3a6da4a03f68e24dc1dfb6e5dcdcd807}{}\label{classRHATypes_1_1Timer_a3a6da4a03f68e24dc1dfb6e5dcdcd807}
+
+\item 
+virtual void \hyperlink{classRHATypes_1_1Timer_a4eb48a47df3e8de23513a058063631bc}{activate\+Timer} ()\hypertarget{classRHATypes_1_1Timer_a4eb48a47df3e8de23513a058063631bc}{}\label{classRHATypes_1_1Timer_a4eb48a47df3e8de23513a058063631bc}
+
+\begin{DoxyCompactList}\small\item\em Activates the timer, it starts counting time  \hyperlink{classactivateTimer}{activate\+Timer}. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classRHATypes_1_1Timer_ad4b4d5aa5fb45044ee3370d8e56e1e3f}{check\+Wait} ()\hypertarget{classRHATypes_1_1Timer_ad4b4d5aa5fb45044ee3370d8e56e1e3f}{}\label{classRHATypes_1_1Timer_ad4b4d5aa5fb45044ee3370d8e56e1e3f}
+
+\begin{DoxyCompactList}\small\item\em Checks if time was reached. If no, it pauses the execution and waits for it to finish  check\+Wait. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classRHATypes_1_1Timer_a0d2a82909a9af9947b222ed5b3b8ea07}{check\+Continue} ()
+\begin{DoxyCompactList}\small\item\em Checks if time was reached. If not it returns a false and does not block the execution.  check\+Continue. \end{DoxyCompactList}\item 
+uint64\+\_\+t \hyperlink{classRHATypes_1_1Timer_a424e0c132b1e6484ecacdf9ce2b950bc}{get\+Init\+Time} ()
+\begin{DoxyCompactList}\small\item\em Interface method to get time in which timer was activated  get\+Init\+Time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t {\bfseries time\+\_\+}\hypertarget{classRHATypes_1_1Timer_a73b8f86acd0dd8dbd102117a56b3132b}{}\label{classRHATypes_1_1Timer_a73b8f86acd0dd8dbd102117a56b3132b}
+
+\item 
+uint64\+\_\+t {\bfseries init\+\_\+time\+\_\+}\hypertarget{classRHATypes_1_1Timer_a279fed9e4075162b9a99f9e0a47bf62f}{}\label{classRHATypes_1_1Timer_a279fed9e4075162b9a99f9e0a47bf62f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{R\+H\+A\+Types\+::\+Timer@{R\+H\+A\+Types\+::\+Timer}!check\+Continue@{check\+Continue}}
+\index{check\+Continue@{check\+Continue}!R\+H\+A\+Types\+::\+Timer@{R\+H\+A\+Types\+::\+Timer}}
+\subsubsection[{\texorpdfstring{check\+Continue()}{checkContinue()}}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool R\+H\+A\+Types\+::\+Timer\+::check\+Continue (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classRHATypes_1_1Timer_a0d2a82909a9af9947b222ed5b3b8ea07}{}\label{classRHATypes_1_1Timer_a0d2a82909a9af9947b222ed5b3b8ea07}
+
+
+Checks if time was reached. If not it returns a false and does not block the execution.  check\+Continue. 
+
+\begin{DoxyReturn}{Returns}
+Returns true or false if it reached the time or not 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classRHATypes_1_1TimerMicroseconds_a3394628ac96864eb3204efde4efd80fc}{R\+H\+A\+Types\+::\+Timer\+Microseconds}.
+
+\index{R\+H\+A\+Types\+::\+Timer@{R\+H\+A\+Types\+::\+Timer}!get\+Init\+Time@{get\+Init\+Time}}
+\index{get\+Init\+Time@{get\+Init\+Time}!R\+H\+A\+Types\+::\+Timer@{R\+H\+A\+Types\+::\+Timer}}
+\subsubsection[{\texorpdfstring{get\+Init\+Time()}{getInitTime()}}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t R\+H\+A\+Types\+::\+Timer\+::get\+Init\+Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classRHATypes_1_1Timer_a424e0c132b1e6484ecacdf9ce2b950bc}{}\label{classRHATypes_1_1Timer_a424e0c132b1e6484ecacdf9ce2b950bc}
+
+
+Interface method to get time in which timer was activated  get\+Init\+Time. 
+
+\begin{DoxyReturn}{Returns}
+Returns last activation time 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/rha\+\_\+types/rha\+\_\+types.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,98 @@
+\hypertarget{classRHATypes_1_1Regulator}{}\section{R\+H\+A\+Types\+:\+:Regulator Class Reference}
+\label{classRHATypes_1_1Regulator}\index{R\+H\+A\+Types\+::\+Regulator@{R\+H\+A\+Types\+::\+Regulator}}
+
+
+Implements a standard P\+ID regulator.  
+
+
+
+
+{\ttfamily \#include $<$pid\+\_\+regulator.\+h$>$}
+
+
+
+Inheritance diagram for R\+H\+A\+Types\+:\+:Regulator\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classRHATypes_1_1Regulator__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classRHATypes_1_1Regulator_ae566e392560fb0f7c6fd801d63ac922e}{reset\+Regulator} ()\hypertarget{classRHATypes_1_1Regulator_ae566e392560fb0f7c6fd801d63ac922e}{}\label{classRHATypes_1_1Regulator_ae566e392560fb0f7c6fd801d63ac922e}
+
+\begin{DoxyCompactList}\small\item\em Resets all regulator data to 0  reset\+Regulator. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classRHATypes_1_1Regulator_a31dc1ed1cc246ecd62c30f7bfa0879cb}{set\+K\+Regulator} (float \+\_\+kp, float \+\_\+ki=0, float \+\_\+kd=0)
+\item 
+virtual float \hyperlink{classRHATypes_1_1Regulator_a177a476f7f92de2bb2df2bd66f249523}{regulator} (float \+\_\+error, float \+\_\+derror=0, float \+\_\+ierror=0)
+\begin{DoxyCompactList}\small\item\em Calculates output of regulator to a set error  regulator. \end{DoxyCompactList}\item 
+float {\bfseries get\+Kp} ()\hypertarget{classRHATypes_1_1Regulator_a9eb9f18fc1362eb707a049464629f65e}{}\label{classRHATypes_1_1Regulator_a9eb9f18fc1362eb707a049464629f65e}
+
+\item 
+float {\bfseries get\+Ki} ()\hypertarget{classRHATypes_1_1Regulator_a5e8428051ac008110c35004d300ce659}{}\label{classRHATypes_1_1Regulator_a5e8428051ac008110c35004d300ce659}
+
+\item 
+float {\bfseries get\+Kd} ()\hypertarget{classRHATypes_1_1Regulator_ab47eca13f66abd73b81049011f5c2752}{}\label{classRHATypes_1_1Regulator_ab47eca13f66abd73b81049011f5c2752}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements a standard P\+ID regulator. 
+
+\subsection{Member Function Documentation}
+\index{R\+H\+A\+Types\+::\+Regulator@{R\+H\+A\+Types\+::\+Regulator}!regulator@{regulator}}
+\index{regulator@{regulator}!R\+H\+A\+Types\+::\+Regulator@{R\+H\+A\+Types\+::\+Regulator}}
+\subsubsection[{\texorpdfstring{regulator(float \+\_\+error, float \+\_\+derror=0, float \+\_\+ierror=0)}{regulator(float _error, float _derror=0, float _ierror=0)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual float R\+H\+A\+Types\+::\+Regulator\+::regulator (
+\begin{DoxyParamCaption}
+\item[{float}]{\+\_\+error, }
+\item[{float}]{\+\_\+derror = {\ttfamily 0}, }
+\item[{float}]{\+\_\+ierror = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classRHATypes_1_1Regulator_a177a476f7f92de2bb2df2bd66f249523}{}\label{classRHATypes_1_1Regulator_a177a476f7f92de2bb2df2bd66f249523}
+
+
+Calculates output of regulator to a set error  regulator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+error} & error \\
+\hline
+{\em \+\_\+derror} & derivative error \\
+\hline
+{\em \+\_\+ierror} & integral error \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns output of regulator 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{classRHATypes_1_1FuzzyRegulatorNode_a009b61474e7af7d368239919dcb21f3b}{R\+H\+A\+Types\+::\+Fuzzy\+Regulator\+Node}.
+
+\index{R\+H\+A\+Types\+::\+Regulator@{R\+H\+A\+Types\+::\+Regulator}!set\+K\+Regulator@{set\+K\+Regulator}}
+\index{set\+K\+Regulator@{set\+K\+Regulator}!R\+H\+A\+Types\+::\+Regulator@{R\+H\+A\+Types\+::\+Regulator}}
+\subsubsection[{\texorpdfstring{set\+K\+Regulator(float \+\_\+kp, float \+\_\+ki=0, float \+\_\+kd=0)}{setKRegulator(float _kp, float _ki=0, float _kd=0)}}]{\setlength{\rightskip}{0pt plus 5cm}virtual void R\+H\+A\+Types\+::\+Regulator\+::set\+K\+Regulator (
+\begin{DoxyParamCaption}
+\item[{float}]{\+\_\+kp, }
+\item[{float}]{\+\_\+ki = {\ttfamily 0}, }
+\item[{float}]{\+\_\+kd = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classRHATypes_1_1Regulator_a31dc1ed1cc246ecd62c30f7bfa0879cb}{}\label{classRHATypes_1_1Regulator_a31dc1ed1cc246ecd62c30f7bfa0879cb}
+Sets P\+ID regulator constants  set\+K\+Regulator 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+kp} & Proportional K \\
+\hline
+{\em \+\_\+ki} & Integral K \\
+\hline
+{\em \+\_\+kd} & Derivative K \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/rha\+\_\+types/pid\+\_\+regulator.\+h\end{DoxyCompactItemize}

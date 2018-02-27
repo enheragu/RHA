@@ -38,9 +38,9 @@ namespace PynterfaceConstants {
     // Serial3 on pins 15 (RX) and 14 (TX)
     // Check what serial is used by joint_handler
     #define Serial_PYNTERFACE Serial
-    #define PYNTERFACE_MSG_LENGTH 20
+    #define PYNTERFACE_MSG_LENGTH 25
     #define PYNTERFACE_BAUDRATE 921600
-    #define SEND_PYNTERFACE_DELAY PYNTERFACE_MSG_LENGTH/(PYNTERFACE_BAUDRATE*0.125*0.001)  // Baudrate * 0.125 = bytes/s; *0.001 -> bytes/milisecond
+    #define SEND_PYNTERFACE_DELAY 500  // PYNTERFACE_MSG_LENGTH/(PYNTERFACE_BAUDRATE*0.125*0.001)  // Baudrate * 0.125 = bytes/s; *0.001 -> bytes/milisecond
     enum package_content {UPDATE_INFO = 0, ERROR, ARTICULAR_GOAL};
 }
 
@@ -56,6 +56,7 @@ class RobotRHA {
  private:
     bool first_time_serial_goal_;
     bool robot_error_;
+    uint8_t buffer_[PYNTERFACE_MSG_LENGTH];
 
  public:
     RHATypes::Timer send_pynterface_data_;
@@ -64,7 +65,7 @@ class RobotRHA {
     void initJointHandler();
     void initChuckHandler();
 
-    void handleRobot();
+    void handleRobot(uint8_t _calibration = false);
     void setCartesianSpeedGoal(float _speed_x, float _speed_y, float _speed_z);
     void setSpeedToServos(float _speed, uint8_t _servo_id);
 
@@ -83,6 +84,8 @@ class RobotRHA {
     void goToCartesianPos(RHATypes::Point3 _cartesian_pos);
     void goToArticularPos(RHATypes::Point3 _articular_pos);
 
+    void calibration();
+
     bool checkError();
     RHATypes::Point3 getCartesianPos() { return cartesian_position_; }
 
@@ -94,5 +97,7 @@ class RobotRHA {
     RHATypes::Point3 articular_position_, cartesian_position_, pynterface_goal_;
 
     bool isError() { return joint_handler_.isError(); }
+
+    void resetBuffer(uint8_t buffer[]);
 };
 #endif

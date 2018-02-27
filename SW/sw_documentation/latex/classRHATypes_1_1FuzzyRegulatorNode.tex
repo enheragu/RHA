@@ -1,0 +1,93 @@
+\hypertarget{classRHATypes_1_1FuzzyRegulatorNode}{}\section{R\+H\+A\+Types\+:\+:Fuzzy\+Regulator\+Node Class Reference}
+\label{classRHATypes_1_1FuzzyRegulatorNode}\index{R\+H\+A\+Types\+::\+Fuzzy\+Regulator\+Node@{R\+H\+A\+Types\+::\+Fuzzy\+Regulator\+Node}}
+
+
+Inheritance diagram for R\+H\+A\+Types\+:\+:Fuzzy\+Regulator\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classRHATypes_1_1FuzzyRegulatorNode__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for R\+H\+A\+Types\+:\+:Fuzzy\+Regulator\+Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{classRHATypes_1_1FuzzyRegulatorNode__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classRHATypes_1_1FuzzyRegulatorNode_a86a9b1665447aa252262ad8153396f82}{reset\+Regulator} ()\hypertarget{classRHATypes_1_1FuzzyRegulatorNode_a86a9b1665447aa252262ad8153396f82}{}\label{classRHATypes_1_1FuzzyRegulatorNode_a86a9b1665447aa252262ad8153396f82}
+
+\begin{DoxyCompactList}\small\item\em Resets all regulator data to 0  reset\+Regulator. \end{DoxyCompactList}\item 
+void \hyperlink{classRHATypes_1_1FuzzyRegulatorNode_a60721c08c235e72fa7da03b4830ead4f}{set\+Regulator} (float \+\_\+aplication\+\_\+point, float \+\_\+kp, float \+\_\+ki=0, float \+\_\+kd=0)
+\item 
+float \hyperlink{classRHATypes_1_1FuzzyRegulatorNode_a009b61474e7af7d368239919dcb21f3b}{regulator} (float \+\_\+error, float \+\_\+derror=0, float \+\_\+ierror=0)
+\begin{DoxyCompactList}\small\item\em Calculates output of regulator to a set error  regulator. \end{DoxyCompactList}\item 
+float {\bfseries get\+Aplication\+Point} ()\hypertarget{classRHATypes_1_1FuzzyRegulatorNode_a488e3dcd8360401850a0203949dfc17e}{}\label{classRHATypes_1_1FuzzyRegulatorNode_a488e3dcd8360401850a0203949dfc17e}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{R\+H\+A\+Types\+::\+Fuzzy\+Regulator\+Node@{R\+H\+A\+Types\+::\+Fuzzy\+Regulator\+Node}!regulator@{regulator}}
+\index{regulator@{regulator}!R\+H\+A\+Types\+::\+Fuzzy\+Regulator\+Node@{R\+H\+A\+Types\+::\+Fuzzy\+Regulator\+Node}}
+\subsubsection[{\texorpdfstring{regulator(float \+\_\+error, float \+\_\+derror=0, float \+\_\+ierror=0)}{regulator(float _error, float _derror=0, float _ierror=0)}}]{\setlength{\rightskip}{0pt plus 5cm}float R\+H\+A\+Types\+::\+Fuzzy\+Regulator\+Node\+::regulator (
+\begin{DoxyParamCaption}
+\item[{float}]{\+\_\+error, }
+\item[{float}]{\+\_\+derror = {\ttfamily 0}, }
+\item[{float}]{\+\_\+ierror = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\hypertarget{classRHATypes_1_1FuzzyRegulatorNode_a009b61474e7af7d368239919dcb21f3b}{}\label{classRHATypes_1_1FuzzyRegulatorNode_a009b61474e7af7d368239919dcb21f3b}
+
+
+Calculates output of regulator to a set error  regulator. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+error} & error \\
+\hline
+{\em \+\_\+derror} & derivative error \\
+\hline
+{\em \+\_\+ierror} & integral error \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns output of regulator 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classRHATypes_1_1Regulator_a177a476f7f92de2bb2df2bd66f249523}{R\+H\+A\+Types\+::\+Regulator}.
+
+\index{R\+H\+A\+Types\+::\+Fuzzy\+Regulator\+Node@{R\+H\+A\+Types\+::\+Fuzzy\+Regulator\+Node}!set\+Regulator@{set\+Regulator}}
+\index{set\+Regulator@{set\+Regulator}!R\+H\+A\+Types\+::\+Fuzzy\+Regulator\+Node@{R\+H\+A\+Types\+::\+Fuzzy\+Regulator\+Node}}
+\subsubsection[{\texorpdfstring{set\+Regulator(float \+\_\+aplication\+\_\+point, float \+\_\+kp, float \+\_\+ki=0, float \+\_\+kd=0)}{setRegulator(float _aplication_point, float _kp, float _ki=0, float _kd=0)}}]{\setlength{\rightskip}{0pt plus 5cm}void R\+H\+A\+Types\+::\+Fuzzy\+Regulator\+Node\+::set\+Regulator (
+\begin{DoxyParamCaption}
+\item[{float}]{\+\_\+aplication\+\_\+point, }
+\item[{float}]{\+\_\+kp, }
+\item[{float}]{\+\_\+ki = {\ttfamily 0}, }
+\item[{float}]{\+\_\+kd = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classRHATypes_1_1FuzzyRegulatorNode_a60721c08c235e72fa7da03b4830ead4f}{}\label{classRHATypes_1_1FuzzyRegulatorNode_a60721c08c235e72fa7da03b4830ead4f}
+Sets Fuzzy regulator node constants and aplication point  set\+Regulator 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+aplication\+\_\+point} & Is the point in which this regulator is used \\
+\hline
+{\em \+\_\+kp} & Proportional K \\
+\hline
+{\em \+\_\+ki} & Integral K \\
+\hline
+{\em \+\_\+kd} & Derivative K \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/rha\+\_\+types/fuzzy\+\_\+regulator.\+h\end{DoxyCompactItemize}

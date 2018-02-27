@@ -85,7 +85,7 @@ void JointHandler::initJoints() {
 /**
   * @brief controlLoopTorque() function handles control loop for servo speed (output of regulator is torque for servo)
   */
-void JointHandler::controlLoopTorque() {
+bool JointHandler::controlLoopTorque(uint8_t _calibration) {
     if (error_servo_) return;
     DebugSerialJHLn("controlLoop: begin of function");
     if (torque_control_loop_timer_.checkContinue()) {
@@ -97,7 +97,7 @@ void JointHandler::controlLoopTorque() {
         DebugSerialJHLn("controlLoop: Updating joint error torque");
         updateJointErrorTorque();
 
-        if (checkServoSecurityAll()) {
+        if (checkServoSecurityAll() || _calibration) {
             DebugSerialJHLn("controlLoop: send new torque to servos");
             // TODO(eeha): sendJointTorques();  // <- uses sync packet which aparently does not work well
             sendSetWheelSpeedAll();  // <- uses async/single packet to each servo
@@ -115,14 +115,16 @@ void JointHandler::controlLoopTorque() {
 
 
         torque_control_loop_timer_.activateTimer();
+        return true;
     }
+    return false;
 }
 
 /**
  * @brief controlLoopSpeed() function handles control loop for joint position (output of regulator is speed for ServoRHA)
  * @method JointHandler::updateJointInfo
  */
- void JointHandler::controlLoopSpeed() {
+ void JointHandler::controlLoopSpeed(uint8_t _calibration) {
      if (error_joint_) return;
      DebugSerialJHLn("controlLoopSpeed: begin of function");
      if (speed_control_loop_timer_.checkContinue()) {
@@ -133,7 +135,7 @@ void JointHandler::controlLoopTorque() {
          DebugSerialJHLn("controlLoopSpeed: Updating joint error pos");
          updateJointErrorSpeed();
 
-         if (checkJointSecurityAll()) {
+         if (checkJointSecurityAll() || _calibration) {
              DebugSerialJHLn("controlLoopSpeed: send new speed to ServoRHA");
              sendSpeedGoalAll();
              error_joint_ = false;

@@ -1,0 +1,166 @@
+\hypertarget{classRobotRHA}{}\section{Robot\+R\+HA Class Reference}
+\label{classRobotRHA}\index{Robot\+R\+HA@{Robot\+R\+HA}}
+
+
+Collaboration diagram for Robot\+R\+HA\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classRobotRHA__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classRobotRHA_a169b8296ae6a272c74bc88ff4f938e01}{init\+Joint\+Handler} ()\hypertarget{classRobotRHA_a169b8296ae6a272c74bc88ff4f938e01}{}\label{classRobotRHA_a169b8296ae6a272c74bc88ff4f938e01}
+
+\begin{DoxyCompactList}\small\item\em Inits Joint handler timer, serial and joints  \hyperlink{classRobotRHA_a169b8296ae6a272c74bc88ff4f938e01}{Robot\+R\+H\+A\+::init\+Joint\+Handler}. \end{DoxyCompactList}\item 
+void {\bfseries init\+Chuck\+Handler} ()\hypertarget{classRobotRHA_ad7c99cfb0d0f64e6aea478965cc7694a}{}\label{classRobotRHA_ad7c99cfb0d0f64e6aea478965cc7694a}
+
+\item 
+void {\bfseries handle\+Robot} ()\hypertarget{classRobotRHA_ae7a8c12f3c25f0e07d14e28409773ad1}{}\label{classRobotRHA_ae7a8c12f3c25f0e07d14e28409773ad1}
+
+\item 
+void \hyperlink{classRobotRHA_a35a251c4f48bb84892109b6c1b22aad4}{set\+Cartesian\+Speed\+Goal} (float \+\_\+speed\+\_\+x, float \+\_\+speed\+\_\+y, float \+\_\+speed\+\_\+z)
+\begin{DoxyCompactList}\small\item\em Inits chuck handler timer  Robot\+R\+H\+A\+::init\+Chuck\+Handler. \end{DoxyCompactList}\item 
+void \hyperlink{classRobotRHA_a2340f69cfc12b844b516621d867f992e}{set\+Speed\+To\+Servos} (float \+\_\+speed, uint8\+\_\+t \+\_\+servo\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Sends speed goal  \hyperlink{classRobotRHA_a2340f69cfc12b844b516621d867f992e}{Robot\+R\+H\+A\+::set\+Speed\+To\+Servos}. \end{DoxyCompactList}\item 
+void {\bfseries init\+Pynterface} ()\hypertarget{classRobotRHA_a40cb5e4a3ca89ac3d0ae6542919de7b1}{}\label{classRobotRHA_a40cb5e4a3ca89ac3d0ae6542919de7b1}
+
+\item 
+void {\bfseries handle\+With\+Pynterface} ()\hypertarget{classRobotRHA_a41b9f580e6a80d327c7cefc3526a39d2}{}\label{classRobotRHA_a41b9f580e6a80d327c7cefc3526a39d2}
+
+\item 
+bool {\bfseries send\+Package} ()\hypertarget{classRobotRHA_a9e89942ddeaf4e908cd72a361d72bb0b}{}\label{classRobotRHA_a9e89942ddeaf4e908cd72a361d72bb0b}
+
+\item 
+void {\bfseries get\+Package} ()\hypertarget{classRobotRHA_a2a8f61cb25417b00e550c6844b519df3}{}\label{classRobotRHA_a2a8f61cb25417b00e550c6844b519df3}
+
+\item 
+void {\bfseries handle\+With\+Chuck} ()\hypertarget{classRobotRHA_a6d3753aac9b06ba092d0704d2f32f0ea}{}\label{classRobotRHA_a6d3753aac9b06ba092d0704d2f32f0ea}
+
+\item 
+void \hyperlink{classRobotRHA_a1c068efc59b023a324fadb569d239553}{handle\+With\+Serial\+Port} ()
+\begin{DoxyCompactList}\small\item\em Handles all G\+DL with nunchuck input. This method calls chuck reading ,sets speed goals and calls Joint handler control\+Loop  Robot\+R\+H\+A\+::handle\+With\+Chuck. \end{DoxyCompactList}\item 
+int \hyperlink{classRobotRHA_a6d60a84fb87ab47ba5987f8ec62ab617}{get\+Goal\+From\+Serial\+Input} (int \+\_\+joint\+\_\+target)
+\begin{DoxyCompactList}\small\item\em Asks a position to go through the serial port and returns it  \hyperlink{classRobotRHA_a6d60a84fb87ab47ba5987f8ec62ab617}{Robot\+R\+H\+A\+::get\+Goal\+From\+Serial\+Input}. \end{DoxyCompactList}\item 
+void {\bfseries update\+Info} ()\hypertarget{classRobotRHA_a2a877fd929caf3cdd423d3fd22c4bffa}{}\label{classRobotRHA_a2a877fd929caf3cdd423d3fd22c4bffa}
+
+\item 
+void {\bfseries go\+To\+Cartesian\+Pos} (\hyperlink{structRHATypes_1_1Point3}{R\+H\+A\+Types\+::\+Point3} \+\_\+cartesian\+\_\+pos)\hypertarget{classRobotRHA_a8f5818156ec8933c62b761b53b043dd0}{}\label{classRobotRHA_a8f5818156ec8933c62b761b53b043dd0}
+
+\item 
+void {\bfseries go\+To\+Articular\+Pos} (\hyperlink{structRHATypes_1_1Point3}{R\+H\+A\+Types\+::\+Point3} \+\_\+articular\+\_\+pos)\hypertarget{classRobotRHA_a20edddf9008c1dd17fa3646e5ebdfc41}{}\label{classRobotRHA_a20edddf9008c1dd17fa3646e5ebdfc41}
+
+\item 
+bool {\bfseries check\+Error} ()\hypertarget{classRobotRHA_af0895334b7ec3a7f9d34c9b7d79dee3d}{}\label{classRobotRHA_af0895334b7ec3a7f9d34c9b7d79dee3d}
+
+\item 
+\hyperlink{structRHATypes_1_1Point3}{R\+H\+A\+Types\+::\+Point3} {\bfseries get\+Cartesian\+Pos} ()\hypertarget{classRobotRHA_af5f5e6f159e20e1578d8d0e52ff3e3fc}{}\label{classRobotRHA_af5f5e6f159e20e1578d8d0e52ff3e3fc}
+
+\item 
+\hyperlink{structRHATypes_1_1Point3}{R\+H\+A\+Types\+::\+Point3} {\bfseries forward\+Kinematics} (\hyperlink{structRHATypes_1_1Point3}{R\+H\+A\+Types\+::\+Point3} \+\_\+articular\+\_\+pos)\hypertarget{classRobotRHA_a605a8a760bcbcbb40531e17ac250bbb2}{}\label{classRobotRHA_a605a8a760bcbcbb40531e17ac250bbb2}
+
+\item 
+\hyperlink{structRHATypes_1_1Point3}{R\+H\+A\+Types\+::\+Point3} {\bfseries inverse\+Kinematics} (\hyperlink{structRHATypes_1_1Point3}{R\+H\+A\+Types\+::\+Point3} \+\_\+cartesian\+\_\+pos)\hypertarget{classRobotRHA_a682cf6fa12caf83f1180ba69875f1dea}{}\label{classRobotRHA_a682cf6fa12caf83f1180ba69875f1dea}
+
+\item 
+bool {\bfseries is\+Error} ()\hypertarget{classRobotRHA_a8e6bb9ca49218ffddaf677b1ed52cffa}{}\label{classRobotRHA_a8e6bb9ca49218ffddaf677b1ed52cffa}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classRHATypes_1_1Timer}{R\+H\+A\+Types\+::\+Timer} {\bfseries send\+\_\+pynterface\+\_\+data\+\_\+}\hypertarget{classRobotRHA_a920feac534bc9c83d72d43bc75a27c74}{}\label{classRobotRHA_a920feac534bc9c83d72d43bc75a27c74}
+
+\item 
+\hyperlink{classJointHandler}{Joint\+Handler} {\bfseries joint\+\_\+handler\+\_\+}\hypertarget{classRobotRHA_a2bca459611e83d1a5ff869a62c8d6f53}{}\label{classRobotRHA_a2bca459611e83d1a5ff869a62c8d6f53}
+
+\item 
+\hyperlink{structRHATypes_1_1Point3}{R\+H\+A\+Types\+::\+Point3} {\bfseries articular\+\_\+position\+\_\+}\hypertarget{classRobotRHA_a71a3c38f88e75f6d4abb7736a25eff97}{}\label{classRobotRHA_a71a3c38f88e75f6d4abb7736a25eff97}
+
+\item 
+\hyperlink{structRHATypes_1_1Point3}{R\+H\+A\+Types\+::\+Point3} {\bfseries cartesian\+\_\+position\+\_\+}\hypertarget{classRobotRHA_abb121be3cc19e8ae4ea249315332d615}{}\label{classRobotRHA_abb121be3cc19e8ae4ea249315332d615}
+
+\item 
+\hyperlink{structRHATypes_1_1Point3}{R\+H\+A\+Types\+::\+Point3} {\bfseries pynterface\+\_\+goal\+\_\+}\hypertarget{classRobotRHA_a3a9dbd7adae084f8359bf204bde7719f}{}\label{classRobotRHA_a3a9dbd7adae084f8359bf204bde7719f}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{Robot\+R\+HA@{Robot\+R\+HA}!get\+Goal\+From\+Serial\+Input@{get\+Goal\+From\+Serial\+Input}}
+\index{get\+Goal\+From\+Serial\+Input@{get\+Goal\+From\+Serial\+Input}!Robot\+R\+HA@{Robot\+R\+HA}}
+\subsubsection[{\texorpdfstring{get\+Goal\+From\+Serial\+Input(int \+\_\+joint\+\_\+target)}{getGoalFromSerialInput(int _joint_target)}}]{\setlength{\rightskip}{0pt plus 5cm}int Robot\+R\+H\+A\+::get\+Goal\+From\+Serial\+Input (
+\begin{DoxyParamCaption}
+\item[{int}]{\+\_\+joint\+\_\+target}
+\end{DoxyParamCaption}
+)}\hypertarget{classRobotRHA_a6d60a84fb87ab47ba5987f8ec62ab617}{}\label{classRobotRHA_a6d60a84fb87ab47ba5987f8ec62ab617}
+
+
+Asks a position to go through the serial port and returns it  \hyperlink{classRobotRHA_a6d60a84fb87ab47ba5987f8ec62ab617}{Robot\+R\+H\+A\+::get\+Goal\+From\+Serial\+Input}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+joint\+\_\+target} & joint for which the goal is intended \\
+\hline
+\end{DoxyParams}
+\index{Robot\+R\+HA@{Robot\+R\+HA}!handle\+With\+Serial\+Port@{handle\+With\+Serial\+Port}}
+\index{handle\+With\+Serial\+Port@{handle\+With\+Serial\+Port}!Robot\+R\+HA@{Robot\+R\+HA}}
+\subsubsection[{\texorpdfstring{handle\+With\+Serial\+Port()}{handleWithSerialPort()}}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\+R\+H\+A\+::handle\+With\+Serial\+Port (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classRobotRHA_a1c068efc59b023a324fadb569d239553}{}\label{classRobotRHA_a1c068efc59b023a324fadb569d239553}
+
+
+Handles all G\+DL with nunchuck input. This method calls chuck reading ,sets speed goals and calls Joint handler control\+Loop  Robot\+R\+H\+A\+::handle\+With\+Chuck. 
+
+Handles all G\+DL with serial port input. Ask Goal position for all G\+DL and then goes to it  \hyperlink{classRobotRHA_a1c068efc59b023a324fadb569d239553}{Robot\+R\+H\+A\+::handle\+With\+Serial\+Port} \index{Robot\+R\+HA@{Robot\+R\+HA}!set\+Cartesian\+Speed\+Goal@{set\+Cartesian\+Speed\+Goal}}
+\index{set\+Cartesian\+Speed\+Goal@{set\+Cartesian\+Speed\+Goal}!Robot\+R\+HA@{Robot\+R\+HA}}
+\subsubsection[{\texorpdfstring{set\+Cartesian\+Speed\+Goal(float \+\_\+speed\+\_\+x, float \+\_\+speed\+\_\+y, float \+\_\+speed\+\_\+z)}{setCartesianSpeedGoal(float _speed_x, float _speed_y, float _speed_z)}}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\+R\+H\+A\+::set\+Cartesian\+Speed\+Goal (
+\begin{DoxyParamCaption}
+\item[{float}]{\+\_\+speed\+\_\+x, }
+\item[{float}]{\+\_\+speed\+\_\+y, }
+\item[{float}]{\+\_\+speed\+\_\+z}
+\end{DoxyParamCaption}
+)}\hypertarget{classRobotRHA_a35a251c4f48bb84892109b6c1b22aad4}{}\label{classRobotRHA_a35a251c4f48bb84892109b6c1b22aad4}
+
+
+Inits chuck handler timer  Robot\+R\+H\+A\+::init\+Chuck\+Handler. 
+
+Sets X, Y, X speed to Joints applyin transformation  \hyperlink{classRobotRHA_a35a251c4f48bb84892109b6c1b22aad4}{Robot\+R\+H\+A\+::set\+Cartesian\+Speed\+Goal} 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+speed\+\_\+x} & speed in X \\
+\hline
+{\em \+\_\+speed\+\_\+y} & speed in Y \\
+\hline
+{\em \+\_\+speed\+\_\+z} & speed in Z \\
+\hline
+\end{DoxyParams}
+\index{Robot\+R\+HA@{Robot\+R\+HA}!set\+Speed\+To\+Servos@{set\+Speed\+To\+Servos}}
+\index{set\+Speed\+To\+Servos@{set\+Speed\+To\+Servos}!Robot\+R\+HA@{Robot\+R\+HA}}
+\subsubsection[{\texorpdfstring{set\+Speed\+To\+Servos(float \+\_\+speed, uint8\+\_\+t \+\_\+servo\+\_\+id)}{setSpeedToServos(float _speed, uint8_t _servo_id)}}]{\setlength{\rightskip}{0pt plus 5cm}void Robot\+R\+H\+A\+::set\+Speed\+To\+Servos (
+\begin{DoxyParamCaption}
+\item[{float}]{\+\_\+speed, }
+\item[{uint8\+\_\+t}]{\+\_\+servo\+\_\+id}
+\end{DoxyParamCaption}
+)}\hypertarget{classRobotRHA_a2340f69cfc12b844b516621d867f992e}{}\label{classRobotRHA_a2340f69cfc12b844b516621d867f992e}
+
+
+Sends speed goal  \hyperlink{classRobotRHA_a2340f69cfc12b844b516621d867f992e}{Robot\+R\+H\+A\+::set\+Speed\+To\+Servos}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+speed} & speed to set \\
+\hline
+{\em \+\_\+servo\+\_\+id} & target servo for this goal speed \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/robot\+\_\+rha/robot\+\_\+rha.\+h\item 
+lib/robot\+\_\+rha/robot\+\_\+rha.\+cpp\end{DoxyCompactItemize}

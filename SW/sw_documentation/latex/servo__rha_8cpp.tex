@@ -1,0 +1,85 @@
+\hypertarget{servo__rha_8cpp}{}\section{lib/servo\+\_\+rha/servo\+\_\+rha.cpp File Reference}
+\label{servo__rha_8cpp}\index{lib/servo\+\_\+rha/servo\+\_\+rha.\+cpp@{lib/servo\+\_\+rha/servo\+\_\+rha.\+cpp}}
+
+
+Implements \hyperlink{classServoRHA}{Servo\+R\+HA} functions defined in \hyperlink{servo__rha_8h}{servo\+\_\+rha.\+h}.  
+
+
+{\ttfamily \#include \char`\"{}servo\+\_\+rha.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Arduino.\+h\char`\"{}}\\*
+Include dependency graph for servo\+\_\+rha.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{servo__rha_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \hyperlink{servo__rha_8cpp_aa742e2b59e05f1db2a251251b2dbae38}{compare\+Angles} (float \+\_\+angle1, float \+\_\+angle2, float \+\_\+angle\+\_\+margin)
+\begin{DoxyCompactList}\small\item\em compare\+Angles function compares two angles with a margin set. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{servo__rha_8cpp_a5a73e71efbca25439e58ddaca52dce57}{compare\+Speed} (float \+\_\+speed1, float \+\_\+speed2, float \+\_\+speed\+\_\+margin)
+\begin{DoxyCompactList}\small\item\em compare\+Speed function compares two speeds with a margin set. \end{DoxyCompactList}\item 
+float {\bfseries float\+Map} (float x, float in\+\_\+min, float in\+\_\+max, float out\+\_\+min, float out\+\_\+max)\hypertarget{servo__rha_8cpp_a284efb0a3d19dcac39428af341fcb4cf}{}\label{servo__rha_8cpp_a284efb0a3d19dcac39428af341fcb4cf}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements \hyperlink{classServoRHA}{Servo\+R\+HA} functions defined in \hyperlink{servo__rha_8h}{servo\+\_\+rha.\+h}. 
+
+\+: Enrique Heredia Aguado $<$enheragu$>$ \+: 2017\+\_\+\+Sep\+\_\+08 \+: R\+HA \+: \hyperlink{servo__rha_8cpp}{servo\+\_\+rha.\+cpp}  modified by\+: quique  modified time\+: 30-\/\+Sep-\/2017 
+
+\subsection{Function Documentation}
+\index{servo\+\_\+rha.\+cpp@{servo\+\_\+rha.\+cpp}!compare\+Angles@{compare\+Angles}}
+\index{compare\+Angles@{compare\+Angles}!servo\+\_\+rha.\+cpp@{servo\+\_\+rha.\+cpp}}
+\subsubsection[{\texorpdfstring{compare\+Angles(float \+\_\+angle1, float \+\_\+angle2, float \+\_\+angle\+\_\+margin)}{compareAngles(float _angle1, float _angle2, float _angle_margin)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t compare\+Angles (
+\begin{DoxyParamCaption}
+\item[{float}]{\+\_\+angle1, }
+\item[{float}]{\+\_\+angle2, }
+\item[{float}]{\+\_\+angle\+\_\+margin}
+\end{DoxyParamCaption}
+)}\hypertarget{servo__rha_8cpp_aa742e2b59e05f1db2a251251b2dbae38}{}\label{servo__rha_8cpp_aa742e2b59e05f1db2a251251b2dbae38}
+
+
+compare\+Angles function compares two angles with a margin set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint16\+\_\+t\}} & angle1 angle to compare \\
+\hline
+{\em \{uint16\+\_\+t\}} & angle2 angle used in the comparison \\
+\hline
+{\em \{uint8\+\_\+t\}} & angle\+\_\+margin margin in which the angle1 will be considered to be equal to angle2 \mbox{[}angle2-\/angle\+\_\+margin, angle2+angle\+\_\+margin\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\{uint8\+\_\+t\} Returns enumeration defined in \hyperlink{servo__rha_8h}{servo\+\_\+rha.\+h} -\/$>$ L\+E\+S\+S\+\_\+\+T\+H\+AN, G\+R\+E\+A\+T\+E\+R\+\_\+\+T\+H\+AN or E\+Q\+U\+AL 
+\end{DoxyReturn}
+\index{servo\+\_\+rha.\+cpp@{servo\+\_\+rha.\+cpp}!compare\+Speed@{compare\+Speed}}
+\index{compare\+Speed@{compare\+Speed}!servo\+\_\+rha.\+cpp@{servo\+\_\+rha.\+cpp}}
+\subsubsection[{\texorpdfstring{compare\+Speed(float \+\_\+speed1, float \+\_\+speed2, float \+\_\+speed\+\_\+margin)}{compareSpeed(float _speed1, float _speed2, float _speed_margin)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t compare\+Speed (
+\begin{DoxyParamCaption}
+\item[{float}]{\+\_\+speed1, }
+\item[{float}]{\+\_\+speed2, }
+\item[{float}]{\+\_\+speed\+\_\+margin}
+\end{DoxyParamCaption}
+)}\hypertarget{servo__rha_8cpp_a5a73e71efbca25439e58ddaca52dce57}{}\label{servo__rha_8cpp_a5a73e71efbca25439e58ddaca52dce57}
+
+
+compare\+Speed function compares two speeds with a margin set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint16\+\_\+t\}} & speed1 speed to compare \\
+\hline
+{\em \{uint16\+\_\+t\}} & speed2 speed used in the comparison \\
+\hline
+{\em \{uint8\+\_\+t\}} & speed\+\_\+margin margin in which the speed will be considered to be equal to speed2 \mbox{[}speed2-\/speed\+\_\+margin, speed2+speed\+\_\+margin\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\{uint8\+\_\+t\} Returns enumeration defined in \hyperlink{servo__rha_8h}{servo\+\_\+rha.\+h} -\/$>$ L\+E\+S\+S\+\_\+\+T\+H\+AN, G\+R\+E\+A\+T\+E\+R\+\_\+\+T\+H\+AN or E\+Q\+U\+AL 
+\end{DoxyReturn}

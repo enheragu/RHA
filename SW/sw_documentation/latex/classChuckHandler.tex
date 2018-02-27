@@ -1,0 +1,72 @@
+\hypertarget{classChuckHandler}{}\section{Chuck\+Handler Class Reference}
+\label{classChuckHandler}\index{Chuck\+Handler@{Chuck\+Handler}}
+
+
+Collaboration diagram for Chuck\+Handler\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{classChuckHandler__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries begin} ()\hypertarget{classChuckHandler_a597615a4c9c59695f9f90fa92aabb16a}{}\label{classChuckHandler_a597615a4c9c59695f9f90fa92aabb16a}
+
+\item 
+void \hyperlink{classChuckHandler_a620dc12c931d8e9c8a4b5f21a2942ff0}{set\+Timer} (uint64\+\_\+t timer)
+\begin{DoxyCompactList}\small\item\em Sets period of chuck read axis refresh  \hyperlink{classsetTimer}{set\+Timer}. \end{DoxyCompactList}\item 
+void {\bfseries print\+Chuck\+Values} ()\hypertarget{classChuckHandler_a0f981cf4f01387288b6f3aaf80ffc358}{}\label{classChuckHandler_a0f981cf4f01387288b6f3aaf80ffc358}
+
+\item 
+\hyperlink{structChuckReadStruct}{Chuck\+Read\+Struct} \hyperlink{classChuckHandler_a0e8e13f42c4147df1a31f9a1c4ca8102}{read\+Axis} ()
+\begin{DoxyCompactList}\small\item\em Reads values from chuck and returns an X,Y,Z speed  read\+Axis. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classWiiChuck}{Wii\+Chuck} {\bfseries chuck\+\_\+}\hypertarget{classChuckHandler_aab8c30425084987ed4d5092007ff5dec}{}\label{classChuckHandler_aab8c30425084987ed4d5092007ff5dec}
+
+\item 
+\hyperlink{classRHATypes_1_1Timer}{R\+H\+A\+Types\+::\+Timer} {\bfseries chuck\+\_\+refresh\+\_\+timer\+\_\+}\hypertarget{classChuckHandler_aa954d8107a64cbcba8bd7984917eea15}{}\label{classChuckHandler_aa954d8107a64cbcba8bd7984917eea15}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{Chuck\+Handler@{Chuck\+Handler}!read\+Axis@{read\+Axis}}
+\index{read\+Axis@{read\+Axis}!Chuck\+Handler@{Chuck\+Handler}}
+\subsubsection[{\texorpdfstring{read\+Axis()}{readAxis()}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Chuck\+Read\+Struct} Chuck\+Handler\+::read\+Axis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classChuckHandler_a0e8e13f42c4147df1a31f9a1c4ca8102}{}\label{classChuckHandler_a0e8e13f42c4147df1a31f9a1c4ca8102}
+
+
+Reads values from chuck and returns an X,Y,Z speed  read\+Axis. 
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{structChuckReadStruct}{Chuck\+Read\+Struct} is a struct with speed values in it (X,Y,Z) from -\/100 to 100 (direction and module) 
+\end{DoxyReturn}
+\index{Chuck\+Handler@{Chuck\+Handler}!set\+Timer@{set\+Timer}}
+\index{set\+Timer@{set\+Timer}!Chuck\+Handler@{Chuck\+Handler}}
+\subsubsection[{\texorpdfstring{set\+Timer(uint64\+\_\+t timer)}{setTimer(uint64_t timer)}}]{\setlength{\rightskip}{0pt plus 5cm}void Chuck\+Handler\+::set\+Timer (
+\begin{DoxyParamCaption}
+\item[{uint64\+\_\+t}]{timer}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}\hypertarget{classChuckHandler_a620dc12c931d8e9c8a4b5f21a2942ff0}{}\label{classChuckHandler_a620dc12c931d8e9c8a4b5f21a2942ff0}
+
+
+Sets period of chuck read axis refresh  \hyperlink{classsetTimer}{set\+Timer}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em timer} & period in ms \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/chuck\+\_\+handler/chuck\+\_\+handler.\+h\end{DoxyCompactItemize}

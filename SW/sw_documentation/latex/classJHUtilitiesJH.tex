@@ -1,0 +1,101 @@
+\hypertarget{classJHUtilitiesJH}{}\section{J\+H\+Utilities\+JH Class Reference}
+\label{classJHUtilitiesJH}\index{J\+H\+Utilities\+JH@{J\+H\+Utilities\+JH}}
+
+
+Inheritance diagram for J\+H\+Utilities\+JH\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=155pt]{classJHUtilitiesJH__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for J\+H\+Utilities\+JH\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=270pt]{classJHUtilitiesJH__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries init\+Joints} (uint8\+\_\+t \+\_\+joint\+\_\+to\+\_\+test)\hypertarget{classJHUtilitiesJH_aee0516d318cc57b20135ba62985976d9}{}\label{classJHUtilitiesJH_aee0516d318cc57b20135ba62985976d9}
+
+\item 
+void \hyperlink{classJHUtilitiesJH_a8e999fc3e4cb296cc0b0d1215b64ea36}{extract\+Regulator\+Data} (uint8\+\_\+t \+\_\+joint\+\_\+to\+\_\+test)\hypertarget{classJHUtilitiesJH_a8e999fc3e4cb296cc0b0d1215b64ea36}{}\label{classJHUtilitiesJH_a8e999fc3e4cb296cc0b0d1215b64ea36}
+
+\begin{DoxyCompactList}\small\item\em extract\+Regulator\+Data tests \hyperlink{classServoRHA}{Servo\+R\+HA} regulator and prints through serial monitor all info (python list style) to make a graphic. It can test one servo. Autodetects ID of the one connected  extract\+Regulator\+Data \end{DoxyCompactList}\item 
+void {\bfseries extract\+Step\+Slope\+Data} (uint8\+\_\+t \+\_\+\+\_\+joint\+\_\+to\+\_\+test, uint8\+\_\+t \+\_\+option)\hypertarget{classJHUtilitiesJH_a7100b2a400a9798bc52e386020fd8968}{}\label{classJHUtilitiesJH_a7100b2a400a9798bc52e386020fd8968}
+
+\item 
+void \hyperlink{classJHUtilitiesJH_abcb21d508b952a86aa7b31993b0c94ec}{check\+Time\+Get\+Info} (uint8\+\_\+t repetitions, uint8\+\_\+t \+\_\+joint\+\_\+to\+\_\+test)
+\begin{DoxyCompactList}\small\item\em check\+Time\+Info checks time spent sending and recieving packet with \hyperlink{classServoRHA_a43b5aa2533b9b1c111ed3b39ac64e894}{Servo\+R\+H\+A\+::update\+Info()} . It can test one servo. Autodetects ID of the one connected \end{DoxyCompactList}\item 
+void \hyperlink{classJHUtilitiesJH_a708939a7f00508e7b793c56ceca4e7b1}{check\+Com\+Succes} (uint16\+\_\+t repetitions)
+\begin{DoxyCompactList}\small\item\em This function is intended to test new baudrates and it\textquotesingle{}s success comunication ratio  check\+Ping\+Succes. \end{DoxyCompactList}\item 
+void \hyperlink{classJHUtilitiesJH_a93ac9a92d3e347c848dda4d3efae5b56}{check\+Speed} (uint8\+\_\+t \+\_\+joint\+\_\+to\+\_\+test)\hypertarget{classJHUtilitiesJH_a93ac9a92d3e347c848dda4d3efae5b56}{}\label{classJHUtilitiesJH_a93ac9a92d3e347c848dda4d3efae5b56}
+
+\begin{DoxyCompactList}\small\item\em check\+Speed implements an encoder mode to measure real speed in R\+PM and check agains the measure returned by servo and torque value sent. It can test one servo. Autodetects ID of the one connected \end{DoxyCompactList}\item 
+void {\bfseries reset\+Encoder} ()\hypertarget{classJHUtilitiesJH_af0b2a67d93e35016aff3d92cd2416235}{}\label{classJHUtilitiesJH_af0b2a67d93e35016aff3d92cd2416235}
+
+\item 
+void {\bfseries update\+Encoder} (uint8\+\_\+t \+\_\+joint\+\_\+to\+\_\+test)\hypertarget{classJHUtilitiesJH_ab320e84f879a369d55cc72850b3eb867}{}\label{classJHUtilitiesJH_ab320e84f879a369d55cc72850b3eb867}
+
+\item 
+void {\bfseries start\+Encoder} (uint8\+\_\+t \+\_\+joint\+\_\+to\+\_\+test)\hypertarget{classJHUtilitiesJH_a1afce4400e70b40712e4ebf5e7024ee9}{}\label{classJHUtilitiesJH_a1afce4400e70b40712e4ebf5e7024ee9}
+
+\item 
+void {\bfseries return\+To\+Start\+Position\+Test} (uint8\+\_\+t \+\_\+joint\+\_\+to\+\_\+test, uint8\+\_\+t direction)\hypertarget{classJHUtilitiesJH_a872c7946e5311559b384d1efbd5ca1f4}{}\label{classJHUtilitiesJH_a872c7946e5311559b384d1efbd5ca1f4}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\index{J\+H\+Utilities\+JH@{J\+H\+Utilities\+JH}!check\+Com\+Succes@{check\+Com\+Succes}}
+\index{check\+Com\+Succes@{check\+Com\+Succes}!J\+H\+Utilities\+JH@{J\+H\+Utilities\+JH}}
+\subsubsection[{\texorpdfstring{check\+Com\+Succes(uint16\+\_\+t repetitions)}{checkComSucces(uint16_t repetitions)}}]{\setlength{\rightskip}{0pt plus 5cm}void J\+H\+Utilities\+J\+H\+::check\+Com\+Succes (
+\begin{DoxyParamCaption}
+\item[{uint16\+\_\+t}]{repetitions}
+\end{DoxyParamCaption}
+)}\hypertarget{classJHUtilitiesJH_a708939a7f00508e7b793c56ceca4e7b1}{}\label{classJHUtilitiesJH_a708939a7f00508e7b793c56ceca4e7b1}
+
+
+This function is intended to test new baudrates and it\textquotesingle{}s success comunication ratio  check\+Ping\+Succes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em repetitions} & number of repetitions to perform \\
+\hline
+\end{DoxyParams}
+\index{J\+H\+Utilities\+JH@{J\+H\+Utilities\+JH}!check\+Time\+Get\+Info@{check\+Time\+Get\+Info}}
+\index{check\+Time\+Get\+Info@{check\+Time\+Get\+Info}!J\+H\+Utilities\+JH@{J\+H\+Utilities\+JH}}
+\subsubsection[{\texorpdfstring{check\+Time\+Get\+Info(uint8\+\_\+t repetitions, uint8\+\_\+t \+\_\+joint\+\_\+to\+\_\+test)}{checkTimeGetInfo(uint8_t repetitions, uint8_t _joint_to_test)}}]{\setlength{\rightskip}{0pt plus 5cm}void J\+H\+Utilities\+J\+H\+::check\+Time\+Get\+Info (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{repetitions, }
+\item[{uint8\+\_\+t}]{\+\_\+joint\+\_\+to\+\_\+test}
+\end{DoxyParamCaption}
+)}\hypertarget{classJHUtilitiesJH_abcb21d508b952a86aa7b31993b0c94ec}{}\label{classJHUtilitiesJH_abcb21d508b952a86aa7b31993b0c94ec}
+
+
+check\+Time\+Info checks time spent sending and recieving packet with \hyperlink{classServoRHA_a43b5aa2533b9b1c111ed3b39ac64e894}{Servo\+R\+H\+A\+::update\+Info()} . It can test one servo. Autodetects ID of the one connected 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{long\}} & repetitions\+: num of repetitions the test is made (time is the average of this repetitions). Max of 255 (danger of memory overload) \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+check\+Time\+Speed\+Read(). Both are used together to compare speed rate in comunication. 
+
+\hyperlink{utilities_8cpp_a39f75503502cf2832b015bcba7abb43e}{average\+Chauvenet()} 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/utilities/\hyperlink{utilities_8h}{utilities.\+h}\item 
+lib/utilities/\hyperlink{utilities_8cpp}{utilities.\+cpp}\end{DoxyCompactItemize}

@@ -25,20 +25,17 @@ void setup() {
     delay(2000);
     Serial.begin(921600);  // 115200 230400 250000 460800 921600
     Serial.println(F("# Start setup"));
+    Serial.print(F("# TX_BUFFER = "));
+    Serial.println(SERIAL_TX_BUFFER_SIZE);
+    Serial.print(F("# RX_BUFFER = "));
+    Serial.println(SERIAL_RX_BUFFER_SIZE);
 
     robo_health_arm.initJointHandler();
     robo_health_arm.initPynterface();
     Serial.println(F("#Joint Handler initialiced"));
     // robo_health_arm.initChuckHandler();
 
-    Serial.println("F(# Init loop)");
-    robo_health_arm.joint_handler_.updateJointInfo();
-    robo_health_arm.updateInfo();
-    RHATypes::Point3 init_pos;
-    init_pos.x = robo_health_arm.joint_handler_.joint_[0].getPosition();
-    init_pos.y = robo_health_arm.joint_handler_.joint_[1].getPosition();
-    init_pos.z = robo_health_arm.joint_handler_.joint_[2].getPosition();
-    robo_health_arm.goToArticularPos(init_pos);
+    Serial.println(F("# Init loop"));
 
     /*RHATypes::Point3 cartesian_pos;
     cartesian_pos.x = 0.8;
@@ -46,8 +43,8 @@ void setup() {
     robo_health_arm.goToCartesianPos(cartesian_pos);*/
 }
 
-int i = 0;
-int k = 0;
+// int i = 0;
+ int k = 0;
 
 void loop() {
     robo_health_arm.handleWithPynterface();
@@ -65,9 +62,9 @@ void loop() {
             break;
         }
     }*/
-    if (k >= 10) {
+     /*if (k >= 100) {
         k = 0;
-
+*/
         /*Serial.print("freeMemory()= ");
         Serial.println(freeMemory());
 
@@ -127,15 +124,19 @@ void loop() {
         Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getGoalTorque()); Serial.print(",\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[1].servo_.getGoalTorque()); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[2].servo_.getGoalTorque());
 
+        Serial.print(F("Goal dir:")); Serial.print("\t\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getDirectionTarget()); Serial.print(",\t");
+        Serial.print(robo_health_arm.joint_handler_.joint_[1].servo_.getDirectionTarget()); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[2].servo_.getDirectionTarget());
+
         Serial.print(F("Speed in servos:")); Serial.print("\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[0].servo_.getSpeed()); Serial.print(",\t");
         Serial.print(robo_health_arm.joint_handler_.joint_[1].servo_.getSpeed()); Serial.print(",\t"); Serial.println(robo_health_arm.joint_handler_.joint_[2].servo_.getSpeed());
 
         Serial.println();
-        Serial.println();*/
-    }
+        Serial.println();
+     }
 
-    k++;
+     k++;*/
 }
 
 //#endif

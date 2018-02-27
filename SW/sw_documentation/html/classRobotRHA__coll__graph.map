@@ -1,0 +1,8 @@
+<map id="RobotRHA" name="RobotRHA">
+<area shape="rect" id="node2" href="$classJointHandler.html" title="JointHandler" alt="" coords="5,273,100,300"/>
+<area shape="rect" id="node3" href="$classJointRHA.html" title="JointRHA" alt="" coords="13,184,92,211"/>
+<area shape="rect" id="node4" href="$classRHATypes_1_1Regulator.html" title="Implements a standard PID regulator. " alt="" coords="9,5,160,32"/>
+<area shape="rect" id="node5" href="$classServoRHA.html" title="ServoRHA" alt="" coords="159,95,245,121"/>
+<area shape="rect" id="node6" href="$structRHATypes_1_1Point3.html" title="RHATypes::Point3" alt="" coords="124,273,256,300"/>
+<area shape="rect" id="node7" href="$classRHATypes_1_1Timer.html" title="RHATypes::Timer" alt="" coords="281,273,409,300"/>
+</map>

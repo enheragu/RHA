@@ -1,0 +1,143 @@
+\hypertarget{utilities_8h}{}\section{lib/utilities/utilities.h File Reference}
+\label{utilities_8h}\index{lib/utilities/utilities.\+h@{lib/utilities/utilities.\+h}}
+
+
+Implements a set of utilities to measure, experimentally, some interesting parameters.  
+
+
+{\ttfamily \#include \char`\"{}debug.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}servo\+\_\+rha.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}joint\+\_\+handler.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$Arduino.\+h$>$}\\*
+Include dependency graph for utilities.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utilities_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=193pt]{utilities_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classJHUtilitiesJH}{J\+H\+Utilities\+JH}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+ED}~13\hypertarget{utilities_8h_aeb7a7ba1ab7e0406f1b5ab36d579f585}{}\label{utilities_8h_aeb7a7ba1ab7e0406f1b5ab36d579f585}
+
+\item 
+\#define {\bfseries S\+A\+M\+P\+L\+E\+\_\+\+R\+E\+G\+U\+L\+A\+T\+OR}~500\hypertarget{utilities_8h_a23d0dd726b0c42cfeb03845129b9e7a9}{}\label{utilities_8h_a23d0dd726b0c42cfeb03845129b9e7a9}
+
+\item 
+\#define {\bfseries S\+P\+E\+E\+D\+\_\+\+R\+E\+G\+U\+L\+A\+T\+O\+R\+\_\+\+T\+E\+ST}~120\hypertarget{utilities_8h_acf96f88e55dad8de1f9026be438806e8}{}\label{utilities_8h_acf96f88e55dad8de1f9026be438806e8}
+
+\item 
+\#define {\bfseries S\+A\+M\+P\+L\+E\+\_\+\+KP}~3\hypertarget{utilities_8h_aded86b28fa3f6f2f2f90159c16b29e81}{}\label{utilities_8h_aded86b28fa3f6f2f2f90159c16b29e81}
+
+\item 
+\#define {\bfseries K\+P\+\_\+\+S\+A\+M\+P\+L\+ES}~\{2, 2, 2\};\hypertarget{utilities_8h_a05d8a7ab39f83efcb80b8d3a977aa525}{}\label{utilities_8h_a05d8a7ab39f83efcb80b8d3a977aa525}
+
+\item 
+\#define {\bfseries K\+D\+\_\+\+S\+A\+M\+P\+L\+ES}~\{0, 0.\+5, 0\};\hypertarget{utilities_8h_a41468329dd7dea43493ac68528d75b72}{}\label{utilities_8h_a41468329dd7dea43493ac68528d75b72}
+
+\item 
+\#define {\bfseries K\+I\+\_\+\+S\+A\+M\+P\+L\+ES}~\{0, 0, 0.\+1\};\hypertarget{utilities_8h_a2d1d6e4a9a80391bb0bfe5b5d094fb1d}{}\label{utilities_8h_a2d1d6e4a9a80391bb0bfe5b5d094fb1d}
+
+\item 
+\#define {\bfseries S\+T\+EP}~0\hypertarget{utilities_8h_a70be2dc5c8bdc85b027ea6118753cca1}{}\label{utilities_8h_a70be2dc5c8bdc85b027ea6118753cca1}
+
+\item 
+\#define {\bfseries S\+L\+O\+PE}~1\hypertarget{utilities_8h_a41bc3687e849cfb7c4486c66e2130ef1}{}\label{utilities_8h_a41bc3687e849cfb7c4486c66e2130ef1}
+
+\item 
+\#define {\bfseries S\+A\+M\+P\+L\+E\+\_\+\+S\+T\+EP}~300\hypertarget{utilities_8h_ab0ad7e747377ae1ac9490e5300c324ea}{}\label{utilities_8h_ab0ad7e747377ae1ac9490e5300c324ea}
+
+\item 
+\#define {\bfseries S\+A\+M\+P\+L\+E\+\_\+\+T\+E\+S\+T\+\_\+\+S\+T\+EP}~20\hypertarget{utilities_8h_affdb5c26a8a7cc9fe9a1ccf174261713}{}\label{utilities_8h_affdb5c26a8a7cc9fe9a1ccf174261713}
+
+\item 
+\#define {\bfseries S\+T\+E\+P\+\_\+\+S\+P\+E\+ED}~1023\hypertarget{utilities_8h_ad275a47ca373489fdf44ddd31e5de682}{}\label{utilities_8h_ad275a47ca373489fdf44ddd31e5de682}
+
+\item 
+\#define {\bfseries S\+A\+M\+P\+L\+E\+\_\+\+S\+L\+O\+PE}~800\hypertarget{utilities_8h_a3b803816a22dc667ea84d5bab42e9884}{}\label{utilities_8h_a3b803816a22dc667ea84d5bab42e9884}
+
+\item 
+\#define {\bfseries S\+A\+M\+P\+L\+E\+\_\+\+T\+E\+S\+T\+\_\+\+S\+L\+O\+PE}~20\hypertarget{utilities_8h_ad2f7059f2a38516ab3d9cceacda2035f}{}\label{utilities_8h_ad2f7059f2a38516ab3d9cceacda2035f}
+
+\item 
+\#define {\bfseries S\+L\+O\+P\+E\+\_\+\+S\+P\+E\+ED}~0.\+15\hypertarget{utilities_8h_ab9e892c1f3237e271d64ecb11d9822ff}{}\label{utilities_8h_ab9e892c1f3237e271d64ecb11d9822ff}
+
+\item 
+\#define {\bfseries S\+P\+E\+ED}~1023\hypertarget{utilities_8h_aac3553b3932cbfeeac4526ce7ca0336b}{}\label{utilities_8h_aac3553b3932cbfeeac4526ce7ca0336b}
+
+\item 
+\#define {\bfseries UP}~C\+CW\hypertarget{utilities_8h_a1965eaca47dbf3f87acdafc2208f04eb}{}\label{utilities_8h_a1965eaca47dbf3f87acdafc2208f04eb}
+
+\item 
+\#define {\bfseries D\+O\+WN}~CW\hypertarget{utilities_8h_a4193cd1c8c2e6ebd0e056fa2364a663f}{}\label{utilities_8h_a4193cd1c8c2e6ebd0e056fa2364a663f}
+
+\item 
+\#define {\bfseries L\+E\+D\+\_\+\+R\+O\+JO}~3\hypertarget{utilities_8h_a7885f8a39915e51a832bd4d49a003a97}{}\label{utilities_8h_a7885f8a39915e51a832bd4d49a003a97}
+
+\item 
+\#define {\bfseries L\+E\+D\+\_\+\+V\+E\+R\+DE}~4\hypertarget{utilities_8h_aa023481d2f7313e7029f4502afb8ea8d}{}\label{utilities_8h_aa023481d2f7313e7029f4502afb8ea8d}
+
+\item 
+\#define {\bfseries P\+U\+L\+S\+A\+D\+OR}~5\hypertarget{utilities_8h_a9f032eebfc4eb6466535df50d511f1b8}{}\label{utilities_8h_a9f032eebfc4eb6466535df50d511f1b8}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{utilities_8cpp_a39f75503502cf2832b015bcba7abb43e}{Measure\+Utilities\+::average\+Chauvenet} (uint32\+\_\+t $\ast$data, uint8\+\_\+t n, float \&arithmetic\+\_\+average, float \&standard\+\_\+deviation)
+\begin{DoxyCompactList}\small\item\em Calculates the average applying chauvenets criterion  average\+Chauvenet. \end{DoxyCompactList}\item 
+void {\bfseries Servo\+Utilities\+::set\+Servo\+Id} (uint8\+\_\+t new\+\_\+id)\hypertarget{utilities_8h_aede02b1a7cc9de7624ff7a7d490b7f96}{}\label{utilities_8h_aede02b1a7cc9de7624ff7a7d490b7f96}
+
+\item 
+void {\bfseries Servo\+Utilities\+::full\+Factory\+Reset\+BR} ()\hypertarget{utilities_8h_aab047d18bb44eef98ff6cb81d844eac3}{}\label{utilities_8h_aab047d18bb44eef98ff6cb81d844eac3}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements a set of utilities to measure, experimentally, some interesting parameters. 
+
+Measures real speed of servo, time spent with packet handling, etc
+
+\+: Enrique Heredia Aguado $<$enheragu$>$ \+: 2017\+\_\+\+Sep\+\_\+08 \+: R\+HA \+: \hyperlink{utilities_8h}{utilities.\+h}  modified by\+: quique  modified time\+: 30-\/\+Sep-\/2017 
+
+\subsection{Function Documentation}
+\index{utilities.\+h@{utilities.\+h}!average\+Chauvenet@{average\+Chauvenet}}
+\index{average\+Chauvenet@{average\+Chauvenet}!utilities.\+h@{utilities.\+h}}
+\subsubsection[{\texorpdfstring{average\+Chauvenet(uint32\+\_\+t $\ast$data, uint8\+\_\+t n, float \&arithmetic\+\_\+average, float \&standard\+\_\+deviation)}{averageChauvenet(uint32_t *data, uint8_t n, float &arithmetic_average, float &standard_deviation)}}]{\setlength{\rightskip}{0pt plus 5cm}void Measure\+Utilities\+::average\+Chauvenet (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t $\ast$}]{data, }
+\item[{uint8\+\_\+t}]{n, }
+\item[{float \&}]{arithmetic\+\_\+average, }
+\item[{float \&}]{standard\+\_\+deviation}
+\end{DoxyParamCaption}
+)}\hypertarget{utilities_8cpp_file_a39f75503502cf2832b015bcba7abb43e}{}\label{utilities_8cpp_file_a39f75503502cf2832b015bcba7abb43e}
+
+
+Calculates the average applying chauvenets criterion  average\+Chauvenet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & data to calculate the average \\
+\hline
+{\em n} & amount of data (max of 255) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the average 
+\end{DoxyReturn}

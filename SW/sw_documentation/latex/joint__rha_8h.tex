@@ -1,0 +1,64 @@
+\hypertarget{joint__rha_8h}{}\section{lib/joint\+\_\+rha/joint\+\_\+rha.h File Reference}
+\label{joint__rha_8h}\index{lib/joint\+\_\+rha/joint\+\_\+rha.\+h@{lib/joint\+\_\+rha/joint\+\_\+rha.\+h}}
+
+
+Implements \hyperlink{classJointRHA}{Joint\+R\+HA} class. This object combines potentiometer with \hyperlink{classServoRHA}{Servo\+R\+HA} object readings to enhance it\textquotesingle{}s functionality.  
+
+
+{\ttfamily \#include \char`\"{}servo\+\_\+rha.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rha\+\_\+types.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}debug.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Arduino.\+h\char`\"{}}\\*
+Include dependency graph for joint\+\_\+rha.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{joint__rha_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{joint__rha_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classJointRHA}{Joint\+R\+HA}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries A\+N\+G\+L\+E\+\_\+\+T\+O\+L\+E\+R\+A\+N\+CE}~4\hypertarget{joint__rha_8h_a5835d2253221816d4f18e65f9796d3c6}{}\label{joint__rha_8h_a5835d2253221816d4f18e65f9796d3c6}
+
+\item 
+\#define {\bfseries N\+O\+\_\+\+P\+O\+T\+E\+N\+T\+I\+O\+M\+E\+T\+ER}~255\hypertarget{joint__rha_8h_addf193ce825d9ffa5de2292c35048697}{}\label{joint__rha_8h_addf193ce825d9ffa5de2292c35048697}
+
+\item 
+\#define \hyperlink{joint__rha_8h_a4831340c66d074adb5481fc3ad5a2e65}{E\+R\+R\+O\+R\+\_\+\+M\+O\+V\+I\+N\+G\+\_\+\+M\+A\+R\+G\+IN}~5
+\item 
+\#define {\bfseries KP}~0.\+35\hypertarget{joint__rha_8h_aa4729260b732666338dee7d841aa12f3}{}\label{joint__rha_8h_aa4729260b732666338dee7d841aa12f3}
+
+\item 
+\#define {\bfseries KD}~1\hypertarget{joint__rha_8h_ad4f9673d16d231643789f081068d2372}{}\label{joint__rha_8h_ad4f9673d16d231643789f081068d2372}
+
+\item 
+\#define {\bfseries KI}~1\hypertarget{joint__rha_8h_ade82752ae1652fdf0df9df7a16ffda29}{}\label{joint__rha_8h_ade82752ae1652fdf0df9df7a16ffda29}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements \hyperlink{classJointRHA}{Joint\+R\+HA} class. This object combines potentiometer with \hyperlink{classServoRHA}{Servo\+R\+HA} object readings to enhance it\textquotesingle{}s functionality. 
+
+\+: Enrique Heredia Aguado $<$enheragu$>$ \+: 2017\+\_\+\+Sep\+\_\+08 \+: R\+HA \+: \hyperlink{joint__rha_8h}{joint\+\_\+rha.\+h}  modified by\+: quique  modified time\+: 29-\/\+Sep-\/2017 
+
+\subsection{Macro Definition Documentation}
+\index{joint\+\_\+rha.\+h@{joint\+\_\+rha.\+h}!E\+R\+R\+O\+R\+\_\+\+M\+O\+V\+I\+N\+G\+\_\+\+M\+A\+R\+G\+IN@{E\+R\+R\+O\+R\+\_\+\+M\+O\+V\+I\+N\+G\+\_\+\+M\+A\+R\+G\+IN}}
+\index{E\+R\+R\+O\+R\+\_\+\+M\+O\+V\+I\+N\+G\+\_\+\+M\+A\+R\+G\+IN@{E\+R\+R\+O\+R\+\_\+\+M\+O\+V\+I\+N\+G\+\_\+\+M\+A\+R\+G\+IN}!joint\+\_\+rha.\+h@{joint\+\_\+rha.\+h}}
+\subsubsection[{\texorpdfstring{E\+R\+R\+O\+R\+\_\+\+M\+O\+V\+I\+N\+G\+\_\+\+M\+A\+R\+G\+IN}{ERROR_MOVING_MARGIN}}]{\setlength{\rightskip}{0pt plus 5cm}\#define E\+R\+R\+O\+R\+\_\+\+M\+O\+V\+I\+N\+G\+\_\+\+M\+A\+R\+G\+IN~5}\hypertarget{joint__rha_8h_a4831340c66d074adb5481fc3ad5a2e65}{}\label{joint__rha_8h_a4831340c66d074adb5481fc3ad5a2e65}
+It the servo moves but not the joint for more than E\+R\+R\+O\+R\+\_\+\+M\+O\+V\+I\+N\+G\+\_\+\+M\+A\+R\+G\+IN cicles it raiseses an error 

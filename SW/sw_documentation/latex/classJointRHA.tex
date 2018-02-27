@@ -1,0 +1,252 @@
+\hypertarget{classJointRHA}{}\section{Joint\+R\+HA Class Reference}
+\label{classJointRHA}\index{Joint\+R\+HA@{Joint\+R\+HA}}
+
+
+Collaboration diagram for Joint\+R\+HA\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{classJointRHA__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries print\+Check\+Var} ()\hypertarget{classJointRHA_a21a6d1e5b1eb7844e62fdfa1d1941701}{}\label{classJointRHA_a21a6d1e5b1eb7844e62fdfa1d1941701}
+
+\item 
+\hyperlink{classJointRHA_a27538101f833541965c24023a167f709}{Joint\+R\+HA} (uint8\+\_\+t \+\_\+servo\+\_\+id, uint8\+\_\+t \+\_\+up\+\_\+direction, uint8\+\_\+t \+\_\+potentiometer=N\+O\+\_\+\+P\+O\+T\+E\+N\+T\+I\+O\+M\+E\+T\+ER)
+\begin{DoxyCompactList}\small\item\em Cunstructor of \hyperlink{classJointRHA}{Joint\+R\+HA} class. \end{DoxyCompactList}\item 
+\hyperlink{classJointRHA_a9e54cc4dde103847c9d17f329302a981}{$\sim$\+Joint\+R\+HA} ()\hypertarget{classJointRHA_a9e54cc4dde103847c9d17f329302a981}{}\label{classJointRHA_a9e54cc4dde103847c9d17f329302a981}
+
+\begin{DoxyCompactList}\small\item\em $\sim$\+Joint\+R\+HA destructor of \hyperlink{classJointRHA}{Joint\+R\+HA} class. \end{DoxyCompactList}\item 
+void \hyperlink{classJointRHA_a399fcac49d1c527cae46df726c71b5dd}{init} (uint8\+\_\+t \+\_\+servo\+\_\+id, uint8\+\_\+t \+\_\+up\+\_\+direction, float \+\_\+zero\+\_\+compensation=0, uint8\+\_\+t \+\_\+potentiometer=N\+O\+\_\+\+P\+O\+T\+E\+N\+T\+I\+O\+M\+E\+T\+ER)
+\begin{DoxyCompactList}\small\item\em Initialization for \hyperlink{classJointRHA}{Joint\+R\+HA} default constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classJointRHA_aa3d76b4209929ff800438e5c735697b5}{set\+Pot\+Relation} (float \+\_\+relation=1)
+\item 
+void {\bfseries init\+Pot\+Measurment} (uint32\+\_\+t \+\_\+pot\+\_\+min\+\_\+value, uint32\+\_\+t \+\_\+pot\+\_\+max\+\_\+value, uint8\+\_\+t \+\_\+angle\+\_\+min\+\_\+value, uint8\+\_\+t \+\_\+angle\+\_\+max\+\_\+value)\hypertarget{classJointRHA_ab2f7b710e7d609c87376b8ed0ef11f42}{}\label{classJointRHA_ab2f7b710e7d609c87376b8ed0ef11f42}
+
+\item 
+uint8\+\_\+t {\bfseries set\+Speed\+Goal} (\hyperlink{structRHATypes_1_1SpeedGoal}{R\+H\+A\+Types\+::\+Speed\+Goal} \+\_\+goal)\hypertarget{classJointRHA_a5caf9ac1dd4f9d97917168975af4d3fc}{}\label{classJointRHA_a5caf9ac1dd4f9d97917168975af4d3fc}
+
+\item 
+void \hyperlink{classJointRHA_a35e934c28ecaf6870c40ceda272f2391}{update\+Position} ()
+\begin{DoxyCompactList}\small\item\em Updates position reading from potentiometer if there is a pot to read (not 255). Updates joint angle position  \hyperlink{classJointRHA_a35e934c28ecaf6870c40ceda272f2391}{Joint\+R\+H\+A\+::update\+Position}. \end{DoxyCompactList}\item 
+void \hyperlink{classJointRHA_a47b3cdcdd16e52f60dbcfe3aa52ef540}{update\+Info} (uint8\+\_\+t $\ast$\+\_\+data, uint16\+\_\+t \+\_\+error)
+\begin{DoxyCompactList}\small\item\em Updates all the information of servo object information and position feedback of joint to use it in next control iteration (in control loop)  \hyperlink{classJointRHA_a47b3cdcdd16e52f60dbcfe3aa52ef540}{Joint\+R\+H\+A\+::update\+Info}. \end{DoxyCompactList}\item 
+void \hyperlink{classJointRHA_a4de486ebe656609fdc0fe7281a69c6eb}{set\+Position\+Goal} (int \+\_\+position)
+\begin{DoxyCompactList}\small\item\em Sets a goal position for this joint  set\+Position\+Goal. \end{DoxyCompactList}\item 
+void \hyperlink{classJointRHA_a46047d4c042cb9963c9cec7809d02c64}{pos\+Error} ()\hypertarget{classJointRHA_a46047d4c042cb9963c9cec7809d02c64}{}\label{classJointRHA_a46047d4c042cb9963c9cec7809d02c64}
+
+\begin{DoxyCompactList}\small\item\em Calculates error to send to servo regulator. \end{DoxyCompactList}\item 
+void \hyperlink{classJointRHA_a8b828c0ac7b125f0ba87d5d76c1c6644}{calculate\+Speed} (float \+\_\+error=0, float \+\_\+derror=0, float \+\_\+ierror=0)
+\begin{DoxyCompactList}\small\item\em calculates speed from pos error using regulator. Params are by default 0, it is only used with params for testing pourposes  Joint\+R\+H\+A\+::calculate\+Torque \end{DoxyCompactList}\item 
+void \hyperlink{classJointRHA_a83d6397ce8495fcb6aa6c9c787029cb8}{update\+Servo\+Speed\+Goal} ()\hypertarget{classJointRHA_a83d6397ce8495fcb6aa6c9c787029cb8}{}\label{classJointRHA_a83d6397ce8495fcb6aa6c9c787029cb8}
+
+\begin{DoxyCompactList}\small\item\em Updates \hyperlink{classServoRHA}{Servo\+R\+HA} speed goal  \hyperlink{classJointRHA_a83d6397ce8495fcb6aa6c9c787029cb8}{Joint\+R\+H\+A\+::update\+Servo\+Speed\+Goal}. \end{DoxyCompactList}\item 
+bool \hyperlink{classJointRHA_a456581be8bd7faa805e8d5d3ee39b38e}{check\+Security} ()
+\begin{DoxyCompactList}\small\item\em checks that everithing goes as espected. If not it stops the servo  check\+Security \end{DoxyCompactList}\item 
+bool \hyperlink{classJointRHA_af2624db0cab2521e52839e3304aa414d}{reached\+Goal\+Position} ()
+\begin{DoxyCompactList}\small\item\em returns true if goal position is reached  \hyperlink{classJointRHA_af2624db0cab2521e52839e3304aa414d}{Joint\+R\+H\+A\+::reached\+Goal\+Position} \end{DoxyCompactList}\item 
+float {\bfseries get\+Position} ()\hypertarget{classJointRHA_a520b57b3253406d8de4a93d7469b6033}{}\label{classJointRHA_a520b57b3253406d8de4a93d7469b6033}
+
+\item 
+float {\bfseries get\+Goal\+Speed} ()\hypertarget{classJointRHA_aec35bbee89ccc729d8120f3321ae7271}{}\label{classJointRHA_aec35bbee89ccc729d8120f3321ae7271}
+
+\item 
+int {\bfseries get\+Pos\+Target} ()\hypertarget{classJointRHA_ad43899febb44ecb4b96424d694b7f273}{}\label{classJointRHA_ad43899febb44ecb4b96424d694b7f273}
+
+\item 
+float {\bfseries get\+Error} ()\hypertarget{classJointRHA_ad6747315f3bd4bf5152658d2b6f142f1}{}\label{classJointRHA_ad6747315f3bd4bf5152658d2b6f142f1}
+
+\item 
+float {\bfseries get\+D\+Error} ()\hypertarget{classJointRHA_a4d0fdf0043ba63ca8ecca7f9ad391343}{}\label{classJointRHA_a4d0fdf0043ba63ca8ecca7f9ad391343}
+
+\item 
+float {\bfseries get\+I\+Error} ()\hypertarget{classJointRHA_a7d2bfb6a14f255ba66bedfba6dda3272}{}\label{classJointRHA_a7d2bfb6a14f255ba66bedfba6dda3272}
+
+\item 
+int {\bfseries get\+Analog\+Read\+Pot} ()\hypertarget{classJointRHA_a8317f8455c327eb85b547835125aaacf}{}\label{classJointRHA_a8317f8455c327eb85b547835125aaacf}
+
+\item 
+int {\bfseries get\+Potentiometer\+Pin} ()\hypertarget{classJointRHA_ae1a1cd062b222347eafc35ba507054f2}{}\label{classJointRHA_ae1a1cd062b222347eafc35ba507054f2}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classRHATypes_1_1Regulator}{R\+H\+A\+Types\+::\+Regulator} {\bfseries speed\+\_\+regulator\+\_\+}\hypertarget{classJointRHA_aa99d8abe21cce0cb10f825224be2dcad}{}\label{classJointRHA_aa99d8abe21cce0cb10f825224be2dcad}
+
+\item 
+\hyperlink{classServoRHA}{Servo\+R\+HA} {\bfseries servo\+\_\+}\hypertarget{classJointRHA_a9908ffa793e380e6382a5f0c3afb758d}{}\label{classJointRHA_a9908ffa793e380e6382a5f0c3afb758d}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!Joint\+R\+HA@{Joint\+R\+HA}}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!Joint\+R\+HA@{Joint\+R\+HA}}
+\subsubsection[{\texorpdfstring{Joint\+R\+H\+A(uint8\+\_\+t \+\_\+servo\+\_\+id, uint8\+\_\+t \+\_\+up\+\_\+direction, uint8\+\_\+t \+\_\+potentiometer=\+N\+O\+\_\+\+P\+O\+T\+E\+N\+T\+I\+O\+M\+E\+T\+E\+R)}{JointRHA(uint8_t _servo_id, uint8_t _up_direction, uint8_t _potentiometer=NO_POTENTIOMETER)}}]{\setlength{\rightskip}{0pt plus 5cm}Joint\+R\+H\+A\+::\+Joint\+R\+HA (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{\+\_\+servo\+\_\+id, }
+\item[{uint8\+\_\+t}]{\+\_\+up\+\_\+direction, }
+\item[{uint8\+\_\+t}]{\+\_\+potentiometer = {\ttfamily NO\+\_\+POTENTIOMETER}}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointRHA_a27538101f833541965c24023a167f709}{}\label{classJointRHA_a27538101f833541965c24023a167f709}
+
+
+Cunstructor of \hyperlink{classJointRHA}{Joint\+R\+HA} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t\}} & servo\+\_\+id servo id controlled by this joint \\
+\hline
+{\em \{uint8\+\_\+t\}} & up\+\_\+direction direction in which the servo has to move (CW or C\+CW) so the joint moves up. \\
+\hline
+{\em \{uint8\+\_\+t\}} & potentiometer pin in which the potentiometer for this joint is connected. If there is no realim for this joint value will be 255 \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!calculate\+Speed@{calculate\+Speed}}
+\index{calculate\+Speed@{calculate\+Speed}!Joint\+R\+HA@{Joint\+R\+HA}}
+\subsubsection[{\texorpdfstring{calculate\+Speed(float \+\_\+error=0, float \+\_\+derror=0, float \+\_\+ierror=0)}{calculateSpeed(float _error=0, float _derror=0, float _ierror=0)}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+R\+H\+A\+::calculate\+Speed (
+\begin{DoxyParamCaption}
+\item[{float}]{\+\_\+error = {\ttfamily 0}, }
+\item[{float}]{\+\_\+derror = {\ttfamily 0}, }
+\item[{float}]{\+\_\+ierror = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointRHA_a8b828c0ac7b125f0ba87d5d76c1c6644}{}\label{classJointRHA_a8b828c0ac7b125f0ba87d5d76c1c6644}
+
+
+calculates speed from pos error using regulator. Params are by default 0, it is only used with params for testing pourposes  Joint\+R\+H\+A\+::calculate\+Torque 
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & pos error \\
+\hline
+{\em derror} & derivative of pos error \\
+\hline
+{\em ierror} & integral of pos error \\
+\hline
+\end{DoxyParams}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!check\+Security@{check\+Security}}
+\index{check\+Security@{check\+Security}!Joint\+R\+HA@{Joint\+R\+HA}}
+\subsubsection[{\texorpdfstring{check\+Security()}{checkSecurity()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Joint\+R\+H\+A\+::check\+Security (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointRHA_a456581be8bd7faa805e8d5d3ee39b38e}{}\label{classJointRHA_a456581be8bd7faa805e8d5d3ee39b38e}
+
+
+checks that everithing goes as espected. If not it stops the servo  check\+Security 
+
+\begin{DoxyReturn}{Returns}
+Returns true when theres no problem, false otherwise 
+\end{DoxyReturn}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!init@{init}}
+\index{init@{init}!Joint\+R\+HA@{Joint\+R\+HA}}
+\subsubsection[{\texorpdfstring{init(uint8\+\_\+t \+\_\+servo\+\_\+id, uint8\+\_\+t \+\_\+up\+\_\+direction, float \+\_\+zero\+\_\+compensation=0, uint8\+\_\+t \+\_\+potentiometer=\+N\+O\+\_\+\+P\+O\+T\+E\+N\+T\+I\+O\+M\+E\+T\+E\+R)}{init(uint8_t _servo_id, uint8_t _up_direction, float _zero_compensation=0, uint8_t _potentiometer=NO_POTENTIOMETER)}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+R\+H\+A\+::init (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{\+\_\+servo\+\_\+id, }
+\item[{uint8\+\_\+t}]{\+\_\+up\+\_\+direction, }
+\item[{float}]{\+\_\+zero\+\_\+compensation = {\ttfamily 0}, }
+\item[{uint8\+\_\+t}]{\+\_\+potentiometer = {\ttfamily NO\+\_\+POTENTIOMETER}}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointRHA_a399fcac49d1c527cae46df726c71b5dd}{}\label{classJointRHA_a399fcac49d1c527cae46df726c71b5dd}
+
+
+Initialization for \hyperlink{classJointRHA}{Joint\+R\+HA} default constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t\}} & servo\+\_\+id servo id controlled by this joint \\
+\hline
+{\em \{uint8\+\_\+t\}} & up\+\_\+direction direction in which the servo has to move (CW or C\+CW) so the joint moves up. \\
+\hline
+{\em \{uint8\+\_\+t\}} & potentiometer pin in which the potentiometer for this joint is connected. If there is no realim for this joint value will be 255 \\
+\hline
+\end{DoxyParams}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!reached\+Goal\+Position@{reached\+Goal\+Position}}
+\index{reached\+Goal\+Position@{reached\+Goal\+Position}!Joint\+R\+HA@{Joint\+R\+HA}}
+\subsubsection[{\texorpdfstring{reached\+Goal\+Position()}{reachedGoalPosition()}}]{\setlength{\rightskip}{0pt plus 5cm}bool Joint\+R\+H\+A\+::reached\+Goal\+Position (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointRHA_af2624db0cab2521e52839e3304aa414d}{}\label{classJointRHA_af2624db0cab2521e52839e3304aa414d}
+
+
+returns true if goal position is reached  \hyperlink{classJointRHA_af2624db0cab2521e52839e3304aa414d}{Joint\+R\+H\+A\+::reached\+Goal\+Position} 
+
+\begin{DoxyReturn}{Returns}
+\mbox{[}description\mbox{]} 
+\end{DoxyReturn}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!set\+Position\+Goal@{set\+Position\+Goal}}
+\index{set\+Position\+Goal@{set\+Position\+Goal}!Joint\+R\+HA@{Joint\+R\+HA}}
+\subsubsection[{\texorpdfstring{set\+Position\+Goal(int \+\_\+position)}{setPositionGoal(int _position)}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+R\+H\+A\+::set\+Position\+Goal (
+\begin{DoxyParamCaption}
+\item[{int}]{\+\_\+position}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointRHA_a4de486ebe656609fdc0fe7281a69c6eb}{}\label{classJointRHA_a4de486ebe656609fdc0fe7281a69c6eb}
+
+
+Sets a goal position for this joint  set\+Position\+Goal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & position to go \\
+\hline
+\end{DoxyParams}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!set\+Pot\+Relation@{set\+Pot\+Relation}}
+\index{set\+Pot\+Relation@{set\+Pot\+Relation}!Joint\+R\+HA@{Joint\+R\+HA}}
+\subsubsection[{\texorpdfstring{set\+Pot\+Relation(float \+\_\+relation=1)}{setPotRelation(float _relation=1)}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+R\+H\+A\+::set\+Pot\+Relation (
+\begin{DoxyParamCaption}
+\item[{float}]{\+\_\+relation = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointRHA_aa3d76b4209929ff800438e5c735697b5}{}\label{classJointRHA_aa3d76b4209929ff800438e5c735697b5}
+Sets the relation between the potentiometer angle (in grads) and the joint angle  \hyperlink{classJointRHA_aa3d76b4209929ff800438e5c735697b5}{Joint\+R\+H\+A\+::set\+Pot\+Relation} 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+relation} & relation between measures. diameter of pot gear / diameter of bar gear \\
+\hline
+\end{DoxyParams}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!update\+Info@{update\+Info}}
+\index{update\+Info@{update\+Info}!Joint\+R\+HA@{Joint\+R\+HA}}
+\subsubsection[{\texorpdfstring{update\+Info(uint8\+\_\+t $\ast$\+\_\+data, uint16\+\_\+t \+\_\+error)}{updateInfo(uint8_t *_data, uint16_t _error)}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+R\+H\+A\+::update\+Info (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t $\ast$}]{\+\_\+data, }
+\item[{uint16\+\_\+t}]{\+\_\+error}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointRHA_a47b3cdcdd16e52f60dbcfe3aa52ef540}{}\label{classJointRHA_a47b3cdcdd16e52f60dbcfe3aa52ef540}
+
+
+Updates all the information of servo object information and position feedback of joint to use it in next control iteration (in control loop)  \hyperlink{classJointRHA_a47b3cdcdd16e52f60dbcfe3aa52ef540}{Joint\+R\+H\+A\+::update\+Info}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint8\+\_\+t} & $\ast$\} data data with servo information to pass to it \\
+\hline
+{\em \{uint16\+\_\+t} & $\ast$\} error error in communication with servo \\
+\hline
+\end{DoxyParams}
+\index{Joint\+R\+HA@{Joint\+R\+HA}!update\+Position@{update\+Position}}
+\index{update\+Position@{update\+Position}!Joint\+R\+HA@{Joint\+R\+HA}}
+\subsubsection[{\texorpdfstring{update\+Position()}{updatePosition()}}]{\setlength{\rightskip}{0pt plus 5cm}void Joint\+R\+H\+A\+::update\+Position (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classJointRHA_a35e934c28ecaf6870c40ceda272f2391}{}\label{classJointRHA_a35e934c28ecaf6870c40ceda272f2391}
+
+
+Updates position reading from potentiometer if there is a pot to read (not 255). Updates joint angle position  \hyperlink{classJointRHA_a35e934c28ecaf6870c40ceda272f2391}{Joint\+R\+H\+A\+::update\+Position}. 
+
+\begin{DoxyReturn}{Returns}
+returns position value in joint reference 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/joint\+\_\+rha/\hyperlink{joint__rha_8h}{joint\+\_\+rha.\+h}\item 
+lib/joint\+\_\+rha/\hyperlink{joint__rha_8cpp}{joint\+\_\+rha.\+cpp}\end{DoxyCompactItemize}

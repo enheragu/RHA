@@ -1,0 +1,88 @@
+\hypertarget{utilities_8cpp}{}\section{lib/utilities/utilities.cpp File Reference}
+\label{utilities_8cpp}\index{lib/utilities/utilities.\+cpp@{lib/utilities/utilities.\+cpp}}
+
+
+Implements a set of utilities to measure, experimentally, some interesting parameters.  
+
+
+{\ttfamily \#include \char`\"{}debug.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}servo\+\_\+rha.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}utilities.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}joint\+\_\+handler.\+h\char`\"{}}\\*
+Include dependency graph for utilities.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{utilities_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries S\+P\+E\+E\+D\+\_\+\+T\+A\+R\+G\+ET}~80\hypertarget{utilities_8cpp_a772b3d895da5507d235cd48bffb88106}{}\label{utilities_8cpp_a772b3d895da5507d235cd48bffb88106}
+
+\item 
+\#define {\bfseries K\+P\+\_\+\+R\+E\+G\+U\+L\+A\+T\+OR}~150\hypertarget{utilities_8cpp_a3fa8bd79d9cd111a09a01653e557a30a}{}\label{utilities_8cpp_a3fa8bd79d9cd111a09a01653e557a30a}
+
+\item 
+\#define {\bfseries L\+O\+O\+P\+\_\+\+F\+R\+E\+Q\+U\+E\+N\+CY}~100\hypertarget{utilities_8cpp_aa77ad76fb0e0966b273db92f13af4429}{}\label{utilities_8cpp_aa77ad76fb0e0966b273db92f13af4429}
+
+\item 
+\#define {\bfseries B\+A\+U\+D\+\_\+\+R\+A\+T\+E\+\_\+\+G15}~460800\hypertarget{utilities_8cpp_ae138b0b223c23fcd253732eaf3548d0d}{}\label{utilities_8cpp_ae138b0b223c23fcd253732eaf3548d0d}
+
+\item 
+\#define {\bfseries C\+H\+A\+U\+V\+E\+N\+E\+T\+\_\+\+R\+E\+P\+E\+T\+I\+T\+I\+O\+NS}~50\hypertarget{utilities_8cpp_aa5afa7a3ed4385d243454c07ad8000be}{}\label{utilities_8cpp_aa5afa7a3ed4385d243454c07ad8000be}
+
+\item 
+\#define {\bfseries KN}~1.\+54\hypertarget{utilities_8cpp_ad4a0486c674a0a4f76d2d2e988c5391f}{}\label{utilities_8cpp_ad4a0486c674a0a4f76d2d2e988c5391f}
+
+\item 
+\#define {\bfseries E\+N\+C\+O\+D\+E\+R\+\_\+\+A\+N\+G\+L\+E\+\_\+\+M\+A\+R\+G\+IN}~15\hypertarget{utilities_8cpp_ab5ea5b467cad5929f3bc02dcd11511a8}{}\label{utilities_8cpp_ab5ea5b467cad5929f3bc02dcd11511a8}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{utilities_8cpp_a39f75503502cf2832b015bcba7abb43e}{Measure\+Utilities\+::average\+Chauvenet} (uint32\+\_\+t $\ast$data, uint8\+\_\+t n, float \&arithmetic\+\_\+average, float \&standard\+\_\+deviation)
+\begin{DoxyCompactList}\small\item\em Calculates the average applying chauvenets criterion  average\+Chauvenet. \end{DoxyCompactList}\item 
+void {\bfseries blink\+Led} (uint8\+\_\+t pin\+\_\+led, uint8\+\_\+t time\+\_\+blink)\hypertarget{utilities_8cpp_ac875dadbb967bf303f825ccf7077adf3}{}\label{utilities_8cpp_ac875dadbb967bf303f825ccf7077adf3}
+
+\item 
+void {\bfseries test\+On\+Process} (uint8\+\_\+t true\+\_\+false)\hypertarget{utilities_8cpp_aed2696cf3800f5b6fd4826bb03356df3}{}\label{utilities_8cpp_aed2696cf3800f5b6fd4826bb03356df3}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements a set of utilities to measure, experimentally, some interesting parameters. 
+
+Measures real speed of servo, time spent with packet handling, etc
+
+\+: Enrique Heredia Aguado $<$enheragu$>$ \+: 2017\+\_\+\+Sep\+\_\+13 \+: R\+HA \+: \hyperlink{utilities_8h}{utilities.\+h}  modified by\+: quique  modified time\+: 29-\/\+Oct-\/2017 
+
+\subsection{Function Documentation}
+\index{utilities.\+cpp@{utilities.\+cpp}!average\+Chauvenet@{average\+Chauvenet}}
+\index{average\+Chauvenet@{average\+Chauvenet}!utilities.\+cpp@{utilities.\+cpp}}
+\subsubsection[{\texorpdfstring{average\+Chauvenet(uint32\+\_\+t $\ast$data, uint8\+\_\+t n, float \&arithmetic\+\_\+average, float \&standard\+\_\+deviation)}{averageChauvenet(uint32_t *data, uint8_t n, float &arithmetic_average, float &standard_deviation)}}]{\setlength{\rightskip}{0pt plus 5cm}void Measure\+Utilities\+::average\+Chauvenet (
+\begin{DoxyParamCaption}
+\item[{uint32\+\_\+t $\ast$}]{data, }
+\item[{uint8\+\_\+t}]{n, }
+\item[{float \&}]{arithmetic\+\_\+average, }
+\item[{float \&}]{standard\+\_\+deviation}
+\end{DoxyParamCaption}
+)}\hypertarget{utilities_8cpp_file_a39f75503502cf2832b015bcba7abb43e}{}\label{utilities_8cpp_file_a39f75503502cf2832b015bcba7abb43e}
+
+
+Calculates the average applying chauvenets criterion  average\+Chauvenet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & data to calculate the average \\
+\hline
+{\em n} & amount of data (max of 255) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the average 
+\end{DoxyReturn}

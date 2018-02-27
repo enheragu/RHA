@@ -1,0 +1,5 @@
+<map id="JointHandler" name="JointHandler">
+<area shape="rect" id="node2" href="$classJointRHA.html" title="JointRHA" alt="" coords="13,184,92,211"/>
+<area shape="rect" id="node3" href="$classRHATypes_1_1Regulator.html" title="Implements a standard PID regulator. " alt="" coords="9,5,160,32"/>
+<area shape="rect" id="node4" href="$classServoRHA.html" title="ServoRHA" alt="" coords="159,95,245,121"/>
+</map>

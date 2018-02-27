@@ -1,0 +1,245 @@
+\hypertarget{servo__rha_8h}{}\section{lib/servo\+\_\+rha/servo\+\_\+rha.h File Reference}
+\label{servo__rha_8h}\index{lib/servo\+\_\+rha/servo\+\_\+rha.\+h@{lib/servo\+\_\+rha/servo\+\_\+rha.\+h}}
+
+
+Implements \hyperlink{classServoRHA}{Servo\+R\+HA} class. This object inherits from Cytron\+G15\+Servo object to enhance its capabilities.  
+
+
+{\ttfamily \#include \char`\"{}debug.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rha\+\_\+types.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Arduino.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+Include dependency graph for servo\+\_\+rha.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=285pt]{servo__rha_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{servo__rha_8h__dep__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classServoRHA}{Servo\+R\+HA}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries D\+E\+L\+A\+Y1}~500\hypertarget{servo__rha_8h_a8c5d5597c8e7b779bcd00098025b4905}{}\label{servo__rha_8h_a8c5d5597c8e7b779bcd00098025b4905}
+
+\item 
+\#define {\bfseries T\+O\+R\+Q\+U\+E\+\_\+\+C\+A\+L\+I\+B\+R\+A\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+V\+AL}~5\hypertarget{servo__rha_8h_a15567874abe1ab88fd408bd5a6fec947}{}\label{servo__rha_8h_a15567874abe1ab88fd408bd5a6fec947}
+
+\item 
+\#define {\bfseries M\+I\+N\+\_\+\+T\+O\+R\+Q\+U\+E\+\_\+\+C\+A\+L\+I\+B\+R\+A\+T\+I\+ON}~0\hypertarget{servo__rha_8h_a15ad7f13fbab5c30ae49a984b2db2b2f}{}\label{servo__rha_8h_a15ad7f13fbab5c30ae49a984b2db2b2f}
+
+\item 
+\#define {\bfseries M\+A\+X\+\_\+\+T\+O\+R\+Q\+U\+E\+\_\+\+C\+A\+L\+I\+B\+R\+A\+T\+I\+ON}~800\hypertarget{servo__rha_8h_afe501bd33b0f43492c4f5486e3d50654}{}\label{servo__rha_8h_afe501bd33b0f43492c4f5486e3d50654}
+
+\item 
+\#define \hyperlink{servo__rha_8h_adfcd13f071007e5e2d089e1593617ac0}{M\+A\+R\+G\+I\+N\+\_\+\+S\+P\+E\+E\+D\+\_\+\+C\+O\+M\+P\+A\+R\+I\+S\+ON}~5
+\item 
+\#define \hyperlink{servo__rha_8h_ab158bc5ac34a0aceda58d77c83e02724}{M\+A\+R\+G\+I\+N\+\_\+\+A\+N\+G\+L\+E\+\_\+\+C\+O\+M\+P\+A\+R\+I\+S\+ON}~5
+\item 
+\#define {\bfseries R\+E\+T\+U\+R\+N\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+A\+LL}~0x02\hypertarget{servo__rha_8h_ab996de9c6d64eda392cf8a3a9cfe9137}{}\label{servo__rha_8h_ab996de9c6d64eda392cf8a3a9cfe9137}
+
+\item 
+\#define {\bfseries R\+E\+T\+U\+R\+N\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+N\+O\+NE}~0x00\hypertarget{servo__rha_8h_accb031200e70dbbb135aa6143974a1bf}{}\label{servo__rha_8h_accb031200e70dbbb135aa6143974a1bf}
+
+\item 
+\#define {\bfseries R\+E\+T\+U\+R\+N\+\_\+\+P\+A\+C\+K\+E\+T\+\_\+\+R\+E\+A\+D\+\_\+\+I\+N\+S\+T\+R\+U\+C\+T\+I\+O\+NS}~0x01\hypertarget{servo__rha_8h_a109c92545e0fea99e0de5939cc6afa8f}{}\label{servo__rha_8h_a109c92545e0fea99e0de5939cc6afa8f}
+
+\item 
+\#define {\bfseries T\+O\+R\+Q\+U\+E\+\_\+\+O\+F\+F\+S\+ET}~80\hypertarget{servo__rha_8h_a6b17c8b836e877df6ef984cf7ca7e79a}{}\label{servo__rha_8h_a6b17c8b836e877df6ef984cf7ca7e79a}
+
+\item 
+\#define {\bfseries T\+O\+R\+Q\+U\+E\+\_\+\+P\+R\+E\+A\+L\+I\+M\+E\+N\+T\+A\+T\+I\+O\+N\+\_\+\+S\+L\+O\+PE}~1.\+2\hypertarget{servo__rha_8h_add0c972152a6bc8b75a48de718d766eb}{}\label{servo__rha_8h_add0c972152a6bc8b75a48de718d766eb}
+
+\item 
+\#define {\bfseries M\+A\+X\+\_\+\+T\+O\+R\+Q\+U\+E\+\_\+\+V\+A\+L\+UE}~1023\hypertarget{servo__rha_8h_a0e09052f8232eade08e8c11d0f7f9879}{}\label{servo__rha_8h_a0e09052f8232eade08e8c11d0f7f9879}
+
+\item 
+\#define {\bfseries M\+A\+X\+\_\+\+S\+P\+E\+E\+D\+\_\+\+V\+A\+L\+UE}~30\hypertarget{servo__rha_8h_a5b5bb417387aec742b1a70f9ef784d1c}{}\label{servo__rha_8h_a5b5bb417387aec742b1a70f9ef784d1c}
+
+\item 
+\#define {\bfseries CW}~1\hypertarget{servo__rha_8h_abe61b07c31c2a3e90576eb4c5d95b024}{}\label{servo__rha_8h_abe61b07c31c2a3e90576eb4c5d95b024}
+
+\item 
+\#define {\bfseries C\+CW}~0\hypertarget{servo__rha_8h_a8a460b6555077a64fc97f2e7ef47b843}{}\label{servo__rha_8h_a8a460b6555077a64fc97f2e7ef47b843}
+
+\item 
+\#define {\bfseries ON}~1\hypertarget{servo__rha_8h_ad76d1750a6cdeebd506bfcd6752554d2}{}\label{servo__rha_8h_ad76d1750a6cdeebd506bfcd6752554d2}
+
+\item 
+\#define {\bfseries O\+FF}~0\hypertarget{servo__rha_8h_a29e413f6725b2ba32d165ffaa35b01e5}{}\label{servo__rha_8h_a29e413f6725b2ba32d165ffaa35b01e5}
+
+\item 
+\#define {\bfseries KP}~10\hypertarget{servo__rha_8h_aa4729260b732666338dee7d841aa12f3}{}\label{servo__rha_8h_aa4729260b732666338dee7d841aa12f3}
+
+\item 
+\#define {\bfseries KD}~0\hypertarget{servo__rha_8h_ad4f9673d16d231643789f081068d2372}{}\label{servo__rha_8h_ad4f9673d16d231643789f081068d2372}
+
+\item 
+\#define {\bfseries KI}~0\hypertarget{servo__rha_8h_ade82752ae1652fdf0df9df7a16ffda29}{}\label{servo__rha_8h_ade82752ae1652fdf0df9df7a16ffda29}
+
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ {\bfseries L\+E\+S\+S\+\_\+\+T\+H\+AN}, 
+{\bfseries E\+Q\+U\+AL}, 
+{\bfseries G\+R\+E\+A\+T\+E\+R\+\_\+\+T\+H\+AN}
+ \}\hypertarget{servo__rha_8h_a48ce581779d0f11338012d3d87f3f5dc}{}\label{servo__rha_8h_a48ce581779d0f11338012d3d87f3f5dc}
+
+\item 
+enum \{ \\*
+{\bfseries M\+O\+D\+E\+L\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+L}, 
+{\bfseries M\+O\+D\+E\+L\+\_\+\+N\+U\+M\+B\+E\+R\+\_\+H}, 
+{\bfseries V\+E\+R\+S\+I\+ON}, 
+{\bfseries ID}, 
+\\*
+{\bfseries B\+A\+U\+D\+\_\+\+R\+A\+TE}, 
+{\bfseries R\+E\+T\+U\+R\+N\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+T\+I\+ME}, 
+{\bfseries C\+W\+\_\+\+A\+N\+G\+L\+E\+\_\+\+L\+I\+M\+I\+T\+\_\+L}, 
+{\bfseries C\+W\+\_\+\+A\+N\+G\+L\+E\+\_\+\+L\+I\+M\+I\+T\+\_\+H}, 
+\\*
+{\bfseries C\+C\+W\+\_\+\+A\+N\+G\+L\+E\+\_\+\+L\+I\+M\+I\+T\+\_\+L}, 
+{\bfseries C\+C\+W\+\_\+\+A\+N\+G\+L\+E\+\_\+\+L\+I\+M\+I\+T\+\_\+H}, 
+{\bfseries R\+E\+S\+E\+R\+V\+E\+D1}, 
+{\bfseries L\+I\+M\+I\+T\+\_\+\+T\+E\+M\+P\+E\+R\+A\+T\+U\+RE}, 
+\\*
+{\bfseries D\+O\+W\+N\+\_\+\+L\+I\+M\+I\+T\+\_\+\+V\+O\+L\+T\+A\+GE}, 
+{\bfseries U\+P\+\_\+\+L\+I\+M\+I\+T\+\_\+\+V\+O\+L\+T\+A\+GE}, 
+{\bfseries M\+A\+X\+\_\+\+T\+O\+R\+Q\+U\+E\+\_\+L}, 
+{\bfseries M\+A\+X\+\_\+\+T\+O\+R\+Q\+U\+E\+\_\+H}, 
+\\*
+{\bfseries S\+T\+A\+T\+U\+S\+\_\+\+R\+E\+T\+U\+R\+N\+\_\+\+L\+E\+V\+EL}, 
+{\bfseries A\+L\+A\+R\+M\+\_\+\+L\+ED}, 
+{\bfseries A\+L\+A\+R\+M\+\_\+\+S\+H\+U\+T\+D\+O\+WN}, 
+{\bfseries R\+E\+S\+E\+R\+V\+E\+D2}, 
+\\*
+{\bfseries D\+O\+W\+N\+\_\+\+C\+A\+L\+I\+B\+R\+A\+T\+I\+O\+N\+\_\+L}, 
+{\bfseries D\+O\+W\+N\+\_\+\+C\+A\+L\+I\+B\+R\+A\+T\+I\+O\+N\+\_\+H}, 
+{\bfseries U\+P\+\_\+\+C\+A\+L\+I\+B\+R\+A\+T\+I\+O\+N\+\_\+L}, 
+{\bfseries U\+P\+\_\+\+C\+A\+L\+I\+B\+R\+A\+T\+I\+O\+N\+\_\+H}, 
+\\*
+{\bfseries T\+O\+R\+Q\+U\+E\+\_\+\+E\+N\+A\+B\+LE}, 
+{\bfseries L\+ED}, 
+{\bfseries C\+W\+\_\+\+C\+O\+M\+P\+L\+I\+A\+N\+C\+E\+\_\+\+M\+A\+R\+G\+IN}, 
+{\bfseries C\+C\+W\+\_\+\+C\+O\+M\+P\+L\+I\+A\+N\+C\+E\+\_\+\+M\+A\+R\+G\+IN}, 
+\\*
+{\bfseries C\+W\+\_\+\+C\+O\+M\+P\+L\+I\+A\+N\+C\+E\+\_\+\+S\+L\+O\+PE}, 
+{\bfseries C\+C\+W\+\_\+\+C\+O\+M\+P\+L\+I\+A\+N\+C\+E\+\_\+\+S\+L\+O\+PE}, 
+{\bfseries G\+O\+A\+L\+\_\+\+P\+O\+S\+I\+T\+I\+O\+N\+\_\+L}, 
+{\bfseries G\+O\+A\+L\+\_\+\+P\+O\+S\+I\+T\+I\+O\+N\+\_\+H}, 
+\\*
+{\bfseries M\+O\+V\+I\+N\+G\+\_\+\+S\+P\+E\+E\+D\+\_\+L}, 
+{\bfseries M\+O\+V\+I\+N\+G\+\_\+\+S\+P\+E\+E\+D\+\_\+H}, 
+{\bfseries T\+O\+R\+Q\+U\+E\+\_\+\+L\+I\+M\+I\+T\+\_\+L}, 
+{\bfseries T\+O\+R\+Q\+U\+E\+\_\+\+L\+I\+M\+I\+T\+\_\+H}, 
+\\*
+{\bfseries P\+R\+E\+S\+E\+N\+T\+\_\+\+P\+O\+S\+I\+T\+I\+O\+N\+\_\+L}, 
+{\bfseries P\+R\+E\+S\+E\+N\+T\+\_\+\+P\+O\+S\+I\+T\+I\+O\+N\+\_\+H}, 
+{\bfseries P\+R\+E\+S\+E\+N\+T\+\_\+\+S\+P\+E\+E\+D\+\_\+L}, 
+{\bfseries P\+R\+E\+S\+E\+N\+T\+\_\+\+S\+P\+E\+E\+D\+\_\+H}, 
+\\*
+{\bfseries P\+R\+E\+S\+E\+N\+T\+\_\+\+L\+O\+A\+D\+\_\+L}, 
+{\bfseries P\+R\+E\+S\+E\+N\+T\+\_\+\+L\+O\+A\+D\+\_\+H}, 
+{\bfseries P\+R\+E\+S\+E\+N\+T\+\_\+\+V\+O\+L\+T\+A\+GE}, 
+{\bfseries P\+R\+E\+S\+E\+N\+T\+\_\+\+T\+E\+M\+P\+E\+R\+A\+T\+U\+RE}, 
+\\*
+{\bfseries R\+E\+G\+I\+S\+T\+E\+R\+E\+D\+\_\+\+I\+N\+S\+T\+R\+U\+C\+T\+I\+ON}, 
+{\bfseries R\+E\+S\+E\+R\+V\+E3}, 
+{\bfseries M\+O\+V\+I\+NG}, 
+{\bfseries L\+O\+CK}, 
+\\*
+{\bfseries P\+U\+N\+C\+H\+\_\+L}, 
+{\bfseries P\+U\+N\+C\+H\+\_\+H}
+ \}\hypertarget{group__SREGISTER__GROUP_gab5eb3a95234952d2927e68fd48a19145}{}\label{group__SREGISTER__GROUP_gab5eb3a95234952d2927e68fd48a19145}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \hyperlink{servo__rha_8h_a20304cb12303d28ec24a6adb2a4e8775}{compare\+Angles} (float angle1, float angle2, float angle\+\_\+margin=0)
+\begin{DoxyCompactList}\small\item\em compare\+Angles function compares two angles with a margin set. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{servo__rha_8h_a30690f43952050699e16214626b66a69}{compare\+Speed} (float speed1, float speed2, float speed\+\_\+margin=0)
+\begin{DoxyCompactList}\small\item\em compare\+Speed function compares two speeds with a margin set. \end{DoxyCompactList}\item 
+float {\bfseries float\+Map} (float x, float in\+\_\+min, float in\+\_\+max, float out\+\_\+min, float out\+\_\+max)\hypertarget{servo__rha_8h_a284efb0a3d19dcac39428af341fcb4cf}{}\label{servo__rha_8h_a284efb0a3d19dcac39428af341fcb4cf}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implements \hyperlink{classServoRHA}{Servo\+R\+HA} class. This object inherits from Cytron\+G15\+Servo object to enhance its capabilities. 
+
+\+: Enrique Heredia Aguado $<$enheragu$>$ \+: 2017\+\_\+\+Sep\+\_\+08 \+: R\+HA \+: \hyperlink{servo__rha_8h}{servo\+\_\+rha.\+h}  modified by\+: quique  modified time\+: 30-\/\+Sep-\/2017 
+
+\subsection{Macro Definition Documentation}
+\index{servo\+\_\+rha.\+h@{servo\+\_\+rha.\+h}!M\+A\+R\+G\+I\+N\+\_\+\+A\+N\+G\+L\+E\+\_\+\+C\+O\+M\+P\+A\+R\+I\+S\+ON@{M\+A\+R\+G\+I\+N\+\_\+\+A\+N\+G\+L\+E\+\_\+\+C\+O\+M\+P\+A\+R\+I\+S\+ON}}
+\index{M\+A\+R\+G\+I\+N\+\_\+\+A\+N\+G\+L\+E\+\_\+\+C\+O\+M\+P\+A\+R\+I\+S\+ON@{M\+A\+R\+G\+I\+N\+\_\+\+A\+N\+G\+L\+E\+\_\+\+C\+O\+M\+P\+A\+R\+I\+S\+ON}!servo\+\_\+rha.\+h@{servo\+\_\+rha.\+h}}
+\subsubsection[{\texorpdfstring{M\+A\+R\+G\+I\+N\+\_\+\+A\+N\+G\+L\+E\+\_\+\+C\+O\+M\+P\+A\+R\+I\+S\+ON}{MARGIN_ANGLE_COMPARISON}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+R\+G\+I\+N\+\_\+\+A\+N\+G\+L\+E\+\_\+\+C\+O\+M\+P\+A\+R\+I\+S\+ON~5}\hypertarget{servo__rha_8h_ab158bc5ac34a0aceda58d77c83e02724}{}\label{servo__rha_8h_ab158bc5ac34a0aceda58d77c83e02724}
+M\+A\+R\+G\+I\+N\+\_\+\+A\+N\+G\+L\+E\+\_\+\+C\+O\+M\+P\+A\+R\+I\+S\+ON defines an interval in which two angle values will be considered as the same value when compared \index{servo\+\_\+rha.\+h@{servo\+\_\+rha.\+h}!M\+A\+R\+G\+I\+N\+\_\+\+S\+P\+E\+E\+D\+\_\+\+C\+O\+M\+P\+A\+R\+I\+S\+ON@{M\+A\+R\+G\+I\+N\+\_\+\+S\+P\+E\+E\+D\+\_\+\+C\+O\+M\+P\+A\+R\+I\+S\+ON}}
+\index{M\+A\+R\+G\+I\+N\+\_\+\+S\+P\+E\+E\+D\+\_\+\+C\+O\+M\+P\+A\+R\+I\+S\+ON@{M\+A\+R\+G\+I\+N\+\_\+\+S\+P\+E\+E\+D\+\_\+\+C\+O\+M\+P\+A\+R\+I\+S\+ON}!servo\+\_\+rha.\+h@{servo\+\_\+rha.\+h}}
+\subsubsection[{\texorpdfstring{M\+A\+R\+G\+I\+N\+\_\+\+S\+P\+E\+E\+D\+\_\+\+C\+O\+M\+P\+A\+R\+I\+S\+ON}{MARGIN_SPEED_COMPARISON}}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+R\+G\+I\+N\+\_\+\+S\+P\+E\+E\+D\+\_\+\+C\+O\+M\+P\+A\+R\+I\+S\+ON~5}\hypertarget{servo__rha_8h_adfcd13f071007e5e2d089e1593617ac0}{}\label{servo__rha_8h_adfcd13f071007e5e2d089e1593617ac0}
+M\+A\+R\+G\+I\+N\+\_\+\+A\+N\+G\+L\+E\+\_\+\+C\+O\+M\+P\+A\+R\+I\+S\+ON defines an interval in which two speed values will be considered as the same value when compared 
+
+\subsection{Function Documentation}
+\index{servo\+\_\+rha.\+h@{servo\+\_\+rha.\+h}!compare\+Angles@{compare\+Angles}}
+\index{compare\+Angles@{compare\+Angles}!servo\+\_\+rha.\+h@{servo\+\_\+rha.\+h}}
+\subsubsection[{\texorpdfstring{compare\+Angles(float angle1, float angle2, float angle\+\_\+margin=0)}{compareAngles(float angle1, float angle2, float angle_margin=0)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t compare\+Angles (
+\begin{DoxyParamCaption}
+\item[{float}]{\+\_\+angle1, }
+\item[{float}]{\+\_\+angle2, }
+\item[{float}]{\+\_\+angle\+\_\+margin}
+\end{DoxyParamCaption}
+)}\hypertarget{servo__rha_8h_a20304cb12303d28ec24a6adb2a4e8775}{}\label{servo__rha_8h_a20304cb12303d28ec24a6adb2a4e8775}
+
+
+compare\+Angles function compares two angles with a margin set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint16\+\_\+t\}} & angle1 angle to compare \\
+\hline
+{\em \{uint16\+\_\+t\}} & angle2 angle used in the comparison \\
+\hline
+{\em \{uint8\+\_\+t\}} & angle\+\_\+margin margin in which the angle1 will be considered to be equal to angle2 \mbox{[}angle2-\/angle\+\_\+margin, angle2+angle\+\_\+margin\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\{uint8\+\_\+t\} Returns enumeration defined in \hyperlink{servo__rha_8h}{servo\+\_\+rha.\+h} -\/$>$ L\+E\+S\+S\+\_\+\+T\+H\+AN, G\+R\+E\+A\+T\+E\+R\+\_\+\+T\+H\+AN or E\+Q\+U\+AL 
+\end{DoxyReturn}
+\index{servo\+\_\+rha.\+h@{servo\+\_\+rha.\+h}!compare\+Speed@{compare\+Speed}}
+\index{compare\+Speed@{compare\+Speed}!servo\+\_\+rha.\+h@{servo\+\_\+rha.\+h}}
+\subsubsection[{\texorpdfstring{compare\+Speed(float speed1, float speed2, float speed\+\_\+margin=0)}{compareSpeed(float speed1, float speed2, float speed_margin=0)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t compare\+Speed (
+\begin{DoxyParamCaption}
+\item[{float}]{\+\_\+speed1, }
+\item[{float}]{\+\_\+speed2, }
+\item[{float}]{\+\_\+speed\+\_\+margin}
+\end{DoxyParamCaption}
+)}\hypertarget{servo__rha_8h_a30690f43952050699e16214626b66a69}{}\label{servo__rha_8h_a30690f43952050699e16214626b66a69}
+
+
+compare\+Speed function compares two speeds with a margin set. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \{uint16\+\_\+t\}} & speed1 speed to compare \\
+\hline
+{\em \{uint16\+\_\+t\}} & speed2 speed used in the comparison \\
+\hline
+{\em \{uint8\+\_\+t\}} & speed\+\_\+margin margin in which the speed will be considered to be equal to speed2 \mbox{[}speed2-\/speed\+\_\+margin, speed2+speed\+\_\+margin\mbox{]} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\{uint8\+\_\+t\} Returns enumeration defined in \hyperlink{servo__rha_8h}{servo\+\_\+rha.\+h} -\/$>$ L\+E\+S\+S\+\_\+\+T\+H\+AN, G\+R\+E\+A\+T\+E\+R\+\_\+\+T\+H\+AN or E\+Q\+U\+AL 
+\end{DoxyReturn}

@@ -10,6 +10,7 @@ L2 = 0.4550
 L3  = 0.4550
 LA = 0.0300
 LB = 0.0420
+SPEED = 10 # mm/s
 
 def degreesToRad(degrees):
     return (float)((degrees) * pi / 180)
@@ -33,6 +34,9 @@ class Interface():
     pix_to_meter_x = 0.0
     total_pix_y = 537#699
     total_pix_x = 961#1250
+    goal_pos = structure()
+    init_pos = structure()
+    last_pos_sent =  structure()
 
     def __init__(self):
         self.canvas = None
@@ -52,11 +56,6 @@ class Interface():
         self.tinfo = Text(self.frame_info, width=45, height=18)
         self.tinfo.pack(side=TOP)
         self.frame_info.pack(side=LEFT, pady=(10,10))
-
-        #self.articular_pos_goal = structure()
-        #self.articular_pos_goal.q1 = self.articular_pos_goal.q2 = self.articular_pos_goal.q3 = 0
-        #self.cartesian_pos_goal = structure()
-        #self.cartesian_pos_goal.x = self.cartesian_pos_goal.y = self.cartesian_pos_goal.z = 0
 
         frame_articular_coords = Frame(self.frame_control_entries, borderwidth=2, relief="raised", width=45, height=10)
         self.etiq_articular = Label(frame_articular_coords, text="Coordenadas Articulares:", font=custom_font).grid(row=0,padx=(10,0), pady=(4,4), columnspan=2)
@@ -87,7 +86,10 @@ class Interface():
         articular_pos.x = int(self.etiq_q1.get()) #self.articular_pos_goal.q1
         articular_pos.y = int(self.etiq_q2.get()) #self.articular_pos_goal.q2
         articular_pos.z = int(self.etiq_q3.get()) #self.articular_pos_goal.q3
-        self.sendSerialInfo(articular_pos)
+        self.goal_pos = self.forwardKinematics(articular_pos)
+        self.init_pos = self.last_updated_pos
+        self.last_pos_sent = self.init_pos
+        #self.sendSerialInfo(articular_pos)
 
     def sendCartesian(self):
         cartesian_pos = structure()
@@ -95,65 +97,38 @@ class Interface():
         cartesian_pos.x = float(self.etiq_x.get()) #self.cartesian_pos_goal.x
         cartesian_pos.y = float(self.etiq_y.get()) #self.cartesian_pos_goal.y
         cartesian_pos.z = float(self.etiq_z.get()) #self.cartesian_pos_goal.z
-        articular_pos = self.inverseKinematics(cartesian_pos)
-        self.sendSerialInfo(articular_pos)
+        goal_pos = cartesian_pos
+        self.init_pos = self.last_updated_pos
+        self.last_pos_sent = self.init_pos
+        #articular_pos = self.inverseKinematics(cartesian_pos)
+        #self.sendSerialInfo(articular_pos)
 
     def main(self):
 
-        #setting up a tkinter canvas with scrollbars
-        #frame = Frame(root, bd=2, relief=SUNKEN)
-        """self.frame = Frame(self.root, bd=2, relief=SUNKEN, width=self.total_pix_x, height = self.total_pix_y)
-        self.frame.grid_rowconfigure(1, weight=1)
-        self.frame.grid_columnconfigure(0, weight=1)
-        #xscroll = Scrollbar(self.frame, orient=HORIZONTAL)
-        #xscroll.grid(row=1, column=0, sticky=E+W)
-        #yscroll = Scrollbar(self.frame)
-        #yscroll.grid(row=1, column=1, sticky=N+S)
-        custom_font = font.Font(weight='bold')
-        self.etiqueta_rango = Label(self.frame, text="Rango de movimiento posible:", font=custom_font).grid(row=0,padx=(10,0), pady=(4,4), columnspan=2)
-        self.canvas = Canvas(self.frame, bd=0)#, xscrollcommand=xscroll.set, yscrollcommand=yscroll.set)
-        self.canvas.grid(row=1, column=0, sticky=N+S+E+W, pady=(4,4))
-        #xscroll.config(command=self.canvas.xview)
-        #yscroll.config(command=self.canvas.yview)
-        self.frame.pack(side=RIGHT,fill=BOTH,expand=1)
-
-        #adding the image
-        #File = askopenfilename(parent=root, initialdir="C:/",title='Choose an image.')
-        #img = ImageTk.PhotoImage(Image.open(File))
-        img = Image.open("rango_movimiento.png")
-        img = img.resize((self.total_pix_x, self.total_pix_y), Image.ANTIALIAS)
-        self.pix_to_meter_x = self.total_pix_x/1
-        self.pix_to_meter_y = self.total_pix_y/1.2
-        img = ImageTk.PhotoImage(img)
-        self.canvas.create_image(0,0,image=img,anchor="nw")
-        #self.canvas.config(scrollregion=self.canvas.bbox(ALL))
-
-        #mouseclick event
-        self.canvas.bind("<ButtonPress-1>", self.on_button_press)
-        self.canvas.bind("<ButtonRelease-1>", self.on_button_release)
-        #canvas.bind("<Button 1>",printcoords)"""
         self.root.mainloop()
 
-    def on_button_press(self, event):
-        self.x = event.x
-        self.y = event.y
+    def updateGoal(self):
+        distance = structure()
+        distance.x = (float)goal_pos.x - (float)init_pos.x
+        distance.y = (float)goal_pos.y - (float)init_pos.y
+        distance.z = (float)goal_pos.z - (float)init_pos.z
+        distance_3d = sqrt(distance.x** + distance.y** + distance.z**)
+        time = (float)(distance_3d/0.01)  # computes time needed at this speed
+        frames = time * 100 # number of frames is time (in secods) * frecuency
+        self.last_pos_sent.x += (distance.x)/frames
+        self.last_pos_sent.y += (distance.y)/frames
+        self.last_pos_sent.z += (distance.z)/frames
+        
+        distance_now = structure()
+        distance_now.x = (float)goal_pos.x - (float)self.last_pos_sent.x
+        distance_now.y = (float)goal_pos.y - (float)self.last_pos_sent.y
+        distance_now.z = (float)goal_pos.z - (float)self.last_pos_sent.z
+        distance_3d_now = sqrt(distance_now.x** + distance_now.y** + distance_now.z**)
+        if (distance_3d_now > 0.1):
+            articular_goal = structure()
+            articular_goal = inverseKinematics(self.last_pos_sent)
+            sendSerialInfo(articular_goal)
 
-    def on_button_release(self, event):
-        python_green = "#476042"
-        x0,y0 = (self.x_arm, self.z_arm)
-        x1,y1 = (event.x, event.y)
-        self.canvas.delete(self.line)
-        self.line = self.canvas.create_line(x0, y0, x1, y1)
-        self.send_x = (event.x-self.zero_offset_x)/self.pix_to_meter_x
-        self.send_z = -(event.y-self.zero_offset_y)/self.pix_to_meter_y
-
-        print ("Send goal position: (" + str(x) + ", " + str(y) + ")")
-        cartesian_pos = structure()
-        cartesian_pos.x  = self.send_x
-        cartesian_pos.y = 0
-        cartesian_pos.z = self.send_z
-        articular_pos = inverseKinematics(cartesian_pos)
-        sendSerialInfo(articular_pos)
 
     def sendSerialInfo(self, articular_pos):
         checksum = (~(6 + 2 + int(articular_pos.x) + int(articular_pos.y) + int(articular_pos.z)) & 0xF) #in python is needed to mask the operation
@@ -207,7 +182,8 @@ class Interface():
 
         cartesian_pos = structure()
         cartesian_pos = self.forwardKinematics(articular_pos)
-
+        self.last_updated_pos = structure()
+        self.last_updated_pos = cartesian_pos
         text_info = "\n"
         text_info += " Primera Articulación: " + "\n"
         text_info += "   Posición: " + str(self.joint_first.pose)  + "\t\t\t Objetivo: " + str(self.joint_first.pos_goal) + "\n"
@@ -289,6 +265,7 @@ class Interface():
                         error += "\n - articulacion 3"
                     messagebox.showerror("Error",error)
                     sys.exit(0)
+        updateGoal()
         self.root.after(10,self.serialListener)
 
 

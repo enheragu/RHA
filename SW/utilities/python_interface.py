@@ -114,7 +114,7 @@ class Interface():
         distance.z = (float)goal_pos.z - (float)init_pos.z
         distance_3d = sqrt(distance.x** + distance.y** + distance.z**)
         time = (float)(distance_3d/0.01)  # computes time needed at this speed
-        frames = time * 100 # number of frames is time (in secods) * frecuency
+        frames = time * 10 # number of frames is time (in secods) *times per sec this function is called
         self.last_pos_sent.x += (distance.x)/frames
         self.last_pos_sent.y += (distance.y)/frames
         self.last_pos_sent.z += (distance.z)/frames
@@ -128,6 +128,8 @@ class Interface():
             articular_goal = structure()
             articular_goal = inverseKinematics(self.last_pos_sent)
             sendSerialInfo(articular_goal)
+
+        self.root.after(100,self.updateGoal)
 
 
     def sendSerialInfo(self, articular_pos):
@@ -265,12 +267,12 @@ class Interface():
                         error += "\n - articulacion 3"
                     messagebox.showerror("Error",error)
                     sys.exit(0)
-        updateGoal()
         self.root.after(10,self.serialListener)
 
 
 if __name__ == "__main__":
     interface = Interface()
     interface.serialListener()
+    interface.updateGoal()
     interface.main()
     interface.ser.close()

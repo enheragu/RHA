@@ -668,6 +668,7 @@ void JointHandler::initSerial() {  // uint8_t _rxpin, uint8_t _txpin, uint8_t _c
  * @method JointHandler::begin
  * @param  baudrate            Baudrate in which to communicate
  */
+<<<<<<< HEAD
 void JointHandler::begin() {  // uint32_t _baudrate) {
     DebugSerialJHLn2("begin: begin at baudrate: ", G15_BAUDRATE);
     if ((CHECK_MEGA_HARDWARESERIAL(G15_RX_PIN, G15_TX_PIN)) || RASPBRRY_PI_3B)) {  // (rxpin_shield_ == 0 && txpin_shield_ == 1) ||
@@ -696,6 +697,38 @@ void JointHandler::end(void) {
         G15Serial_->end();
     }
     pinMode(G15_CONTRL_PIN, INPUT);
+=======
+void JointHandler::begin(uint32_t _baudrate) {
+     DebugSerialJHLn2("begin: begin at baudrate: ", _baudrate);
+   if ((rxpin_shield_ == 0 && txpin_shield_ == 1) || (CHECK_HARDWARESERIAL(rxpin_shield_,txpin_shield_))) {
+         hardwareSerial_ = true;
+         Serial_G15_lib.begin(_baudrate);
+         while (!Serial) {}
+         Serial_G15_lib.setTimeout(SerialTimeOut);
+     } else {
+		 hardwareSerial_ = false;
+		 #if !defined(__RASPBERRY_PI_3B__)
+			 pinMode(rxpin_shield_, INPUT);
+			 pinMode(txpin_shield_, OUTPUT);
+			 G15Serial_ = new SoftwareSerial(rxpin_shield_, txpin_shield_);
+			 G15Serial_->begin(_baudrate);
+			 G15Serial_->setTimeout(SerialTimeOut);
+         #endif
+     }
+     pinMode(ctrlpin_shield_, OUTPUT);
+     setTxMode();
+}
+
+void JointHandler::end(void) {
+     if ((rxpin_shield_ == 0 && txpin_shield_ == 1)  || CHECK_HARDWARESERIAL(rxpin_shield_, txpin_shield_)) {
+         Serial_G15_lib.end();
+     } else {
+         pinMode(rxpin_shield_, INPUT);
+         pinMode(txpin_shield_, INPUT);
+         G15Serial_->end();
+     }
+     pinMode(ctrlpin_shield_, INPUT);
+>>>>>>> 38ec39dc79ac6a91e8c048533a58de7588515ba8
 }
 
 void JointHandler::setTxMode(void) {

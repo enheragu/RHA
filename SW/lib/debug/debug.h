@@ -167,7 +167,10 @@ void printServoStatus(uint16_t pos, uint16_t speed, uint8_t speed_dir, uint16_t 
 #endif
 
 /** DebugSerialSeparation prints a horizontal line to separate different set of debug information */
+<<<<<<< HEAD
 
+=======
+>>>>>>> 38ec39dc79ac6a91e8c048533a58de7588515ba8
 #define DebugSerialSeparation(a) {outputln("#===============================================================#");}
 
 /** DEBUG_ROBOT_RHA implements debug macros for robot_rha.h and .cpp files */

@@ -170,6 +170,7 @@ void testOnProcess(uint8_t true_false) {
     }
 }
 
+<<<<<<< HEAD
 void JHUtilitiesJH::resetEncoder() {
     encoderTemp_ = 0;
     encoderCurrent_ = 0;
@@ -235,6 +236,34 @@ void JHUtilitiesJH::returnToStartPositionTest(uint8_t _joint_to_test, uint8_t di
             angleEndPositionFlag_ = 1;
             angle_end_position = 0;
             // output("## Reset encoder to got to: "); outputln(encoderTemp_);
+=======
+    outputln("stepTest = []");
+    output("n_samples_step"); output(" = "); outputln(SAMPLE_TEST_STEP);
+    output("n_data_step"); output(0); output(" = "); outputln(SAMPLE_STEP);
+    for (uint8_t samples = 0; samples < SAMPLE_TEST_STEP; samples++) {
+        output("stepTest.append(");  output(" [0");
+        JointHandler::sendSetWheelModeAll();
+        JointHandler::updateJointInfo();
+        for (int counter = 0; counter < SAMPLE_STEP; counter++) {
+            unsigned long time_init = millis();
+            JointHandler::updateJointInfo();
+            JointHandler::sendSetWheelSpeedAll(STEP_SPEED,CW);
+            /*uint8_t buffer[BUFFER_LEN];
+            uint8_t txBuffer[BUFFER_LEN];
+            uint8_t buffer_to_send[BUFFER_LEN];
+            joint_[joint_to_test].servo_.setWheelSpeedToPacket(buffer,STEP_SPEED,CW);
+            uint8_t num_bytes = 0, num_servo = 0;
+            num_servo++;
+            num_bytes = addToSyncPacket(buffer_to_send, buffer, num_bytes);
+            JointHandler::warpSyncPacket(buffer_to_send, buffer[2], txBuffer, num_bytes, num_servo);
+            uint16_t error = JointHandler::sendPacket(txBuffer);
+            if(error != 0) {
+                DebugSerialJHLn4Error(joint_[joint_to_test].servo_.getCommError(), joint_[joint_to_test].servo_.getID());
+                // return;
+            }*/
+            output(",['"); output(joint_[joint_to_test].servo_.getSpeed()); output("','"); output(STEP_SPEED); output("','");
+            output(time_init); outputln("']\\");
+>>>>>>> 38ec39dc79ac6a91e8c048533a58de7588515ba8
         }
         else if ((encoderTotal_ >= turns_to_undo || turns_to_undo == 0) && angle_end_position == 0)
             break;
@@ -245,6 +274,12 @@ void JHUtilitiesJH::returnToStartPositionTest(uint8_t _joint_to_test, uint8_t di
         }
         delay(25);
 
+<<<<<<< HEAD
+=======
+        outputln(" ] ) ");
+        JointHandler::sendExitWheelModeAll();
+        delay(2000);
+>>>>>>> 38ec39dc79ac6a91e8c048533a58de7588515ba8
     }
 
     JointHandler::sendExitWheelModeAll();
@@ -305,6 +340,12 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
     blinkLed(LED_ROJO, 100);
     testOnProcess(true);
 
+<<<<<<< HEAD
+=======
+    outputln("slopeTest = []");
+    output("n_samples_slope"); output(" = "); outputln(SAMPLE_TEST_SLOPE);
+    output("n_data_slope"); output(0); output(" = "); outputln(SAMPLE_SLOPE);
+>>>>>>> 38ec39dc79ac6a91e8c048533a58de7588515ba8
     JointHandler::updateJointInfo();
 
     uint64_t time_init = micros();
@@ -315,6 +356,7 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
     for ( samples = 0; samples < num_test; samples++) {
         // output("stepTest.append(");  output(" [0");
         JointHandler::sendSetWheelModeAll();
+<<<<<<< HEAD
         delay(25);
         JointHandler::updateJointInfo();
         if (_option == STEP) {
@@ -350,12 +392,29 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
                 updateEncoder(_joint_to_test);
             }
             measure_period.activateTimer();
+=======
+        output("slopeTest.append("); output(" [0");
+        unsigned long time_init = 0;
+        time_init = millis();
+        for (int counter = 0; counter < SAMPLE_SLOPE; counter++) {
+            int torque = SLOPE_SPEED*(millis() - time_init);
+            if (torque > 1023) torque = 1023;
+            JointHandler::updateJointInfo();
+            JointHandler::sendSetWheelSpeedAll(torque,CW);
+            output(",['"); output(joint_[joint_to_test].servo_.getSpeed()); output("','"); output(torque); output("','");
+            output(millis()); outputln("']\\");
+            delay(100);
+>>>>>>> 38ec39dc79ac6a91e8c048533a58de7588515ba8
         }
         double average_time = (time_now / num_repetitions);
         outputln("];");
         output("## Average time between each mesaure = "); outputln(average_time);
         outputln("##  ===== END OF DATA SET ===== ");
 
+<<<<<<< HEAD
+=======
+        outputln("] )");
+>>>>>>> 38ec39dc79ac6a91e8c048533a58de7588515ba8
         JointHandler::sendExitWheelModeAll();
         delay(25);
 

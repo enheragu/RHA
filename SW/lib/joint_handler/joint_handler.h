@@ -24,6 +24,7 @@
     #define CHECK_HARDWARESERIAL(rx, tx) (rx == 15 && tx == 14)
 	
 // Arduino mega
+<<<<<<< HEAD
 #if defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
     #define Serial_G15_lib Serial2
     // #define CHECK_MEGA_HARDWARESERIAL(rx, tx) (rx == 19 && tx == 18)
@@ -33,6 +34,15 @@
     // Serial2 on pins 17 (RX) and 16 (TX)
     // Serial3 on pins 15 (RX) and 14 (TX)
 
+=======
+#elif defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
+	#define Serial_G15_lib Serial1
+	#define CHECK_HARDWARESERIAL(rx, tx) (rx == 19 && tx == 18)
+	// Serial1 on pins 19 (RX) and 18 (TX)
+	// Serial2 on pins 17 (RX) and 16 (TX)
+	// Serial3 on pins 15 (RX) and 14 (TX)
+	
+>>>>>>> 38ec39dc79ac6a91e8c048533a58de7588515ba8
 // Arduino Leonardo
 #elif defined (__AVR_ATmega32U4__)
 	#define Serial_G15_lib Serial1
@@ -41,6 +51,7 @@
 	#define CHECK_HARDWARESERIAL(rx, tx) false
 	#define Serial_G15_lib Serial
 
+<<<<<<< HEAD
 #endif
 
 #include "debug.h"
@@ -53,6 +64,20 @@
 	#include <SoftwareSerial.h>
 #endif
 
+=======
+#endif
+
+#include "debug.h"
+#include "rha_types.h"
+#include "joint_rha.h"
+
+#if defined(__RASPBERRY_PI_3B__)
+	#include "SoftwareSerialDummy.h"
+#else
+	#include <SoftwareSerial.h>
+#endif
+
+>>>>>>> 38ec39dc79ac6a91e8c048533a58de7588515ba8
 #include "HardwareSerial.h"
 #include "Arduino.h"
 
@@ -85,11 +110,15 @@ namespace JointHandlerConstants {
 
     #define EEMPROM_WRITE_DELAY 25
 
+<<<<<<< HEAD
     #define G15_BAUDRATE 460800
     #define G15_RX_PIN 17
     #define G15_TX_PIN 16
     #define G15_CONTRL_PIN 8
 }  // namespace JointHandlerConstants
+=======
+}  // namespace JointHandlerConstants
+>>>>>>> 38ec39dc79ac6a91e8c048533a58de7588515ba8
 
 class JointHandler {
     uint8_t empty_var;

@@ -123,10 +123,6 @@ void JHUtilitiesJH::extractRegulatorData(uint8_t _joint_to_test) {
         for (counter = 0; counter < SAMPLE_REGULATOR; counter++) {
             time_init = millis();
             JointHandler::controlLoopTorque();
-<<<<<<< HEAD
-=======
-
->>>>>>> Raspberry adaptation first commit
             output(",['"); output(joint_[joint_to_test].servo_.getSpeed()); output("','");
             output(time_init);
             output("','");
@@ -186,11 +182,7 @@ void JHUtilitiesJH::resetEncoder() {
 
 void JHUtilitiesJH::updateEncoder(uint8_t _joint_to_test) {
     pos_ = joint_[_joint_to_test].servo_.getPosition();
-<<<<<<< HEAD
     // printf("Pos read from servo is: "); printfln(pos_);
-=======
-    // output("Pos read from servo is: "); outputln(pos_);
->>>>>>> Raspberry adaptation first commit
     encoderCurrent_ = pos_;
     if (encoderCurrent_ < (encoderTemp_ + ENCODER_ANGLE_MARGIN)  && encoderCurrent_ > (encoderTemp_ - ENCODER_ANGLE_MARGIN) && encoderFlag_ == 0) {
         encoderTotal_++;
@@ -215,13 +207,8 @@ void JHUtilitiesJH::returnToStartPositionTest(uint8_t _joint_to_test, uint8_t di
         else if (angle_end_position < 0) angle_end_position += 1087;
     }
 
-<<<<<<< HEAD
     // printf("## Turns made during test to be undone: "); printfln(turns_to_undo);
     // printf("## Angle last position: "); printfln(angle_end_position);
-=======
-    // output("## Turns made during test to be undone: "); outputln(turns_to_undo);
-    // output("## Angle last position: "); outputln(angle_end_position);
->>>>>>> Raspberry adaptation first commit
     JointHandler::updateJointInfo();
     resetEncoder();
     startEncoder(_joint_to_test);
@@ -246,11 +233,7 @@ void JHUtilitiesJH::returnToStartPositionTest(uint8_t _joint_to_test, uint8_t di
             turns_to_undo = 1;
             angleEndPositionFlag_ = 1;
             angle_end_position = 0;
-<<<<<<< HEAD
             // printf("## Reset encoder to got to: "); printfln(encoderTemp_);
-=======
-            // output("## Reset encoder to got to: "); outputln(encoderTemp_);
->>>>>>> Raspberry adaptation first commit
         }
         else if ((encoderTotal_ >= turns_to_undo || turns_to_undo == 0) && angle_end_position == 0)
             break;
@@ -260,7 +243,6 @@ void JHUtilitiesJH::returnToStartPositionTest(uint8_t _joint_to_test, uint8_t di
             JointHandler::sendSetWheelSpeedAll(STEP_SPEED/3, direction);
         }
         delay(25);
-
     }
 
     JointHandler::sendExitWheelModeAll();
@@ -275,7 +257,6 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
 
     unsigned int num_test, num_repetitions;
     if (_option == STEP) {
-<<<<<<< HEAD
         printfln("##  ===== START OF DATA SET, STEP TEST ===== ");
         printf("## n_samples_step"); printf(" = "); printfln(SAMPLE_TEST_STEP);
         printf("## n_data_step"); printf(0); printf(" = "); printfln(SAMPLE_STEP);
@@ -285,30 +266,14 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
         printfln("##  ===== START OF DATA SET, SLOPE TEST ===== ");
         printf("## n_samples_slope"); printf(" = "); printfln(SAMPLE_TEST_SLOPE);
         printf("## n_data_slope"); printf(0); printf(" = "); printfln(SAMPLE_SLOPE);
-=======
-        outputln("##  ===== START OF DATA SET, STEP TEST ===== ");
-        output("## n_samples_step"); output(" = "); outputln(SAMPLE_TEST_STEP);
-        output("## n_data_step"); output(0); output(" = "); outputln(SAMPLE_STEP);
-        num_repetitions = SAMPLE_STEP;
-        num_test = SAMPLE_TEST_STEP;
-    } else if (_option == SLOPE) {
-        outputln("##  ===== START OF DATA SET, SLOPE TEST ===== ");
-        output("## n_samples_slope"); output(" = "); outputln(SAMPLE_TEST_SLOPE);
-        output("## n_data_slope"); output(0); output(" = "); outputln(SAMPLE_SLOPE);
->>>>>>> Raspberry adaptation first commit
         num_repetitions = SAMPLE_SLOPE;
         num_test = SAMPLE_TEST_SLOPE;
     }
 
     uint8_t direction = DOWN;
     uint8_t back_direction = UP;
-<<<<<<< HEAD
     printfln("## This test is performed with 0.5 kg, in favour");
     printfln("## Data printed is, on each column: speed, torque sent, and time");
-=======
-    outputln("## This test is performed with 0.5 kg, in favour");
-    outputln("## Data printed is, on each column: speed, torque sent, and time");
->>>>>>> Raspberry adaptation first commit
 
     testOnProcess(false);
     blinkLed(LED_VERDE, 100);
@@ -316,11 +281,7 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
     delay(25);
     while (!digitalRead(PULSADOR)) {
         delay(25);
-<<<<<<< HEAD
         // printf(digitalRead(PULSADOR));
-=======
-        // output(digitalRead(PULSADOR));
->>>>>>> Raspberry adaptation first commit
     }
     delay(1000);
     while (!digitalRead(PULSADOR)) {
@@ -330,22 +291,14 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
             JointHandler::sendSetWheelSpeedAll(STEP_SPEED/3, back_direction);
         }
         delay(25);
-<<<<<<< HEAD
         // printf(digitalRead(PULSADOR));
-=======
-        // output(digitalRead(PULSADOR));
->>>>>>> Raspberry adaptation first commit
     }
     JointHandler::sendExitWheelModeAll();
     delay(25);
     delay(1000);
     while (!digitalRead(PULSADOR)) {
         delay(25);
-<<<<<<< HEAD
         // printf(digitalRead(PULSADOR));
-=======
-        // output(digitalRead(PULSADOR));
->>>>>>> Raspberry adaptation first commit
     }
     blinkLed(LED_ROJO, 100);
     testOnProcess(true);
@@ -358,24 +311,14 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
     unsigned int counter = 0;
 
     for ( samples = 0; samples < num_test; samples++) {
-<<<<<<< HEAD
         // printf("stepTest.append(");  printf(" [0");
-=======
-        // output("stepTest.append(");  output(" [0");
->>>>>>> Raspberry adaptation first commit
         JointHandler::sendSetWheelModeAll();
         delay(25);
         JointHandler::updateJointInfo();
         if (_option == STEP) {
-<<<<<<< HEAD
             printf("Step(:,:,"); printf(samples+1); printf(") = [");
         } else if (_option == SLOPE) {
             printf("Slope(:,:,"); printf(samples+1); printf(") = [");
-=======
-            output("Step(:,:,"); output(samples+1); output(") = [");
-        } else if (_option == SLOPE) {
-            output("Slope(:,:,"); output(samples+1); output(") = [");
->>>>>>> Raspberry adaptation first commit
         }
         time_init = micros();
         time_now = 0;
@@ -395,17 +338,10 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
             if (torque > 1023) torque = 1023;
             JointHandler::updateJointInfo();
             JointHandler::sendSetWheelSpeedAll(torque, direction);
-<<<<<<< HEAD
             if (counter != 0)  printf(";");
             time_now = micros() - time_init;
             printf(" "); printf(joint_[_joint_to_test].servo_.getSpeed()); printf(" "); printf(torque); printf(" ");
             printf((unsigned long)time_now);  // printfln("']\\");
-=======
-            if (counter != 0)  output(";");
-            time_now = micros() - time_init;
-            output(" "); output(joint_[_joint_to_test].servo_.getSpeed()); output(" "); output(torque); output(" ");
-            output((unsigned long)time_now);  // outputln("']\\");
->>>>>>> Raspberry adaptation first commit
             // measure_period.checkWait();
             while (!measure_period.checkContinue()) {  // while time has not been finished
                 JointHandler::updateJointInfo();
@@ -414,16 +350,9 @@ void JHUtilitiesJH::extractStepSlopeData(uint8_t _joint_to_test, uint8_t _option
             measure_period.activateTimer();
         }
         double average_time = (time_now / num_repetitions);
-<<<<<<< HEAD
         printfln("];");
         printf("## Average time between each mesaure = "); printfln(average_time);
         printfln("##  ===== END OF DATA SET ===== ");
-=======
-        outputln("];");
-        output("## Average time between each mesaure = "); outputln(average_time);
-        outputln("##  ===== END OF DATA SET ===== ");
-
->>>>>>> Raspberry adaptation first commit
         JointHandler::sendExitWheelModeAll();
         delay(25);
 

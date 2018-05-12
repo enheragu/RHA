@@ -1,14 +1,3 @@
-/**
- * @Author: Enrique Heredia Aguado <enheragu>
- * @Date:   31_Oct_2017
- * @Project: RHA
- * @Filename: chuck_handler.h
- * @Last modified by:   enheragu
- * @Last modified time: 23_Nov_2017
- */
-
-
-
 #ifndef CHUCK_HANDLER_H
 #define CHUCK_HANDLER_H
 
@@ -48,10 +37,6 @@ class ChuckHandler {
         chuck_refresh_timer_.activateTimer();
     }
 
-    /**
-     * @brief Prints on screen (using Debug.h output macro) values of Joy and buttos of WiiChuck
-     * @see Debug.h
-     */
     void printChuckValues() {
          chuck_.update();
          output("Joy X value is: "); outputln(chuck_.readJoyX());

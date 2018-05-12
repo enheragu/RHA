@@ -32,7 +32,6 @@
     // Serial1 on pins 19 (RX) and 18 (TX)
     // Serial2 on pins 17 (RX) and 16 (TX)
     // Serial3 on pins 15 (RX) and 14 (TX)
-
 // Arduino Leonardo
 #elif defined (__AVR_ATmega32U4__)
 	#define Serial_G15_lib Serial1
